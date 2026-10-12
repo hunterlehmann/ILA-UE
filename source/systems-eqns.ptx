@@ -434,8 +434,8 @@ the license is included in gfdl.xml.
 
 \left\{
 \begin{alignedat}{3}
-\cp x \amp \cp{}-{} \amp \cp 3y \amp \cp{}={} \amp \cp -3 \\
-\g 2x \amp \g{}+{} \amp \g y \amp \g{}={} \amp \g 8.
+\mhp{x} \amp {}-{} \amp \mhp{3y} \amp {}={} \amp \mhp{-3} \\
+\mhg{2x} \amp {}+{} \amp \mhg{y} \amp {}={} \amp \mhg{8}.
 \end{alignedat}
 \right.</md>
         Each equation individually defines a line in the plane, pictured below.
@@ -469,8 +469,8 @@ Two lines in the plane intersecting at a point
 
 \left\{
 \begin{alignedat}{3}
-\cp x \amp \cp{}-{} \amp \cp 3y \amp \cp{}={} \amp \cp -3 \\
-\g x \amp \g{}-{} \amp \g 3y \amp \g{}={} \amp \g 3.
+\mhp{x} \amp {}-{} \amp \mhp{3y} \amp {}={} \amp \mhp{-3} \\
+\mhg{x} \amp {}-{} \amp \mhg{3y} \amp {}={} \amp \mhg{3}.
 \end{alignedat}
 \right.</md>
         These define <em>parallel</em> lines in the plane.
@@ -503,8 +503,9 @@ Two parallel lines in the plane
 
 \left\{
 \begin{alignedat}{3}
-\cp x \amp \cp{}-{} \amp \cp 3y \amp \cp{}={} \amp \cp -3 \\
-\g 2x \amp \g{}-{} \amp \g 6y \amp \g{}={} \amp \g -6.
+%\mhp{x \amp {}-{} \amp 3y \amp {}={} \amp -3} \\
+\mhp{x} \amp {}-{} \amp \mhp{3y} \amp {}={} \amp \mhp{-3} \\
+\mhg{2x} \amp {}-{} \amp \mhg{6y} \amp {}={} \amp \mhg{-6}.
 \end{alignedat}
 \right.</md>
         The second equation is a multiple of the first, so these equations define the <em>same</em> line in the plane.
@@ -540,15 +541,15 @@ Two lines in the plane that are equal
 
 \left\{
 \begin{alignedat}{4}
-\cp x \amp \cp{}+{} \amp \cp y \amp \cp{}+{} \amp \cp z \amp \cp{}={} \amp \cp 1 \\
-\g x \amp \amp \amp \g{}-{} \amp \g z \amp \g{}={} \amp \g 0.
+\mhp{x} \amp {}+{} \amp \mhp{y} \amp {}+{} \amp \mhp{z} \amp {}={} \amp \mhp{1} \\
+\mhg{x} \amp \amp \amp {}-{} \amp \mhg{z} \amp {}={} \amp \mhg{0}.
 \end{alignedat}
 \right.</md>
         Each equation individually defines a plane in space.  The solutions of the system of both equations are the points that lie on both planes.  We can see in the picture below that the planes intersect in a line.  In particular, this system has infinitely many solutions.
       </p>
 
       <figure>
-        <caption>The planes defined by the equations <m>\color{seq-violet}x+y+z=1</m> and <m>\color{seq-green}x-z=0</m> intersect in the red line, which is the solution set of the system of both equations.</caption>
+        <caption>The planes defined by the equations <m>\mhp{x+y+z=1}</m> and <m>\mhg{x-z=0}</m> intersect in the red line, which is the solution set of the system of both equations.</caption>
         <mathbox source="demos/planes.html" height="400px"/>
       </figure>
     </observation>
@@ -607,8 +608,8 @@ Two lines in the plane that are equal
         Now consider the system of two linear equations
         <md>
 <mrow>\left\{\begin{alignedat}{4}
-\cp x \cp \amp {}+{} \amp \cp y \cp \amp {}+{} \amp \cp z \cp \amp {}={} \amp \cp 1 \amp {} \\
-\g x \amp {}{} \amp {} \g \amp {}-{} \amp \g z \g \amp {}={} \amp \g 0 \amp {}
+\mhp{x}  \amp {}+{} \amp \mhp{y}  \amp {}+{} \amp \mhp{z}  \amp {}={} \amp  \mhp{1} \amp {} \\
+\mhg{x} \amp {}{} \amp {}  \amp {}-{} \amp \mhg{z}  \amp {}={} \amp \mhg{0} \amp {}
 \end{alignedat}\right.</mrow>
 </md>
         of <xref ref="systems-eqns-two-planes"/>.  These collectively form the <term>implicit equations</term> for a line in <m>\R^3</m>.  (At least two equations are needed to define a line in space.)  This line also has a <term>parametric form</term> with one <term>parameter</term> <m>t</m>:
@@ -618,7 +619,7 @@ Two lines in the plane that are equal
       </p>
 
       <figure>
-        <caption>The planes defined by the equations <m>\color{seq-violet}x+y+z=1</m> and <m>\color{seq-green}x-z=0</m> intersect in the yellow line, which is parameterized by <m>(x,y,z) = (t,1-2t,t)</m>.  Move the slider to change the parameterized point.</caption>
+        <caption>The planes defined by the equations <m>\mhp{x+y+z=1}</m> and <m>\mhg{x-z=0}</m> intersect in the yellow line, which is parameterized by <m>(x,y,z) = (t,1-2t,t)</m>.  Move the slider to change the parameterized point.</caption>
         <mathbox source="demos/parametric2.html" height="400px"/>
       </figure>
 

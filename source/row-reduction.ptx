@@ -256,14 +256,14 @@ x \amp {}+{} \amp 2y \amp {}+{} \amp 3z \amp {}={} \amp 6 \amp {} \\
           \quad\xrightarrow{R_2=R_2-2R_1}\quad\amp
           \left(\begin{array}{rrr|r}
 1 \amp 2 \amp 3 \amp 6 \\
-\r0 \amp -7 \amp -4 \amp 2 \\
+\mh{0} \amp -7 \amp -4 \amp 2 \\
 3 \amp 1 \amp -1 \amp -2
 \end{array}\right)</mrow>
 <mrow>{}\quad\xrightarrow{R_3=R_3-3R_1}\quad\amp
           \left(\begin{array}{rrr|r}
 1 \amp 2 \amp 3 \amp 6 \\
 0 \amp -7 \amp -4 \amp 2 \\
-\r0 \amp -5 \amp -10 \amp -20
+\mh{0} \amp -5 \amp -10 \amp -20
 \end{array}\right)</mrow>
 </md>
         This was made much easier by the fact that the top-left entry is equal to <m>1</m>, so we can simply multiply the first row by the number below and subtract.  In order to eliminate <m>y</m> in the same way, we would like to produce a <m>1</m> in the second column.  We could divide the second row by <m>-7</m>, but this would produce fractions; instead, let<rsq/>s divide the third by <m>-5</m>.
@@ -277,7 +277,7 @@ x \amp {}+{} \amp 2y \amp {}+{} \amp 3z \amp {}={} \amp 6 \amp {} \\
           \left(\begin{array}{rrr|r}
 1 \amp 2 \amp 3 \amp 6 \\
 0 \amp -7 \amp -4 \amp 2 \\
-0 \amp \r1 \amp 2 \amp 4
+0 \amp \mh{1} \amp 2 \amp 4
 \end{array}\right)</mrow>
 <mrow>{}\quad\xrightarrow{R_2\longleftrightarrow R_3}\quad\amp
           \left(\begin{array}{rrr|r}
@@ -289,13 +289,13 @@ x \amp {}+{} \amp 2y \amp {}+{} \amp 3z \amp {}={} \amp 6 \amp {} \\
           \left(\begin{array}{rrr|r}
 1 \amp 2 \amp 3 \amp 6 \\
 0 \amp 1 \amp 2 \amp 4 \\
-0 \amp \r0 \amp 10 \amp 30
+0 \amp \mh{0} \amp 10 \amp 30
 \end{array}\right)</mrow>
 <mrow>{}\quad\xrightarrow{R_3 = R_3\div 10}\quad\amp
           \left(\begin{array}{rrr|r}
 1 \amp 2 \amp 3 \amp 6 \\
 0 \amp 1 \amp 2 \amp 4 \\
-0 \amp 0 \amp \r1 \amp 3
+0 \amp 0 \amp \mh{1} \amp 3
 \end{array}\right)</mrow>
 </md>
         We swapped the second and third row just to keep things orderly.  Now we translate this augmented matrix back into a system of equations:
@@ -371,14 +371,14 @@ x \amp {}+{} \amp y \amp {}={} \amp 2 \amp {} \\
             \quad\xrightarrow{R_2=R_2-3R_1}\quad\amp
             \left(\begin{array}{rr|r}
 1 \amp 1 \amp 2 \\
-\r0 \amp 1 \amp -1 \\
+\mh{0} \amp 1 \amp -1 \\
 4 \amp 5 \amp 9
 \end{array}\right)</mrow>
 <mrow>{}\quad\xrightarrow{R_3=R_3-4R_1}\quad\amp
             \left(\begin{array}{rr|r}
 1 \amp 1 \amp 2 \\
 0 \amp 1 \amp -1 \\
-\r0 \amp 1 \amp 1
+\mh{0} \amp 1 \amp 1
 \end{array}\right)</mrow>
 </md>
           Now we clear the second entry from the last row.
@@ -392,7 +392,7 @@ x \amp {}+{} \amp y \amp {}={} \amp 2 \amp {} \\
             \left(\begin{array}{rr|r}
 1 \amp 1 \amp 2 \\
 0 \amp 1 \amp -1 \\
-0 \amp \r0 \amp 2
+0 \amp \mh{0} \amp 2
 \end{array}\right)</mrow>
 </md>
           This translates back into the system of equations
@@ -434,14 +434,14 @@ x \amp {}+{} \amp y \amp {}={} \amp 2 \amp {} \\
     <p>Here is a picture of a matrix in row echelon form:
     <md>
 <mrow>\begin{bmatrix}
-\color{highlight}\boxed\star \amp \star \amp \star \amp \star \amp \star \\
-0 \amp \color{highlight}\boxed\star \amp \star \amp \star \amp \star \\
-0 \amp 0 \amp 0 \amp \color{highlight}\boxed\star \amp \star \\
+\mh{\boxed\star}\amp \star \amp \star \amp \star \amp \star \\
+0 \amp \mh{\boxed\star}\amp \star \amp \star \amp \star \\
+0 \amp 0 \amp 0 \amp \mh{\boxed\star}\amp \star \\
 0 \amp 0 \amp 0 \amp 0 \amp 0
 \end{bmatrix}\qquad
 \begin{aligned}
   \star \amp= \text{any number} \\
-  \color{highlight}\boxed\star \amp= \text{any nonzero number}
+  \mh{\boxed\star}\amp= \text{any nonzero number}
 \end{aligned}</mrow>
 </md>
     </p>
@@ -485,14 +485,14 @@ x \amp {}+{} \amp 2y \amp {}+{} \amp 3z \amp {}={} \amp 6 \amp {} \\
     <p>Here is a picture of a matrix in reduced row echelon form:
     <md>
 <mrow>\begin{bmatrix}
-\color{highlight}1 \amp 0 \amp \star \amp 0 \amp \star \\
-0 \amp \color{highlight}1 \amp \star \amp 0 \amp \star \\
-0 \amp 0 \amp 0 \amp \color{highlight}1 \amp \star \\
+\mh{1}\amp 0 \amp \star \amp 0 \amp \star \\
+0 \amp \mh{1}\amp \star \amp 0 \amp \star \\
+0 \amp 0 \amp 0 \amp \mh{1}\amp \star \\
 0 \amp 0 \amp 0 \amp 0 \amp 0
 \end{bmatrix} \qquad
 \begin{aligned}
   \star \amp= \text{any number} \\
-  \color{highlight}1 \amp= \text{pivot}
+  \mh{1}\amp= \text{pivot}
 \end{aligned}</mrow>
 </md>
     </p>
@@ -1098,9 +1098,9 @@ x \amp {} \amp {} \amp {} \amp {} \amp {}={} \amp 1 \amp {} \\
         The pivot positions of <m>A</m> are the entries that become pivots in a row echelon form; they are marked in color below:
         <md>
 <mrow>\left(\begin{array}{rrr|r}
-\r0 \amp -7 \amp -4 \amp 2 \\
-2 \amp \r4 \amp 6 \amp 12 \\
-3 \amp 1 \amp \r-1 \amp -2
+\mh{0} \amp -7 \amp -4 \amp 2 \\
+2 \amp \mh{4} \amp 6 \amp 12 \\
+3 \amp 1 \amp \mh{-1} \amp -2
 \end{array}\right).</mrow>
 </md>
         The first, second, and third columns are pivot columns.
@@ -1131,34 +1131,34 @@ x \amp {} \amp {} \amp {} \amp {} \amp {}={} \amp 1 \amp {} \\
 \end{array}\right)
                   \quad\xrightarrow{R_1=R_1\div 2}\quad
                   \amp\left(\begin{array}{rr|r}
-\color{highlight}1 \amp 5 \amp {-\frac 12} \\
+\mh{1}\amp 5 \amp {-\frac 12} \\
 3 \amp {15} \amp 2
 \end{array}\right)
-                  \,\color{contrastBlue}\text{(Step 1b)}
+                  \,\mhb{\text{(Step 1b)}}
                 </mrow>
                 <mrow>
                   {}\quad\xrightarrow{R_2=R_2-3R_1}\quad
                   \amp\left(\begin{array}{rr|r}
 1 \amp 5 \amp {-\frac 12} \\
-\color{highlight}0 \amp 0 \amp \frac72
+\mh{0}\amp 0 \amp \frac72
 \end{array}\right)
-                  \,\color{contrastBlue}\text{(Step 1c)}
+                  \,\mhb{\text{(Step 1c)}}
                 </mrow>
                 <mrow>
                   {}\quad\xrightarrow{R_2=R_2\times\frac 27}\quad
                   \amp\left(\begin{array}{rr|r}
 1 \amp 5 \amp {-\frac 12} \\
-0 \amp 0 \amp \color{highlight}1
+0 \amp 0 \amp \mh{1}
 \end{array}\right)
-                  \,\color{contrastBlue}\text{(Step 2b)}
+                  \,\mhb{\text{(Step 2b)}}
                 </mrow>
                 <mrow>
                   {}\quad\xrightarrow{R_1=R_1+\frac 12R_2}\quad
                   \amp\left(\begin{array}{rr|r}
-1 \amp 5 \amp \color{highlight}0 \\
+1 \amp 5 \amp \mh{0}\\
 0 \amp 0 \amp 1
 \end{array}\right)
-                  \,\color{contrastBlue}\text{(Step 2c)}
+                  \,\mhb{\text{(Step 2c)}}
                 </mrow>
               </md>
               This row reduced matrix corresponds to the <em>inconsistent</em> system
@@ -1185,9 +1185,9 @@ x \amp {}+{} \amp 5y \amp {}={} \amp 0 \amp {} \\
     <p>In other words, the row reduced matrix of an inconsistent system looks like this:
     <md>
 <mrow>\left(\begin{array}{rrrr|r}
-1 \amp 0 \amp \star \amp \star \amp \color{highlight}0 \\
-0 \amp 1 \amp \star \amp \star \amp \color{highlight}0 \\
-0 \amp 0 \amp 0 \amp 0 \amp \color{highlight}1
+1 \amp 0 \amp \star \amp \star \amp \mh{0}\\
+0 \amp 1 \amp \star \amp \star \amp \mh{0}\\
+0 \amp 0 \amp 0 \amp 0 \amp \mh{1}
 \end{array}\right)</mrow>
 </md>
     </p>
@@ -1251,34 +1251,34 @@ x \amp {}+{} \amp 2y \amp {}+{} \amp 9z \amp {}={} \amp -1 \amp {}
 \end{array}\right)
               \quad\xrightarrow{R_1 \longleftrightarrow R_2}\quad
               \amp\left(\begin{array}{rrr|r}
-\color{highlight}1 \amp 2 \amp 9 \amp -1 \\
+\mh{1}\amp 2 \amp 9 \amp -1 \\
 2 \amp 1 \amp 12 \amp 1
 \end{array}\right)
-              \,\color{contrastBlue}\text{(Optional)}
+              \,\mhb{\text{(Optional)}}
             </mrow>
             <mrow>
               {}\quad\xrightarrow{R_2=R_2-2R_1}\quad
               \amp\left(\begin{array}{rrr|r}
 1 \amp 2 \amp 9 \amp -1 \\
-\color{highlight}0 \amp -3 \amp -6 \amp 3
+\mh{0}\amp -3 \amp -6 \amp 3
 \end{array}\right)
-              \,\color{contrastBlue}\text{(Step 1c)}
+              \,\mhb{\text{(Step 1c)}}
             </mrow>
             <mrow>
               {}\quad\xrightarrow{R_2=R_2\div -3}\quad
               \amp\left(\begin{array}{rrr|r}
 1 \amp 2 \amp 9 \amp -1 \\
-0 \amp \color{highlight}1 \amp 2 \amp -1
+0 \amp \mh{1}\amp 2 \amp -1
 \end{array}\right)
-              \,\color{contrastBlue}\text{(Step 2b)}
+              \,\mhb{\text{(Step 2b)}}
             </mrow>
             <mrow>
               {}\quad\xrightarrow{R_1=R_1-2R_2}\quad
               \amp\left(\begin{array}{rrr|r}
-1 \amp \color{highlight}0 \amp 5 \amp 1 \\
+1 \amp \mh{0}\amp 5 \amp 1 \\
 0 \amp 1 \amp 2 \amp -1
 \end{array}\right)
-              \,\color{contrastBlue}\text{(Step 2c)}
+              \,\mhb{\text{(Step 2c)}}
             </mrow>
           </md>
           This row reduced matrix corresponds to the linear system

@@ -1,0 +1,27 @@
+:root {
+    --highlight-math: #8F713D;
+    --highlight-math-b: #0062D9;
+    --highlight-math-g: #39794C;
+    --highlight-math-p: #9444A1;
+}
+
+:root.dark-mode {
+    --highlight-math: #B39051;
+    --highlight-math-b: #7EB1FF;
+    --highlight-math-g: #7AC975;
+    --highlight-math-p: #C99AD8;
+}
+
+.theme-math-highlight {
+    color: var(--highlight-math);
+}
+.theme-math-highlight-b {
+    color: var(--highlight-math-b);
+}
+.theme-math-highlight-g {
+    color: var(--highlight-math-g);
+}
+.theme-math-highlight-p {
+    color: var(--highlight-math-p);
+}
+``

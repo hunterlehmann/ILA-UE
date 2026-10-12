@@ -5,9 +5,9 @@
 <!-- settings. -->
 <docinfo xmlns:xi="http://www.w3.org/2001/XInclude">
   <!-- A unique name for the book in a catalog; for example, see https://pretextbook.org/catalog.html and https://runestone.academy/ns/books/index. It contains a simple lowercase string with no dashes or other special characters. See https://pretextbook.org/doc/guide/html/sec-publishing-to-runestone-academy.html for more information. -->
-  <!--<document-id>changeme</document-id>-->
+  <document-id>ILA-UE</document-id>
   <!-- A brief description for the book in a catalog; see the links above. The @shelf is used only when publishing to Runestone; see https://runestone.academy/ns/books/index for a list of valid values. You must copy these @shelf names exactly, including capitalization. -->
-  <!--<blurb shelf="AP Computer Science"> A simple string (no markup is allowed) to describe your book. </blurb>-->
+  <blurb shelf="Mathematics"> An introduction to matrix algebra with an emphasis on geometric intuition. </blurb>
 
   <directories external="../assets" />
   <rename element="observation">Example</rename>
@@ -22,14 +22,18 @@
   <!-- to define these semantically, so that the macro relates to what-->
   <!-- it defines. -->
   <macros>
-    \definecolor{highlight}{RGB}{168, 101, 0}
-    \definecolor{contrastGreen}{RGB}{67, 130, 62}
-    \definecolor{contrastPurple}{RGB}{160, 89, 171}
-    \definecolor{contrastBlue}{RGB}{76, 143, 255}
-    \newcommand{\g}{\color{contrastGreen}}
-    \newcommand{\cp}{\color{contrastPurple}}
-    \newcommand{\b}{\color{contrastBlue}}
-    \renewcommand{\r}{\color{highlight}}
+    \definecolor{cLGold}{RGB}{143, 113, 61}
+    \definecolor{cLGreen}{RGB}{0, 98, 217}
+    \definecolor{cLPurple}{RGB}{31, 127, 115}
+    \definecolor{cLBlue}{RGB}{148, 68, 161}
+    \newcommand{\g}{\color{cLGreen}}
+    \newcommand{\cp}{\color{cLPurple}}
+    \newcommand{\b}{\color{cLBlue}}
+    \renewcommand{\r}{\color{cLGold}}
+    \renewcommand{\mh}[1]{\class{theme-math-highlight}{#1}}
+    \renewcommand{\mhb}[1]{\class{theme-math-highlight-b}{#1}}
+    \renewcommand{\mhg}[1]{\class{theme-math-highlight-g}{#1}}
+    \renewcommand{\mhp}[1]{\class{theme-math-highlight-p}{#1}}
   \newcommand{\R}{\mathbf R}
   \newcommand{\C}{\mathbf C}
  \renewcommand{\mathbb}[1]{\mathbf{#1}}
@@ -65,10 +69,10 @@
 \newcommand\smallmat[4]{\begin{smm}#1&amp;#2\\#3&amp;#4\end{smm}}
 
 \definecolor{seq-red}{rgb}{0.8941,0.1020,0.1098}
-\definecolor{seq-blue}{rgb}{0.2157,0.4941,0.7216}
-\definecolor{seq-green}{RGB}{67, 130, 62}
-\definecolor{seq-violet}{RGB}{160, 89, 171}
-\definecolor{seq-orange}{rgb}{1.0000,0.4980,0.0000}
+\definecolor{seq-blue}{RGB}{0, 98, 217}
+\definecolor{seq-green}{RGB}{63, 131, 83}
+\definecolor{seq-violet}{RGB}{148, 68, 161}
+\definecolor{seq-orange}{RGB}{143, 113, 61}
 \definecolor{seq-yellow}{rgb}{0.7000,0.7000,0.0000}
 \definecolor{seq-brown}{rgb}{0.6510,0.3373,0.1569}
 \definecolor{seq-pink}{rgb}{0.9686,0.5059,0.7490}
@@ -276,6 +280,7 @@
 
   <math-package latex-name="mathtools" mathjax-name="mathtools" />
   
+  <math-package latex-name="html" mathjax-name="html" />
   <math-package latex-name="color" mathjax-name="color" />
 
 
