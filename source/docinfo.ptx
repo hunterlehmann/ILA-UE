@@ -14,6 +14,7 @@
   <rename element="question">Interactive</rename>
   <rename element="problem">Remark</rename>
   <rename element="convention">Primary Goal</rename>
+  <rename element="algorithm">Recipe</rename>
   <defaults>
     <xrefs text="phrase-hybrid" />
   </defaults>

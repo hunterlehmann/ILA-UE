@@ -59,6 +59,18 @@ A self-closing `<interactive ... />` will silently drop the accessibility childr
 - `<shortdescription>` — brief alt-text phrase (one sentence, no markup); **fill in before publishing**
 - `<description>` — full accessibility prose describing what the widget shows and how to interact with it; **fill in before publishing**
 
+If the interactive uses the Fullscreen API, also add `permissions="fullscreen"`:
+
+```xml
+<interactive xml:id="UNIQUE-ID"
+             iframe="iframes/mywidget-if.html"
+             width="100%"
+             aspect="W:H"
+             permissions="fullscreen">
+```
+
+Without this attribute, browsers block `requestFullscreen()` calls from inside the iframe.
+
 ---
 
 ## URL query parameters
@@ -70,12 +82,7 @@ If the original ILA interactive was driven by URL parameters (e.g., `func=`, `ra
              iframe="iframes/bestfit-if.html?func=A*x+B&amp;v1=0,1&amp;v2=2,3&amp;range=5"
              width="100%"
              aspect="2:1">
-  <shortdescription>
-    <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
-  </shortdescription>
-  <description>
-    <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
-  </description>
+  ...
 </interactive>
 ```
 
@@ -85,7 +92,6 @@ In the iframe JS, restore all `urlParams.get(...)` calls exactly as in the origi
 range   = urlParams.get('range',  'float', 10);
 rangeZ  = urlParams.get('rangez', 'float', range);
 funcStr = (ref = urlParams.func) != null ? ref : 'C*x+D';
-// points
 i = 1;
 while (urlParams['v' + i] != null) {
   target    = urlParams.get('v' + i, 'float[]');
@@ -93,7 +99,6 @@ while (urlParams['v' + i] != null) {
   targets.push(target);
   i++;
 }
-// camera
 camera: { position: urlParams.get('camera1', 'float[]', [3, 1.5, 1.5]) }
 ```
 
@@ -110,41 +115,183 @@ The iframe HTML file is a **completely standalone web page**. Structure it as:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Widget title</title>
-
-  <!-- Load ALL external libraries here, in dependency order -->
-  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
-  <!-- Add other CDN scripts (JSXGraph, d3, etc.) here as needed -->
-
-  <style>
-    /* Reset: make the widget fill the iframe without scrollbars */
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body {
-      margin: 0; padding: 0;
-      width: 100%; height: 100%;
-      font-family: inherit;
-      overflow: hidden;          /* prevent iframe scrollbars */
-    }
-    /* ... layout styles ... */
-  </style>
+  <script src="...CDN libraries..."></script>
+  <style> /* layout + accessibility styles */ </style>
 </head>
 <body>
-
-  <!-- Static HTML structure of the widget -->
-  <!-- Keep IDs simple and local — no need to namespace them as
-       in the slate approach (no global document context to collide with) -->
-
+  <!-- Static HTML structure -->
   <script>
-    /* All JS at the bottom of <body>.
-     * The DOM is fully parsed by the time this runs, so:
-     *   - No DOMContentLoaded listener needed
-     *   - No window.load listener needed
-     *   - No document.createElement('script') dynamic injection needed
-     *   - getElementById() always finds the target element
-     */
+    /* All JS at bottom of <body> — DOM is fully parsed, no ready() needed */
   </script>
-
 </body>
 </html>
+```
+
+---
+
+## Layout: keep the caption bar out of the canvas area
+
+ILA demos that render equations above the interactive use `position: absolute` elements that float over the canvas. In the iframe this causes the caption text to overlap the MathBox panels. Fix with a **flex column layout**:
+
+```css
+html, body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+.caption-bar {
+  flex: 0 0 auto;           /* fixed height; does not grow or shrink */
+  padding: 4px 10px;
+  border-bottom: 1px solid #ccc;
+}
+#canvas-container {
+  flex: 1 1 auto;           /* fills all remaining height */
+  position: relative;       /* anchor for absolutely-positioned panels */
+  overflow: hidden;
+}
+```
+
+Individual panels inside `#canvas-container` use `position: absolute; top: 0; bottom: 0` instead of the padding-top trick.
+
+---
+
+## KaTeX without its stylesheet: use `.katex-html { display: none; }`
+
+`demo.js` bundles KaTeX JavaScript but **not** KaTeX's CSS or fonts. When `katex.render()` is called it writes two sibling elements:
+
+| Element | Content | Visible without KaTeX CSS? |
+|---|---|---|
+| `.katex-mathml` | Native `<math>` element | ✅ Browsers render this as formatted math automatically |
+| `.katex-html` | Positioned `<span>` tree | ❌ Appears as unstyled plain text without the stylesheet |
+
+**Fix: hide `.katex-html`, not `.katex-mathml`:**
+
+```css
+.katex-html { display: none; }
+```
+
+> ⚠️ **Common mistake**: hiding `.katex-mathml` instead shows only the broken span layout and hides the formatted math — the opposite of what is wanted.
+
+---
+
+## WCAG 2.1 Operability
+
+All converted interactives must meet **WCAG 2.1 Principle 2: Operable**. The key requirements for WebGL/canvas-based interactives and how to address each:
+
+### 2.1.1 Keyboard (Level A)
+> All functionality must be operable via keyboard.
+
+WebGL canvas elements are not inherently keyboard-accessible. **Provide a keyboard alternative**: a panel of `<input type="number">` fields, one per draggable point, that update the canvas when changed.
+
+```html
+<details id="point-editor" open>
+  <summary>Edit points (keyboard / single-click alternative to dragging)</summary>
+  <div id="point-inputs" role="group" aria-label="Draggable point coordinates"></div>
+</details>
+```
+
+Populate it from JS after reading URL params:
+
+```javascript
+var pointInputsX = [], pointInputsY = [];
+
+function buildPointEditor() {
+  var editor = document.getElementById('point-inputs');
+  targets.forEach(function(pt, idx) {
+    var xInp = document.createElement('input');
+    xInp.type = 'number'; xInp.step = '0.5'; xInp.value = +pt[0].toFixed(2);
+    xInp.setAttribute('aria-label', 'Point ' + (idx + 1) + ' x coordinate');
+    pointInputsX.push(xInp);
+
+    var yInp = document.createElement('input');
+    yInp.type = 'number'; yInp.step = '0.5'; yInp.value = +pt[1].toFixed(2);
+    yInp.setAttribute('aria-label', 'Point ' + (idx + 1) + ' y coordinate');
+    pointInputsY.push(yInp);
+
+    function applyInput() {
+      var x = parseFloat(xInp.value), y = parseFloat(yInp.value);
+      if (isFinite(x)) targets[idx][0] = x;
+      if (isFinite(y)) targets[idx][1] = y;
+      solve();
+    }
+    xInp.addEventListener('change', applyInput);
+    yInp.addEventListener('change', applyInput);
+    // ... append to editor ...
+  });
+}
+
+// Call after first solve():
+solve();
+buildPointEditor();
+```
+
+Add a **bidirectional sync** so dragging the canvas also updates the inputs — call this at the end of `solve()`:
+
+```javascript
+// At the end of solve(), after updateCaption():
+targets.forEach(function(pt, idx) {
+  if (pointInputsX[idx]) pointInputsX[idx].value = +pt[0].toFixed(2);
+  if (pointInputsY[idx]) pointInputsY[idx].value = +pt[1].toFixed(2);
+});
+```
+
+The `<details open>` starts expanded so keyboard users discover it immediately; it can be collapsed to save space.
+
+### 2.1.2 No Keyboard Trap (Level A)
+Standard HTML `<input>` and `<button>` elements. No custom focus management needed; browser handles tab order naturally.
+
+### 2.4.3 Focus Order (Level A)
+Logical tab order follows DOM order: fullscreen button → details summary → point inputs → (canvas). Ensure the caption bar appears before the canvas in the DOM, which it does in the flex-column layout.
+
+### 2.4.7 Focus Visible (Level AA)
+Add a global focus-visible rule in the iframe `<style>`:
+
+```css
+:focus-visible {
+  outline:        2px solid #0066cc;
+  outline-offset: 2px;
+}
+```
+
+This applies to all interactive elements (inputs, buttons, summary) without interfering with mouse users.
+
+### 2.5.1 Pointer Gestures (Level A)
+> Functionality using path-based gestures must have a single-pointer alternative.
+
+Canvas dragging is a path-based gesture. The number inputs panel (see 2.1.1) is the required alternative.
+
+### 2.5.2 Pointer Cancellation (Level A)
+> Functionality must not activate on the down-event.
+
+- **Canvas drag**: `postDrag` fires on `mouseup`, not `mousedown`. ✅ Already correct in ILA code.
+- **Number inputs**: use `change` event (fires on commit: Enter key or blur), not `input` (fires on every keystroke). This lets users correct a value before the canvas updates.
+- **Buttons**: use `click` event, not `pointerdown`. ✅
+
+### 2.5.3 Label in Name (Level A)
+> The accessible name of a UI component must contain the visible label text.
+
+- Buttons: `aria-label` must match or contain the visible text/icon. Update `aria-label` dynamically if the button label changes (e.g., fullscreen toggle).
+- Inputs: use `aria-label="Point N x coordinate"` (no visible label text to conflict with).
+
+### Dynamic content: ARIA live regions
+When equations update on drag/input, screen readers must be notified. Add `aria-live` and `aria-atomic` to the equation display elements:
+
+```html
+<span id="eqn-here"   aria-live="polite" aria-atomic="true"></span>
+<span id="sumsq-here" aria-live="polite" aria-atomic="true"></span>
+```
+
+`aria-atomic="true"` ensures the whole equation is re-announced, not just the changed fragment.
+
+### Canvas element: `aria-hidden`
+The WebGL canvas conveys no information that isn't already available in the number inputs and equation display. Mark the canvas container `aria-hidden="true"` to remove it from the accessibility tree:
+
+```html
+<div id="mathbox-container" aria-hidden="true">
+  ...
+</div>
 ```
 
 ---
@@ -152,9 +299,6 @@ The iframe HTML file is a **completely standalone web page**. Structure it as:
 ## Translating the original ILA HTML
 
 ### Libraries: bundle.js → CDN
-
-ILA's `bundle.js` bundles **jQuery 2.0.3 + Plotly + d3** into one file.
-Replace it with a direct CDN `<script>` for whichever library the interactive actually uses:
 
 | ILA bundle content | PreTeXt replacement |
 |--------------------|---------------------|
@@ -165,102 +309,37 @@ Replace it with a direct CDN `<script>` for whichever library the interactive ac
 
 ### jQuery → vanilla JS
 
-Common jQuery patterns and their vanilla equivalents:
-
 ```javascript
-// Reading an input value
-$("#inp").val()              →  document.getElementById('inp').value
-
-// Setting an input value
-$("#inp").val(x)             →  document.getElementById('inp').value = x
-
-// Click handler
-$("#btn").click(fn)          →  document.getElementById('btn').addEventListener('click', fn)
-
-// Change handler
-$("#inp").change(fn)         →  document.getElementById('inp').addEventListener('change', fn)
-
-// Document ready
-$(document).ready(fn)       →  /* not needed — script is at bottom of body */
+$("#inp").val()           →  document.getElementById('inp').value
+$("#inp").val(x)          →  document.getElementById('inp').value = x
+$("#btn").click(fn)       →  document.getElementById('btn').addEventListener('click', fn)
+$("#inp").change(fn)      →  document.getElementById('inp').addEventListener('change', fn)
+$(document).ready(fn)    →  /* not needed — script is at bottom of body */
 ```
-
-### Plotly: no changes needed
-
-`Plotly.newPlot()`, `Plotly.restyle()`, etc. are identical.
-The only difference is that `plotDiv` is now a DOM element reference
-obtained with `document.getElementById()` rather than a bare string ID —
-but Plotly accepts both.
 
 ### CSS: Bootstrap → plain CSS
 
-ILA used Bootstrap grid classes (`col-md-6`, `form-group`, etc.).
-Replace with a simple flexbox layout:
-
 ```css
-#layout {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75em;
-  padding: 0.75em;
-  width: 100%;
-  height: 100%;
-}
+#layout { display: flex; flex-wrap: wrap; gap: 0.75em; padding: 0.75em; height: 100%; }
 #controls { flex: 0 0 auto; min-width: 160px; }
 #chart    { flex: 1 1 auto; min-width: 200px; }
 ```
 
 ---
 
-## Worked example: Rabbits (Leslie matrix)
-
-### Original ILA files
-- `rabbits.html` — Bootstrap layout, jQuery, Plotly pie chart
-- `bundle.js` — minified jQuery + Plotly + d3
-
-### Conversion checklist
-
-- [x] Drop `bundle.js` entirely
-- [x] Load Plotly from CDN in `<head>` of iframe HTML
-- [x] Drop jQuery; use `document.getElementById()` and `addEventListener()`
-- [x] Drop Bootstrap; replace with flex layout
-- [x] Keep all logic identical (Leslie matrix step, randomize, setData, clamp)
-- [x] Script at bottom of `<body>` — no ready/load wrapper needed
-- [x] PTX: `iframe="iframes/rabbits-if.html"`, `aspect="8:5"`, unique `xml:id`
-- [x] PTX: non-self-closing `<interactive>` tag with `<shortdescription>` and `<description>` children filled in
-
-### Key logic preserved
-
-```javascript
-// One Leslie matrix step
-function advance() {
-  var v = getVals();
-  inp0.value = 6 * v[1] + 8 * v[2];   // births from age 1-2 and 2-3
-  inp1.value = Math.floor(v[0] / 2);   // 50% of age 0-1 survive
-  inp2.value = Math.floor(v[1] / 2);   // 50% of age 1-2 survive
-  setData();
-}
-
-// Pie chart shows ratios relative to the oldest cohort
-function setData() {
-  var v = getVals();
-  var d = v[2];                        // denominator = age 2-3 count
-  var ratios = [v[0] / d, v[1] / d, 1];
-  Plotly.restyle(plotDiv, 'values', [ratios]);
-  Plotly.restyle(plotDiv, 'text', [[
-    ratios[0].toFixed(3), ratios[1].toFixed(3), '1.000'
-  ]]);
-}
-```
-
----
-
 ## Checklist for any ILA → PreTeXt conversion
 
-1. **Read the original `.html` file** — identify the library (Plotly/JSXGraph/d3), the layout structure, and all event handlers
-2. **Read `bundle.js` header** — confirm which libraries are bundled (`grep -o '"plotly\|jQuery\|d3' bundle.js | sort -u`)
-3. **Create `external/iframes/widgetname-if.html`** — self-contained, CDN scripts in `<head>`, static HTML, vanilla JS at bottom of `<body>`
-4. **Create `src/widgetname.ptx`** (or inline in your section) — `<interactive>` element with opening **and** closing tags, plus filled-in `<shortdescription>` and `<description>` children
-5. **Verify**: compile the book, open the section, confirm the iframe loads and the widget responds to interaction
+1. **Read the original `.html` file** — identify the library, layout, and event handlers
+2. **Read `bundle.js` header** — confirm which libraries are bundled
+3. **Create `external/iframes/widgetname-if.html`** — self-contained iframe HTML
+4. **Layout**: if equations appear above the canvas, use flex-column layout (caption bar `flex: 0 0 auto`, canvas container `flex: 1 1 auto`)
+5. **KaTeX**: if `katex.render()` is used, add `.katex-html { display: none; }` to the `<style>` block
+6. **WCAG 2.1.1 / 2.5.1**: if there are draggable canvas points, add a `<details open>` keyboard input panel; add bidirectional sync in `solve()`
+7. **WCAG 2.4.7**: add `:focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }` globally
+8. **WCAG aria-live**: add `aria-live="polite" aria-atomic="true"` to dynamic equation output elements
+9. **aria-hidden**: add `aria-hidden="true"` to the canvas container
+10. **Create `src/widgetname.ptx`** — non-self-closing `<interactive>` with `<shortdescription>`, `<description>`, and `permissions="fullscreen"` if applicable
+11. **Verify**: compile, open section, confirm iframe loads, interactions work, and keyboard panel operates correctly
 
 ---
 
@@ -269,19 +348,23 @@ function setData() {
 | Approach | Why it fails |
 |----------|-------------|
 | `platform="javascript"` + `<slate surface="div"/>` + `<script source="https://cdn..."/>` | CDN scripts may be blocked by CSP in the generated iframe HTML |
-| `window.addEventListener('load', fn)` wrapper in external JS | `load` may never fire if the page is already fully loaded by the time the script executes |
-| `(function(){ ... }())` IIFE in external JS | Runs before the slate `<div>` exists in the DOM |
-| `<script source="https://cdn..."/>` inside `<interactive>` | PreTeXt may not support external-URL `source` attributes; result is silently dropped |
-| Same `xml:id` on both `<interactive>` and `<slate>` | Invalid PreTeXt; can cause the slate div to get a mangled or absent `id` |
-| Self-closing `<interactive ... />` | Silently drops `<shortdescription>` and `<description>` children; always use opening + closing tags |
-| Hardcoding URL parameters in the iframe JS | Prevents reuse across book instances with different configurations; always read from `urlParams` |
+| `window.addEventListener('load', fn)` wrapper | May never fire; place script at bottom of `<body>` instead |
+| IIFE `(function(){ ... }())` in external JS | Runs before the slate `<div>` exists in the DOM |
+| `<script source="https://cdn..."/>` inside `<interactive>` | PreTeXt may silently drop external-URL `source` attributes |
+| Same `xml:id` on both `<interactive>` and `<slate>` | Can cause the slate div to get a mangled or absent `id` |
+| Self-closing `<interactive ... />` | Silently drops `<shortdescription>` and `<description>` children |
+| Hardcoding URL parameters in the iframe JS | Prevents reuse; always read from `urlParams` |
+| Missing `permissions="fullscreen"` on `<interactive>` | Browser blocks `requestFullscreen()` calls from inside the iframe |
+| `.katex-mathml { display: none; }` | **Hides formatted math**, shows unstyled spans; use `.katex-html` instead |
+| `position: absolute` caption over MathBox canvas | Overlaps the canvas; use flex-column layout instead |
+| Relying solely on canvas drag for point control | Fails WCAG 2.1.1 and 2.5.1; add number input alternative |
+| `input` event for number fields | Fires on every keystroke, updating canvas mid-edit; use `change` instead (WCAG 2.5.2) |
+| Omitting `aria-live` on dynamic equation output | Screen readers do not announce equation changes after interaction |
+| Omitting `aria-hidden` on canvas container | Exposes meaningless WebGL internals to screen reader users |
 
 ---
 
 ## Notes on `aspect` ratio
-
-The `aspect="W:H"` attribute controls the iframe height relative to its width.
-Common choices for ILA interactives:
 
 | Layout | Aspect |
 |--------|--------|
@@ -291,6 +374,4 @@ Common choices for ILA interactives:
 | Wide chart, minimal controls | `3:1` |
 | JSXGraph canvas (square) | `1:1` |
 
-Adjust after seeing the rendered output — PreTeXt does not scroll the iframe,
-so content that exceeds the aspect ratio is clipped. Use `overflow: hidden` on
-`body` in the iframe HTML to prevent unwanted scrollbars.
+Note: the keyboard input panel in the caption bar adds height. After adding it, check that the `aspect` ratio still gives enough room for the canvas; increase the height ratio (smaller second number) if the panels are too cramped.

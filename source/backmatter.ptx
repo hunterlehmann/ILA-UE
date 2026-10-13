@@ -11,6 +11,7 @@
   <!-- <solutions divisional="hint"> <title>Selected Hints</title> </solutions> -->
 
   <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->
+  <!-- <xi:include href="./cplx-nums.ptx"/> -->
 
   <appendix> <title>Notation</title>
     <p>The following table defines the notation used in this book.  Page numbers or references refer to the first appearance of each symbol.  </p>

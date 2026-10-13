@@ -109,11 +109,11 @@ the license is included in gfdl.xml.
   <subsection xml:id="subsection-Rn">
     <title>Line, Plane, Space, Etc.</title>
 
-    <p>
       <notation><usage><m>0</m></usage><description>The number zero</description></notation>
-      We use <m>\R</m>
-      <idx><h>Real numbers <m>\R</m></h></idx>
       <notation><usage><m>\R</m></usage><description>The real numbers</description></notation>
+      <idx><h>Real numbers <m>\R</m></h></idx>
+    <p>
+      We use <m>\R</m>
       to denote the set of all real numbers, i.e., the number
       line.  This contains numbers like <m>0, \frac 32, -\pi, 104, \ldots</m>
     </p>

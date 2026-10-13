@@ -18,27 +18,27 @@
       flex-direction: column;
     }
 
-    /* ── Caption bar ────────────────────────────────────────────────────── */
+    /* ── Caption / control bar ──────────────────────────────────────────── */
     .overlay-text {
-      flex:          0 0 auto;     /* fixed height, does not grow or shrink */
+      flex:          0 0 auto;
       padding:       4px 10px;
       background:    white;
       border-bottom: 1px solid #ccc;
       z-index:       2;
     }
-    .overlay-text p {
+    .overlay-text > p {
       margin: 2px 0;
       font-size: 0.9em;
     }
 
     /* ── Canvas container: fills all remaining vertical space ───────────── */
     #mathbox-container {
-      flex:     1 1 auto;   /* grow to fill whatever the caption doesn't use */
-      position: relative;   /* anchor for the two absolute-positioned panels */
+      flex:     1 1 auto;
+      position: relative;
       overflow: hidden;
     }
 
-    /* ── Individual MathBox panels: each takes exactly half the container ── */
+    /* ── Individual MathBox panels ───────────────────────────────────────── */
     .mathbox-wrapper {
       position: absolute;
       top:      0;
@@ -46,17 +46,11 @@
       left:     0;
       width:    50%;
     }
-    .mathbox-wrapper + .mathbox-wrapper {
-      left: 50%;
-    }
-
-    /* ── Inner div fills the wrapper ─────────────────────────────────────── */
+    .mathbox-wrapper + .mathbox-wrapper { left: 50%; }
     .mathbox-wrapper > div {
       position: absolute;
-      top:      0;
-      left:     0;
-      width:    100%;
-      height:   100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
     }
 
     /* ── Panel label ─────────────────────────────────────────────────────── */
@@ -65,24 +59,33 @@
       left:             50%;
       top:              10px;
       color:            black;
-      opacity:          1.0;
-      background-color: rgba(220, 220, 220, .5);
-      border:           solid 1px rgba(50, 50, 50, .5);
+      background-color: rgba(220,220,220,.5);
+      border:           solid 1px rgba(50,50,50,.5);
       padding:          5px;
-      transform:        translate(-50%, 0);
+      transform:        translate(-50%,0);
       z-index:          1;
     }
 
-    /* ── Hide KaTeX HTML layer (unstyled).  ────────── */
+    /* ── KaTeX: hide span-based layer; let browser MathML render ─────────
+         demo.js bundles KaTeX JS but not its CSS/fonts.
+         .katex-html (span layout) looks broken without the stylesheet.
+         .katex-mathml (native <math>) renders correctly in all modern browsers.
+         ──────────────────────────────────────────────────────────────────── */
     .katex-html { display: none; }
 
-    /* ── Colour tokens (fallback for demo.css) ───────────────────────────── */
+    /* ── Colour tokens ───────────────────────────────────────────────────── */
     :root {
       --palette-red:    #cc2222;
       --palette-violet: #7722bb;
     }
     #eqn-here   { color: var(--palette-red);   }
     #sumsq-here { color: var(--palette-violet); }
+
+    /* ── WCAG 2.4.7: visible focus ring for all interactive elements ─────── */
+    :focus-visible {
+      outline:        2px solid #0066cc;
+      outline-offset: 2px;
+    }
 
     /* ── Fullscreen button ───────────────────────────────────────────────── */
     #fs-btn {
@@ -100,23 +103,86 @@
       color:         #444;
     }
     #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen          #fs-btn,
+    :-webkit-full-screen #fs-btn { display: none; }
 
-    /* When the page is fullscreen, hide the button (already full screen) */
-    :fullscreen            #fs-btn,
-    :-webkit-full-screen   #fs-btn { display: none; }
+    /* ── WCAG 2.1.1 / 2.5.1: keyboard-accessible point editor ──────────────
+         Provides a single-pointer / keyboard alternative to canvas dragging.
+         Starts open so users discover it; collapsible to save space.
+         ──────────────────────────────────────────────────────────────────── */
+    #point-editor {
+      margin-top:  3px;
+      font-size:   0.82em;
+    }
+    #point-editor summary {
+      cursor:      pointer;
+      color:       #555;
+      user-select: none;
+    }
+    #point-editor summary::-webkit-details-marker { color: #888; }
+
+    #point-inputs {
+      display:               grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap:                   2px 10px;
+      margin-top:            3px;
+    }
+    .point-row {
+      display:     flex;
+      align-items: center;
+      gap:         4px;
+      white-space: nowrap;
+    }
+    .point-row .pt-label {
+      min-width:   1.8em;
+      font-weight: bold;
+    }
+    .point-row label {
+      display:     flex;
+      align-items: center;
+      gap:         2px;
+    }
+    .point-row input[type="number"] {
+      width:       58px;
+      padding:     1px 3px;
+      font-size:   0.95em;
+      border:      1px solid #bbb;
+      border-radius: 2px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Caption bar — always visible above the panels -->
-  <div class="overlay-text">
+  <!-- Caption / control bar — always above the canvases -->
+  <div class="overlay-text" role="region" aria-label="Best-fit interactive controls">
+
+    <!-- WCAG 2.1.1: fullscreen is a <button>, fully keyboard-operable -->
     <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
-    <p>Best-fit equation: <span id="eqn-here"></span></p>
-    <p>Quantity minimized: <span id="sumsq-here"></span></p>
+
+    <!-- aria-live: screen readers announce equation updates (WCAG 4.1.3 / best practice) -->
+    <p>Best-fit equation:
+      <span id="eqn-here" aria-live="polite" aria-atomic="true"></span>
+    </p>
+    <p>Quantity minimized:
+      <span id="sumsq-here" aria-live="polite" aria-atomic="true"></span>
+    </p>
+
+    <!--
+      WCAG 2.1.1 Keyboard / 2.5.1 Pointer Gestures:
+      All point positions are editable via number inputs.
+      This provides a single-pointer, path-free alternative to canvas dragging.
+    -->
+    <details id="point-editor">
+      <summary>Edit points</summary>
+      <div id="point-inputs"
+           role="group"
+           aria-label="Draggable point coordinates"></div>
+    </details>
   </div>
 
   <!-- Two MathBox panels side by side, filling the rest of the page -->
-  <div id="mathbox-container">
+  <div id="mathbox-container" aria-hidden="true">
+    <!-- aria-hidden: the canvas is purely visual; all data is in the caption bar above -->
     <div class="mathbox-wrapper">
       <div id="mathbox1">
         <div class="mathbox-label">Graph</div>
@@ -145,11 +211,16 @@
         dot, func, funcFragment, funcStr, funcStrUrl, i, k, l, len, len1, len2,
         letter, m, makeString, matrix, n, numParams, numSamples, numTargets,
         o, obj, op, p, param, paramVals, params, radius, range, rangeZ, ref,
-        ref1, ref2, ref3, ref4, s, samples, shadeFragment, solve, target,
+        ref1, ref2, s, samples, shadeFragment, solve, target,
         targets, uniforms, units, updateCaption, vars, xhat, zeroParams;
 
+    // Arrays that hold references to the generated number inputs.
+    // Populated by buildPointEditor(); used by solve() to keep inputs in sync
+    // with the canvas after a drag event.
+    var pointInputsX = [];
+    var pointInputsY = [];
+
     // ── Read all configuration from URL query parameters ──────────────────
-    // (urlParams is provided by demo.js — same API as the original ILA demo)
     range   = urlParams.get('range',  'float', 10);
     rangeZ  = urlParams.get('rangez', 'float', range);
     funcStr = (ref = urlParams.func) != null ? ref : 'C*x+D';
@@ -174,7 +245,6 @@
 
     numParams = params.length;
 
-    // Build unit vectors (one per parameter)
     units = [];
     for (i = l = 0, ref2 = numParams; 0 <= ref2 ? l < ref2 : l > ref2;
          i = 0 <= ref2 ? ++l : --l) {
@@ -187,7 +257,7 @@
       units.push(obj);
     }
 
-    // Read draggable target points from URL parameters (v1, v2, …)
+    // Read target points from URL parameters (v1, v2, …)
     targets = [];
     i = 1;
     while (urlParams['v' + i] != null) {
@@ -198,7 +268,6 @@
     }
     numTargets = targets.length;
 
-    // Initialise matrix (numParams × numTargets) and vectors
     matrix = (function() {
       var _n, ref, results;
       results = [];
@@ -241,14 +310,12 @@
     bestFitStr = '';
     paramVals  = {};
 
-    // Convert "x^2" → "x*x" for GLSL (no pow() for integer exponents)
     funcStrUrl = funcStr.replace(/([a-zA-Z_]+)\^(\d+)/g, function(match, p1, p2) {
       var result = [], exp = parseInt(p2), _n;
       for (_n = 0; _n < exp; _n++) result.push(p1);
       return result.join('*');
     });
 
-    // Build the GLSL function fragment
     funcFragment = '';
     for (n = 0, len2 = params.length; n < len2; n++) {
       letter        = params[n];
@@ -256,7 +323,6 @@
     }
     funcFragment += '\n\nfloat func(float x, float y) {\n    return ' + funcStrUrl + ';\n}';
 
-    // Escape any unary-operator names in funcStr for LaTeX rendering
     for (op in func.unaryOps) {
       if (op.match(/^[a-zA-Z]+$/)) {
         funcStr = funcStr.replace(new RegExp(op, 'g'), '\\' + op);
@@ -319,7 +385,12 @@
       }
       bestfit = func.simplify(paramVals).toJSFunction(vars.join(','));
       makeString();
-      return updateCaption();
+      updateCaption();
+      // WCAG 2.1.1 / 2.5.1: sync number inputs when points are moved on canvas
+      targets.forEach(function(pt, idx) {
+        if (pointInputsX[idx]) pointInputsX[idx].value = +pt[0].toFixed(2);
+        if (pointInputsY[idx]) pointInputsY[idx].value = +pt[1].toFixed(2);
+      });
     };
 
     makeString = function() {
@@ -352,7 +423,65 @@
       return results;
     };
 
+    // First solve, then build keyboard editor (targets must be populated first)
     solve();
+    buildPointEditor();
+
+    // ── WCAG 2.1.1 / 2.5.1: keyboard-accessible point editor ─────────────
+    // Creates <input type="number"> controls for each target point.
+    // Bidirectional sync: drag → inputs update; input change → canvas updates.
+    function buildPointEditor() {
+      var editor = document.getElementById('point-inputs');
+      targets.forEach(function(pt, idx) {
+        var row  = document.createElement('div');
+        row.className = 'point-row';
+
+        var lbl  = document.createElement('span');
+        lbl.className   = 'pt-label';
+        lbl.textContent = 'P' + (idx + 1);
+        lbl.setAttribute('aria-hidden', 'true'); // label is visual; inputs have aria-label
+
+        // x input
+        var xLabel = document.createElement('label');
+        xLabel.textContent = 'x:';
+        var xInp = document.createElement('input');
+        xInp.type  = 'number';
+        xInp.step  = '0.5';
+        xInp.value = +pt[0].toFixed(2);
+        xInp.setAttribute('aria-label', 'Point ' + (idx + 1) + ' x coordinate');
+        xLabel.appendChild(xInp);
+        pointInputsX.push(xInp);
+
+        // y input
+        var yLabel = document.createElement('label');
+        yLabel.textContent = 'y:';
+        var yInp = document.createElement('input');
+        yInp.type  = 'number';
+        yInp.step  = '0.5';
+        yInp.value = +pt[1].toFixed(2);
+        yInp.setAttribute('aria-label', 'Point ' + (idx + 1) + ' y coordinate');
+        yLabel.appendChild(yInp);
+        pointInputsY.push(yInp);
+
+        // WCAG 2.5.2 Pointer Cancellation: use 'change' (fires on commit,
+        // not on every keypress), so the user can correct a value before
+        // the canvas updates. Arrow-key increments also fire 'change'.
+        function applyInput() {
+          var x = parseFloat(xInp.value);
+          var y = parseFloat(yInp.value);
+          if (isFinite(x)) targets[idx][0] = x;
+          if (isFinite(y)) targets[idx][1] = y;
+          solve();
+        }
+        xInp.addEventListener('change', applyInput);
+        yInp.addEventListener('change', applyInput);
+
+        row.appendChild(lbl);
+        row.appendChild(xLabel);
+        row.appendChild(yLabel);
+        editor.appendChild(row);
+      });
+    }
 
     // ── GLSL shader strings ────────────────────────────────────────────────
     clipShader = [
@@ -442,7 +571,6 @@
       '    return oldrgba;',
       '}'
     ].join('\n');
-    // ──────────────────────────────────────────────────────────────────────
 
     // ── 3-D graph (left panel) ─────────────────────────────────────────────
     window.demo1 = new Demo({
@@ -572,6 +700,7 @@
         opacity: 1.0,
         fill:    true
       });
+      // WCAG 2.5.2 Pointer Cancellation: postDrag fires on mouseup, not mousedown
       this.draggable(view, { points: targets, postDrag: solve });
       bestFitElt = document.getElementById('eqn-here');
       minimElt   = document.getElementById('sumsq-here');
@@ -596,7 +725,7 @@
 
   }); // end DomReady.ready
 
-  // ── Fullscreen toggle ────────────────────────────────────────────────────
+  // ── Fullscreen toggle (WCAG 2.1.1: button, fully keyboard-operable) ──────
   (function() {
     var btn = document.getElementById('fs-btn');
 
@@ -610,8 +739,10 @@
     function updateLabel() {
       btn.textContent = isFullscreen() ? '✕' : '⛶';
       btn.title       = isFullscreen() ? 'Exit fullscreen' : 'Toggle fullscreen';
+      btn.setAttribute('aria-label', btn.title);
     }
 
+    // WCAG 2.5.2 Pointer Cancellation: activate on click (up-event), not pointerdown
     btn.addEventListener('click', function() {
       if (!isFullscreen()) {
         var el = document.documentElement;
@@ -627,7 +758,6 @@
       }
     });
 
-    // Update button label whenever fullscreen state changes
     ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange']
       .forEach(function(evt) { document.addEventListener(evt, updateLabel); });
   })();
