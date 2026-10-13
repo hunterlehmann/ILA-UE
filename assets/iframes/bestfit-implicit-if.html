@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Implicit Function of Best Fit</title>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    /* ── Page shell: flex column so caption sits above the panels ───────── */
+    html, body {
+      margin:     0;
+      height:     100%;
+      background: white;
+      overflow:   hidden;
+      display:    flex;
+      flex-direction: column;
+    }
+
+    /* ── Caption bar ────────────────────────────────────────────────────── */
+    .overlay-text {
+      flex:          0 0 auto;     /* fixed height, does not grow or shrink */
+      padding:       4px 10px;
+      background:    white;
+      border-bottom: 1px solid #ccc;
+      z-index:       2;
+    }
+    .overlay-text p {
+      margin: 2px 0;
+      font-size: 0.9em;
+    }
+
+    /* ── Canvas container: fills all remaining vertical space ───────────── */
+    #mathbox-container {
+      flex:     1 1 auto;   /* grow to fill whatever the caption doesn't use */
+      position: relative;   /* anchor for the two absolute-positioned panels */
+      overflow: hidden;
+    }
+
+    /* ── Individual MathBox panels: each takes exactly half the container ── */
+    .mathbox-wrapper {
+      position: absolute;
+      top:      0;
+      bottom:   0;
+      left:     0;
+      width:    50%;
+    }
+    .mathbox-wrapper + .mathbox-wrapper {
+      left: 50%;
+    }
+
+    /* ── Inner div fills the wrapper ─────────────────────────────────────── */
+    .mathbox-wrapper > div {
+      position: absolute;
+      top:      0;
+      left:     0;
+      width:    100%;
+      height:   100%;
+    }
+
+    /* ── Panel label ─────────────────────────────────────────────────────── */
+    .mathbox-label {
+      position:         absolute;
+      left:             50%;
+      top:              10px;
+      color:            black;
+      opacity:          1.0;
+      background-color: rgba(220, 220, 220, .5);
+      border:           solid 1px rgba(50, 50, 50, .5);
+      padding:          5px;
+      transform:        translate(-50%, 0);
+      z-index:          1;
+    }
+
+    /* ── Hide KaTeX HTML layer (unstyled).  ────────── */
+    .katex-html { display: none; }
+
+    /* ── Colour tokens (fallback for demo.css) ───────────────────────────── */
+    :root {
+      --palette-red:    #cc2222;
+      --palette-violet: #7722bb;
+    }
+    #eqn-here   { color: var(--palette-red);   }
+    #sumsq-here { color: var(--palette-violet); }
+
+    /* ── Fullscreen button ───────────────────────────────────────────────── */
+    #fs-btn {
+      position:      absolute;
+      top:           50%;
+      right:         8px;
+      transform:     translateY(-50%);
+      cursor:        pointer;
+      background:    none;
+      border:        1px solid #aaa;
+      border-radius: 3px;
+      padding:       2px 6px;
+      font-size:     0.85em;
+      line-height:   1.2;
+      color:         #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+
+    /* When the page is fullscreen, hide the button (already full screen) */
+    :fullscreen            #fs-btn,
+    :-webkit-full-screen   #fs-btn { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Caption bar — always visible above the panels -->
+  <div class="overlay-text">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <p>Best-fit equation: <span id="eqn-here"></span></p>
+    <p>Quantity minimized: <span id="sumsq-here"></span></p>
+  </div>
+
+  <!-- Two MathBox panels side by side, filling the rest of the page -->
+  <div id="mathbox-container">
+    <div class="mathbox-wrapper">
+      <div id="mathbox1">
+        <div class="mathbox-label">Graph</div>
+      </div>
+    </div>
+    <div class="mathbox-wrapper">
+      <div id="mathbox2">
+        <div class="mathbox-label">Zero Set</div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    Place the ILA demo bundle at:
+      external/iframes/js/demo.js
+    (relative to this file's location in external/iframes/)
+  -->
+  <script src="js/demo.js"></script>
+
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+
+    var bestFitStr, bestfit, bvec, c, clipFragment, clipShader, curveFragment,
+        dot, func, funcFragment, funcStr, funcStrUrl, i, k, l, len, len1, len2,
+        letter, m, makeString, matrix, n, numParams, numSamples, numTargets,
+        o, obj, op, p, param, paramVals, params, radius, range, rangeZ, ref,
+        ref1, ref2, ref3, ref4, s, samples, shadeFragment, solve, target,
+        targets, uniforms, units, updateCaption, vars, xhat, zeroParams;
+
+    // ── Read all configuration from URL query parameters ──────────────────
+    // (urlParams is provided by demo.js — same API as the original ILA demo)
+    range   = urlParams.get('range',  'float', 10);
+    rangeZ  = urlParams.get('rangez', 'float', range);
+    funcStr = (ref = urlParams.func) != null ? ref : 'C*x+D';
+    funcStr = funcStr.replace(/\s+/g, '+');
+    // ─────────────────────────────────────────────────────────────────────
+
+    func = exprEval.Parser.parse(funcStr);
+
+    params     = [];
+    zeroParams = {};
+    uniforms   = {};
+    vars       = ['x', 'y'];
+
+    ref1 = func.variables().sort();
+    for (k = 0, len = ref1.length; k < len; k++) {
+      letter = ref1[k];
+      if (letter === 'x' || letter === 'y') continue;
+      params.push(letter);
+      zeroParams[letter] = 0;
+      uniforms[letter]   = { type: 'f', value: 0.0 };
+    }
+
+    numParams = params.length;
+
+    // Build unit vectors (one per parameter)
+    units = [];
+    for (i = l = 0, ref2 = numParams; 0 <= ref2 ? l < ref2 : l > ref2;
+         i = 0 <= ref2 ? ++l : --l) {
+      obj = {};
+      for (m = 0, len1 = params.length; m < len1; m++) {
+        param = params[m];
+        obj[param] = 0;
+      }
+      obj[params[i]] = 1;
+      units.push(obj);
+    }
+
+    // Read draggable target points from URL parameters (v1, v2, …)
+    targets = [];
+    i = 1;
+    while (urlParams['v' + i] != null) {
+      target    = urlParams.get('v' + i, 'float[]');
+      target[2] = 0;
+      targets.push(target);
+      i++;
+    }
+    numTargets = targets.length;
+
+    // Initialise matrix (numParams × numTargets) and vectors
+    matrix = (function() {
+      var _n, ref, results;
+      results = [];
+      for (_n = 0, ref = numParams; 0 <= ref ? _n < ref : _n > ref;
+           0 <= ref ? _n++ : _n--) {
+        results.push((function() {
+          var _o, ref2, results1;
+          results1 = [];
+          for (_o = 0, ref2 = numTargets; 0 <= ref2 ? _o < ref2 : _o > ref2;
+               0 <= ref2 ? _o++ : _o--) {
+            results1.push(0);
+          }
+          return results1;
+        })());
+      }
+      return results;
+    })();
+
+    bvec = (function() {
+      var _n, ref, results;
+      results = [];
+      for (_n = 0, ref = numTargets; 0 <= ref ? _n < ref : _n > ref;
+           0 <= ref ? _n++ : _n--) {
+        results.push(0);
+      }
+      return results;
+    })();
+
+    xhat = (function() {
+      var _n, ref, results;
+      results = [];
+      for (_n = 0, ref = numParams; 0 <= ref ? _n < ref : _n > ref;
+           0 <= ref ? _n++ : _n--) {
+        results.push(0);
+      }
+      return results;
+    })();
+
+    bestfit    = function(x, y) { return 0; };
+    bestFitStr = '';
+    paramVals  = {};
+
+    // Convert "x^2" → "x*x" for GLSL (no pow() for integer exponents)
+    funcStrUrl = funcStr.replace(/([a-zA-Z_]+)\^(\d+)/g, function(match, p1, p2) {
+      var result = [], exp = parseInt(p2), _n;
+      for (_n = 0; _n < exp; _n++) result.push(p1);
+      return result.join('*');
+    });
+
+    // Build the GLSL function fragment
+    funcFragment = '';
+    for (n = 0, len2 = params.length; n < len2; n++) {
+      letter        = params[n];
+      funcFragment += 'uniform float ' + letter + ';\n';
+    }
+    funcFragment += '\n\nfloat func(float x, float y) {\n    return ' + funcStrUrl + ';\n}';
+
+    // Escape any unary-operator names in funcStr for LaTeX rendering
+    for (op in func.unaryOps) {
+      if (op.match(/^[a-zA-Z]+$/)) {
+        funcStr = funcStr.replace(new RegExp(op, 'g'), '\\' + op);
+      }
+    }
+
+    dot = function(v1, v2) {
+      var _o, ret = 0;
+      for (_o = 0; _o < v1.length; _o++) ret += v1[_o] * v2[_o];
+      return ret;
+    };
+
+    updateCaption = function() {};
+
+    solve = function() {
+      var ATA, ATb, constant, eqno, j, len3, linear, _o, _p, q, ref3, ref4, solver;
+      for (eqno = _o = 0, ref3 = numTargets; 0 <= ref3 ? _o < ref3 : _o > ref3;
+           eqno = 0 <= ref3 ? ++_o : --_o) {
+        target   = targets[eqno];
+        linear   = func.simplify({ x: target[0], y: target[1] });
+        constant = linear.evaluate(zeroParams);
+        for (i = _p = 0, ref4 = numParams; 0 <= ref4 ? _p < ref4 : _p > ref4;
+             i = 0 <= ref4 ? ++_p : --_p) {
+          matrix[i][eqno] = linear.evaluate(units[i]) - constant;
+        }
+        bvec[eqno] = target[2] - constant;
+      }
+      ATA = (function() {
+        var q, ref5, results;
+        results = [];
+        for (j = q = 0, ref5 = numParams; 0 <= ref5 ? q < ref5 : q > ref5;
+             j = 0 <= ref5 ? ++q : --q) {
+          results.push((function() {
+            var r, ref6, results1;
+            results1 = [];
+            for (i = r = 0, ref6 = numParams; 0 <= ref6 ? r < ref6 : r > ref6;
+                 i = 0 <= ref6 ? ++r : --r) {
+              results1.push(dot(matrix[i], matrix[j]));
+            }
+            return results1;
+          })());
+        }
+        return results;
+      })();
+      ATb = (function() {
+        var q, ref5, results;
+        results = [];
+        for (i = q = 0, ref5 = numParams; 0 <= ref5 ? q < ref5 : q > ref5;
+             i = 0 <= ref5 ? ++q : --q) {
+          results.push(dot(matrix[i], bvec));
+        }
+        return results;
+      })();
+      solver = rowReduce(ATA)[3];
+      solver(ATb, xhat);
+      for (i = q = 0, len3 = params.length; q < len3; i = ++q) {
+        letter                 = params[i];
+        paramVals[letter]      = xhat[i];
+        uniforms[letter].value = xhat[i];
+      }
+      bestfit = func.simplify(paramVals).toJSFunction(vars.join(','));
+      makeString();
+      return updateCaption();
+    };
+
+    makeString = function() {
+      var len3, _o, results, val, valAlone, valMinus, valPlus;
+      bestFitStr = funcStr;
+      results    = [];
+      for (i = _o = 0, len3 = params.length; _o < len3; i = ++_o) {
+        letter = params[i];
+        val    = xhat[i];
+        if (val >= 0) {
+          valAlone = val.toFixed(2);
+          valPlus  = '+' + valAlone;
+          valMinus = '-' + valAlone;
+        }
+        if (val < 0) {
+          val      = -val;
+          valAlone = val.toFixed(2);
+          valPlus  = '-' + valAlone;
+          valMinus = '+' + valAlone;
+          valAlone = '-' + valAlone;
+        }
+        bestFitStr = bestFitStr.replace(new RegExp('\\+' + letter + '\\*', 'g'), valPlus  + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp('\\+' + letter,         'g'), valPlus);
+        bestFitStr = bestFitStr.replace(new RegExp('-'   + letter + '\\*', 'g'), valMinus + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp('-'   + letter,         'g'), valMinus);
+        bestFitStr = bestFitStr.replace(new RegExp(       letter + '\\*',  'g'), valAlone + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp(       letter,          'g'), valAlone);
+        results.push(bestFitStr = bestFitStr.replace(/\*/g, ''));
+      }
+      return results;
+    };
+
+    solve();
+
+    // ── GLSL shader strings ────────────────────────────────────────────────
+    clipShader = [
+      '// Enable STPQ mapping',
+      '#define POSITION_STPQ',
+      'void getPosition(inout vec4 xyzw, inout vec4 stpq) {',
+      '  stpq = xyzw;',
+      '}'
+    ].join('\n');
+
+    shadeFragment = [
+      'varying vec3 vNormal;',
+      'varying vec3 vLight;',
+      'varying vec3 vPosition;',
+      '',
+      'vec3 offSpecular(vec3 color) {',
+      '  vec3 c = 1.0 - color;',
+      '  return 1.0 - c * c;',
+      '}',
+      '',
+      'vec4 getShadedColor(vec4 rgba) {',
+      '  vec3 color    = rgba.xyz;',
+      '  vec3 color2   = offSpecular(rgba.xyz);',
+      '  vec3 normal   = normalize(vNormal);',
+      '  vec3 light    = normalize(vLight);',
+      '  vec3 position = normalize(vPosition);',
+      '  float side    = gl_FrontFacing ? -1.0 : 1.0;',
+      '  float cosine  = side * dot(normal, light);',
+      '  float diffuse = mix(max(0.0, cosine), .5 + .5 * cosine, .1);',
+      '  vec3  halfLight  = normalize(light + position);',
+      '  float cosineHalf = max(0.0, side * dot(normal, halfLight));',
+      '  float specular   = pow(cosineHalf, 16.0);',
+      '  return vec4(color * (diffuse * .9 + .05) + .25 * color2 * specular, rgba.a);',
+      '}'
+    ].join('\n');
+
+    numSamples = 8;
+    radius     = 0.02;
+    samples    = '';
+
+    for (i = o = 0; o < numSamples; i = ++o) {
+      c = Math.cos(2 * π * i / numSamples) * radius;
+      s = Math.sin(2 * π * i / numSamples) * radius;
+      samples += 'if(func(stpq.x + ' + c.toFixed(8) + ', stpq.y + ' + s.toFixed(8) + ') * val < 0.0)\n';
+      samples += '    return rgba;\n';
+    }
+
+    curveFragment = [
+      '// Enable STPQ mapping',
+      '#define POSITION_STPQ',
+      '',
+      'vec4 getColor(vec4 rgba, inout vec4 stpq) {',
+      '    float val = func(stpq.x, stpq.y);',
+      '    ' + samples,
+      '    discard;',
+      '}'
+    ].join('\n');
+
+    samples = '';
+    radius  = 0.1;
+
+    for (i = p = 0; p < numSamples; i = ++p) {
+      c = Math.cos(2 * π * i / numSamples) * radius;
+      s = Math.sin(2 * π * i / numSamples) * radius;
+      samples += 'if(func(stpq.x + ' + c.toFixed(8) + ', stpq.y + ' + s.toFixed(8) + ') * val < 0.0)\n';
+      samples += '    return rgba;\n';
+    }
+
+    clipFragment = [
+      '// Enable STPQ mapping',
+      '#define POSITION_STPQ',
+      'uniform float range;',
+      'uniform float rangeZ;',
+      'uniform int hilite;',
+      '',
+      'vec4 getColor(vec4 rgba, inout vec4 stpq) {',
+      '    float val = stpq.z;',
+      '    rgba = getShadedColor(rgba);',
+      '    vec4 oldrgba = rgba;',
+      '    if(abs(stpq.x) > range || abs(stpq.y) > range || abs(stpq.z) > rangeZ)',
+      '        discard;',
+      '    rgba.xyz *= 10.0;',
+      '    rgba.w = 1.0;',
+      '    if(hilite != 0 && stpq.z < ' + radius + ' && stpq.z > -' + radius + ') {',
+      '        ' + samples,
+      '    }',
+      '    return oldrgba;',
+      '}'
+    ].join('\n');
+    // ──────────────────────────────────────────────────────────────────────
+
+    // ── 3-D graph (left panel) ─────────────────────────────────────────────
+    window.demo1 = new Demo({
+      mathbox: { element: document.getElementById('mathbox1') },
+      scaleUI: true,
+      camera:  { position: urlParams.get('camera1', 'float[]', [3, 1.5, 1.5]) }
+    }, function() {
+      var clipCube, cube, geo, mesh, view;
+      window.mathbox1 = this.mathbox;
+      view = this.view({
+        axes:      false,
+        grid:      true,
+        viewRange: [[-range, range], [-range, range], [-rangeZ, rangeZ]]
+      });
+      this.labeledPoints(view, {
+        name:   'targets',
+        points: targets,
+        colors: (function() {
+          var q, ref5, results;
+          results = [];
+          for (q = 0, ref5 = numTargets; 0 <= ref5 ? q < ref5 : q > ref5;
+               0 <= ref5 ? q++ : q--) {
+            results.push(new Color('blue'));
+          }
+          return results;
+        })(),
+        live:      true,
+        pointOpts: { zIndex: 2 }
+      });
+      uniforms.range  = { type: 'f', value: range };
+      uniforms.rangeZ = { type: 'f', value: rangeZ };
+      uniforms.hilite = { type: 'i', value: 1 };
+      clipCube = view.shader({ code: clipShader })
+                     .vertex({ pass: 'data' })
+                     .shader({
+                       code:     funcFragment + '\n' + shadeFragment + '\n' + clipFragment,
+                       uniforms: uniforms
+                     })
+                     .fragment();
+      geo  = new THREE.BoxGeometry(2, 2, 2);
+      mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial());
+      cube = new THREE.BoxHelper(mesh);
+      cube.material.color = new THREE.Color(0.7, 0.7, 0.7);
+      this.three.scene.add(cube);
+      clipCube.area({
+        channels: 3,
+        rangeX:   [-range, range],
+        rangeY:   [-range, range],
+        width:    100,
+        height:   100,
+        expr:     function(emit, x, y) { return emit(x, y, bestfit(x, y)); }
+      }).surface({
+        color:   new Color('red').arr(),
+        opacity: 0.7,
+        fill:    true
+      });
+      return view.array({
+        channels: 3,
+        width:    2,
+        items:    numTargets,
+        expr: function(emit, end) {
+          var q, ref5, results, x, y, z;
+          results = [];
+          for (i = q = 0, ref5 = numTargets; 0 <= ref5 ? q < ref5 : q > ref5;
+               i = 0 <= ref5 ? ++q : --q) {
+            x = targets[i][0];
+            y = targets[i][1];
+            z = targets[i][2];
+            if (end) {
+              results.push(emit(x, y, bestfit(x, y)));
+            } else {
+              results.push(emit(x, y, z));
+            }
+          }
+          return results;
+        }
+      }).line({
+        color:  new Color('violet').arr(),
+        width:  3,
+        zIndex: 3
+      });
+    });
+
+    // ── 2-D zero-set (right panel) ─────────────────────────────────────────
+    window.demo2 = new Demo2D({
+      mathbox: { element: document.getElementById('mathbox2') },
+      scaleUI: true
+    }, function() {
+      var bestFitElt, curve, minimElt, view;
+      window.mathbox2 = this.mathbox;
+      view = this.view({
+        axes:       true,
+        axisLabels: false,
+        grid:       true,
+        viewRange:  [[-range, range], [-range, range]]
+      });
+      this.labeledPoints(view, {
+        name:   'targets',
+        points: targets,
+        colors: (function() {
+          var q, ref5, results;
+          results = [];
+          for (q = 0, ref5 = numTargets; 0 <= ref5 ? q < ref5 : q > ref5;
+               0 <= ref5 ? q++ : q--) {
+            results.push(new Color('blue'));
+          }
+          return results;
+        })(),
+        live:      true,
+        pointOpts: { zIndex: 2 }
+      });
+      curve = view.shader({ code: clipShader })
+                  .vertex({ pass: 'data' })
+                  .shader({
+                    code:     funcFragment + '\n' + curveFragment,
+                    uniforms: uniforms
+                  })
+                  .fragment();
+      curve.matrix({
+        channels: 2,
+        width:    2,
+        height:   2,
+        data:     [[[-range, -range], [-range, range]],
+                   [[ range, -range], [ range, range]]]
+      }).surface({
+        color:   new Color('red').arr(),
+        opacity: 1.0,
+        fill:    true
+      });
+      this.draggable(view, { points: targets, postDrag: solve });
+      bestFitElt = document.getElementById('eqn-here');
+      minimElt   = document.getElementById('sumsq-here');
+      updateCaption = (function(_this) {
+        return function() {
+          var diff, len3, minimized, q, quantity, str;
+          katex.render('\\quad 0 = ' + bestFitStr, bestFitElt);
+          minimized = [];
+          quantity  = 0;
+          for (q = 0, len3 = targets.length; q < len3; q++) {
+            target   = targets[q];
+            diff     = Math.abs(target[2] - bestfit(target[0], target[1]));
+            minimized.push(diff.toFixed(2) + '^2');
+            quantity += diff * diff;
+          }
+          str = '\\quad' + quantity.toFixed(2) + '=' + minimized.join('+');
+          return katex.render(str, minimElt);
+        };
+      })(this);
+      return updateCaption();
+    });
+
+  }); // end DomReady.ready
+
+  // ── Fullscreen toggle ────────────────────────────────────────────────────
+  (function() {
+    var btn = document.getElementById('fs-btn');
+
+    function isFullscreen() {
+      return !!(document.fullscreenElement       ||
+                document.webkitFullscreenElement ||
+                document.mozFullScreenElement    ||
+                document.msFullscreenElement);
+    }
+
+    function updateLabel() {
+      btn.textContent = isFullscreen() ? '✕' : '⛶';
+      btn.title       = isFullscreen() ? 'Exit fullscreen' : 'Toggle fullscreen';
+    }
+
+    btn.addEventListener('click', function() {
+      if (!isFullscreen()) {
+        var el = document.documentElement;
+        if      (el.requestFullscreen)       el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.mozRequestFullScreen)    el.mozRequestFullScreen();
+        else if (el.msRequestFullscreen)     el.msRequestFullscreen();
+      } else {
+        if      (document.exitFullscreen)       document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.mozCancelFullScreen)  document.mozCancelFullScreen();
+        else if (document.msExitFullscreen)     document.msExitFullscreen();
+      }
+    });
+
+    // Update button label whenever fullscreen state changes
+    ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange']
+      .forEach(function(evt) { document.addEventListener(evt, updateLabel); });
+  })();
+  </script>
+</body>
+</html>
