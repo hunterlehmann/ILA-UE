@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Implicit Function of Best Fit</title>
+
+  <!-- Shared MathJax config + helpers (renderMath, texColor). Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    /* ── Page shell: flex column so caption sits above the panels ───────── */
+    html, body {
+      margin:     0;
+      height:     100%;
+      background: white;
+      overflow:   hidden;
+      display:    flex;
+      flex-direction: column;
+    }
+
+    /* ── Caption / control bar ──────────────────────────────────────────── */
+    .overlay-text {
+      flex:          0 0 auto;
+      padding:       4px 10px;
+      background:    white;
+      border-bottom: 1px solid #ccc;
+      z-index:       2;
+    }
+    .overlay-text > p {
+      margin: 2px 0;
+      font-size: 0.9em;
+    }
+
+    /* ── Canvas container: fills all remaining vertical space ───────────── */
+    #mathbox-container {
+      flex:     1 1 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Individual MathBox panels ───────────────────────────────────────── */
+    .mathbox-wrapper {
+      position: absolute;
+      top:      0;
+      bottom:   0;
+      left:     0;
+      width:    50%;
+    }
+    .mathbox-wrapper + .mathbox-wrapper { left: 50%; }
+    .mathbox-wrapper > div {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    /* ── Panel label ─────────────────────────────────────────────────────── */
+    .mathbox-label {
+      position:         absolute;
+      left:             50%;
+      top:              10px;
+      color:            black;
+      background-color: rgba(220,220,220,.5);
+      border:           solid 1px rgba(50,50,50,.5);
+      padding:          5px;
+      transform:        translate(-50%,0);
+      z-index:          1;
+    }
+
+    /* ── Colour tokens ───────────────────────────────────────────────────── */
+    :root {
+      --palette-red:    #cc2222;
+      --palette-violet: #7722bb;
+    }
+    #eqn-here   { color: var(--palette-red);   }
+    #sumsq-here { color: var(--palette-violet); }
+
+    /* ── WCAG 2.4.7: visible focus ring for all interactive elements ─────── */
+    :focus-visible {
+      outline:        2px solid #0066cc;
+      outline-offset: 2px;
+    }
+
+    /* ── Fullscreen button ───────────────────────────────────────────────── */
+    #fs-btn {
+      position:      absolute;
+      top:           50%;
+      right:         8px;
+      transform:     translateY(-50%);
+      cursor:        pointer;
+      background:    none;
+      border:        1px solid #aaa;
+      border-radius: 3px;
+      padding:       2px 6px;
+      font-size:     0.85em;
+      line-height:   1.2;
+      color:         #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen          #fs-btn,
+    :-webkit-full-screen #fs-btn { display: none; }
+
+    /* ── WCAG 2.1.1 / 2.5.1: keyboard-accessible point editor ──────────────
+         Provides a single-pointer / keyboard alternative to canvas dragging.
+         Starts open so users discover it; collapsible to save space.
+         ──────────────────────────────────────────────────────────────────── */
+    #point-editor {
+      margin-top:  3px;
+      font-size:   0.82em;
+    }
+    #point-editor summary {
+      cursor:      pointer;
+      color:       #555;
+      user-select: none;
+    }
+    #point-editor summary::-webkit-details-marker { color: #888; }
+
+    #point-inputs {
+      display:               grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap:                   2px 10px;
+      margin-top:            3px;
+    }
+    .point-row {
+      display:     flex;
+      align-items: center;
+      gap:         4px;
+      white-space: nowrap;
+    }
+    .point-row .pt-label {
+      min-width:   1.8em;
+      font-weight: bold;
+    }
+    .point-row label {
+      display:     flex;
+      align-items: center;
+      gap:         2px;
+    }
+    .point-row input[type="number"] {
+      width:       58px;
+      padding:     1px 3px;
+      font-size:   0.95em;
+      border:      1px solid #bbb;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Caption / control bar — always above the canvases -->
+  <div class="overlay-text" role="region" aria-label="Best-fit interactive controls">
+
+    <!-- WCAG 2.1.1: fullscreen is a <button>, fully keyboard-operable -->
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+
+    <!-- aria-live: screen readers announce equation updates (WCAG 4.1.3 / best practice) -->
+    <p>Best-fit equation:
+      <span id="eqn-here" aria-live="polite" aria-atomic="true"></span>
+    </p>
+    <p>Quantity minimized:
+      <span id="sumsq-here" aria-live="polite" aria-atomic="true"></span>
+    </p>
+
+    <!--
+      WCAG 2.1.1 Keyboard / 2.5.1 Pointer Gestures:
+      All point positions are editable via number inputs.
+      This provides a single-pointer, path-free alternative to canvas dragging.
+    -->
+    <details id="point-editor">
+      <summary>Edit points</summary>
+      <div id="point-inputs"
+           role="group"
+           aria-label="Draggable point coordinates"></div>
+    </details>
+  </div>
+
+  <!-- Two MathBox panels side by side, filling the rest of the page -->
+  <div id="mathbox-container" aria-hidden="true">
+    <!-- aria-hidden: the canvas is purely visual; all data is in the caption bar above -->
+    <div class="mathbox-wrapper">
+      <div id="mathbox1">
+        <div class="mathbox-label">Graph</div>
+      </div>
+    </div>
+    <div class="mathbox-wrapper">
+      <div id="mathbox2">
+        <div class="mathbox-label">Zero Set</div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    Place the ILA demo bundle at:
+      external/iframes/js/demo.js
+    (relative to this file's location in external/iframes/)
+  -->
+  <script src="js/demo.js"></script>
+
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+
+    var bestFitStr, bestfit, bvec, c, clipFragment, clipShader, curveFragment,
+        dot, func, funcFragment, funcStr, funcStrUrl, i, k, l, len, len1, len2,
+        letter, m, makeString, matrix, n, numParams, numSamples, numTargets,
+        o, obj, op, p, param, paramVals, params, radius, range, rangeZ, ref,
+        ref1, ref2, s, samples, shadeFragment, solve, target,
+        targets, uniforms, units, updateCaption, vars, xhat, zeroParams;
+
+    // Arrays that hold references to the generated number inputs.
+    // Populated by buildPointEditor(); used by solve() to keep inputs in sync
+    // with the canvas after a drag event.
+    var pointInputsX = [];
+    var pointInputsY = [];
+
+    // ── Read all configuration from URL query parameters ──────────────────
+    range   = urlParams.get('range',  'float', 10);
+    rangeZ  = urlParams.get('rangez', 'float', range);
+    funcStr = (ref = urlParams.func) != null ? ref : 'C*x+D';
+    funcStr = funcStr.replace(/\s+/g, '+');
+    // ─────────────────────────────────────────────────────────────────────
+
+    func = exprEval.Parser.parse(funcStr);
+
+    params     = [];
+    zeroParams = {};
+    uniforms   = {};
+    vars       = ['x', 'y'];
+
+    ref1 = func.variables().sort();
+    for (k = 0, len = ref1.length; k < len; k++) {
+      letter = ref1[k];
+      if (letter === 'x' || letter === 'y') continue;
+      params.push(letter);
+      zeroParams[letter] = 0;
+      uniforms[letter]   = { type: 'f', value: 0.0 };
+    }
+
+    numParams = params.length;
+
+    units = [];
+    for (i = l = 0, ref2 = numParams; 0 <= ref2 ? l < ref2 : l > ref2;
+         i = 0 <= ref2 ? ++l : --l) {
+      obj = {};
+      for (m = 0, len1 = params.length; m < len1; m++) {
+        param = params[m];
+        obj[param] = 0;
+      }
+      obj[params[i]] = 1;
+      units.push(obj);
+    }
+
+    // Read target points from URL parameters (v1, v2, …)
+    targets = [];
+    i = 1;
+    while (urlParams['v' + i] != null) {
+      target    = urlParams.get('v' + i, 'float[]');
+      target[2] = 0;
+      targets.push(target);
+      i++;
+    }
+    numTargets = targets.length;
+
+    matrix = (function() {
+      var _n, ref, results;
+      results = [];
+      for (_n = 0, ref = numParams; 0 <= ref ? _n < ref : _n > ref;
+           0 <= ref ? _n++ : _n--) {
+        results.push((function() {
+          var _o, ref2, results1;
+          results1 = [];
+          for (_o = 0, ref2 = numTargets; 0 <= ref2 ? _o < ref2 : _o > ref2;
+               0 <= ref2 ? _o++ : _o--) {
+            results1.push(0);
+          }
+          return results1;
+        })());
+      }
+      return results;
+    })();
+
+    bvec = (function() {
+      var _n, ref, results;
+      results = [];
+      for (_n = 0, ref = numTargets; 0 <= ref ? _n < ref : _n > ref;
+           0 <= ref ? _n++ : _n--) {
+        results.push(0);
+      }
+      return results;
+    })();
+
+    xhat = (function() {
+      var _n, ref, results;
+      results = [];
+      for (_n = 0, ref = numParams; 0 <= ref ? _n < ref : _n > ref;
+           0 <= ref ? _n++ : _n--) {
+        results.push(0);
+      }
+      return results;
+    })();
+
+    bestfit    = function(x, y) { return 0; };
+    bestFitStr = '';
+    paramVals  = {};
+
+    funcStrUrl = funcStr.replace(/([a-zA-Z_]+)\^(\d+)/g, function(match, p1, p2) {
+      var result = [], exp = parseInt(p2), _n;
+      for (_n = 0; _n < exp; _n++) result.push(p1);
+      return result.join('*');
+    });
+
+    funcFragment = '';
+    for (n = 0, len2 = params.length; n < len2; n++) {
+      letter        = params[n];
+      funcFragment += 'uniform float ' + letter + ';\n';
+    }
+    funcFragment += '\n\nfloat func(float x, float y) {\n    return ' + funcStrUrl + ';\n}';
+
+    for (op in func.unaryOps) {
+      if (op.match(/^[a-zA-Z]+$/)) {
+        funcStr = funcStr.replace(new RegExp(op, 'g'), '\\' + op);
+      }
+    }
+
+    dot = function(v1, v2) {
+      var _o, ret = 0;
+      for (_o = 0; _o < v1.length; _o++) ret += v1[_o] * v2[_o];
+      return ret;
+    };
+
+    updateCaption = function() {};
+
+    solve = function() {
+      var ATA, ATb, constant, eqno, j, len3, linear, _o, _p, q, ref3, ref4, solver;
+      for (eqno = _o = 0, ref3 = numTargets; 0 <= ref3 ? _o < ref3 : _o > ref3;
+           eqno = 0 <= ref3 ? ++_o : --_o) {
+        target   = targets[eqno];
+        linear   = func.simplify({ x: target[0], y: target[1] });
+        constant = linear.evaluate(zeroParams);
+        for (i = _p = 0, ref4 = numParams; 0 <= ref4 ? _p < ref4 : _p > ref4;
+             i = 0 <= ref4 ? ++_p : --_p) {
+          matrix[i][eqno] = linear.evaluate(units[i]) - constant;
+        }
+        bvec[eqno] = target[2] - constant;
+      }
+      ATA = (function() {
+        var q, ref5, results;
+        results = [];
+        for (j = q = 0, ref5 = numParams; 0 <= ref5 ? q < ref5 : q > ref5;
+             j = 0 <= ref5 ? ++q : --q) {
+          results.push((function() {
+            var r, ref6, results1;
+            results1 = [];
+            for (i = r = 0, ref6 = numParams; 0 <= ref6 ? r < ref6 : r > ref6;
+                 i = 0 <= ref6 ? ++r : --r) {
+              results1.push(dot(matrix[i], matrix[j]));
+            }
+            return results1;
+          })());
+        }
+        return results;
+      })();
+      ATb = (function() {
+        var q, ref5, results;
+        results = [];
+        for (i = q = 0, ref5 = numParams; 0 <= ref5 ? q < ref5 : q > ref5;
+             i = 0 <= ref5 ? ++q : --q) {
+          results.push(dot(matrix[i], bvec));
+        }
+        return results;
+      })();
+      solver = rowReduce(ATA)[3];
+      solver(ATb, xhat);
+      for (i = q = 0, len3 = params.length; q < len3; i = ++q) {
+        letter                 = params[i];
+        paramVals[letter]      = xhat[i];
+        uniforms[letter].value = xhat[i];
+      }
+      bestfit = func.simplify(paramVals).toJSFunction(vars.join(','));
+      makeString();
+      updateCaption();
+      // WCAG 2.1.1 / 2.5.1: sync number inputs when points are moved on canvas
+      targets.forEach(function(pt, idx) {
+        if (pointInputsX[idx]) pointInputsX[idx].value = +pt[0].toFixed(2);
+        if (pointInputsY[idx]) pointInputsY[idx].value = +pt[1].toFixed(2);
+      });
+    };
+
+    makeString = function() {
+      var len3, _o, results, val, valAlone, valMinus, valPlus;
+      bestFitStr = funcStr;
+      results    = [];
+      for (i = _o = 0, len3 = params.length; _o < len3; i = ++_o) {
+        letter = params[i];
+        val    = xhat[i];
+        if (val >= 0) {
+          valAlone = val.toFixed(2);
+          valPlus  = '+' + valAlone;
+          valMinus = '-' + valAlone;
+        }
+        if (val < 0) {
+          val      = -val;
+          valAlone = val.toFixed(2);
+          valPlus  = '-' + valAlone;
+          valMinus = '+' + valAlone;
+          valAlone = '-' + valAlone;
+        }
+        bestFitStr = bestFitStr.replace(new RegExp('\\+' + letter + '\\*', 'g'), valPlus  + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp('\\+' + letter,         'g'), valPlus);
+        bestFitStr = bestFitStr.replace(new RegExp('-'   + letter + '\\*', 'g'), valMinus + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp('-'   + letter,         'g'), valMinus);
+        bestFitStr = bestFitStr.replace(new RegExp(       letter + '\\*',  'g'), valAlone + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp(       letter,          'g'), valAlone);
+        results.push(bestFitStr = bestFitStr.replace(/\*/g, ''));
+      }
+      return results;
+    };
+
+    // First solve, then build keyboard editor (targets must be populated first)
+    solve();
+    buildPointEditor();
+
+    // ── WCAG 2.1.1 / 2.5.1: keyboard-accessible point editor ─────────────
+    // Creates <input type="number"> controls for each target point.
+    // Bidirectional sync: drag → inputs update; input change → canvas updates.
+    function buildPointEditor() {
+      var editor = document.getElementById('point-inputs');
+      targets.forEach(function(pt, idx) {
+        var row  = document.createElement('div');
+        row.className = 'point-row';
+
+        var lbl  = document.createElement('span');
+        lbl.className   = 'pt-label';
+        lbl.textContent = 'P' + (idx + 1);
+        lbl.setAttribute('aria-hidden', 'true'); // label is visual; inputs have aria-label
+
+        // x input
+        var xLabel = document.createElement('label');
+        xLabel.textContent = 'x:';
+        var xInp = document.createElement('input');
+        xInp.type  = 'number';
+        xInp.step  = '0.5';
+        xInp.value = +pt[0].toFixed(2);
+        xInp.setAttribute('aria-label', 'Point ' + (idx + 1) + ' x coordinate');
+        xLabel.appendChild(xInp);
+        pointInputsX.push(xInp);
+
+        // y input
+        var yLabel = document.createElement('label');
+        yLabel.textContent = 'y:';
+        var yInp = document.createElement('input');
+        yInp.type  = 'number';
+        yInp.step  = '0.5';
+        yInp.value = +pt[1].toFixed(2);
+        yInp.setAttribute('aria-label', 'Point ' + (idx + 1) + ' y coordinate');
+        yLabel.appendChild(yInp);
+        pointInputsY.push(yInp);
+
+        // WCAG 2.5.2 Pointer Cancellation: use 'change' (fires on commit,
+        // not on every keypress), so the user can correct a value before
+        // the canvas updates. Arrow-key increments also fire 'change'.
+        function applyInput() {
+          var x = parseFloat(xInp.value);
+          var y = parseFloat(yInp.value);
+          if (isFinite(x)) targets[idx][0] = x;
+          if (isFinite(y)) targets[idx][1] = y;
+          solve();
+        }
+        xInp.addEventListener('change', applyInput);
+        yInp.addEventListener('change', applyInput);
+
+        row.appendChild(lbl);
+        row.appendChild(xLabel);
+        row.appendChild(yLabel);
+        editor.appendChild(row);
+      });
+    }
+
+    // ── GLSL shader strings ────────────────────────────────────────────────
+    clipShader = [
+      '// Enable STPQ mapping',
+      '#define POSITION_STPQ',
+      'void getPosition(inout vec4 xyzw, inout vec4 stpq) {',
+      '  stpq = xyzw;',
+      '}'
+    ].join('\n');
+
+    shadeFragment = [
+      'varying vec3 vNormal;',
+      'varying vec3 vLight;',
+      'varying vec3 vPosition;',
+      '',
+      'vec3 offSpecular(vec3 color) {',
+      '  vec3 c = 1.0 - color;',
+      '  return 1.0 - c * c;',
+      '}',
+      '',
+      'vec4 getShadedColor(vec4 rgba) {',
+      '  vec3 color    = rgba.xyz;',
+      '  vec3 color2   = offSpecular(rgba.xyz);',
+      '  vec3 normal   = normalize(vNormal);',
+      '  vec3 light    = normalize(vLight);',
+      '  vec3 position = normalize(vPosition);',
+      '  float side    = gl_FrontFacing ? -1.0 : 1.0;',
+      '  float cosine  = side * dot(normal, light);',
+      '  float diffuse = mix(max(0.0, cosine), .5 + .5 * cosine, .1);',
+      '  vec3  halfLight  = normalize(light + position);',
+      '  float cosineHalf = max(0.0, side * dot(normal, halfLight));',
+      '  float specular   = pow(cosineHalf, 16.0);',
+      '  return vec4(color * (diffuse * .9 + .05) + .25 * color2 * specular, rgba.a);',
+      '}'
+    ].join('\n');
+
+    numSamples = 8;
+    radius     = 0.02;
+    samples    = '';
+
+    for (i = o = 0; o < numSamples; i = ++o) {
+      c = Math.cos(2 * π * i / numSamples) * radius;
+      s = Math.sin(2 * π * i / numSamples) * radius;
+      samples += 'if(func(stpq.x + ' + c.toFixed(8) + ', stpq.y + ' + s.toFixed(8) + ') * val < 0.0)\n';
+      samples += '    return rgba;\n';
+    }
+
+    curveFragment = [
+      '// Enable STPQ mapping',
+      '#define POSITION_STPQ',
+      '',
+      'vec4 getColor(vec4 rgba, inout vec4 stpq) {',
+      '    float val = func(stpq.x, stpq.y);',
+      '    ' + samples,
+      '    discard;',
+      '}'
+    ].join('\n');
+
+    samples = '';
+    radius  = 0.1;
+
+    for (i = p = 0; p < numSamples; i = ++p) {
+      c = Math.cos(2 * π * i / numSamples) * radius;
+      s = Math.sin(2 * π * i / numSamples) * radius;
+      samples += 'if(func(stpq.x + ' + c.toFixed(8) + ', stpq.y + ' + s.toFixed(8) + ') * val < 0.0)\n';
+      samples += '    return rgba;\n';
+    }
+
+    clipFragment = [
+      '// Enable STPQ mapping',
+      '#define POSITION_STPQ',
+      'uniform float range;',
+      'uniform float rangeZ;',
+      'uniform int hilite;',
+      '',
+      'vec4 getColor(vec4 rgba, inout vec4 stpq) {',
+      '    float val = stpq.z;',
+      '    rgba = getShadedColor(rgba);',
+      '    vec4 oldrgba = rgba;',
+      '    if(abs(stpq.x) > range || abs(stpq.y) > range || abs(stpq.z) > rangeZ)',
+      '        discard;',
+      '    rgba.xyz *= 10.0;',
+      '    rgba.w = 1.0;',
+      '    if(hilite != 0 && stpq.z < ' + radius + ' && stpq.z > -' + radius + ') {',
+      '        ' + samples,
+      '    }',
+      '    return oldrgba;',
+      '}'
+    ].join('\n');
+
+    // ── 3-D graph (left panel) ─────────────────────────────────────────────
+    window.demo1 = new Demo({
+      mathbox: { element: document.getElementById('mathbox1') },
+      scaleUI: true,
+      camera:  { position: urlParams.get('camera1', 'float[]', [3, 1.5, 1.5]) }
+    }, function() {
+      var clipCube, cube, geo, mesh, view;
+      window.mathbox1 = this.mathbox;
+      view = this.view({
+        axes:      false,
+        grid:      true,
+        viewRange: [[-range, range], [-range, range], [-rangeZ, rangeZ]]
+      });
+      this.labeledPoints(view, {
+        name:   'targets',
+        points: targets,
+        colors: (function() {
+          var q, ref5, results;
+          results = [];
+          for (q = 0, ref5 = numTargets; 0 <= ref5 ? q < ref5 : q > ref5;
+               0 <= ref5 ? q++ : q--) {
+            results.push(new Color('blue'));
+          }
+          return results;
+        })(),
+        live:      true,
+        pointOpts: { zIndex: 2 }
+      });
+      uniforms.range  = { type: 'f', value: range };
+      uniforms.rangeZ = { type: 'f', value: rangeZ };
+      uniforms.hilite = { type: 'i', value: 1 };
+      clipCube = view.shader({ code: clipShader })
+                     .vertex({ pass: 'data' })
+                     .shader({
+                       code:     funcFragment + '\n' + shadeFragment + '\n' + clipFragment,
+                       uniforms: uniforms
+                     })
+                     .fragment();
+      geo  = new THREE.BoxGeometry(2, 2, 2);
+      mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial());
+      cube = new THREE.BoxHelper(mesh);
+      cube.material.color = new THREE.Color(0.7, 0.7, 0.7);
+      this.three.scene.add(cube);
+      clipCube.area({
+        channels: 3,
+        rangeX:   [-range, range],
+        rangeY:   [-range, range],
+        width:    100,
+        height:   100,
+        expr:     function(emit, x, y) { return emit(x, y, bestfit(x, y)); }
+      }).surface({
+        color:   new Color('red').arr(),
+        opacity: 0.7,
+        fill:    true
+      });
+      return view.array({
+        channels: 3,
+        width:    2,
+        items:    numTargets,
+        expr: function(emit, end) {
+          var q, ref5, results, x, y, z;
+          results = [];
+          for (i = q = 0, ref5 = numTargets; 0 <= ref5 ? q < ref5 : q > ref5;
+               i = 0 <= ref5 ? ++q : --q) {
+            x = targets[i][0];
+            y = targets[i][1];
+            z = targets[i][2];
+            if (end) {
+              results.push(emit(x, y, bestfit(x, y)));
+            } else {
+              results.push(emit(x, y, z));
+            }
+          }
+          return results;
+        }
+      }).line({
+        color:  new Color('violet').arr(),
+        width:  3,
+        zIndex: 3
+      });
+    });
+
+    // ── 2-D zero-set (right panel) ─────────────────────────────────────────
+    window.demo2 = new Demo2D({
+      mathbox: { element: document.getElementById('mathbox2') },
+      scaleUI: true
+    }, function() {
+      var bestFitElt, curve, minimElt, view;
+      window.mathbox2 = this.mathbox;
+      view = this.view({
+        axes:       true,
+        axisLabels: false,
+        grid:       true,
+        viewRange:  [[-range, range], [-range, range]]
+      });
+      this.labeledPoints(view, {
+        name:   'targets',
+        points: targets,
+        colors: (function() {
+          var q, ref5, results;
+          results = [];
+          for (q = 0, ref5 = numTargets; 0 <= ref5 ? q < ref5 : q > ref5;
+               0 <= ref5 ? q++ : q--) {
+            results.push(new Color('blue'));
+          }
+          return results;
+        })(),
+        live:      true,
+        pointOpts: { zIndex: 2 }
+      });
+      curve = view.shader({ code: clipShader })
+                  .vertex({ pass: 'data' })
+                  .shader({
+                    code:     funcFragment + '\n' + curveFragment,
+                    uniforms: uniforms
+                  })
+                  .fragment();
+      curve.matrix({
+        channels: 2,
+        width:    2,
+        height:   2,
+        data:     [[[-range, -range], [-range, range]],
+                   [[ range, -range], [ range, range]]]
+      }).surface({
+        color:   new Color('red').arr(),
+        opacity: 1.0,
+        fill:    true
+      });
+      // WCAG 2.5.2 Pointer Cancellation: postDrag fires on mouseup, not mousedown
+      this.draggable(view, { points: targets, postDrag: solve });
+      bestFitElt = document.getElementById('eqn-here');
+      minimElt   = document.getElementById('sumsq-here');
+      updateCaption = (function(_this) {
+        return function() {
+          var diff, len3, minimized, q, quantity, str;
+          renderMath('\\quad 0 = ' + bestFitStr, bestFitElt);
+          minimized = [];
+          quantity  = 0;
+          for (q = 0, len3 = targets.length; q < len3; q++) {
+            target   = targets[q];
+            diff     = Math.abs(target[2] - bestfit(target[0], target[1]));
+            minimized.push(diff.toFixed(2) + '^2');
+            quantity += diff * diff;
+          }
+          str = '\\quad' + quantity.toFixed(2) + '=' + minimized.join('+');
+          return renderMath(str, minimElt);
+        };
+      })(this);
+      return updateCaption();
+    });
+
+  }); // end DomReady.ready
+
+  // ── Fullscreen toggle (WCAG 2.1.1: button, fully keyboard-operable) ──────
+  (function() {
+    var btn = document.getElementById('fs-btn');
+
+    function isFullscreen() {
+      return !!(document.fullscreenElement       ||
+                document.webkitFullscreenElement ||
+                document.mozFullScreenElement    ||
+                document.msFullscreenElement);
+    }
+
+    function updateLabel() {
+      btn.textContent = isFullscreen() ? '✕' : '⛶';
+      btn.title       = isFullscreen() ? 'Exit fullscreen' : 'Toggle fullscreen';
+      btn.setAttribute('aria-label', btn.title);
+    }
+
+    // WCAG 2.5.2 Pointer Cancellation: activate on click (up-event), not pointerdown
+    btn.addEventListener('click', function() {
+      if (!isFullscreen()) {
+        var el = document.documentElement;
+        if      (el.requestFullscreen)       el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.mozRequestFullScreen)    el.mozRequestFullScreen();
+        else if (el.msRequestFullscreen)     el.msRequestFullscreen();
+      } else {
+        if      (document.exitFullscreen)       document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.mozCancelFullScreen)  document.mozCancelFullScreen();
+        else if (document.msExitFullscreen)     document.msExitFullscreen();
+      }
+    });
+
+    ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange']
+      .forEach(function(evt) { document.addEventListener(evt, updateLabel); });
+  })();
+  </script>
+</body>
+</html>

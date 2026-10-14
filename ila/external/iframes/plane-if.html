@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Parameterized Plane</title>
+
+  <!-- Shared MathJax config + helpers (renderMath, texColor). Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+
+    .caption-bar {
+      flex: 0 0 auto;
+      padding: 5px 10px;
+      background: white;
+      border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+
+    /* Reserve height for the live equation so the layout doesn't jump
+       while MathJax replaces the content */
+    #vec-here { display: inline-block; min-height: 1.4em; }
+
+    /* 3-column grid: label | slider | value */
+    .ctrl-grid {
+      display: grid;
+      grid-template-columns: 1.6em 1fr 3.2em;
+      gap: 2px 6px;
+      align-items: center;
+      margin-top: 4px;
+    }
+    .ctrl-grid label { font-size: 0.88em; text-align: right; }
+    .ctrl-grid input[type="range"] { width: 100%; }
+    .ctrl-val {
+      font-size: 0.85em;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; }
+    #mathbox1 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+
+    #fs-btn {
+      float: right;
+      cursor: pointer; background: none;
+      border: 1px solid #aaa; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Parameterized plane controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+
+    <!-- Live: parameterization formula + current colored point -->
+    <p><span id="vec-here" aria-live="polite" aria-atomic="true"></span></p>
+
+    <!--
+      WCAG 2.1.1 / 2.5.1: two range sliders replace dat.GUI.
+      Names and range come from URL params (coeffs=t,w and range=5 by default).
+    -->
+    <div class="ctrl-grid" id="slider-container" role="group" aria-label="Parameter values">
+      <!-- Populated dynamically from URL params -->
+    </div>
+  </div>
+
+  <div id="mathbox-container" aria-hidden="true">
+    <div id="mathbox1"></div>
+  </div>
+
+  <script src="js/demo.js"></script>
+
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+
+    // ── URL parameter reading ──────────────────────────────────────────────
+    // coeffs=t,w  — comma-separated names for the two free parameters
+    // range=5     — slider range: sliders run from -range to +range
+    var range       = urlParams.get('range', 'float', 5);
+    var coeffsStr   = urlParams.coeffs || 't,w';
+    var coeffNames  = coeffsStr.split(',');
+    var tName       = (coeffNames[0] || 't').trim();
+    var wName       = (coeffNames[1] || 'w').trim();
+
+    // Plane: x + y + z = 1 (hardcoded; for a different plane provide a new iframe HTML)
+    // Parameterization: y = t (free), z = w (free), x = 1 - t - w
+    // Moving point: (1-t-w, t, w)
+    var t = 0.0;
+    var w = 0.0;
+
+    var planeColor = new Color("violet");
+    var pointColor = new Color("red");
+
+    var vecElt = document.getElementById('vec-here');
+
+    // ── Build sliders dynamically from URL params ─────────────────────────
+    var tSlider, wSlider, tValEl, wValEl;
+
+    function buildSliders() {
+      var container = document.getElementById('slider-container');
+
+      // t slider
+      var tLabel = document.createElement('label');
+      tLabel.textContent = '\\(' + tName + '\\)';
+      tLabel.setAttribute('for', 'slider-t');
+      
+      tSlider = document.createElement('input');
+      tSlider.type  = 'range';
+      tSlider.id    = 'slider-t';
+      tSlider.min   = -range;
+      tSlider.max   =  range;
+      tSlider.step  = range / 10;
+      tSlider.value = 0;
+      tSlider.setAttribute('aria-label', tName + ' parameter value');
+
+      tValEl = document.createElement('span');
+      tValEl.className = 'ctrl-val';
+      tValEl.id        = 'val-t';
+      tValEl.textContent = '0.0';
+
+      // w slider
+      var wLabel = document.createElement('label');
+      wLabel.textContent = '\\(' + wName + '\\)';
+      wLabel.setAttribute('for', 'slider-w');
+      
+      wSlider = document.createElement('input');
+      wSlider.type  = 'range';
+      wSlider.id    = 'slider-w';
+      wSlider.min   = -range;
+      wSlider.max   =  range;
+      wSlider.step  = range / 10;
+      wSlider.value = 0;
+      wSlider.setAttribute('aria-label', wName + ' parameter value');
+
+      wValEl = document.createElement('span');
+      wValEl.className = 'ctrl-val';
+      wValEl.id        = 'val-w';
+      wValEl.textContent = '0.0';
+
+      container.appendChild(tLabel);
+      container.appendChild(tSlider);
+      container.appendChild(tValEl);
+      container.appendChild(wLabel);
+      container.appendChild(wSlider);
+      container.appendChild(wValEl);
+
+      // Wire events
+      tSlider.addEventListener('input', function() {
+        t = parseFloat(this.value);
+        updateCaption();
+      });
+      wSlider.addEventListener('input', function() {
+        w = parseFloat(this.value);
+        updateCaption();
+      });
+    }
+
+    function updateCaption() {
+      var tv = t.toFixed(2);
+      var wv = w.toFixed(2);
+      var xv = (1 - t - w).toFixed(2);
+
+      // Formula: (x,y,z) = (1-t-w, t, w) = \color{red}{(x0, t0, w0)}
+      // Uses URL-provided variable names for the formula
+      var formula = '1-' + tName + '-' + wName;
+      var str = '(x,y,z) = (' + formula + ',\\,' + tName + ',\\,' + wName + ')' +
+                ' = \\color' + texColor(pointColor) + '{(' + xv + ',\\,' + tv + ',\\,' + wv + ')}';
+      renderMath(str, vecElt);
+
+      if (tValEl) tValEl.textContent = tv;
+      if (wValEl) wValEl.textContent = wv;
+      if (tSlider) {
+        tSlider.setAttribute('aria-valuenow',  tv);
+        tSlider.setAttribute('aria-valuetext', tName + ' equals ' + tv);
+      }
+      if (wSlider) {
+        wSlider.setAttribute('aria-valuenow',  wv);
+        wSlider.setAttribute('aria-valuetext', wName + ' equals ' + wv);
+      }
+    }
+
+    buildSliders();
+    // Labels were created after page load, so typeset them explicitly
+    mathJaxReady.then(function() {
+      return MathJax.typesetPromise([document.getElementById('slider-container')]);
+    });
+    updateCaption();
+
+    // ── MathBox 3-D scene ─────────────────────────────────────────────────
+    new Demo({
+      mathbox: { element: document.getElementById('mathbox1') },
+      scaleUI: true,
+      camera:  { position: [2, 3, 2] }
+    }, function() {
+
+      var view     = this.view({ viewRange: [[-range, range], [-range, range], [-range, range]] });
+      var clipCube = this.clipCube(view, { draw: true });
+
+      // ── Plane: x + y + z = 1 ──────────────────────────────────────────
+      // Null space of (1,1,1): v1=(-1,1,0), v2=(-1,0,1); base (1,0,0)
+      var s = this.subspace({
+        vectors: [[-1, 1, 0], [-1, 0, 1]],
+        color:   planeColor,
+        live:    false,
+        name:    "plane"
+      });
+      s.draw(clipCube.clipped.transform({ position: [1, 0, 0] }));
+
+      // ── Moving point at (1-t-w, t, w) ─────────────────────────────────
+      view.array({
+        channels: 3,
+        width:    1,
+        expr: function(emit) {
+          return emit(1 - t - w, t, w);
+        }
+      }).point({
+        color:  pointColor.arr(),
+        size:   15,
+        zIndex: 3,
+        zTest:  false
+      }).format({
+        expr: function(x, y, z) {
+          return '(' + x.toPrecision(2) + ', ' + y.toPrecision(2) + ', ' + z.toPrecision(2) + ')';
+        }
+      }).label({
+        outline: 0,
+        color:   pointColor.arr(),
+        offset:  [0, 20],
+        size:    13,
+        zIndex:  3
+      });
+
+    });
+
+  }); // end DomReady.ready
+
+  // ── Fullscreen toggle ────────────────────────────────────────────────────
+  (function() {
+    var btn = document.getElementById('fs-btn');
+    function isFS() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement ||
+                document.mozFullScreenElement || document.msFullscreenElement);
+    }
+    function updateLabel() {
+      btn.textContent = isFS() ? '✕' : '⛶';
+      var label = isFS() ? 'Exit fullscreen' : 'Toggle fullscreen';
+      btn.title = label;
+      btn.setAttribute('aria-label', label);
+    }
+    btn.addEventListener('click', function() {
+      var el = document.documentElement;
+      if (!isFS()) {
+        (el.requestFullscreen || el.webkitRequestFullscreen ||
+         el.mozRequestFullScreen || el.msRequestFullscreen).call(el);
+      } else {
+        (document.exitFullscreen || document.webkitExitFullscreen ||
+         document.mozCancelFullScreen || document.msExitFullscreen).call(document);
+      }
+    });
+    ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange']
+      .forEach(function(e) { document.addEventListener(e, updateLabel); });
+  })();
+  </script>
+</body>
+</html>

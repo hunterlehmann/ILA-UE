@@ -22,6 +22,7 @@
 <style>
 @counter-style ptx-marker-1 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
 </style>
+<link rel="stylesheet" type="text/css" href="external/css/highlight-math.css">
 <script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
 startMathJax({
 hasWebworkReps: false,
@@ -36,6 +37,8 @@ lang: "en-US",
 <meta name="twitter:title" content="Interactive Linear Algebra: Updated Edition">
 <meta property="og:title" content="Interactive Linear Algebra: Updated Edition">
 <meta property="book:title" content="Interactive Linear Algebra: Updated Edition">
+<meta name="twitter:description" content="An introduction to matrix algebra with an emphasis on geometric intuition.">
+<meta property="og:description" content="An introduction to matrix algebra with an emphasis on geometric intuition.">
 <meta name="twitter:card" content="summary">
 <script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.55"></script><script src="_static/pretext/js/dist/pretext-read-aloud.js?v=2.55"></script><!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
@@ -59,27 +62,31 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '8.3.4';
+eBookConfig.runestone_version = '8.3.5';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.7e4cb14f24eb489b.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.54371ed119fe41be.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.40d828091d93b733.css">
+<script src="_static/prefix-runtime.3adcbea95009347b.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.7a45395f326e122c.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.9963089870a016c8.css">
 <script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script>
 </head>
-<body class="pretext book ignore-math standalone-page">
-<a class="assistive" href="#ptx-content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{color}    \definecolor{highlight}{RGB}{168, 101, 0}
-    \definecolor{contrastGreen}{RGB}{67, 130, 62}
-    \definecolor{contrastPurple}{RGB}{160, 89, 171}
-    \definecolor{contrastBlue}{RGB}{76, 143, 255}
-    \newcommand{\g}{\color{contrastGreen}}
-    \newcommand{\cp}{\color{contrastPurple}}
-    \newcommand{\b}{\color{contrastBlue}}
-    \renewcommand{\r}{\color{highlight}}
+<body id="ILA-UE" class="pretext book ignore-math standalone-page">
+<a class="assistive" href="#ptx-content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{html}\require{color}    \definecolor{cLGold}{RGB}{143, 113, 61}
+    \definecolor{cLGreen}{RGB}{0, 98, 217}
+    \definecolor{cLPurple}{RGB}{31, 127, 115}
+    \definecolor{cLBlue}{RGB}{148, 68, 161}
+    \newcommand{\g}{\color{cLGreen}}
+    \newcommand{\cp}{\color{cLPurple}}
+    \newcommand{\b}{\color{cLBlue}}
+    \renewcommand{\r}{\color{cLGold}}
+    \renewcommand{\mh}[1]{\class{theme-math-highlight}{#1}}
+    \renewcommand{\mhb}[1]{\class{theme-math-highlight-b}{#1}}
+    \renewcommand{\mhg}[1]{\class{theme-math-highlight-g}{#1}}
+    \renewcommand{\mhp}[1]{\class{theme-math-highlight-p}{#1}}
   \newcommand{\R}{\mathbf R}
   \newcommand{\C}{\mathbf C}
  \renewcommand{\mathbb}[1]{\mathbf{#1}}
@@ -115,10 +122,10 @@ eBookConfig.enable_chatcodes =  false;
 \newcommand\smallmat[4]{\begin{smm}#1&amp;#2\\#3&amp;#4\end{smm}}
 
 \definecolor{seq-red}{rgb}{0.8941,0.1020,0.1098}
-\definecolor{seq-blue}{rgb}{0.2157,0.4941,0.7216}
-\definecolor{seq-green}{RGB}{67, 130, 62}
-\definecolor{seq-violet}{RGB}{160, 89, 171}
-\definecolor{seq-orange}{rgb}{1.0000,0.4980,0.0000}
+\definecolor{seq-blue}{RGB}{0, 98, 217}
+\definecolor{seq-green}{RGB}{63, 131, 83}
+\definecolor{seq-violet}{RGB}{148, 68, 161}
+\definecolor{seq-orange}{RGB}{143, 113, 61}
 \definecolor{seq-yellow}{rgb}{0.7000,0.7000,0.0000}
 \definecolor{seq-brown}{rgb}{0.6510,0.3373,0.1569}
 \definecolor{seq-pink}{rgb}{0.9686,0.5059,0.7490}
@@ -146,5 +153,27 @@ eBookConfig.enable_chatcodes =  false;
 </div></details>
 </div>
 </div></main></div>
+<script data-pretext-tools-frame-bridge="true">
+(function () {
+  if (window.__ptxFrameBridge) { return; }
+  window.__ptxFrameBridge = true;
+  function report() {
+    try {
+      parent.postMessage({
+        command: 'ptxFramePath',
+        path: location.pathname + location.search + location.hash
+      }, '*');
+    } catch (e) { /* not framed */ }
+  }
+  report();
+  window.addEventListener('hashchange', report);
+  window.addEventListener('pageshow', report);
+  window.addEventListener('message', function (event) {
+    if (event.data && event.data.command === 'ptxFrameReload') {
+      location.reload();
+    }
+  });
+})();
+</script>
 </body>
 </html>

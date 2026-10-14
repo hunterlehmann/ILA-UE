@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Parametric Form — Two Planes</title>
+
+  <!-- Shared MathJax config + helpers (renderMath, texColor). Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+
+    .caption-bar {
+      flex: 0 0 auto;
+      padding: 5px 10px;
+      background: white;
+      border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+
+    /* Reserve height for the live equation so the layout doesn't jump
+       while MathJax replaces the content */
+    #vec-here { display: inline-block; min-height: 1.4em; }
+
+    /* 3-column grid: label | slider | value */
+    .ctrl-grid {
+      display: grid;
+      grid-template-columns: 1.6em 1fr 3.2em;
+      gap: 2px 6px;
+      align-items: center;
+      margin-top: 4px;
+    }
+    .ctrl-grid label { font-size: 0.88em; text-align: right; }
+    .ctrl-grid input[type="range"] { width: 100%; }
+    .ctrl-val {
+      font-size: 0.85em;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; }
+    #mathbox1 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    .slider-row {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-row label { white-space: nowrap; }
+    .slider-row input[type="range"] { flex: 1; }
+    .t-val { min-width: 3.5em; text-align: right; font-variant-numeric: tabular-nums; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+
+    #fs-btn {
+      float: right;
+      cursor: pointer; background: none;
+      border: 1px solid #aaa; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Parametric form interactive controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+
+    <!-- Static: plane equations -->
+    <p>
+      <span id="eqn1-here"></span>
+    </p><p>
+      <span id="eqn2-here"></span>
+    </p>
+
+    <!-- Live: parameterization with current value highlighted -->
+    <p><span id="vec-here" aria-live="polite" aria-atomic="true"></span></p>
+
+    <!-- WCAG 2.1.1: native range slider, keyboard-operable -->
+    <div class="slider-row mathjax-static">
+      <label for="t-slider">\(t\) =</label>
+      <input id="t-slider"
+             type="range"
+             min="-3" max="3" step="0.1" value="0.5"
+             aria-label="t parameter value"/>
+      <span class="t-val" id="t-display">0.5</span>
+    </div>
+  </div>
+
+  <div id="mathbox-container" aria-hidden="true">
+    <div id="mathbox1"></div>
+  </div>
+
+  <script src="js/demo.js"></script>
+
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+
+    var plane1Color = new Color("violet");  // x + y + z = 1
+    var plane2Color = new Color("green");   // x - z = 0
+    var lineColor   = new Color("yellow");  // intersection line (parameterized)
+    var pointColor  = new Color("red");     // moving point
+
+    var t = 0.5;
+
+    var vecElt   = document.getElementById('vec-here');
+    var tSlider  = document.getElementById('t-slider');
+    var tDisplay = document.getElementById('t-display');
+
+    function updateCaption() {
+      var tv = t.toFixed(2);
+      var xv = t.toFixed(2);
+      var yv = (1 - 2 * t).toFixed(2);
+      var zv = t.toFixed(2);
+      var str = '(x,y,z) = (t,\\, 1-2t,\\, t) = \\color' + texColor(pointColor) + '{' +
+                '(' + xv + ',\\, ' + yv + ',\\, ' + zv + ')}';
+      renderMath(str, vecElt);
+      tDisplay.textContent = tv;
+      tSlider.setAttribute('aria-valuenow',   tv);
+      tSlider.setAttribute('aria-valuetext',  't equals ' + tv);
+    }
+
+    tSlider.addEventListener('input', function() {
+      t = parseFloat(this.value);
+      updateCaption();
+    });
+
+    new Demo({
+      mathbox: { element: document.getElementById('mathbox1') },
+      scaleUI: true,
+      camera:  { position: [1.5, 3, 1.5] }
+    }, function() {
+
+      var view     = this.view({ viewRange: [[-5, 5], [-5, 5], [-5, 5]] });
+      var clipCube = this.clipCube(view, { draw: true });
+
+      // ── Plane 1: x + y + z = 1 ────────────────────────────────────────
+      var s1 = this.subspace({
+        vectors: [[-1, 1, 0], [-1, 0, 1]],
+        color:   plane1Color,
+        live:    false,
+        name:    "plane1"
+      });
+      s1.draw(clipCube.clipped.transform({ position: [1, 0, 0] }));
+
+      // ── Plane 2: x - z = 0 ────────────────────────────────────────────
+      var s2 = this.subspace({
+        vectors: [[0, 1, 0], [1, 0, 1]],
+        color:   plane2Color,
+        live:    false,
+        name:    "plane2"
+      });
+      s2.draw(clipCube.clipped.transform({ position: [0, 0, 0] }));
+
+      // ── Intersection line: (t, 1-2t, t) ───────────────────────────────
+      var s3 = this.subspace({
+        vectors:  [[1, -2, 1]],
+        color:    lineColor,
+        lineOpts: { opacity: 1.0, width: 4, zIndex: 3 },
+        name:     "line",
+        live:     false
+      });
+      s3.draw(clipCube.clipped.transform({ position: [0, 1, 0] }));
+
+      // ── Moving red point at (t, 1-2t, t) ──────────────────────────────
+      view.array({
+        channels: 3,
+        width:    1,
+        expr: function(emit) {
+          return emit(t, 1 - 2 * t, t);
+        }
+      }).point({
+        color:  pointColor.arr(),
+        size:   15,
+        zIndex: 3,
+        zTest:  false
+      }).format({
+        expr: function(x, y, z) {
+          return '(' + x.toPrecision(2) + ', ' + y.toPrecision(2) + ', ' + z.toPrecision(2) + ')';
+        }
+      }).label({
+        outline: 0,
+        color:   pointColor.arr(),
+        offset:  [0, 20],
+        size:    13,
+        zIndex:  3
+      });
+
+      // ── Static MathJax plane equations ───────────────────────────────────
+      renderMath(
+        '\\color' + texColor(plane1Color) + '{x + y + z = 1}',
+        document.getElementById('eqn1-here')
+      );
+      renderMath(
+        '\\color' + texColor(plane2Color) + '{x - z = 0}',
+        document.getElementById('eqn2-here')
+      );
+
+      // Initial caption
+      updateCaption();
+    });
+
+  }); // end DomReady.ready
+
+  // ── Fullscreen toggle ────────────────────────────────────────────────────
+  (function() {
+    var btn = document.getElementById('fs-btn');
+    function isFS() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement ||
+                document.mozFullScreenElement || document.msFullscreenElement);
+    }
+    function updateLabel() {
+      btn.textContent = isFS() ? '✕' : '⛶';
+      var label = isFS() ? 'Exit fullscreen' : 'Toggle fullscreen';
+      btn.title = label;
+      btn.setAttribute('aria-label', label);
+    }
+    btn.addEventListener('click', function() {
+      var el = document.documentElement;
+      if (!isFS()) {
+        (el.requestFullscreen || el.webkitRequestFullscreen ||
+         el.mozRequestFullScreen || el.msRequestFullscreen).call(el);
+      } else {
+        (document.exitFullscreen || document.webkitExitFullscreen ||
+         document.mozCancelFullScreen || document.msExitFullscreen).call(document);
+      }
+    });
+    ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange']
+      .forEach(function(e) { document.addEventListener(e, updateLabel); });
+  })();
+  </script>
+</body>
+</html>
