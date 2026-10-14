@@ -5,6 +5,8 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <title>Parametric Form</title>
 
+  <!-- Shared MathJax config + helpers (renderMath, texColor). Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
 
@@ -59,9 +61,6 @@
       width: 100%; height: 100%;
     }
 
-    /* ── KaTeX: suppress span-based layer; keep native MathML ───────────── */
-    .katex-html { display: none; }
-
     /* ── WCAG 2.4.7 Focus visible ─────────────────────────────────────────*/
     :focus-visible {
       outline:        2px solid #0066cc;
@@ -92,10 +91,10 @@
 
     <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
 
-    <!-- Static equations (rendered once by KaTeX) -->
+    <!-- Static equations (rendered once by MathJax) -->
     <p>
       <span id="eqn1-here"></span>
-      &nbsp;&nbsp;
+    </p><p>
       <span id="eqn2-here"></span>
     </p>
 
@@ -110,9 +109,9 @@
       Arrow keys move the slider; no path-based gesture needed (WCAG 2.5.1).
       This replaces the dat.GUI slider which has no accessible label.
     -->
-    <div class="slider-row">
+    <div class="slider-row mathjax-static">
       <label for="z-slider">
-        <em>z</em> =
+        \(z\) =
       </label>
       <input id="z-slider"
              type="range"
@@ -156,14 +155,14 @@
     var zDisplay  = document.getElementById('z-display');
     var zSlider   = document.getElementById('z-slider');
 
-    // ── Update KaTeX caption and z readout ──────────────────────────────
+    // ── Update MathJax caption and z readout ──────────────────────────────
     function updateCaption() {
       var x = (1  - 5 * params.z).toFixed(2);
       var y = (-1 - 2 * params.z).toFixed(2);
       var z = params.z.toFixed(2);
-      var str = '(x, y, z) = (1-5z,\\, {-1}-2z,\\, z) = \\color{' + pointColor.str() + '}{';
+      var str = '(x, y, z) = (1-5z,\\, {-1}-2z,\\, z) = \\color' + texColor(pointColor) + '{';
       str += '({' + x + '},\\, {' + y + '},\\, {' + z + '})}';
-      katex.render(str, vecElt);
+      renderMath(str, vecElt);
       zDisplay.textContent = z;
       // Keep aria-valuenow in sync for screen readers
       zSlider.setAttribute('aria-valuenow', z);
@@ -250,12 +249,12 @@
       });
 
       // Render static plane equations once
-      katex.render(
-        '\\color{' + plane1Color.str() + '}{2x + \\phantom{2}y + 12z = 1}',
+      renderMath(
+        '\\color' + texColor(plane1Color) + '{2x + \\phantom{2}y + 12z = 1}',
         document.getElementById('eqn1-here')
       );
-      katex.render(
-        '\\color{' + plane2Color.str() + '}{\\phantom{2}x + 2y + \\phantom{1}9z = -1}',
+      renderMath(
+        '\\color' + texColor(plane2Color) + '{\\phantom{2}x + 2y + \\phantom{1}9z = -1}',
         document.getElementById('eqn2-here')
       );
 

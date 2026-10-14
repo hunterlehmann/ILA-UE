@@ -9,7 +9,7 @@ any later version published by the Free Software Foundation.  A copy of
 the license is included in gfdl.xml.
 *********************************************************************-->
 
-<section xml:id="systems-of-eqns">
+<section xml:id="sec-systems-of-eqns">
   <title>Systems of Linear Equations</title>
 
   <objectives>
@@ -106,13 +106,13 @@ the license is included in gfdl.xml.
 
   </introduction>
 
-  <subsection xml:id="subsection-Rn">
+  <subsection xml:id="subsec-Rn">
     <title>Line, Plane, Space, Etc.</title>
+    <p>
 
       <notation><usage><m>0</m></usage><description>The number zero</description></notation>
       <notation><usage><m>\R</m></usage><description>The real numbers</description></notation>
       <idx><h>Real numbers <m>\R</m></h></idx>
-    <p>
       We use <m>\R</m>
       to denote the set of all real numbers, i.e., the number
       line.  This contains numbers like <m>0, \frac 32, -\pi, 104, \ldots</m>
@@ -214,8 +214,24 @@ the license is included in gfdl.xml.
     <example>
       <title>Interactive: Points in 3-Space</title>
       <figure>
-        <caption>A point in 3-space, and its coordinates.  Click and drag the point, or move the sliders.</caption>
-        <mathbox source="demos/point.html" height="400px"/>
+        <caption>
+          A point in 3-space, and its coordinates.
+        </caption>
+        <interactive xml:id="demo-point-3space"
+                    iframe="iframes/point-if.html"
+                    width="90%"
+                    aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+             <p>
+               This interactive allows you to visualize a point in 3-dimensional space and see its coordinates.
+             </p>
+          </description>
+          <instructions><p>Click and drag the point, or move the sliders.</p></instructions>
+        </interactive>
       </figure>
     </example>
 
@@ -342,7 +358,7 @@ the license is included in gfdl.xml.
 
     <p>In the above examples, it was useful from a psychological perspective to replace a list of four numbers (representing traffic flow) or of 841 numbers (representing a QR code) by a single piece of data: a point in some <m>\R^n</m>.  This is a powerful concept;   starting in <xref provisional="spans"/>, we will almost exclusively record solutions of systems of linear equations in this way.</p>
   </subsection>
-  <subsection xml:id="systems-eqns-pictures">
+  <subsection xml:id="subsec-systems-eqns-pictures">
     <title>Pictures of Solution Sets</title>
     <idx><h>Solution set</h><h>picture of</h></idx>
 
@@ -549,8 +565,25 @@ Two lines in the plane that are equal
       </p>
 
       <figure>
-        <caption>The planes defined by the equations <m>\mhp{x+y+z=1}</m> and <m>\mhg{x-z=0}</m> intersect in the red line, which is the solution set of the system of both equations.</caption>
-        <mathbox source="demos/planes.html" height="400px"/>
+        <caption>
+          The planes defined by the equations <m>\mhp{x+y+z=1}</m> and
+          <m>\mhg{x-z=0}</m> intersect in the red line, which is the
+          solution set of the system of both equations.
+        </caption>
+        <interactive xml:id="demo-planes-intersection"
+                    iframe="iframes/planes-if.html"
+                    width="90%"
+                    aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+             <p>
+              
+             </p>
+          </description>
+        </interactive>
       </figure>
     </observation>
 
@@ -562,13 +595,13 @@ Two lines in the plane that are equal
 
   </subsection>
 
-  <subsection>
+    <subsection xml:id="subsec-parametric-description">
     <title>Parametric Description of Solution Sets</title>
     <idx><h>Implicit equation</h></idx>
     <idx><h>Parametric form</h></idx>
 
     <p>
-      According to <xref ref="systems-eqns-soln-sets"/>, solving a system of equations means writing down all solutions in terms of some number of parameters.  We will give a systematic way of doing so in <xref ref="parametric-form" text="type-global"/>; for now we give parametric descriptions in the examples of the previous <xref ref="systems-eqns-pictures" text="type-global"/>.
+      According to <xref ref="systems-eqns-soln-sets"/>, solving a system of equations means writing down all solutions in terms of some number of parameters.  We will give a systematic way of doing so in <xref ref="sec-parametric-form" text="type-global"/>; for now we give parametric descriptions in the examples of the previous <xref ref="subsec-systems-eqns-pictures" text="type-global"/>.
     </p>
 
     <observation>
@@ -576,7 +609,7 @@ Two lines in the plane that are equal
       <idx><h>Line</h><h>parametric form of</h></idx>
 
       <p>
-        Consider the linear equation <m>x+y=1</m> of this <xref ref="systems-eqns-picture-line"/>.  In this context, we call <m>x+y=1</m> an <term>implicit equation</term> of the line.  We can write the same line in <term>parametric form</term> as follows:
+        Consider the linear equation <m>x+y=1</m> of <xref ref="systems-eqns-picture-line"/>.  In this context, we call <m>x+y=1</m> an <term>implicit equation</term> of the line.  We can write the same line in <term>parametric form</term> as follows:
         <md>
 <mrow>(x, y) = (t,\, 1-t) \sptxt{for any} t \in \R.</mrow>
 </md>
@@ -619,8 +652,27 @@ Two lines in the plane that are equal
       </p>
 
       <figure>
-        <caption>The planes defined by the equations <m>\mhp{x+y+z=1}</m> and <m>\mhg{x-z=0}</m> intersect in the yellow line, which is parameterized by <m>(x,y,z) = (t,1-2t,t)</m>.  Move the slider to change the parameterized point.</caption>
-        <mathbox source="demos/parametric2.html" height="400px"/>
+        <caption>
+          The planes defined by the equations <m>\mhp{x+y+z=1}</m> and
+          <m>\mhg{x-z=0}</m> intersect in the yellow line, which is
+          parameterized by <m>(x,y,z) = (t,1-2t,t)</m>.
+        </caption>
+        <interactive xml:id="demo-parametric2"
+                    iframe="iframes/parametric2-if.html"
+                    width="90%"
+                    aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+          <p>Move the slider to change the parameterized point.</p></instructions>
+        </interactive>
       </figure>
 
       <p>
@@ -641,8 +693,29 @@ Two lines in the plane that are equal
       </p>
 
       <figure>
-        <caption>The plane in <m>\R^3</m> defined by the equation <m>x+y+z=1</m>.  This plane is parameterized by two numbers <m>t,w</m>; move the sliders to change the parameterized point.</caption>
-        <mathbox source="demos/plane.html?coeffs=t,w&amp;range=5" height="400px"/>
+        <caption>
+          The plane in <m>\R^3</m> defined by the equation <m>x+y+z=1</m>.
+          This plane is parameterized by two numbers <m>t,w</m>.
+        </caption>
+        <interactive xml:id="demo-plane-parametric"
+                    iframe="iframes/plane-if.html?coeffs=t,w&amp;range=5"
+                    width="90%"
+                    aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              Move the sliders to change the parameterized point.
+            </p>
+          </instructions>
+        </interactive>
       </figure>
 
       <p>

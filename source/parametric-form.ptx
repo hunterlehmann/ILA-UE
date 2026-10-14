@@ -8,60 +8,36 @@ under the terms of the GNU Free Documentation License, Version 1.3 or
 any later version published by the Free Software Foundation.  A copy of
 the license is included in gfdl.xml.
 *********************************************************************-->
-<section xml:id="parametric-form">
-    <title>Parametric Form</title>
 
-    <objectives>
-        <ol>
-            <li>
-                <p>
-                    Learn to express the solution set of a system of linear
-                    equations in parametric form.
-                </p>
-            </li>
+<section xml:id="sec-parametric-form">
+  <title>Parametric Form</title>
 
-            <li>
-                <p>
-                    Understand the three possibilities for the number of
-                    solutions of a system of linear equations.
-                </p>
-            </li>
+  <objectives>
+    <ol>
+      <li><p>Learn to express the solution set of a system of linear equations in parametric form.</p></li>
+      <li><p>Understand the three possibilities for the number of solutions of a system of linear equations.</p></li>
+      <li><p><em>Recipe:</em> parametric form.</p></li>
+      <li><p><em>Vocabulary word:</em> <term>free variable</term>.</p></li>
+    </ol>
+  </objectives>
 
-            <li>
-                <p>
-                    <em>Recipe:</em> parametric form.
-                </p>
-            </li>
+  <subsection xml:id="subsec-free-variables">
+    <title>Free Variables</title>
 
-            <li>
-                <p>
-                    <em>Vocabulary word:</em> <term>free variable</term>.
-                </p>
-            </li>
-        </ol>
-    </objectives>
+    <p>There is one possibility for the row reduced form of a matrix that we did not see in <xref ref="sec-row-reduction" text="type-global"/>.</p>
 
-    <subsection>
-        <title>Free Variables</title>
-
-        <p>
-            There is one possibility for the row reduced form of a matrix that
-            we did not see in <xref ref="row-reduction"/>.
-        </p>
-        <observation xml:id="row-reduction-eg-free">
-            <title>A System with a Free Variable</title>
-
-            <p>
-                Consider the linear system
-                <md>
-                    <mrow>\left\{\begin{alignedat}{4}
+    <observation xml:id="row-reduction-eg-free">
+      <title>A System with a Free Variable</title>
+      <p>Consider the linear system
+      <md>
+<mrow>\left\{\begin{alignedat}{4}
 2x \amp {}+{} \amp y \amp {}+{} \amp 12z \amp {}={} \amp 1 \amp {} \\
-x \amp {}+{} \amp 2y \amp {}+{} \amp 9z \amp {}={} \amp -1. \amp {}
+x \amp {}+{} \amp 2y \amp {}+{} \amp 9z \amp {}={} \amp -1 \amp .
 \end{alignedat}\right.</mrow>
-                </md>
-                We solve it using row reduction:
-                <md>
-                    <mrow>
+</md>
+      We solve it using row reduction:
+      <md>
+        <mrow>
           \left(\begin{array}{rrr|r}
 2 \amp 1 \amp 12 \amp 1 \\
 1 \amp 2 \amp 9 \amp -1
@@ -73,7 +49,7 @@ x \amp {}+{} \amp 2y \amp {}+{} \amp 9z \amp {}={} \amp -1. \amp {}
 \end{array}\right)
           \amp\amp\mhb{\text{(Optional)}}
         </mrow>
-                    <mrow>
+        <mrow>
           {}\quad\xrightarrow{R_2=R_2-2R_1}\quad
           \amp\left(\begin{array}{rrr|r}
 1 \amp 2 \amp 9 \amp -1 \\
@@ -81,7 +57,7 @@ x \amp {}+{} \amp 2y \amp {}+{} \amp 9z \amp {}={} \amp -1. \amp {}
 \end{array}\right)
           \amp\amp\mhb{\text{(Step 1c)}}
         </mrow>
-                    <mrow>
+        <mrow>
           {}\quad\xrightarrow{R_2=R_2\div -3}\quad
           \amp\left(\begin{array}{rrr|r}
 1 \amp 2 \amp 9 \amp -1 \\
@@ -89,7 +65,7 @@ x \amp {}+{} \amp 2y \amp {}+{} \amp 9z \amp {}={} \amp -1. \amp {}
 \end{array}\right)
           \amp\amp\mhb{\text{(Step 2b)}}
         </mrow>
-                    <mrow>
+        <mrow>
           {}\quad\xrightarrow{R_1=R_1-2R_2}\quad
           \amp\left(\begin{array}{rrr|r}
 1 \amp \mh{0} \amp 5 \amp 1 \\
@@ -97,345 +73,270 @@ x \amp {}+{} \amp 2y \amp {}+{} \amp 9z \amp {}={} \amp -1. \amp {}
 \end{array}\right)
           \amp\amp\mhb{\text{(Step 2c)}}
         </mrow>
-                </md>
-                This row reduced matrix corresponds to the linear system
-                <md>
-                    <mrow>\left\{\begin{alignedat}{3}
+      </md>
+      This row reduced matrix corresponds to the linear system
+      <md>
+<mrow>\left\{\begin{alignedat}{3}
 x \amp {}+{} \amp 5z \amp {}={} \amp 1 \amp {} \\
-y \amp {}+{} \amp 2z \amp {}={} \amp -1. \amp {}
+y \amp {}+{} \amp 2z \amp {}={} \amp -1 \amp .
 \end{alignedat}\right.</mrow>
-                </md>
-                In what sense is the system solved?
-                We rewrite as
-                <md>
-                    <mrow>\left\{\begin{alignedat}{2}
+</md>
+      In what sense is the system solved?  We rewrite as
+      <md>
+<mrow>\left\{\begin{alignedat}{2}
 x \amp {}={} \amp 1 - 5z \amp {} \\
-y \amp {}={} \amp -1 - 2z. \amp {}
+y \amp {}={} \amp -1 - 2z \amp .
 \end{alignedat}\right.</mrow>
-                </md>
-                For any value of <m>z</m>, there is exactly one value of
-                <m>x</m> and <m>y</m> that make the equations true.
-                But we are free to choose <em>any</em> value of <m>z</m>.
-            </p>
+</md>
+      For any value of <m>z</m>, there is exactly one value of <m>x</m> and <m>y</m> that make the equations true.  But we are free to choose <em>any</em> value of <m>z</m>.
+      </p>
 
-            <p>
-                We have found all solutions: it is the set of all values
-                <m>x,y,z</m>, where
-                <md>
-                    <mrow>\left\{\begin{alignedat}{3}
-x \amp {} \amp {} \amp {}={} \amp 1 - 5z \amp {} \\
-y \amp {} \amp {} \amp {}={} \amp -1 - 2z \amp {} \\
-z \amp {}+{} \amp z \amp {}={} \amp \. \amp {}
+      <p>We have found all solutions: it is the set of all values <m>x,y,z</m>, where
+      <md>
+<mrow>\left\{\begin{alignedat}{2}
+x \amp {}={} \amp 1 - 5z \amp {} \\
+y \amp {}={} \amp -1 - 2z \amp {} \\
+z \amp {}={} \amp z \amp {}
 \end{alignedat}\right. \qquad \text{$z$ any real number.}</mrow>
-                </md>
-                This is called the <em>parametric form</em> for the solution to
-                the linear system.
-                The variable <m>z</m> is called a <em>free variable</em>.
-            </p>
+</md>
+	This is called the <em>parametric form</em> for the solution to the linear system.  The variable <m>z</m> is called a <em>free variable</em>.
+      </p>
 
-            <figure>
-                <caption>
-                    A picture of the solution set (the yellow line) of the
-                    linear system in this <xref ref="row-reduction-eg-free"/>.
-                    There is a unique solution for every value of <m>z</m>; move
-                    the slider to change <m>z</m>.
-                </caption>
-                <mathbox source="demos/parametric1.html" height="400px"/>
-            </figure>
-        </observation>
 
-        <insight xml:id="finding-actual-soln">
+
+
+      <figure>
+        <caption>
+          The solution set (the yellow line) of the linear system in <xref ref="row-reduction-eg-free"/>.  There is a unique solution for every value of <m>z</m>.
+        </caption>
+        <interactive xml:id="demo-parametric1"
+                    iframe="iframes/parametric1-if.html"
+                    width="90%"
+                    aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
             <p>
-                Given the parametric form for the solution to a linear system,
-                we can obtain specific solutions by replacing the free variables
-                with any specific real numbers.
-                For instance, setting <m>z=0</m> in the last example gives the
-                solution <m>(x,y,z)=(1,-1,0)</m>, and setting <m>z=1</m> gives
-                the solution <m>(x,y,z)=(-4,-3,1)</m>.
+              
             </p>
-        </insight>
+          </description>
+          <instructions>
+          <p>Move the slider to change <m>z</m>.</p></instructions>
+        </interactive>
+      </figure>
+    </observation>
 
-        <definition>
-            <idx><h>Free variable</h></idx>
-            <statement>
-                <p>
-                    Consider a <em>consistent</em> system of equations in the
-                    variables <m>x_1,x_2,\ldots,x_n</m>.
-                    Let <m>A</m> be a row echelon form of the augmented matrix
-                    for this system.
-                </p>
+    <insight xml:id="finding-actual-soln">
+      <p>Given the parametric form for the solution to a linear system, we can obtain specific solutions by replacing the free variables with any specific real numbers.  For instance, setting <m>z=0</m> in the last example gives the solution <m>(x,y,z)=(1,-1,0)</m>, and setting <m>z=1</m> gives the solution <m>(x,y,z)=(-4,-3,1)</m>.</p>
+    </insight>
 
-                <p>
-                    We say that <m>x_i</m> is a <term>free variable</term> if
-                    its corresponding column in <m>A</m> is <em>not</em> a
-                    <xref text="title" ref="defn-pivot-pos">pivot column</xref>.
-                </p>
-            </statement>
-        </definition>
 
-        <p>
-            In the above <xref ref="row-reduction-eg-free"/>, the variable
-            <m>\mh{z}</m> was free because the reduced row echelon form matrix
-            was
-            <md>
-                <mrow>\left(\begin{array}{rrr|r}
+    <definition>
+      <idx><h>Free variable</h></idx>
+      <statement>
+        <p>Consider a <em>consistent</em> system of equations in the variables <m>x_1,x_2,\ldots,x_n</m>.  Let <m>A</m> be a row echelon form of the augmented matrix for this system.</p>
+        <p>We say that <m>x_i</m> is a <term>free variable</term> if its corresponding column in <m>A</m> is <em>not</em> a <xref ref="defn-pivot-pos" text="custom">pivot column</xref>.</p>
+      </statement>
+    </definition>
+
+    <p>In the above <xref ref="row-reduction-eg-free"/>, the variable <m>\mh{z}</m> was free because the reduced row echelon form matrix was
+    <md>
+<mrow>\left(\begin{array}{rrr|r}
 1 \amp 0 \amp \mh{5} \amp 1 \\
 0 \amp 1 \amp \mh{2} \amp -1
 \end{array}\right).</mrow>
-            </md>
-            In the matrix
-            <md>
-                <mrow>\left(\begin{array}{rrrr|r}
+</md>
+    In the matrix
+    <md>
+<mrow>\left(\begin{array}{rrrr|r}
 1 \amp \mh{\star} \amp 0 \amp \mhb{\star} \amp \star \\
 0 \amp \mh{0} \amp 1 \amp \mhb{\star} \amp \star
 \end{array}\right),</mrow>
-            </md>
-            the free variables are <m>\mh{x_2}</m> and <m>\mhb{x_4}</m>.
-            (The augmented column is not free because it does not correspond to
-            a variable.)
-        </p>
+</md>
+    the free variables are <m>\mh{x_2}</m> and <m>\mhb{x_4}</m>.  (The augmented column is not free because it does not correspond to a variable.)
+    </p>
 
-        <algorithm>
-            <title>Parametric form</title>
+    <algorithm>
+      <title>Parametric form</title>
+      <idx><h>Parametric form</h></idx>
+      <idx><h>System of linear equations</h><h>parametric form of</h><see>Parametric form</see></idx>
 
-            <idx><h>Parametric form</h></idx>
-            <idx><h>System of linear equations</h><h>parametric form of</h><see>Parametric form</see></idx>
-            <p>
-                The <term>parametric form</term> of the solution set of a
-                consistent system of linear equations is obtained as follows.
-                <ol>
-                    <li>
-                        <p>
-                            Write the system as an augmented matrix.
-                        </p>
-                    </li>
+      <p>
+        The <term>parametric form</term> of the solution set of a consistent system of linear equations is obtained as follows.
+        <ol>
+          <li><p>Write the system as an augmented matrix.</p></li>
+          <li><p>Row reduce to reduced row echelon form.</p></li>
+          <li><p>Write the corresponding (solved) system of linear equations.</p></li>
+          <li><p><em>Move all free variables to the right hand side of the equations.</em></p></li>
+        </ol>
+      </p>
+    </algorithm>
 
-                    <li>
-                        <p>
-                            Row reduce to reduced row echelon form.
-                        </p>
-                    </li>
+    <p>Moving the free variables to the right hand side of the equations amounts to solving for the non-free variables (the ones that come pivot columns) in terms of the free variables.  One can think of the free variables as being <em>independent</em> variables, and the non-free variables being <em>dependent</em>.
+    </p>
 
-                    <li>
-                        <p>
-                            Write the corresponding (solved) system of linear
-                            equations.
-                        </p>
-                    </li>
 
-                    <li>
-                        <p>
-                            <em>Move all free variables to the right hand side of the equations.</em>
-                        </p>
-                    </li>
-                </ol>
-            </p>
-        </algorithm>
 
-        <p>
-            Moving the free variables to the right hand side of the equations
-            amounts to solving for the non-free variables (the ones that come
-            pivot columns) in terms of the free variables.
-            One can think of the free variables as being <em>independent</em>
-            variables, and the non-free variables being <em>dependent</em>.
-        </p>
-
-        <note>
-            <title>Implicit Versus Parameterized Equations</title>
-
-            <idx><h>Implicit equation</h></idx>
-            <idx><h>Parameterized equation</h></idx>
-            <p>
-                The solution set of the system of linear equations
-                <md>
-                    <mrow>\left\{\begin{alignedat}{4}
+    <note>
+      <title>Implicit Versus Parameterized Equations</title>
+      <idx><h>Implicit equation</h></idx>
+      <idx><h>Parameterized equation</h></idx>
+      <p>The solution set of the system of linear equations
+      <md>
+<mrow>\left\{\begin{alignedat}{4}
 2x \amp {}+{} \amp y \amp {}+{} \amp 12z \amp {}={} \amp 1 \amp {} \\
 x \amp {}+{} \amp 2y \amp {}+{} \amp 9z \amp {}={} \amp -1 \amp {}
 \end{alignedat}\right.</mrow>
-                </md>
-                is a line in <m>\R^3</m>, as we saw in this
-                <xref ref="row-reduction-eg-free"/>.
-                These equations are called the <term>implicit equations</term>
-                for the line: the line is defined <em>implicitly</em> as the
-                simultaneous solutions to those two equations.
-            </p>
-
-            <p>
-                The parametric form
-                <md>
-                    <mrow>\left\{\begin{alignedat}{2}
+</md>
+      is a line in <m>\R^3</m>, as we saw in <xref ref="row-reduction-eg-free"/>.  These equations are called the <term>implicit equations</term> for the line: the line is defined <em>implicitly</em> as the simultaneous solutions to those two equations.
+      </p>
+      <p>The parametric form
+      <md>
+<mrow>\left\{\begin{alignedat}{2}
 x \amp {}={} \amp 1 - 5z \amp {} \\
-y \amp {}={} \amp -1 - 2z. \amp {}
+y \amp {}={} \amp -1 - 2z \amp .
 \end{alignedat}\right.</mrow>
-                </md>
-                can be written as follows:
-                <md>
-                    <mrow>(x,\,y,\,z) = (1-5z,\,-1-2z,\,z) \qquad \text{$z$ any real number.}</mrow>
-                </md>
-                This called a <term>parameterized equation</term> for the same
-                line.
-                It is an expression that produces all points of the line in
-                terms of one parameter, <m>z</m>.
-            </p>
+</md>
+      can be written as follows:
+      <md>
+<mrow>(x,\,y,\,z) = (1-5z,\,-1-2z,\,z) \qquad \text{$z$ any real number.}</mrow>
+</md>
+      This called a <term>parameterized equation</term> for the same line.  It is an expression that produces all points of the line in terms of one parameter, <m>z</m>.
+      </p>
+      <p>One should think of a system of equations as being an implicit equation for its solution set, and of the parametric form as being the parameterized equation for the same set.  The parameteric form is much more explicit: it gives a concrete recipe for producing <em>all</em> solutions.
+      </p>
+    </note>
 
-            <p>
-                One should think of a system of equations as being an implicit
-                equation for its solution set, and of the parametric form as
-                being the parameterized equation for the same set.
-                The parameteric form is much more explicit: it gives a concrete
-                recipe for producing <em>all</em> solutions.
-            </p>
-        </note>
+    <insight>
+      <p>
+        You can choose <em>any value</em> for the free variables in a (consistent) linear system.
+      </p>
+      <p>
+        Free variables come from the <em>columns without pivots</em> in a matrix in row echelon form.
+      </p>
+    </insight>
 
-        <insight>
-            <p>
-                You can choose <em>any value</em> for the free variables in a
-                (consistent) linear system.
-            </p>
-
-            <p>
-                Free variables come from the <em>columns without pivots</em> in
-                a matrix in row echelon form.
-            </p>
-        </insight>
-
-        <example>
-            <p>
-                Suppose that the reduced row echelon form of the matrix for a
-                linear system in four variables <m>x_1,x_2,x_3,x_4</m> is
-                <md>
-                    <mrow>\left(\begin{array}{rrrr|r}
+    <example>
+      <p>
+        Suppose that the reduced row echelon form of the matrix for a linear system in four variables <m>x_1,x_2,x_3,x_4</m> is
+        <md>
+<mrow>\left(\begin{array}{rrrr|r}
 1 \amp \mh{0} \amp 0 \amp \mhb{3} \amp 2 \\
 0 \amp \mh{0} \amp 1 \amp \mhb{4} \amp -1
 \end{array}\right).</mrow>
-                </md>
-                The free variables are <m>\mh{x_2}</m> and <m>\mhb{x_4}</m>:
-                they are the ones whose columns are <em>not</em> pivot columns.
-            </p>
+</md>
+        The free variables are <m>\mh{x_2}</m> and <m>\mhb{x_4}</m>: they are the ones whose columns are <em>not</em> pivot columns.
+      </p>
 
-            <p>
-                This translates into the system of equations
-                <md>
-                    <mrow>\left\{\begin{alignedat}{5}
+      <p>This translates into the system of equations
+      <md>
+<mrow>\left\{\begin{alignedat}{5}
 x_1 \amp {} \amp {} \amp {} \amp {} \amp {} \amp 3x_4 \amp {}={} \amp 2 \amp {} \\
 {} \amp {} \amp {} \amp {} \amp x_3 \amp {}+{} \amp 4x_4 \amp {}={} \amp -1 \amp {}
 \end{alignedat}\right.
         \quad\xrightarrow{\text{parametric form}}\quad
         \left\{\begin{alignedat}{2}
 x_1 \amp {}={} \amp 2 - 3x_4 \amp {} \\
-x_3 \amp {}={} \amp -1 - 4x_4. \amp {}
+x_3 \amp {}={} \amp -1 - 4x_4 \amp .
 \end{alignedat}\right.</mrow>
-                </md>
-                What happened to <m>x_2</m>?
-                It is a free variable, but no other variable depends on it.
-                The general solution to the system is
-                <md>
-                    <mrow>(x_1,\,x_2,\,x_3,\,x_4) = (2-3x_4,\,x_2,\,-1-4x_4,\,x_4),</mrow>
-                </md>
-                for any values of <m>x_2</m> and <m>x_4</m>.
-                For instance, <m>(2,0,-1,0)</m> is a solution (with
-                <m>x_2=x_4=0</m> ), and <m>(5,1,3,-1)</m> is a solution (with
-                <m>x_2=1, x_4=-1</m> ).
-            </p>
-        </example>
+</md>
+      What happened to <m>x_2</m>?  It is a free variable, but no other variable depends on it.  The general solution to the system is
+      <md>
+<mrow>(x_1,\,x_2,\,x_3,\,x_4) = (2-3x_4,\,x_2,\,-1-4x_4,\,x_4),</mrow>
+</md>
+      for any values of <m>x_2</m> and <m>x_4</m>.  For instance, <m>(2,0,-1,0)</m> is a solution (with <m>x_2=x_4=0</m>), and <m>(5,1,3,-1)</m> is a solution (with <m>x_2=1, x_4=-1</m>).
+      </p>
+    </example>
 
-        <example>
-            <title>A Parameterized Plane</title>
-
-            <p>
-                The system of one linear equation
-                <md>
-                    <mrow>x + y + z = 1</mrow>
-                </md>
-                comes from the matrix
-                <md>
-                    <mrow>\left(\begin{array}{rrr|r}
+    <example>
+      <title>A Parameterized Plane</title>
+      <p>The system of one linear equation
+      <md>
+<mrow>x + y + z = 1</mrow>
+</md>
+      comes from the matrix
+      <md>
+<mrow>\left(\begin{array}{rrr|r}
 1 \amp 1 \amp 1 \amp 1
 \end{array}\right),</mrow>
-                </md>
-                which is already in reduced row echelon form.
-                The free variables are <m>y</m> and <m>z</m>.
-                The parametric form for the general solution is
-                <md>
-                    <mrow>(x,\,y,\,z) = (1 - y - z,\,y,\,z)</mrow>
-                </md>
-                for any values of <m>y</m> and <m>z</m>.
-                This is the parametric equation for a plane in <m>\R^3</m>.
+</md>
+      which is already in reduced row echelon form.  The free variables are <m>y</m> and <m>z</m>.  The parametric form for the general solution is
+      <md>
+<mrow>(x,\,y,\,z) = (1 - y - z,\,y,\,z)</mrow>
+</md>
+      for any values of <m>y</m> and <m>z</m>.  This is the parametric equation for a plane in <m>\R^3</m>.
+      </p>
+      <figure>
+        <caption>
+          A plane described by two parameters <m>y</m> and <m>z</m>.  Any point on the plane is obtained by substituting suitable values for <m>y</m> and <m>z</m>.
+        </caption>
+        <interactive xml:id="demo-plane-parameterized"
+                    iframe="iframes/plane-if.html?coeffs=y,z&amp;range=5"
+                    width="90%"
+                    aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
             </p>
+          </description>
+          <instructions>
+            <p>
+              Move the sliders to change the parameterized point.
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </example>
 
-            <figure>
-                <caption>
-                    A plane described by two parameters <m>y</m> and <m>z</m>.
-                    Any point on the plane is obtained by substituting suitable
-                    values for <m>y</m> and <m>z</m>.
-                </caption>
-                <mathbox source="demos/plane.html" height="400px"/>
-            </figure>
-        </example>
-    </subsection>
+  </subsection>
 
-    <subsection>
-        <title>Number of Solutions</title>
+  <subsection xml:id="subsec-number-of-solutions">
+    <title>Number of Solutions</title>
+    <idx><h>System of linear equations</h><h>number of solutions of</h></idx>
+    <idx><h>Solution set</h><h>size of</h></idx>
 
-        <idx><h>System of linear equations</h><h>number of solutions of</h></idx>
-        <idx><h>Solution set</h><h>size of</h></idx>
-        <p>
-            There are <em>three possibilities</em> for the reduced row echelon
-            form of the augmented matrix of a linear system.
-            <ol>
-                <li>
-                    <p>
-                        <alert>The last column is a pivot column.</alert> In
-                        this case, the system is <em>inconsistent</em>.
-                        There are zero solutions, i.e., the solution set is
-                        empty.
-                        For example, the matrix
-                        <md>
-                            <mrow>\left(\begin{array}{rr|r}
+    <p>There are <em>three possibilities</em> for the reduced row echelon form of the augmented matrix of a linear system.
+    <ol>
+      <li><p><alert>The last column is a pivot column.</alert>
+      In this case, the system is <em>inconsistent</em>.  There are zero solutions, i.e., the solution set is empty.  For example, the matrix
+      <md>
+<mrow>\left(\begin{array}{rr|r}
 1 \amp 0 \amp \mh{0} \\
 0 \amp 1 \amp \mh{0} \\
 0 \amp 0 \amp \mh{1}
 \end{array}\right)</mrow>
-                        </md>
-                        comes from a linear system with no solutions.
-                    </p>
-                </li>
-
-                <li>
-                    <p>
-                        <alert>Every column except the last column is a pivot column.</alert>
-                        In this case, the system has a <em>unique</em> solution.
-                        For example, the matrix
-                        <md>
-                            <mrow>\left(\begin{array}{rrr|r}
+</md>
+      comes from a linear system with no solutions.
+      </p></li>
+      <li><p><alert>Every column except the last column is a pivot column.</alert>
+      In this case, the system has a <em>unique</em> solution.  For example, the matrix
+      <md>
+<mrow>\left(\begin{array}{rrr|r}
 1 \amp 0 \amp 0 \amp a \\
 0 \amp 1 \amp 0 \amp b \\
 0 \amp 0 \amp 1 \amp c
 \end{array}\right)</mrow>
-                        </md>
-                        tells us that the unique solution is
-                        <m>(x,y,z)=(a,b,c)</m>.
-                    </p>
-                </li>
-
-                <li>
-                    <p>
-                        <alert>The last column is not a pivot column, and some other column is not a pivot column either.</alert>
-                        In this case, the system has <em>infinitely many</em>
-                        solutions, corresponding to the infinitely many possible
-                        values of the free variable(s).
-                        For example, in the system corresponding to the matrix
-                        <md>
-                            <mrow>\left(\begin{array}{rrrr|r}
+</md>
+      tells us that the unique solution is <m>(x,y,z)=(a,b,c)</m>.
+      </p></li>
+      <li><p><alert>The last column is not a pivot column, and some other column is not a pivot column either.</alert>
+      In this case, the system has <em>infinitely many</em> solutions, corresponding to the infinitely many possible values of the free variable(s).  For example, in the system corresponding to the matrix
+      <md>
+<mrow>\left(\begin{array}{rrrr|r}
 1 \amp \mh{-2} \amp 0 \amp \mhb{3} \amp 1 \\
 0 \amp \mh{0} \amp 1 \amp \mhb{4} \amp -1
 \end{array}\right),</mrow>
-                        </md>
-                        any values for <m>\mh{x_2}</m> and <m>\mhb{x_4}</m>
-                        yield a solution to the system of equations.
-                    </p>
-                </li>
-            </ol>
-        </p>
-    </subsection>
+</md>
+      any values for <m>\mh{x_2}</m> and <m>\mhb{x_4}</m> yield a solution to the system of equations.
+      </p></li>
+    </ol>
+    </p>
+  </subsection>
+
 </section>

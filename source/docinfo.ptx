@@ -29,12 +29,12 @@
     \definecolor{cLBlue}{RGB}{148, 68, 161}
     \newcommand{\g}{\color{cLGreen}}
     \newcommand{\cp}{\color{cLPurple}}
-    \newcommand{\b}{\color{cLBlue}}
+    \renewcommand{\b}{\color{cLBlue}}
     \renewcommand{\r}{\color{cLGold}}
-    \renewcommand{\mh}[1]{\class{theme-math-highlight}{#1}}
-    \renewcommand{\mhb}[1]{\class{theme-math-highlight-b}{#1}}
-    \renewcommand{\mhg}[1]{\class{theme-math-highlight-g}{#1}}
-    \renewcommand{\mhp}[1]{\class{theme-math-highlight-p}{#1}}
+    \newcommand{\mh}[1]{\class{theme-math-highlight}{#1}}
+    \newcommand{\mhb}[1]{\class{theme-math-highlight-b}{#1}}
+    \newcommand{\mhg}[1]{\class{theme-math-highlight-g}{#1}}
+    \newcommand{\mhp}[1]{\class{theme-math-highlight-p}{#1}}
   \newcommand{\R}{\mathbf R}
   \newcommand{\C}{\mathbf C}
  \renewcommand{\mathbb}[1]{\mathbf{#1}}

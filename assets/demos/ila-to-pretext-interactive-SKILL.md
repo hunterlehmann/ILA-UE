@@ -1,6 +1,6 @@
 ---
 name: ila-to-pretext-interactive
-description: "Use this skill whenever the user asks to convert an ILA (Interactive Linear Algebra) interactive to a PreTeXt interactive, or more generally when migrating any HTML/JS interactive (using Plotly, JSXGraph, d3, or similar) into a PreTeXt book. Triggers: 'convert interactive', 'migrate to PreTeXt', 'ILA interactive', 'rabbits', 'bundle.js', 'slate', any mention of a .html interactive file paired with a bundle.js."
+description: "Use this skill whenever the user asks to convert an ILA (Interactive Linear Algebra) interactive to a PreTeXt interactive, or more generally when migrating any HTML/JS interactive (MathBox/demo.js, Plotly, JSXGraph, d3, or similar) into a PreTeXt book. Triggers: 'convert interactive', 'migrate to PreTeXt', 'ILA interactive', '<mathbox source=...>', 'demo.js', 'bundle.js', 'slate', any mention of a .html interactive file paired with demo.js or bundle.js."
 ---
 
 # ILA → PreTeXt Interactive Conversion Skill
@@ -26,6 +26,7 @@ project/
 │   └── section-X-Y.ptx          ← your section source
 └── external/
     └── iframes/
+        ├── js/demo.js            ← ILA MathBox bundle (shared by all MathBox demos)
         └── mywidget-if.html      ← the self-contained interactive page
 ```
 
@@ -37,7 +38,9 @@ The `iframes/` subfolder is the ILA convention (adapt to your project's actual s
 ## The PTX element
 
 **CRITICAL: `<interactive>` must use non-self-closing tags** — it has required child elements.
-A self-closing `<interactive ... />` will silently drop the accessibility children.
+A self-closing `<interactive ... />` drops the accessibility children.
+
+**CRITICAL: `<description>` must contain one or more `<p>` elements** — it is a block container, not a text node. Bare text directly inside `<description>` is invalid.
 
 ```xml
 <interactive xml:id="UNIQUE-ID"
@@ -48,34 +51,26 @@ A self-closing `<interactive ... />` will silently drop the accessibility childr
     <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
   </shortdescription>
   <description>
-    <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+    <p>
+      <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+    </p>
   </description>
 </interactive>
 ```
 
 - `xml:id` — must be **unique across the entire book**; use a descriptive prefix (e.g., `demo-rabbits`, not just `rabbits`)
 - `iframe` — path is **relative to `external/`**, not to the `.ptx` source file; query parameters are allowed and XML-escaped (`&` → `&amp;`)
-- `aspect` — choose based on the widget's natural proportions; `8:5` is a good default for a side-by-side controls + chart layout
+- `aspect` — choose based on the widget's natural proportions (see table at end)
 - `<shortdescription>` — brief alt-text phrase (one sentence, no markup); **fill in before publishing**
-- `<description>` — full accessibility prose describing what the widget shows and how to interact with it; **fill in before publishing**
+- `<description>` — full accessibility prose in `<p>` elements (use several `<p>` for longer descriptions); **fill in before publishing**
 
-If the interactive uses the Fullscreen API, also add `permissions="fullscreen"`:
-
-```xml
-<interactive xml:id="UNIQUE-ID"
-             iframe="iframes/mywidget-if.html"
-             width="100%"
-             aspect="W:H"
-             permissions="fullscreen">
-```
-
-Without this attribute, browsers block `requestFullscreen()` calls from inside the iframe.
+**Do not add a `permissions` attribute.** `permissions="fullscreen"` (or any `permissions` value) is not an allowed `<interactive>` attribute and fails schema validation. Leave it off entirely. See the Fullscreen section below.
 
 ---
 
 ## URL query parameters
 
-If the original ILA interactive was driven by URL parameters (e.g., `func=`, `range=`, `v1=`, `camera1=`), **keep reading them from the URL** in the iframe HTML using the `urlParams` helper already present in `demo.js`. Do **not** hardcode them. Pass parameter values through the `iframe` attribute query string so the same iframe HTML file can be reused with different configurations throughout the book:
+If the original ILA interactive was driven by URL parameters (e.g., `func=`, `range=`, `v1=`, `camera1=`, `coeffs=`), **keep reading them from the URL** in the iframe HTML using the `urlParams` helper already present in `demo.js`. Do **not** hardcode them. Pass values through the `iframe` attribute query string so the same iframe HTML can be reused with different configurations throughout the book:
 
 ```xml
 <interactive xml:id="demo-bestfit-linear"
@@ -102,11 +97,13 @@ while (urlParams['v' + i] != null) {
 camera: { position: urlParams.get('camera1', 'float[]', [3, 1.5, 1.5]) }
 ```
 
+When URL params determine the *controls* (e.g., `coeffs=t,w` naming sliders), build those controls dynamically in JS so labels, `aria-label`s, and TeX formulas all use the URL-supplied names.
+
 ---
 
 ## Anatomy of the iframe HTML file
 
-The iframe HTML file is a **completely standalone web page**. Structure it as:
+The iframe HTML file is a **completely standalone web page**:
 
 ```html
 <!DOCTYPE html>
@@ -115,23 +112,32 @@ The iframe HTML file is a **completely standalone web page**. Structure it as:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Widget title</title>
-  <script src="...CDN libraries..."></script>
+  <!-- MathJax config + script (see MathJax section) -->
   <style> /* layout + accessibility styles */ </style>
 </head>
 <body>
-  <!-- Static HTML structure -->
+  <!-- caption/control bar, then canvas container -->
+  <script src="js/demo.js"></script>
   <script>
-    /* All JS at bottom of <body> — DOM is fully parsed, no ready() needed */
+    "use strict";
+    /* MathJax helpers (mathJaxReady, texColor, renderMath) */
+    DomReady.ready(function() { /* demo code */ });
   </script>
 </body>
 </html>
 ```
 
+- Drop `<link rel="stylesheet" href="css/demo.css">` and the favicon link; define any needed CSS variables (e.g., `--palette-red`) locally.
+- Drop `?vers=...` cache-busting suffixes from script paths.
+- `this.caption(...)` (demo.js-managed caption injection) → replace with static HTML in the caption bar.
+- `dat.GUI` sliders → replace with native `<input type="range">` (see WCAG section).
+- `katex.render(...)` → replace with `renderMath(...)` (see MathJax section).
+
 ---
 
 ## Layout: keep the caption bar out of the canvas area
 
-ILA demos that render equations above the interactive use `position: absolute` elements that float over the canvas. In the iframe this causes the caption text to overlap the MathBox panels. Fix with a **flex column layout**:
+ILA demos float captions over the canvas with `position: absolute`. In an iframe this overlaps the MathBox panels. Use a **flex column layout**:
 
 ```css
 html, body {
@@ -146,200 +152,224 @@ html, body {
   padding: 4px 10px;
   border-bottom: 1px solid #ccc;
 }
-#canvas-container {
+#mathbox-container {
   flex: 1 1 auto;           /* fills all remaining height */
   position: relative;       /* anchor for absolutely-positioned panels */
   overflow: hidden;
 }
 ```
 
-Individual panels inside `#canvas-container` use `position: absolute; top: 0; bottom: 0` instead of the padding-top trick.
+Panels inside `#mathbox-container` use `position: absolute; top: 0; bottom: 0` (not the `padding-top: 50%` trick). Pass the panel element explicitly to `new Demo({ mathbox: { element: ... } })`.
 
 ---
 
-## KaTeX without its stylesheet: use `.katex-html { display: none; }`
+## Caption math: render with MathJax, not KaTeX
 
-`demo.js` bundles KaTeX JavaScript but **not** KaTeX's CSS or fonts. When `katex.render()` is called it writes two sibling elements:
+ILA demos render caption math with `katex.render()` (KaTeX JS is bundled in `demo.js`). **Replace it with MathJax** so iframe math matches the typesetting of the surrounding PreTeXt page. The iframe cannot share the book page's MathJax instance, so it loads its own.
 
-| Element | Content | Visible without KaTeX CSS? |
-|---|---|---|
-| `.katex-mathml` | Native `<math>` element | ✅ Browsers render this as formatted math automatically |
-| `.katex-html` | Positioned `<span>` tree | ❌ Appears as unstyled plain text without the stylesheet |
+### 1. Config + script in `<head>`
 
-**Fix: hide `.katex-html`, not `.katex-mathml`:**
+The config object **must be defined before** the MathJax script tag. Set `startup.typeset: false` — static and live math are typeset explicitly by the helpers.
 
-```css
-.katex-html { display: none; }
+```html
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      packages:   { '[+]': ['color'] }
+      // macros: { ... }   ← add book macros here if captions need them
+    },
+    loader:  { load: ['[tex]/color'] },
+    startup: { typeset: false }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 ```
 
-> ⚠️ **Common mistake**: hiding `.katex-mathml` instead shows only the broken span layout and hides the formatted math — the opposite of what is wanted.
+**Match the MathJax version (and font, if customized) to the one the PreTeXt build loads**, otherwise iframe math won't look identical to the page. Pin the version in the URL if the book pins one.
+
+If caption TeX uses book macros (e.g., `\mhp`, `\mhg`, `\R`), copy their definitions from the book's `docinfo` into `tex.macros`; the iframe does not see the book's macros.
+
+### 2. Helpers (copy verbatim, top of the main `<script>`)
+
+```javascript
+// Resolves once MathJax has loaded and finished startup (script is `defer`).
+var mathJaxReady = new Promise(function(resolve) {
+  function check() {
+    if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+      MathJax.startup.promise.then(resolve);
+    } else {
+      setTimeout(check, 30);
+    }
+  }
+  check();
+});
+
+// demo.js Color → TeX colour spec. Color.str() is a CSS string MathJax won't
+// reliably accept, so build \color[rgb]{r,g,b} from Color.arr() instead.
+function texColor(color) {
+  var a = color.arr();
+  var scale = (a[0] > 1 || a[1] > 1 || a[2] > 1) ? 255 : 1;
+  return '[rgb]{' + [a[0], a[1], a[2]].map(function(c) {
+    return (c / scale).toFixed(3);
+  }).join(',') + '}';
+}
+
+// Render TeX into an element. Rapid calls (slider/drag) are coalesced:
+// only the latest TeX per element is rendered, so MathJax never backlogs.
+var pendingTex = new Map();
+var renderChain = Promise.resolve();
+function renderMath(tex, el) {
+  var alreadyQueued = pendingTex.has(el);
+  pendingTex.set(el, tex);
+  if (alreadyQueued) return;
+  renderChain = renderChain
+    .then(function() { return mathJaxReady; })
+    .then(function() {
+      var latest = pendingTex.get(el);
+      pendingTex.delete(el);
+      MathJax.texReset();
+      return MathJax.tex2chtmlPromise(latest, { display: false }).then(function(node) {
+        el.replaceChildren(node);
+        // Required after tex2chtml so the CHTML stylesheet includes new glyphs
+        MathJax.startup.document.clear();
+        MathJax.startup.document.updateDocument();
+      });
+    })
+    .catch(function(err) { console.error('MathJax render failed:', err); });
+}
+
+// Typeset static \( \) math (labels, fixed equations) once MathJax is ready.
+mathJaxReady.then(function() {
+  return MathJax.typesetPromise(
+    Array.prototype.slice.call(document.querySelectorAll('.mathjax-static'))
+  );
+});
+```
+
+### 3. Converting the demo code
+
+| ILA (KaTeX) | MathJax replacement |
+|---|---|
+| `katex.render(str, el)` | `renderMath(str, el)` |
+| `'\\color{' + c.str() + '}{…}'` | `'\\color' + texColor(c) + '{…}'` |
+| Static equations rendered once with `katex.render` | Either `renderMath(...)` once, or write `\( … \)` in the HTML inside a `.mathjax-static` container |
+| `<label>x</label>` with italic CSS | `<label>\(x\)</label>` inside `.mathjax-static`; keep `aria-label` on the input |
+
+Notes:
+- Remove the old `.katex-html { display: none; }` rule — it is only needed if KaTeX output remains.
+- Give live math elements a `min-height` (e.g., `display: inline-block; min-height: 1.4em`) so the layout doesn't jump while MathJax replaces content.
+- Keep `aria-live="polite" aria-atomic="true"` on live math elements; MathJax output carries its own assistive MathML.
+- Controls must keep an `aria-label` that doesn't depend on MathJax, so they're correctly named before (or if) MathJax fails to load.
+
+> **Fallback (KaTeX kept):** if a demo must keep `katex.render`, add `.katex-html { display: none; }` — `demo.js` ships KaTeX JS but not its CSS, so the span layer renders as raw text; the native `.katex-mathml` layer displays correctly. Never hide `.katex-mathml` instead.
+
+---
+
+## Fullscreen button
+
+A fullscreen toggle `<button>` in the caption bar is useful when the iframe page is opened on its own. Because `permissions` is not allowed on `<interactive>`, `requestFullscreen()` may be blocked when embedded — acceptable; the button still works standalone. Guard the call:
+
+```javascript
+(function() {
+  var btn = document.getElementById('fs-btn');
+  function isFS() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement);
+  }
+  function updateLabel() {
+    var label = isFS() ? 'Exit fullscreen' : 'Toggle fullscreen';
+    btn.textContent = isFS() ? '✕' : '⛶';
+    btn.title = label;
+    btn.setAttribute('aria-label', label);   // NOT: btn.getAttribute(...) = ...
+  }
+  btn.addEventListener('click', function() {
+    var el = document.documentElement, p;
+    if (!isFS()) {
+      var req = el.requestFullscreen || el.webkitRequestFullscreen;
+      if (req) p = req.call(el);
+    } else {
+      var exit = document.exitFullscreen || document.webkitExitFullscreen;
+      if (exit) p = exit.call(document);
+    }
+    if (p && p.catch) p.catch(function() {});   // embedded: silently ignore denial
+  });
+  ['fullscreenchange', 'webkitfullscreenchange']
+    .forEach(function(e) { document.addEventListener(e, updateLabel); });
+})();
+```
+
+> ⚠️ `btn.title = btn.getAttribute('aria-label') = ...` is a **SyntaxError** (invalid assignment target). A parse-time error kills the *entire* `<script>` block — the demo renders blank. Always use `setAttribute`.
 
 ---
 
 ## WCAG 2.1 Operability
 
-All converted interactives must meet **WCAG 2.1 Principle 2: Operable**. The key requirements for WebGL/canvas-based interactives and how to address each:
+All converted interactives must meet **WCAG 2.1 Principle 2: Operable**.
 
-### 2.1.1 Keyboard (Level A)
-> All functionality must be operable via keyboard.
+### 2.1.1 Keyboard (Level A) / 2.5.1 Pointer Gestures (Level A)
+WebGL canvas dragging is neither keyboard-operable nor a single-pointer action. Provide native HTML alternatives **alongside** (not instead of) canvas dragging:
 
-WebGL canvas elements are not inherently keyboard-accessible. **Provide a keyboard alternative**: a panel of `<input type="number">` fields, one per draggable point, that update the canvas when changed.
+| Original control | Replacement |
+|---|---|
+| `dat.GUI` slider | `<input type="range">` with `<label for>` and `aria-label` |
+| Draggable canvas points | Keep `this.draggable(...)`; add `<input type="range">` or `<input type="number">` per coordinate |
 
-```html
-<details id="point-editor" open>
-  <summary>Edit points (keyboard / single-click alternative to dragging)</summary>
-  <div id="point-inputs" role="group" aria-label="Draggable point coordinates"></div>
-</details>
-```
-
-Populate it from JS after reading URL params:
+**Bidirectional sync with a single shared state array.** `demo.js`'s `draggable` mutates the `points` arrays in place, so make the controls write into the same arrays:
 
 ```javascript
-var pointInputsX = [], pointInputsY = [];
+var pt = [1, 2, 1];                     // single source of truth
 
-function buildPointEditor() {
-  var editor = document.getElementById('point-inputs');
-  targets.forEach(function(pt, idx) {
-    var xInp = document.createElement('input');
-    xInp.type = 'number'; xInp.step = '0.5'; xInp.value = +pt[0].toFixed(2);
-    xInp.setAttribute('aria-label', 'Point ' + (idx + 1) + ' x coordinate');
-    pointInputsX.push(xInp);
+slider.addEventListener('input', function() { pt[0] = parseFloat(this.value); update(); });
 
-    var yInp = document.createElement('input');
-    yInp.type = 'number'; yInp.step = '0.5'; yInp.value = +pt[1].toFixed(2);
-    yInp.setAttribute('aria-label', 'Point ' + (idx + 1) + ' y coordinate');
-    pointInputsY.push(yInp);
-
-    function applyInput() {
-      var x = parseFloat(xInp.value), y = parseFloat(yInp.value);
-      if (isFinite(x)) targets[idx][0] = x;
-      if (isFinite(y)) targets[idx][1] = y;
-      solve();
-    }
-    xInp.addEventListener('change', applyInput);
-    yInp.addEventListener('change', applyInput);
-    // ... append to editor ...
-  });
+function syncFromDrag() {                // postDrag callback
+  for (var i = 0; i < 3; i++) pt[i] = Math.max(-RANGE, Math.min(RANGE, pt[i]));
+  xSlider.value = pt[0]; ySlider.value = pt[1]; zSlider.value = pt[2];
+  update();
 }
-
-// Call after first solve():
-solve();
-buildPointEditor();
+this.draggable(view, { points: [pt], postDrag: syncFromDrag });
 ```
 
-Add a **bidirectional sync** so dragging the canvas also updates the inputs — call this at the end of `solve()`:
-
-```javascript
-// At the end of solve(), after updateCaption():
-targets.forEach(function(pt, idx) {
-  if (pointInputsX[idx]) pointInputsX[idx].value = +pt[0].toFixed(2);
-  if (pointInputsY[idx]) pointInputsY[idx].value = +pt[1].toFixed(2);
-});
-```
-
-The `<details open>` starts expanded so keyboard users discover it immediately; it can be collapsed to save space.
-
-### 2.1.2 No Keyboard Trap (Level A)
-Standard HTML `<input>` and `<button>` elements. No custom focus management needed; browser handles tab order naturally.
-
-### 2.4.3 Focus Order (Level A)
-Logical tab order follows DOM order: fullscreen button → details summary → point inputs → (canvas). Ensure the caption bar appears before the canvas in the DOM, which it does in the flex-column layout.
-
-### 2.4.7 Focus Visible (Level AA)
-Add a global focus-visible rule in the iframe `<style>`:
-
-```css
-:focus-visible {
-  outline:        2px solid #0066cc;
-  outline-offset: 2px;
-}
-```
-
-This applies to all interactive elements (inputs, buttons, summary) without interfering with mouse users.
-
-### 2.5.1 Pointer Gestures (Level A)
-> Functionality using path-based gestures must have a single-pointer alternative.
-
-Canvas dragging is a path-based gesture. The number inputs panel (see 2.1.1) is the required alternative.
+- Slider `min`/`max` must cover the full view range and use a fine `step` (e.g., 0.1), so any dragged position is representable.
+- For number-input panels over many points (e.g., best-fit), write `targets` back into the inputs at the end of `solve()`, and build the panel *after* the first `solve()`.
+- Add a short hint line: "Drag the point, or use the sliders."
 
 ### 2.5.2 Pointer Cancellation (Level A)
-> Functionality must not activate on the down-event.
+- Number inputs: use `change` (commit on Enter/blur), not `input`.
+- Range sliders: `input` is fine (standard live slider behavior).
+- Buttons: `click`, never `pointerdown`/`mousedown`.
+- demo.js `postDrag` fires during/after drag on pointer movement, not on pointer-down ✅.
 
-- **Canvas drag**: `postDrag` fires on `mouseup`, not `mousedown`. ✅ Already correct in ILA code.
-- **Number inputs**: use `change` event (fires on commit: Enter key or blur), not `input` (fires on every keystroke). This lets users correct a value before the canvas updates.
-- **Buttons**: use `click` event, not `pointerdown`. ✅
+### 2.1.2 No Keyboard Trap / 2.4.3 Focus Order (Level A)
+Use only native `<input>`, `<button>`, `<details>`. Put the caption/control bar *before* the canvas in the DOM.
+
+### 2.4.7 Focus Visible (Level AA)
+```css
+:focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+```
 
 ### 2.5.3 Label in Name (Level A)
-> The accessible name of a UI component must contain the visible label text.
+`aria-label` must contain the visible label text. Update it dynamically if the visible label changes (fullscreen toggle). For sliders, keep `aria-valuetext` current (e.g., `"z equals 0.50"`) — including after drag-driven updates.
 
-- Buttons: `aria-label` must match or contain the visible text/icon. Update `aria-label` dynamically if the button label changes (e.g., fullscreen toggle).
-- Inputs: use `aria-label="Point N x coordinate"` (no visible label text to conflict with).
-
-### Dynamic content: ARIA live regions
-When equations update on drag/input, screen readers must be notified. Add `aria-live` and `aria-atomic` to the equation display elements:
-
-```html
-<span id="eqn-here"   aria-live="polite" aria-atomic="true"></span>
-<span id="sumsq-here" aria-live="polite" aria-atomic="true"></span>
-```
-
-`aria-atomic="true"` ensures the whole equation is re-announced, not just the changed fragment.
-
-### Canvas element: `aria-hidden`
-The WebGL canvas conveys no information that isn't already available in the number inputs and equation display. Mark the canvas container `aria-hidden="true"` to remove it from the accessibility tree:
-
-```html
-<div id="mathbox-container" aria-hidden="true">
-  ...
-</div>
-```
-
----
-
-## Translating the original ILA HTML
-
-### Libraries: bundle.js → CDN
-
-| ILA bundle content | PreTeXt replacement |
-|--------------------|---------------------|
-| Plotly | `<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"/>` |
-| JSXGraph | `<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"/>` |
-| jQuery | Drop it entirely — replace with vanilla JS (see below) |
-| d3 | `<script src="https://cdn.jsdelivr.net/npm/d3@7"/>` |
-
-### jQuery → vanilla JS
-
-```javascript
-$("#inp").val()           →  document.getElementById('inp').value
-$("#inp").val(x)          →  document.getElementById('inp').value = x
-$("#btn").click(fn)       →  document.getElementById('btn').addEventListener('click', fn)
-$("#inp").change(fn)      →  document.getElementById('inp').addEventListener('change', fn)
-$(document).ready(fn)    →  /* not needed — script is at bottom of body */
-```
-
-### CSS: Bootstrap → plain CSS
-
-```css
-#layout { display: flex; flex-wrap: wrap; gap: 0.75em; padding: 0.75em; height: 100%; }
-#controls { flex: 0 0 auto; min-width: 160px; }
-#chart    { flex: 1 1 auto; min-width: 200px; }
-```
+### Live regions and canvas
+- Dynamic math output: `aria-live="polite" aria-atomic="true"`.
+- Canvas container: `aria-hidden="true"` (all information is exposed via the caption bar and controls).
+- Wrap the caption bar in `role="region"` with an `aria-label`.
 
 ---
 
 ## Checklist for any ILA → PreTeXt conversion
 
-1. **Read the original `.html` file** — identify the library, layout, and event handlers
-2. **Read `bundle.js` header** — confirm which libraries are bundled
-3. **Create `external/iframes/widgetname-if.html`** — self-contained iframe HTML
-4. **Layout**: if equations appear above the canvas, use flex-column layout (caption bar `flex: 0 0 auto`, canvas container `flex: 1 1 auto`)
-5. **KaTeX**: if `katex.render()` is used, add `.katex-html { display: none; }` to the `<style>` block
-6. **WCAG 2.1.1 / 2.5.1**: if there are draggable canvas points, add a `<details open>` keyboard input panel; add bidirectional sync in `solve()`
-7. **WCAG 2.4.7**: add `:focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }` globally
-8. **WCAG aria-live**: add `aria-live="polite" aria-atomic="true"` to dynamic equation output elements
-9. **aria-hidden**: add `aria-hidden="true"` to the canvas container
-10. **Create `src/widgetname.ptx`** — non-self-closing `<interactive>` with `<shortdescription>`, `<description>`, and `permissions="fullscreen"` if applicable
-11. **Verify**: compile, open section, confirm iframe loads, interactions work, and keyboard panel operates correctly
+1. **Read the original `.html`** — library, layout, event handlers, URL params, `dat.GUI`, `this.caption()`, `katex.render`, `draggable` usage
+2. **Create `external/iframes/widgetname-if.html`** — self-contained; `js/demo.js` path; `DomReady.ready` wrapper
+3. **URL params**: keep `urlParams` reads; never hardcode reusable configuration
+4. **Layout**: flex column; caption bar `flex: 0 0 auto`; canvas container `flex: 1 1 auto`
+5. **Math**: MathJax config + script in `<head>` (version matched to the book); paste helpers; `katex.render` → `renderMath`; `Color.str()` → `texColor()`; book macros into `tex.macros` if used
+6. **Controls**: keep canvas dragging; add range/number inputs sharing the same state array; sync both ways
+7. **WCAG**: `:focus-visible`, `aria-live`, `aria-valuetext`, `aria-hidden` canvas, labels independent of MathJax
+8. **Fullscreen button** (optional): guarded calls, `setAttribute` for `aria-label`
+9. **Syntax check** the inline scripts (extract and run `node --check`) — one parse error blanks the whole demo
+10. **Create the PTX** — non-self-closing `<interactive>`, `<shortdescription>`, `<description>` with `<p>` children, **no `permissions` attribute**
+11. **Verify**: compile, confirm the iframe loads, math matches the page, dragging and keyboard controls both work, PTX validates
 
 ---
 
@@ -347,20 +377,29 @@ $(document).ready(fn)    →  /* not needed — script is at bottom of body */
 
 | Approach | Why it fails |
 |----------|-------------|
-| `platform="javascript"` + `<slate surface="div"/>` + `<script source="https://cdn..."/>` | CDN scripts may be blocked by CSP in the generated iframe HTML |
-| `window.addEventListener('load', fn)` wrapper | May never fire; place script at bottom of `<body>` instead |
-| IIFE `(function(){ ... }())` in external JS | Runs before the slate `<div>` exists in the DOM |
-| `<script source="https://cdn..."/>` inside `<interactive>` | PreTeXt may silently drop external-URL `source` attributes |
-| Same `xml:id` on both `<interactive>` and `<slate>` | Can cause the slate div to get a mangled or absent `id` |
-| Self-closing `<interactive ... />` | Silently drops `<shortdescription>` and `<description>` children |
-| Hardcoding URL parameters in the iframe JS | Prevents reuse; always read from `urlParams` |
-| Missing `permissions="fullscreen"` on `<interactive>` | Browser blocks `requestFullscreen()` calls from inside the iframe |
-| `.katex-mathml { display: none; }` | **Hides formatted math**, shows unstyled spans; use `.katex-html` instead |
-| `position: absolute` caption over MathBox canvas | Overlaps the canvas; use flex-column layout instead |
-| Relying solely on canvas drag for point control | Fails WCAG 2.1.1 and 2.5.1; add number input alternative |
-| `input` event for number fields | Fires on every keystroke, updating canvas mid-edit; use `change` instead (WCAG 2.5.2) |
-| Omitting `aria-live` on dynamic equation output | Screen readers do not announce equation changes after interaction |
-| Omitting `aria-hidden` on canvas container | Exposes meaningless WebGL internals to screen reader users |
+| `platform="javascript"` + `<slate>` + CDN `<script source>` | CDN scripts may be blocked; renders blank |
+| `window.addEventListener('load', fn)` wrapper | May never fire; use `DomReady.ready` or bottom-of-body script |
+| Same `xml:id` on `<interactive>` and `<slate>` | Mangled or absent slate `id` |
+| Self-closing `<interactive ... />` | Drops `<shortdescription>` / `<description>` |
+| Bare text inside `<description>` | Invalid; `<description>` requires `<p>` children |
+| `permissions="fullscreen"` on `<interactive>` | Not an allowed attribute; fails schema validation — omit it |
+| Hardcoding URL parameters | Prevents reuse across the book |
+| Keeping `katex.render` for captions | Math doesn't match the page's MathJax typesetting |
+| `window.MathJax = {...}` placed after the MathJax script | Config ignored; color package/macros missing |
+| `\color{` + `Color.str()` + `}` in MathJax | CSS colour strings not reliably accepted; use `texColor()` → `\color[rgb]{…}` |
+| Calling `MathJax.tex2chtml` on every drag frame | Backlog/jank; use coalescing `renderMath` |
+| Omitting `clear()` / `updateDocument()` after `tex2chtmlPromise` | New glyphs may render unstyled |
+| Calling MathJax before `startup.promise` resolves | `MathJax.tex2chtmlPromise` undefined; wait on `mathJaxReady` |
+| `.katex-mathml { display: none; }` (KaTeX fallback) | Hides formatted math; hide `.katex-html` instead |
+| `position: absolute` caption over canvas | Overlaps canvas; use flex-column layout |
+| `btn.getAttribute(...) = value` | SyntaxError; kills the whole script; use `setAttribute` |
+| Replacing canvas drag with sliders only | Loses the direct-manipulation interaction; keep both |
+| Separate state for sliders and draggable | Controls drift apart; share one array mutated in place |
+| Sliders narrower/coarser than the view range | Dragged positions can't be represented; match range, fine step |
+| `input` event on number fields | Updates mid-edit; use `change` (WCAG 2.5.2) |
+| `dat.GUI` sliders | No accessible labels; replace with `<input type="range">` |
+| Missing `aria-live` on dynamic math | Screen readers miss updates |
+| Missing `aria-hidden` on canvas container | Exposes meaningless WebGL internals to AT |
 
 ---
 
@@ -368,10 +407,11 @@ $(document).ready(fn)    →  /* not needed — script is at bottom of body */
 
 | Layout | Aspect |
 |--------|--------|
+| Single MathBox canvas + caption/slider bar | `4:3` |
 | Side-by-side controls + chart | `8:5` |
 | Two side-by-side square MathBox canvases | `2:1` |
 | Stacked controls above chart | `4:5` |
 | Wide chart, minimal controls | `3:1` |
 | JSXGraph canvas (square) | `1:1` |
 
-Note: the keyboard input panel in the caption bar adds height. After adding it, check that the `aspect` ratio still gives enough room for the canvas; increase the height ratio (smaller second number) if the panels are too cramped.
+The caption/control bar consumes height. After adding sliders or a point-input panel, check that the canvas isn't cramped; lower the ratio (taller) if needed. PreTeXt does not scroll the iframe, so content exceeding the aspect ratio is clipped.

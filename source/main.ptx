@@ -37,7 +37,7 @@
         </p>
 
         <p>
-          In <xref ref="systems-of-eqns" text="type-global"/>, we will introduce <em>systems of linear equations</em>, the class of equations whose study forms the subject of linear algebra.  In <xref ref="row-reduction" text="type-global"/>, will present a procedure, called <em>row reduction</em>, for finding all solutions of a system of linear equations.  In <xref ref="parametric-form" text="type-global"/>, you will see hnow to express all solutions of a system of linear equations in a unique way using the <em>parametric form</em> of the general solution.
+          In <xref ref="sec-systems-of-eqns" text="type-global"/>, we will introduce <em>systems of linear equations</em>, the class of equations whose study forms the subject of linear algebra.  In <xref ref="sec-row-reduction" text="type-global"/>, will present a procedure, called <em>row reduction</em>, for finding all solutions of a system of linear equations.  In <xref ref="sec-parametric-form" text="type-global"/>, you will see hnow to express all solutions of a system of linear equations in a unique way using the <em>parametric form</em> of the general solution.
         </p>
       </introduction>
 
@@ -67,25 +67,25 @@
             <li><p>the solution set of a matrix equation <m>Ax=b</m>, and</p></li>
             <li><p>the set of all <m>b</m> that makes a particular system consistent.</p></li>
           </ol>
-          The second object will be called the column space of <m>A</m>.  The two objects are related in a beautiful way by the rank theorem in <xref ref="rank-thm"/>.
+          The second object will be called the column space of <m>A</m>.  The two objects are related in a beautiful way by the rank theorem in <xref ref="sec-rank-thm"/>.
         </p>
 
 	<p>
 	Instead of parabolas and hyperbolas, our geometric objects are subspaces, such as lines and planes.  Our geometric objects will be something like 13-dimensional planes in <m>\R^{27}</m>, etc.  It is amazing that we can say anything substantive about objects that we cannot directly visualize.  
 	</p>
         <p component="1554 default">
-          We will develop a large amount of vocabulary that we will use to describe the above objects: vectors (<xref ref="vectors"/>), spans (<xref ref="spans"/>), linear independence (<xref ref="linear-independence"/>), subspaces (<xref ref="subspaces"/>), dimension (<xref ref="dimension"/>),
-          etc.  We will use these concepts to give a precise geometric description of the solution set of any system of equations (<xref ref="solution-sets"/>).  We will also learn how to express systems of equations more simply using matrix equations (<xref ref="matrix-equations"/>).
+          We will develop a large amount of vocabulary that we will use to describe the above objects: vectors (<xref ref="sec-vectors"/>), spans (<xref ref="sec-spans"/>), linear independence (<xref ref="sec-linear-independence"/>), subspaces (<xref ref="sec-subspaces"/>), dimension (<xref ref="sec-dimension"/>),
+          etc.  We will use these concepts to give a precise geometric description of the solution set of any system of equations (<xref ref="sec-solution-sets"/>).  We will also learn how to express systems of equations more simply using matrix equations (<xref ref="sec-matrix-equations"/>).
         </p>
 
         <p component="1553">
-          We will develop a large amount of vocabulary that we will use to describe the above objects: vectors (<xref ref="vectors"/>), spans (<xref ref="spans"/>), linear independence (<xref ref="linear-independence"/>), subspaces (<xref ref="subspaces"/>), dimension (<xref ref="dimension"/>),
-          etc.  We will use these concepts to give a precise geometric description of the solution set of any system of equations (<xref ref="solution-sets"/>).  We will also learn how to express systems of equations more simply using matrix equations (<xref ref="matrix-equations"/>).
+          We will develop a large amount of vocabulary that we will use to describe the above objects: vectors (<xref ref="sec-vectors"/>), spans (<xref ref="sec-spans"/>), linear independence (<xref ref="sec-linear-independence"/>), subspaces (<xref ref="sec-subspaces"/>), dimension (<xref ref="sec-dimension"/>),
+          etc.  We will use these concepts to give a precise geometric description of the solution set of any system of equations (<xref ref="sec-solution-sets"/>).  We will also learn how to express systems of equations more simply using matrix equations (<xref ref="sec-matrix-equations"/>).
         </p>
       </introduction>
-      <!-- <xi:include href="./vectors.ptx" />
-      <xi:include href="./spans.ptx" />
-      <xi:include href="./matrixeq.ptx" />
+      <xi:include href="./vectors.ptx" />
+       <xi:include href="./spans.ptx" />
+      <!--<xi:include href="./matrixeq.ptx" />
       <xi:include href="./solnsets.ptx" />
       <xi:include href="./linindep.ptx" />
       <xi:include href="./subspaces.ptx" />
@@ -245,7 +245,7 @@
         </observation>
 
         <p>
-          In this chapter, we will be concerned with the relationship between matrices and transformations.  In <xref ref="matrix-transformations"/>, we will consider the equation <m>b = Ax</m> as a function with independent variable <m>x</m> and dependent variable <m>b</m>, and we draw pictures accordingly.  We spend some time studying transformations in the abstract, and asking questions about a transformation, like whether it is one-to-one and/or onto (<xref ref="one-to-one-onto"/>).  In <xref ref="linear-transformations"/> we will answer the question: <q>when exactly can a transformation be expressed by a matrix?</q>  We then present matrix multiplication as a special case of composition of transformations (<xref ref="matrix-multiplication"/>).  This leads to the study of <em>matrix algebra</em>: that is, to what extent one can do arithmetic with matrices in the place of numbers.  With this in place, we learn to solve matrix equations by <em>dividing</em> by a matrix in <xref ref="matrix-inverses"/>.
+          In this chapter, we will be concerned with the relationship between matrices and transformations.  In <xref ref="sec-matrix-transformations"/>, we will consider the equation <m>b = Ax</m> as a function with independent variable <m>x</m> and dependent variable <m>b</m>, and we draw pictures accordingly.  We spend some time studying transformations in the abstract, and asking questions about a transformation, like whether it is one-to-one and/or onto (<xref ref="sec-one-to-one-onto"/>).  In <xref ref="sec-linear-transformations"/> we will answer the question: <q>when exactly can a transformation be expressed by a matrix?</q>  We then present matrix multiplication as a special case of composition of transformations (<xref ref="sec-matrix-multiplication"/>).  This leads to the study of <em>matrix algebra</em>: that is, to what extent one can do arithmetic with matrices in the place of numbers.  With this in place, we learn to solve matrix equations by <em>dividing</em> by a matrix in <xref ref="sec-matrix-inverses"/>.
         </p>
       </introduction>
 
@@ -281,9 +281,9 @@
         </p>
 
         <p>
-          In <xref ref="determinants-definitions-properties"/>, we will define the determinant in terms of its behavior with respect to row operations.  The determinant satisfies many wonderful properties: for instance, <m>\det(A) \neq 0</m> if and only if <m>A</m> is invertible.  We will discuss some of these properties in <xref ref="determinants-definitions-properties"/> as well.
-          In <xref ref="determinants-cofactors"/>, we will give a recursive formula for the determinant of a matrix.  This formula is very useful, for instance, when taking the determinant of a matrix with unknown entries; this will be important in <xref ref="chap-eigenvalues"/>.
-          Finally, in <xref ref="determinants-volumes"/>, we will relate determinants to volumes.  This gives a geometric interpretation for determinants, and explains why the determinant is defined the way it is.  This interpretation of determinants is a crucial ingredient in the change-of-variables formula in multivariable calculus.
+          In <xref ref="sec-determinants-definitions-properties"/>, we will define the determinant in terms of its behavior with respect to row operations.  The determinant satisfies many wonderful properties: for instance, <m>\det(A) \neq 0</m> if and only if <m>A</m> is invertible.  We will discuss some of these properties in <xref ref="sec-determinants-definitions-properties"/> as well.
+          In <xref ref="sec-determinants-cofactors"/>, we will give a recursive formula for the determinant of a matrix.  This formula is very useful, for instance, when taking the determinant of a matrix with unknown entries; this will be important in <xref ref="chap-eigenvalues"/>.
+          Finally, in <xref ref="sec-determinants-volumes"/>, we will relate determinants to volumes.  This gives a geometric interpretation for determinants, and explains why the determinant is defined the way it is.  This interpretation of determinants is a crucial ingredient in the change-of-variables formula in multivariable calculus.
         </p>
 
       </introduction>
@@ -325,14 +325,14 @@
         </observation>
 
         <p component="1554 default">
-          In <xref ref="eigenvectors"/>, we will define eigenvalues and eigenvectors, and show how to compute the latter; in <xref ref="characteristic-polynomial"/> we will learn to compute the former.
-          In <xref ref="similarity"/> we introduce the notion of <em>similar</em> matrices, and demonstrate that similar matrices do indeed behave similarly.  In <xref ref="diagonalization"/> we study matrices that are similar to diagonal matrices and in <xref ref="complex-eigenvalues"/> we study matrices that are similar to rotation-scaling matrices, thus gaining a solid geometric understanding of large classes of matrices. Finally, we spend <xref ref="stochastic-matrices"/> presenting a common kind of application of eigenvalues and eigenvectors to real-world problems, including searching the Internet using Google<rsq/>s PageRank algorithm.
+          In <xref ref="sec-eigenvectors"/>, we will define eigenvalues and eigenvectors, and show how to compute the latter; in <xref ref="sec-characteristic-polynomial"/> we will learn to compute the former.
+          In <xref ref="sec-similarity"/> we introduce the notion of <em>similar</em> matrices, and demonstrate that similar matrices do indeed behave similarly.  In <xref ref="sec-diagonalization"/> we study matrices that are similar to diagonal matrices and in <xref ref="sec-complex-eigenvalues"/> we study matrices that are similar to rotation-scaling matrices, thus gaining a solid geometric understanding of large classes of matrices. Finally, we spend <xref ref="sec-stochastic-matrices"/> presenting a common kind of application of eigenvalues and eigenvectors to real-world problems, including searching the Internet using Google<rsq/>s PageRank algorithm.
         </p>
 
         <p component="1553">
-          In <xref ref="eigenvectors"/>, we will define eigenvalues and eigenvectors, and show how to compute the latter; in <xref ref="characteristic-polynomial"/> we will learn to compute the former.
-  In <xref ref="diagonalization"/> we will use eigenvalues and eigenvectors to determine when a matrix is <q>similar</q> to a diagonal matrix, and we will see that the algebra and geometry of such a matrix is much simpler to understand.
-Finally, we spend <xref ref="stochastic-matrices"/> presenting a common kind of application of eigenvalues and eigenvectors to real-world problems, including searching the Internet using Google<rsq/>s PageRank algorithm.
+          In <xref ref="sec-eigenvectors"/>, we will define eigenvalues and eigenvectors, and show how to compute the latter; in <xref ref="sec-characteristic-polynomial"/> we will learn to compute the former.
+  In <xref ref="sec-diagonalization"/> we will use eigenvalues and eigenvectors to determine when a matrix is <q>similar</q> to a diagonal matrix, and we will see that the algebra and geometry of such a matrix is much simpler to understand.
+Finally, we spend <xref ref="sec-stochastic-matrices"/> presenting a common kind of application of eigenvalues and eigenvectors to real-world problems, including searching the Internet using Google<rsq/>s PageRank algorithm.
         </p>
       </introduction>
 
@@ -400,13 +400,13 @@ Finally, we spend <xref ref="stochastic-matrices"/> presenting a common kind of 
 </image>
 
         <p component="1554 default">
-          First we will define orthogonality and learn to find orthogonal complements of subspaces in <xref ref="dot-product"/> and <xref ref="orthogonal-complements"/>.  The core of this chapter is <xref ref="projections"/>, in which we discuss <em>the orthogonal projection</em> of a vector onto a subspace; this is a method of calculating the closest vector on a subspace to a given vector.
-          These calculations become easier in the presence of an orthogonal set, as we will see in <xref ref="orthogonal-sets"/>.
-          In <xref ref="least-squares"/> we will present the least-squares method of approximately solving systems of equations, and we will give applications to data modeling.
+          First we will define orthogonality and learn to find orthogonal complements of subspaces in <xref ref="sec-dot-product"/> and <xref ref="sec-orthogonal-complements"/>.  The core of this chapter is <xref ref="sec-projections"/>, in which we discuss <em>the orthogonal projection</em> of a vector onto a subspace; this is a method of calculating the closest vector on a subspace to a given vector.
+          These calculations become easier in the presence of an orthogonal set, as we will see in <xref ref="sec-orthogonal-sets"/>.
+          In <xref ref="sec-least-squares"/> we will present the least-squares method of approximately solving systems of equations, and we will give applications to data modeling.
         </p>
         <p component="1553">
-          First we will define orthogonality and learn to find orthogonal complements of subspaces in <xref ref="dot-product"/> and <xref ref="orthogonal-complements"/>.  The core of this chapter is <xref ref="projections"/>, in which we discuss <em>the orthogonal projection</em> of a vector onto a subspace; this is a method of calculating the closest vector on a subspace to a given vector.
-          In <xref ref="least-squares"/> we will present the least-squares method of approximately solving systems of equations, and we will give applications to data modeling.
+          First we will define orthogonality and learn to find orthogonal complements of subspaces in <xref ref="sec-dot-product"/> and <xref ref="sec-orthogonal-complements"/>.  The core of this chapter is <xref ref="sec-projections"/>, in which we discuss <em>the orthogonal projection</em> of a vector onto a subspace; this is a method of calculating the closest vector on a subspace to a given vector.
+          In <xref ref="sec-least-squares"/> we will present the least-squares method of approximately solving systems of equations, and we will give applications to data modeling.
         </p>
 
         <observation>

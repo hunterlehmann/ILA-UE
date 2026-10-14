@@ -5,6 +5,8 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <title>Implicit Function of Best Fit</title>
 
+  <!-- Shared MathJax config + helpers (renderMath, texColor). Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
 
@@ -65,13 +67,6 @@
       transform:        translate(-50%,0);
       z-index:          1;
     }
-
-    /* ── KaTeX: hide span-based layer; let browser MathML render ─────────
-         demo.js bundles KaTeX JS but not its CSS/fonts.
-         .katex-html (span layout) looks broken without the stylesheet.
-         .katex-mathml (native <math>) renders correctly in all modern browsers.
-         ──────────────────────────────────────────────────────────────────── */
-    .katex-html { display: none; }
 
     /* ── Colour tokens ───────────────────────────────────────────────────── */
     :root {
@@ -707,7 +702,7 @@
       updateCaption = (function(_this) {
         return function() {
           var diff, len3, minimized, q, quantity, str;
-          katex.render('\\quad 0 = ' + bestFitStr, bestFitElt);
+          renderMath('\\quad 0 = ' + bestFitStr, bestFitElt);
           minimized = [];
           quantity  = 0;
           for (q = 0, len3 = targets.length; q < len3; q++) {
@@ -717,7 +712,7 @@
             quantity += diff * diff;
           }
           str = '\\quad' + quantity.toFixed(2) + '=' + minimized.join('+');
-          return katex.render(str, minimElt);
+          return renderMath(str, minimElt);
         };
       })(this);
       return updateCaption();
