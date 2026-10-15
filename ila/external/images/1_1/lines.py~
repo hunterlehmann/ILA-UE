@@ -1,0 +1,48 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+##############################
+# Graph function
+#plt.rcParams["figure.figsize"] = [7.50, 3.50]
+#plt.rcParams["figure.autolayout"] = True
+def f(x):
+    return (3-x)/2
+
+def g(x):
+    return x
+
+def h(x):
+    return 3-2*x
+
+x = np.linspace(-3, 3, 100)
+
+xh = np.linspace(0, 3, 100)
+
+# plotting the axes
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+ax.spines['left'].set_position('center')
+ax.spines['bottom'].set_position('zero')
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+ax.xaxis.set_ticks_position('bottom')
+ax.yaxis.set_ticks_position('left')
+
+# setting the ticks
+plt.xticks(np.arange(-3, 3.1, 1))
+plt.yticks(np.arange(-3, 3.1, 1))
+plt.gca().set_aspect('equal')
+
+# label axes
+plt.text(3.5, -0.3, 'x')
+plt.text(-0.3, 3.5, 'y')
+# graphing and specifying what the legend will be
+plt.plot(x, f(x), color='red', label = 'x + 2y = 3')
+plt.plot(x, g(x), color='blue', label = 'x - y = 0')
+plt.plot(xh, h(xh), color='black', label = '2x + y = 3')
+plt.legend(loc = 'upper left')
+#plt.plot(x, g(x), color='black')
+
+#plt.show()
+plt.savefig('lines.pdf', bbox_inches = 'tight')

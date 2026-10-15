@@ -123,9 +123,9 @@ eBookConfig.enable_chatcodes =  false;
 </fieldset>
 <div class="ptx-readability-options-group"><button type="button" class="ptx-readability-reset-button button" id="ptx-readability-reset-button"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf053;</span><span class="name">Reset All</span></button></div></dialog></span><span class="treebuttons"><a class="previous-button button" href="chap-eigenvalues.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="main.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="backmatter.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
 </div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{html}\require{color}    \definecolor{cLGold}{RGB}{143, 113, 61}
-    \definecolor{cLGreen}{RGB}{0, 98, 217}
-    \definecolor{cLPurple}{RGB}{31, 127, 115}
-    \definecolor{cLBlue}{RGB}{148, 68, 161}
+    \definecolor{cLGreen}{RGB}{57, 121, 76}
+    \definecolor{cLPurple}{RGB}{148,68,161}
+    \definecolor{cLBlue}{RGB}{0, 98, 217}
     \newcommand{\g}{\color{cLGreen}}
     \newcommand{\cp}{\color{cLPurple}}
     \renewcommand{\b}{\color{cLBlue}}
@@ -170,7 +170,7 @@ eBookConfig.enable_chatcodes =  false;
 
 \definecolor{seq-red}{rgb}{0.8941,0.1020,0.1098}
 \definecolor{seq-blue}{RGB}{0, 98, 217}
-\definecolor{seq-green}{RGB}{63, 131, 83}
+\definecolor{seq-green}{RGB}{57, 121, 76}
 \definecolor{seq-violet}{RGB}{148, 68, 161}
 \definecolor{seq-orange}{RGB}{143, 113, 61}
 \definecolor{seq-yellow}{rgb}{0.7000,0.7000,0.0000}
@@ -207,6 +207,7 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-systems-of-eqns.html#subsec-Rn" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Line, Plane, Space, Etc.</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-systems-of-eqns.html#subsec-systems-eqns-pictures" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Pictures of Solution Sets</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-systems-of-eqns.html#subsec-parametric-description" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Parametric Description of Solution Sets</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-systems-of-eqns.html#sec-systems-of-eqns-7" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li class="toc-item toc-section">
@@ -303,29 +304,31 @@ eBookConfig.enable_chatcodes =  false;
 <div class="para" id="chap-orthogonality-2-4-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#chap-orthogonality-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
 </div></details>
 </div>
-<article class="observation remark-like" id="chap-orthogonality-2-5"><h2 class="heading">
+<div class="para" id="chap-orthogonality-2-5">First we will define orthogonality and learn to find orthogonal complements of subspaces in <code class="code-inline tex2jax_ignore">[cross-reference to target(s) "sec-dot-product" missing or not unique]</code> and <code class="code-inline tex2jax_ignore">[cross-reference to target(s) "sec-orthogonal-complements" missing or not unique]</code>.  The core of this chapter is <code class="code-inline tex2jax_ignore">[cross-reference to target(s) "sec-projections" missing or not unique]</code>, in which we discuss <em class="emphasis">the orthogonal projection</em> of a vector onto a subspace; this is a method of calculating the closest vector on a subspace to a given vector. These calculations become easier in the presence of an orthogonal set, as we will see in <code class="code-inline tex2jax_ignore">[cross-reference to target(s) "sec-orthogonal-sets" missing or not unique]</code>. In <code class="code-inline tex2jax_ignore">[cross-reference to target(s) "sec-least-squares" missing or not unique]</code> we will present the least-squares method of approximately solving systems of equations, and we will give applications to data modeling.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#chap-orthogonality-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="observation remark-like" id="chap-orthogonality-2-6"><h2 class="heading">
 <span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h2>
-<div class="para" id="chap-orthogonality-2-5-1">In data modeling, one often asks: “what line is my data supposed to lie on?”  This can be solved using a simple application of the least-squares method.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#chap-orthogonality-2-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
-<img src="generated/latex-image/chap-orthogonality-2-5-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="chap-orthogonality-2-5-2-description">
-<div class="para" id="chap-orthogonality-2-5-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#chap-orthogonality-2-5-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
-</div></details>
-</div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 6.2"><a tabindex="-1" href="#chap-orthogonality-2-5" title="Copy heading and permalink for Example 6.2" aria-label="Copy heading and permalink for Example 6.2">🔗</a></div>
-</article>
-<article class="observation remark-like" id="chap-orthogonality-2-6"><h2 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
-</h2>
-<div class="para" id="chap-orthogonality-2-6-1">Gauss invented the method of least squares to find a best-fit ellipse: he correctly predicted the (elliptical) orbit of the asteroid Ceres as it passed behind the sun in 1801.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#chap-orthogonality-2-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="chap-orthogonality-2-6-1">In data modeling, one often asks: “what line is my data supposed to lie on?”  This can be solved using a simple application of the least-squares method.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#chap-orthogonality-2-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
 <img src="generated/latex-image/chap-orthogonality-2-6-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="chap-orthogonality-2-6-2-description">
 <div class="para" id="chap-orthogonality-2-6-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#chap-orthogonality-2-6-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
 </div></details>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 6.3"><a tabindex="-1" href="#chap-orthogonality-2-6" title="Copy heading and permalink for Example 6.3" aria-label="Copy heading and permalink for Example 6.3">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.2"><a tabindex="-1" href="#chap-orthogonality-2-6" title="Copy heading and permalink for Example 6.2" aria-label="Copy heading and permalink for Example 6.2">🔗</a></div>
+</article>
+<article class="observation remark-like" id="chap-orthogonality-2-7"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para" id="chap-orthogonality-2-7-1">Gauss invented the method of least squares to find a best-fit ellipse: he correctly predicted the (elliptical) orbit of the asteroid Ceres as it passed behind the sun in 1801.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#chap-orthogonality-2-7-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<img src="generated/latex-image/chap-orthogonality-2-7-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="chap-orthogonality-2-7-2-description">
+<div class="para" id="chap-orthogonality-2-7-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#chap-orthogonality-2-7-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.3"><a tabindex="-1" href="#chap-orthogonality-2-7" title="Copy heading and permalink for Example 6.3" aria-label="Copy heading and permalink for Example 6.3">🔗</a></div>
 </article></section><div class="autopermalink" aria-hidden="true" data-description="Chapter 6: Orthogonality"><a tabindex="-1" href="#chap-orthogonality" title="Copy heading and permalink for Chapter 6: Orthogonality" aria-label="Copy heading and permalink for Chapter 6: Orthogonality">🔗</a></div>
 </section>
 </div>
