@@ -211,8 +211,8 @@ the license is included in gfdl.xml.
       </latex-image></image>
     </observation>
 
-    <example>
-      <title>Interactive: Points in 3-Space</title>
+    <question>
+      <title>Points in 3-Space</title>
       <figure>
         <caption>
           A point in 3-space, and its coordinates.
@@ -233,7 +233,7 @@ the license is included in gfdl.xml.
           <instructions><p>Click and drag the point, or move the sliders.</p></instructions>
         </interactive>
       </figure>
-    </example>
+    </question>
 
     <p>So what is <m>\R^4</m>?  or <m>\R^5</m>?  or <m>\R^n</m>?
     These are harder to visualize, so you have to go back to the definition: <m>\R^n</m> is the set of all ordered <m>n</m>-tuples of real numbers <m>(x_1,x_2,x_3,\ldots,x_n)</m>.</p>
@@ -728,4 +728,322 @@ Two lines in the plane that are equal
     </p>
 
   </subsection>
+  <exercises>
+  <exercise>
+    <statement>
+      <p>
+        Is the following equation linear in the variables <m>x_1</m>, <m>x_2</m>, and
+          <m>x_3</m>?  Justify your answer.
+        <md><mrow>x_1 - 5 = x_2 - x_3</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>Linear.  Can be written as <m>x_1 - x_2 + x_3 = 5</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following equation linear in the variables <m>x_1</m>, <m>x_2</m>, and
+          <m>x_3</m>?  Justify your answer.
+        <md><mrow>x_1 - \sqrt[3]{x_2} = 1</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>Not linear, due to the <m>\sqrt[3]{x_2}</m> term.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following equation linear in the variables <m>x_1</m>, <m>x_2</m>, and
+          <m>x_3</m>?  Justify your answer.
+        <md><mrow>\ln(5) x_1 + x_2 - \sqrt{11} x_3 = 0</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>Linear.  Here, <m>\ln(5)</m> and <m>\sqrt{11}</m> are real number coefficients of
+            the <m>x_1</m> and <m>x_3</m> terms, respectively.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following equation linear in the variables <m>x_1</m>, <m>x_2</m>, and
+            <m>x_3</m>?  Justify your answer.
+        <md><mrow>e^{x_1} + e^{x_2} = e^{x_3}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>Not linear, due to variables being within exponents.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a consistent system of three linear equations in two
+        variables <m>x</m> and <m>y</m>?  If your answer is yes, write such a system and draw a
+        corresponding picture using <m>(x, y)</m> to label points in <m>{\bf R}^2</m>.  If your
+        answer is no, explain why no such system exists.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes, for example we could visualize three different lines in the
+            <m>xy</m>-plane that have exactly one point in common.
+            If we want <m>(1, 1)</m> to be that point, we could write equations for
+            three different lines that contain <m>(1,1)</m>.
+        <md><mrow>x + 2y = 3</mrow></md>
+        <md><mrow>x - y = 0</mrow></md>
+        <md><mrow>2x + y = 3</mrow></md>.
+      </p>
+      <image source="images/./1_1/lines.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        In each case, determine whether the point is in the plane
+          in <m>{\bf R}^3</m> given by
+        <md><mrow>3x - 10y + z = 15</mrow></md>.
+        We follow the usual
+          convention of using <m>(x, y, z)</m> to label points in <m>{\bf R}^3</m>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>(3, -10, 1)</m></p>
+      </statement>
+      <solution>
+        <p>No: <m>3(3)-10(-10)+1 = 110</m>, not <m>15</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>(3, -10, 1, 15)</m></p>
+      </statement>
+      <solution>
+        <p>No: <m>(3, -10, 1, 15)</m> is not even a point in
+              <m>{\bf R}^3</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>(5, 1, 10)</m></p>
+      </statement>
+      <solution>
+        <p>Yes: <m>3(5)-10(1)+10 = 15</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>(0, 0, 15)</m></p>
+      </statement>
+      <solution>
+        <p>Yes: <m>3(0)-10(0)+15 = 15</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>(1, -1, 1)</m></p>
+      </statement>
+      <solution>
+        <p>No: <m>3(1)-10(-1)+1 = 14</m>, not <m>15</m>.
+            \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there an inconsistent system of two linear equations in
+        three variables <m>x</m>, <m>y</m>, and <m>z</m>?  If your answer is yes, write
+        such a system and draw a corresponding picture using <m>(x, y, z)</m> to
+        label points in <m>{\bf R}^3</m>.  If your answer is no, explain why no
+        such system exists.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes, for example
+        <md><mrow>x + y + z = 0</mrow></md>
+        <md><mrow>x + y + z = 10</mrow></md>.
+        For this system to be consistent, we would need <m>0=10</m>, so the system
+            is inconsistent.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Consider the system of linear equations in <m>x</m>, <m>y</m>, and
+          <m>z</m> given by
+        <md><mrow>x + y + 0z = 0</mrow></md>
+        <md><mrow>0x + 0y + z = 5</mrow></md>.
+        Describe its solution set geometrically, where we use <m>(x, y, z)</m>
+          to label points in <m>{\bf R}^3</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>The solution set is a line.  It is the intersection of the
+          horizontal plane <m>z=5</m> with the vertical plane where <m>y= -x</m>.</p>
+      <p>We could parametrize the points on this line by <m>(x, -x, 5)</m> where
+          <m>x</m> is real.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a linear equation or a system of linear equations in
+        the variables <m>x</m>, <m>y</m>, and <m>z</m>, so that the solution set is
+        the <m>xy</m>-plane.</p>
+    </statement>
+    <solution>
+      <p>
+        The <m>yz</m>-plane in space is given by the single linear equation
+              <m>x=0</m>, or in longhand:
+        <md><mrow>x + 0y + 0z = 0</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a linear equation or a system of linear equations in
+        the variables <m>x</m>, <m>y</m>, and <m>z</m>, so that the solution set is
+        a line.</p>
+    </statement>
+    <solution>
+      <p>
+        The <m>x</m>-axis in space the set of all points in space
+              where <m>y=0</m> and <m>z=0</m>, so our system is simply
+        <md><mrow>0x + y + 0z =0</mrow></md>
+        <md><mrow>0x + 0y + z = 0</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a linear equation or a system of linear equations in
+        the variables <m>x</m>, <m>y</m>, and <m>z</m>, so that the solution set is the
+        point <m>(1, 2, 3)</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        The system of equations must only be satisfied when
+              <m>x=1</m>, <m>y=2</m>, and <m>z=3</m>.  One way to do this is simply to make
+              the three equations <m>x=1</m>, <m>y=2</m>, and <m>z=3</m>.  In long form,
+        <md><mrow>x + 0y + 0z = 1</mrow></md>
+        <md><mrow>0x + y + 0z = 2</mrow></md>
+        <md><mrow>0x + 0y + z = 3</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>The following is a kind of common brain teaser that many people answer
+      incorrectly.  We will use linear algebra to solve it now.</p>
+      <p>A rare baseball card and a coffee mug cost <m>\$110</m> together.
+      The baseball card costs <m>\$100</m> more than the mug.  How much does the
+      baseball card cost?</p>
+    </statement>
+    <solution>
+      <p>Let <m>x</m> be the cost of the baseball card and <m>y</m> be the cost of the
+        mug.  We have been told that <m>x + y = 110</m> and <m>x = y + 100</m>.  Now
+        that we have written down this system of two linear equations in two
+        variables, it is a standard high school algebra problem.  This gives
+        <m>(y+100)+y= 110</m> so <m>y=5</m> and thus <m>x=105</m>.  Therefore, the baseball
+        card costs <m>\$105</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>f</m> is a polynomial of the form <m>f(x) = ax^2+bx+c</m>
+      whose graph passes through the points <m>(-1, 11)</m>, <m>(2, 5)</m>, and
+      <m>(3, 7)</m>.  Write a system of linear equations that we could solve to
+      find <m>a</m>, <m>b</m>, and <m>c</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We use the facts <m>f(-1)=11</m>, <m>f(2) = 5</m>, and <m>f(3) = 7</m>:
+        <md><mrow>f(-1) = 11, \qquad a(-1)^2 + b(-1) + c = 11</mrow></md>
+        <md><mrow>f(2) = 5, \qquad a(2^2) + b(2) + c = 5</mrow></md>
+        <md><mrow>f(3) = 7 \qquad a(3^3) + b(3) + c = 7</mrow></md>.
+        This gives us the linear
+          system of equations:
+        <md><mrow>a - b + c = 11</mrow></md>
+        <md><mrow>4a + 2b + c = 5</mrow></md>
+        <md><mrow>9a + 3b + c = 7</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>This brain teaser comes from a memorial article for the mathematician
+      Paul Salley in the Notices of the American Mathematical Society,
+      Volume 65, Number 5.  The article is accessible at
+      <url href="https://www.ams.org/journals/notices/201805/rnoti-p555.pdf?fbclid=IwAR1C1f6EtMygzK81ZGVzHwQFaLopa_O3sSQLXXDxYT-xvAldpmymLC75kEQ">this
+            link</url>.
+      This type of so-called <q>Jim and John Problem</q> has many variations
+      that sound like tricky brain teasers but can be solved by writing
+      systems of equations and using linear algebra.  We give a slight
+      variation here:</p>
+      <p>Alice and Bob have the same
+      birthday.  Alice is 24 years old, which is twice as old as Bob was at
+      the time when Alice was as old as Bob is now.  How old is Bob now?</p>
+    </statement>
+    <solution>
+      <p>
+        While Alice and Bob are alive, the difference between their ages is
+          some constant <m>c</m> no matter what year we are in:
+        <md><mrow>(\textup{Alice's age}) - (\textup{Bob's age}) = c</mrow></md>.
+        We're told that alice is 24, so
+        <md><mrow>24-(\textup{Bob's age now}) = c</mrow></md>.
+        Also, from the information we are given, Bob was 12 when Alice was the same
+          age that Bob is now.
+        <md><mrow>(\textup{Alice's age when Bob was 12}) - 12 = c,
+            \quad \textup{ so} \quad (\textup{Bob's age now})-12 = c</mrow></md>.
+        We have a system of two equations:
+        <md><mrow>24-(\textup{Bob's age now}) = c</mrow></md>
+        <md><mrow>(\textup{Bob's age now}) - 12 = c</mrow></md>.
+        Subtracting the first equation from the second, we get
+        <md><mrow>-36 + 2(\textup{Bob's age now}) = 0</mrow></md>,
+        therefore Bob is now <m>18</m> years
+          old and <m>c = 6</m> (<m>c=6</m> means Alice is <m>6</m> years older than Bob, which
+          agrees with the fact that Alice is 24).
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Consider a <m>3 \times 3</m> QR code given by an array below,
+        where each spot can either have a 0 (for black) or 1 (for white).
+        <md><mrow>\begin{pmatrix}\cdot \amp \; \amp \cdot \amp \; \amp \cdot \\ \cdot \amp \; \amp \cdot \amp \; \amp \cdot \\ \cdot \amp \; \amp \cdot \amp \; \amp \cdot\end{pmatrix}</mrow></md>
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Each QR code is an element in some <m>{\bf R}^n</m>.  What is
+          <m>n</m>?</p>
+      </statement>
+      <solution>
+        <p>There are <m>3\times 3 = 9</m> spots where we can put a <m>0</m>
+            or a <m>1</m>, so <m>n = 9</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>How many <m>3 \times 3</m> QR codes are there?</p>
+      </statement>
+      <solution>
+        <p>
+          We have two choices for each
+              entry in each QR code, with possibilities ranging from all zeros
+              to all ones.  This gives us
+          <md><mrow>2^9 = 512</mrow></md>
+          such QR codes.
+            \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+</exercises>
 </section>

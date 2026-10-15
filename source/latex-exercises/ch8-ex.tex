@@ -1,0 +1,152 @@
+\documentclass[12pt]{amsart}
+\usepackage{graphicx, url, verbatim, systeme}
+\usepackage{jdr-style, jdr-macros, jdr-linalg}
+\usepackage[homework]{jdr-hwexam}
+\usepackage{hyperref}
+\usetikzlibrary{decorations.markings}
+
+%\answersfalse
+\answerstrue
+
+\tikzset{
+  mid arrow/.style={
+    postaction={
+      decoration={
+        markings,
+        mark=at position #1 with {\arrow{Stealth[scale=1]}},
+      },
+      decorate
+    },
+  },
+  rmid arrow/.style={
+    postaction={
+      decoration={
+        markings,
+        mark=at position #1 with {\arrowreversed{Stealth[scale=1]}},
+      },
+      decorate
+    }
+  },
+  mid arrow/.default={0.5},
+  rmid arrow/.default={0.5},
+}
+
+
+\title{Interactive Linear Algebra, Exercises}
+\name{Solutions}
+
+
+\begin{document}
+
+\subsection{8.1, The definition of an abstract vector space}
+\begin{problems}
+
+\problem Let \(P^2\) be the set of polynomials exactly of degree \(2\). Is this an abstract vector space? Verify the axioms or provide a counterexample.
+
+\begin{solution}
+    This is not an abstract vector space, as the zero polynomial is not of degree \(2\) and thus not included in the set.
+\end{solution}
+
+\problem Is the set of polynomials with \textbf{integer} coefficients of degree at most \(d\) an abstract vector space over \(\mathbb{R}\)? Verify the axioms or provide a counterexample.
+
+\begin{solution}
+    No, consider \(p(x) = x^d\). If we multiply it by \(\frac{1}{2}\), then the resulting polynomial no longer has integer coefficients, so the set is not closed under scalar multiplication. 
+\end{solution}
+
+\problem Is \(P_d\) still an abstract vector space if we replace addition with multiplication? What about \(P\)?
+
+\problem Is the set of convergent sequences of real numbers an abstract vector space? Verify the axioms or provide a counterexample.
+
+\problem Is the set of sequences of real numbers converging to a positive number an abstract vector space? Verify the axioms or provide a counterexample.
+
+
+
+
+
+
+
+
+
+\end{problems}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OLD from 2.2
+
+\problem %In each case, write an augmented matrix in reduced row echelon form that corresponds 
+%to the specified system of linear equations.
+	\begin{subproblems}
+	\subproblem Write an augmented matrix in RREF with three pivots that represents an 
+	inconsistent system of three equations in four variables.
+	\subproblem Is there a system of three equations in two variables that has infinitely many 
+	solutions?  If 
+	your answer is yes, write an augmented matrix in RREF that represents one such system. 
+	\subproblem Are there three lines in the $xy$-plane (not necessarily distinct lines) whose 
+	common intersection is exactly one 
+	point?  If so, give an example and write the corresponding augmented matrix.
+	\end{subproblems}
+	%
+	\begin{solution}
+	\begin{subproblems}
+	\subproblem Many possibilities.  For example,
+	\[\amat{1 0 0 0 0; 0 1 0 0 0; 0 0 0 0 1}, \qquad \amat{0 1 0 0 0; 0 0 1 0 0; 0 0 0 0 1},
+	\quad  \textup{ or } \quad \amat{0 0 1 0 0; 0 0 0 1 0; 0 0 0 0 1}.\]
+	\subproblem Yes.  For example, consider the system
+	\[ x + y = 1\]
+	\[ 2x + 2y = 2\]
+	\[ 3x + 3y = 3.\]
+	Each equation represents the line $x + y = 1$, so the solution set is all points $(x,y)$ on the line 
+	$y = 1-x$. The corresponding augmented matrix and its
+	RREF are
+	\[\amat{1 1 1; 2 2 2; 3 3 3} \xrightarrow[]{RREF} \amat{1 1 1; 0 0 0; 0 0 0}.\]
+	\subproblem Yes.  For example, take the lines $x - y = 0$,
+    $2x-2y = 0$, and $y =1$.  The first two lines are the same line,
+    which intersects the non-parallel line $y=1$ at exactly one point,
+    namely when $x=y=1$. To illustrate the example, we solve the
+    augmented system below to find the unique solution.
+	\begin{align*}
+	\amat{1 -1 0; 2 -2 0;  0 1 1} 
+	& \xrightarrow[]{R_2 = R_2 -2R_1}
+	\amat{1 -1 0; 0 0 0; 0 1 1} \xrightarrow[]{R_1 \leftrightarrow R_2}
+	\amat{1 -1 0; 0 1 1; 0 0 0} \xrightarrow[]{R_1 = R_1 + R_2} 
+	\amat{1 0 1; 0 1 1; 0 0 0}.
+	\end{align*}
+	\end{subproblems}
+	\end{solution}
+\end{problems}
+
+
+
+
+
+
+
+

@@ -1,0 +1,2522 @@
+\subsection{2.1+2.2, Vectors, vector equations, and spans}
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: For any collection of vectors <m>v_1, \ldots, v_k</m> in <m>{\bf R}^n</m>, the zero vector in <m>{\bf R}^n</m> is a linear combination of <m>v_1, \ldots, v_k</m>.</p>
+    </statement>
+    <solution>
+      <p>True: <m>0 = 0 v_1 + \cdots + 0 v_k</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: The vector <m>\begin{pmatrix}1 \\ 1\end{pmatrix}</m> can be written as a linear combination of <m>\begin{pmatrix}2 \\ 2\end{pmatrix}</m> and <m>\begin{pmatrix}-2 \\ -2\end{pmatrix}</m> in infinitely many ways.</p>
+    </statement>
+    <solution>
+      <p>True: the equation <m>x_1 \begin{pmatrix}2 \\ 2\end{pmatrix} + x_2 \begin{pmatrix}-2 \\ -2\end{pmatrix} = \begin{pmatrix}1 \\ 1\end{pmatrix}</m> corresponds to the augmented matrix <m>\left(\begin{array}{rr|r}2 \amp -2 \amp 1 \\ 2 \amp -2 \amp 1\end{array}\right)</m>.  One step of row-reduction gives us <m>\left(\begin{array}{rr|r}2 \amp -2 \amp 1 \\ 0 \amp 0 \amp 0\end{array}\right)</m>, so the system is consistent and has a free variable, so it has infinitely many solutions.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: The vector <m>\begin{pmatrix}8 \\ 16 \\ 1\end{pmatrix}</m> in the span of <m>\begin{pmatrix}1 \\ 2 \\ 6\end{pmatrix}</m> and
+      <m>\begin{pmatrix}-1 \\ -2 \\ -1\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>True: row reduction quickly gives <m>\left(\begin{array}{rr|r}1 \amp -1 \amp 8 \\ 2 \amp -2 \amp 16 \\ 6 \amp -1 \amp 1\end{array}\right) \to \left(\begin{array}{rr|r}1 \amp -1 \amp 8 \\ 0 \amp 0 \amp 0 \\ 0 \amp 5 \amp -47\end{array}\right)</m>.  We don't need to keep going to RREF to see that this augmented matrix has a pivot in every column except the rightmost column, so it is consistent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>v_1, \ldots, v_k</m> are vectors in <m>{\bf R}^n</m>, then the equation <m>x_1 v_1 + \cdots + x_k v_k = 0</m> must be consistent.</p>
+    </statement>
+    <solution>
+      <p>True: If we set <m>x_1</m> through <m>x_k</m> all equal to <m>0</m>, then
+      <m>0v_1 + \cdots + 0v_k = 0</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: The plane <m>z=1</m> in <m>{\bf R}^3</m> is a span.</p>
+    </statement>
+    <solution>
+      <p>False: any span contains the zero vector but the plane <m>z=1</m> does not contain the zero vector, so it is not a span.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: The three vectors
+        <m>v_1 = \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}, \ v_2 = \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix},</m> and <m>v_3 = \begin{pmatrix}-1 \\ 0 \\ 1\end{pmatrix}</m>
+        span <m>{\bf R}^3</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        True.  If <m>b</m> is any vector in <m>{\bf R}^3</m>, then the
+        vector equation <m>x_1 v_1 + x_2 v_2 + x_3 v_3 = b</m> corresponds to the augmented matrix
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 1 \amp -1 \amp \vert \\ 0 \amp 1 \amp 0 \amp b \\ 0 \amp 0 \amp 1 \amp \vert\end{array}\right) \xrightarrow[]{RREF}
+              \left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp * \\ 0 \amp 1 \amp 0 \amp * \\ 0 \amp 0 \amp 1 \amp *\end{array}\right)</mrow></md>.
+        From the RREF we see that the augmented matrix cannot have a pivot in the rightmost column, so the system is consistent no matter what <m>b</m> is.  In other words, every <m>b</m> in <m>{\bf R}^3</m> is in <m>\Span\{v_1, v_2, v_3\}</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>u</m>, <m>v</m>, and <m>w</m> are nonzero vectors in <m>{\bf R}^2</m>,
+      then Span<m>\{u, v, w\}</m> is <m>{\bf R}^2</m>.</p>
+    </statement>
+    <solution>
+      <p>False.  Take <m>v_1=v_2=v_3=\begin{pmatrix}1 \\ 0\end{pmatrix}</m>.  Many other counterexamples
+      possible.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false:
+        The line <m>y = 2x + 1</m> is a span of some number of vectors in
+        <m>{\bf R}^2</m>.</p>
+    </statement>
+    <solution>
+      <p>False.  The span of any number of vectors must include the origin, but the
+      line <m>y = 2x + 1</m> does not go through the origin.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>v</m> is a vector in <m>{\bf R}^n</m>, and consider the set of all linear combinations of <m>v</m>.  What geometric shape(s) can this be?</p>
+    </statement>
+    <solution>
+      <p>If <m>v</m> is the zero vector, then the set of all linear combinations of <m>v</m> is just the zero vector, since <m>c(0)=0</m> no matter what the scalar <m>c</m> is.</p>
+      <p>If <m>v</m> is not the zero vector, then the set of all linear combinations of <m>v</m> is a line.  More specifically, it is the line through the origin and <m>v</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Consider the following two vectors which characterize two colors in terms of Red, Green, and Blue.
+        <md><mrow>\begin{pmatrix}180 \\ 50 \\ 200\end{pmatrix}, \begin{pmatrix}100 \\ 150 \\ 100\end{pmatrix}</mrow></md>
+      </p>
+      <image source="images/2_1-colors-1.png">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+      <p>For which <m>h</m> can we get <m>\begin{pmatrix}116 \\ 130 \\ h\end{pmatrix}</m> as a combination of those two colors?</p>
+      <image source="images/2_1-colors-2.png">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p>
+        We put everything into an augmented matrix and row reduce.
+        <md>
+          <mrow>\left(\begin{array}{rr|r}180 \amp 100 \amp 116</mrow>
+          <mrow>50 \amp 150 \amp 130</mrow>
+          <mrow>200 \amp 100 \amp h\end{array}\right)
+        \amp
+        \xrightarrow[\textup{then } R_1 = \frac{R_1}{50}]{R_1 \leftrightarrow R_2}
+        \left(\begin{array}{rr|r}1 \amp 3 \amp 13/5</mrow>
+          <mrow>180 \amp 100 \amp 116</mrow>
+          <mrow>200 \amp 100 \amp h\end{array}\right)
+        \xrightarrow[R_3 = R_3 - 200 R_1]{R_2 = R_2 - 180 R_1}
+        \left(\begin{array}{rr|r}1 \amp 3 \amp 13/5</mrow>
+          <mrow>0 \amp -440 \amp -352</mrow>
+          <mrow>0 \amp -500 \amp h-520\end{array}\right)</mrow>
+          <mrow>\amp  \xrightarrow[]{R_3 = R_3 - (500/440)R_2}
+        \left(\begin{array}{rr|r}1 \amp 3 \amp 13/5</mrow>
+          <mrow>0 \amp -440 \amp -352</mrow>
+          <mrow>0 \amp 0 \amp h-120\end{array}\right)</mrow>
+        </md>.
+        This system is consistent if and only if <m>h = 120</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Consider the system of equations given by
+        <md><mrow>5x_1 - x_2 + 5x_3 = 2</mrow></md>
+        <md><mrow>-x_1 - 8x_3 = 4</mrow></md>
+        <md><mrow>2x_1 + x_2 + x_3 = 0</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write the system of equations as a vector equation.</p>
+      </statement>
+      <solution>
+        <p><m>x_1 \begin{pmatrix}5 \\ -1 \\ 2\end{pmatrix} + x_2 \begin{pmatrix}-1 \\ 0 \\ 1\end{pmatrix} + x_3 \begin{pmatrix}5 \\ -8 \\ 1\end{pmatrix}
+            = \begin{pmatrix}2 \\ 4 \\ 0\end{pmatrix}.</m></p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Solve the vector equation, and use your solution to
+          write the target vector in your equation as a linear combination
+          of the other vectors.</p>
+      </statement>
+      <solution>
+        <p>
+          We row-reduce:
+          <md><mrow>\left(\begin{array}{rrr|r}5 \amp -1 \amp 5 \amp 2 \\ -1 \amp 0 \amp -8 \amp 4 \\ 2 \amp 1 \amp 1 \amp 0\end{array}\right)
+                \xrightarrow[]{RREF} \left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 4/5 \\ 0 \amp 1 \amp 0 \amp -1 \\ 0 \amp 0 \amp 1 \amp -3/5\end{array}\right)</mrow></md>.
+          This gives <m>x_1 = 4/5</m>, <m>x_2 = -1</m>, and <m>x_3 = -3/5</m>. Therefore,
+          <md><mrow>\frac{4}{5} \begin{pmatrix}5 \\ -1 \\ 2\end{pmatrix} - \begin{pmatrix}-1 \\ 0 \\ 1\end{pmatrix}
+                - \frac{3}{5} \begin{pmatrix}5 \\ -8 \\ 1\end{pmatrix} = \begin{pmatrix}2 \\ 4 \\ 0\end{pmatrix}</mrow></md>.
+          \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <task>
+      <statement>
+        <p>Write nonzero vectors <m>v_1</m> and <m>v_2</m> in <m>{\bf R}^2</m> so
+          that <m>\textup{Span}\{v_1, v_2\}</m> is a line.</p>
+      </statement>
+      <solution>
+        <p>
+          Many examples possible.  For example
+          <md><mrow>v_1 = \begin{pmatrix}1 \\ 1\end{pmatrix}, \quad v_2 = \begin{pmatrix}2 \\ 2\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write nonzero vectors <m>v_1</m> and <m>v_2</m> in <m>{\bf R}^2</m> so
+          that <m>\textup{Span}\{v_1, v_2\}</m> is the line <m>y = -4x</m> (where we use
+          the coordinates <m>(x, y)</m> to label points in <m>{\bf R}^2</m>).</p>
+      </statement>
+      <solution>
+        <p>
+          We can choose any two nonzero vectors that are on the
+              line <m>y = -4x</m>, which is the span of <m>\begin{pmatrix}1 \\ -4\end{pmatrix}</m>.  For example,
+          <md><mrow>v_1 = \begin{pmatrix}1 \\ -4\end{pmatrix}, \quad v_2 = \begin{pmatrix}2 \\ -8\end{pmatrix}</mrow></md>.
+          \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>v_1 = \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}</m>, <m>v_2 = \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}</m>, <m>v_3 = \begin{pmatrix}1 \\ 0 \\ 1\end{pmatrix}</m>.
+      Describe <m>\textup{Span}\{v_1, v_2, v_3\}</m>.</p>
+    </statement>
+    <solution>
+      <p>The vector <m>v_3</m> is a linear combination of <m>v_1</m> and <m>v_2</m> since
+        <m>v_1 + v_2 = v_3</m>, so <m>\textup{Span}\{v_1, v_2, v_3\}</m> is the same
+        as <m>\textup{Span}\{v_1, v_2\}</m>.  The span of <m>v_1</m> and <m>v_2</m> is the
+        <m>xz</m>-plane of <m>{\bf R}^3</m>, since if <m>x_1</m> and <m>x_2</m> are any real
+        numbers then <m>x_1 v_1 + x_2 v_2 = \begin{pmatrix}x_1 \\ 0 \\ x_2\end{pmatrix}</m>.  For an
+        illustration, see this <url href="https://textbooks.math.gatech.edu/ila/1553/demos/spans.html?v1=1,0,0&amp;v2=0,0,1&amp;target=1,0,1&amp;range=3">graphic</url>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Find all solutions to the vector equation
+        <md><mrow>x_1 \begin{pmatrix}2 \\ -4 \\ 1\end{pmatrix} + x_2 \begin{pmatrix}4 \\ 1 \\ -2\end{pmatrix} = \begin{pmatrix}2 \\ 14 \\ -7\end{pmatrix}</mrow></md>.
+        If there are
+        no solutions, justify why the vector equation is inconsistent.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\left(\begin{array}{rr|r}2 \amp 4 \amp 2</mrow>
+          <mrow>-4 \amp 1 \amp 14</mrow>
+          <mrow>1 \amp -2 \amp -7\end{array}\right)
+          \amp  \xrightarrow[]{R_1=R_1/2} \left(\begin{array}{rr|r}1 \amp 2 \amp 1</mrow>
+          <mrow>-4 \amp 1 \amp 14</mrow>
+          <mrow>1 \amp -2 \amp -7\end{array}\right)
+        \xrightarrow[R_3=R_3-R_1]{R_2=R_2+4R_1} \left(\begin{array}{rr|r}1 \amp 2 \amp 1</mrow>
+          <mrow>0 \amp 9 \amp 18</mrow>
+          <mrow>0 \amp -4 \amp -8\end{array}\right)</mrow>
+          <mrow></mrow>
+          <mrow>\amp  \xrightarrow[R_3=R_3/-4]{R_2=R_2/9} \left(\begin{array}{rr|r}1 \amp 2 \amp 1</mrow>
+          <mrow>0 \amp 1 \amp 2</mrow>
+          <mrow>0 \amp 1 \amp 2\end{array}\right)
+         \xrightarrow[R_1=R_1-2R_2]{R_3=R_3-R_2} \left(\begin{array}{rr|r}1 \amp 0 \amp -3</mrow>
+          <mrow>0 \amp 1 \amp 2</mrow>
+          <mrow>0 \amp 0 \amp 0\end{array}\right)</mrow>
+        </md>.
+        Therefore, <m>x_1= \ -3</m> \ \ and \ <m>x_2=2</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Supppose we are asked to find a solution to the linear system of
+        equations corresponding to the augmented matrix
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp -2 \amp 3 \amp -1 \\ 2 \amp 0 \amp 1 \amp 3 \\ -1 \amp 2 \amp 3 \amp 4\end{array}\right)</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Rewrite the problem in terms of a vector equation.</p>
+      </statement>
+      <solution>
+        <p>
+          Find a solution to the vector equation
+          <md><mrow>x_1 \begin{pmatrix}1 \\ 2 \\ -1\end{pmatrix} + x_2 \begin{pmatrix}-2 \\ 0 \\ 2\end{pmatrix} + x_3 \begin{pmatrix}3 \\ 1 \\ 3\end{pmatrix} = \begin{pmatrix}-1 \\ 3 \\ 4\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Rewrite the problem as a question about linear
+          combinations.</p>
+      </statement>
+      <solution>
+        <p>Write <m>\begin{pmatrix}-1 \\ 2 \\ 3 \\ 4\end{pmatrix}</m> as a linear combination of
+            <m>\begin{pmatrix}1 \\ 2 \\ -1\end{pmatrix}</m>, <m>\begin{pmatrix}-2 \\ 0 \\ 2\end{pmatrix}</m>, and <m>\begin{pmatrix}3 \\ 1 \\ 3\end{pmatrix}</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find all values of <m>b</m> (if there are any) so that <m>\begin{pmatrix}b \\ -3 \\ 2\end{pmatrix}</m> is a
+      linear combination of <m>\begin{pmatrix}3 \\ 1 \\ 2\end{pmatrix}</m> and <m>\begin{pmatrix}1 \\ 0 \\ 4\end{pmatrix}</m>, and write
+      <m>\begin{pmatrix}b \\ -3 \\ 2\end{pmatrix}</m> as a linear combination of <m>\begin{pmatrix}3 \\ 1 \\ 2\end{pmatrix}</m> and
+      <m>\begin{pmatrix}1 \\ 0 \\ 4\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We set up an augmented matrix and solve for <m>b</m> so that the
+          corresponding system is consistent.  We will swap the first and
+          third rows to make the math easier, but also to make it easier to
+          solve for <m>b</m>.
+        <md>
+          <mrow>\left(\begin{array}{rr|r}3 \amp 1 \amp b</mrow>
+          <mrow>1 \amp 0 \amp -3</mrow>
+          <mrow>2 \amp 4 \amp 2\end{array}\right)
+            \xrightarrow[\textup{then } R_1 = R_1 / 2]{R_1 \leftrightarrow R_3}
+            \amp
+              \left(\begin{array}{rr|r}1 \amp 2 \amp 1</mrow>
+          <mrow>1 \amp 0 \amp -3</mrow>
+          <mrow>3 \amp 1 \amp h\end{array}\right)
+              \xrightarrow[R_3 = R_3 - 3R_1]{R_2 = R_2 - R_1}
+              \left(\begin{array}{rr|r}1 \amp 2 \amp 1</mrow>
+          <mrow>0 \amp -2 \amp -4</mrow>
+          <mrow>0 \amp -5 \amp h-3\end{array}\right)</mrow>
+          <mrow>\xrightarrow[]{R_2 = (-1/2)R_2}
+            \amp
+              \left(\begin{array}{rr|r}1 \amp 2 \amp 1</mrow>
+          <mrow>0 \amp 1 \amp 2</mrow>
+          <mrow>0 \amp -5 \amp h-3\end{array}\right)
+              \xrightarrow[]{R_3 = R_3 + 5R_2}
+              \left(\begin{array}{rr|r}1 \amp 2 \amp 1</mrow>
+          <mrow>0 \amp 1 \amp 2</mrow>
+          <mrow>0 \amp 0 \amp h+7\end{array}\right)</mrow>
+        </md>.
+        The system is consistent when there is no pivot in the right column,
+          so <m>h+7=0</m>, thus <m>h = -7</m>.  To finish the problem, we need to solve
+        <md><mrow>x_1 \begin{pmatrix}3 \\ 1 \\ 2\end{pmatrix} + x_2 \begin{pmatrix}1 \\ 0 \\ 4\end{pmatrix} = \begin{pmatrix}-7 \\ -3 \\ 2\end{pmatrix}</mrow></md>.
+        For this, we
+          use the work that was already done above and do one more row
+          operation.
+        <md>
+          <mrow>\left(\begin{array}{rr|r}1 \amp 2 \amp 1</mrow>
+          <mrow>0 \amp 1 \amp 2</mrow>
+          <mrow>0 \amp 0 \amp 0\end{array}\right)
+            \xrightarrow[]{R_1 = R_1 - 2R_2}
+            \left(\begin{array}{rr|r}1 \amp 0 \amp -3</mrow>
+          <mrow>0 \amp 1 \amp 2</mrow>
+          <mrow>0 \amp 0 \amp 0\end{array}\right), \qquad x_1 = -3, \ x_2 = 2</mrow>
+        </md>.
+        <md><mrow>-3 \begin{pmatrix}3 \\ 1 \\ 2\end{pmatrix} + 2 \begin{pmatrix}1 \\ 0 \\ 4\end{pmatrix} = \begin{pmatrix}-7 \\ -3 \\ 2\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>v_1 = \begin{pmatrix}1 \\ 0 \\ 2\end{pmatrix}</m> and <m>v_2 = \begin{pmatrix}0 \\ 1 \\ 3\end{pmatrix}</m>.  Write a vector <m>w</m>
+      in <m>{\bf R}^3</m> that is \emph{not} in <m>\textup{Span}\{v_1, v_2\}</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        Since <m>\textup{Span}\{v_1, v_2\}</m> is the set of all linear
+          combinations of <m>v_1</m> and <m>v_2</m>, we need to find a vector <m>w</m> that
+          is not a linear combination of <m>v_1</m> and <m>v_2</m>.  In other words, we
+          need to find a <m>w = \begin{pmatrix}a \\ b \\ c\end{pmatrix}</m> so that the vector equation
+          <m>x_1v_1 + x_2 v_2 = w</m> is inconsistent.  We can put this in
+          augmented matrix form and row-reduce.
+        <md><mrow>\left(\begin{array}{rr|r}1 \amp 0 \amp a \\ 0 \amp 1 \amp b \\ 2 \amp 3 \amp c\end{array}\right)
+            \xrightarrow[R_3 = R_3 - 3R_2]{R_3 = R_3 - 2 R_1} \left(\begin{array}{rr|r}1 \amp 0 \amp a \\ 0 \amp 1 \amp b \\ 0 \amp 0 \amp c-2a-3b\end{array}\right)</mrow></md>.
+        The system will be inconsistent precisely when the final column has
+          a pivot, which is when <m>c - 2a - 3b \neq 0</m>.  For example, the
+          vector <m>\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix}</m> will make the system inconsistent since
+          <m>1-2(1)-3(1) = -4 \neq 0</m>.
+      </p>
+      <p>Alternatively, we could have done this problem through trial and
+        error.  Since the system of equations is
+        <m>x_1 = a, \ x_2 = b, \ 2x_1 + 3x_2 = c</m>, one vector that will make
+        this inconsistent is <m>\begin{pmatrix}a \\ b \\ c\end{pmatrix} = \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}</m>, since that
+        requires <m>x_1 = 0</m> and <m>x_2 = 0</m> but <m>2x_1 + 3x_2 = 1</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find all values of <m>c</m> and <m>d</m> so that
+      <m>\textup{Span}\left\{\begin{pmatrix}1 \\ c\end{pmatrix}, \begin{pmatrix}d \\ 2\end{pmatrix}\right\}</m> is not
+      <m>{\bf R}^2</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        Neither of the vectors given is the zero vector, so their span
+          is at least a line.  The only way their span is just a line is if
+          they are collinear.  Therefore, the vectors will span <m>{\bf R}^2</m>
+          unless one is a scalar multiple of the other, which means there is
+          some (nonzero) <m>k</m> so that <m>d = 1k</m> and <m>2 = ck</m>, which means
+        <md><mrow>k = d = 2/c</mrow></md>.
+        Therefore, <m>c</m> is any nonzero real number and <m>d = 2/c</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Consider the set <m>V</m> of all vectors in <m>{\bf R}^3</m> of the form
+        <md><mrow>\begin{pmatrix}3x_1-x_2 \\ 2x_1+5x_2 \\ -10x_2\end{pmatrix} \quad (x_1, \ x_2
+          \textup{ real})</mrow></md>.
+        Write <m>V</m> as a span of vectors in <m>{\bf R}^3</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Unwrapping the general form of a vector in <m>V</m>, we see
+        <md><mrow>\begin{pmatrix}3x_1-x_2 \\ 2x_1+5x_2 \\ -10x_2\end{pmatrix} =
+            \begin{pmatrix}3x_1 \\ 2x_1 \\ 0\end{pmatrix} + \begin{pmatrix}-x_2 \\ 5x_2 \\ -10x_2\end{pmatrix}
+            = x_1 \begin{pmatrix}3 \\ 2 \\ 0\end{pmatrix} + \begin{pmatrix}-1 \\ 5 \\ -10\end{pmatrix}</mrow></md>.
+        Therefore, the vectors in <m>V</m> are simply all linear combinations
+          of <m>\begin{pmatrix}3 \\ 2 \\ 0\end{pmatrix}</m> and <m>\begin{pmatrix}-1 \\ 5 \\ -10\end{pmatrix}</m>.  In other words,
+        <md><mrow>V = \textup{Span}\left\{ \begin{pmatrix}3 \\ 2 \\ 0\end{pmatrix}, \begin{pmatrix}-1 \\ 5 \\ -10\end{pmatrix}.\right\}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+</exercises>\setcounter{problem}{0}
+
+\newpage
+
+\subsection{2.3, Matrix equations}
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: Suppose <m>A</m> is a <m>2 \times 4</m> matrix.  Then the equation
+        <m>Ax = b</m> must be inconsistent for some <m>b</m> in <m>{\bf R}^2</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        False.  Since <m>A</m> has <m>2</m> rows and <m>4</m> columns, it is possible for <m>A</m> to
+        have a pivot in each row, in which case <m>Ax=b</m> will be consistent for
+        every <m>b</m> in <m>{\bf R}^2</m>.  For example:
+        <md><mrow>A = \begin{pmatrix}1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: Suppose <m>A</m> is an <m>m \times n</m> matrix and the matrix
+      equation <m>Ax = b</m> is consistent for each <m>b</m> in <m>{\bf R}^m</m>.
+      Then <m>m \leq n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  If <m>m > n</m>, then <m>A</m> has more rows than columns
+          and so the max number of pivots possible number of pivots is <m>n</m>,
+          thus <m>A</m> cannot have a pivot in every row.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> is a <m>3 \times 5</m> matrix and the product <m>Ax</m> makes sense, then which <m>{\bf R}^n</m> is <m>x</m> in?</p>
+    </statement>
+    <solution>
+      <p>The vector <m>x</m> must be in <m>{\bf R}^5</m>, since <m>A</m> has <m>5</m> columns.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear equation as a matrix equation:
+        <md><mrow>x + y + z = 1</mrow></md>
+        <md><mrow>x - 2y - z = 5</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}1 \amp 1 \amp 1 \\ 1 \amp -2 \amp -1\end{pmatrix} \begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}1 \\ 5\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md>
+          <mrow>x_1   + 2x_2 + 7x_4                      \amp = 10</mrow>
+          <mrow>3x_1  + 7x_2 + \tfrac{1}{2}x_3           \amp = 7</mrow>
+          <mrow>x_2  + x_3 + 15x_4                       \amp = 30</mrow>
+          <mrow>5x_1  +  12x_3                           \amp = 17</mrow>
+        </md>
+      </p>
+    </statement>
+    <solution>
+      <p>\(
+          \begin{pmatrix}1 \amp 2 \amp 0 \amp 7 \\ 3 \amp 7 \amp \tfrac{1}{2} \amp 0 \\ 0 \amp 1 \amp 1 \amp 15 \\ 5 \amp 0 \amp 12 \amp 0\end{pmatrix}
+          \begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix}
+          =
+          \begin{pmatrix}10 \\ 7 \\ 30 \\ 17\end{pmatrix}
+          \)</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md><mrow>\begin{aligned}
+        2x_1 - x_2 + 3x_3 \amp = 5 \\
+        x_1 + 4x_2        \amp = -2 \\
+        3x_2 + 2x_3       \amp = 7
+        \end{aligned}</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>\(
+      \begin{pmatrix}2 \amp -1 \amp 3 \\ 1 \amp 4 \amp 0 \\ 0 \amp 3 \amp 2\end{pmatrix}
+      \begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix}
+      =
+      \begin{pmatrix}5 \\ -2 \\ 7\end{pmatrix}
+      \)</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md><mrow>\begin{aligned}
+        x_1 + 3x_2 \amp = 12 \\
+        -2x_1      \amp = -6 \\
+        4x_2       \amp = 8 \\
+        5x_1 + x_2 \amp = 3
+        \end{aligned}</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>\(
+      \begin{pmatrix}1 \amp 3 \\ -2 \amp 0 \\ 0 \amp 4 \\ 5 \amp 1\end{pmatrix}
+      \begin{pmatrix}x_1 \\ x_2\end{pmatrix}
+      =
+      \begin{pmatrix}12 \\ -6 \\ 8 \\ 3\end{pmatrix}
+      \)</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md><mrow>\begin{aligned}
+        x_1 + 2x_3 - x_4 + 6x_5 \amp = 14 \\
+        3x_2 - 5x_3 + x_4        \amp = -2
+        \end{aligned}</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>\(
+      \begin{pmatrix}1 \amp 0 \amp 2 \amp -1 \amp 6 \\ 0 \amp 3 \amp -5 \amp 1 \amp 0\end{pmatrix}
+      \begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5\end{pmatrix}
+      =
+      \begin{pmatrix}14 \\ -2\end{pmatrix}
+      \)</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Carry out the following matrix multiplication.
+        <md><mrow>\begin{pmatrix}0 \amp 2 \\ 0 \amp 4 \\ 5 \amp 0\end{pmatrix} \begin{pmatrix}3 \\ 2\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md><mrow>\begin{pmatrix}0 \amp 2 \\ 0 \amp 4 \\ 5 \amp 0\end{pmatrix} \begin{pmatrix}3 \\ 2\end{pmatrix}
+        = 3 \begin{pmatrix}0 \\ 0 \\ 5\end{pmatrix} + 2 \begin{pmatrix}2 \\ 4 \\ 0\end{pmatrix} = \begin{pmatrix}0 \\ 0 \\ 15\end{pmatrix} + \begin{pmatrix}4 \\ 8 \\ 0\end{pmatrix}
+        = \begin{pmatrix}4 \\ 8 \\ 15\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Carry out the following matrix multiplication.
+        <md><mrow>\begin{pmatrix}2 \amp 3 \amp -5 \\ -3 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}3 \\ -1 \\ 2\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\begin{pmatrix}2 \amp 3 \amp -5</mrow>
+          <mrow>-3 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}3</mrow>
+          <mrow>-1</mrow>
+          <mrow>2\end{pmatrix}
+            \amp  = 3 \begin{pmatrix}2</mrow>
+          <mrow>-3\end{pmatrix} + (-1) \begin{pmatrix}3</mrow>
+          <mrow>1\end{pmatrix} + 2 \begin{pmatrix}-5</mrow>
+          <mrow>0\end{pmatrix}</mrow>
+          <mrow>\amp  = \begin{pmatrix}6</mrow>
+          <mrow>-9\end{pmatrix} + \begin{pmatrix}-3</mrow>
+          <mrow>-1\end{pmatrix} + \begin{pmatrix}-10</mrow>
+          <mrow>0\end{pmatrix}</mrow>
+          <mrow>\amp  = \begin{pmatrix}-7</mrow>
+          <mrow>-10\end{pmatrix}</mrow>
+        </md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix equation consistent?  If so, solve it.
+        <md><mrow>\begin{pmatrix}1 \amp 1 \\ 1 \amp 0 \\ 1 \amp 1\end{pmatrix} \begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}2 \\ 3 \\ 2\end{pmatrix}</mrow></md>.
+        Can you do this problem without row-reducing?
+      </p>
+    </statement>
+    <solution>
+      <p>This matrix equation is consistent: <m>x_1 = 3</m> and <m>x_2 = -1</m>.  We can do this without row-reduction.  We see <m>x_1</m> must equal <m>3</m> in order for the second entry to be <m>3</m>, and <m>3\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix} = \begin{pmatrix}3 \\ 3 \\ 3\end{pmatrix}</m> so we need to subtract <m>\begin{pmatrix}1 \\ 0 \\ 1\end{pmatrix}</m> to get <m>\begin{pmatrix}2 \\ 3 \\ 2\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix equation consistent?  If so, solve it.
+        <md><mrow>\begin{pmatrix}1 \amp 1 \\ 1 \amp 0 \\ 1 \amp 1\end{pmatrix} \begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}2 \\ 3 \\ 3\end{pmatrix}</mrow></md>.
+        Can you do this problem without row-reducing?
+      </p>
+    </statement>
+    <solution>
+      <p>This matrix equation is inconsistent.  Each of the vectors <m>\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix}</m> and <m>\begin{pmatrix}1 \\ 0 \\ 1\end{pmatrix}</m> has its first entry equal to its third entry (so any linear combination will also have first and third entries equal), but the target vector <m>\begin{pmatrix}2 \\ 3 \\ 3\end{pmatrix}</m> has first entry different than third entry.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Todd Stromboly sells apples, bananas, and dragonfruits.  At his fruit
+      stand:</p>
+      <p>You purchased <m>2</m> apples, <m>4</m> bananas, and <m>1</m> dragonfruit, at a cost
+      of <m>\$3</m>.</p>
+      <p>Your friend bought <m>3</m> apples, <m>2</m> bananas, and <m>2</m> dragonfruits at a
+      cost of <m>\$4</m>.</p>
+      <p>Your sworn enemy bought <m>1</m> apple, <m>2</m> bananas, and <m>5</m> dragonfruits
+      at a cost of <m>\$6</m>.
+      Let <m>a</m>, <m>b</m>, and <m>c</m>, be the sale price
+      of an apple, banana, and dragonfruit, respectively.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write a system of equations whose solution would give us
+          the price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          The system of equations is
+          <md><mrow>2a + 4b + c = 3</mrow></md>
+          <md><mrow>3a + 2b + 2c = 4</mrow></md>
+          <md><mrow>a + 2b + 5c = 6</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a vector equation whose solution would give us the
+          price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          The vector equation is
+          <md><mrow>a \begin{pmatrix}2 \\ 3 \\ 1\end{pmatrix} + b \begin{pmatrix}4 \\ 2 \\ 2\end{pmatrix} + c \begin{pmatrix}1 \\ 2 \\ 5\end{pmatrix} = \begin{pmatrix}3 \\ 4 \\ 6\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a matrix equation whose solution would give us the
+          price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          The matrix equation is
+          <md><mrow>\begin{pmatrix}2 \amp 4 \amp 1 \\ 3 \amp 2 \amp 2 \\ 1 \amp 2 \amp 5\end{pmatrix}x = \begin{pmatrix}3 \\ 4 \\ 6\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find the price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          We put an augmented matrix into RREF.
+          <md><mrow>\left(\begin{array}{rrr|r}2 \amp 4 \amp 1 \amp 3 \\ 3 \amp 2 \amp 2 \amp 4 \\ 1 \amp 2 \amp 5 \amp 6\end{array}\right) \xrightarrow[]{RREF}
+                \left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 1/2 \\ 0 \amp 1 \amp 0 \amp 1/4 \\ 0 \amp 0 \amp 1 \amp 1\end{array}\right)</mrow></md>.
+          Thus <m>a = \frac{1}{2}</m>,
+              \ <m>b = \frac{1}{4}</m>, and <m>c=1</m>. In other words, an apple costs
+              <m>\$0.50</m>, a banana costs <m>\$0.25</m>, and a dragonfruit costs <m>\$1</m>.
+          	\end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Suppose <m>A = \begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}</m> is a
+        matrix whose columns are nonzero vectors and
+        <md><mrow>5v_1 - v_2 + v_3 - v_4 = 0</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write one nonzero vector <m>b</m> so that <m>Ax=b</m> is
+            consistent.</p>
+      </statement>
+      <solution>
+        <p>
+          Many possible answers.  For example, <m>Ax = v_1</m> is
+                  consistent since
+          <md><mrow>A \begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix} = \begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}
+                    \begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix} = v_1</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write one nonzero solution to the
+            equation <m>Ax=0</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          By definition of matrix multiplication,
+          <md><mrow>\begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}
+                    \begin{pmatrix}5 \\ -1 \\ 1 \\ -1\end{pmatrix} = 5v_1 - v_2 + v_3 - v_4 = 0</mrow></md>
+          so
+                  <m>x= \begin{pmatrix}5 \\ -1 \\ 1 \\ -1\end{pmatrix}</m> satisfies <m>Ax=0</m>.
+          	\end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Your overall semester score in Math <m>9123</m> will be determined by
+      the weights: <m>15\%</m> homework, <m>15\%</m> quizzes, <m>20\%</m> for midterm 1,
+      <m>20\%</m> for midterm 2, and <m>30\%</m> for the final exam.</p>
+      <p>Your grades were <m>95\%</m> on homework, <m>85\%</m> for quizzes, <m>83\%</m>
+      for midterm 1, and <m>87\%</m> for midterm 2.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write <m>A</m>, <m>x</m>, and <m>b</m> so that solving the matrix
+          equation <m>Ax = b</m> will give us the final exam score we need in order
+          to get a <m>90\%</m> overall score for the course.</p>
+      </statement>
+      <solution>
+        <p>
+          We arrange the matrix entries of <m>A</m> in the order that
+              the categories were given, and we put the grades in each category as
+              the corresponding entries of <m>x</m>.
+          <md><mrow>A = \begin{pmatrix}0.15 \amp 0.15 \amp 0.20 \amp 0.20 \amp 0.30\end{pmatrix}, \qquad
+                x = \begin{pmatrix}95 \\ 85 \\ 83 \\ 87 \\ x_5\end{pmatrix}, \qquad b = 90</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Solve the equation in part (a).</p>
+      </statement>
+      <solution>
+        <p>
+          Carrying out the multiplication and solving gives us
+          <md><mrow>(0.15)95 + (0.15)85 + (0.20)83 + (0.20)87 + (0.30)x_5 = 90</mrow></md>
+          <md><mrow>61 + 0.30 x_5 = 90, \qquad 0.30 x_5 = 29, \qquad x_5 =
+                290 / 3 = 96.\bar{6}</mrow></md>
+          If the exam does not give fractions of a point as credit, you will
+              need to get a <m>97\%</m> on the final exam.
+            \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>The diagram below represents the temperature at points along
+          wires, in celcius.
+      \begin{tikzpicture}[scale=1, thick, every node/.style={inner
+            sep=3pt, label distance=1mm}]</p>
+      <p>\node at (0,2.3) {<m>30</m>};
+          \node at (1.9,-2) {<m>60</m>};
+          \node at (-1.9,-2) {<m>90</m>};
+          \node at (-0.4,1) {<m>T_1</m>};
+          \node at (1.4,-1) {<m>T_2</m>};
+           \node at (-1.4,-1) {<m>T_3</m>};
+          \point[scale=1.5] (A) at (0,1);
+          \point[scale=1.5] (C) at (1,-1);
+          \point[scale=1.5] (D) at (-1,-1);
+           \point[scale=1.5] (P) at (0,2);
+           \point[scale=1.5] (Q) at (3/2,-2);
+           \point[scale=1.5] (R) at (-1.5,-2);</p>
+      <p>\draw(A.center) to (C.center);</p>
+      <p>\draw(D.center) to (C.center);</p>
+      <p>\draw(D.center) to (A.center);</p>
+      <p>\draw(A.center) to+(0,1);
+           \draw(C.center) to+(1/2,-1);
+          \draw(D.center) to+(-1/2,-1);
+        \end{tikzpicture}</p>
+      <p>Let <m>T_1, \ T_2, \ T_3</m> be the temperatures at the interior points.
+      Assume the temperature at each interior point is the average of the
+      temperatures of the three adjacent points.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write a system of three linear equations whose solution
+          would give the temperatures <m>T_1</m>, <m>T_2</m>, and <m>T_3</m>.  Do not solve
+          it.</p>
+      </statement>
+      <solution>
+        <p>The left side system below or right-side system below
+          are both fine.</p>
+        <p><m>T_1 = \dfrac{T_2+T_3+30}{3}</m>, \quad or \quad
+          <m>3T_1 - T_2 - T_3 = 30</m>.
+        <m>T_2 = \dfrac{T_1+T_3+60}{3}</m>,
+          \quad or \quad <m>-T_1+3T_2-T_3 = 60</m>.</p>
+        <p><m>T_3 = \dfrac{T_1+T_2+90}{3}</m>, \quad or \quad <m>-T_1-T_2+3T_3 = 90</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write the system as a vector equation. Do not
+          solve it.</p>
+      </statement>
+      <solution>
+        <p><m>T_1 \begin{pmatrix}3 \\ -1 \\ -1\end{pmatrix} + T_2 \begin{pmatrix}-1 \\ 3 \\ -1\end{pmatrix} + T_3 \begin{pmatrix}-1 \\ -1 \\ 3\end{pmatrix} = \begin{pmatrix}30 \\ 60 \\ 90\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a matrix equation <m>Ax=b</m> that represents this
+          system.  Specify every entry of <m>A</m>, <m>x</m>, and <m>b</m>.  Do not solve it.</p>
+      </statement>
+      <solution>
+        <p><m>\begin{pmatrix}3 \amp -1 \amp -1 \\ -1 \amp 3 \amp -1 \\ -1 \amp -1 \amp 3\end{pmatrix} \begin{pmatrix}T_1 \\ T_2 \\ T_3\end{pmatrix} = \begin{pmatrix}30 \\ 60 \\ 90\end{pmatrix}</m>.
+        \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+</exercises>\setcounter{problem}{0}
+\newpage
+
+\subsection{2.4, Solution sets}
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> is a <m>4 \times 6</m> matrix with four pivots, then
+        the matrix equation <m>Ax = b</m> must be consistent for every <m>b</m> in
+        <m>{\bf R}^4</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  Since <m>A</m> has <m>4</m> pivots, it follows that for
+          any vector <m>b</m> in <m>{\bf R}^4</m>, the matrix <m>(A \ | \ b)</m> will have
+          a pivot in each of its <m>4</m> rows, and each pivot will be to the
+          left of the augment bar.  Therefore, the system <m>Ax = b</m> will be
+          consistent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>If <m>A</m> is a <m>3 \times 5</m> matrix with three pivots, then
+        the set of solutions to <m>Ax = 0</m> is a plane.</p>
+    </statement>
+    <solution>
+      <p>True.  Since <m>A</m> has <m>3</m> pivots but <m>5</m> columns, there
+          will be exactly <m>2</m> columns that do not have a pivot.  Therefore,
+          the system <m>Ax = 0</m> will have exactly two free variables, which
+          means that its solution set is a plane.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>b</m> is a nonzero vector and <m>Ax=b</m> has infinitely many
+      solutions, then <m>Ax=0</m> must have infinitely many solutions.</p>
+    </statement>
+    <solution>
+      <p>True.  The solution set to <m>Ax=b</m> is a translate of the solution set to
+      <m>Ax=0</m>, hence <m>Ax=0</m> must also have infinitely many solutions.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> is a <m>3 \times 4</m> matrix and the solution set for
+      <m>Ax=0</m> is a line, then <m>A</m> has exactly <m>2</m> pivots.</p>
+    </statement>
+    <solution>
+      <p>False.  The solution set to <m>Ax=0</m> will be a line if and only if <m>A</m> has
+      exactly <m>1</m> free variable.  Since <m>A</m> has <m>4</m> columns, this means <m>A</m> has
+      exactly <m>3</m> (not <m>2</m>) pivots.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: There is a <m>3 \times 2</m> matrix <m>A</m> whose homogeneous solution set
+      <m>Ax=0</m> is the line <m>x_1 + x_2 = 1</m>.</p>
+    </statement>
+    <solution>
+      <p>False.  The zero vector <m>x_1 = x_2 = 0</m> does not satisfy the equation
+      <m>x_1 + x_2 = 1</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that the set of solutions to <m>Ax = b</m> is the plane <m>z=1</m>.  What is the
+      set of solutions to <m>Ax = 0</m>?</p>
+    </statement>
+    <solution>
+      <p>From the theory of section 2.4, the solution set to <m>Ax = 0</m> is the plane
+        through the origin parallel to the plane <m>z=1</m>.  Therefore, the solution set
+        to <m>Ax = 0</m> is the <m>x_1x_2</m>-plane in <m>{\bf R}^3</m> (this is the plane <m>z=0</m>).</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that the set of solutions to <m>Ax = 0</m> is the plane
+      <m>y=x</m> in <m>{\bf R}^2</m>.  Is it possible that there is a <m>b</m> so that
+      the set of solutions to <m>Ax = b</m> is the line <m>x+y=1</m>?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>No.  If <m>Ax=b</m> is consistent, then its solution set must be parallel to the solution set to <m>Ax=0</m>, namely the line <m>y=x</m> which has slope <m>1</m>.  The line <m>x+y=1</m> is the line <m>y= -x + 1</m>, which has slope <m>-1</m>, so it cannot be the solution set to any consistent system <m>Ax=b</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that the set of solutions to <m>Ax = 0</m> is the plane
+      <m>x+y = 0</m> in <m>{\bf R}^3</m>.  Is it possible that there is a <m>b</m> so that
+      the set of solutions to <m>Ax = b</m> is the <m>z</m>-axis in <m>{\bf R}^3</m>?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>No.  The solution set to <m>Ax=0</m> is a plane, then the solution set of any
+        consistent equation <m>Ax=b</m> must be a parallel plane, but the <m>z</m>-axis is a
+        line.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Suppose that the set of solutions to <m>Ax = 0</m> is the plane
+      <m>x + 2y - 3z = 0</m> in <m>{\bf R}^3</m> and that the vector <m>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix}</m> is a solution to <m>Ax = b</m>.</p>
+    </introduction>
+    \item Find one other solution to <m>Ax=b</m>.
+        \item Find all solutions to <m>Ax=b</m>.  Write your answer in parametric vector form.
+    <solution>
+      <p>
+        \begin{subproblems}
+        \subproblem We can get the solution set to <m>Ax=b</m> by taking any particular solution to <m>Ax = b</m> (in this case, <m>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix}</m>) and then adding all homogeneous solutions.  The solution set to <m>Ax=0</m> is the plane <m>x+2y-3z=0</m>, and we can find a homogeneous solution by just guessing and checking to find <m>x</m>, <m>y</m>, and <m>z</m> that satisfy the equation.  One such homogeneous solution is <m>\begin{pmatrix}3 \\ 0 \\ 1\end{pmatrix}</m>.  Another solution to <m>Ax = b</m> is
+        <md><mrow>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix} + \begin{pmatrix}3 \\ 0 \\ 1\end{pmatrix} = \begin{pmatrix}4 \\ 3 \\ 6\end{pmatrix}</mrow></md>.
+        \subproblem The homogeneous equation <m>x+2y-3z=0</m> corresponds to <m>\left(\begin{array}{rrr|r}1 \amp 2 \amp -3 \amp 0\end{array}\right)</m>, which gives <m>x = -2y + 3z</m> where <m>y</m> and <m>z</m> are free.
+        <md><mrow>\begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}-2y+3z \\ y \\ z\end{pmatrix} = \begin{pmatrix}-2y \\ y \\ 0\end{pmatrix} + \begin{pmatrix}3z \\ 0 \\ z\end{pmatrix}
+        = y \begin{pmatrix}-2 \\ 1 \\ 0\end{pmatrix} + z \begin{pmatrix}3 \\ 0 \\ 1\end{pmatrix}</mrow></md>.
+        The solution set to <m>Ax = b</m> is the translation of the homogeneous solution set by the particular solution <m>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix}</m>:
+        <md><mrow>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix} + y \begin{pmatrix}-2 \\ 1 \\ 0\end{pmatrix} + z \begin{pmatrix}3 \\ 0 \\ 1\end{pmatrix}, \quad \textup{ where } y, z \textup{ real}</mrow></md>.
+        \end{subproblems}
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a <m>2 \times 2</m> matrix so that the set of solutions to <m>Av = \begin{pmatrix}1 \\ 2\end{pmatrix}</m> is the line <m>y = x + 1</m>?  If so, find such an <m>A</m>.  If not, explain why not.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes: we need <m>\begin{pmatrix}1 \\ 2\end{pmatrix}</m> to be in the span of the columns of <m>A</m>, so that <m>Av = \begin{pmatrix}1 \\ 2\end{pmatrix}</m> is consistent.  Also, we need for the line <m>y=x</m> to be the set of solutions to <m>Ax=0</m> since that is the line through the origin parallel to <m>y=x+1</m>.  One way to get <m>A</m> is to start as if both columns are <m>\begin{pmatrix}1 \\ 2\end{pmatrix}</m>, then modify <m>A</m> until we satisfy the above.  One such matrix is
+        <md><mrow>A = \begin{pmatrix}-1 \amp 1 \\ -2 \amp 2\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Fill in the blanks: If <m>A</m> is a <m>5 \times 3</m> matrix with two pivots,
+      then the set of solutions to <m>Ax = 0</m> is a \underline{\qquad \quad}
+      that lives in \underline{\qquad}.</p>
+    </statement>
+    <solution>
+      <p><m>A</m> has two pivot columns, so we will get one free variable in the
+        when we solve <m>Ax = 0</m>, therefore the solution set will be a line.
+        The solution set lives in <m>{\bf R}^3</m> since <m>A</m> has three columns.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Let
+        <md><mrow>A = \begin{pmatrix}1 \amp -2 \amp 1 \\ 0 \amp 1 \amp 2\end{pmatrix}, \qquad
+          b_1 = \begin{pmatrix}1 \\ -1 \\ 0\end{pmatrix}, \qquad
+          b_2 = \begin{pmatrix}2 \\ 3\end{pmatrix}</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Which matrix equation makes sense: <m>Ax = b_1</m> or
+          <m>Ax = b_2</m>?</p>
+      </statement>
+      <solution>
+        <p><m>A</m> is a <m>2 \times 3</m> matrix, so any solution <m>x</m> must
+            be in <m>{\bf R}^3</m> and the target vector must be in <m>{\bf R}^2</m>.
+            Therefore, <m>Ax = b_2</m> makes sense but <m>Ax = b_1</m> does not. One way
+            to check this is to translate the matrix equation into a system of
+            equations to confirm our answer, which we do in part (b).</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>For the answer you chose in part (a), write the matrix
+          equation as a system of equations.</p>
+      </statement>
+      <solution>
+        <p>
+          The linear system corresponding to <m>Ax = b_2</m> is
+          <md><mrow>x_1 - 2x_2 + x_3 = 2</mrow></md>
+          <md><mrow>0x_1 + x_2 + 2x_3 = 3</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>For the answer you chose in part (a), write the matrix
+          equation as a vector equation.</p>
+      </statement>
+      <solution>
+        <p>
+          The corresponding vector equation is
+          <md><mrow>x_1 \begin{pmatrix}1 \\ 0\end{pmatrix} + x_2 \begin{pmatrix}-2 \\ 1\end{pmatrix} + x_3 \begin{pmatrix}1 \\ 2\end{pmatrix} = \begin{pmatrix}2 \\ 3\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Solve the matrix equation and write your answer in
+          parametric vector form.</p>
+      </statement>
+      <solution>
+        <p>
+          We row-reduce <m>(A \ | \ b_2)</m>:
+          <md><mrow>\left(\begin{array}{rrr|r}1 \amp -2 \amp 1 \amp 2 \\ 0 \amp 1 \amp 2 \amp 3\end{array}\right) \xrightarrow[]{R_1 = R_1 + 2R_2}
+                \left(\begin{array}{rrr|r}1 \amp 0 \amp 5 \amp 8 \\ 0 \amp 1 \amp 2 \amp 3\end{array}\right)</mrow></md>.
+          This gives us <m>x_1 + 5 x_3 = 8</m> and
+              <m>x_2 + 2x_3 = 3</m>, with <m>x_3</m> free.
+          <md><mrow>x_1 = 8 - 5x_3, \qquad x_2 = 3 - 2x_3, \qquad x_3 = x_3
+                \textup{ (free)}</mrow></md>.
+          We finish the problem by putting this into parametric vector form:
+          <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix} = \begin{pmatrix}8-5x_3 \\ 3-2x_3 \\ x_3\end{pmatrix}
+                \ = \ \begin{pmatrix}8 \\ 3 \\ 0\end{pmatrix} + \begin{pmatrix}-5x_3 \\ -2x_3 \\ x_3\end{pmatrix}
+                \ = \ \begin{pmatrix}8 \\ 3 \\ 0\end{pmatrix} + x_3 \begin{pmatrix}-5 \\ -2 \\ 1\end{pmatrix}</mrow></md>.
+          \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Consider the system of equations in <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m>
+          given below.
+        <md><mrow>x_1 - x_2 + 2x_3 - 2x_4 \ = \ -1</mrow></md>
+        <md><mrow>-x_1 + x_2 -2x_3 + x_4 = \ 2</mrow></md>
+        <md><mrow>-4x_1 + 4x_2 -8x_3 + 6x_4 \ = \ 6</mrow></md>.
+        Put an augmented matrix
+            into reduced row echelon form to solve the system of equations.
+            Write your answer in parametric vector form.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\left(\begin{array}{rrrr|r}1 \amp -1 \amp 2 \amp -2 \amp -1</mrow>
+          <mrow>-1 \amp 1 \amp -2 \amp 1 \amp 2</mrow>
+          <mrow>-4 \amp 4 \amp -8 \amp 6 \amp 6\end{array}\right)
+                \amp
+                  \xrightarrow[R_3=R_3+4R_1]{R_2=R_2+R_1}
+                  \left(\begin{array}{rrrr|r}1 \amp -1 \amp 2 \amp -2 \amp -1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp -1 \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp -2 \amp 2\end{array}\right)
+                  \xrightarrow[R_3= R_3/-2]{R_2= \ -R_2}
+                  \left(\begin{array}{rrrr|r}1 \amp -1 \amp 2 \amp -2 \amp -1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 1 \amp -1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 1 \amp -1\end{array}\right)</mrow>
+          <mrow></mrow>
+          <mrow>\amp  \xrightarrow[R_1= R_1+2R_2]{R_3=R_3-R_2}
+                  \left(\begin{array}{rrrr|r}1 \amp -1 \amp 2 \amp 0 \amp -3</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 1 \amp -1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow>
+        </md>
+      </p>
+      <p>
+        The free variables are <m>x_2</m> and <m>x_3</m>:
+        <md><mrow>x_1= x_2-2x_3-3, \qquad x_2=x_2, \qquad x_3=x_3, \qquad x_4=
+                -1</mrow></md>.
+      </p>
+      <p>
+        <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}x_2-2x_3-3 \\ x_2 \\ x_3 \\ -1\end{pmatrix}
+                = \begin{pmatrix}x_2 \\ x_2 \\ 0 \\ 0\end{pmatrix} + \begin{pmatrix}-2x_3 \\ 0 \\ x_3 \\ 0\end{pmatrix} + \begin{pmatrix}-3 \\ 0 \\ 0 \\ -1\end{pmatrix} \
+                = \ \boxed{\begin{pmatrix}-3 \\ 0 \\ 0 \\ -1\end{pmatrix} + x_2 \begin{pmatrix}1 \\ 1 \\ 0 \\ 0\end{pmatrix} + x_3 \begin{pmatrix}-2 \\ 0 \\ 1 \\ 0\end{pmatrix}}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Consider the linear system of equations in <m>x_1</m>, <m>x_2</m>,
+        <m>x_3</m>, and <m>x_4</m> given below.
+        <md><mrow>-2x_1 - 2x_2 + x_3 - 4x_4 = -8</mrow></md>
+        <md><mrow>-x_1 - x_2 + x_3 - 2x_4 = -5</mrow></md>
+        <md><mrow>4x_1 + 4x_2 - x_3 + 8x_4 = 14</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write the set of solutions to the system in parametric
+          vector form.</p>
+      </statement>
+      <solution>
+        <p>
+          We put the system into an augmented matrix and
+            row-reduce:
+          <md><mrow>\left(\begin{array}{rrrr|r}-2 \amp -2 \amp 1 \amp -4 \amp -8 \\ -1 \amp -1 \amp 1 \amp -2 \amp -5 \\ 4 \amp 4 \amp -1 \amp 8 \amp 14\end{array}\right)
+              \xrightarrow[]{RREF}
+              \left(\begin{array}{rrrr|r}1 \amp 1 \amp 0 \amp 2 \amp 3 \\ 0 \amp 0 \amp 1 \amp 0 \amp -2 \\ 0 \amp 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+          Therefore, <m>x_1 = 3 - x_2 - 2x_4</m> and <m>x_3 = -2</m> while <m>x_2</m> and
+            <m>x_4</m> are free:
+          <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}3-x_2-2x_4 \\ x_2 \\ -2 \\ x_4\end{pmatrix}
+              = \boxed{\begin{pmatrix}3 \\ 0 \\ -2 \\ 0\end{pmatrix} + x_2 \begin{pmatrix}-1 \\ 1 \\ 0 \\ 0\end{pmatrix} + x_4 \begin{pmatrix}-2 \\ 0 \\ 0 \\ 1\end{pmatrix}}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write two different solutions to the system of equations.</p>
+      </statement>
+      <solution>
+        <p>
+          We can obtain a solution to the system by choosing any
+            values we wish for <m>x_2</m> and <m>x_4</m>.  For example, if we choose <m>x_2 = 0</m>
+            and <m>x_4 = 0</m> we get
+          <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}3 \\ 0 \\ -2 \\ 0\end{pmatrix}</mrow></md>.
+          If we choose <m>x_2 = 1</m> and <m>x_4 = 0</m> we get
+          <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}2 \\ 1 \\ -2 \\ 0\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write two \emph{nonzero} solutions to the corresponding
+          \emph{homogeneous} linear system of equations.</p>
+      </statement>
+      <solution>
+        <p>The solutions to the corresponding homogeneous system
+          (where <m>-8</m>, <m>-5</m>, and <m>14</m> are all replaced by zero) are given by
+          everything in the span of the two vectors <m>\begin{pmatrix}-1 \\ 1 \\ 0 \\ 0\end{pmatrix}</m> and
+          <m>\begin{pmatrix}-2 \\ 0 \\ 0 \\ 1\end{pmatrix}</m>.  Therefore, <m>\begin{pmatrix}-1 \\ 1 \\ 0 \\ 0\end{pmatrix}</m> and <m>\begin{pmatrix}-2 \\ 0 \\ 0 \\ 1\end{pmatrix}</m>
+          are two solutions to the homogeneous equations.
+        \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A</m> is a <m>2 \times 2</m> matrix and that for some vector <m>b</m>, the
+      set of solutions to <m>Ax = b</m> is the line <m>x_2 = 4-x_1</m>.  Write the
+      general solution to the homogeneous equation <m>Ax=0</m> in parametric
+      vector form.</p>
+    </statement>
+    <solution>
+      <p>
+        The solution set for <m>Ax = 0</m> must include the origin and also must
+          be a translate to the solution set to <m>Ax = b</m>.  In other words,
+          the solution set for <m>Ax = 0</m> is the line through the origin that
+          is parallel to <m>x_2 = 4-x_1</m>.  This is the line <m>x_2 = -x_1</m>,
+          so <m>x_1 = -x_2</m> and <m>x_2</m> is free.
+        <md><mrow>\begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}-x_2 \\ x_2\end{pmatrix} = x_2 \begin{pmatrix}-1 \\ 1\end{pmatrix}</mrow></md>.
+        Another way to do this problem is to draw the line <m>x_2 = 4-x_1</m>,
+          then draw its parallel line through the origin and notice that this
+          line is the span of <m>\begin{pmatrix}-1 \\ 1\end{pmatrix}</m> (or equivalently the span of
+          <m>\begin{pmatrix}1 \\ -1\end{pmatrix}</m>).
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>For some matrix <m>A</m> and some vector <m>b</m>, the dashed line below
+      is the solution set to the matrix equation <m>Ax = b</m>.</p>
+      <image source="images/./2_4/solution_sets1.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </introduction>
+    <task>
+      <statement>
+        <p>On the same graph, draw the solution set to <m>Ax = 0</m>.</p>
+      </statement>
+      <solution>
+        <p>The solution set is the line through the origin that
+            is parallel to the dashed blue line.</p>
+        <image source="images/./2_4/solution_sets1-sol.pdf">
+          <shortdescription><!-- FILL: concise image description --></shortdescription>
+          <description><p><!-- FILL: complete image description --></p></description>
+        </image>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>True or false: It is possible that for some vector <m>v</m>,
+          the solution set to <m>Ax = v</m> is a single point.</p>
+      </statement>
+      <solution>
+        <p>False.  If <m>Ax = v</m> is consistent, then its solution
+            set must be a translation of the solution set to <m>Ax = 0</m>, which
+            is a line.  If <m>Ax = v</m> is inconsistent, then it has no solution.
+            Either way, it is not possible for <m>Ax = v</m> to have exactly one
+            solution.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write a system of linear equations whose solution set has parametric
+        form
+        <md><mrow>x = \begin{pmatrix}3 \\ 0\end{pmatrix} + x_2 \begin{pmatrix}2 \\ 1\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Writing <m>x</m> as a single vector, we get:
+        <md><mrow>x = \begin{pmatrix}3 \\ 0\end{pmatrix} + \begin{pmatrix}2x_2 \\ x_2\end{pmatrix} = \begin{pmatrix}3+2x_2 \\ x_2\end{pmatrix}</mrow></md>.
+        Therefore,
+          <m>x_1 = 3+x_2</m> and <m>x_2 = x_2</m> (free).  One possible answer is the
+          following single equation, which will give us <m>x_1 = 3+x_2</m> with <m>x_2</m>
+          as a free variable:
+        <md><mrow>x_1 - x_2 = 3</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>The diagram below describes traffic in a part of town.
+      \begin{tikzpicture}[scale=1.4, thick,
+            every node/.style={inner sep=3pt, label distance=1mm}]
+          \node at (0,2.4) {Traffic flow (cars/hr)};
+          \point[scale=1.5] (A) at (0,1);</p>
+      <p>\point[scale=1.5] (C) at (1,-1);
+          \point[scale=1.5] (D) at (-1,-1);</p>
+      <p>\draw[mid arrow] (A.center) to["<m>x_1</m>"] (C.center);
+          \draw[mid arrow] (D.center) to["<m>x_2</m>"] (C.center);
+          \draw[mid arrow] (D.center) to["<m>x_3</m>"] (A.center);
+          \draw[rmid arrow=.3] (A.center) to["<m>110</m>"] +(-1/2,1);
+          \draw[mid arrow=.5] (A.center) to["<m>40</m>" swap] +(1/2,1);</p>
+      <p>\draw[mid arrow=.7] (C.center) to["<m>320</m>"] +(1,0);
+          \draw[mid arrow=.7] (C.center) to["<m>40</m>"] +(0,-1);
+          \draw[rmid arrow=.7] (D.center) to["<m>200</m>" swap] +(-1,0);
+          \draw[rmid arrow=.3] (D.center) to["<m>90</m>" swap] +(0,-1);
+        \end{tikzpicture}</p>
+    </introduction>
+    \item Write a system of three linear equations in <m>x_1</m>, <m>x_2</m>, and
+      <m>x_3</m> corresponding to the traffic flow.
+    \item Use an augmented matrix to solve this system of linear equations.
+    \item Were we given enough information to know the exact
+      values of <m>x_1</m>, <m>x_2</m>, and <m>x_3</m>?  If your answer is yes, justify why.
+      If your answer is no, give the range of possible values for <m>x_1</m>,
+      <m>x_2</m>, and <m>x_3</m>.
+    <solution>
+      <p>
+        \begin{subproblems}
+           \subproblem For the top, bottom right, and bottom left nodes, the
+           number of cars entering must match the number of cars exiting, so
+           the system is:
+        <md><mrow>x_1 + 40 = x_3 + 110</mrow></md>
+        <md><mrow>x_1 + x_2 = 360</mrow></md>
+        <md><mrow>x_2 + x_3 = 290</mrow></md>.
+        \subproblem The system can be written
+        <md><mrow>x_1 - x_3 = 70</mrow></md>
+        <md><mrow>x_1 + x_2 = 360</mrow></md>
+        <md><mrow>x_2 + x_3 = 290</mrow></md>.
+        We form an augmented matrix and perform row
+           operations.
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 70 \\ 1 \amp 1 \amp 0 \amp 360 \\ 0 \amp 1 \amp 1 \amp 290\end{array}\right)
+             \xrightarrow[]{R_2 = R_2 - R_1} \left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 70 \\ 0 \amp 1 \amp 1 \amp 290 \\ 0 \amp 1 \amp 1 \amp 290\end{array}\right) \xrightarrow[]{R_3 = R_3 - R_2} \left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 70 \\ 0 \amp 1 \amp 1 \amp 290 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+        Therefore, <m>x_3</m> is a free variable,
+           <m>x_1 = x_3 + 70</m>, and <m>x_2 = 290-x_3</m>.
+      </p>
+      <p>\subproblem We cannot know the exact values of <m>x_1</m>, <m>x_2</m>, and
+         <m>x_3</m> with the information we have only been given.  For example,
+         we could have <m>x_3=0</m>, <m>x_2 = 290</m>, <m>x_1=70</m>.  Or, we could have
+         <m>x_3= 100</m>, <m>x_2= 190</m>, <m>x_1=170</m>, etc.</p>
+      <p>Even though <m>x_3</m> is a free variable in the system of equations,
+         the real-world constraints of the problem make us consider what is
+         actually possible here.  Since the variables are counting the
+         number of cars at each intersection, they must all be at least
+         zero.  Therefore, we need to have <m>x_3 \geq 0</m> (whereby
+         <m>x_1 = x_3 + 70</m>), and since <m>x_2 = 290-x_3 \geq 0</m> we also need
+         <m>x_3 \leq 290</m>.</p>
+      <p>To summarize: As the values of <m>x_3</m> range from <m>0</m> to <m>290</m>, the
+         values of <m>x_1</m> range from <m>70</m> to <m>360</m> while the values for <m>x_3</m>
+         range from <m>290</m> (when <m>x_3=0</m>) down to <m>0</m> (when <m>x_3 = 290</m>).
+       \end{subproblems}</p>
+    </solution>
+  </exercise>
+</exercises> \setcounter{problem}{0}
+
+\newpage
+
+\subsection{2.5, Linear independence}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: Suppose <m>v_1</m> and <m>v_2</m> are vectors in <m>{\bf R}^2</m>
+      and neither vector is a scalar multiple of the other.  Then
+      <m>\{v_1, v_2\}</m> must be a linearly independent set.</p>
+    </statement>
+    <solution>
+      <p>True.  The vectors <m>v_1</m> and <m>v_2</m> cannot be
+            linearly dependent, since then <m>x_1 v_1 + x_2 v_2 = 0</m> would
+            have a solution where <m>x_1 \neq 0</m> or <m>x_2 \neq 0</m>.  This would
+            mean <m>v_1</m> and <m>v_2</m> are scalar multiples of each other: if
+            <m>x_1 \neq 0</m> then <m>v_1 = - \frac{x_2}{x_1} v_2</m>, and similarly
+            if <m>x_2 \neq 0</m> then <m>v_2 = -\frac{x_1}{x_2} v_1</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false:
+      Suppose <m>v_1</m>, <m>v_2</m>, and <m>v_3</m> are vectors in <m>{\bf R}^3</m> and
+      that <m>v_j</m> and <m>v_k</m> are not collinear whenever <m>j \neq k</m>.
+      <m>\Span\{v_j, v_k\}</m> is a plane whenever <m>j \neq k</m>.  Then
+      <m>\{v_1, v_2, v_3\}</m> is a linearly independent set.</p>
+    </statement>
+    <solution>
+      <p>False.  Let <m>v_1 = \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}</m>, \ <m>v_2 = \begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix}</m>, \
+      <m>v_3 = \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}</m>.  No two among them are collinear, so any two vectors
+      chosen among them will span a plane.  However, they are linearly dependent
+      since <m>v_1 + v_2 = v_3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false:
+      If <m>A</m> is <m>4 \times 2</m> matrix and the solution set to <m>Ax=\begin{pmatrix}1 \\ 2 \\ 2 \\ 1\end{pmatrix}</m>
+      is a line, then the columns of <m>A</m> are linearly dependent.</p>
+    </statement>
+    <solution>
+      <p>True.  From section 2.4, we know that the solution set of any consistent
+      system <m>Ax=b</m> is a translation of the homogeneous solution set.  Here, the
+      system <m>Ax=\begin{pmatrix}1 \\ 2 \\ 2 \\ 1\end{pmatrix}</m> has a line as its solution set, so the
+      homogeneous system <m>Ax=0</m> has a line as its solution set and
+      thus has infinitely many solutions.  Therefore, the columns of <m>A</m> are
+      linearly dependent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false:
+      If a set <m>S</m> of vectors contains fewer vectors than there are entries in
+      the vectors, then the set is linearly independent.</p>
+    </statement>
+    <solution>
+      <p>False.  For example, the set <m>S=\left\{\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}\right\}</m>
+      in <m>{\bf R}^3</m> is linearly dependent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false:
+      If <m>u</m> and <m>v</m> are vectors in <m>{\bf R}^5</m>, then the set
+      <m>\{u, v, \sqrt{2}u - \pi v\}</m> is linearly independent.</p>
+    </statement>
+    <solution>
+      <p>False.  The third vector is a linear combination of the first two vectors,
+      so the set is linearly dependent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false:
+      If a matrix <m>A</m> has a pivot in each column, then the columns of <m>A</m> are
+      linearly independent.</p>
+    </statement>
+    <solution>
+      <p>True.  Having a pivot in each column guarantees that <m>Ax = 0</m> has only the
+      trivial solution, which is what it means for the columns of <m>A</m> to be
+      linearly independent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>If you have a set of linearly independent set <m>S</m> of vectors, and the span of
+      the vectors in <m>S</m> is a line, then how many vectors are in <m>S</m>?</p>
+    </statement>
+    <solution>
+      <p>There is exactly one vector in <m>S</m>.  The span of any single nonzero vector is
+        a line, whereas a linearly independent set with two (or more) vectors would
+        span at least a plane.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>In each case answer Always, Sometimes, or Never.  Justify your answers.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>A collection of 99 vectors in <m>{\bf R}^{100}</m> is linearly
+          dependent.</p>
+      </statement>
+      <solution>
+        <p>
+          False.  We could get a set of 99 linearly independent vectors
+              <m>\{v_1, v_2, \ldots, v_{99}\}</m> by putting <m>1</m> in the <m>k^{th}</m> entry of <m>v_k</m>
+              for each <m>k</m> and making all other entries <m>0</m>.
+          <md><mrow>v_1 = \begin{pmatrix}1 \\ 0 \\ 0 \\ \vdots \\ \ \\ 0 \\ 0\end{pmatrix}, \quad v_2 = \begin{pmatrix}0 \\ 1 \\ 0 \\ \vdots \\ \ \\ 0 \\ 0\end{pmatrix},
+                \cdots, \quad v_{99} = \begin{pmatrix}0 \\ 0 \\ 0 \\ \vdots \\ \ \\ 1 \\ 0\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>A collection of 100 vectors in <m>{\bf R}^{99}</m> is
+          linearly dependent.</p>
+      </statement>
+      <solution>
+        <p>True.  If
+            we put the 100 vectors as columns of a matrix, we will get a <m>99 \times 100</m>
+            matrix.  This means the matrix has <m>100</m> columns but a max of <m>99</m> pivots,
+            so it cannot have a pivot in each column, therefore the set of vectors is
+            linearly dependent.
+            \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Find all values of <m>h</m> so that the following set vectors is linearly independent.
+        <md><mrow>\left\{ \begin{pmatrix}5 \\ 7 \\ 1\end{pmatrix}, \begin{pmatrix}-5 \\ 7 \\ 0\end{pmatrix}, \begin{pmatrix}10 \\ 0 \\ h\end{pmatrix}\right\}</mrow></md>
+      </p>
+    </statement>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>In each case, determine whether the set of vectors is linearly
+          dependent or linearly independent.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>\left\{\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}, \ \begin{pmatrix}2 \\ -5 \\ 0\end{pmatrix}, \ \begin{pmatrix}3 \\ 1 \\ 7\end{pmatrix}\right\}</m></p>
+      </statement>
+      <solution>
+        <p>Forming a matrix <m>A</m> with the vectors as columns
+                gives 3 pivot columns (no row-reduction required), so the
+                vectors are linearly independent. Alternatively, use the
+                Increasing Span Criterion.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>\left\{\begin{pmatrix}1 \\ 2 \\ 3\end{pmatrix}, \ \begin{pmatrix}0 \\ 0 \\ -1\end{pmatrix}, \ \begin{pmatrix}2 \\ 4 \\ 6\end{pmatrix}\right\}</m></p>
+      </statement>
+      <solution>
+        <p>The first and third vectors are multiples of each
+                other, so the vectors are linearly dependent.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>\left\{\begin{pmatrix}1 \\ 0\end{pmatrix}, \ \begin{pmatrix}0 \\ 1\end{pmatrix}, \ \begin{pmatrix}-2 \\ 3\end{pmatrix}\right\}</m></p>
+      </statement>
+      <solution>
+        <p>Any three vectors in <m>{\bf R}^2</m> are automatically
+                linearly dependent.
+              \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Suppose that <m>v_1, v_2, v_3, v_4, b</m> are vectors in
+            <m>{\bf R}^6</m> and the equation
+        <md><mrow>x_1 v_1 + x_2 v_2 + x_3 v_3 + x_4 v_4 = b</mrow></md>
+        has exactly one solution.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Must <m>\{v_1, v_2, v_3, v_4\}</m> be
+              linearly independent?</p>
+      </statement>
+      <solution>
+        <p>Yes.  Since the first equation has exactly one
+                solution, the matrix <m>A</m> whose columns are <m>v_1</m> through <m>v_4</m>
+                has a pivot in every column, therefore
+                <m>\{v_1, v_2, v_3, v_4\}</m> are linearly independent.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Must the equation
+          <md><mrow>x_1 v_1 + x_2 v_2 + x_3 v_3 = 0</mrow></md>
+          have exactly one solution?
+        </p>
+      </statement>
+      <solution>
+        <p>Yes.  Since <m>\{v_1, v_2, v_3, v_4\}</m> is linearly
+                independent, so is <m>\{v_1, v_2, v_3\}</m>, which is the same
+                thing as saying <m>x_1 v_1 + x_2 v_2 + x_3 v_3 = 0</m> has only
+                the trivial solution <m>x_1 = x_2 = x_3 = 0</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Must there be a vector <m>v</m> so that
+                <m>\{b, v\}</m> is linearly independent and the equation
+          <md><mrow>x_1 v_1 + x_2 v_2 + x_3 v_3 + x_4 v_4 = v</mrow></md>
+          is consistent?
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Yes. Since <m>\{v_1, v_2, v_3, v_4\}</m> is linearly
+                  independent, there is at least one vector <m>v</m> in
+                  <m>\{v_1, v_2, v_3, v_4\}</m> that is not a scalar multiple of <m>b</m>
+                  (otherwise they would all be scalar multiples of <m>b</m> and
+                  therefore linearly dependent).  Since <m>v</m> is in the set
+                  <m>\{v_1, v_2, v_3, v_4\}</m> it is also in
+                  <m>\textup{Span}\{v_1, v_2, v_3, v_4\}</m>, therefore there is at
+                  least one solution to
+          <md><mrow>x_1 v_1 + x_2 v_2 + x_3 v_3 + x_4 v_4 = v</mrow></md>.
+          It will become much easier to see why this part of the problem
+                  is true by the end of chapter 2.
+                \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+</exercises> \setcounter{problem}{0}
+
+\newpage
+
+\subsection{2.6, Subspaces}
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: The set of solutions to a consistent matrix equation is
+      always a subspace.</p>
+    </statement>
+    <solution>
+      <p>False.  The set of solutions to a consistent matrix equation <m>Ax = b</m> is
+      only a subspace when <m>b=0</m>.  If <m>b</m> is not the zero vector, then the
+      solution set to <m>Ax = b</m> will not contain the zero vector.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: The set of <m>{\bf R}^n</m> that consists only of the zero
+      vector is a subspace of <m>{\bf R}^n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  The set <m>\{0\}</m> contains the zero vector, and it is closed under
+      addition and scalar multiplication because any linear combination of the
+      <m>0</m> vector is itself the zero vector.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> is a <m>9 \times 15</m> matrix, then the null space of
+      <m>A</m> is a subspace of <m>{\bf R}^9</m>.</p>
+    </statement>
+    <solution>
+      <p>False: <m>\Nul(A)</m> is a subspace of <m>{\bf R}^{15}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: Every subspace of <m>{\bf R}^n</m> is the span of some
+        vectors in <m>{\bf R}^n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  It is a fundamental fact that every subspace of
+          <m>{\bf R}^n</m> is the span of some vectors in <m>{\bf R}^n</m>, and,
+          conversely, the span of any number of vectors in <m>{\bf R}^n</m> is a
+          subspace of <m>{\bf R}^n</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Consider the set <m>S = \{(x, y) \textup{ in } {\bf R}^2 \ | \ xy \geq 0\}</m>.  Is
+      <m>S</m> a subspace of <m>{\bf R}^2</m>?  If not, which properties does it fail?</p>
+    </statement>
+    <solution>
+      <p>(1) <m>S</m> contains the zero vector, since <m>0\cdot 0 = 0 \geq 0</m>.</p>
+      <p>(2) <m>S</m> is not closed under addition.  For example, take <m>u = \begin{pmatrix}1 \\ 2\end{pmatrix}</m> and
+        <m>v = \begin{pmatrix}-2 \\ -1\end{pmatrix}</m>.  Both vectors are in <m>S</m> since <m>1\cdot 2 > 0</m> and
+        <m>(-2)(-1) = 2 >0</m>.  However, their sum is <m>u+v = \begin{pmatrix}-1 \\ 1\end{pmatrix}</m>, which is not in
+        <m>S</m> since <m>(-1)(1)<0</m>.</p>
+      <p>
+        (3) <m>S</m> is closed under scalar multiplication.  If <m>u = \begin{pmatrix}x \\ y\end{pmatrix}</m> is in <m>S</m>
+          and <m>c</m> is any scalar, then for <m>cu = \begin{pmatrix}cx \\ cy\end{pmatrix}</m> we have
+        <md><mrow>(cx)(cy) = c^2 (xy) \geq 0 \quad \textup{ since } c^2 \geq 0 \textup{ and } xy \geq 0</mrow></md>.
+      </p>
+      <p>Most students find it easier if we first draw a picture of <m>S</m> to gain
+          intuition, rather than plugging in random vectors to test properties.  In
+          order for a vector to be in <m>S</m>, either both entries are positive, or both
+          entries are negative, or at least one entry is zero.  Putting this together,
+          we see that <m>S</m> is the union of the first and third quadrants of the
+          <m>xy</m>-plane (including the <m>x</m>-axis and <m>y</m>-axis).</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Consider the <m>x</m>-axis in <m>{\bf R}^3</m>.  Is it a subspace of <m>{\bf R}^3</m>?  If not,
+      which properties does it fail?</p>
+    </statement>
+    <solution>
+      <p>Yes: the <m>x</m>-axis in <m>{\bf R}^3</m> is the span of <m>\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}</m>, and spans are
+        automatically subspaces of the appropriate <m>{\bf R}^n</m>how, so the <m>x</m>-axis is a
+        subspace of <m>{\bf R}^3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Consider the set
+      <m>S = \{(x, y, z, w) \textup{ in } {\bf R}^4 \ | \ x + y - z + w = 0\}</m>.  Is <m>S</m>
+      a subspace of <m>{\bf R}^4</m>?  If not, which properties does it fail?</p>
+    </statement>
+    <solution>
+      <p>Yes: <m>S</m> is the solution set to the augmented system <m>\left(\begin{array}{rrrr|r}1 \amp 1 \amp -1 \amp 1 \amp 0\end{array}\right)</m>,
+        which is precisely <m>\Nul\begin{pmatrix}1 \amp 1 \amp -1 \amp 1\end{pmatrix}</m>.  Null spaces are always subspaces of
+        the appropriate <m>{\bf R}^{n}</m>, and in this case <m>S</m> is the null space of a
+        matrix with <m>4</m> columns, so <m>S</m> is a subspace of <m>{\bf R}^{4}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>W</m> be the green graph below.  Determine which properties
+      of a subspace of <m>{\bf R}^2</m> are satisfied by <m>W</m>.</p>
+      <image source="images/./2_6/2_6-lineorigin">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p>(1) <m>W</m> contains the zero vector, since the line passes through the origin.</p>
+      <p>(2) <m>W</m> is closed under addition.  If <m>v</m> and <m>w</m> are vectors along the line
+        <m>W</m>, their sum is just another vector along the line.</p>
+      <p>(3) <m>W</m> is closed under scalar multiplication.  If you scale any vector along
+        <m>W</m>, the result is still a vector along <m>W</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let
+      <m>V = \left\{ \begin{pmatrix}a \\ b \\ c\end{pmatrix} \ \textup{ in } {\bf R}^3 \ : \ a-b = c\right\}</m>.  Is
+      <m>V</m> a subspace of <m>{\bf R}^3</m>?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>Yes: <m>V</m> is the set of solutions to the homogeneous system of equations
+        <m>a-b-c = 0</m>.  In other words, <m>V = \Nul\begin{pmatrix}1 \amp -1 \amp -1\end{pmatrix}</m>.  The null space
+        of any matrix with <m>3</m> columns is a subspace of <m>{\bf R}^3</m>.</p>
+      <p>Alternatively, we could verify the subspace properties individually.
+        For example, <m>V</m> contains <m>\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}</m> since <m>0 - 0 = 0</m>, and we
+        could similarly verify that <m>V</m> is closed under addition and
+        multiplication.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Which of the following are subspaces of <m>{\bf R}^4</m>?  Answer yes or nox
+      in each case.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>\Col\begin{pmatrix}4 \amp 3 \amp 2 \amp 1 \\ 1 \amp 2 \amp 3 \amp 4 \\ 4 \amp 3 \amp 2 \amp 1\end{pmatrix}</m></p>
+      </statement>
+      <solution>
+        <p>No.  This is a subspace of <m>{\bf R}^3</m>, not <m>{\bf R}^4</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>\Nul\begin{pmatrix}1 \amp 2 \amp 3 \amp 4 \\ 1 \amp 2 \amp 3 \amp 4 \\ 1 \amp 2 \amp 3 \amp 4\end{pmatrix}</m></p>
+      </statement>
+      <solution>
+        <p>Yes.  The null space of any <m>3 \times 4</m> matrix is a
+          subspace of <m>{\bf R}^4</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          The set of solutions to the system of equations in the
+            variables <m>x_1, x_2, x_3, x_4</m> given by
+          <md><mrow>x_1 - x_2 + x_3 + x_4 = 1</mrow></md>
+          <md><mrow>x_1 + x_4 = 2</mrow></md>.
+        </p>
+      </statement>
+      <solution>
+        <p>No.  This solution set does not contain the origin,
+          since it corresponds to a non-homogeneous linear system of
+          equations.
+        \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>If <m>V</m> and <m>W</m> are sets in <m>{\bf R}^n</m>, then their \textit{union},
+      denoted <m>V \cup W</m>, is the set of all vectors that are in at least one of <m>V</m>
+      and <m>W</m>.  In other words, a vector <m>x</m> is in <m>V \cup W</m> if <m>x</m> is in <m>V</m> or <m>x</m>
+      is in <m>W</m> (or <m>x</m> is in both <m>V</m> and <m>W</m>).</p>
+      <p>Suppose <m>U</m> and <m>W</m> are subspaces of <m>{\bf R}^n</m>.  When will <m>U \cup W</m> also a
+      subspace of <m>{\bf R}^n</m>?</p>
+    </statement>
+    <solution>
+      <p>The union will be a subspace of <m>{\bf R}^n</m> if and only if one of one of <m>U</m>
+        or <m>V</m> is contained in the other (or both are equal).  In this case, the union
+        <m>U \cup V</m> will just be one of <m>U</m> or <m>V</m>, which we already know to be
+        subspaces.</p>
+      <p>
+        On the other hand, suppose neither <m>U</m> nor <m>V</m> is contained in the other.  Then there is a vector <m>u</m> that is in <m>U</m> but not in <m>V</m>, and there is a vector <m>v</m> that is in <m>V</m> but not in <m>U</m>.  We show that:
+        <md><mrow>u+v \textup{ is not in } U \cup V</mrow></md>.
+        After all, <m>u+v</m> cannot be in the
+        subspace <m>U</m>, because if it were then <m>(u+v)-u = v</m> would need to be in <m>U</m>
+        since <m>U</m> is closed under addition.  Similarly, <m>u+v</m> cannot be in <m>V</m> because
+        then <m>(u+v)-v = u</m> would need to be in <m>V</m> since <m>V</m> is closed under addition.
+      </p>
+      <p>In summary: <m>u</m> and <m>v</m> are in <m>U \cup V</m>, but <m>u+v</m> is not in <m>U \cup V</m>, so
+      <m>U \cup V</m> is not closed under addition and is therefore not a subspace of
+      <m>{\bf R}^n</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>W</m> be the green graph below.  Determine which properties
+      of a subspace of <m>{\bf R}^2</m> are satisfied by <m>W</m>.</p>
+      <image source="images/./2_6/2_6-which.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p><m>W</m> doesn't satisfy any of the properties of a subspace:</p>
+      <p>(1) <m>W</m> does not pass through the origin.</p>
+      <p>(2) <m>W</m> is not closed under addition since for example <m>(-2,0)</m> and
+        <m>(0, 2)</m> are in <m>W</m> but their sum <m>(-2,2)</m> is not in <m>W</m>.</p>
+      <p>(3) <m>W</m> is not closed under multiplication since, for example,
+        <m>(-2, 0)</m> is in <m>W</m> but <m>-(-2,0)=(2, 0)</m> is not in <m>W</m>.</p>
+      <p>Although it fails all subspace properties, the truth is that <m>W</m> is
+        \emph{almost} a subspace because it is a line in <m>{\bf R}^2</m>, but
+        the fact that it does not pass through the origin ruins all three
+        subspace properties.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>W</m> be the red graph below.  It is the paraboloid
+      <m>z = x^2 + y^2</m>. Determine which properties of a subspace of
+      <m>{\bf R}^3</m> are satisfied by <m>W</m>.</p>
+      <image source="images/./2_6/paraboloid">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p>(1) <m>W</m> contains the zero vector since it passes through the
+        origin.</p>
+      <p>(2) <m>W</m> is not closed under scalar multiplication because if <m>u</m> is
+        any nonzero vector in <m>W</m> then it is above the <m>z</m>-axis, but <m>-u</m> is
+        below the <m>z</m>-axis and thus not in <m>W</m>.</p>
+      <p>(3) <m>W</m> is not closed under addition because, for example, the point
+        <m>(0, 1, 1)</m> is in <m>W</m> but <m>(0, 2, 2)</m> is not in <m>W</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>W</m> be the light blue graph below.  Determine which
+      properties of a subspace of <m>{\bf R}^3</m> are satisfied by <m>W</m>.</p>
+      <image source="images/./2_6/planeno0">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p><m>W</m> is a plane in <m>{\bf R}^3</m> that does \emph{not} contain the
+        origin.  It will fail all three properties of a subspace in the same
+        way that a line not through the origin in <m>{\bf R}^2</m> will fail all
+        three subspace properties.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Recall from section 2.1 that a QR code is a
+      <m>29 \times 29</m> grid of boxes, where each box is colored black or
+      white.  We can think of each box as labeled by <m>1</m> (if white) or <m>0</m>
+      (if black).  Reading from top to bottom and left to right, we can
+      regard a QR code as a vector <m>x</m> in
+      <m>{\bf R}^{29 \times 29} = {\bf R}^{841}</m>, where each entry of <m>x</m> is
+      <m>0</m> or <m>1</m>.</p>
+      <p>Let <m>S</m> be the set of all QR codes, considered as a subset of
+      <m>{\bf R}^{841}</m>.  Determine which properties of a subspace <m>S</m>
+      satisfies.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Does <m>S</m> contain the <m>0</m> vector?</p>
+      </statement>
+      <solution>
+        <p>Yes.  The vector <m>v = (0, 0, \ldots, 0)</m> is the QR
+            code where every box is black.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>S</m>
+          closed under addition?</p>
+      </statement>
+      <solution>
+        <p>No.  The vectors <m>x = (1, 0, 0, \ldots 0)</m> and
+            <m>y=(1, 1, 0, \ldots, 0)</m> are in <m>S</m>.  However, if we add <m>x</m> and
+            <m>y</m> we obtain <m>x+y = (2, 1, 0, \ldots, 0)</m>, which is not in <m>S</m>
+            because it has an entry (its first entry) which is neither <m>0</m> nor
+            <m>1</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>S</m> closed under scalar
+          multiplication?</p>
+      </statement>
+      <solution>
+        <p>No.  The vector <m>x = (1, 0, 0, \ldots, 0)</m> is in <m>S</m>
+            but <m>2x = (2, 0, 0, \ldots, 0)</m> is not in <m>S</m> because it has an
+            entry (its first entry) which is neither <m>0</m> nor <m>1</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>V</m> be the set of all points <m>(x, y)</m> in <m>{\bf R}^2</m>
+      satisfying <m>x - y > 1</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Does <m>V</m> contain the zero vector?</p>
+      </statement>
+      <solution>
+        <p>No, since <m>0-0</m> is not greater than <m>1</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>V</m> closed under addition?</p>
+      </statement>
+      <solution>
+        <p>
+          Yes: take any vectors <m>u = \begin{pmatrix}x_1 \\ y_1\end{pmatrix}</m> and
+              <m>v = \begin{pmatrix}x_2 \\ y_2\end{pmatrix}</m> in <m>V</m>, so <m>x_1 - y_1 \geq 1</m>.  For the vector
+              <m>u+v = \begin{pmatrix}x_1+x_2 \\ y_1+y_2\end{pmatrix}</m>, we subtract the second coordinate
+              from the first and regroup terms:
+          <md>
+            <mrow>(x_1+x_2)-(y_1+y_2)
+                \amp   = x_1+x_2 - y_1 - y_2</mrow>
+            <mrow>\amp   = (x_1 - y_1) + (x_2 - y_2)</mrow>
+            <mrow>\amp  > 1 + 1 > 1</mrow>
+          </md>,
+          therefore <m>u+v</m> is in <m>V</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>V</m> closed under scalar multiplication?</p>
+      </statement>
+      <solution>
+        <p>No: for example, <m>u = \begin{pmatrix}1 \\ 0\end{pmatrix}</m> is in <m>V</m>, but
+            <m>-u = \begin{pmatrix}-1 \\ 0\end{pmatrix}</m> is not in <m>V</m> since <m>-1 - 0 = -1</m> which is not
+            greater than <m>1</m>.
+          \end{subproblems}
+          An alternative approach is to draw <m>V</m>, which is relatively
+          straightforward since <m>V</m> consists of all points satisfying
+          <m>y < x - 1</m>, which is all points that are strictly below the line
+          <m>y = x-1</m>.  Once you graph <m>V</m>, you can tell right away that it does
+          not contain the zero vector and is not closed under scalar
+          multiplication, and you can also deduce that it is closed under
+          addition.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>V</m> be the set of all points <m>(x, y, z)</m> in <m>{\bf R}^3</m>
+        satisfying <m>xyz \geq 0</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Does <m>V</m> contain the zero vector?</p>
+      </statement>
+      <solution>
+        <p>Yes: the origin satisfies
+              <m>0\cdot 0 \cdot 0 = 0 \geq 0</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>V</m> closed under addition?</p>
+      </statement>
+      <solution>
+        <p>
+          No: for example, let
+          <md><mrow>u = \begin{pmatrix}1 \\ -1 \\ -1\end{pmatrix} \qquad v = \begin{pmatrix}1 \\ 0 \\ 2\end{pmatrix}</mrow></md>.
+          Then <m>u</m> and <m>v</m>
+                are both in <m>V</m> but their sum is <m>u+v = \begin{pmatrix}2 \\ -1 \\ 1\end{pmatrix}</m> which is
+                not in <m>V</m> since <m>(2)(-1)(1) = -2 < 0</m>.
+              \end{subproblems}
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>V</m> closed under scalar multiplication?</p>
+      </statement>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>(Challenge problem) Abstract spaces go beyond just
+        <m>{\bf R}^n</m>.  For example, the set of all polynomials with real
+        coefficients forms an abstract vector space.</p>
+      <p>
+        Consider the set <m>W</m> consisting of all polynomials that have degree
+          <m>2</m> or less.  In other words, <m>W</m> is the set of all functions of the
+          form
+        <md><mrow>f(x) = a_0 + a_1 x + a_2 x^2</mrow></md>
+        where <m>a_0</m>, <m>a_1</m>, and <m>a_2</m> are real numbers.
+          Show that <m>W</m> satisfies the properties of a subspace:
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>W</m> contains the zero polynomial.  In other words, <m>W</m>
+            contains the polynomial given by <m>p(x) = 0</m> for all <m>x</m>.</p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          If polynomials <m>f</m> and <m>g</m> are in <m>W</m>, then so is the
+              polynomial <m>f+g</m> given by
+          <md><mrow>(f+g)(x) = f(x) + g(x)</mrow></md>.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>If <m>f</m> is in <m>W</m> and <m>c</m> is a scalar, then the
+            polynomial <m>cf</m> given by <m>(cf)(x) = cf(x)</m> is also in <m>W</m>.</p>
+      </statement>
+    </task>
+  </exercise>
+</exercises>\setcounter{problem}{0}
+
+\newpage
+
+\subsection{2.7, Basis and dimension}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>S</m> is a plane containing the origin in <m>{\bf R}^3</m>, then
+        every basis for <m>S</m> has exactly two vectors.</p>
+    </statement>
+    <solution>
+      <p>True. Since <m>S</m> is a plane through the origin in <m>{\bf R}^3</m>, it is a subspace
+        of <m>{\bf R}^3</m> and it is two-dimensional, so any basis for <m>S</m> conssists of
+        exactly two vectors.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If two vectors are in the same plane through the origin in
+      <m>{\bf R}^3</m>, and if the two vectors are not collinear, then they form a basis
+      for the plane.</p>
+    </statement>
+    <solution>
+      <p>True.  The span of the two vectors must be a plane, otherwise their span
+      would be a line or a point which is impossible since the two vectors is
+      not collinear.  Any two vectors that span a plane must be linearly
+      independent, therefore the two vectors form a basis for the plane.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: The dimension of the null space of <m>A</m> is the number of
+      pivots of <m>A</m>.</p>
+    </statement>
+    <solution>
+      <p>False: <m>\dim(\Nul \ A)</m> is the number of columns in <m>A</m> that do NOT have
+      a pivot.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>b</m> lies in the column space of <m>A</m> and the columns of <m>A</m> are
+      linearly independent, then <m>Ax = b</m> has infinitely many solutions.</p>
+    </statement>
+    <solution>
+      <p>False: the columns of <m>A</m> are linearly independent, so <m>A</m> has a pivot in
+        every column, therefore the augmented matrix <m>(A | b)</m> has a pivot in each
+        column to the left of the augment bar, so either the system is inconsistent or
+        has exactly one solution.  We were told that <m>b</m> is in the column space of
+        <m>A</m>, so the system is consistent, hence <m>Ax = b</m> has exactly one solution.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: Any three vectors that span <m>{\bf R}^3</m> must be linearly
+      independent.</p>
+    </statement>
+    <solution>
+      <p>True.  Let <m>A</m> be the <m>3 \times 3</m> matrix whose columns are the three vectors.
+        Since these vectors span <m>{\bf R}^3</m>, we conclude <m>A</m> has a pivot in every
+        row, so <m>A</m> has <m>3</m> pivots.  This means that <m>A</m> has a pivot in each of its
+        <m>3</m> columns, so its columns are linearly independent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>How many vectors are there in a basis for a line <m>S</m> through the origin
+      in <m>{\bf R}^7</m>?</p>
+    </statement>
+    <solution>
+      <p>One.  Take any nonzero vector <m>v</m> along the line <m>S</m>.  Then <m>\{v\}</m> is
+        linearly independent, and any vector along the line <m>S</m> can be obtained by
+        scaling <m>v</m> by an appropriate scalar <m>c</m>.  In fact, the set of all vectors of
+        the form <m>cv</m> (where <m>c</m> is a scalar) is the line <m>S</m>. Therefore, <m>\{v\}</m> is a
+        basis for <m>S</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find a basis for the <m>yz</m>-plane in <m>{\bf R}^3</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        The <m>yz</m>-plane is all vectors of the form <m>\begin{pmatrix}0 \\ y \\ z\end{pmatrix}</m> where <m>y</m> and <m>z</m> are
+          real.  A basis for the <m>yz</m>-plane is
+          <m>\left\{\begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}\right\}</m>: the two vectors are clearly
+          linearly independent, and they span the <m>yz</m>-plane since any vector of the
+          form <m>\begin{pmatrix}0 \\ y \\ z\end{pmatrix}</m> can be written as the linear combination
+        <md><mrow>\begin{pmatrix}0 \\ y \\ z\end{pmatrix} = y \begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix} + z \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Find a basis for the column space and the null space of
+        <md><mrow>A = \begin{pmatrix}1 \amp 2 \amp 3 \\ 4 \amp 5 \amp 6 \\ -7 \amp -8 \amp -9\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We row-reduce <m>\left(\begin{array}{r|r}A \amp 0\end{array}\right)</m> to find
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 2 \amp 3 \amp 0 \\ 4 \amp 5 \amp 6 \amp 0 \\ -7 \amp -8 \amp -9 \amp 0\end{array}\right)
+        \xrightarrow[]{RREF}
+        \left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 0 \\ 0 \amp 1 \amp 2 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+        The pivot columns of <m>A</m> form a basis for <m>\Col(A)</m>:
+        <md><mrow>\left\{\begin{pmatrix}1 \\ 4 \\ -7\end{pmatrix}, \begin{pmatrix}2 \\ 5 \\ -8\end{pmatrix}\right\}</mrow></md>.
+        For <m>\Nul(A)</m>, the RREF of <m>\left(\begin{array}{r|r}A \amp 0\end{array}\right)</m> gives us <m>x_1 - x_3 = 0</m>, <m>x_2 + 2x_3 = 0</m>, and <m>x_3</m> is free, so <m>x_1 = x_3</m> and <m>x_2 = -2x_3</m>.
+        <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix} = \begin{pmatrix}x_3 \\ -2x_3 \\ x_3\end{pmatrix} = x_3 \begin{pmatrix}1 \\ -2 \\ 1\end{pmatrix}.
+        \qquad \textup{Basis for } \Nul(A): \left\{\begin{pmatrix}1 \\ -2 \\ 1\end{pmatrix}\right\}</mrow></md>
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find a basis for <m>{\bf R}^3</m> where no basis vector has <m>0</m> as entry.</p>
+    </statement>
+    <solution>
+      <p>
+        Many answers possible, for example:
+        <md><mrow>\left\{\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix}, \begin{pmatrix}1 \\ 2 \\ 1\end{pmatrix}, \begin{pmatrix}1 \\ 1 \\ 2\end{pmatrix}\right\}</mrow></md>.
+        We could row-reduce to find that <m>\begin{pmatrix}1 \amp 1 \amp 1 \\ 1 \amp 2 \amp 1 \\ 1 \amp 1 \amp 2\end{pmatrix}</m> has a pivot in
+        every row and column.
+        This answer was obtained by starting with the
+        standard basis
+        <md><mrow>\left\{\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}\right\}</mrow></md>
+        and doing row replacements until there were no zeros left in the matrix (added the second and third rows to the first row, then added the new first row to the second and third rows).
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Allen Argent has put the matrix <m>A</m> below in its reduced row echelon
+        form:
+        <md><mrow>A=\begin{pmatrix}1 \amp -2 \amp 0 \amp 4 \\ -7 \amp 14 \amp 3 \amp 2 \\ 4 \amp -8 \amp -2 \amp -4\end{pmatrix} \xrightarrow[]{RREF} \begin{pmatrix}1 \amp -2 \amp 0 \amp 4 \\ 0 \amp 0 \amp 1 \amp 10 \\ 0 \amp 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Find a basis <m>\mathcal{B}</m> for <m>\Nul(A)</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          The RREF of <m>A</m> shows that if <m>Ax=0</m> then
+          <md><mrow>x_1 = 2x_2 - 4x_4, \ x_2 = x_2, \ x_3 = -10x_4, \ x_4 = x_4</mrow></md>.
+          So <m>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}2x_2-4x_4 \\ x_2 \\ -10x_4 \\ x_4\end{pmatrix}
+          	= x_2 \begin{pmatrix}2 \\ 1 \\ 0 \\ 0\end{pmatrix} + x_4 \begin{pmatrix}-4 \\ 0 \\ -10 \\ 1\end{pmatrix}</m>.
+          	Thus <m>\mathcal{B} = \left\{\begin{pmatrix}2 \\ 1 \\ 0 \\ 0\end{pmatrix}, \begin{pmatrix}-4 \\ 0 \\ -10 \\ 1\end{pmatrix}\right\}.</m>
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>x=\begin{pmatrix}2 \\ 3 \\ -10 \\ 1\end{pmatrix}</m> in <m>\Nul(A)</m>?  If so, write <m>x</m>
+          as a linear combination of the basis vectors of <m>\Nul(A)</m>.  If not,
+          justify why <m>x</m> is not in <m>\Nul(A)</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          <md><mrow>\left(\begin{array}{rr|r}2 \amp -4 \amp 2 \\ 1 \amp 0 \amp 3 \\ 0 \amp -10 \amp -10 \\ 0 \amp 1 \amp 1\end{array}\right)
+                \xrightarrow[R_3= -R_3/10]{R_1 \leftrightarrow R_2} \left(\begin{array}{rr|r}1 \amp 0 \amp 3 \\ 2 \amp -4 \amp 2 \\ 0 \amp 1 \amp 1 \\ 0 \amp 1 \amp 1\end{array}\right) \xrightarrow[R_4=R_4-R_3]{R_2=R_2-2R_1}
+                \left(\begin{array}{rr|r}1 \amp 0 \amp 3 \\ 0 \amp -4 \amp -4 \\ 0 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0\end{array}\right)
+                \xrightarrow[R_3=R_3-R_2]{R_2=R_2/-4} \left(\begin{array}{rr|r}1 \amp 0 \amp 3 \\ 0 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+          Therefore, <m>x</m> is in <m>\Nul(A)</m>, in fact <m>x=3b_1 + b_2</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>\begin{pmatrix}0 \\ -3 \\ 2\end{pmatrix}</m> in <m>\Col(A)</m>?</p>
+      </statement>
+      <solution>
+        <p>Yes.  <m>\begin{pmatrix}0 \\ -3 \\ 2\end{pmatrix}</m> is
+            <m>(-1)*(\textup{third column of</m>A<m>})</m> so it is in <m>\Col(A)</m>, no
+            work required.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A=\begin{pmatrix}1 \amp -2 \\ -2 \amp 4\end{pmatrix}</m>.  Clearly draw <m>\Col(A)</m> and
+      <m>\Nul(A)</m>, using the usual convention of labeling points in
+      <m>{\bf R}^2</m> by <m>(x,y)</m>.</p>
+      <image source="images/./2_7/blank-graph">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+      <p>\qquad
+      \quad</p>
+      <image source="images/./2_7/blank-graph">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p><m>\Col(A)</m> is the span of <m>\begin{pmatrix}1 \\ -2\end{pmatrix}</m>; <m>\Nul(A)</m> is the span of <m>\begin{pmatrix}2 \\ 1\end{pmatrix}</m>.
+         We graph <m>\Col(A)</m> first, then graph <m>\Nul(A)</m>.  For emphasis, we draw the
+         column space a solid line and the null space as a dashed line.</p>
+      <image source="images/./2_7/2_7-pr-11-col.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+      <p>\qquad \qquad</p>
+      <image source="images/./2_7/2_7-pr-11-null.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a matrix whose column space is the solid line and whose null space is the
+       dashed line graphed below.</p>
+      <image source="images/./2_7/2_7-pr-12.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p>
+        Here <m>\Col(A)</m> is the span of <m>\begin{pmatrix}1 \\ 3\end{pmatrix}</m>, so each column must be a scalar
+          multiple of <m>\begin{pmatrix}1 \\ 3\end{pmatrix}</m>.  Also, we need <m>\Nul(A)</m> to be the span of
+          <m>\begin{pmatrix}1 \\ -4\end{pmatrix}</m>, so <m>x_1 = -x_2/4</m>, which is the homogeneous equation
+          <m>x_1 + x_2/4 = 0</m>.  Therefore, each row of <m>\left(\begin{array}{r|r}A \amp 0\end{array}\right)</m> must be a scalar
+          multiple of <m>\left(\begin{array}{rr|r}1 \amp 1/4 \amp 0\end{array}\right)</m>.  Some possible examples for <m>A</m> is
+        <md><mrow>\begin{pmatrix}1 \amp 1/4 \\ 3 \amp 3/4\end{pmatrix}, \qquad \begin{pmatrix}4 \amp 1 \\ 12 \amp 3\end{pmatrix}, \qquad
+        \begin{pmatrix}-4 \amp -1 \\ -12 \amp -3\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>W</m> is a <m>4</m>-dimensional subspace of <m>{\bf R}^{13}</m>.
+      Must it be true that <m>W = \Col(A)</m> for some matrix <m>A</m>?
+      Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>Yes.  Just from the fact that <m>\dim(W) = 4</m>, we know that there is a
+        basis of <m>W</m> consisting of exactly <m>4</m> vectors
+        <m>v_1, \ v_2, \ v_3, \ v_4</m> so that
+        <m>W = \Span\{v_1, v_2, v_3, v_4\}</m>.  Therefore, <m>W = \Col(A)</m> for the
+        matrix <m>A = \begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}.</m></p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Let
+        <md><mrow>V = \left\{\begin{pmatrix}x \\ y \\ z\end{pmatrix} \textup{ in } {\bf R}^3
+             \ : \ x = y \right\}</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Show that <m>V</m> is a subspace of <m>{\bf R}^3</m>.</p>
+      </statement>
+      <solution>
+        <p>We could verify that <m>V</m> is a subspace using the
+             properties of a subspace, but there is a much faster way.  <m>V</m> is
+             the set of all points <m>(x, y, z)</m> in <m>{\bf R}^3</m> so that
+             <m>x - y = 0</m>.  This is <m>\textup{Nul}\begin{pmatrix}1 \amp -1 \amp 0\end{pmatrix}</m>, which is
+             automatically a subspace of <m>{\bf R}^3</m> since the null space of
+             \textit{any} matrix with <m>3</m> columns is a subspace of
+             <m>{\bf R}^3</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find a basis for <m>V</m>.  (Hint: it may be helpful to
+           write <m>V</m> as the null space of some matrix)</p>
+      </statement>
+      <solution>
+        <p>
+          To find <m>\textup{Nul}\begin{pmatrix}1 \amp -1 \amp 0\end{pmatrix}</m> we use the
+               augmented matrix <m>\left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 0\end{array}\right)</m>, which gives us <m>x_1 = x_2</m>,
+               <m>x_2</m> is free, and <m>x_3</m> is free.  Therefore, a basis for <m>V</m> is
+          <md><mrow>\begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a matrix <m>B</m> so that <m>\Col(B) = V</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          This problem might seem complicated at first, but if
+               we go back to the fundamentals, we see it is a concept check
+               using the definition of column space.  We just need to write a
+               matrix <m>B</m> so that
+               <m>\Col(B)= \textup{Span}\left\{\begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}\right\} =
+               V</m>.  One way to do this is just to let
+          <md><mrow>B = \begin{pmatrix}1 \amp 0 \\ 1 \amp 0 \\ 0 \amp 1\end{pmatrix}</mrow></md>.
+          \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        (Challenge) Consider the set <m>W</m> consisting of all polynomials that have degree
+          <m>2</m> or less.  In other words, <m>W</m> is the set of all functions of the
+          form
+        <md><mrow>f(x) = a_0 + a_1 x + a_2 x^2</mrow></md>
+        where <m>a_0</m>, <m>a_1</m>, and <m>a_2</m> are real numbers.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>What should it mean for a set of polynomials in <m>W</m> to be
+            linearly independent?</p>
+      </statement>
+      <solution>
+        <p>
+          A set of polynomials <m>\{f_1, \ldots, f_k\}</m> in <m>W</m> is linearly
+              independent if the equation
+          <md><mrow>c_1 f_1 + \cdots + c_k f_k = {\bf 0}</mrow></md>
+          has only the trivial solution <m>c_1 = \cdots c_k = 0</m>.
+        </p>
+        <p>
+          In other words, if
+          <md><mrow>c_1 f_1(x) + \cdots + c_k f_k(x) = 0</mrow></md>
+          for every real number <m>x</m>, then
+                <m>c_1 = \cdots c_k = 0</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find a basis for <m>W</m>.  In other words, find a linearly
+            independent set <m>S</m> of polynomials in <m>W</m>, so that any polynomial in <m>W</m> can
+            be written as a linear combination of elements in <m>S</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          A basis for <m>W</m> is <m>\{f_1, f_2, f_3\}</m> where
+          <md><mrow>f_1(x) = 1 + 0x + 0x^2, \qquad f_2(x) = 0 + 1x + 0x^2,
+                \qquad f_3(x) = 0 + 0x + 1x^2</mrow></md>.
+        </p>
+        <p>
+          First we show that <m>f_1, f_2</m>, and <m>f_3</m> span <m>W</m>.  Let <m>f</m> be any
+              polynomial in <m>W</m>.  Then for some <m>a_0</m>, <m>a_1</m>, and <m>a_2</m> we have
+          <md><mrow>f(x) = a_0 + a_1 x + a_2 x^2</mrow></md>,
+          so <m>f= a_0 f_1 + a_1 f_2 + a_2 f_3</m> and therefore <m>f</m> is in
+                <m>\textup{Span}\{f_1, f_2, f_3\}</m>.
+        </p>
+        <p>
+          Also, <m>\{f_1, f_2, f_3\}</m> is linearly independent: if
+          <md><mrow>{\bf 0} = c_1 f_1 + c_2 f_2 + c_3 f_3</mrow></md>,
+          then for all <m>x</m> we have
+          <md><mrow>0 = c_1 + c_2 x + c_3 x^2</mrow></md>.
+          This means that the polynomial
+                <m>c_1 + c_2 x + c_3 x^2</m> has infinitely many roots, which is only possible
+                if all coefficients are <m>0</m> (otherwise, it would have a maximum of <m>2</m>
+                roots).
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the dimension of <m>W</m>?</p>
+      </statement>
+      <solution>
+        <p>Since <m>W</m> has a basis consisting of <m>3</m> elements, the
+              dimension of <m>W</m> is <m>3</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+</exercises> \setcounter{problem}{0}
+
+\newpage
+
+
+
+
+
+\underline{2.9, The Rank Theorem and the Basis
+    Theorem}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: There is a <m>3 \times 2</m> matrix <m>A</m> so that the column space of
+        <m>A</m> is a line and the null space of <m>A</m> is a line.</p>
+    </statement>
+    <solution>
+      <p>True: for example, <m>A = \begin{pmatrix}1 \amp 0 \\ 1 \amp 0 \\ 1 \amp 0\end{pmatrix}</m>.  This has one column with a
+        pivot (so <m>\Col(A)</m> is a line) and one column without a pivot (so <m>\Nul(A)</m> is
+        a line).</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: There is a <m>2 \times 3</m> matrix <m>A</m> so that the column space of
+      <m>A</m> is a line and the null space of <m>A</m> is a line.</p>
+    </statement>
+    <solution>
+      <p>
+        False: If <m>\Col(A)</m> and <m>\Nul(A)</m> are both lines, then the sum of their
+          dimensions is <m>2</m>, but this is impossible by the Rank Theorem since
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = \ \textup{(number of columns of <m>A</m>)} = 3</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> is a
+      <m>10 \times 11</m> matrix and its null space is a line, then every vector
+      in <m>{\bf R}^{10}</m> is a linear combination of the columns of <m>A</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        True.  First we recall that since <m>A</m> has <m>10</m> rows, the column
+          space of <m>A</m> is a subspace of <m>{\bf R}^{10}</m>. By the Rank Theorem
+          and the fact that the null space is a line, we get
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 11, \qquad
+            \dim(\Col \ A) + 1 = 11, \qquad
+            \dim(\Col \ A) = 10</mrow></md>.
+        Therefore, <m>\Col(A)</m> is a <m>10</m>-dimensional subspace of <m>{\bf R}^{10}</m>,
+          which is just another way of saying <m>\Col(A) = {\bf R}^{10}</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Suppose <m>A</m> is a <m>66 \times 77</m> matrix.  Which of the following statements are true?  Select all that apply.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>The homogeneous equation <m>Ax=0</m> must have infinitely
+          many solutions.</p>
+      </statement>
+      <solution>
+        <p>True: <m>A</m> is <m>66 \times 77</m>, so <m>A</m> has at most <m>66</m>
+            pivots.  Since <m>A</m> has <m>77</m> columns, this means at least <m>11</m>
+            columns in <m>A</m> will not have pivots, therefore the equation
+            <m>Ax=0</m> has at least <m>11</m> free variables.  This is just another
+            way of rephrasing the consequences of the Rank Theorem, which
+            expresses this succinctly in part (c).</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>The column space of <m>A</m> is a subspace <m>{\bf R}^{66}</m>.</p>
+      </statement>
+      <solution>
+        <p>True, since <m>A</m> has <m>66</m> rows.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>\dim(\Nul(A)) \geq 11</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          True.  By the Rank Theorem,
+          <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 77</mrow></md>,
+          but since <m>\Col \ A</m> is a subspace of <m>{\bf R}^{66}</m> we know
+              <m>\dim(\Col(A)) \leq 66</m>, therefore <m>\dim(\Nul \ A) \geq 11</m>.
+            \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a <m>3 \times 3</m> matrix <m>A</m> with the property
+      that <m>\textup{Nul}(A) = \textup{Col}(A)</m>?  If so, write one.</p>
+    </statement>
+    <solution>
+      <p>
+        No: if <m>\textup{Nul}(A) = \textup{Col}(A)</m>, then by
+            the Rank Theorem,
+        <md><mrow>3 = \dim(\textup{Nul} \ A) + \dim(\textup{Col} \ A) = 2
+              \dim(\textup{Nul} \ A)</mrow></md>.
+        This would mean
+            <m>\dim(\textup{Nul} \ A) = 3/2</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a <m>2 \times 2</m> matrix <m>A</m> with the property
+      that <m>\textup{Nul}(A) = \textup{Col}(A)</m>?  If so, write one.</p>
+    </statement>
+    <solution>
+      <p>Yes: unlike in the <m>3 \times 3</m> case, the Rank Theorem
+          does not rule out the possibility that
+          <m>\textup{Nul}(A) = \textup{Col}(A)</m>.  However, it may take some
+          time and trial and error to write such an <m>A</m>.  One example is
+          <m>A = \begin{pmatrix}0 \amp 1 \\ 0 \amp 0\end{pmatrix}</m>.  Both its range and null space are the span
+          of <m>\begin{pmatrix}1 \\ 0\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that <m>A</m> is a <m>6 \times 2</m> matrix and that the column space of <m>A</m> is
+      <m>2</m>-dimensional.  Is it possible for <m>\begin{pmatrix}1 \\ 0\end{pmatrix}</m> and <m>\begin{pmatrix}1 \\ 1\end{pmatrix}</m> to be solutions
+      to <m>Ax = b</m> for some <m>b</m> in <m>{\bf R}^6</m>?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>No, it is not possible.  Here <m>A</m> is <m>6 \times 2</m> with a <m>2</m>-dimensional
+        column space, so both of its columns are pivot columns.  In other words, its
+        columns are linearly independent.  Therefore, <m>Ax = 0</m> has exactly one
+        solution, so any consistent system <m>Ax = b</m> must have exactly one solution.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that <m>A</m> is a <m>5 \times 7</m> matrix and the column space of <m>A</m> is a line
+      in <m>{\bf R}^5</m>.  Describe the set of solutions to <m>Ax = 0</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We are told that <m>\dim(\Col \ A) = 1</m>.  By the Rank Theorem:
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 7, \qquad
+        1 + \dim(\Nul \ A) = 7, \qquad \dim(\Nul \ A) = 6</mrow></md>.
+        Also, the null space of <m>A</m> lives in <m>{\bf R}^7</m> since <m>A</m> has <m>7</m> columns.
+        Therefore, the set of solutions to <m>Ax = 0</m> is <m>6</m>-dimensional subspace of <m>{\bf R}^7</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that <m>A</m> is a <m>5 \times 7</m> matrix and the column space of <m>A</m> is
+      <m>{\bf R}^5</m>.  Describe the set of solutions to <m>Ax = 0</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We are told that <m>\dim(\Col \ A) = 5</m>.  By the Rank Theorem:
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 7, \qquad
+        5 + \dim(\Nul \ A) = 7, \qquad \dim(\Nul \ A) = 2</mrow></md>.
+        Also, the null space of <m>A</m> lives in <m>{\bf R}^7</m> since <m>A</m> has <m>7</m> columns.
+        Therefore, the set of solutions to <m>Ax = 0</m> is a plane in <m>{\bf R}^7</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that <m>A</m> is a <m>5 \times 7</m> matrix and the null space of <m>A</m> is a plane.
+      Is the matrix equation <m>Ax = (1, 2, 3, 4, 5)</m> consistent?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes.  The Rank Theorem gives us
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 7, \qquad
+          \dim(\Col \ A) + 2 = 7, \qquad \dim(\Col \ A) = 5</mrow></md>.
+        In other words, the
+        column space of <m>A</m> is all of <m>{\bf R}^5</m>, therefore <m>Ax = b</m> is consistent for
+        every <m>b</m> in <m>{\bf R}^5</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Fill in the blanks: If <m>A</m> is a <m>5 \times 6</m> matrix and whose columns span a
+      plane, then the null space of <m>A</m> is a \underline{\qquad \qquad}-dimensional
+      subspace of
+      <m>\R^{\fbox{\phantom{\tiny 2}}}</m>.</p>
+    </statement>
+    <solution>
+      <p><m>\Nul A</m> is a subspace of <m>{\bf R}^6</m>, and
+        <m>\dim(\Col \ A)+ \dim(\Nul \ A)=6</m> so <m>2+\dim(\Nul A)=6</m>.  Thus
+        <m>\Nul \ A</m> is a 4-dimensional subspace of <m>{\bf R}^6</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a matrix <m>A</m> whose null space is <m>3</m>-dimensional and whose
+      column space is <m>4</m>-dimensional.</p>
+    </statement>
+    <solution>
+      <p>By the Rank Theorem, the sum of the dimensions of the null and
+        column spaces is equal to the number of columns of <m>A</m>, so <m>A</m> must
+        have <m>7</m> columns.  Moreover, exactly <m>4</m> columns must be pivot
+        columns so that <m>\rank(A)=4</m>.</p>
+      <p>
+        One example is
+        <md><mrow>A = \begin{pmatrix}1 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1 \amp 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+</exercises> \setcounter{problem}{0}
+
+
+\newpage

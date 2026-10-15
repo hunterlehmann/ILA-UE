@@ -1,0 +1,330 @@
+
+
+\subsection{6.1, Dot products and orthogonality}
+
+\begin{problems}
+%a
+%  
+\problem Compute the dot product of the vectors $\vec{-3 1 2 1}$ and
+$\vec{0 2 -4 3}$.
+
+\begin{solution}
+  $\vec{-3 1 2 1} \cdot \vec{0 2 -4 3}
+  = -3(0) + 1(2) + 2(-4) + 1(3) = -3$.
+\end{solution}
+
+\problem Suppose $u$ and $v$ are vectors satisfying $||u|| = 3$,
+$||v|| = 9$, and $u \cdot v = -4$.  Find
+\[(4u-v) \cdot (u + v).\]
+
+\begin{solution}
+  \begin{align*}
+    (4u-v) \cdot (u + v)
+    & = 4 u \cdot u + 4u \cdot v - v \dot u - v \dot v \\
+    & = 4 ||u||^2 + 4 (-4) - (-4) - ||v||^2 \\
+    & = 4 (3^2) - 16 + 4 - 9^2
+      = -57.
+  \end{align*}
+\end{solution}
+
+\problem Suppose $u$ and $v$ are vectors satisfying $||u|| = 4$
+and $||v|| = 2$.  Find \[||u+v||^2 + ||u-v||^2.\]
+
+\begin{solution}
+  We could expand the expression or use the Parallelogram Law.
+  \[||u+v||^2 + ||u-v||^2 = 2(||u||^2 + ||v||^2)
+    = 2(16 + 4) = 40.\]
+\end{solution}
+
+
+\problem Suppose $u$, $v$, and $w$ are vectors with the property that
+$u \perp v$ and $u \perp w$.  Must it be true that $u$ is orthogonal
+to all vectors in $\textup{Span}\{v, w\}$?  Justify your answer.
+
+
+\problem (Challenge!) We can define dot products outside of our usual
+context of ${\bf R}^n$.  This example discusses a dot product on the
+set $W$ of all polynomials of degree $3$ or less, defined as follows.
+If $f$ and $g$ are in $W$, we define a dot product using integration:
+\[f \cdot g = \int_{-1} ^1 f(x) g(x) \ dx.\]
+\begin{subproblems}
+  \subproblem Let $f(x) = x$ and $g(x) = x^2$.  Show that $f$ and $g$
+  are orthogonal.  In other words, show that $f \cdot g = 0$.
+  %
+  \subproblem Let $f(x) = x$ and $g(x) = x^3 - cx$.  Find the value
+  of $c$ so that $f$ and $g$ are orthogonal.
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem
+    $\displaystyle f \cdot g = \int_{-1}^1 x(x^2) \ dx = \int_{-1}^1
+    x^3 \ dx = x^4 \Big|_{-1}^1 = 1 - 1 = 0$.
+    \subproblem We solve for $c$ so that $f \cdot g = 0$.
+    \[0 = f \cdot g = \int_{-1}^1 x(x^3 - cx) \ dx
+      = \int_{-1}^1 x^4 - cx^2
+      = \Big[\dfrac{x^5}{5} - \dfrac{1}{3}cx^3\Big]_{-1}^1
+      = \dfrac{2}{5} - \dfrac{2}{3}c.
+    \]
+    Therefore, $c = \dfrac{3}{5}$.
+  \end{subproblems}
+\end{solution}
+
+
+\end{problems}\setcounter{problem}{0}
+
+\newpage
+
+\subsection{6.2, Orthogonal complements}
+
+\begin{problems}
+% 
+\problem % Dan's notes 
+What is the dimension of $W^{\perp}$ if $W$ is a line in ${\bf R}^{10}$?
+% Solution needed
+
+\problem % Dan's notes 
+What is $W^{\perp}$ if $W$ is the line $y = mx$ ($m$ some real number) in ${\bf R}^2$?
+% Solution needed
+
+\problem % Dan's notes 
+If $W$ is the line $y=x$ in ${\bf R}^2$, and $v = \vec{7 -3}$, write $v$ as $v_W + v_{W^{\perp}}$.
+% Solution needed
+
+\problem % Dan's notes 
+Find the orthogonal complement of the line through the origin and $\vec{1 2 3}$ in ${\bf R}^3$.
+% Solution needed
+
+\problem % Dan's notes 
+Find the orthogonal complement of the line through the origin and $\vec{1 2 3 4}$ in ${\bf R}^4$.
+% Solution needed
+
+\problem % Dan's notes 
+Find the orthogonal complement of the $x_1x_2$-plane in ${\bf R}^4$?
+% Solution needed
+
+\problem Suppose $A$ is a $22 \times 17$ matrix with rank $10$.
+\newline \newline %
+(i) Write the dimension of the null space of $A$:
+\underline{\hspace{2cm}} \newline \newline %
+(ii) Write the dimension of the the row space of $A$:
+\underline{\hspace{2cm}} \newline \newline %
+(iii) Write the dimension of $(\textup{Row } A)^{\perp}$:
+\underline{\hspace{2cm}} \newline \newline %
+(iv) Write the dimension of $(\textup{Col } A)^{\perp}$:
+\underline{\hspace{2cm}}
+\end{problems}\setcounter{problem}{0}
+
+
+\newpage
+
+\subsection{6.3, Orthogonal projections}
+
+\begin{problems}
+\problem % Dan's notes 
+True or false.
+\begin{subproblems}
+    \subproblem The solution to $A^T A x = A^T b$ is the point in $\Col(A)$ that is closest to $b$.
+    %
+    \subproblem If $A$ has two equal columns, then $A^TAx = A^Tb$ has infinitely many solutions for every $b$.
+    %
+    \subproblem If $v$ and $w$ are both solutions to $A^TAx = A^Tb$, then $v-w$ is in the null space of $A$. %tricky but true
+\end{subproblems}
+% Solution needed
+
+\problem % Dan's notes 
+Find $b_L$ and $b_{L^{\perp}}$ if $b = \vec{1 2 3}$ and $L$ is the span of $\vec{1 2 1}$.
+% Solution needed
+
+\problem % Dan's notes 
+Find $b_W$ if $b = \vec{1 2 3}$ and $W$ is the span of the vectors $\vec{1 2 1}$ and $\vec{1 0 1}$.  Find the distance from $b$ to $W$.
+% Solution needed
+
+\problem % Dan's notes 
+Find the matrix $A$ for orthogonal projection onto the span of $\vec{1 2 1}$ and $\vec{1 0 1}$.  What are the eigenvalues of $A$?  What is $A^{101}$?
+% Solution needed
+
+\problem % From pre-Fall 2022 ASE / AP exam
+  Let
+\[W = \left\{\vec{x_1, x_2, x_3} \textup{ in } {\bf R}^3 \ : \ x_1 -
+    x_2 - x_3 = 0\right\},\] and let $B$ be the matrix for orthogonal
+projection onto $W$.  Which of the following statements must be true?
+Circle all that apply. %
+\newline \newline %
+(i) The null space of $B$ is $2$-dimensional. \newline \newline %
+(ii) Suppose $v$ is in ${\bf R}^3$ but is not in $W$.  Then the
+closest vector to $v$ in $W$ is $Bv$.  \newline \newline
+    %
+(iii) If $x$ is a vector in ${\bf R}^3$, then $x$ must be in $W$ or
+$W^{\perp}$.  \newline \newline %
+(iv) $B^2 = B$.
+
+\begin{solution}
+  By properties of orthogonal projections we know that (ii) and (iv)
+  are true. \newline \newline However, (i) is false since the null
+  space of $B$ is $W^{\perp}$ which is $1$-dimensional.  Statement
+  (iii) is false: $x = (1, 2, 0)$ is not in $W$ (it doesn't satisfy
+  the equation for $W$) and is not in $W^{\perp}$ since it is not
+  orthogonal to the vector $w = (1, 1, 0)$ in $W$:
+  $x \cdot w = 1(1) + 1(2) = 3 \neq 0$.
+\end{solution}
+
+\problem % Written for ILA
+Compute the matrix $B$ for orthogonal projection onto the line spanned
+by $\vec{-5 3 -4}$.
+
+\begin{solution}
+  With $u = \vec{-5 3 -4}$, the matrix $B$ is
+  \[B = \dfrac{1}{u \cdot u} uu^T = \dfrac{1}{(-5)^2+3^3+(-4)^2}
+    \vec{-5 3 -4} \mat{-5 3 -4}
+  = \dfrac{1}{50} \mat{25 -15 20; -15 9 -12; 20 -12 16}.\]
+  
+\end{solution}
+
+\problem % From pre-Fall 2022 ASE / AP exam
+Let $A$ be the matrix for orthogonal projection onto the line $W$
+drawn below.
+\begin{center} \includegraphics[scale=0.6]{./6_4/projj} \end{center} Find
+$A \vec{3 -1}$. % (3, -1) is (2, 1) + (1, -2)
+  % (5, 0) is (4,2) + (1, -2)
+
+\begin{solution}
+  There are plenty of ways to do this problem.  One way is to draw the
+  orthogonal projection of $\vec{3 -1}$ onto the line and find that
+  this projection is $\vec{2 1}$.
+
+  Another way is to observe that the orthogonal decomposition of
+  $\vec{3 -1}$ with respect to $W$ is $\vec{2 1} + {1 -2}$, so by
+  linearity:
+  \[A \vec{3 -1} = A \left(\vec{2 1} + \vec{1 -2}\right)
+    = A \vec{2 1} + A \vec{1 -2} = \vec{2 1} + 0 = \vec{2 1}.\]
+
+  A third way to do this problem is to compute $A$ and then
+  compute $A \vec{3 -1}$:
+  \[A = \frac{1}{\vec{2 1} \cdot \vec{2 1}} \vec{2 1} \mat{2 1} =
+    \frac{1}{5} \mat{4 2; 2 1}, \qquad A \vec{2 1} =
+    \dfrac{1}{5}\mat{4 2; 2 1} \vec{3 -1} = \vec{2 1}.\]
+\end{solution}
+
+\problem Let $v = \vec{5 2}$, and let $W$ be the line $y = -x$.
+Compute the orthogonal projection of $v$ onto $W$.  Draw $v$, $W$,
+$v_W$, and $v_{\perp}$.
+
+\problem Let $W$ be the plane in ${\bf R}^3$ given by the equation
+\[3x - y - 6z = 0.\] Find the standard matrix $B$ for orthogonal
+projection onto $W$.
+
+\begin{solution}
+  We could either find a basis for $W$ by noting
+  $W = \textup{Nul} \mat{3 -1 -6}$ and row-reducing the corresponding
+  augmented matrix, or we could just use the Basis Theorem by finding
+  two vectors that satisfy $3x-y-6z=0$, such as: %
+  \[\left\{\vec{1 3 0}, \vec{2 0 1}\right\}.\]
+  Setting $A = \mat{1 2; 3 0; 0 1}$, we have $B = A(A^TA)^{-1} A^T$.
+  We calculate $(A^T A)^{-1} = \dfrac{1}{46}\mat{5 -2; -2 10}$
+  and
+  \[B = A(A^TA)^{-1}A^T = \dfrac{1}{46} \mat{37 3 18; 3 45 -6; 18 -6
+      10}.\]
+\end{solution}
+
+\problem % Created for ILA
+True or false. Justify your answer! \newline Suppose that
+$P: {\bf R}^2 \to {\bf R}^2$ and $Q: {\bf R}^2 \to {\bf R}^2$ are
+orthogonal projections.  Then the product $PQ$ must be an orthogonal
+projection.
+
+\begin{solution}
+  False.  If we take $P$ to be projection onto the $x$-axis and $Q$
+  to be projection onto the line $y=x$, then
+  \begin{align*}
+    PQ
+    & = \mat{1 0; 0 0} \mat{1/2 1/2; 1/2 1/2}
+      = \mat{1/2 1/2; 0 0} \\
+    (PQ)^2
+    & = \mat{1/2 1/2; 0 0} \mat{1/2 1/2; 0 0}=
+      \mat{1/4 1/4; 0 0}.
+  \end{align*}
+  $PQ$ is not the same as $(PQ)^2$, so $PQ$ is not a projection.
+  \newline \newline This means that if we take the composition of
+  linear transformations that are orthogonal projections onto
+  different subspaces, then the composition is not necessarily an
+  orthogonal projection.
+\end{solution}
+
+\problem% Created for ILA
+True or false. Justify your answer! \newline Suppose that
+$P: {\bf R}^n \to {\bf R}^n$ is an orthogonal projections.  Then $I-P$
+is an orthogonal projection.
+
+\begin{solution}
+  True.  If $P$ is the orthogonal projection onto a subspace $W$, then
+  $I-P$ is the orthogonal projection onto $W^{\perp}$ since $I-P$
+  destroys every vector in $W$ and fixes every vector in $W^{\perp}$:
+  if $w$ is in $W$ then $(I-P)(w) = w - Pw = w - w = 0$, and if $y$ is
+  in $W^{\perp}$ then $(I-P)(y) = y - Py = y - 0 = y$.  Alternatively,
+  we could use the properties $P^T = P$ and $P^2 = P$ to verify that
+  $I-P$ is an orthogonal projection abstractly through the fact that
+  $(I-P)^T = I^T-P^T = I-P$ and
+  \[(I-P)^2 = (I-P)(I-P) = I^2 - IP - PI +P^2 = I-P-P+P = I-P.\]
+\end{solution}
+
+
+\end{problems}\setcounter{problem}{0}
+
+
+\newpage
+
+\subsection{6.5, The method of least squares}
+\begin{problems}
+%  
+\problem  % Dan's notes
+True or false.
+\begin{subproblems}
+    \subproblem For every set of three different points in ${\bf R}^2$, there is a unique best fit line.
+    %
+    \subproblem If $\hat{x}$ is the least squares solution to $Ax = b$ for an $m \times n$ matrix $A$, then $\hat{x}$ is the closest point in ${\bf R}^n$ to $b$.
+    %
+    \subproblem If $\hat{x}$ and $\hat{y}$ are both least squares solutions to $Ax = b$, then $\hat{x} - \hat{y}$ is in the null space of $A$.
+\end{subproblems}
+% Solution needed
+
+
+\problem  % Taken from Fall 2022 ASE
+%  
+In this problem, we follow the standard labeling of points in the
+$xy$-plane as $(x,y)$. \newline \newline Find the least-squares line
+$y = Mx + B$ for the data points $(-4, -5)$, $(-1, 10)$, and $(2,
+7)$.  % y = 2x + 6
+
+\begin{solution}
+  The (inconsistent) system of equations for the line through the
+  three data points is:
+  \[-5 = -4M + B\]
+  \[10 = -1M + B\]
+  \[7 = 2M + B.\]
+  This is the matrix equation $Ax=b$ where
+  $A = \mat{-4 1; -1 1; 2 1}$ and $b= \vec{-5 10 7}$.  \newline
+  \newline We need to solve $A^TA\hat{x} = A^T b$.
+  \[A^T A = \mat{21 -3; -3 3}, \qquad
+    A^T b = \vec{24 12}.\]
+  We solve:
+  \[\amat{A^TA \ A^Tb} = \amat{21 -3 24; -3 3 12}
+    \xrightarrow[]{} \amat{1 -1 -4; 0 18 108}
+    \xrightarrow[]{} \amat{1 -1 -4; 0 1 6}
+    \xrightarrow[]{} \amat{1 0 2; 0 1 6}.
+    \]
+  Therefore, $\hat{x} = \vec{2 6}$.  Since we arranged the
+  entries to correspond to $\vec{M B}$, this means
+    \[\boxed{y = 2x + 6}.\] 
+\end{solution}
+
+\problem  % Dan's notes
+Find the best fit line through $(1, 0)$, $(2, 1)$, and $(3, 1)$. 
+% Solution needed
+
+\problem  % Dan's notes
+Find the best fit parabola through $(1, 0)$, $(2, 1)$, $(3, 1)$, and $(3, 0)$. 
+% Solution needed
+\end{problems} \setcounter{problem}{0}
+
+\newpage

@@ -1,0 +1,1037 @@
+
+\subsection{3.1, Matrix transformations}
+
+\begin{problems}
+%a
+%
+\problem % Dan's notes
+True or false: If $A$ is a matrix and $T$ is the associated matrix 
+transformation, then the statement that $Ax = b$ is consistent is 
+equivalent to the statement that $b$ is in the range of $T$.
+
+\begin{solution}
+  True. This follows directly from the definition of range and the fact that $T$
+  is the transformation $T(x) = Ax$: \newline %
+  The matrix equation $Ax = b$ is consistent $\iff$ $T(x) = b$ is consistent
+    $\iff$ $b$ is in the range of $T$.
+\end{solution}
+
+\problem % Dan's notes
+There is a matrix $A$ so that the domain of the associated matrix transformation
+$T$ is a line in ${\bf R}^3$.
+
+\begin{solution}
+  False: the domain of $T$ is (all of) ${\bf R}^n$, where $n$ is the number of
+  columns of $A$.  If $A$ has one column, then the domain of $T$ is ${\bf
+    R}$. If $A$ has three columns, then the domain of $T$ is ${\bf R}^3$.  The
+  domain of $T$ can never be a line in ${\bf R}^3$.
+\end{solution}
+
+
+\problem % Dan's notes
+What does the matrix $\mat{-1 0; 0 -1}$ do to vectors in ${\bf R}^2$?
+
+\begin{solution}
+  $\mat{-1 0; 0 -1}\vec{x y} = \vec{-x -y} = - \vec{x y}$, so the matrix sends
+  each vector $v$ to $-v$.  In other words, the matrix implements scalar
+  multiplication by $-1$.
+\end{solution}
+
+
+
+\problem % Dan's notes
+What does the matrix $\mat{1 0 0; 0 0 0; 0 0 0}$ do to vectors in ${\bf R}^3$?
+
+\begin{solution}
+It naturally projects each vector onto the $x$-axis by turning its second and third coordinates into zeros:
+\[\mat{1 0 0; 0 0 0; 0 0 0} \vec{x y z} = \vec{x 0 0}.\]
+\end{solution}
+
+\problem % Dan's notes
+What does the matrix $\mat{0 0; 1 0; 0 1}$ do to vectors in ${\bf R}^2$?
+
+\begin{solution}
+The matrix takes vectors from ${\bf R}^2$ and naturally inserts them into the $yz$-plane in ${\bf R}^3$.  If $\vec{x_1 x_2}$ is any vector in ${\bf R}^2$, then
+\[\mat{0 0; 1 0; 0 1} \vec{x_1 x_2} = \vec{0 x_1 x_2}.\]
+\end{solution}
+
+
+\problem % Created for ILA
+Let $T$ be the transformation $T\vec{x y} = \mat{0 -1; 1 0} \vec{x y}$.
+Describe $T$ geometrically.
+
+\begin{solution}
+$T$ rotates vectors in ${\bf R}^2$ by $\frac{\pi}{2}$ radians counterclockwise. 
+\end{solution}
+
+\problem % Created for ILA
+Let $T$ be the transformation $T\vec{x y} = \mat{0 1; 1 0} \vec{x y}$.  Describe
+$T$ geometrically.
+
+\begin{solution}
+Rotation across the line $y=x$.  We can check by
+  computing $T \vec{x y} = \vec{y x}$.
+\end{solution}
+
+
+\problem % Created for ILA
+Fill in the blanks: If $T: {\bf R}^{5} \to {\bf R}^3$ is a matrix
+transformation $T(x) = Ax$, then $A$ has $\underline{\qquad}$
+rows and $\underline{\qquad}$ columns.
+
+\begin{solution}
+  $A$ has $3$ rows and $5$ columns.  This may seem counterintuitive,
+  but we can check: for $T(x)$ to make sense, $x$ must be in ${\bf R}^5$,
+  so $A$ has $5$ columns.  Moreover, $T(x)$ is in ${\bf R}^3$ so $A$
+  must have $3$ rows.
+\end{solution}
+
+
+\problem % Created for ILA
+Let $A$ be a $7 \times 6$ matrix, and define a matrix transformation
+by $T(x) = Ax$.  What is the domain of $T$?  What is the codomain of $T$?
+
+\begin{solution}
+  The domain of $T$ is ${\bf R}^6$ and the codomain is ${\bf R}^7$.
+  We can check: for $x$ to be in the domain of $T$, we need $Ax$ to
+  make sense, so $x$ must be in ${\bf R}^6$.  The vector $Ax$ lives in
+  the column space of $A$ (which is the codomain of $T$), namely
+  ${\bf R}^7$.
+
+  In general, For a $k \times \ell$ matrix $A$, the transformation
+  $T(x) = Ax$ has domain ${\bf R}^{\ell}$ and codomain ${\bf R}^k$.
+\end{solution}
+
+\problem Write a $2 \times 2$ matrix $A$ so that the transformation
+$T\vec{x y} = A\vec{x y}$ reflects vectors across the $x$-axis.
+
+% Created for ILA
+\begin{solution}
+$A = \mat{1 0; 0 -1}$.  We can check by verifying that 
+$A \vec{x y} = \vec{x -y}$.    
+\end{solution}
+
+
+\problem Write a $2 \times 2$ matrix $A$ so that the transformation
+$T\vec{x y} = A\vec{x y}$ stretches all vectors by a factor of $4$.
+
+% Created for ILA
+\begin{solution}
+$A = \mat{4 0; 0 4}$.  We can check by verifying 
+$A \vec{x y} = \vec{4x 4y} = 4 \vec{x y}$.
+\end{solution}
+
+\problem Write a $2 \times 2$ matrix $A$ so that the transformation
+$T\vec{x y} = A\vec{x y}$ reflects vectors across the $y$-axis.
+
+% Created for ILA
+\begin{solution}
+$A = \mat{-1 0; 0 1}$.  We can check by verifying that
+$A \vec{x y} = \vec{-x y}$.
+\end{solution}
+
+\problem Write a $2 \times 2$ matrix $A$ so that the transformation
+$T\vec{x y} = A\vec{x y}$ stretches vectors along the $x$-axis by a factor of
+$3$, while leaving the $y$-axis fixed.%
+
+% Created for ILA
+\begin{solution}
+$A = \mat{4 0; 0 4}$.  We can check by verifying 
+$A \vec{x y} = \vec{4x 4y} = 4 \vec{x y}$.
+\end{solution}
+
+
+\problem Consider the transformation
+$T(x) = \mat{1 -1 9; 0 2 4; 0 1 2; 0 1 2} x$.
+\begin{subproblems}
+  \subproblem What is the domain of $T$?
+  \subproblem What is the codomain of $T$?
+  \subproblem What is the range of $T$?
+\end{subproblems}
+
+\begin{solution} $T$ is the matrix transformation $T(x) = Ax$ for the
+  $4 \times 3$ matrix $A = \mat{1 -1 9; 0 2 4; 0 1 2; 0 1 2}$.
+  \begin{subproblems}
+    \subproblem The domain of $T$ is ${\bf R^3}$.  %
+    \subproblem The codomain of $T$ is ${\bf R}^4$. %
+    \subproblem The range of $T$ is the column space of $A$.  As we
+    know from the the past, the pivot columns
+    \[A = \mat{1 -1 9; 0 2 4; 0 1 2; 0 1 2} \xrightarrow[]{RREF}
+      \mat{1 0 11; 0 1 2; 0 0 0; 0 0 0}.\] Thus, the first two columns
+    are pivot columns, so range$(T)$ is
+    \[\textup{Span}\left\{\vec{1 0 0 0}, \vec{-1 2 1 1}\right\}.\]
+  \end{subproblems}
+\end{solution}
+
+
+\problem Consider the transformation
+\[T(x) = \mat{2 2 3 1 2; 3 4 0 0 -1}x.\]
+\begin{subproblems}
+  \subproblem What is the domain of $T$?
+  \subproblem What is the codomain of $T$?
+  \subproblem What is the range of $T$?
+\end{subproblems}
+
+\begin{solution} $T(x) = Ax$ for the $2 \times 5$ matrix
+  $A = \mat{2 2 3 1 2; 3 4 0 0 -1}$.
+  \begin{subproblems}
+    \subproblem The domain of $T$ is ${\bf R^5}$.  %
+    \subproblem The codomain of $T$ is ${\bf R}^2$. %
+    \subproblem The range of $T$ is the column space of $A$. We could
+    do one step of row-reduction to see that the first two columns of
+    $A$ are pivot columns.  Therefore, the first two columns are
+    linearly independent vectors in ${\bf R}^2$, so the range of $T$
+    is ${\bf R}^2$.
+  \end{subproblems}
+\end{solution}
+
+
+
+\problem Is there a matrix transformation $T(x) = Ax$ that satisfies
+the following?
+\[T\vec{1 3} = \vec{1 0}, \qquad T \vec{2 6} = \vec{-1 0}.\] (hint:
+recall the matrix multiplication properties $A(u+v) = Au+Av$,
+$A(cu) = cAu$ for vectors $u$ and $v$ and scalars $c$).
+
+\begin{solution}
+  No.  If $T$ is a matrix transformation $T(x) = Ax$ for some matrix
+  $A$, then from the property $A(2u) = 2 A(u)$ it must be true that
+  \[A \vec{2 6} = 2 A \vec{1 3},\] or in other words
+  $T \vec{2 6} = 2 T\vec{1 3}$.
+
+  However, $T\vec{2 6} = \vec{-1 0}$ but $2 T \vec{1 3} = \vec{2 0}$,
+  so $T \vec{2 6} \neq 2 T\vec{1 3}$.
+\end{solution}
+
+\end{problems}\setcounter{problem}{0}
+
+\newpage
+
+\begin{center} \underline{3.2, One-to-one and onto
+    transformations} \end{center}
+
+\begin{problems}
+  \problem % Dan's notes
+  It is possible for the matrix transformation associated to a $5 \times 6$
+  matrix to be both one-to-one and onto.
+
+\begin{solution}
+  False.  A matrix cannot have more pivots than rows or columns, so the matrix
+  has a max of $5$ pivots.  This means it is possible for the matrix to have a
+  pivot in every row, so the corresponding transformation might be onto.
+  However, the matrix will have at least one pivot without a column, so the
+  corresponding transformation $T$ cannot be one-to-one.
+\end{solution}
+
+
+\problem % Dan's notes
+The transformation $T: {\bf R}^3 \to {\bf R}^3$ given by projection onto the
+$yz$-plane is onto.
+
+\begin{solution}
+False.  Recall that in order for the transformation to be onto, its range must be all of ${\bf R}^3$.  However, the range of $T$ is the $yz$-plane.  In other words, the range is $\Span\left\{\vec{0 1 0}, \vec{0 0 1}\right\}$, which is only a $2$-dimensional subspace of ${\bf R}^3$, not all of ${\bf R}^3$.
+\end{solution}
+
+
+\problem % Dan's notes
+The transformation $T: {\bf R}^2 \to {\bf R}^2$ given by rotation by $\pi/5$
+radians clockwise is onto.
+
+\begin{solution}
+  True.  Let $y$ be \textit{any} vector in ${\bf R}^2$.  Then for the vector $x$
+  obtained by rotating $y$ by $\pi/5$ radians \textit{counterclockwise}, we get
+  $T(x) = y$.  This shows that every vector in ${\bf R}^2$ is in the range of
+  $T$.  In other words, range$(T) = {\bf R}^2$, so $T$ is onto.
+\end{solution}
+
+\problem %
+If a matrix $A$ has more rows than columns, then the matrix transformation $T$
+given by $T(x)=Ax$ is not onto.
+
+\begin{solution}
+True.  Since $A$ cannot have more pivots than columns,
+    and since there are more rows than columns, we conclude $A$ cannot
+    have a pivot in every row.  
+\end{solution}
+
+\problem % 
+Suppose $A = \mat{1 2 3; 4 5 6; 3 6 9}$. Then the transformation $T(x) = Ax$ is one-to-one.
+
+\begin{solution}
+False:
+    $\mat{1 2 3; 4 5 6; 3 6 9} \xrightarrow[R_3 = R_3 - 3R_1]{R_2=
+      R_2-4R_1} \mat{1 2 3; 0 -3 -6; 0 0 0}$, so $A$ does not have a
+    pivot in every column and therefore $T$ is not one-to-one.
+\end{solution}
+
+\problem True or false: Suppose $A$ is
+a matrix and $A \vec{-3 5 8 1}$ is the zero vector.  Then the transformation
+$T(x) = Ax$ cannot be one-to-one.
+
+\begin{solution}
+  True.  Since $A \vec{-3 5 8 1}$ is the zero vector, the homogeneous
+  system $Ax = 0$ has more than just the trivial solution.  Therefore, 
+  there are infinitely many vectors $x$ so that $Ax = 0$, so $T(x)=0$
+  has infinitely many solutions and $T$ is not one-to-one.
+\end{solution}
+
+\problem % Dan's notes
+Is there an onto matrix transformation $T(x) = Ax$ with domain ${\bf R}^2$ and
+codomain ${\bf R}^3$?  If so, write one down.  If not, explain why not.
+
+\begin{solution}
+  No.  In order for $T$ to have domain ${\bf R}^2$ and codomain ${\bf R}^3$, the
+  matrix $A$ must be $3 \times 2$, so $A$ has a max of $2$ pivot columns.
+  Therefore, the column space of $A$ (which is the range of $T$) is at most a
+  $2$-dimensional subspace of ${\bf R}^3$, so $T$ cannot be onto.
+\end{solution}
+
+\problem % Dan's notes
+Is there a one-to-one matrix transformation with domain ${\bf R}^2$ and codomain
+${\bf R}^3$?  If so, write one down.  If not, explain why not.
+
+\begin{solution}
+Yes.  Some examples of $3 \times 2$ matrice with a pivot in each column are
+\[A = \mat{1 0; 0 1; 0 0}, \qquad A = \mat{1 1; 0 1; 0 0}, 
+\qquad A = \mat{0 0; 5 1; 1 0}.\]
+\end{solution}
+
+
+
+\problem Which of the following transformations are one-to-one?
+\begin{subproblems}
+  \subproblem $T: {\bf R}^2 \to {\bf R}^2$ that naturally projects
+  vectors onto the $x$-axis. %
+  \subproblem $T(x, y, z) = (x, y+z)$.
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem No: for example, $T(0, 1) = (0, 0)$ and
+    $T(0, 0) = (0, 0)$. Alternatively, we could write the matrix for
+    $T$ (which we learned in section 3.1) and observe that it has $2$
+    columns but only one pivot.%
+    \subproblem No: for example, $T(1, 0, 0) = (1, 0)$ and
+    $T(1, 1, -1) = (1, 0)$. %
+  \end{subproblems}
+\end{solution}
+
+\problem Either write a $2 \times 3$ matrix $A$ that so that the
+matrix transformation $T(x)=Ax$ is one-to-one, or justify why no such
+matrix $A$ exists.
+
+\begin{solution}
+  Any $2 \times 3$ matrix $A$ has $3$ columns but at most $2$ pivots,
+  so it cannot have a pivot in every column, hence $T(x) = Ax$ cannot
+  be one-to-one.
+\end{solution}
+
+\problem % Made for ILA
+We are told that a matrix $A$ has four columns and three pivots, and let $T$ be the associated linear transformation.
+\begin{subproblems}
+  \subproblem Geometrically, what can we conclude about the range of
+  $T$?  Do we know in which ${\bf R}^k$ we can find the range of $T$?
+  Is it possible that $T$ is onto? %
+  \subproblem Geometrically, what can we conclude about the set of all
+  solutions to the equation $T(x) = 0$?  Do we know in which
+  ${\bf R}^\ell$ we can find this solution set?  Is it possible that
+  $T$ is one-to-one?
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem The range of $T$ is the column span of $A$.  Since $A$
+    has three pivots, this means that the range of $T$ has dimension
+    $3$.  We do not know where the range of $T$ lives, because we were
+    not told the number of rows of $A$ and we cannot tell from the
+    information given.
+    %
+    \subproblem The solution set for $T(x) = 0$ is just the null space
+    of $A$.  Since $A$ has $3$ pivots and $4$ columns, the system
+    $Ax=0$ will have one free variable and thus infinitely many
+    solutions.  Therefore, $T$ is not one-to-one and the solution set
+    to $T(x)=0$ is a one-dimensional subspace of ${\bf R}^4$.
+  \end{subproblems}
+\end{solution}
+
+
+\problem Either write a $3 \times 4$ matrix $A$ so that the matrix
+transformation $T(x)=Ax$ is onto, or justify why no such matrix $A$
+exists.
+
+\begin{solution}
+  Many examples possible, for example
+  $A = \mat{1 0 0 0; 0 1 0 0; 0 0 1 0}$.  We can see directly that
+  every vector $\vec{x_1 x_2 x_3}$ in ${\bf R}^3$ is in the range of
+  the transformation $T(x)=Ax$, since
+  \[A\vec{x_1 x_2 x_3 x_4} = \mat{1 0 0 0; 0 1 0 0; 0 0 1 0}
+    \vec{x_1 x_2 x_3 0} = \vec{x_1 x_2 x_3}.\]
+\end{solution}
+
+
+\problem Write a linear transformation $T$ with domain ${\bf R}^3$ and
+codomain ${\bf R}^2$ whose range is the line $x_2 = -2x_1$.
+
+\begin{solution}
+  We need to find a $2 \times 3$ matrix $A$ whose column space is the
+  line $x_2 = -2x_1$.  In other words
+  $\Col(A) = \textup{Span}\left\{ \vec{1 -2}\right\}$.  We need $A$ to
+  have exactly one pivot column, and each column must be a scalar
+  multiple of $\vec{1 -2}$.  Many examples are possible, for example:
+  \[A = \mat{1 0 0; -2 0 0}, \qquad A = \mat{1 2 3; -2 -4 -6}.\]
+\end{solution}
+
+\end{problems}\setcounter{problem}{0}
+\newpage
+
+\subsection{3.3, Linear transformations}
+
+\begin{problems}
+%a
+%
+\problem % Dan's notes
+Define $T: {\bf R} \to {\bf R}$ by $T(x) = x+1$.  Is $T$ a linear transformation?
+
+\begin{solution}
+No.  Recall that every linear transformation must send the origin to the origin.  However, $T(0) = 1$, so $T$ cannot be linear.  We could additionally check that $T$ fails other linearity properties.  For example, $T(1 + 2) \neq T(1) + T(2)$.
+\end{solution}
+
+\problem % Dan's notes
+Suppose $T: {\bf R}^2 \to {\bf R}^3$ is a linear transformation satisfying
+\[T\vec{1 1} = \vec{3 3 1} \quad \textup{ and } \quad T \vec{2 1} = \vec{3 1 1}.\]
+What is $T \vec{1 0}$?
+
+\begin{solution}
+First we write $\vec{1 0}$ as a linear combination of $u = \vec{1 1}$ and $v = \vec{2 1}$.
+\[x_1 u + x_2 v = \vec{1 0}, \qquad x_1 \vec{1 1} + x_2 \vec{2 1} = \vec{1 0}.\]
+This gives $x_1 = -1$ and $x_2 = 1$, so 
+\[-u + v= \vec{1 0}.\]
+By linearity of $T$:
+\[T\vec{1 0} = T(-u+v) = T(-u)+T(v) = -T(u)+T(v)
+= -\vec{3 3 1} + \vec{3 1 1} = \vec{0 -2 0}.\]
+% The matrix used for $T$ is $A = \mat{0 3; -2 5; 0 1}$
+\end{solution}
+
+\problem 
+Suppose $T: {\bf R}^2 \to {\bf R}^2$ is a linear transformation satisfying
+\[T\vec{3 -1} = \vec{1 1} \quad \textup{ and } \quad T \vec{1 2} = \vec{4 4}.\]
+Find the standard matrix $A$ for $T$, and use it to find $T\vec{11 1}$.
+
+\begin{solution}
+  We know that $A = \mat{T\vec{1 0} T\vec{0 1}}$, and we use linearity of $T$ to
+  find both columns of $A$.  Let $u = \vec{3 -1}$ and $v = \vec{1 2}$.  Work
+  using the basics of chapter 1 gives us
+\[\vec{1 0} = \dfrac{2}{7} u + \dfrac{1}{7} v \quad
+\textup{ and } \quad 
+\vec{0 1} = \dfrac{-1}{7} u + \dfrac{3}{7} v.
+\]
+Therefore, 
+\[T \vec{1 0} = T\left(\dfrac{2}{7}u + \dfrac{1}{7} v\right)
+= \dfrac{2}{7} T(u) + \dfrac{1}{7} T(v) 
+= \dfrac{2}{7} \vec{1 1} + \dfrac{1}{7} \vec{4 4}
+= \vec{6/7 6/7}\]
+and
+\[T \vec{0 1} = T\left(\dfrac{-1}{7}u + \dfrac{3}{7} v\right)
+= \dfrac{-1}{7} T(u) + \dfrac{3}{7} T(v) 
+= \dfrac{-1}{7} \vec{1 1} + \dfrac{3}{7} \vec{4 4}
+= \vec{11/7 11/7.}\]
+Therefore, 
+\[A = \mat{T\vec{1 0} T\vec{0 1}} = \mat{6/7 11/7; 6/7 11/7}.\]
+To finsih, we compute:
+\[T\vec{11 1} = A \vec{11 1} = 
+\mat{6/7 11/7; 6/7 11/7} \vec{11 1} = \vec{11 11}.\]
+If we had not been asked to compute $A$, we could have found $T\vec{11 1}$ directly by using linearity of $T$, by writing $\vec{11 1}$ as the linear combination of $u$ and $v$.  We would get
+$\vec{11 1} = 3u + 2v$, so 
+\[T\vec{11 11} = T(3u+2v) = 3T(u)+2T(v) = 3 \vec{1 1} + 2 \vec{4 4}
+= \vec{11 11}.\]
+\end{solution}
+
+
+
+\problem % Dan's notes
+Find the matrix for the linear transformation $T: {\bf R}^3 \to {\bf R}^3$ that
+rotates about the $z$-axis by $\pi$ radians and then scales by $2$.
+
+\begin{solution}
+  This is the composition $T \circ U$ where $T$ is the scaling operation and $U$
+  is the rotation.  The matrix for $T$ is $\mat{2 0 0; 0 2 0; 0 0 2}$.  Note $U$
+  keeps the $z$-axis fixed while rotating the $xy$ portion by $\pi$ radians, so
+  the matrix for $U$ is $\mat{-1 0 0; 0 -1 0; 0 0 1}$.
+  \[(T \circ U)(x) = \mat{2 0 0; 0 2 0; 0 0 2} \mat{-1 0 0; 0 -1 0; 0 0 1} =
+    \mat{-2 0 0; 0 -2 0; 0 0 2}.\] It turns out that these two transformations
+  happen to satisfy $T \circ U = U \circ T$, so we would have gotten the correct
+  answer even if we had mixed up the order of operations.
+\end{solution}
+
+\problem % Dan's notes
+Suppose $T: {\bf R}^3 \to {\bf R}^3$ is the function given by
+\[T \vec{x y z} = \vec{z 0 x}.\] Is $T$ linear?  If so, what is the standard
+matrix for $T$?
+
+\begin{solution}
+Yes, $T$ is linear, and we can verify that $T(x) = Ax$ for the matrix
+\[A = \mat{T(e_1) T(e_2) T(e_3)} = \mat{0 0 1; 0 0 0; 1 0 0}.\]
+We can check by computing
+\[A \vec{x y z} = \mat{0 0 1; 0 0 0; 1 0 0}\vec{x y z}
+= \vec{z 0 x}.\]
+\end{solution}
+
+
+\problem % Dan's notes
+What does the matrix 
+$\mat{-1/\sqrt{2} 1/\sqrt{2}; -1/\sqrt{2} -1/\sqrt{2}}$ 
+do to vectors in ${\bf R}^2$?
+
+\begin{solution}
+  This matrix is $\mat{\cos(\theta) -\sin(\theta); \sin(\theta) \cos(\theta)}$
+  for $\theta = 5\pi/4$ (or equivalently, $\theta = 225^\circ$).  Therefore,
+  this matrix rotates each vector in ${\bf R}^2$ by $5\pi/4$ radians
+  counterclockwise.
+\end{solution}
+
+\problem Is the identity transformation from ${\bf R}^n$ to ${\bf R}^n$ one-to-one?
+
+\begin{solution}
+  Yes: its standard matrix is the $n \times n$ identity matrix, which has a
+  pivot in every row and column, so the identity transformation is both
+  one-to-one and onto.
+\end{solution}
+
+\problem Which of the following transformations $T: {\bf R}^3
+\to {\bf R}^3$ are linear?
+\begin{subproblems}
+  \subproblem $T(x_1, x_2, x_3) = (x_1-x_2, x_3 + 1, x_2)$ %
+  \subproblem $T(x_1, x_2, x_3) = (x_1, |x_2|-x_1, x_3)$ %
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem No: $T(0, 0, 0) = (0, 1, 0)$.%
+    \subproblem No: the absolute value term ruins the possibility
+    that $T$ is linear.  If $u = (0, 1, 0)$ then
+    \[T(u) = (0, 1, 0), \quad T(-u) = T(0,-1,0)= (0,1,0),\] so
+    $T(-u) \neq -T(u)$. %
+  \end{subproblems}
+\end{solution}
+
+
+\problem Which of the following transformations $T: {\bf R}^3
+\to {\bf R}$ are linear?
+\begin{subproblems}
+\subproblem $T(a, b, c) = c-2b-a$
+\subproblem $T(x, y, z) = xy-z$ %
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem Yes: $T(x) = Ax$ for $A = \mat{-1 -2 1}$. %
+    \subproblem No: the product $xy$ ruins it.  For $u = \vec{1 1 0}$,
+    we get
+    \[T(u) = 1(1)-0 = 1, \qquad T(2u) = T\vec{2 2 0} = 2(2)-0 = 4.\]
+    Therefore, $T(2u) \neq 2 T(u)$, so $T$ is not linear.
+  \end{subproblems}
+\end{solution}
+
+\problem Suppose $T: {\bf R}^k \to {\bf R}^{\ell}$ is a one-to-one
+linear transformation.  Which of the following are possible? Answer
+yes or no in each case.
+\begin{subproblems}
+  \subproblem $k < \ell$
+  \subproblem $k > \ell$
+  \subproblem $k = \ell$.
+\end{subproblems}
+
+\begin{solution}
+  Let $A$ be the standard matrix for $T$, so $A$ is an $\ell \times k$
+  matrix.
+  \begin{subproblems}
+    \subproblem Yes.  If $k < \ell$ then $A$ has more rows than
+    columns, so $A$ can have a pivot in every column, for example
+    $A = \mat{1 0; 0 1; 0 0}$. %
+    \subproblem No.  If $k > \ell$ then $A$ has more columns that
+    rows, so $A$ cannot have a pivot in every column. %
+    \subproblem Yes.  If $k = \ell$ then $A$ can have a pivot in every
+    column, for example $A = \mat{1 0; 0 1}$.
+  \end{subproblems}
+\end{solution}
+
+\problem Suppose $T: {\bf R}^a \to {\bf R}^b$ is a one-to-one
+linear transformation.  Which of the following are possible? Answer
+yes or no in each case.
+\begin{subproblems}
+  \subproblem $a < b$
+  \subproblem $a > b$
+  \subproblem $a = b$.
+\end{subproblems}
+
+\begin{solution}
+  Let $A$ be the standard matrix for $T$, so $A$ is a $b \times a$
+  matrix.
+  \begin{subproblems}
+    \subproblem No.  If $a < b$ then $A$ has more rows than columns,
+    so $A$ cannot have a pivot in every row. %
+    \subproblem Yes.  If $a > b$ then $A$ has more columns than rows,
+    so $A$ can have a pivot in every row, for example if $a = 3$ and
+    $b=2$ then $A$ is a $2 \times 3$ matrix.
+    $A = \mat{1 0 0; 0 1 0}$. %
+    \subproblem Yes.  If $a = b$ then $A$ can have a pivot in every
+    row, for example $A = \mat{1 0; 0 1}$.
+  \end{subproblems}
+\end{solution}
+
+
+\problem Consider the linear transformation
+$T: {\bf R}^2 \to {\bf R}^4$ given by $T(a, b) = (a, b, b, a)$.
+\begin{subproblems}
+  \subproblem Write the standard matrix $A$ for $T$, so that
+  $T(x) = Ax$. %
+  \subproblem Is $T$ one-to-one?  Either justify why $T$ is
+  one-to-one, or write vectors $x$ and $y$ (with $x \neq y$) so that
+  $T(x) = T(y)$. %
+  \subproblem Is $T$ onto?  Either justify why $T$ is onto or write one
+  vector that is not in the range of $T$.
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem $A = \mat{T(e_1) T(e_2)}= \mat{1 0; 0 1; 0 1; 1 0}$. %
+    \subproblem Yes, $T$ is one-to-one because $A$ has a pivot in
+    every column. %
+    \subproblem No, $T$ is not onto because $A$ does not have a pivot
+    in every row.  From the form of $T$ we see that if $x$ is any
+    vector then $T(x)$ has its first and fourth entries equal and also
+    has its second and third entries equal. Therefore, any vector
+    whose first and fourth entries are different, or whose second and
+    third entries are different, will NOT be in the range of $T$.
+    Many examples possible, for example $\vec{1 0 0 0}$,
+    $\vec{0 1 0 0}$, $\vec{1 2 0 -1}$, $\vec{1 1 0 1}$, etc.
+  \end{subproblems}
+\end{solution}
+
+
+
+\problem % Jankowski quiz 4 Fall 2017
+Let $T: {\bf R}^2 \to {\bf R}^2$ be the transformation which reflects about the
+line $y = x$, then rotates counterclockwise by $45^\circ$.  Using only geometry,
+find $T(e_1)$ and $T(e_2)$.  Use your answer to find the matrix $A$ so that
+$T(x)=Ax$ for all $x$ in ${\bf R}^2$.
+
+\begin{solution}
+  We examine what happens to $e_1$ and $e_2$.
+ \newline
+ $e_1$:  The reflection sends $\vec{1 0}$ to $\vec{0 1}$, then rotating cc by $45^\circ$ gives
+ $T(e_1) = \mat{\frac{-1}{\sqrt{2}} ; ; \frac{1}{\sqrt{2}} }$.
+\newline \newline \newline
+$e_2$: The reflection sends $\vec{0 1}$ to $\vec{1 0}$, then rotating cc by $45^\circ$ gives
+$T(e_2) = \mat{\frac{1}{\sqrt{2}} ; ; \frac{1}{\sqrt{2}} }$.
+
+Therefore,
+\[A = \mat{T(e_1) T(e_2)} = \mat{ \frac{-1}{\sqrt{2}} \frac{1}{\sqrt{2}}; ;
+    \frac{1}{\sqrt{2}} \frac{1}{\sqrt{2}}}.\]
+\end{solution}
+
+\end{problems} \setcounter{problem}{0}
+
+\newpage
+
+\subsection{3.4, Matrix multiplication}
+
+\begin{problems}
+  \problem % Created for ILA
+  True or false: If $A$ and $B$ are matrices and $AB$ is an $3 \times 3$ matrix,
+  then $A$ and $B$ must be $3 \times 3$ matrices.
+  
+\begin{solution}
+  False: for example, if $A$ is $3 \times 2$ and $B$ is $2 \times 3$, then $AB$
+  is $3 \times 3$ but neither $A$ nor $B$ is $3 \times 3$.
+\end{solution}
+
+\problem % Created for ILA
+True or false: Suppose $A$ and $B$ are matrices so that $AB$ and $BA$ are both
+defined.  If $AB$ and $BA$ are each $r \times r$ matrices, then $A$ and $B$ must
+each be $n \times n$.
+
+\begin{solution}
+  True: $A$ Say $A$ is $k \times \ell$ and $B$ is $m \times n$.  Since $AB$ is
+  defined, we know $\ell = m$.  Since $BA$ is defined, we know $n = k$.  This
+  means $B$ is $\ell \times k$.  \newline \newline %
+  Now: $AB$ is a $k \times \ell$ times an $\ell \times k$, so $AB$ is
+  $k \times k$.  Since we were told $AB$ is $r \times r$, this means $r =
+  k$. \newline \newline %
+  Similarly, $BA$ is an $\ell \times k$ times a $k \times \ell$, so $BA$ is
+  $\ell \times \ell$.  Since we were told $BA$ is $r \times r$, this means $r = \ell$.
+  \newline \newline %
+  Putting it all together, we see $A$ and $B$ are both $r \times r$ matrices.
+  
+\end{solution}
+
+
+\problem % Created for ILA
+Suppose $A$ is a $24 \times 17$ matrix and the products $AB$ and $BA$ are both
+defined.  How many rows does $B$ have?  How many columns does $B$ have?
+
+\begin{solution}
+  For $AB$ to be defined, the number of columns of $A$ (namely $17$) must equal
+  the number of rows of $B$, so $B$ has $17$ rows. \newline \newline Similarly:
+  for $BA$ to be defined, the number of columns of $B$ must equal the number of
+  rows of $A$ (namely 24), so $B$ must have $24$ columns. \newline \newline
+  Therefore, $B$ is a $17 \times 24$ matrix.
+\end{solution}
+
+\problem Suppose $A$ and $B$ are $3 \times 3$ matrices and the columns of $B$
+are linearly dependent.  Is it necessarily the columns of $AB$ are linearly
+dependent?  Justify your answer.
+
+\begin{solution}
+  Yes, the columns of $AB$ are linearly dependent.  Using the fact that $Bv=0$
+  for some nonzero $v$ in ${\bf R}^3$, we compute \[ABv=AB(v) = A0=0.\]
+  Therefore, the vector $v$ is a non-trivial solution to the system $ABx = 0$,
+  so the columns of $AB$ are linearly dependent.
+\end{solution}
+
+\problem % Created for ILA
+Let $A = \mat{1 -3 4; 1 0 0}$ and $B = \mat{1 \pi}$.  Compute all products that
+make sense among $AB$ and $BA$.
+
+\begin{solution}
+  $A$ is $2 \times 3$ and $B$ is $1 \times 2$, so the only product that makes
+  sense is $BA$.
+  \[BA = \mat{1 \pi}\mat{1 -3 4; 1 0 0} = \mat{1+\pi \, -3 4}.\]
+\end{solution}
+
+\problem % Created for ILA
+Let $T: {\bf R}^2 \to {\bf R}^2$ be the linear transformation that rotates
+vectors by $\pi/2$ radians counterclockwise, then scales the $y$-direction by a
+factor of $5$, then reflects vectors across the line $y = -x$.  Compute
+$T\vec{5 1}$ using matrix multiplication.
+
+\begin{solution}
+  The matrix for $T$ is $ABC$ where $C$ is the first operation, $B$ is the
+  second operation, and $A$ is the third operation.  Therefore, the matrix for
+  $T$ is
+  \[\mat{0 -1; -1 0}\mat{1 0; 0 5} \mat{0 -1; 1 0}
+    = \mat{0 -1; -1 0} \mat{0 -1; 5 0} = \mat{-5 0; 0 1}.\] %
+  We compute
+  \[T \vec{5 1} = \mat{-5 0; 0 1}\vec{5 1} = \vec{-25 1}.\] We can check our
+  answer geometrically.  $T$ first rotates $\vec{5 1}$ by $\pi/2$ radians
+  counterclockwise to get $\vec{-1 5}$, then scales the $y$-coordinate by a
+  factor of $5$ to get $\vec{-1 25}$, then reflects across the line $y = -x$ to
+  get $\vec{-25 1}$.
+\end{solution}
+
+
+\problem % Created for ILA
+$T$ has domain ${\bf R}^{4}$ and codomain ${\bf R}^{7}$. \newline %
+$U$ has domain ${\bf R}^{13}$ and codomain ${\bf R}^{25}$. \newline %
+$V$ has domain ${\bf R}^{25}$ and codomain ${\bf R}^{17}$. \newline %
+$W$ has domain ${\bf R}^{7}$ and codomain ${\bf R}^{13}$. \newline %
+Determine which composition of all four transformations makes sense, and find
+the number of rows and columns for its standard matrix.
+
+\begin{solution}
+  In order for a composition $R \circ S$ to make sense, the domain of $R$ must
+  be the codomain of $S$, because we need to be able to take $R(S(v))$ for any
+  vector $v$ in the domain of $S$. \newline The composition of all $4$
+  transformations that makes sense is $V \circ U \circ W \circ T$.
+  \begin{itemize}
+  \item If $x$ is a vector in ${\bf R}^{4}$, then $T(x)$ is a vector in
+    ${\bf R}^{7}$, which is the domain of $W$. %
+  \item Next step: $W(T(x))$ is in ${\bf R}^{13}$, which is the domain of $U$. %
+  \item Next step: $U(W(T(x)))$ is in ${\bf R}^{41}$, which is the domain of $V$,
+  \item Finally: $V(U(W(T(x))))$ is a vector in ${\bf R}^{17}$.
+  \end{itemize}
+  Following all of the steps, we see that if $x$ is in ${\bf R}^{4}$ then
+  $(V \circ U \circ W \circ T)(x)$ is a vector in ${\bf R}^{17}$, so the
+  transformation has domain ${\bf R}^{4}$ and codomain ${\bf R}^{17}$.
+  Therefore, its standard matrix is $17 \times 4$, so it has $17$ rows and $4$
+  columns.
+\end{solution}
+
+\problem % Created for ILA
+Let $T$ be the linear transformation $T(x) = ABx$, where
+$A$ is $3 \times 3$ and $B$ is $3 \times 2$.
+\begin{subproblems}
+\subproblem Complete the following: $T$ is onto...
+\[\textup{(i) sometimes} \qquad \textup{(ii) always}
+  \qquad \textup{(iii) never}\]
+\subproblem Complete the following: $T$ is one-to-one...
+\[\textup{(i) sometimes} \qquad \textup{(ii) always}
+  \qquad \textup{(iii) never}\]
+\subproblem Find the formula for $T(x_1, x_2, x_3)$ if
+$A = \mat{1 -1 4; 0 1 2; 4 1 0}$ and $B = \mat{1 -1; 2 -2; 0 1}$.
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem Never: $AB$ is $3 \times 2$, so it has $3$ rows but a max of $2$
+    pivots, therefore at least one row does not have a pivot, thus $T$ cannot be
+    one-to-one. %
+    \subproblem Sometimes.  $AB$ is $3 \times 2$, so it might have a pivot in
+    every column, but this depends on $A$ and $B$.  For example, if
+    $B = \mat{0 0; 0 0; 0 0}$ then $AB$ is the $3 \times 2$ zero matrix, so $T$
+    is clearly not one-to-one.  \newline If $A = \mat{1 0 0; 0 1 0; 0 0 1}$ and
+    $B = \mat{1 0; 0 1; 0 0}$, then $AB = \mat{1 0; 0 1; 0 0}$ which has a pivot
+    in every column, so $T$ is one-to-one. %
+    \subproblem
+    $AB = \mat{1 -1 4; 0 1 2; 4 1 0} \mat{1 -1; 2 -2; 0 1} = %
+    \mat{-1 5; 2 2; 6 -6}$.
+  \end{subproblems}
+\end{solution}
+
+
+\problem % Jankowski quiz 4 Fall 2017
+Let $T: {\bf R}^2 \to {\bf R}^2$ be the transformation which reflects about the
+line $y = x$, then rotates counterclockwise by $45^\circ$.
+\begin{subproblems}
+  \subproblem Write the matrix $J$ for reflection across the line $y=x$ in
+  ${\bf R}^2$.  %
+  \subproblem Write the matrix $K$ for rotation counterclockwise
+  by $45^\circ$ in ${\bf R}^2$. %
+  \subproblem Using matrix multiplication,
+  compute the matrix $A$ so that $T(x)=Ax$ for all $x$ in ${\bf R}^2$.
+\end{subproblems}
+
+\begin{solution}
+\begin{subproblems}
+  \subproblem $J=\mat{0 1; ; 1 0}$.
+  \subproblem $K=\mat{ \frac{1}{\sqrt{2}} \frac{-1}{\sqrt{2}}; ;
+    \frac{1}{\sqrt{2}} \frac{1}{\sqrt{2}}}$.
+  \subproblem $A=KJ$:
+  \[ A = \mat{ \frac{1}{\sqrt{2}} \frac{-1}{\sqrt{2}}; ; \frac{1}{\sqrt{2}} \frac{1}{\sqrt{2}}}
+  \mat{0 1; ; 1 0}
+  = \mat{ \frac{-1}{\sqrt{2}} \frac{1}{\sqrt{2}}; ; \frac{1}{\sqrt{2}} \frac{1}{\sqrt{2}}}.\]
+\end{subproblems}
+\end{solution}
+
+
+\problem % Jankowski Spring 2018 exam 2
+Let $T: {\bf R}^2 \to {\bf R}^2$ be the transformation of reflection
+about the line $y= -x$, and let $U: {\bf R}^2 \to {\bf R}^3$ be the
+transformation $U \vec{x y} = \vec{x-y x 3y}$.
+\begin{subproblems}
+  \subproblem Write the standard matrix $A$ for $T$.  Is $T$ onto? %
+  \subproblem Write the standard matrix $B$ for $U$.  Is $U$
+  one-to-one?  Briefly justify your answer. %
+  \subproblem Circle the composition that makes sense: \quad
+  $T \circ U$ \qquad $U \circ T$ %
+  \subproblem Compute the standard matrix for the composition you
+  circled in part (c).
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem $A=\mat{0 -1; -1 0}$. Yes, $T$ is onto.  One way to
+    see this is to note that $A$ has a pivot in every row.
+    \subproblem $B=\mat{U(e_1) U(e_2)} = \mat{1 -1; 1 0; 0 3}$.  Yes,
+    $U$ is one-to-one because $B$ has a pivot in every column.
+    \subproblem $U \circ T$ makes sense since it sends
+    $R^2 \to R^2 \to R^3$.  \subproblem
+    $BA = \mat{1 -1; 1 0; 0 3} \mat{0 -1; -1 0} =
+    \mat{1 -1; 0 -1; -3 0}$.
+  \end{subproblems}
+\end{solution}
+
+\problem Consider the following transformations. \newline %
+$T: {\bf R}^2 \to {\bf R}^2$ be rotation by $90^\circ$ clockwise.
+\newline %
+$U: {\bf R}^3 \to {\bf R}^2$ given by $U(a, b, c) = (a-b, c-5a)$.
+\newline %
+$V: {\bf R}^{4} \to {\bf R}^3$ given by
+$V(x, y, z, w) = (w, x-y+z, z-x)$.
+\begin{subproblems}
+  \subproblem Which composition of all three transformation makes
+  sense? %
+  \subproblem Using matrix multiplication, compute the standard
+  matrix for the transformation you wrote in part (a).
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem $T \circ U \circ V$ makes sense: $V$ sends a vector
+    $x$ from ${\bf R}^4$ to ${\bf R}^3$, then $U$ sends $V(x)$ from
+    ${\bf R}^3$ to ${\bf R}^2$, then $T$ sends $U(V(x))$ from
+    ${\bf R}^2$ to ${\bf R}^2$. %
+    \subproblem $T(x) = Ax$, $U(x) = Bx$, and $V(x) = Cx$ for the
+    matrices below, where we multiply $ABC$ to get the matrix for
+    $T \circ U \circ V$.  Matrix multiplication is NOT commutative,
+    but it is associative, so to compute $ABC$ we can either compute
+    $A(BC)$ or $(AB)C$.
+    \begin{align*}
+      ABC 
+      &
+        = \mat{0 1; -1 0}
+        \mat{1 -1 0; -5 0 1}
+        \mat{0 0 0 1; 1 -1 1 0; -1 0 1 0} \\
+      &
+        = \mat{0 1; -1 0}
+        \mat{-1 1 -1 1; -1 0 1 -5} \\
+      &
+        = \mat{-1 0 1 5; 1 -1 1 -1}.
+    \end{align*}
+  \end{subproblems}
+\end{solution}
+
+
+\end{problems} \setcounter{problem}{0}
+
+\newpage
+
+\subsection{3.5 and 3.6, Matrix inverses and the Invertible Matrix Theorem}
+
+\begin{problems}
+%a
+%  
+\problem % Made for ILA
+True or false: Suppose $A$ is an $n \times n$ matrix and $AB = I_n$. 
+Then $BA = I_n$.  \newline %
+\begin{solution}
+ True.  Even though matrix multiplication is generally
+    not commutative, it is a general fact that if two $n \times n$
+    matrices $A$ and $B$ satisfy $AB=I$ then $BA=I$, and similarly if
+    $BA=I$ then $AB=I$. %   
+\end{solution}
+
+\problem % Made for ILA
+True or false: There is an invertible matrix $A$ satisfying 
+$A \vec{1 2 3} = \vec{1 2}$. 
+
+\begin{solution}
+False.  Only square matrices cann be invertible.  If
+    $A \vec{1 2 3} = \vec{1 2}$ then $A$ is $2 \times 3$, so $A$
+    cannot be invertible. %   
+\end{solution}
+
+% Jankowski Spring 2018 exam 2 for 3.6
+\problem True or false: If $A$ is an $n \times n$ matrix and $Ax=0$ has 
+only the trivial solution, then the equation $Ax=b$ is consistent for 
+every $b$ in ${\bf R}^n$. 
+
+\begin{solution}
+  True.  $A$ is invertible by the Invertible Matrix Theorem.   
+\end{solution}
+
+% Jankowski Spring 2018 exam 2 for 3.6
+\problem True or false: There are linear transformations $T: {\bf R}^3 
+\to {\bf R}^4$ and $U: {\bf R}^4 \to {\bf R}^3$ so that $T \circ U$ is 
+invertible.
+
+\begin{solution}
+False.  Since $T$ and $U$ are linear, they are matrix transformations $T(v) = Av$ and $U(x) = Bx$ for some matrices $A$ and $B$.  Since $U$ has domain ${\bf R}^4$ and codomain ${\bf R}^3$, we know that $B$ is $3 \times 4$, so $B$ has $4$ columns but at most $3$ pivots.  Therefore, $B$ has at least one column without a pivot, so $Bx = 0$ has infinitely many solutions.  For any solution to $Bx=0$, we get
+\[(T \circ U)(x) = ABx = A(Bx)=A(0) = 0,\]
+so $(T \circ U)(x)=0$ has infinitely many solutions, thus $T \circ U$ cannot be one-to-one.  By the Invertible Matrix Theorem, $T \circ U$ cannot be invertible.
+\end{solution}
+
+% Jankowski Spring 2018 exam 2 for 3.6
+\problem True or false: There are linear transformations $T: {\bf R}^4 
+\to {\bf R}^3$ and $U: {\bf R}^3 \to {\bf R}^4$ so that $T \circ U$ is 
+invertible.
+
+\begin{solution}
+  True.  Take $U(x_1, x_2, x_3)= (x_1, x_2, x_3, 0)$ and
+  $T(x_1, x_2, x_3, x_4)= (x_1, x_2, x_3)$.  Then
+  $(T \circ U)(x_1, x_2, x_3)= (x_1, x_2, x_3)$ so $T \circ U$ is invertible (in
+  fact, it is the identity transformation!).
+\end{solution}
+
+
+    
+\problem % Made for ILA
+True or false: Let $A = \mat{2 0 0; 0 3 0; 0 0 1}$. Then $A$ is 
+invertible and $A^{-1} = \mat{\frac{1}{2} 0 0; 0 \frac{1}{3} 0; 0 0 1}$. 
+
+\begin{solution}
+True:
+    $\mat{2 0 0; 0 3 0; 0 0 1} \mat{\frac{1}{2} 0 0; 0 \frac{1}{3} 0;
+      0 0 1} = \mat{1 0 0; 0 1 0; 0 0 1}=I.$ \newline This shows that
+    the inverse of $A$ is
+    $\mat{\frac{1}{2} 0 0; 0 \frac{1}{3} 0; 0 0 1}$. %    
+\end{solution}
+
+\problem % Made for ILA
+True or false: If $A$ is an $n \times n$ matrix and $Ax = 0$ has 
+infinitely many solutions, then $A$ cannot be invertible.
+
+\begin{solution}
+True.  If $A$ is invertible then for each $b$ in
+    ${\bf R}^n$, the equation $Ax=b$ has a unique solution
+    $x = A^{-1}b$.  In particular the homogeneous equation $Ax=0$ must
+    have unique solution $x= A^{-1}0 = 0$.   
+\end{solution}
+
+\problem % Made for ILA
+Suppose $A$ is the matrix whose inverse is given by
+$A^{-1} = \mat{-4 1 1; 0 2 3; -1 2 2}$.  \newline %
+Find all solutions to $Ax = \vec{1 -3 9}$. \newline %
+\begin{solution}
+Since $A$ is invertible, any matrix equation $Ax = b$ (for any $b$ in ${\bf R}^3$) has the unique solution $x = A^{-1} b$.  
+\[Ax = \vec{1 -3 9}, \qquad x = A^{-1}\vec{1 -3 9}
+= \mat{-4 1 1; 0 2 3; -1 2 2} \vec{1 -3 9} = 
+\vec{2 21 11}.\]
+% In reality, $A = \dfrac{1}{7} \mat{-2 0 1; -3 -7 12; 2 7 -8}$
+\end{solution}
+
+\problem % Made for ILA
+Let $A = \mat{7 8; 1 3}$. Is $A$ invertible?  If so, find $A^{-1}$.
+\newline %
+\begin{solution}
+If $A = \mat{a b; c d}$ with $ad - bc \neq 0$, then $A$ is invertible and
+$A^{-1} = \dfrac{1}{ad-bc}\mat{d -b; -c a}$. \newline
+Here $A=\mat{7 8; 1 3}$ where $7(3)-8(1) = 13 \neq 0$, so $A$ is 
+invertible and 
+\[A^{-1} = \dfrac{1}{13} \mat{3 -8; -1 7}.\]
+\end{solution}
+
+
+
+\problem % Made for ILA
+Let $A = \mat{4 1 1; 2 6 0; 3 -1 1}$.  Find $A^{-1}$.
+
+\begin{solution}
+  We put $\amat{A, I}$ into RREF.
+  \begin{align*}
+    \mat{4 1 1 | 1 0 0; 2 6 0 | 0 1 0; 3 -1 1 | 0 0 1}
+    & \xrightarrow[\textup{then } R_1 = R_1/2]{R_1 \leftrightarrow R_2}
+    \mat{1 3 0 | 0 \frac{1}{2} 0; 4 1 1 | 1 0 0; 3 -1 1 | 0 0 1}
+    \\ & \xrightarrow[R_3 = R_3-3R_1]{R_2 = R_2 - 4R_1}
+         \mat{1 3 0 | 0 \frac{1}{2} 0; 0 -11 1 | 1 -2 0; 0 -10 1
+         | 0 -\frac{3}{2} 1}
+    \\ & \xrightarrow[]{R_2 = R_2/-11}
+    \mat{1 3 0 | 0 \frac{1}{2} 0; 0 1 -\frac{1}{11} |
+      -\frac{1}{11} \frac{2}{11} 0; 0 -10 1 | 0 -\frac{3}{2} 1}
+    \\ & \xrightarrow[]{R_3 = R_3 + 10R_2}
+    \mat{1 3 0 | 0 \frac{1}{2} 0; 0 1 -\frac{1}{11} |
+         -\frac{1}{11} \frac{2}{11} 0; 0 0 \frac{1}{11}
+         | -\frac{10}{11} \frac{7}{22} 1}
+    \\ & \xrightarrow[\textup{then } R_3 = 11R_3]{R_2 = R_2 + R_3}
+    \mat{1 3 0 | 0 \frac{1}{2} 0; 0 1 0 |
+      -1 \frac{1}{2} 1; 0 0 1 | -10 \frac{7}{2} 11}
+    \\ & \xrightarrow[]{R_1 = R_1 - 3R_2}
+         \mat{1 0 0 | 3 -1 -3; 0 1 0 | -1 \frac{1}{2} 1; 0 0 1
+         | -10 \frac{7}{2} 11}.
+   \end{align*}
+   Therefore,
+   \[ A^{-1} = \mat{1 0 0 | 3 -1 -3; 0 1 0 | -1 \frac{1}{2} 1; 0 0 1 |
+       -10 \frac{7}{2} 11}.\]
+\end{solution}
+
+
+\problem % Jankowski Spring 2018 exam 2
+Find the matrix $A$ satisfying $A^{-1} e_1 = \vec{0 1 2}$, \
+$A^{-1} e_2 = \vec{1 0 0}$, and \ $A^{-1}e_3 = \vec{0 1 3}$.
+
+\begin{solution}
+  \begin{align*} \mat{A^{-1} | I} & = \mat{0 1 0 | 1 0 0; 1 0 1 | 0 1
+      0; 2 0 3 | 0 0 1} \xrightarrow[]{R_1 \leftrightarrow R_2} \mat{1
+      0 1 | 0 1 0; 0 1 0 | 1 0 0; 2 0 3 | 0 0 1} \\ \\ &
+    \xrightarrow[]{R_3=R_3-2R_1} \mat{1 0 1 | 0 1 0; 0 1 0 | 1 0 0; 0
+      0 1 | 0 -2 1} \xrightarrow[]{R_1=R_1-R_3} \mat{1 0 0 | 0 3 -1; 0
+      1 0 | 1 0 0; 0 0 1 | 0 -2 1}.
+  \end{align*}  
+  Therefore, $A=(A^{-1})^{-1} = \mat{0 3 -1; 1 0 0; 0 -2 1}.$
+\end{solution}
+
+
+\end{problems}\setcounter{problem}{0}
+
+
+\newpage

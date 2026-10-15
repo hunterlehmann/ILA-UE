@@ -78,13 +78,13 @@ the license is included in gfdl.xml.
 
     <p>The difference is purely psychological: <em>points and vectors are both just lists of numbers</em>.</p>
 
-    <example>
-      <title>Interactive: A vector in <m>\R^3</m>, by coordinates</title>
+    <question>
+      <title>A vector in <m>\R^3</m>, by coordinates</title>
       <figure>
         <caption>A vector in <m>\R^3</m>, and its coordinates.  Drag the arrow head and tail.</caption>
         <mathbox source="demos/vector.html" height="400px"/>
       </figure>
-    </example>
+    </question>
 
     <p>When we think of a point in <m>\R^n</m> as a vector, we will usually write it vertically, like a matrix with one column:
     <md>
@@ -122,10 +122,10 @@ the license is included in gfdl.xml.
           ]]></latex-image>
 </image>
 
-    <insight>
+    <assemblage>
       <p>Unless otherwise specified, we will assume that all vectors start at the origin.
       </p>
-    </insight>
+    </assemblage>
 
     <p>Vectors makes sense in the real world: many physical quantities, such as velocity, are represented as vectors.  But it makes more sense to think of the velocity of a car as being located at the car.</p>
 
@@ -295,13 +295,13 @@ z
             ]]></latex-image>
 </image>
 
-      <example>
-        <title>Interactive: The parallelogram law for vector addition</title>
+      <question>
+        <title>The parallelogram law for vector addition</title>
         <figure>
           <caption>The parallelogram law for vector addition.  Click and drag the heads of <m></m> and <m>w</m>.</caption>
           <mathbox source="demos/vector-add.html" height="400px"/>
         </figure>
-      </example>
+      </question>
     </paragraphs>
 
     <paragraphs>
@@ -346,13 +346,14 @@ z
         ]]></latex-image>
 </image>
 
-      <example>
-        <title>Interactive: Vector subtraction</title>
+
+      <question>
+        <title>Vector subtraction</title>
         <figure>
           <caption>Vector subtraction.  Click and drag the heads of <m>v</m> and <m>w</m>.</caption>
           <mathbox source="demos/vector-sub.html" height="400px"/>
         </figure>
-      </example>
+      </question>
     </paragraphs>
 
     <paragraphs>
@@ -388,13 +389,13 @@ z
         ]]></latex-image>
 </image>
 
-      <example>
-        <title>Interactive: Scalar multiplication</title>
+      <question>
+        <title>Scalar multiplication</title>
         <figure>
           <caption>Scalar multiplication.  Drag the slider to change the scalar.</caption>
           <mathbox source="demos/vector-mul.html" height="400px"/>
         </figure>
-      </example>
+      </question>
 
     </paragraphs>
 
@@ -477,13 +478,13 @@ z
       <mathbox source="demos/spans.html?v1=1,2&amp;v2=1,0&amp;range=5&amp;captions=combo" height="400px"/>
     </figure>
 
-    <example>
-      <title>Interactive: Linear combinations of three vectors</title>
+    <question>
+      <title>Linear combinations of three vectors</title>
       <figure>
         <caption>Linear combinations of three vectors: move the sliders to change the coefficients of <m>v_1,v_2,v_3</m>.  Note how the parallelogram law for addition of three vectors is more of a <q>parallepiped law</q>.</caption>
         <mathbox source="demos/spans.html?v1=2,-1,1&amp;v2=1,1,-1&amp;v3=-1,1,4&amp;range=5&amp;captions=combo" height="500px"/>
       </figure>
-    </example>
+    </question>
 
     <observation>
       <title>Linear Combinations of a Single Vector</title>
@@ -565,13 +566,13 @@ z
 
     </observation>
 
-    <example>
-      <title>Interactive: Linear combinations of two collinear vectors</title>
+    <question>
+      <title>Linear combinations of two collinear vectors</title>
       <figure>
         <caption>Linear combinations of two collinear vectors in <m>\R^2</m>.  Move the sliders to change the coefficients of <m>v_1,v_2</m>.  Note that there is no way to <q>escape</q> the line.</caption>
         <mathbox source="demos/spans.html?v1=2,2&amp;v2=-1,-1&amp;range=5&amp;captions=combo&amp;grid=disabled" height="400px"/>
       </figure>
-    </example>
+    </question>
 
   </subsection>
 

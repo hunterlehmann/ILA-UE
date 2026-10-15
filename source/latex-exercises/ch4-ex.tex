@@ -1,0 +1,629 @@
+
+
+
+\subsection{4.1, Determinants}
+
+\begin{problems}
+
+\problem % Jankowski Spring 2019 quiz 6
+True or false: If $A$ is a $3 \times 3$ matrix satisfying
+\[Ae_1 = e_2, \qquad Ae_2 = e_2 + e_3, \qquad Ae_3 = e_2-e_3,\] then
+$\det(A) = 0$.
+
+\begin{solution}
+True.  We see
+    \[A = \mat{Ae_1 Ae_2 Ae_3} = \mat{0 0 0; 1 1 1; 0 1 -1}
+      \xrightarrow[]{R_2 = R_2 + R_3} \mat{0 0 0; 1 2 0; 0 1 -1}.\] By
+    doing just one row replacement (which does not change the
+    determinant), we have obtained a triangular matrix with
+    determinant $(0)(2)(-1)=0$, so $\det(A) = 0$.
+\end{solution} 
+
+\problem % Created for ILA
+True or false: If $A$ is an $n \times n$ matrix and the equation $Ax = b$ has
+more than one solution for some $b$ in ${\bf R}^n$, then $\det(A) = 0$.
+
+\begin{solution}
+  True.  Since $Ax=b$ has infinitely many solutions for some $b$, we know $Ax=0$
+  has infinitely many solutions.  Therefore, $A$ is not invertible and so
+  $\det(A)=0$.
+\end{solution} 
+
+\problem % Created for ILA
+True or false: If $A$ and $B$ are $n \times n$ matrices and $\det(AB) \neq 0$,
+then $A$ and $B$ must both be invertible.
+
+\begin{solution}
+  True: $\det(AB) = \det(A)\det(B)$ and the quantity is nonzero by assumption,
+  so both $\det(A)$ and $\det(B)$ must be nonzero, hence $A$ and $B$ are both
+  invertible.
+\end{solution} 
+
+\problem % Created for ILA
+True or false: If $A$ and $B$ are $n \times n$ matrices and $\det(A)=0$, then
+$AB$ is not invertible.
+
+\begin{solution}
+  True: $\det(AB) = \det(A) \det(B) = 0 \det(B) = 0$, so $AB$ cannot be
+  invertible.
+\end{solution} 
+
+
+
+\problem % Dan's notes
+Use row operations to find the determinant of the following matrix:
+\[A = \mat{4 -3 0 1; 0 2 12 4; 0 1 -1 1; 0 2 0 1}.\]
+
+\begin{solution} We row-reduce $A$ until we get a triangular matrix.
+\begin{align*}
+  \mat{4 -3 0 1; 0 2 12 4; 0 1 -1 1; 0 2 0 1}
+  & \xrightarrow[]{R_2= R_2/2} \mat{4 -3 0 1; 0 1 6 2; 0 1 -1 1; 0 2 0 1}
+  \xrightarrow[R_4 = R_4-2R_2]{R_3 = R_3-R_2} %
+    \mat{4 -3 0 1; 0 1 6 2; 0 0 -7 -1; 0 0 -12 -3} \\
+  & \xrightarrow[]{R_4 = R_4 - (12/7)R_3}
+    \mat{4 -3 0 1; 0 1 6 2; 0 0 -7 -1; 0 0 0 -9/7}
+\end{align*}
+Let's call the final matrix $B$, which is upper-triangular (so $\det(B)$ is the
+product of its diagonal entries).  To obtain $B$ from $A$, we did a row scale of
+$1/2$, followed by a bunch of row replacements that don't affect determinants.
+Therefore,
+\[\det(A)(1/2) = \det(B), \qquad \det(A)= 2 \det(B) = 2 \cdot 4(1)(-7)(-9/7) = 72.\]
+\end{solution}
+
+\problem % Dan's notes
+Find the value of $h$ that makes the determinant of the following matrix equal to $0$.
+\[\mat{1 2 3; 1 0 1; 2 2 h}.\]
+
+\begin{solution}
+The determinant is $0$ if and only if the matrix is not invertible, so we row-reduce:
+\[
+  \mat{1 2 3; 1 0 1; 2 2 h}
+  \xrightarrow[R_3 = R_3 - 2R_1]{R_2 = R_2 - R_1}
+    \mat{1 2 3; 0 -2 -2; 0 -2 h-6}
+  \xrightarrow[]{R_3 = R_3 - R_2}
+    \mat{1 2 3; 0 -2 -2; 0 0 h-4}.
+\]
+This matrix is invertible unless it has fewer than $3$ pivots.  Therefore, the
+determinant of the matrix is zero if and only if $h-4=0$, so $h=4$.
+\end{solution}
+
+\problem % Dan's notes
+If the matrix on the left has determinant $5$, what is the determinant of the
+matrix on the right?
+\[\mat{a b c; d e f; g h i} \qquad
+\mat{g h i; d e f; a-d b-e c-f}.\]
+
+\begin{solution}
+We track the row operations required to obtain the final matrix from the original:
+\[\mat{a b c; d e f; g h i}
+  \xrightarrow[\textup{new det is }-5]{R_1 \leftrightarrow R_3} \mat{g h i; d e f; a b c}
+  \xrightarrow[\textup{det is still } -5]{R_3=R_3-R_2} \mat{g h i; d e f; a-d b-e c-f}.\]
+\end{solution}
+The first operation was a row swap which switched the determinant from $5$ to $-5$.
+The second operation was a row-replacement which did not affect the determinant.
+Therefore, the determinant of the final matrix is $-5$.
+
+
+
+\problem % Dan's notes
+Suppose $T$ is a linear transformation with the property that $T \circ T = T$.
+What are the possibilities for the determinant of the standard matrix for $T$?
+
+\begin{solution}
+Let $A$ be the standard matrix for $T$, so $T(x) = Ax$.  Note
+\[T(x) = (T \circ T)(x) = T(T(x)) = T(Ax)=A(Ax) = A^2 x,\] so $A = A^2$.  Using
+this and the multiplicative property of determinants, we get
+\[\det(A) = \det(A^2) = \det(A) \det(A) = (\det \ A)^2.\]
+For $x = \det(A)$, the above says $x = x^2$, so $0 = x^2-x = x(x-1)$.  Therefore
+$x=0$ or $x=1$, so $\det(A)$ is $0$ or $1$.
+
+Both $0$ and $1$ are possible for the determinant of $A$.  For example, the
+transformations $T(x) = \mat{0 0; 0 0}x$ and $T(x) = \mat{1 0; 0 1}x$ both
+satisfy $T \circ T = T$.
+%Matrices with the property $A^2 = A$ are called \textit{idempotent matrices}.  
+\end{solution}
+
+
+\problem % Dan's notes
+Suppose $T$ is a linear transformation with the property that $T \circ T$ is the
+identity transformation.  What is the determinant of the standard matrix for
+$T$?
+
+\begin{solution}
+  Let $A$ be the standard matrix for $T$.  The same argument as the previous
+  exercise shows that the standard matrix for $T \circ T$ is $A^2$.  But we were
+  told $T \circ T$ is the identity transformation, so we also know that its
+  standard matrix is $I$, therefore $I = A^2$.  Now:
+  \[\det(I) = \det(A^2) \ \implies \  1 = \det(A)\det(A) \ \implies \  1 = (\det \ A)^2
+    \ \implies \ \det(A) = \pm 1.\] %
+  Both values for $\det(A)$ are possible in practice.  For example, the matrices
+  $\mat{1 0; 0 1}$ and $\mat{1 0; 0 -1}$ have determinants $1$ and $-1$
+  respectively, and both satisfy $A^2 = I$.
+  %This kind of matrix is very interesting, because the fact
+  %that $A^2 = I$ means that $A$ is its own inverse!
+\end{solution}
+
+
+\problem % Jankowski Spring 2018 e3
+Let $A$ be the $3 \times 3$ matrix satisfying $Ae_1= 3e_2$, $Ae_2= e_3$, and
+$Ae_3=e_1$.  Find $\det(A)$.
+
+\begin{solution}
+  $A=\mat{0 0 1; 3 0 0; 0 1 0}$.  You can compute $\det(A)=1$ or just do two row
+  swaps to get a diagonal matrix, so that $\det(A)=(-1)^2(3)=3$.
+\end{solution}
+
+\problem  %made for ILA
+%
+Suppose $A$ is an invertible $2 \times 2$ matrix and $\det(A) = 2$.
+Find $\det( (3A)^{-1} )$.
+
+\begin{solution}
+  By properties of the determinant,
+  $\det( (3A)^{-1} ) = \dfrac{1}{\det(3A)}$.  Since $3A$ is obtained
+  from $A$ by multiplying \textit{each row} of $A$ by $3$, we need to
+  multiply the determinant by $3$ twice.
+  \[\det(3A) = 3^2 \det(A) = 9 (2) = 18.\]
+  Therefore,
+  \[\det((3A)^{-1}) = \dfrac{1}{18}.\]
+\end{solution}
+          
+
+\problem %2.2 problem in new way, which was created for ILA
+A problem from section 2.2, revisited: \newline Find all
+values of $c$ and $d$ so that
+$\textup{Span}\left\{\vec{1 c}, \vec{d, 2}\right\}$ is not
+${\bf R}^2$.
+
+\begin{solution}
+  Two vectors in ${\bf R}^2$ will fail to span ${\bf R}^2$ precisely when
+  they are linearly dependent, so we solve:
+  \[\det\mat{1 d; c 2} = 0, \qquad 2 - cd = 0, \qquad cd = 2.\]
+  Therefore, $d = 2/c$ where $c$ is any nonzero number (the fact that
+  $cd=2$ means neither $c$ or $d$ can be zero).
+\end{solution}
+
+
+\problem % Created for ILA
+Is there a $2 \times 2$ matrix (whose entries are real numbers) with the property
+that $A^2 = -I$?  If so, give an example.  If not, justify why there is no such
+matrix.  
+
+\begin{solution}
+  Yes.  Take $A$ to be the matrix for rotation by $90^\circ$ counterclockwise.
+  Then $A^2$ is rotation by $2 \cdot 90 ^\circ = 180^\circ$, which is the same
+  as scalar multiplication by $-1$.  In other words, $A^2 = -I$.  We can verify
+  this algebraically:
+  \[\mat{0 -1; 1 0} \mat{0 -1; 1 0} = \mat{-1 0; 0 -1}.\]
+\end{solution}
+
+\problem % Created for ILA
+Is there a $3 \times 3$ matrix (whose entries are real numbers) with the
+property that $A^2 = -I$?  If so, give an example.  If not, justify why there is
+no such matrix.  
+
+\begin{solution}
+  No.  If $A^2 = -I$ then \[\det(A^2) = \det(-I) = \det\mat{-1 0 0; 0 -1 0; 0 0 -1} = -1.\]
+  But this would mean
+  \[\det(A^2) = -1, \quad (\det A)^2 = -1, \qquad \det(A) = \pm i.\]
+  This is impossible, since the determinant of every real matrix is real.
+  \newline \newline It is natural to ask: why doesn't the above argument also
+  show that we can never have $A^2 = -I$ in the $2 \times 2$ case?  Note that
+  the $2 \times 2$ matrix $-I$ has determinant equal to $1$ (not $-1$) since
+  \[\det\mat{-1 0; 0 -1} = (-1)^2 = 1,\] so we do not obtain an impossible
+  equality for $\det(A)$ in the $2 \times 2$ case, and in fact we can found an
+  actual example of a $2 \times 2$ matrix $A$ so that $A^2 = -I$.
+\end{solution}
+
+
+
+\problem % Created for ILA
+Suppose $A$ is a square matrix and that $A^k$ is invertible for some $k$.  Must
+it be true that $A$ is invertible?  Justify your answer.
+
+\begin{solution}
+  Yes, $A$ must be invertible.  We use the fact that a square matrix is
+  invertible if and only if its determinant is nonzero.  Since $A^k$ is
+  invertible for some $k$, this means $\det(A^k) \neq 0$.  From the properties
+  of determinants we know $\det(A^k) = (\det \ A)^k$, so the previous sentence
+  means $(\det A)^k \neq 0$, thus $\det(A) \neq 0$.  Therefore, $A$ is
+  invertible.
+\end{solution}
+\end{problems}\setcounter{problem}{0}
+
+\newpage
+
+\subsection{4.2, Cofactor expansions}
+
+\begin{problems}
+\problem % Dan's notes
+  True or false: The cofactor expansion of an $n \times n$ matrix along the
+  first row gives the negative of the cofactor expansion along the second row.
+  
+  \begin{solution}
+    False.  The cofactor expansion gives the same determinant, no matter what
+    row (or column) you use.
+  \end{solution}
+
+\problem % Created for ILA
+Use a cofactor expansion to find $\det(A)$ for 
+$A =  \mat{5 1 -3 1; 0 2 3 4; 0 0 1 2; 5 -5 2 3}$.
+
+\begin{solution}
+We expand along the third row, which has only two nonzero entries.
+\begin{align*}
+  \det(A) & = 0 C_{31} + 0 C_{32} + 1 C_{33} + 2 C_{34} \\
+          & = 1(-1)^{3+3} \det\mat{5 1 1; 0 2 4; 5 -5 3} +
+            2(-1)^{3+4} \det \mat{5 1 -3; 0 2 3; 5 -5 2} \\
+          & = 5(6+20)-1(0-20)+1(0-10) \quad + \quad
+            (-2)\left(5(4+15)-1(0-15) +(-3)(0-10)\right) \\
+          & = 140 - 2(140) = -140.
+\end{align*}
+\end{solution}
+
+\problem % Created for ILA
+As a general rule, which method for computing $n \times n$ determinants is
+faster: row-reduction, or the cofactor expansion?  Justify your answer.
+
+\begin{solution}
+  Row-reduction is generally much faster, particularly if the matrix is large.
+  Cofactor expansions scale very poorly as $n$ increases.  For example, in order
+  to compute the determinant of a $5 \times 5$ matrix using cofactors, we need
+  to compute $5$ different $4 \times 4$ determinants.  Each of these
+  $4 \times 4$ determinants requires us to compute $4$ different $3 \times 3$
+  determinants, and each of the $3 \times 3$ determinants requires us to compute
+  $3$ different $2 \times 2$ determinants.  In essence, the $5 \times 5$
+  cofactor expansion would involve $5! = 120$ computations of $2 \times 2$
+  determinants.  
+\end{solution}
+
+\problem % Dan's notes
+Find the determinant of the following matrix using one of the cofactor expansion formulas.
+\[\mat{1 0 -2; 3 1 -2; -5 0 9}.\]
+
+\begin{solution}
+We expand along the second column, since it has only one nonzero entry.
+\[\det\mat{1 0 -2; 3 1 -2; -5 0 9} = 0C_{21} + 1 C_{22} + 0C_{32}
+  = 1 (-1)^{2+2} \det\mat{1 -2; -5 9} = 1(9-10) = -1.
+  \]
+\end{solution}
+
+\problem % Created for ILA
+Find all real values of $h$ (if there are any) so that the following set of
+vectors is a basis for ${\bf R}^{3}$.
+\[\left\{\vec{1 -7 1}, \vec{h 4 -1}, \vec{3 h 2}\right\}.\]
+\begin{solution}
+  The three vectors form a basis for ${\bf R}^{3}$ if and only if they are
+  linearly independent, so put them as columns of a $3 \times 3$ matrix $A$.
+  Since $A$ is square, the vectors are linearly independent if and only
+  if the matrix is invertible, which is when $\det(A) \neq 0$.  Now:
+  \[\det(A) = 1(8+h) - h(-14-h) + 3(7-4) = 8+h+14h+h^2 + 9
+    = h^2+15h+17.\]
+  This determinant is zero when
+  \[h = \dfrac{-15 \pm \sqrt{15^2-4(17)}}{2} = \dfrac{-15 \pm \sqrt{157}}{2}.\]
+  As established above, the vectors are linearly independent when the determinant
+  is nonzero, which is all real numbers $h$ {\bf except} %
+  $\dfrac{-15 + \sqrt{157}}{2}$ and $\dfrac{-15 - \sqrt{157}}{2}$.
+\end{solution}
+
+\problem % Dan's notes
+Find the determinant of the following matrix using one of the cofactor expansion formulas.
+\[\mat{4 0 -2; -7 1 -2; -5 -1 9}.\]
+\begin{solution}
+We use the first row.  The determinant of the matrix is
+\[
+  4\Big[1(9)-(-1)(-2)\Big] - 0 + (-2)\Big[(-7)(-1)-(-5)(1)\Big]
+  = 4(9-2) - 2(7+5) = 28-24 = 4.
+\]
+\end{solution}
+
+\problem %Jankowski Spring 2018 Exam 3, also Spring 2018 sample midterm 3
+  Find $\det(A^3)$ if $A= \mat{1 -3 4 2; 0 0 -2 0; 0 1 2 3; 2 0 -1 20}$.  
+
+  \begin{solution}
+    Using the cofactor expansion along the second row, we find
+    \[\det(A)=-2(-1)^5\det\mat{1 -3 2; 0 1 3; 2 0 20}
+      = 2\Big(20+3(-6)+2(-2)\Big)=2(20-18-4)=-4,\] so
+    $\det(A^3)=(-4)^3= -64$.
+  \end{solution}
+
+\problem % Created for ILA
+Use the cofactor expansion of the determinant to find $\det(A)$ for
+\[A = \mat{-1 3 4 0; 4 1 3 0; 1 1 4 5; -1 -3 -4 0}.\]
+\begin{solution}
+We use the expansion along the fourth column.
+\begin{align*}
+  \det(A)
+  & = 0C_{14} + 0C_{24} + 5 C_{34} + 0 C_{44} \\
+  & = 5 (-1)^{3+4} \det\mat{-1 3 4; 4 1 3; -1 -3 -4} \\
+  & = -5\Big[-1(-4+9)-3(-16+3)+4(-12+1)\Big] \\
+  & = -5(-5+39-44) = -5(-10) \\
+  & = 50.
+\end{align*}  
+\end{solution}
+
+\problem % Created for ILA
+Use either the cofactor expansion or row-reduction to find $\det(A)$ for
+\[A = \mat{7 3 1 4 2; 0 1 3 4 1; 0 2 10 8 -4; 0 0 0 3 1; 0 0 0 0 7}.\]
+\begin{solution}
+  The matrix $A$ is almost upper-triangular already, so it may take very little
+  row reduction to obtain an upper-triangular matrix.  This gives us the hint
+  that row-reduction may be the faster way. \newline \newline %
+  The most natural cofactor expansion would be along the first column or last
+  row, since each of those has only one nonzero term.  
+  \begin{align*}
+    \det(A) & = 7 \det\mat{1 3 4 1; 2 10 8 -4; 0 0 3 1; 0 0 0 7}
+              = 7 \cdot 7(-1)^{4+4} \det\mat{1 3 4; 2 10 8; 0 0 3} \\
+             &  = 49 \det\mat{1 3 4; 2 10 8; 0 0 3} 
+             = 49(3)(-1)^{3+3} \det\mat{1 3; 2 10}
+              = 147(10-6) = 588.
+  \end{align*}
+  Row-reduction only requires one step.
+  \[A = 
+  \mat{7 3 1 4 2; 0 1 3 4 1; 0 2 10 8 -4; 0 0 0 3 1; 0 0 0 0 7}
+  \xrightarrow[]{R_3 = R_3 - 2R_2}
+  \mat{7 3 1 4 2; 0 1 3 4 1; 0 0 4 0 -6; 0 0 0 3 1; 0 0 0 0 7}.
+  \]
+  With just one row-replacement (which does not affect the determinant),
+  we obtained an upper-triangular matrix, so
+  \[\det(A) = 7(1)(4)(3)(7) = 588.\]
+
+
+\end{solution}
+
+\problem % Created for ILA
+A problem from section 2.2, revisited: Find all values of $b$ (if
+there are any) so that $\vec{b -3 2}$ is a linear combination of
+$\vec{3 1 2}$ and $\vec{1 0 4}$.
+
+\begin{solution}
+  Since $\vec{3 1 2}$ and $\vec{1 0 4}$ are linearly independent, we
+  know from the Increasing Span Criterion that
+  $\left\{ \vec{3 1 2}, \vec{1 0 4}, \vec{b -3 2}\right\}$ will span
+  ${\bf R}^3$ (in other words, the three vectors will be linearly
+  independent) unless $\vec{b -3 2}$ is in the span of $\vec{3 1 2}$
+  and $\vec{1 0 4}$.  We form the matrix whose three columns are the
+  vectors and set its determinant equal to $0$.
+  \[\det\mat{3 1 b; 1 0 -3; 2 4 2} = 0,\]
+  \[3\big[0(2) - (-3)(4)\big] \ - \ 1\big[1(2)-(-3)(2)\big] \ + \
+    b\big[1(4)-2(0)\big] = 0,\]
+  \[3(12) - 1(8) + b(4) = 0, \qquad 28+4b = 0, \qquad b = -7.\]
+\end{solution}
+
+\problem % Dan's notes
+For what values of $c$ does the following matrix fail to be invertible?
+\[A = \mat{c 1 1; 1 c 1; 1 1 c}.\]
+\begin{solution}
+We need $\det(A) = 0$.
+\[0 = \det(A) = c(c^2-1) - 1(c-1) +1(1-c) = c^3-3c+2 = (c-1)^2(c+2).\] Thus
+$c=1$ and $c = -2$ make $A$ fail to be invertible. \newline %
+Note: to factor $c^3-3c+2$ above, we did long division after observing that
+$c=1$ was a zero of $c^3-3c+2$.  However, we could have instead grouped terms
+using the common factor of $c-1$:
+\begin{align*}
+  c(c^2-1)-1(c-1)+1(1-c)
+  & = c(c-1)(c+1)-1(c-1)+1(1-c) \\
+  & = (c-1)\Big[c(c+1)-1-1\Big] \\
+  & = (c-1)\Big[c^2+c-2\Big] \\
+  & = (c-1)(c-1)(c+2).
+\end{align*}
+\end{solution}
+
+\end{problems} \setcounter{problem}{0}
+
+\newpage
+
+\subsection{4.3, Determinants and volumes}
+
+\begin{problems}
+%
+\problem % Created for ILA
+Suppose we are given two vectors $u$ and $v$ in ${\bf R}^{2}$ and asked to compute
+the area of their associated parallelogram, but the computation yields $0$ as the answer.
+What does this mean?
+
+\begin{solution}
+  If $0 = |\det\mat{u v}|$, then $u$ and $v$ are linearly dependent, so they do
+  not actually form a parallelogram.  Instead, since they are on the same line
+  through the origin, they only form a portion of a line, which has $0$ area in
+  ${\bf R}^{2}$.
+\end{solution}
+
+\problem % Created for ILA
+  Find the area of the parallelogram determined by the vectors %
+  \[v_1 = \vec{1 -3}, \quad v_2 = \vec{2 4}.\]
+
+\begin{solution}
+  The area is $\left|\det\mat{v_1 v_2} \right|=
+  \left|\det\mat{1 2; -3 4}\right| = \left|1(4)-2(-3)\right| = 10$.
+\end{solution}  
+
+
+\problem % Created for ILA
+  Find the area of the parallelogram with vertices
+  \[(1, 2), \quad (3, 7), \quad (4, -1),  \quad (6, 4).\]
+
+\begin{solution}
+  To use the formula from section 4.2, we need to find vectors $v_1$ and $v_2$
+  that determine the area of the parallelogram. For this, we can start at any
+  vertex (we will use the first vertex) and find the vectors to each of its two
+  adjacent vertices within the parallelogram.  \newline %
+  The vector from $(1,2)$ to $(3, 7)$ is $v_1 = \vec{2 5}$. \newline %
+  The vector from $(1,2)$ to $(4, -1)$ is $v_2 = \vec{3 -3}$. \newline %
+  The area is
+  \[\left|\det\mat{v_1 v_2}\right| = \left|\det\mat{2 3; 5 -3}\right| = %
+    |2(-3)-3(5)| = |-21| = 21.\]
+\end{solution}  
+
+
+\problem % Created for ILA
+  Find the area of the triangle with vertices
+  \[(4,-5), \quad (1, 2), \quad (-10, -3).\]
+
+\begin{solution}
+  The area is half of the area of the corresponding parallelogram.  To use the
+  formula from section 4.2, we need to find vectors $v_1$ and $v_2$ that
+  determine the triangle. For this, we can start at any vertex
+  (we will use the first vertex) and find the vectors to each of its two
+  adjacent vertices within the triangle.  \newline %
+  The vector from $(4, -5)$ to $(1, 2)$ is $v_1 = \vec{-3 7}$. \newline %
+  The vector from $(4, -5)$ to $(-10, -3)$ is $v_2 = \vec{-14 2}$. \newline %
+  The area is
+  \begin{align*}
+    \dfrac{1}{2} \left|\det\mat{v_1 v_2}\right| %
+    & = \dfrac{1}{2} \left|\det\mat{-3 -14; 7 2}\right| %
+    = \dfrac{1}{2}\left|(-3)(2)-(-14)(7)\right| \\ %
+    & = \dfrac{1}{2}\left|-6 + 98\right| = \dfrac{1}{2}(92) = 46.
+  \end{align*}
+\end{solution}  
+
+
+\problem % Created for ILA
+Find the volume of the parallelepiped $P$ naturally determined by the three
+vectors below.
+\[v_1 = \vec{1 0 0}, \quad v_2 = \vec{-1 7 3}, \quad v_3 = \vec{2 4 6}.\]
+\begin{solution}
+The volume is
+\[\left|\det\mat{1 -1 2; 0 7 4; 0 3 6}\right| =
+  |1(7(6)-3(4)) - (-1)(0-0) + 2(0-0)| = 30.\]
+\end{solution}
+
+
+\problem % Created for ILA
+Find the volume of the parallelepiped $P$ naturally determined by the four
+vectors below.
+\[v_1 = \vec{4 4 1 2}, \quad v_2 = \vec{0 20 1 0}, \quad v_3 = \vec{-1 -1 1 1},
+  \quad v_4 = \vec{5 5 3 4}.\]
+\begin{solution}
+The volume is
+\begin{align*}
+  \left|\det\mat{4 0 -1 5; 4 20 -1 5; 1 1 1 3; 2 0 1 4}\right|
+  & = \left| 0C_{21} + 20C_{22} + 1C_{32} + 0 C_{42}\right| \\
+  & = \left| 20 \det\mat{4 -1 5; 1 1 3; 2 1 4} +
+    1(-1)^{3+2} \det \mat{4 -1 5; 4 -1 5; 2 0 4}\right| \\
+  & = \left| 20 \Big[4(4-3)+1(4-6)+5(1-2)\Big] -1 (0)\right| = \left|20(4-2-5)\right|\\
+  & = 60.
+\end{align*}
+Above, we did not need to do any work to compute $C_{42}$ because its
+$3 \times 3$ matrix had two identical rows and thus had determinant $0$.
+\end{solution}
+
+
+\problem % Created for ILA
+Find all values of $h$ so that the volume of the parallelepiped $P$ formed by the
+four vectors below is equal to $15$.
+\[v_1 = \vec{-2 0 h 0}, \qquad %
+  v_2 = \vec{4 1 1 0}, \qquad %
+  v_3 = \vec{0 2 1 9}, \qquad %
+  v_4 = \vec{6 4 5 1}.\]
+
+\begin{solution}
+  There are two values of $h$ that work: $h = 5/82$ and $h = 35/82$.  The volume
+  of $P$ is the absolute value of the determinant of the matrix with columns
+  $v_1$ through $v_4$, so we set it equal to $15$ and solve for $h$.  We use the
+  cofactor expansion along the first column.
+  \begin{align*}
+    15 & = \left|\det\mat{-2 4 0 6; 0 1 2 4; h 1 1 5; 0 0 9 1}\right| 
+         = \left|-2C_{11} + 0 C_{21} + h C_{31} + 0 C_{41}\right| \\
+       & = \left|-2(-1)^{1+1} \det\mat{1 2 4; 1 1 5; 0 9 1} + h(-1)^{3+1}
+         \det\mat{4 0 6; 1 2 4; 0 9 1}\right| \\
+       & = \left| -2 \Big[1(1-9\cdot 5)-2(1-0)+4(9-0)\Big]
+         + h \Big[4(2\cdot 1-9 \cdot 4)-0+6(1 \cdot 9 -0)\Big] \right| \\
+       & = \left| -2(-44-2+36) + h(-136+54)\right| \\
+       & = \left|-2(-10) - 82h\right| = \left|20-82h\right|.         
+  \end{align*}
+  Therefore, $\left|20-82h\right| = 15$. \newline
+  Case 1: $20-82h = 15$, so $82h = 5$ and $h = 5/82$. \newline %
+  Case 2: $-(20-82h) = 15$, so $-20+82h = 15$, thus $82h = 35$
+  and $h = 35/82$.
+\end{solution}
+
+
+\problem % Created for ILA
+Let $R$ be the triangle with vertices $(0, 0)$, $(1, 4)$, and $(10, 20)$.  Find
+the area of the new triangle $T(R)$, where $T: {\bf R}^2 \to {\bf R}^2$ is the
+transformation $T(x) = \mat{8 -3; 1 2}$.
+
+\begin{solution}
+  The area of $R$ is
+  \[\dfrac{1}{2} \left| \det\mat{1 10; 4 20}\right| = \dfrac{1}{2}|-20| = 10.\]
+  Let $A = \mat{8 -3; 1 2}$, noting $|\det(A)| = 19$.  From the area formula from
+  chapter 4, we know
+  \[\textup{Area}(T(R)) = \left|\det(A)\right|\cdot \textup{Area}(R)
+    = 19(10) = 190.\]
+  Another way to do this problem is to transform the vertices of the original triangle
+  into the new triangle: we compute $T\vec{0 0} = \vec{0 0}$, 
+  \[T\vec{1 4} = \mat{8 -3; 1 2} \vec{1 4} = \vec{-4 9}, \qquad
+    T\vec{10 20} = \mat{8 -3; 1 2} \vec{10 20} = \vec{20 50}.\]
+  Therefore, the vertices of $T(R)$ are $(0, 0)$, $(-4,9)$, and $(20,50)$.
+  \[\textup{Area}(T(R)) = \dfrac{1}{2}
+    \left|\det\mat{-4 20; 9 50}\right| = \dfrac{1}{2} |-200-180| = \dfrac{1}{2}(380)
+    = 190.\]
+\end{solution}
+
+
+\problem % Created for ILA
+Let $T: {\bf R}^2 \to {\bf R}^2$ be the transformation
+\[T(x) = \mat{7 -1; 0 3} x.\] Find the area of $T(C)$, where $C$ is the circle
+of radius $2$ centered at the origin.
+
+\begin{solution}
+With $A = \mat{7 -1; 0 3}$, we use the area formula from section 4.3:
+\[\textup{Area}(T(C)) = \left| \det(A) \right| \textup{Area}(C)
+  = 21 \cdot (\pi(2^2)) = 84 \pi.\]
+\end{solution}
+
+
+\problem % Dan's notes
+  If the area of a fish (in a photo) is $7$ square inches, and if we apply the
+  shear transformation $T(x) = \mat{1 13; 0 1}$ to the photo, what is the area
+  of the fish in the new photo?
+
+\begin{solution}
+  To get the area of the new fish, we multiply the original area by the
+  determinant of the standard matrix for $T$.  The new area is
+  $\det\mat{1 13; 0 1} \cdot 7 = 1 \cdot 7 = 7$.
+\end{solution}
+
+
+%\problem % Dan's notes
+%Find the volume of the triangular pyramid with the vertices 
+%\[(0,0,0), \quad (0,0,1), \quad (1,0,0), \quad (1,2,3).\]
+%
+%\begin{solution}
+%  The volume of the triangular pyramid is half the volume of the corresponding
+%  rectangular pyramid.  We use the vectors from $(0,0,0)$ to each of the three
+%  vertices in order to create the columns of the corresponding matrix.  The
+%  volume is
+%  \[\dfrac{1}{2} \det\mat{0 1 1; 0 0 2; 1 0 3} =
+%    \dfrac{1}{2} \left(0 - 1(0-2) + 1(0-0)\right) = 1.\]
+%\end{solution}
+
+\problem % Made for ILA
+Suppose $u$ and $v$ are vectors in ${\bf R}^2$ that naturally form a
+parallelogram with area $10$ square units.  What is the area of the
+parallelogram naturally formed by $3u$ and $-v$. Justify this answer
+in two ways: first by using geometry, then by using properties of
+determinants.
+
+\begin{solution}
+  Geometrically: stretching $u$ by a factor of three will scale the
+  area by a factor of $3$, whereas multiplying $v$ by $-1$ will only
+  change the direction of facing of the parallelogram.  Therefore, the
+  resulting area is $3(10)=30$.
+  % 
+  Determinants: the area of the parallelogram determined by $u$ and
+  $v$ is
+   \[\textup{Area} = \left|\det \mat{- u -; - v -}\right|=10 \textup{
+       units}^2.\] Scaling a row of a matrix by $3$ multiplies the
+   determinant by $3$, and multiplying a row by $-1$ changes the
+   determinant by $-1$ (this will be irrelevant since we take the
+   absolute value).
+   \[\textup{Area} = \left|\det \mat{- 3u -; - -v -}\right| =
+     |10(3)(-1)| = 30 \textup{ units}^2.\]
+\end{solution}
+
+ 
+ 
+\end{problems}\setcounter{problem}{0}
+\newpage

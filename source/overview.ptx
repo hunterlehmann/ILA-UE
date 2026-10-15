@@ -171,12 +171,12 @@ the license is included in gfdl.xml.
             which tools should be applied in a given context.
         </p>
 
-        <insight>
+        <assemblage>
             <p>
                 If Matlab can find the answer faster than you can, then your
                 question is just an algorithm: this is not real problem solving.
             </p>
-        </insight>
+        </assemblage>
 
         <p>
             The subtle part of the subject lies in understanding
@@ -195,7 +195,7 @@ the license is included in gfdl.xml.
             There is a reason for this:
         </p>
 
-        <insight>
+        <assemblage>
             <p>
                 Most engineering problems, no matter how complicated, can be
                 reduced to linear algebra:
@@ -203,7 +203,7 @@ the license is included in gfdl.xml.
                     Ax=b \sptxt{or} Ax=\lambda x \sptxt{or} Ax\approx b.
                 </md>
             </p>
-        </insight>
+        </assemblage>
 
         <p>
             Here we present some sample problems in science and engineering that
@@ -366,7 +366,7 @@ the license is included in gfdl.xml.
                 </caption>
                 <interactive xml:id="demo-rabbits"
              iframe="iframes/rabbits-if.html"
-             width="100%"
+             width="90%"
              aspect="8:5"/>
             </figure>
         </observation>
@@ -452,7 +452,7 @@ the license is included in gfdl.xml.
                 via outgoing links to other pages.
                 This leads to zillions of equations in zillions of variables.
                 Larry Page and Sergei Brin realized that this is a linear
-                algebra problem at its core, and used the insight to found
+                algebra problem at its core, and used the assemblage to found
                 Google.
                 We will discuss this example in detail in
                 <xref provisional="stochastic-matrices"/>.
@@ -463,7 +463,7 @@ the license is included in gfdl.xml.
                 via outgoing links to other pages.
                 This leads to zillions of equations in zillions of variables.
                 Larry Page and Sergei Brin realized that this is a linear
-                algebra problem at its core, and used the insight to found
+                algebra problem at its core, and used the assemblage to found
                 Google.
                 The result is the so-called
                 <q>25 billion dollar eigenvector.</q> See Section 6.6 in the
@@ -567,7 +567,7 @@ the license is included in gfdl.xml.
             <caption>A demo showing the fitting of a quadratic to a set of data points in the plane.</caption>
             <interactive xml:id="demo-bestfit-implicit"
              iframe="iframes/bestfit-implicit-if.html?func=x^2+A*y^2+B*x*y+C*x+D*y+EE&amp;v1=0,2&amp;v2=2,1&amp;v3=1,-1&amp;v4=-1,-2&amp;v5=-3,1&amp;v6=-1,1&amp;range=5&amp;rangez=25&amp;camera1=-2.14,.814,1.69"
-             width="100%" aspect="2:1">
+             width="90%" aspect="2:1">
              <shortdescription>
 <!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
              </shortdescription>

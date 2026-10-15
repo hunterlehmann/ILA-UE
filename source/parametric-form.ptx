@@ -128,9 +128,9 @@ z \amp {}={} \amp z \amp {}
       </figure>
     </observation>
 
-    <insight xml:id="finding-actual-soln">
+    <assemblage xml:id="finding-actual-soln">
       <p>Given the parametric form for the solution to a linear system, we can obtain specific solutions by replacing the free variables with any specific real numbers.  For instance, setting <m>z=0</m> in the last example gives the solution <m>(x,y,z)=(1,-1,0)</m>, and setting <m>z=1</m> gives the solution <m>(x,y,z)=(-4,-3,1)</m>.</p>
-    </insight>
+    </assemblage>
 
 
     <definition>
@@ -209,14 +209,14 @@ y \amp {}={} \amp -1 - 2z \amp .
       </p>
     </note>
 
-    <insight>
+    <assemblage>
       <p>
         You can choose <em>any value</em> for the free variables in a (consistent) linear system.
       </p>
       <p>
         Free variables come from the <em>columns without pivots</em> in a matrix in row echelon form.
       </p>
-    </insight>
+    </assemblage>
 
     <example>
       <p>

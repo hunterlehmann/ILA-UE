@@ -1,0 +1,1088 @@
+
+
+
+
+
+\subsection{5.1, Eigenvalues and eigenvectors}
+
+\begin{problems}
+%
+\problem % Jankowski Spring 2018 exam 3
+True or false: If $A$ is an $n \times n$ matrix and $\det(A)=2$, then $2$ is an
+eigenvalue of $A$.
+
+\begin{solution}
+  False.  For example, $A=\mat{4 0; 0 1/2}$ has $\det(A)=2$ but its eigenvalues
+  are $4$ and $\dfrac{1}{2}$.
+\end{solution}
+
+\problem % Created for ILA
+True or false: Suppose $A$ is a $n \times n$ matrix and $u$ and $v$ are nonzero
+vectors in ${\bf R}^{n}$ satisfying $Au = 2u$ and $Av = 3v$.  Then $\{u, v\}$ must
+be linearly independent.
+
+\begin{solution}
+  True: we have implicitly been told that $2$ and $3$ are eigenvalues of $A$,
+  where $u$ is a $2$-eigenvector and $v$ is a $3$-eigenvector.  Since eigenvectors
+  corresponding to different eigenvalues are automatically linearly independent,
+  the set $\{u,v\}$ must be linearly independent.
+\end{solution}
+
+\problem % Jankowski Spring 2018 exam 3
+True or false: The matrices $A=\mat{2 1; 0 -1}$ and $B=\mat{2 20; 0 -1}$ have
+the same eigenvalues.
+    
+\begin{solution}
+  True.  Each matrix has eigenvalues $\lambda=2$ and $\lambda = -1$.
+\end{solution}
+
+
+\problem % Jankowski Spring 2018 exam 3
+True or false: If $A$ is an $n \times n$ matrix and $v$ and $w$ are eigenvectors
+of $A$, then $v+w$ is also an eigenvector of $A$.
+    
+\begin{solution}
+  False.  For example, if $A= \mat{1 0; 0 2}$ then $\vec{1 0}$ and $\vec{0 1}$
+  are eigenvectors, but $A \vec{1 1} = \vec{1 2}$ so $\vec{1 1}$ is not an
+  eigenvector.
+\end{solution}
+
+\problem % Dan's notes
+True or false: The zero vector is an eigenvector for every square matrix.
+    
+\begin{solution}
+  False.  By definition of eigenvector, the zero vector is never an eigenvector
+  for any matrix.
+\end{solution}
+
+\problem % Created for ILA
+Which of the following vectors (if any) are eigenvectors for
+$A = \mat{35 -32; 40 -37}$?
+% eigenvalues $3$ with e.v. (1,1)... and eigenvalue -5 with e.v. (4,5)
+\begin{subproblems}
+  \subproblem  $v_1 = \vec{2 1}$  %
+  \subproblem  $v_2 = \vec{-1 -1}$%
+  \subproblem  $v_3 = \vec{4 5}$ %
+\end{subproblems}
+
+\begin{solution}
+We check each vector one-by-one.
+\[Av_1 = \mat{35 -32; 40 -37} \vec{2 1} = \vec{38 43}, %
+  \quad \textup{which is not a scalar multiple of } v_1.\]
+\[Av_2 = \mat{35 -32; 40 -37} \vec{-1 -1} = \vec{-3 -3} = 3v_2.\]
+\[Av_3 = \mat{35 -32; 40 -37} \vec{4 5} = \vec{-20 -25} = -5v_3.\] From the
+computations, we conclude that $v_2$ and $v_3$ are eigenvectors of $A$, but $v_1$
+is not an eigenvector of $A$ because $Av_1$ is not a scalar multiple of $v_1$.
+\end{solution}
+
+
+\problem %Dan's notes 
+Find the $2$-eigenspace for the matrix
+\[\mat{0 13 12; 1/4 0 0; 0 1/2 0}.\]
+\begin{solution}
+We need to find $\Nul(A-2I)$.  For this, we note
+\[A - 2I = \mat{0 13 12; 1/4 0 0; 0 1/2 0} - \mat{2 0 0; 0 2 0; 0 0 2}
+= \mat{-2 13 12; 1/4 -2 0; 0 1/2 -2}.\]
+Now:
+\[\amat{A-2I 0} =
+  \amat{-2 13 12 0; 1/4 -2 0 0; 0 1/2 -2 0}
+  \xrightarrow[]{RREF}
+  \amat{1 0 -32 0; 0 1 -4 0; 0 0 0 0}.\]
+This gives us $x_1 - 32x_3 = 0$ and $x_2 - 4 x_3 = 0$ with $x_3$ free.  The parametric
+vector form is 
+\[\vec{x_1 x_2 x_3} = \vec{32x_3 4x_3 x_3} = x_3 \vec{32 4 1}.\]
+Therefore, the $2$-eigenspace of $A$ is
+\[\Nul(A-2I) = \Span \left\{\vec{32 4 1}\right\}.\]
+\end{solution}
+
+\problem %Dan's notes
+How many different eigenvalues can an $n \times n$ matrix have?
+
+\begin{solution}
+  The maximum is $n$.  Since eigenvectors for different eigenvalues are
+  automatically linearly independent, and since no set of vectors in
+  ${\bf R}^{n}$ can be linearly independent if it has more than $n$ vectors in
+  it, we cannot have more than $n$ different eigenvalues.  It is possible to
+  have exactly $n$ different eigenvalues, for example the $3 \times 3$ matrix
+  below has $3$ different eigenvalues.
+  \[\mat{1 0 0; 0 2 0; 0 0 3}.\]
+\end{solution}
+
+\problem %Dan's notes
+Consider the matrix $A$ for reflection of ${\bf R}^2$ about the line $y = 7x$.
+What are its eigenvalues?
+
+\begin{solution}
+  The eigenvalues are $\lambda = 1$ and $\lambda = -1$.  The matrix does not
+  change any vector along the line $y = 7x$.  In other words, $Av = v$ for every
+  vector $v$ along the line $y = 7x$. Therefore, $\lambda = 1$ is an eigenvalue.
+  \newline \newline %
+  The matrix flips every vector on the line through the origin that is
+  perpendicular to the line $y = 7x$.  In other words, $Av = -v$ for every
+  vector $v$ along the line $y = -x/7$.  Therefore, $\lambda = -1$ is an
+  eigenvalue. \newline \newline %
+  Since a $2 \times 2$ matrix can have at most $2$ eigenvalues, we conclude that
+  $1$ and $-1$ are the only eigenvalues of $A$. \newline \newline %
+  Note that the eigenvalues and reasoning would be identical if we changed the
+  line $y = 7x$ to a different line $L$ through the origin.  The eigenvalues
+  would still be $1$ and $-1$, the $1$-eigenspace would be $L$, and the
+  $(-1)$-eigenspace would be the line through the origin perpendicular to $L$.
+  
+\end{solution}
+
+
+\problem
+Without doing any major computations, write one real eigenvalue for
+each of the following matrices. 
+\begin{subproblems}
+  \subproblem $A = \mat{6 0 0; -4 6 0; 6 6 6}$ \subproblem The
+  standard matrix $A$ for the linear transformation $T$ that satisfies
+  \[T(e_1) = e_3, \quad T(e_2) = 2e_2 - e_3, \quad T(e_3) = -e_2
+    +2e_3.\]
+  %
+  \subproblem
+  $A = \mat{1 2 3 4 5 6; 1 2 3 4 5 6; 0 0 0 1 0 0; 0 0 0 0 1 0; 0 0 0
+    0 0 1}.$
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem Since $A$ is lower-triangular, its eigenvalues are its
+    diagonal entries.  Each of these is $6$, so the only eigenvalue of
+    $A$ is $\lambda = 6$.
+     %
+    \subproblem We see $e_2+e_3$ is an eigenvector corresponding to
+    eigenvalue $\lambda = 1$ since
+    \[T(e_2+e_3) = 2e_2-e_3 + (-e_2 + 2e_3) = e_2 + e_3.\]
+    %
+    \subproblem The first two rows of the square matrix $A$ are the
+    same, so without doing any work we know that $A$ is not invertible,
+    therefore $\lambda = 0$ is an eigenvalue of $A$ since the equation
+    $Ax = 0$ has a non-trivial solution.
+
+    Alternatively, we could have noted from the form of $A$ that
+    $A(e_1-e_2) = 0$, which shows that $\lambda = 0$ is an eigenvalue
+    and $e_1 - e_2$ is a corresponding eigenvector.
+   \end{subproblems}
+ \end{solution}
+
+ 
+\problem %Jankowski Spring 2018 exam 2
+    Let $T: {\bf R}^2 \to {\bf R}^2$ be the linear transformation
+    which reflects across the line $L$ drawn below, and let $A$ be the
+    standard matrix for $T$.  Answer both questions below without
+    doing any computations.  \newline
+    \begin{center}
+      \includegraphics[scale=0.5]{q6_18s-line.pdf}
+    \end{center}
+
+	\begin{subproblems} % Jankowski quiz from forgot when
+      \subproblem Find all eigenvalues of $A$.
+      %
+      \subproblem For each eigenvalue of $A$, draw one eigenvector on
+      the graph above.  Your eigenvector does not need to be perfect,
+      but it should be reasonably accurate. \newline
+    \end{subproblems}
+
+
+    \begin{solution}
+      \begin{subproblems}
+        \subproblem The equation of the line was not given, and it is
+        irrelevant.  The eigenvalues of $A$ are $\lambda_1 = 1$ and
+        $\lambda_2 = -1$, since $A$ fixes every vector along the line
+        $L$ while $A$ flips every vector perpendicular to $L$.
+
+        In the graph, $v_1$ corresponds to $\lambda_1 = 1$, while
+        $v_2$ corresponds to $\lambda_2= -1$.
+
+        \subproblem We graph eigenvectors below.
+        \begin{center}
+          \includegraphics[scale=0.4]{q6_18s-answer}
+        \end{center}
+
+        Many answers are possible: $v_1$ can be any nonzero vector on
+        $L$ (going up-to-right or down-to-left), while $v_2$ can be
+        any nonzero vector perpendicular to $L$ (going up-to-left or
+        down-to-right).  \newline \newline Note: Algebraically, the
+        problem would have been much more painful! \newline The line
+        is actually the line $y = \dfrac{3}{7} x$, the matrix is
+        $A= \dfrac{1}{29} \mat{20 21; 21 -20}$, and the eigenvectors
+        drawn are $v_1 = \vec{7/3 1}$ and $v_2 = \vec{-1 7/3}$.
+      \end{subproblems}
+    \end{solution}
+
+\problem % Created for ILA
+Suppose $A$ is a $2 \times 2$ matrix, and that $u$ and $v$ are vectors
+in the $(-2)$-eigenspace of $A$ and the $5$-eigenspace of $A$, respectively.
+Find $A(8u - 4v)$ in terms of $u$ and $v$.
+
+\begin{solution}
+We are given that $Au = -2u$ and $Av = 5v$, so we use linearity:
+\[A(8u-4v) = A(8u) - A(4v) = 8Au - 4Av = -16u -20v.\]
+\end{solution}
+
+\problem %Created for ILA
+There is one $2 \times 2$ matrix $A$ with the property that
+\[\Nul(A-2I) = \Span \left\{\vec{7 1}\right\},
+  \quad \textup{ and } \quad
+  \Nul(A+I) = \Span \left\{\vec{-1 3} \right\}.\]
+Find $A$.
+
+\begin{solution}
+  We are told the $2$-eigenspace of $A$ is spanned by $\vec{7 1}$ and that the
+  $(-1)$-eigenspace of $A$ is spanned by $\vec{1 -3}$, so
+  \[Au = 2u = \vec{14 2} \quad \textup{ and } \quad
+  Av = -v = \vec{1 -3}.\]
+  Recall from section 3.3 that if $M$ is any $2 \times 2$ matrix, then its first
+  column is $Me_1$ and its second column is $Me_2$ (this can also
+  be seen directly from the definition of ``matrix times vector'' multiplication), so
+  we need to find $A\vec{1 0}$ and $A \vec{0 1}$.
+
+  For this, we write the standard basis vectors as linear combinations of the
+  eigenvectors $u = \vec{7 1}$ and $v = \vec{1 -3}$. %
+  \[\textup{For } \vec{1 0}: \amat{7 1 1; 1 -3 0}
+    \xrightarrow[]{RREF} \amat{1 0 3/22; 0 1 1/22},
+    \quad \textup{ so } \quad \dfrac{3}{22}u + \dfrac{1}{22} v
+    = \vec{1 0},\]
+  \begin{align*}
+    A \vec{1 0}
+    & = A \left(\dfrac{3}{22}u + \dfrac{1}{22} v\right) 
+      = \dfrac{3}{22} Au + \dfrac{1}{22} Av 
+      = \dfrac{3}{22} \vec{14 2} + \dfrac{1}{22} \vec{-1 3} \\
+    &  = \vec{41/22 9/22}.
+  \end{align*}
+
+  \[\textup{For } \vec{0 1}: \amat{7 1 0; 1 -3 1}
+    \xrightarrow[]{RREF} \amat{1 0 1/22; 0 1 -7/22},
+    \quad \textup{ so } \quad \dfrac{1}{22}u - \dfrac{7}{22} v
+    = \vec{0 1},\]
+  \begin{align*}
+    A \vec{0 1}
+    & = A \left(\dfrac{1}{22}u - \dfrac{7}{22} v\right) 
+      = \dfrac{1}{22} Au - \dfrac{7}{22} Av 
+      = \dfrac{1}{22} \vec{14 2} - \dfrac{7}{22} \vec{-1 3} \\
+    &  = \vec{21/22 -19/22}.
+  \end{align*}
+
+Therefore,
+\[A = \mat{A\vec{1 0} A\vec{0 1}} = \mat{41/22 21/22; 9/22 -19/22}
+  = \dfrac{1}{22} \mat{41 21; 9 -19}.\]
+
+This problem's matrix $A$ is an example of a diagonalizable matrix.  We will
+find a different way to compute $A$ in section 5.4.
+\end{solution}
+
+
+
+
+\end{problems}\setcounter{problem}{0}
+
+\newpage
+
+\subsection{5.2, The characteristic polynomial}
+\begin{problems}
+%
+\problem % Dan's notes
+True or false: Every $n \times n$ matrix has a real eigenvalue.
+
+\begin{solution}
+  False.  For example, the $2 \times 2$ matrix for rotation by $\pi/2$ radians
+  counterclockwise has no real eigenvalues.  The matrix is $\mat{0 -1; 1 0}$,
+  and we can compute that its characteristic equation is
+  $0 = \det(A-\lambda I) = \lambda^2+1$, so its eigenvalues are $\pm i$.  We
+  discuss complex eigenvalues in section 5.5.
+\end{solution}
+
+\problem % Dan's notes
+True or false: Every $n \times n$ matrix has $n$ distinct eigenvalues.
+
+\begin{solution}
+False.  The $2 \times 2$ identity matrix $I = \mat{1 0; 0 1}$ has only one
+eigenvalue, namely $\lambda = 1$.
+\end{solution}
+
+\problem % Dan's notes
+True or false: If $\lambda$ is an eigenvalue of a matrix $A$, then the nullity
+of $A- \lambda I$ is the dimension of the $\lambda$-eigenspace.
+
+\begin{solution}
+True.  By definition, the $\lambda$-eigenspace is the null space of 
+$A-\lambda I$, so the dimension of the $\lambda$-eigenspace
+is precisely the dimension of the null space of $A-\lambda I$.
+\end{solution}
+
+
+\problem %Dan's notes
+What are the eigenvalues for the standard matrix for a reflection?
+
+\begin{solution}
+  They are always $1$ and $-1$.
+\end{solution}
+
+\problem %Dan's notes
+What are the eigenvalues and eigenvectors for the $n \times n$ zero matrix?
+
+\begin{solution}
+  Let $A$ be the $n \times n$ zero matrix.  Then $A-\lambda I$ is the
+  $n \times n$ diagonal matrix whose diagonal entries are all $-\lambda$, so its characteristic
+  polynomial is $(-\lambda)^n$.  Therefore, the only eigenvalue is $\lambda = 0$.  The
+  $0$-eigenspace is all of ${\bf R}^{n}$, since $Ax = 0$ for every $x$ in ${\bf R}^{n}$.
+\end{solution}
+
+\ifanswers \newpage \fi 
+
+\problem %Dan's notes
+Find the eigenvalues of 
+$\mat{1 2 1; 0 -5 0; 1 8 0}.$
+% Solution needed
+
+\begin{solution}
+We solve for $0 = \det(A-\lambda I)$ using the cofactor expansion
+along the second row.
+\begin{align*}
+0 & = \det \mat{1-\lambda \, 2 1; 0 -5-\lambda \, 0; 1 8 -\lambda}
+= (-1)^{4}(-5-\lambda) \det\mat{1-\lambda \, 1; 1 -\lambda}
+\\ &
+= (-5-\lambda)\Big(\lambda^2-\lambda-1\Big).
+\end{align*}
+Thus, $\lambda = -5$ is an eigenvalue, and so are the solutions to $\lambda^2-\lambda -1 = 0$.  For this, we use the quadratic formula to get
+\[\lambda = \frac{-(-1) \pm \sqrt{(-1)^2-4(-1)(1)}}{2}
+= \frac{1 \pm \sqrt{5}}{2}.\]
+The eiegenvalues are $\lambda = -5$,
+$\lambda = \dfrac{1 + \sqrt{5}}{2}$, and 
+$\lambda = \dfrac{1 - \sqrt{5}}{2}$.
+\end{solution}
+
+\problem
+Find the eigenvalues of $A = \mat{9 9; 9 9}$.  For each eigenvalue, find
+a basis for the corresponding eigenspace.
+
+\begin{solution}
+  The characteristic polynomial can be computed by doing the full computation
+  of $\det(A- \lambda I)$ or using the shortcut $2 \times 2$ formula.  It is
+  \[\det(A-\lambda I) = \lambda^2 - \textup{Tr}(A) \lambda + \det(A)
+    = \lambda^2 - 18 \lambda + 0 = \lambda(\lambda-18).\] Therefore,
+  the eigenvalues are $\lambda = 0$ and $\lambda = 18$.  We row-reduce
+  \[\amat{A-0I \ 0}= \amat{9 9 0; 9 9 0} \to \amat{1 1 0; 0 0 0},\]
+  so $\left\{\vec{-1 1}\right\}$ is a basis for the $0$-eigenspace.
+  Also,
+  \[\amat{A-18I \ 0}= \amat{-9 9 0; 9 -9 0} \to \amat{1 -1 0; 0 0 0},\]
+  so $\left\{\vec{1 1}\right\}$ is a basis for the $18$-eigenspace.
+  
+\end{solution}
+
+\ifanswers \newpage \fi 
+
+\problem %Dan's notes
+Consider the matrix $A$ for rotation by $\pi/2$ radians about the $z$-axis in
+${\bf R}^3$. What are its real eigenvalues?
+
+\begin{solution}
+  We can think of $A$ as the matrix that rotates the ``xy-piece'' of the vector
+  by $\pi/2$ radians, while keeping the $z$-coordinate fixed.  This means
+  \[A = \mat{0 -1 0; 1 0 0; 0 0 1}.\]
+  Its characteristic polynomial is the following, which we compute using the cofactor
+  expansion along the third row.
+  \begin{align*}
+    \det(A - \lambda I)
+    & = \det\mat{-\lambda \, -1 0; 1 -\lambda \, 0; 0 0
+      1-\lambda} = (-1)^{3+3}(1-\lambda)\Big[(-\lambda)(-\lambda)-1(-1)\Big]
+    \\ & = (1-\lambda)(\lambda^2 + 1).
+  \end{align*}
+  The characteristic polynomial factors as $(1-\lambda)(\lambda+i)(\lambda-i)$,
+  so the only real eigenvalue is $\lambda = 1$.  Complex eigenvalues will be
+  covered in a later section of the textbook.
+\end{solution}
+
+
+\problem In each case, find the eigenvalues of the matrix $A$ and a basis
+for each eigenspace.
+\begin{subproblems}
+  \subproblem $A$ the $2 \times 2$ matrix that reflects vectors across
+  the line $y = x$.
+  %
+  \subproblem $A$ the $3 \times 3$ matrix that rotates vectors by
+  $180^\circ$ around the $z$-axis, where we label points in
+  ${\bf R}^3$ as $(x, y, z)$.
+  %
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem The eigenvalues of $A$ are $\lambda = 1$ and
+    $\lambda = -1$, since $A$ fixes vectors along the line $y=x$ and
+    flips vectors perpendicular to the line $y=x$.
+    %
+    \subproblem The eigenvalues of $A$ are $\lambda = 1$ and
+    $\lambda = -1$, since $A$ fixes vectors along the $z$-axis while
+    $Ae_1 = -e_1$ and $Ae_2 = -e_2$.
+  \end{subproblems}
+\end{solution}
+
+\problem Let $A$ be the $2 \times 2$ matrix satisfying
+\[A\vec{1 3} = \vec{-2 1}, \qquad A \vec{0 1} = \vec{1 2}.\]
+What are the eigenvalues of $A$?
+
+\begin{solution}
+  We find $A$ first.  Since $\vec{1 0} = \vec{1 3} - \vec{0 3}$,
+  linearity gives us
+  \[A\vec{1 0} = A \left(\vec{1 3} - \vec{0 3}\right) = A \vec{1 3} -
+    3 A \vec{0 1} = \vec{-2 1} - 3 \vec{1 2} = \vec{-5 -5}.\]
+  Therefore,
+  \[A = \mat{A\vec{1 0} A \vec{0 1}} = \mat{-5 1; -5 2}.\]
+  For the eigenvalues of $A$, we solve:
+  \begin{align*}
+    0 & = \det(A-\lambda I) = \lambda^2- \Tr(A)\lambda + \det(A)
+    \\ & = \lambda^2 + 3 \lambda -5, 
+    \\ & \lambda = \dfrac{-3 \pm \sqrt{9-4(-5)(1)}}{2}
+         = \dfrac{-3 \pm \sqrt{29}}{2}.
+  \end{align*}
+\end{solution}
+
+\problem Find the eigenvalues of the matrix $A$ that first reflects
+vectors in ${\bf R}^2$ across the line $y = -x$, then rotates
+$\pi/2$ radians counterclockwise, then scales the first coordinate
+by a factor of $4$ while keeping the second coordinate fixed.
+
+\begin{solution} One way to do this problem is to compute $A$.
+  \begin{align*}
+    A & = \mat{4 0; 0 1} \mat{0 -1; 1 0} \mat{0 -1; -1 0}
+        = \mat{0 -4; 1 0} \mat{0 -1; -1 0} 
+        = \mat{4 0; 0 -1}.
+  \end{align*}
+  Therefore, the eigenvalues of $A$ are $\lambda = 4$ and
+  $\lambda = -1$.  \newline \newline Alternatively, we could have
+  computed $Ae_1$ and $Ae_2$ geometrically and found that
+  $Ae_1 = 4 e_1$ and $Ae_2 = -e_2$, so $e_1$ and $e_2$ are
+  eigenvectors corresponding to the eigenvalues $4$ and $-1$
+  respectively.  Since a $2 \times 2$ matrix has at most $2$ distinct
+  eigenvalues, these are the only eigenvalues of $A$.
+
+  
+\end{solution}
+
+
+\problem Suppose $A$ and $B$ are $n \times n$ matrices with the same
+characteristic polynomial.  Do $A$ and $B$ have the same eigenvalues?
+Answer sometimes, always, or never, and justify your answer.
+
+\begin{solution}
+  Always.  The eigenvalues of a square matrix are the roots of its
+  characteristic polynomial, so if $A$ and $B$ have the same characteristic
+  polynomial then their eigenvalues will be the same.
+\end{solution}
+
+\end{problems}\setcounter{problem}{0}
+
+\newpage
+
+\subsection{5.4, Diagonalization}
+
+\begin{problems}
+%
+
+\problem % Dan's notes
+True or false: If $A$ is a $3 \times 3$ matrix with eigenvalues $0$, $1$, and $2$, then
+$A$ is diagonalizable.
+
+\begin{solution}
+  True: any $3 \times 3$ matrix with $3$ real eigenvalues is automatically
+  diagonalizable.  One way to see this is that each of the $3$ eigenvalues must
+  have a nonzero eigenvector in their eigenspace, and eigenvectors corresponding
+  to different eigenvalues are linearly independent, therefore we obtain $3$
+  linearly independent eigenvectors.  In other words, we obtain a basis for
+  ${\bf R}^{3}$ consisting of eigenvectors of $A$, which is equivalent to the
+  property that $A$ is diagonalizable.
+\end{solution}
+
+
+\problem % Dan's notes
+True or false: If $\lambda$ is an eigenvalue of a matrix $A$, it is possible
+that the $\lambda$-eigenspace is $0$-dimensional.
+
+\begin{solution}
+  False.  It is a fundamental fact that the geometric multiplicity of any
+  eigenvalue $\lambda$ is at least $1$.  By definition of eigenvalue, the
+  equation $Ax = \lambda x$ must have a non-trivial solution, therefore
+  $(A-\lambda I)x = 0$ has a non-trivial solution, which means that
+  $\Nul(A-\lambda I)$ is at least $1$-dimensional.
+\end{solution}
+
+\problem % Dan's notes
+True or false: All diagonalizable matrices are invertible.
+
+\begin{solution}
+  False: for example, zero matrix is diagonalizable (in fact, diagonal!) but is
+  not invertible.
+\end{solution}
+
+\problem % Dan's notes
+True or false: All invertible matrices are diagonalizable.   
+
+\begin{solution}
+  False: for example, take $A = \mat{1 1; 0 1}$. Note $\det(A) = 1$, so $A$ is
+  invertible.  However, the only eigenvalue of $A$ is $\lambda = 1$, and we can
+  compute that the $1$-eigenspace is only $1$-dimensional, so $A$ is not
+  diagonalizable.
+\end{solution}
+
+\problem % Dan's notes
+True or false: All diagonal $n \times n$ matrices are diagonalizable.
+
+\begin{solution}
+  True: if $A$ is diagonal, then $A = I A I^{-1}$, so $A$ is diagonalizable.  In
+  other words, $A = CDC^{-1}$ where $C$ is the $n \times n$ identity matrix and
+  $D$ is $A$ itself!
+\end{solution}
+
+\problem % Dan's notes
+True or false: All upper-triangular $n \times n$ matrices are diagonalizable.
+
+\begin{solution}
+False: for example,
+\[A = \mat{2 1; 0 2}.\] The only eigenvalue of $A$ is $\lambda = 2$, but we can
+compute that the $2$-eigenspace is only $1$-dimensional, so $A$ is not
+diagonalizable.
+\end{solution}
+
+
+
+\problem %Dan's notes
+Find $\mat{2 6; 0 -1}^{100}$.
+
+\begin{solution}
+  $A$ is $2 \times 2$ with $2$ different eigenvalues $\lambda = 2$ and
+  $\lambda = -1$, so $A$ is diagonalizable.
+  \[\amat{A-2I 0} = \amat{0 6 0; 0 -3 0} \xrightarrow[]{RREF}
+    \amat{0 1 0; 0 0 0}, \quad 2\textup{-eigenspace}
+    = \Span \left\{\vec{1 0} \right\}.\]
+  \[\amat{A+I 0} = \amat{3 6 0; 0 0 0} \xrightarrow[]{RREF}
+    \amat{1 2 0; 0 0 0}, \quad (-1)\textup{-eigenspace}
+    = \Span \left\{\vec{-2 1} \right\}.\]
+  Therefore, $A = CDC^{-1}$ where $C = \mat{1 -2; 0 1}$ and
+  $D = \mat{2 0; 0 -1}$.  Using the repeated cancellations of $C$ with
+  $C^{-1}$ when expanding $A^{100}$, we get 
+  \begin{align*}
+    A^{100} & = (C D C^{-1})^{100} = C D^{100} C^{-1} \\
+            & = C \mat{2^{100} 0; 0 (-1)^{100}} C^{-1} \\
+            & = \mat{1 -2; 0 1} \mat{2^{100} 0; 0 1} \mat{1 2; 0 1} \\
+            & = \mat{1 -2; 0 1} \mat{2^{100} 2^{101}; 0 1} \\
+            & = \mat{2^{100} 2^{101}-2; 0 1}.
+  \end{align*}
+
+\end{solution}
+
+\problem % Jankowski Spring 2018 exam 3  
+Let $A = \mat{-1 0 -2; 0 2 0; 3 0 4}$.
+\begin{subproblems}
+  \subproblem Find the eigenvalues of $A$. %1, 2, 2
+  \subproblem Find a basis for each eigenspace of $A$.  Mark your
+  answers clearly.
+   % $\vec{1 0 1}$, $\vec{0 1 0}$, $\vec{3 0 2}$
+  \subproblem \enspace Is $A$ diagonalizable?  If your answer is yes,
+  find a diagonal matrix $D$ and an invertible matrix $P$ so that
+  $A = PDP^{-1}$.  If your answer is no, justify why $A$ is not
+  diagonalizable.
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem We solve $0=\det(A-\lambda I)$.
+    \begin{align*}
+      0 & = \det\mat{-1-\lambda, 0 -2; 0 2-\lambda, 0; 3 0 4-\lambda} =
+          (2-\lambda)(-1)^{4} \det\mat{-1-\lambda, -2; 3 4-\lambda} 
+      \\ & =(2-\lambda)\left((-1-\lambda)(4-\lambda) + 6\right)
+           = (2-\lambda)(\lambda^2-3\lambda -4+6) 
+      \\ & = (2-\lambda)(\lambda^2-3\lambda+2)
+           = (2-\lambda)(\lambda-2)(\lambda-1)
+           % = -(2-\lambda)^2(\lambda-5).
+    \end{align*}
+    So $\lambda = 1$ and $\lambda = 2$ are the eigenvalues.\newline
+    \newline \underline{$\lambda = 1$}:
+    $\amat{A-I 0} = \amat{-2 0 -2 0; 0 1 0 0; 3 0 3 0}
+    \xrightarrow[\textup{then } R_1 = -R_1
+    /2]{R_3=R_3+\frac{3}{2}R_1}\amat{1 0 1 0; 0 1 0 0; 0 0 0 0}$ with
+    solution $x_1= -x_3$, $x_2=0$, $x_3=x_3$.  The $1$-eigenspace has
+    basis $\left\{ \vec{-1 0 1} \right\}$.  \newline \newline
+    \underline{$\lambda = 2$}:
+      \[\amat{A-2I 0} = \amat{-3 0 -2 0; 0 0 0 0; 3 0 2 0} 
+        \xrightarrow[\textup{then } R_1= -R_1/3]{R_3=R_3+R_1} \amat{1
+          0 \frac{2}{3} 0; 0 0 0 0; 0 0 0 0}\] with solution
+      $x_1= -\frac{2}{3}x_3$, \ $x_2=x_2$, \ $x_3=x_3$.  The
+      $2$-eigenspace has basis
+      $\left\{ \vec{0 1 0}, \vec{-2/3 0 1}\right\}$.
+      \newline % \newline
+      \subproblem $A$ is diagonalizable; $A=PDP^{-1}$ where
+      $P = \mat{-1 0 -2/3; 0 1 0; 1 0 1}$ and
+      $D= \mat{1 0 0; 0 2 0; 0 0 2}$.
+    \end{subproblems}
+\end{solution}
+
+
+
+\problem %Dan's notes
+Let $A = \mat{2 4 6; 0 2 2; 0 0 4}$.  Is $A$ diagonalizable?
+If so, find a basis of ${\bf R}^3$ consisting of eigenvectors of $A$.
+
+\begin{solution}
+\begin{subproblems}
+  \subproblem The matrix is upper-triangular, so the eigenvalues are
+  the diagonal entries: $\lambda_1 = -1$, $\lambda_2 = 4$, and
+  $\lambda_3 = 5$.
+  %
+  \subproblem We find a basis for each eigenspace.
+  \[\amat{A-\lambda_1I 0} =
+    \amat{A+I 0} =
+    \amat{0 5 10 0; 0 5 10 0; 0 0 6 0}
+    \xrightarrow[]{RREF}
+    \amat{0 1 0 0; 0 0 1 0; 0 0 0 0}.\]
+  This means $x_2 = x_3 = 0$, so a basis for $(-1)$-eigenspace
+  is $\left\{\vec{1 0 0}\right\}$.
+  \[\amat{A-\lambda_2I 0} =
+    \amat{A-4I 0} =
+    \amat{-5 5 10 0; 0 0 10 0; 0 0 1 0}
+    \xrightarrow[]{RREF}
+    \amat{1 -1 0 0; 0 0 1 0; 0 0 0 0}.\]
+  So $x_1 = x_2$ (with $x_2$ free) and $x_3 = 0$, so
+  a basis for the $4$-eigenspace is $\left\{\vec{1 1 0}\right\}$.
+  %
+  \[\amat{A-\lambda_3I 0} =
+    \amat{A-5I 0} = \amat{-6 5 10 0; 0 -1 10 0; 0 0 0 0}
+    \xrightarrow[]{RREF} \amat{1 0 -10 0; 0 1 -10 0; 0 0 0 0}.\] Thus
+  $x_1 = 10x_3$ and $x_2 = 10x_3$ ($x_3$ free). Basis for
+  $5$-eigenspace is $\left\{ \vec{10 10 1} \right\}$.
+  % 
+  \subproblem Yes.  We form $C$ using the three eigenvectors we found
+  in part (b), and $D$ is the diagonal matrix with corresponding
+  eigenvalues.
+  \[C = \mat{1 1 10; 0 1 10; 0 0 1} \qquad
+    D = \mat{-1 0 0; 0 4 0; 0 0 5}.\]  
+\end{subproblems}
+\end{solution}
+
+
+
+\problem % Made for ILA
+Write a $4 \times 4$ matrix $A$ with only one real eigenvalue $\lambda = 2$, so
+that the $2$-eigenspace for $A$ is a three-dimensional subspace of ${\bf
+  R}^4$.  %
+
+\begin{solution}
+  We need $\lambda=2$ to be the only eigenvalue, and we need $\amat{A-2I, 0}$ to
+  have three free variables and thus one pivot.  For example,
+    \[A = \mat{2 1 0 0; 0 2 0 0; 0 0 2 0; 0 0 0 2}.\] %
+\end{solution}
+
+\problem % Made for ILA
+Write a $3 \times 3$ matrix $B$ with the property that $e_1$, $e_2$, and $e_3$
+are eigenvectors of $B$.  Must $B$ be diagonalizable?  Justify your answer.
+
+\begin{solution}
+Endless possibilities.  For example,
+\[B = \mat{1 0 0; 0 1 0; 0 0 1}, \qquad B = \mat{-1 0 0; 0 5 0; 0 0 -3}, \qquad
+  B = \mat{2 0 0; 0 3 0; 0 0 3}.\] Note that $B$ must be diagonalizable because
+it is a $3 \times 3$ matrix with $3$ linearly independent eigenvectors, namely
+$e_1$, $e_2$, $e_3$.  In truth, $B$ satisfies the conditions of this problem if
+and only if it is a diagonal $3 \times 3$ matrix.
+\end{solution}
+
+  
+\problem % Jankowski Spring 2018 Exam 3 (also Sample Exam for Spring
+         % 2019)
+Find the $2 \times 2$ matrix $A$ whose eigenspaces are drawn below.
+Fully simplify your answer.
+% \newline
+(to be clear: the dashed line is the $(-2)$-eigenspace).
+\begin{center}
+  \includegraphics[scale=0.5]{e3_pic1}
+\end{center}
+
+
+\begin{solution}
+  From the picture, we see $\lambda_1 = 1$ has eigenvector
+  $v_1 = \vec{1 2}$.  Also, $\lambda= -2$ has eigenvector
+  $v_2 = \vec{-1 1}$.  Forming $P=\mat{v_1 v_2}$ and
+  $D=\mat{1 0; 0 -2}$ we get $A=PDP^{-1}$, so
+   \begin{align*} A & = \mat{1 -1; 2 1} \mat{1 0; 0 -2} \dfrac{1}{3}
+     \mat{1 1; -2 1} \\ & = \frac{1}{3} \mat{1 -1; 2 1} \mat{1 1; 4
+       -2} \\ & = \frac{1}{3} \mat{-3 3; 6 0} = \mat{-1 1; 2 0}.
+   \end{align*}
+\end{solution}
+
+\problem % Created for ILA
+Let $A = \mat{1 3; 18 2} \mat{-2 0; 0 3} \mat{1 -5; 18 2}^{-1}$.
+\newline Find all values of $k$ (if there are any) so that
+\[A \vec{9 k}= \vec{27 3k}.\]
+\begin{solution}
+  We do not need to do any matrix multiplication, since $A$ has been
+  diagonalized for us:
+  \begin{itemize}
+  \item $\lambda = -2$ is an eigenvalue with corresponding eigenspace
+    Span$\left\{\vec{1 18}\right\}$
+  \item $\lambda = 3$ is an eigenvalue with corresponding eigenspace
+    Span$\left\{\vec{3 2}\right\}$
+  \end{itemize}
+  The problem is subtly asking us to find $k$ so that $\vec{9 k}$ is
+  in the $3$-eigenspace of $A$.  This means $\vec{9 k}$ is a scalar
+  multiple of $\vec{3 2}$, so $k = 6$.
+\end{solution}
+
+\problem % Made for ILA
+\begin{subproblems}
+  \subproblem Suppose $A$ is a diagonalizable $n \times n$ matrix, and
+  suppose $B$ is an $n \times n$ matrix with the same eigenvalues of
+  $A$ and the same corresponding eigenspaces for each eigenvalue.  Is
+  it necessarily true that $A=B$? %
+  \subproblem Answer part (a) in the case that $A$ is an $n \times n$
+  matrix which is \textit{not} diagonalizable.
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem Yes.  Since $A$ is diagonalizable, we can write
+    $A = PDP^{-1}$, where the columns of $P$ are a basis of
+    ${\bf R}^n$ consisting of eigenvectors of $A$ and where $D$ is the
+    diagonal matrix with the corresponding eigenvalues.  Since $B$ has
+    the same eigenvalues of $A$ and the same corresponding
+    eigenspaces, we also have $B = PDP^{-1}$, so $A = B = PDP^{-1}$.
+     %
+    \subproblem No.  For example, consider $A= \mat{0 1; 0 0}$ and
+    $B = \mat{0 2; 0 0}$.  Each matrix has only one eigenvalue
+    $\lambda = 0$ with algebraic multiplicity $2$, and the
+    $0$-eigenspace for each matrix is the span of $\vec{1 0}$, yet
+    $A \neq B$.
+  \end{subproblems}
+\end{solution}
+
+
+\problem Consider the following matrices $A$ and $B$.
+\[A = \mat{3 1 4; 0 1 2; -1 0 1} \mat{\sqrt{2} 0 0; 0 70^{1/7} 0; 0 0
+    \pi} \mat{3 1 4; 0 1 2; -1 0 1}^{-1},\]
+\[B = \mat{-3 3 2; 0 3 1; 1 0 \frac{1}{2}} \mat{\sqrt{2} 0 0; 0
+    70^{1/7} 0; 0 0 \pi} \mat{-3 3 2; 0 3 1; 1 0 \frac{1}{2}}^{-1}.\]
+Without doing any computations, determine whether $A = B$ or
+$A \neq B$.
+
+\begin{solution}
+  We show that $A=B$.  By the Diagonalization Theorem, $A = PDP^{-1}$,
+  where $D$ is any diagonal matrix of eigenvalues of $A$ (with their
+  geometric multiplicities) and $P$ is \textit{any} matrix whose
+  column vectors form bases for the corresponding eigenspaces.
+
+  The $\sqrt{2}$-eigenspace of $A$ is
+  $\textup{Span}\left\{\vec{3 0 -1}\right\}$, which is the same as
+  $\textup{Span}\left\{\vec{-3 0 1}\right\}$.
+
+  The $70^{1/7}$-eigenspace of $A$ is $\textup{Span}\vec{1 1 0}$ which
+  is the same as $\textup{Span}\left\{\vec{3 3 0} \right\}$.
+
+  The $\pi$-eigenspace of $A$ is
+  $\textup{Span}\left\{\vec{4 2 1}\right\}$, which is the same as
+  $\textup{Span}\left\{\vec{2 1 \frac{1}{2}}\right\}$.
+
+  Therefore, by the Diagonalization Theorem, $A$ and $B$ are two ways
+  of writing the same matrix.
+\end{solution}
+
+\problem More practice with diagonalization.  \newline \newline %
+Consider the matrix
+$A = \begin{pmatrix}-1& 5& 10 \\ 0& 4& 10 \\0 & 0 & 5 \end{pmatrix}$.
+\begin{subproblems}
+  \subproblem Find the eigenvalues of $A$.
+
+  %\ifanswers \else \vspace{1.5cm} \fi
+
+  \subproblem For each eigenvalue of $A$, compute a basis for the
+  corresponding eigenspace.
+
+  %\ifanswers \else \vspace{9cm} \fi
+
+  \subproblem Decide whether $A$ is diagonalizable. If it is
+  diagonalizable, find an invertible $3 \times 3$ matrix $P$ and a
+  diagonal matrix $D$ such that $A = PDP^{-1}$. If $A$ is not
+  diagonalizable, explain why.
+\end{subproblems}
+\begin{solution} For this problem, we give the answers and leave the
+  computations to the reader.
+  \begin{subproblems}
+    \subproblem The matrix is upper-triangular, so its eigenvalues are
+    its diagonal entries: $\lambda = -1$, $\lambda = 4$, and $\lambda = 5$.
+    %
+    \subproblem 
+    The $(-1)$-eigenspace is $\Span\left\{\vec{1 0 0}\right\}$. \newline  %
+    The $4$-eigenspace is $\Span\left\{\vec{1 1 0}\right\}$. \newline %
+    The $5$-eigenspace is $\Span\left\{\vec{10 10 1}\right\}$.
+    %
+    \subproblem $A$ is diagonalizable: $A = PDP^{-1}$ where the diagonal entries
+    of $D$ are the eigenvalues and the columns of $P$ are eigenvectors written
+    in the corresponding order.  Many answers are possible, for example:
+    \[P = \mat{1 1 10; 0 1 10; 0 0 1}, \qquad D = \mat{-1 0 0; 0 4 0; 0 0 5}.\]
+  \end{subproblems}
+\end{solution}
+
+\problem %Dan's notes
+More practice with diagonalization.  \newline \newline %
+Let $A = \mat{2 0 0; 1 2 1; -1 0 1}$.  Is $A$ diagonalizable?  If so, find a
+basis of ${\bf R}^3$ consisting of eigenvectors of $A$.
+
+\begin{solution}
+  For this problem, we give the answers and leave the computations to the
+  reader. \newline \newline %
+  Solving $\det(A-\lambda I) = 0$ gives $\lambda = 1$ and $\lambda = 2$.
+  \newline \newline %
+  The $1$-eigenspace is $\Span\left\{\vec{0 -1 1}\right\}$. \newline %
+  The $2$-eigenspace is %
+  $\Span\left\{\vec{0 1 0}, \vec{-1 0 1}\right\}$. \newline %
+  The set $\left\{\vec{0 -1 1}, \vec{0 1 0}, \vec{-1 0 1} \right\}$ is a basis
+  for ${\bf R}^{3}$ consisting of eigenvectors for $A$, so $A$ is
+  diagonalizable.  In fact, $A = PDP^{-1}$ where the diagonal entries of $D$ are
+  the eigenvalues and the columns of $P$ are eigenvectors written in the
+  corresponding order.  Many answers are possible, for example:
+    \[P = \mat{0 0 -1; -1 1 0; 1 0 1}, \qquad D = \mat{1 0 0; 0 2 0; 0 0 2}.\]
+\end{solution}
+
+
+ 
+\end{problems}\setcounter{problem}{0}
+
+\newpage
+
+\begin{center} \underline{5.5, Complex eigenvalues} \end{center}
+
+{\bf Important note}: In this section, as in the rest of Math 1553, the entries
+of all matrices are real numbers unless specified otherwise.
+
+\begin{problems}
+\problem % Dan's notes
+True or false: If $v$ is an eigenvector for $A$ and $v$ has complex entries,
+then $i \cdot v$ is also an eigenvector for $A$.
+
+\begin{solution}
+  True: any scalar multiple of a complex eigenvector is also a complex
+  eigenvector.  By linearity of matrix multiplication, we see that if
+  $Av = \lambda v$, then
+  \[A(iv) = i Av= i(\lambda v) = \lambda(iv),\]
+  so if $v$ is an eigenvector then so is $iv$.
+\end{solution}
+
+\problem % Dan's notes
+True or false: If $\vec{i 1}$ is an eigenvector for $A$, then $\vec{i -1}$ is
+also an eigenvector for $A$. %tricky but true
+
+\begin{solution}
+  True. Recall that the complex conjugate of any complex eigenvector is also a
+  complex eigenvector, and any (nonzero) scalar multiple of a complex
+  eigenvector is also a complex eigenvector.
+  \newline \newline %
+  Since $v = \vec{i 1}$ is an eigenvector, so is
+  $\overline{v} = \vec{-i 1}$, and so is $-\overline{v} = \vec{i -1}$.
+\end{solution}
+
+\problem %Dan's notes
+If $A$ is a $3 \times 3$ matrix with real entries, what are the possibilities
+for the number of different non-real eigenvalues of $A$?
+
+\begin{solution}
+  The maximum is $2$.  Every $3 \times 3$ real matrix has at least one real
+  eigenvalue, since its characteristic polynomial is a degree $3$ polynomial
+  with real coefficients and therefore must have at least one real root
+  (straightforward application of end behavior of odd-degree polynomials and the
+  Intermediate Value Theorem).  \newline \newline %
+  It is possible for $A$ to have exactly 1 real eigenvalue and $2$ non-real
+  eigenvalues.  For example, $A = \mat{0 -1 0; 1 0 0; 0 0 1}$ has eigenvalues
+  $1$, $i$, and $-i$.
+\end{solution}
+
+\problem %Dan's notes
+If $A$ is a $4 \times 4$ matrix with real entries, what are the possibilities
+for the number of different non-real eigenvalues of $A$?
+
+\begin{solution}
+  The max is $4$.  It is not easy to come up with such a matrix $A$, but it is
+  possible.  For example,
+  \[A = \mat{0 -1 0 0; 1 0 0 0; 0 0 0 -2; 0 0 2 0}\] has the eigenvalues $i$,
+  $-i$, $2i$, and $-2i$.
+\end{solution}
+
+\problem % Take problem from exam 2 from Spring 2018, which is also a sample exam from Spring 19
+ Consider the matrix
+  \[ A = \mat{3 -7; 1 -1} \]
+ Find all eigenvalues of $A$.  Simplify your answer.
+ For the eigenvalue with negative imaginary part, find an eigenvector.
+
+ \begin{solution}
+We compute the characteristic equation:
+    \[\begin{split}
+        0= \det(A-\lambda I)=(3-\lambda)(-1-\lambda)+7=
+        \lambda^2-2\lambda-3+7 = \lambda^2-2\lambda+4.
+    \end{split} \]
+    By the quadratic formula,
+    \[ \lambda = \frac{2\pm\sqrt{4-16}}2 = \dfrac{2 \pm 2i\sqrt{3}}{2}= 1 \pm
+      \sqrt{3}i.\]
+
+  Let $\lambda = 1-\sqrt{3}i$.  Then
+  \[\amat{A-\lambda I 0} = \amat{2+\sqrt{3}i  -7 0; \star, \star, 0}
+    \xrightarrow[R_1 = R_1/(2+\sqrt{3}i)]{\textup{destroy
+        $R_2$}} \amat{1 \frac{-7}{2+\sqrt{3}i} 0; 0 0 0} =\amat{1 -2+\sqrt{3}i
+      0; 0 0 0}
+  \]
+  So $x_1 = (2-\sqrt{3}i)x_2$ and $x_2$ is free. An eigenvector is
+  $v= \vec{2-\sqrt{3}i 1}$.
+  
+  
+  
+  An alternative method for finding an eigenvector, using a trick you may have
+  seen in class, is to take the first row $(a \ b)$ of $A-\lambda I_2$ to get an
+  eigenvector $\vec{-b a}$:
+   %  \[ A - \lambda I_2 = \mat{2+\sqrt{3}i -7; \star, \star}
+   %   \quad\implies\quad
+   %   v = \vec{7 2+\sqrt{3}i} \]
+  \[ A - \lambda I_2 = \mat{2+\sqrt{3}i -7; \star, \star}\] Thus
+  $\vec{7 2+\sqrt{3}i}$ is an eigenvector for $\lambda$. This answer is
+  equivalent to our answer $v$ above since it is a nonzero scalar multiple of
+  $v$, as $\vec{7 2+\sqrt{3}i} = (2+\sqrt{3}i)v$.
+ \end{solution}
+
+ \problem %Dan's notes
+ Find the complex eigenvalues and a vector in each eigenspace for the following
+ matrix.
+\[A = \mat{3 -2; 4 -1}.\]
+
+\begin{solution}
+The characteristic equation is
+\[0 = \det(A-\lambda I) = \lambda^2 - \Tr(A) I + \det(A)
+  = \lambda^2 - 2 \lambda + 5,\]
+so the eigenvalues are
+\[\lambda = \dfrac{2 \pm \sqrt{(-2)^2-5(4)}}{2}
+  = \dfrac{2 \pm \sqrt{-16}}{2} = \dfrac{2 \pm 4i}{2} = 1 \pm 2i.\] %
+We use the $2 \times 2$ eigenvector trick: if $\lambda$ is an eigenvalue of $A$
+and $(a \ b)$ is the first row of $A-\lambda I_2$, then $\vec{-b a}$ is an
+eigenvector of $A$ unless $a$ and $b$ are both $0$.  %
+\newline %
+For $\lambda_1 = 1 + 2i$:
+\[\amat{A-(1+2i)I 0} = \amat{2-2i -2 0; (*) (*) 0} = \amat{a b 0; (*) (*) 0}.\]
+Therefore, $v_1 = \vec{-b a} = \vec{2 2-2i}$ is an eigenvector for
+$\lambda_1 = 1+2i$. \newline \newline %
+We do not need to do any work to find an eigenvector for the other eigenvalue:
+$v_2 = \overline{v_1} = \vec{2 2+2i}$ is an eigenvector for
+$\lambda_2 = \overline{\lambda_1} = 1-2i$.  \newline \newline %
+There are many possible answers for $v_1$ and $v_2$, and it is generally
+difficult to tell whether vectors are complex scalar multiples of each other.
+If you obtained different answers than this solution did for (say) $v_1$, you
+can check whether your answer is correct by computing $Av_1$ and seeing if it is
+equal to $(1+2i)v_1$.
+
+\end{solution}
+
+\problem %Dan's notes 
+Find the complex eigenvalues and eigenvectors for the following matrix.
+\[A = \mat{-1 -4; 1 -1}.\]
+% Solution needed
+
+\problem %Dan's notes 
+Find all eigenvalues and eigenvectors for the following matrix.
+\[A = \mat{1 0 -2; 1 3 1; 2 0 1}.\]
+% Solution needed
+
+\problem Write a real $2 \times 2$ matrix with eigenvalues $5 \pm 2i$.
+% Solution needed
+\end{problems}\setcounter{problem}{0}
+
+\newpage
+
+\begin{center} \underline{5.6, Stochastic Matrices} \end{center}
+
+\begin{problems}
+\problem % Dan's notes
+Is there a stochastic matrix where the $1$-eigenspace has dimension greater than $1$?
+% Solution needed
+
+\problem % Dan's notes
+Find the steady-state vector for the matrix
+\[A = \mat{1/2 1/3; 1/2 2/3}.\]
+What vector does $A^n \vec{5 7}$ approach as $n \to \infty$?
+% Solution needed
+
+
+\problem % Dan's notes
+Find the steady-state vector for the matrix
+\[A = \mat{1/3 1/5 1/4; 1/3 2/5 1/2; 1/3 2/5 1/4}.\]
+What vector does $A^n \vec{5 7 38}$ approach as $n \to \infty$?
+% Solution needed
+
+\problem % Jankowski Spring 2019 midterm 3
+  Consider an internet with four pages: 1, 2, 3, and 4.
+\newline
+Page 1 links to pages 2 and 3. \newline
+Page 2 links to pages 3 and 4. \newline
+Page 3 links to pages 1 and 4. \newline
+Page 4 links to page 1.
+\newline \newline
+(i) Write the importance matrix $A$ for this internet.
+
+\noindent (ii) $A$ has a unique steady-state vector $w$.  Find $w$.  You may use the fact
+that \[A \vec{8 4 6 5} = \vec{8 4 6 5}.\]
+
+\begin{solution}
+  (i) The importance matrix is
+    \[A = \mat{0 0 1/2 1; 1/2 0 0 0; 1/2 1/2 0 0; 0 1/2 1/2 0} .\]
+    
+  (ii) $w=\dfrac{1}{8+4+6+5} \vec{8 4 6 5} = \vec{8/23 4/23 6/23 5/23}.$
+
+\end{solution}
+
+\problem
+Courage Soda and Dexter Soda compete for a market of $210$ customers
+who drink soda each day.  \newline
+Today, Courage has $80$ customers and Dexter has $130$ customers.
+Each day:
+
+	$70\%$ of Courage Soda's customers keep drinking 
+	Courage Soda, while $30\%$ switch to Dexter Soda.  
+	
+	$40\%$ of Dexter Soda's customers keep drinking Dexter Soda, while
+	$60\%$ switch to Courage Soda.
+
+	\begin{subproblems}
+	%\subproblem Write a stochastic matrix $A$ that represents the daily transition of 
+	%customers between Courage Soda and Dexter Soda.  		
+      \subproblem Write a stochastic matrix $A$ and a vector $x$ so
+      that $Ax$ will give the number of customers for Courage Soda and
+      Dexter Soda (in that order) tomorrow. \newline
+      \ifanswers
+        \newline
+	
+	$A= \mat{0.7 0.6; 0.3 0.4}$ and $x=\vec{80 130}$.
+	\newline
+	
+	\else
+	\fi
+	
+	\subproblem Find the steady-state vector for $A$.
+	\ifanswers
+	\newline
+	
+	$\amat{A-I 0}= \amat{-0.3 0.6 0; 0.3 -0.6 0}
+    \xrightarrow[R_1=R_1/(-0.3)]{R_2=R_2+R_1} \amat{1 -2 0; 0 0 0}$
+    \newline so $x_1 = 2x_2$ and $x_2$ is free.  A $1$-eigenvector is
+    $\vec{2 1}$, so the steady state vector is
+    $w= \dfrac{1}{2+1} \vec{2 1} = \vec{2/3 1/3}$.  \newline
+	
+	\else
+	\fi
+	
+	\subproblem Use your answer from (b) to determine the following:
+    in the long run, roughly how many daily customers will Courage
+    Soda have?
+    \ifanswers
+
+      As $n$ gets large, $A^n \vec{80 130}$
+      approaches $210 \vec{2/3 1/3} = \vec{140 70}$.  Courage will
+      have roughly $140$ customers.  \else \vspace{3cm} \fi
+	
+	\end{subproblems}
+
+\end{problems}\setcounter{problem}{0}
+
+
+\newpage

@@ -1,0 +1,1294 @@
+\subsection{3.1, Matrix transformations}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> is a matrix and <m>T</m> is the associated matrix
+      transformation, then the statement that <m>Ax = b</m> is consistent is
+      equivalent to the statement that <m>b</m> is in the range of <m>T</m>.</p>
+    </statement>
+    <solution>
+      <p>True. This follows directly from the definition of range and the fact that <m>T</m>
+        is the transformation <m>T(x) = Ax</m>:</p>
+      <p>The matrix equation <m>Ax = b</m> is consistent <m>\iff</m> <m>T(x) = b</m> is consistent
+          <m>\iff</m> <m>b</m> is in the range of <m>T</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>There is a matrix <m>A</m> so that the domain of the associated matrix transformation
+      <m>T</m> is a line in <m>{\bf R}^3</m>.</p>
+    </statement>
+    <solution>
+      <p>False: the domain of <m>T</m> is (all of) <m>{\bf R}^n</m>, where <m>n</m> is the number of
+        columns of <m>A</m>.  If <m>A</m> has one column, then the domain of <m>T</m> is <m>{\bf
+          R}</m>. If <m>A</m> has three columns, then the domain of <m>T</m> is <m>{\bf R}^3</m>.  The
+        domain of <m>T</m> can never be a line in <m>{\bf R}^3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>What does the matrix <m>\begin{pmatrix}-1 \amp 0 \\ 0 \amp -1\end{pmatrix}</m> do to vectors in <m>{\bf R}^2</m>?</p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}-1 \amp 0 \\ 0 \amp -1\end{pmatrix}\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}-x \\ -y\end{pmatrix} = - \begin{pmatrix}x \\ y\end{pmatrix}</m>, so the matrix sends
+        each vector <m>v</m> to <m>-v</m>.  In other words, the matrix implements scalar
+        multiplication by <m>-1</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>What does the matrix <m>\begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{pmatrix}</m> do to vectors in <m>{\bf R}^3</m>?</p>
+    </statement>
+    <solution>
+      <p>
+        It naturally projects each vector onto the <m>x</m>-axis by turning its second and third coordinates into zeros:
+        <md><mrow>\begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{pmatrix} \begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}x \\ 0 \\ 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>What does the matrix <m>\begin{pmatrix}0 \amp 0 \\ 1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m> do to vectors in <m>{\bf R}^2</m>?</p>
+    </statement>
+    <solution>
+      <p>
+        The matrix takes vectors from <m>{\bf R}^2</m> and naturally inserts them into the <m>yz</m>-plane in <m>{\bf R}^3</m>.  If <m>\begin{pmatrix}x_1 \\ x_2\end{pmatrix}</m> is any vector in <m>{\bf R}^2</m>, then
+        <md><mrow>\begin{pmatrix}0 \amp 0 \\ 1 \amp 0 \\ 0 \amp 1\end{pmatrix} \begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}0 \\ x_1 \\ x_2\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>T</m> be the transformation <m>T\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}0 \amp -1 \\ 1 \amp 0\end{pmatrix} \begin{pmatrix}x \\ y\end{pmatrix}</m>.
+      Describe <m>T</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p><m>T</m> rotates vectors in <m>{\bf R}^2</m> by <m>\frac{\pi}{2}</m> radians counterclockwise.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>T</m> be the transformation <m>T\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}0 \amp 1 \\ 1 \amp 0\end{pmatrix} \begin{pmatrix}x \\ y\end{pmatrix}</m>.  Describe
+      <m>T</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p>Rotation across the line <m>y=x</m>.  We can check by
+        computing <m>T \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}y \\ x\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Fill in the blanks: If <m>T: {\bf R}^{5} \to {\bf R}^3</m> is a matrix
+      transformation <m>T(x) = Ax</m>, then <m>A</m> has <m>\underline{\qquad}</m>
+      rows and <m>\underline{\qquad}</m> columns.</p>
+    </statement>
+    <solution>
+      <p><m>A</m> has <m>3</m> rows and <m>5</m> columns.  This may seem counterintuitive,
+        but we can check: for <m>T(x)</m> to make sense, <m>x</m> must be in <m>{\bf R}^5</m>,
+        so <m>A</m> has <m>5</m> columns.  Moreover, <m>T(x)</m> is in <m>{\bf R}^3</m> so <m>A</m>
+        must have <m>3</m> rows.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A</m> be a <m>7 \times 6</m> matrix, and define a matrix transformation
+      by <m>T(x) = Ax</m>.  What is the domain of <m>T</m>?  What is the codomain of <m>T</m>?</p>
+    </statement>
+    <solution>
+      <p>The domain of <m>T</m> is <m>{\bf R}^6</m> and the codomain is <m>{\bf R}^7</m>.
+        We can check: for <m>x</m> to be in the domain of <m>T</m>, we need <m>Ax</m> to
+        make sense, so <m>x</m> must be in <m>{\bf R}^6</m>.  The vector <m>Ax</m> lives in
+        the column space of <m>A</m> (which is the codomain of <m>T</m>), namely
+        <m>{\bf R}^7</m>.</p>
+      <p>In general, For a <m>k \times \ell</m> matrix <m>A</m>, the transformation
+        <m>T(x) = Ax</m> has domain <m>{\bf R}^{\ell}</m> and codomain <m>{\bf R}^k</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a <m>2 \times 2</m> matrix <m>A</m> so that the transformation
+      <m>T\begin{pmatrix}x \\ y\end{pmatrix} = A\begin{pmatrix}x \\ y\end{pmatrix}</m> reflects vectors across the <m>x</m>-axis.</p>
+    </statement>
+    <solution>
+      <p><m>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp -1\end{pmatrix}</m>.  We can check by verifying that
+      <m>A \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}x \\ -y\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a <m>2 \times 2</m> matrix <m>A</m> so that the transformation
+      <m>T\begin{pmatrix}x \\ y\end{pmatrix} = A\begin{pmatrix}x \\ y\end{pmatrix}</m> stretches all vectors by a factor of <m>4</m>.</p>
+    </statement>
+    <solution>
+      <p><m>A = \begin{pmatrix}4 \amp 0 \\ 0 \amp 4\end{pmatrix}</m>.  We can check by verifying
+      <m>A \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}4x \\ 4y\end{pmatrix} = 4 \begin{pmatrix}x \\ y\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a <m>2 \times 2</m> matrix <m>A</m> so that the transformation
+      <m>T\begin{pmatrix}x \\ y\end{pmatrix} = A\begin{pmatrix}x \\ y\end{pmatrix}</m> reflects vectors across the <m>y</m>-axis.</p>
+    </statement>
+    <solution>
+      <p><m>A = \begin{pmatrix}-1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m>.  We can check by verifying that
+      <m>A \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}-x \\ y\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a <m>2 \times 2</m> matrix <m>A</m> so that the transformation
+      <m>T\begin{pmatrix}x \\ y\end{pmatrix} = A\begin{pmatrix}x \\ y\end{pmatrix}</m> stretches vectors along the <m>x</m>-axis by a factor of
+      <m>3</m>, while leaving the <m>y</m>-axis fixed.</p>
+    </statement>
+    <solution>
+      <p><m>A = \begin{pmatrix}4 \amp 0 \\ 0 \amp 4\end{pmatrix}</m>.  We can check by verifying
+      <m>A \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}4x \\ 4y\end{pmatrix} = 4 \begin{pmatrix}x \\ y\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Consider the transformation
+      <m>T(x) = \begin{pmatrix}1 \amp -1 \amp 9 \\ 0 \amp 2 \amp 4 \\ 0 \amp 1 \amp 2 \\ 0 \amp 1 \amp 2\end{pmatrix} x</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>What is the domain of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The domain of <m>T</m> is <m>{\bf R^3}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the codomain of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The codomain of <m>T</m> is <m>{\bf R}^4</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the range of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>
+          The range of <m>T</m> is the column space of <m>A</m>.  As we
+              know from the the past, the pivot columns
+          <md><mrow>A = \begin{pmatrix}1 \amp -1 \amp 9 \\ 0 \amp 2 \amp 4 \\ 0 \amp 1 \amp 2 \\ 0 \amp 1 \amp 2\end{pmatrix} \xrightarrow[]{RREF}
+                \begin{pmatrix}1 \amp 0 \amp 11 \\ 0 \amp 1 \amp 2 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+          Thus, the first two columns
+              are pivot columns, so range<m>(T)</m> is
+          <md><mrow>\textup{Span}\left\{\begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix}, \begin{pmatrix}-1 \\ 2 \\ 1 \\ 1\end{pmatrix}\right\}</mrow></md>.
+          \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Consider the transformation
+        <md><mrow>T(x) = \begin{pmatrix}2 \amp 2 \amp 3 \amp 1 \amp 2 \\ 3 \amp 4 \amp 0 \amp 0 \amp -1\end{pmatrix}x</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>What is the domain of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The domain of <m>T</m> is <m>{\bf R^5}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the codomain of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The codomain of <m>T</m> is <m>{\bf R}^2</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the range of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The range of <m>T</m> is the column space of <m>A</m>. We could
+            do one step of row-reduction to see that the first two columns of
+            <m>A</m> are pivot columns.  Therefore, the first two columns are
+            linearly independent vectors in <m>{\bf R}^2</m>, so the range of <m>T</m>
+            is <m>{\bf R}^2</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is there a matrix transformation <m>T(x) = Ax</m> that satisfies
+        the following?
+        <md><mrow>T\begin{pmatrix}1 \\ 3\end{pmatrix} = \begin{pmatrix}1 \\ 0\end{pmatrix}, \qquad T \begin{pmatrix}2 \\ 6\end{pmatrix} = \begin{pmatrix}-1 \\ 0\end{pmatrix}</mrow></md>.
+        (hint:
+        recall the matrix multiplication properties <m>A(u+v) = Au+Av</m>,
+        <m>A(cu) = cAu</m> for vectors <m>u</m> and <m>v</m> and scalars <m>c</m>).
+      </p>
+    </statement>
+    <solution>
+      <p>
+        No.  If <m>T</m> is a matrix transformation <m>T(x) = Ax</m> for some matrix
+          <m>A</m>, then from the property <m>A(2u) = 2 A(u)</m> it must be true that
+        <md><mrow>A \begin{pmatrix}2 \\ 6\end{pmatrix} = 2 A \begin{pmatrix}1 \\ 3\end{pmatrix}</mrow></md>,
+        or in other words
+          <m>T \begin{pmatrix}2 \\ 6\end{pmatrix} = 2 T\begin{pmatrix}1 \\ 3\end{pmatrix}</m>.
+      </p>
+      <p>However, <m>T\begin{pmatrix}2 \\ 6\end{pmatrix} = \begin{pmatrix}-1 \\ 0\end{pmatrix}</m> but <m>2 T \begin{pmatrix}1 \\ 3\end{pmatrix} = \begin{pmatrix}2 \\ 0\end{pmatrix}</m>,
+        so <m>T \begin{pmatrix}2 \\ 6\end{pmatrix} \neq 2 T\begin{pmatrix}1 \\ 3\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+</exercises>\setcounter{problem}{0}
+
+\newpage
+
+\underline{3.2, One-to-one and onto
+    transformations}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>It is possible for the matrix transformation associated to a <m>5 \times 6</m>
+        matrix to be both one-to-one and onto.</p>
+    </statement>
+    <solution>
+      <p>False.  A matrix cannot have more pivots than rows or columns, so the matrix
+        has a max of <m>5</m> pivots.  This means it is possible for the matrix to have a
+        pivot in every row, so the corresponding transformation might be onto.
+        However, the matrix will have at least one pivot without a column, so the
+        corresponding transformation <m>T</m> cannot be one-to-one.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>The transformation <m>T: {\bf R}^3 \to {\bf R}^3</m> given by projection onto the
+      <m>yz</m>-plane is onto.</p>
+    </statement>
+    <solution>
+      <p>False.  Recall that in order for the transformation to be onto, its range must be all of <m>{\bf R}^3</m>.  However, the range of <m>T</m> is the <m>yz</m>-plane.  In other words, the range is <m>\Span\left\{\begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}\right\}</m>, which is only a <m>2</m>-dimensional subspace of <m>{\bf R}^3</m>, not all of <m>{\bf R}^3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>The transformation <m>T: {\bf R}^2 \to {\bf R}^2</m> given by rotation by <m>\pi/5</m>
+      radians clockwise is onto.</p>
+    </statement>
+    <solution>
+      <p>True.  Let <m>y</m> be \textit{any} vector in <m>{\bf R}^2</m>.  Then for the vector <m>x</m>
+        obtained by rotating <m>y</m> by <m>\pi/5</m> radians \textit{counterclockwise}, we get
+        <m>T(x) = y</m>.  This shows that every vector in <m>{\bf R}^2</m> is in the range of
+        <m>T</m>.  In other words, range<m>(T) = {\bf R}^2</m>, so <m>T</m> is onto.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>If a matrix <m>A</m> has more rows than columns, then the matrix transformation <m>T</m>
+      given by <m>T(x)=Ax</m> is not onto.</p>
+    </statement>
+    <solution>
+      <p>True.  Since <m>A</m> cannot have more pivots than columns,
+          and since there are more rows than columns, we conclude <m>A</m> cannot
+          have a pivot in every row.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A = \begin{pmatrix}1 \amp 2 \amp 3 \\ 4 \amp 5 \amp 6 \\ 3 \amp 6 \amp 9\end{pmatrix}</m>. Then the transformation <m>T(x) = Ax</m> is one-to-one.</p>
+    </statement>
+    <solution>
+      <p>False:
+          <m>\begin{pmatrix}1 \amp 2 \amp 3 \\ 4 \amp 5 \amp 6 \\ 3 \amp 6 \amp 9\end{pmatrix} \xrightarrow[R_3 = R_3 - 3R_1]{R_2=
+            R_2-4R_1} \begin{pmatrix}1 \amp 2 \amp 3 \\ 0 \amp -3 \amp -6 \\ 0 \amp 0 \amp 0\end{pmatrix}</m>, so <m>A</m> does not have a
+          pivot in every column and therefore <m>T</m> is not one-to-one.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: Suppose <m>A</m> is
+      a matrix and <m>A \begin{pmatrix}-3 \\ 5 \\ 8 \\ 1\end{pmatrix}</m> is the zero vector.  Then the transformation
+      <m>T(x) = Ax</m> cannot be one-to-one.</p>
+    </statement>
+    <solution>
+      <p>True.  Since <m>A \begin{pmatrix}-3 \\ 5 \\ 8 \\ 1\end{pmatrix}</m> is the zero vector, the homogeneous
+        system <m>Ax = 0</m> has more than just the trivial solution.  Therefore,
+        there are infinitely many vectors <m>x</m> so that <m>Ax = 0</m>, so <m>T(x)=0</m>
+        has infinitely many solutions and <m>T</m> is not one-to-one.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there an onto matrix transformation <m>T(x) = Ax</m> with domain <m>{\bf R}^2</m> and
+      codomain <m>{\bf R}^3</m>?  If so, write one down.  If not, explain why not.</p>
+    </statement>
+    <solution>
+      <p>No.  In order for <m>T</m> to have domain <m>{\bf R}^2</m> and codomain <m>{\bf R}^3</m>, the
+        matrix <m>A</m> must be <m>3 \times 2</m>, so <m>A</m> has a max of <m>2</m> pivot columns.
+        Therefore, the column space of <m>A</m> (which is the range of <m>T</m>) is at most a
+        <m>2</m>-dimensional subspace of <m>{\bf R}^3</m>, so <m>T</m> cannot be onto.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a one-to-one matrix transformation with domain <m>{\bf R}^2</m> and codomain
+      <m>{\bf R}^3</m>?  If so, write one down.  If not, explain why not.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes.  Some examples of <m>3 \times 2</m> matrice with a pivot in each column are
+        <md><mrow>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1 \\ 0 \amp 0\end{pmatrix}, \qquad A = \begin{pmatrix}1 \amp 1 \\ 0 \amp 1 \\ 0 \amp 0\end{pmatrix},
+        \qquad A = \begin{pmatrix}0 \amp 0 \\ 5 \amp 1 \\ 1 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Which of the following transformations are one-to-one?</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>T: {\bf R}^2 \to {\bf R}^2</m> that naturally projects
+          vectors onto the <m>x</m>-axis.</p>
+      </statement>
+      <solution>
+        <p>No: for example, <m>T(0, 1) = (0, 0)</m> and
+            <m>T(0, 0) = (0, 0)</m>. Alternatively, we could write the matrix for
+            <m>T</m> (which we learned in section 3.1) and observe that it has <m>2</m>
+            columns but only one pivot.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>T(x, y, z) = (x, y+z)</m>.</p>
+      </statement>
+      <solution>
+        <p>No: for example, <m>T(1, 0, 0) = (1, 0)</m> and
+            <m>T(1, 1, -1) = (1, 0)</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Either write a <m>2 \times 3</m> matrix <m>A</m> that so that the
+      matrix transformation <m>T(x)=Ax</m> is one-to-one, or justify why no such
+      matrix <m>A</m> exists.</p>
+    </statement>
+    <solution>
+      <p>Any <m>2 \times 3</m> matrix <m>A</m> has <m>3</m> columns but at most <m>2</m> pivots,
+        so it cannot have a pivot in every column, hence <m>T(x) = Ax</m> cannot
+        be one-to-one.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>We are told that a matrix <m>A</m> has four columns and three pivots, and let <m>T</m> be the associated linear transformation.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Geometrically, what can we conclude about the range of
+          <m>T</m>?  Do we know in which <m>{\bf R}^k</m> we can find the range of <m>T</m>?
+          Is it possible that <m>T</m> is onto?</p>
+      </statement>
+      <solution>
+        <p>The range of <m>T</m> is the column span of <m>A</m>.  Since <m>A</m>
+            has three pivots, this means that the range of <m>T</m> has dimension
+            <m>3</m>.  We do not know where the range of <m>T</m> lives, because we were
+            not told the number of rows of <m>A</m> and we cannot tell from the
+            information given.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Geometrically, what can we conclude about the set of all
+          solutions to the equation <m>T(x) = 0</m>?  Do we know in which
+          <m>{\bf R}^\ell</m> we can find this solution set?  Is it possible that
+          <m>T</m> is one-to-one?</p>
+      </statement>
+      <solution>
+        <p>The solution set for <m>T(x) = 0</m> is just the null space
+            of <m>A</m>.  Since <m>A</m> has <m>3</m> pivots and <m>4</m> columns, the system
+            <m>Ax=0</m> will have one free variable and thus infinitely many
+            solutions.  Therefore, <m>T</m> is not one-to-one and the solution set
+            to <m>T(x)=0</m> is a one-dimensional subspace of <m>{\bf R}^4</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Either write a <m>3 \times 4</m> matrix <m>A</m> so that the matrix
+      transformation <m>T(x)=Ax</m> is onto, or justify why no such matrix <m>A</m>
+      exists.</p>
+    </statement>
+    <solution>
+      <p>
+        Many examples possible, for example
+          <m>A = \begin{pmatrix}1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0\end{pmatrix}</m>.  We can see directly that
+          every vector <m>\begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix}</m> in <m>{\bf R}^3</m> is in the range of
+          the transformation <m>T(x)=Ax</m>, since
+        <md><mrow>A\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0\end{pmatrix}
+            \begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ 0\end{pmatrix} = \begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a linear transformation <m>T</m> with domain <m>{\bf R}^3</m> and
+      codomain <m>{\bf R}^2</m> whose range is the line <m>x_2 = -2x_1</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We need to find a <m>2 \times 3</m> matrix <m>A</m> whose column space is the
+          line <m>x_2 = -2x_1</m>.  In other words
+          <m>\Col(A) = \textup{Span}\left\{ \begin{pmatrix}1 \\ -2\end{pmatrix}\right\}</m>.  We need <m>A</m> to
+          have exactly one pivot column, and each column must be a scalar
+          multiple of <m>\begin{pmatrix}1 \\ -2\end{pmatrix}</m>.  Many examples are possible, for example:
+        <md><mrow>A = \begin{pmatrix}1 \amp 0 \amp 0 \\ -2 \amp 0 \amp 0\end{pmatrix}, \qquad A = \begin{pmatrix}1 \amp 2 \amp 3 \\ -2 \amp -4 \amp -6\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+</exercises>\setcounter{problem}{0}
+\newpage
+
+\subsection{3.3, Linear transformations}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>Define <m>T: {\bf R} \to {\bf R}</m> by <m>T(x) = x+1</m>.  Is <m>T</m> a linear transformation?</p>
+    </statement>
+    <solution>
+      <p>No.  Recall that every linear transformation must send the origin to the origin.  However, <m>T(0) = 1</m>, so <m>T</m> cannot be linear.  We could additionally check that <m>T</m> fails other linearity properties.  For example, <m>T(1 + 2) \neq T(1) + T(2)</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Suppose <m>T: {\bf R}^2 \to {\bf R}^3</m> is a linear transformation satisfying
+        <md><mrow>T\begin{pmatrix}1 \\ 1\end{pmatrix} = \begin{pmatrix}3 \\ 3 \\ 1\end{pmatrix} \quad \textup{ and } \quad T \begin{pmatrix}2 \\ 1\end{pmatrix} = \begin{pmatrix}3 \\ 1 \\ 1\end{pmatrix}</mrow></md>.
+        What is <m>T \begin{pmatrix}1 \\ 0\end{pmatrix}</m>?
+      </p>
+    </statement>
+    <solution>
+      <p>
+        First we write <m>\begin{pmatrix}1 \\ 0\end{pmatrix}</m> as a linear combination of <m>u = \begin{pmatrix}1 \\ 1\end{pmatrix}</m> and <m>v = \begin{pmatrix}2 \\ 1\end{pmatrix}</m>.
+        <md><mrow>x_1 u + x_2 v = \begin{pmatrix}1 \\ 0\end{pmatrix}, \qquad x_1 \begin{pmatrix}1 \\ 1\end{pmatrix} + x_2 \begin{pmatrix}2 \\ 1\end{pmatrix} = \begin{pmatrix}1 \\ 0\end{pmatrix}</mrow></md>.
+        This gives <m>x_1 = -1</m> and <m>x_2 = 1</m>, so
+        <md><mrow>-u + v= \begin{pmatrix}1 \\ 0\end{pmatrix}</mrow></md>.
+        By linearity of <m>T</m>:
+        <md><mrow>T\begin{pmatrix}1 \\ 0\end{pmatrix} = T(-u+v) = T(-u)+T(v) = -T(u)+T(v)
+        = -\begin{pmatrix}3 \\ 3 \\ 1\end{pmatrix} + \begin{pmatrix}3 \\ 1 \\ 1\end{pmatrix} = \begin{pmatrix}0 \\ -2 \\ 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Suppose <m>T: {\bf R}^2 \to {\bf R}^2</m> is a linear transformation satisfying
+        <md><mrow>T\begin{pmatrix}3 \\ -1\end{pmatrix} = \begin{pmatrix}1 \\ 1\end{pmatrix} \quad \textup{ and } \quad T \begin{pmatrix}1 \\ 2\end{pmatrix} = \begin{pmatrix}4 \\ 4\end{pmatrix}</mrow></md>.
+        Find the standard matrix <m>A</m> for <m>T</m>, and use it to find <m>T\begin{pmatrix}11 \\ 1\end{pmatrix}</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We know that <m>A = \begin{pmatrix}T\begin{pmatrix}1 \amp \\ \amp 0\end{pmatrix} \amp T\begin{pmatrix}0 \amp \\ \amp 1\end{pmatrix}\end{pmatrix}</m>, and we use linearity of <m>T</m> to
+          find both columns of <m>A</m>.  Let <m>u = \begin{pmatrix}3 \\ -1\end{pmatrix}</m> and <m>v = \begin{pmatrix}1 \\ 2\end{pmatrix}</m>.  Work
+          using the basics of chapter 1 gives us
+        <md><mrow>\begin{pmatrix}1 \\ 0\end{pmatrix} = \dfrac{2}{7} u + \dfrac{1}{7} v \quad
+        \textup{ and } \quad
+        \begin{pmatrix}0 \\ 1\end{pmatrix} = \dfrac{-1}{7} u + \dfrac{3}{7} v</mrow></md>.
+        Therefore,
+        <md><mrow>T \begin{pmatrix}1 \\ 0\end{pmatrix} = T\left(\dfrac{2}{7}u + \dfrac{1}{7} v\right)
+        = \dfrac{2}{7} T(u) + \dfrac{1}{7} T(v)
+        = \dfrac{2}{7} \begin{pmatrix}1 \\ 1\end{pmatrix} + \dfrac{1}{7} \begin{pmatrix}4 \\ 4\end{pmatrix}
+        = \begin{pmatrix}6/7 \\ 6/7\end{pmatrix}</mrow></md>
+        and
+        <md><mrow>T \begin{pmatrix}0 \\ 1\end{pmatrix} = T\left(\dfrac{-1}{7}u + \dfrac{3}{7} v\right)
+        = \dfrac{-1}{7} T(u) + \dfrac{3}{7} T(v)
+        = \dfrac{-1}{7} \begin{pmatrix}1 \\ 1\end{pmatrix} + \dfrac{3}{7} \begin{pmatrix}4 \\ 4\end{pmatrix}
+        = \begin{pmatrix}11/7 \\ 11/7.\end{pmatrix}</mrow></md>
+        Therefore,
+        <md><mrow>A = \begin{pmatrix}T\begin{pmatrix}1 \amp \\ \amp 0\end{pmatrix} \amp T\begin{pmatrix}0 \amp \\ \amp 1\end{pmatrix}\end{pmatrix} = \begin{pmatrix}6/7 \amp 11/7 \\ 6/7 \amp 11/7\end{pmatrix}</mrow></md>.
+        To finsih, we compute:
+        <md><mrow>T\begin{pmatrix}11 \\ 1\end{pmatrix} = A \begin{pmatrix}11 \\ 1\end{pmatrix} =
+        \begin{pmatrix}6/7 \amp 11/7 \\ 6/7 \amp 11/7\end{pmatrix} \begin{pmatrix}11 \\ 1\end{pmatrix} = \begin{pmatrix}11 \\ 11\end{pmatrix}</mrow></md>.
+        If we had not been asked to compute <m>A</m>, we could have found <m>T\begin{pmatrix}11 \\ 1\end{pmatrix}</m> directly by using linearity of <m>T</m>, by writing <m>\begin{pmatrix}11 \\ 1\end{pmatrix}</m> as the linear combination of <m>u</m> and <m>v</m>.  We would get
+        <m>\begin{pmatrix}11 \\ 1\end{pmatrix} = 3u + 2v</m>, so
+        <md><mrow>T\begin{pmatrix}11 \\ 11\end{pmatrix} = T(3u+2v) = 3T(u)+2T(v) = 3 \begin{pmatrix}1 \\ 1\end{pmatrix} + 2 \begin{pmatrix}4 \\ 4\end{pmatrix}
+        = \begin{pmatrix}11 \\ 11\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find the matrix for the linear transformation <m>T: {\bf R}^3 \to {\bf R}^3</m> that
+      rotates about the <m>z</m>-axis by <m>\pi</m> radians and then scales by <m>2</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        This is the composition <m>T \circ U</m> where <m>T</m> is the scaling operation and <m>U</m>
+          is the rotation.  The matrix for <m>T</m> is <m>\begin{pmatrix}2 \amp 0 \amp 0 \\ 0 \amp 2 \amp 0 \\ 0 \amp 0 \amp 2\end{pmatrix}</m>.  Note <m>U</m>
+          keeps the <m>z</m>-axis fixed while rotating the <m>xy</m> portion by <m>\pi</m> radians, so
+          the matrix for <m>U</m> is <m>\begin{pmatrix}-1 \amp 0 \amp 0 \\ 0 \amp -1 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>.
+        <md><mrow>(T \circ U)(x) = \begin{pmatrix}2 \amp 0 \amp 0 \\ 0 \amp 2 \amp 0 \\ 0 \amp 0 \amp 2\end{pmatrix} \begin{pmatrix}-1 \amp 0 \amp 0 \\ 0 \amp -1 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix} =
+            \begin{pmatrix}-2 \amp 0 \amp 0 \\ 0 \amp -2 \amp 0 \\ 0 \amp 0 \amp 2\end{pmatrix}</mrow></md>.
+        It turns out that these two transformations
+          happen to satisfy <m>T \circ U = U \circ T</m>, so we would have gotten the correct
+          answer even if we had mixed up the order of operations.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Suppose <m>T: {\bf R}^3 \to {\bf R}^3</m> is the function given by
+        <md><mrow>T \begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}z \\ 0 \\ x\end{pmatrix}</mrow></md>.
+        Is <m>T</m> linear?  If so, what is the standard
+        matrix for <m>T</m>?
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Yes, <m>T</m> is linear, and we can verify that <m>T(x) = Ax</m> for the matrix
+        <md><mrow>A = \begin{pmatrix}T(e_1) \amp T(e_2) \amp T(e_3)\end{pmatrix} = \begin{pmatrix}0 \amp 0 \amp 1 \\ 0 \amp 0 \amp 0 \\ 1 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+        We can check by computing
+        <md><mrow>A \begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}0 \amp 0 \amp 1 \\ 0 \amp 0 \amp 0 \\ 1 \amp 0 \amp 0\end{pmatrix}\begin{pmatrix}x \\ y \\ z\end{pmatrix}
+        = \begin{pmatrix}z \\ 0 \\ x\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>What does the matrix
+      <m>\begin{pmatrix}-1/\sqrt{2} \amp 1/\sqrt{2} \\ -1/\sqrt{2} \amp -1/\sqrt{2}\end{pmatrix}</m>
+      do to vectors in <m>{\bf R}^2</m>?</p>
+    </statement>
+    <solution>
+      <p>This matrix is <m>\begin{pmatrix}\cos(\theta) \amp -\sin(\theta) \\ \sin(\theta) \amp \cos(\theta)\end{pmatrix}</m>
+        for <m>\theta = 5\pi/4</m> (or equivalently, <m>\theta = 225^\circ</m>).  Therefore,
+        this matrix rotates each vector in <m>{\bf R}^2</m> by <m>5\pi/4</m> radians
+        counterclockwise.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is the identity transformation from <m>{\bf R}^n</m> to <m>{\bf R}^n</m> one-to-one?</p>
+    </statement>
+    <solution>
+      <p>Yes: its standard matrix is the <m>n \times n</m> identity matrix, which has a
+        pivot in every row and column, so the identity transformation is both
+        one-to-one and onto.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Which of the following transformations <m>T: {\bf R}^3
+      \to {\bf R}^3</m> are linear?</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>T(x_1, x_2, x_3) = (x_1-x_2, x_3 + 1, x_2)</m></p>
+      </statement>
+      <solution>
+        <p>No: <m>T(0, 0, 0) = (0, 1, 0)</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>T(x_1, x_2, x_3) = (x_1, |x_2|-x_1, x_3)</m></p>
+      </statement>
+      <solution>
+        <p>
+          No: the absolute value term ruins the possibility
+              that <m>T</m> is linear.  If <m>u = (0, 1, 0)</m> then
+          <md><mrow>T(u) = (0, 1, 0), \quad T(-u) = T(0,-1,0)= (0,1,0)</mrow></md>,
+          so
+              <m>T(-u) \neq -T(u)</m>.
+            \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Which of the following transformations <m>T: {\bf R}^3
+      \to {\bf R}</m> are linear?</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>T(a, b, c) = c-2b-a</m></p>
+      </statement>
+      <solution>
+        <p>Yes: <m>T(x) = Ax</m> for <m>A = \begin{pmatrix}-1 \amp -2 \amp 1\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>T(x, y, z) = xy-z</m></p>
+      </statement>
+      <solution>
+        <p>
+          No: the product <m>xy</m> ruins it.  For <m>u = \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}</m>,
+              we get
+          <md><mrow>T(u) = 1(1)-0 = 1, \qquad T(2u) = T\begin{pmatrix}2 \\ 2 \\ 0\end{pmatrix} = 2(2)-0 = 4</mrow></md>.
+          Therefore, <m>T(2u) \neq 2 T(u)</m>, so <m>T</m> is not linear.
+            \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Suppose <m>T: {\bf R}^k \to {\bf R}^{\ell}</m> is a one-to-one
+      linear transformation.  Which of the following are possible? Answer
+      yes or no in each case.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>k < \ell</m></p>
+      </statement>
+      <solution>
+        <p>Yes.  If <m>k < \ell</m> then <m>A</m> has more rows than
+            columns, so <m>A</m> can have a pivot in every column, for example
+            <m>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1 \\ 0 \amp 0\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>k > \ell</m></p>
+      </statement>
+      <solution>
+        <p>No.  If <m>k > \ell</m> then <m>A</m> has more columns that
+            rows, so <m>A</m> cannot have a pivot in every column.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>k = \ell</m>.</p>
+      </statement>
+      <solution>
+        <p>Yes.  If <m>k = \ell</m> then <m>A</m> can have a pivot in every
+            column, for example <m>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Suppose <m>T: {\bf R}^a \to {\bf R}^b</m> is a one-to-one
+      linear transformation.  Which of the following are possible? Answer
+      yes or no in each case.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>a < b</m></p>
+      </statement>
+      <solution>
+        <p>No.  If <m>a < b</m> then <m>A</m> has more rows than columns,
+            so <m>A</m> cannot have a pivot in every row.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>a > b</m></p>
+      </statement>
+      <solution>
+        <p>Yes.  If <m>a > b</m> then <m>A</m> has more columns than rows,
+            so <m>A</m> can have a pivot in every row, for example if <m>a = 3</m> and
+            <m>b=2</m> then <m>A</m> is a <m>2 \times 3</m> matrix.
+            <m>A = \begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>a = b</m>.</p>
+      </statement>
+      <solution>
+        <p>Yes.  If <m>a = b</m> then <m>A</m> can have a pivot in every
+            row, for example <m>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Consider the linear transformation
+      <m>T: {\bf R}^2 \to {\bf R}^4</m> given by <m>T(a, b) = (a, b, b, a)</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write the standard matrix <m>A</m> for <m>T</m>, so that
+          <m>T(x) = Ax</m>.</p>
+      </statement>
+      <solution>
+        <p><m>A = \begin{pmatrix}T(e_1) \amp T(e_2)\end{pmatrix}= \begin{pmatrix}1 \amp 0 \\ 0 \amp 1 \\ 0 \amp 1 \\ 1 \amp 0\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>T</m> one-to-one?  Either justify why <m>T</m> is
+          one-to-one, or write vectors <m>x</m> and <m>y</m> (with <m>x \neq y</m>) so that
+          <m>T(x) = T(y)</m>.</p>
+      </statement>
+      <solution>
+        <p>Yes, <m>T</m> is one-to-one because <m>A</m> has a pivot in
+            every column.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>T</m> onto?  Either justify why <m>T</m> is onto or write one
+          vector that is not in the range of <m>T</m>.</p>
+      </statement>
+      <solution>
+        <p>No, <m>T</m> is not onto because <m>A</m> does not have a pivot
+            in every row.  From the form of <m>T</m> we see that if <m>x</m> is any
+            vector then <m>T(x)</m> has its first and fourth entries equal and also
+            has its second and third entries equal. Therefore, any vector
+            whose first and fourth entries are different, or whose second and
+            third entries are different, will NOT be in the range of <m>T</m>.
+            Many examples possible, for example <m>\begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix}</m>,
+            <m>\begin{pmatrix}0 \\ 1 \\ 0 \\ 0\end{pmatrix}</m>, <m>\begin{pmatrix}1 \\ 2 \\ 0 \\ -1\end{pmatrix}</m>, <m>\begin{pmatrix}1 \\ 1 \\ 0 \\ 1\end{pmatrix}</m>, etc.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>T: {\bf R}^2 \to {\bf R}^2</m> be the transformation which reflects about the
+      line <m>y = x</m>, then rotates counterclockwise by <m>45^\circ</m>.  Using only geometry,
+      find <m>T(e_1)</m> and <m>T(e_2)</m>.  Use your answer to find the matrix <m>A</m> so that
+      <m>T(x)=Ax</m> for all <m>x</m> in <m>{\bf R}^2</m>.</p>
+    </statement>
+    <solution>
+      <p>We examine what happens to <m>e_1</m> and <m>e_2</m>.</p>
+      <p><m>e_1</m>:  The reflection sends <m>\begin{pmatrix}1 \\ 0\end{pmatrix}</m> to <m>\begin{pmatrix}0 \\ 1\end{pmatrix}</m>, then rotating cc by <m>45^\circ</m> gives
+       <m>T(e_1) = \begin{pmatrix}\frac{-1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}\end{pmatrix}</m>.</p>
+      <p><m>e_2</m>: The reflection sends <m>\begin{pmatrix}0 \\ 1\end{pmatrix}</m> to <m>\begin{pmatrix}1 \\ 0\end{pmatrix}</m>, then rotating cc by <m>45^\circ</m> gives
+      <m>T(e_2) = \begin{pmatrix}\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}\end{pmatrix}</m>.</p>
+      <p>
+        Therefore,
+        <md><mrow>A = \begin{pmatrix}T(e_1) \amp T(e_2)\end{pmatrix} = \begin{pmatrix}\frac{-1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}}\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+</exercises> \setcounter{problem}{0}
+
+\newpage
+
+\subsection{3.4, Matrix multiplication}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> and <m>B</m> are matrices and <m>AB</m> is an <m>3 \times 3</m> matrix,
+        then <m>A</m> and <m>B</m> must be <m>3 \times 3</m> matrices.</p>
+    </statement>
+    <solution>
+      <p>False: for example, if <m>A</m> is <m>3 \times 2</m> and <m>B</m> is <m>2 \times 3</m>, then <m>AB</m>
+        is <m>3 \times 3</m> but neither <m>A</m> nor <m>B</m> is <m>3 \times 3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: Suppose <m>A</m> and <m>B</m> are matrices so that <m>AB</m> and <m>BA</m> are both
+      defined.  If <m>AB</m> and <m>BA</m> are each <m>r \times r</m> matrices, then <m>A</m> and <m>B</m> must
+      each be <m>n \times n</m>.</p>
+    </statement>
+    <solution>
+      <p>True: <m>A</m> Say <m>A</m> is <m>k \times \ell</m> and <m>B</m> is <m>m \times n</m>.  Since <m>AB</m> is
+        defined, we know <m>\ell = m</m>.  Since <m>BA</m> is defined, we know <m>n = k</m>.  This
+        means <m>B</m> is <m>\ell \times k</m>.</p>
+      <p>Now: <m>AB</m> is a <m>k \times \ell</m> times an <m>\ell \times k</m>, so <m>AB</m> is
+        <m>k \times k</m>.  Since we were told <m>AB</m> is <m>r \times r</m>, this means <m>r =
+        k</m>.</p>
+      <p>Similarly, <m>BA</m> is an <m>\ell \times k</m> times a <m>k \times \ell</m>, so <m>BA</m> is
+        <m>\ell \times \ell</m>.  Since we were told <m>BA</m> is <m>r \times r</m>, this means <m>r = \ell</m>.</p>
+      <p>Putting it all together, we see <m>A</m> and <m>B</m> are both <m>r \times r</m> matrices.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A</m> is a <m>24 \times 17</m> matrix and the products <m>AB</m> and <m>BA</m> are both
+      defined.  How many rows does <m>B</m> have?  How many columns does <m>B</m> have?</p>
+    </statement>
+    <solution>
+      <p>For <m>AB</m> to be defined, the number of columns of <m>A</m> (namely <m>17</m>) must equal
+        the number of rows of <m>B</m>, so <m>B</m> has <m>17</m> rows.</p>
+      <p>Similarly:
+        for <m>BA</m> to be defined, the number of columns of <m>B</m> must equal the number of
+        rows of <m>A</m> (namely 24), so <m>B</m> must have <m>24</m> columns.</p>
+      <p>Therefore, <m>B</m> is a <m>17 \times 24</m> matrix.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A</m> and <m>B</m> are <m>3 \times 3</m> matrices and the columns of <m>B</m>
+      are linearly dependent.  Is it necessarily the columns of <m>AB</m> are linearly
+      dependent?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes, the columns of <m>AB</m> are linearly dependent.  Using the fact that <m>Bv=0</m>
+          for some nonzero <m>v</m> in <m>{\bf R}^3</m>, we compute
+        <md><mrow>ABv=AB(v) = A0=0</mrow></md>.
+        Therefore, the vector <m>v</m> is a non-trivial solution to the system <m>ABx = 0</m>,
+          so the columns of <m>AB</m> are linearly dependent.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A = \begin{pmatrix}1 \amp -3 \amp 4 \\ 1 \amp 0 \amp 0\end{pmatrix}</m> and <m>B = \begin{pmatrix}1 \amp \pi\end{pmatrix}</m>.  Compute all products that
+      make sense among <m>AB</m> and <m>BA</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        <m>A</m> is <m>2 \times 3</m> and <m>B</m> is <m>1 \times 2</m>, so the only product that makes
+          sense is <m>BA</m>.
+        <md><mrow>BA = \begin{pmatrix}1 \amp \pi\end{pmatrix}\begin{pmatrix}1 \amp -3 \amp 4 \\ 1 \amp 0 \amp 0\end{pmatrix} = \begin{pmatrix}1+\pi \amp \ \amp -3 \amp 4\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>T: {\bf R}^2 \to {\bf R}^2</m> be the linear transformation that rotates
+      vectors by <m>\pi/2</m> radians counterclockwise, then scales the <m>y</m>-direction by a
+      factor of <m>5</m>, then reflects vectors across the line <m>y = -x</m>.  Compute
+      <m>T\begin{pmatrix}5 \\ 1\end{pmatrix}</m> using matrix multiplication.</p>
+    </statement>
+    <solution>
+      <p>
+        The matrix for <m>T</m> is <m>ABC</m> where <m>C</m> is the first operation, <m>B</m> is the
+          second operation, and <m>A</m> is the third operation.  Therefore, the matrix for
+          <m>T</m> is
+        <md><mrow>\begin{pmatrix}0 \amp -1 \\ -1 \amp 0\end{pmatrix}\begin{pmatrix}1 \amp 0 \\ 0 \amp 5\end{pmatrix} \begin{pmatrix}0 \amp -1 \\ 1 \amp 0\end{pmatrix}
+            = \begin{pmatrix}0 \amp -1 \\ -1 \amp 0\end{pmatrix} \begin{pmatrix}0 \amp -1 \\ 5 \amp 0\end{pmatrix} = \begin{pmatrix}-5 \amp 0 \\ 0 \amp 1\end{pmatrix}</mrow></md>.
+        We compute
+        <md><mrow>T \begin{pmatrix}5 \\ 1\end{pmatrix} = \begin{pmatrix}-5 \amp 0 \\ 0 \amp 1\end{pmatrix}\begin{pmatrix}5 \\ 1\end{pmatrix} = \begin{pmatrix}-25 \\ 1\end{pmatrix}</mrow></md>.
+        We can check our
+          answer geometrically.  <m>T</m> first rotates <m>\begin{pmatrix}5 \\ 1\end{pmatrix}</m> by <m>\pi/2</m> radians
+          counterclockwise to get <m>\begin{pmatrix}-1 \\ 5\end{pmatrix}</m>, then scales the <m>y</m>-coordinate by a
+          factor of <m>5</m> to get <m>\begin{pmatrix}-1 \\ 25\end{pmatrix}</m>, then reflects across the line <m>y = -x</m> to
+          get <m>\begin{pmatrix}-25 \\ 1\end{pmatrix}</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p><m>T</m> has domain <m>{\bf R}^{4}</m> and codomain <m>{\bf R}^{7}</m>.</p>
+      <p><m>U</m> has domain <m>{\bf R}^{13}</m> and codomain <m>{\bf R}^{25}</m>.</p>
+      <p><m>V</m> has domain <m>{\bf R}^{25}</m> and codomain <m>{\bf R}^{17}</m>.</p>
+      <p><m>W</m> has domain <m>{\bf R}^{7}</m> and codomain <m>{\bf R}^{13}</m>.</p>
+      <p>Determine which composition of all four transformations makes sense, and find
+      the number of rows and columns for its standard matrix.</p>
+    </statement>
+    <solution>
+      <p>In order for a composition <m>R \circ S</m> to make sense, the domain of <m>R</m> must
+        be the codomain of <m>S</m>, because we need to be able to take <m>R(S(v))</m> for any
+        vector <m>v</m> in the domain of <m>S</m>.
+      The composition of all <m>4</m>
+        transformations that makes sense is <m>V \circ U \circ W \circ T</m>.
+        \begin{itemize}
+        \item If <m>x</m> is a vector in <m>{\bf R}^{4}</m>, then <m>T(x)</m> is a vector in
+          <m>{\bf R}^{7}</m>, which is the domain of <m>W</m>.
+        \item Next step: <m>W(T(x))</m> is in <m>{\bf R}^{13}</m>, which is the domain of <m>U</m>.
+        \item Next step: <m>U(W(T(x)))</m> is in <m>{\bf R}^{41}</m>, which is the domain of <m>V</m>,
+        \item Finally: <m>V(U(W(T(x))))</m> is a vector in <m>{\bf R}^{17}</m>.
+        \end{itemize}
+        Following all of the steps, we see that if <m>x</m> is in <m>{\bf R}^{4}</m> then
+        <m>(V \circ U \circ W \circ T)(x)</m> is a vector in <m>{\bf R}^{17}</m>, so the
+        transformation has domain <m>{\bf R}^{4}</m> and codomain <m>{\bf R}^{17}</m>.
+        Therefore, its standard matrix is <m>17 \times 4</m>, so it has <m>17</m> rows and <m>4</m>
+        columns.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>T</m> be the linear transformation <m>T(x) = ABx</m>, where
+      <m>A</m> is <m>3 \times 3</m> and <m>B</m> is <m>3 \times 2</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          Complete the following: <m>T</m> is onto...
+          <md><mrow>\textup{(i) sometimes} \qquad \textup{(ii) always}
+            \qquad \textup{(iii) never}</mrow></md>
+        </p>
+      </statement>
+      <solution>
+        <p>Never: <m>AB</m> is <m>3 \times 2</m>, so it has <m>3</m> rows but a max of <m>2</m>
+            pivots, therefore at least one row does not have a pivot, thus <m>T</m> cannot be
+            one-to-one.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Complete the following: <m>T</m> is one-to-one...
+          <md><mrow>\textup{(i) sometimes} \qquad \textup{(ii) always}
+            \qquad \textup{(iii) never}</mrow></md>
+        </p>
+      </statement>
+      <solution>
+        <p>Sometimes.  <m>AB</m> is <m>3 \times 2</m>, so it might have a pivot in
+            every column, but this depends on <m>A</m> and <m>B</m>.  For example, if
+            <m>B = \begin{pmatrix}0 \amp 0 \\ 0 \amp 0 \\ 0 \amp 0\end{pmatrix}</m> then <m>AB</m> is the <m>3 \times 2</m> zero matrix, so <m>T</m>
+            is clearly not one-to-one.
+        If <m>A = \begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m> and
+            <m>B = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1 \\ 0 \amp 0\end{pmatrix}</m>, then <m>AB = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1 \\ 0 \amp 0\end{pmatrix}</m> which has a pivot
+            in every column, so <m>T</m> is one-to-one.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find the formula for <m>T(x_1, x_2, x_3)</m> if
+        <m>A = \begin{pmatrix}1 \amp -1 \amp 4 \\ 0 \amp 1 \amp 2 \\ 4 \amp 1 \amp 0\end{pmatrix}</m> and <m>B = \begin{pmatrix}1 \amp -1 \\ 2 \amp -2 \\ 0 \amp 1\end{pmatrix}</m>.</p>
+      </statement>
+      <solution>
+        <p><m>AB = \begin{pmatrix}1 \amp -1 \amp 4 \\ 0 \amp 1 \amp 2 \\ 4 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}1 \amp -1 \\ 2 \amp -2 \\ 0 \amp 1\end{pmatrix} =
+            \begin{pmatrix}-1 \amp 5 \\ 2 \amp 2 \\ 6 \amp -6\end{pmatrix}</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>T: {\bf R}^2 \to {\bf R}^2</m> be the transformation which reflects about the
+      line <m>y = x</m>, then rotates counterclockwise by <m>45^\circ</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write the matrix <m>J</m> for reflection across the line <m>y=x</m> in
+          <m>{\bf R}^2</m>.</p>
+      </statement>
+      <solution>
+        <p><m>J=\begin{pmatrix}0 \amp 1 \\ 1 \amp 0\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write the matrix <m>K</m> for rotation counterclockwise
+          by <m>45^\circ</m> in <m>{\bf R}^2</m>.</p>
+      </statement>
+      <solution>
+        <p><m>K=\begin{pmatrix}\frac{1}{\sqrt{2}} \amp \frac{-1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}}\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Using matrix multiplication,
+          compute the matrix <m>A</m> so that <m>T(x)=Ax</m> for all <m>x</m> in <m>{\bf R}^2</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          <m>A=KJ</m>:
+          <md><mrow>A = \begin{pmatrix}\frac{1}{\sqrt{2}} \amp \frac{-1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}}\end{pmatrix}
+            \begin{pmatrix}0 \amp 1 \\ 1 \amp 0\end{pmatrix}
+            = \begin{pmatrix}\frac{-1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}}\end{pmatrix}</mrow></md>.
+          \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>T: {\bf R}^2 \to {\bf R}^2</m> be the transformation of reflection
+      about the line <m>y= -x</m>, and let <m>U: {\bf R}^2 \to {\bf R}^3</m> be the
+      transformation <m>U \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}x-y \\ x \\ 3y\end{pmatrix}</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write the standard matrix <m>A</m> for <m>T</m>.  Is <m>T</m> onto?</p>
+      </statement>
+      <solution>
+        <p><m>A=\begin{pmatrix}0 \amp -1 \\ -1 \amp 0\end{pmatrix}</m>. Yes, <m>T</m> is onto.  One way to
+            see this is to note that <m>A</m> has a pivot in every row.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write the standard matrix <m>B</m> for <m>U</m>.  Is <m>U</m>
+          one-to-one?  Briefly justify your answer.</p>
+      </statement>
+      <solution>
+        <p><m>B=\begin{pmatrix}U(e_1) \amp U(e_2)\end{pmatrix} = \begin{pmatrix}1 \amp -1 \\ 1 \amp 0 \\ 0 \amp 3\end{pmatrix}</m>.  Yes,
+            <m>U</m> is one-to-one because <m>B</m> has a pivot in every column.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Circle the composition that makes sense: \quad
+          <m>T \circ U</m> \qquad <m>U \circ T</m></p>
+      </statement>
+      <solution>
+        <p><m>U \circ T</m> makes sense since it sends
+            <m>R^2 \to R^2 \to R^3</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Compute the standard matrix for the composition you
+          circled in part (c).</p>
+      </statement>
+      <solution>
+        <p><m>BA = \begin{pmatrix}1 \amp -1 \\ 1 \amp 0 \\ 0 \amp 3\end{pmatrix} \begin{pmatrix}0 \amp -1 \\ -1 \amp 0\end{pmatrix} =
+            \begin{pmatrix}1 \amp -1 \\ 0 \amp -1 \\ -3 \amp 0\end{pmatrix}</m>.
+          \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Consider the following transformations.</p>
+      <p><m>T: {\bf R}^2 \to {\bf R}^2</m> be rotation by <m>90^\circ</m> clockwise.</p>
+      <p><m>U: {\bf R}^3 \to {\bf R}^2</m> given by <m>U(a, b, c) = (a-b, c-5a)</m>.</p>
+      <p><m>V: {\bf R}^{4} \to {\bf R}^3</m> given by
+      <m>V(x, y, z, w) = (w, x-y+z, z-x)</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Which composition of all three transformation makes
+          sense?</p>
+      </statement>
+      <solution>
+        <p><m>T \circ U \circ V</m> makes sense: <m>V</m> sends a vector
+            <m>x</m> from <m>{\bf R}^4</m> to <m>{\bf R}^3</m>, then <m>U</m> sends <m>V(x)</m> from
+            <m>{\bf R}^3</m> to <m>{\bf R}^2</m>, then <m>T</m> sends <m>U(V(x))</m> from
+            <m>{\bf R}^2</m> to <m>{\bf R}^2</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Using matrix multiplication, compute the standard
+          matrix for the transformation you wrote in part (a).</p>
+      </statement>
+      <solution>
+        <p>
+          <m>T(x) = Ax</m>, <m>U(x) = Bx</m>, and <m>V(x) = Cx</m> for the
+              matrices below, where we multiply <m>ABC</m> to get the matrix for
+              <m>T \circ U \circ V</m>.  Matrix multiplication is NOT commutative,
+              but it is associative, so to compute <m>ABC</m> we can either compute
+              <m>A(BC)</m> or <m>(AB)C</m>.
+          <md>
+            <mrow>ABC
+                \amp
+                  = \begin{pmatrix}0 \amp 1</mrow>
+            <mrow>-1 \amp 0\end{pmatrix}
+                  \begin{pmatrix}1 \amp -1 \amp 0</mrow>
+            <mrow>-5 \amp 0 \amp 1\end{pmatrix}
+                  \begin{pmatrix}0 \amp 0 \amp 0 \amp 1</mrow>
+            <mrow>1 \amp -1 \amp 1 \amp 0</mrow>
+            <mrow>-1 \amp 0 \amp 1 \amp 0\end{pmatrix}</mrow>
+            <mrow>\amp
+                  = \begin{pmatrix}0 \amp 1</mrow>
+            <mrow>-1 \amp 0\end{pmatrix}
+                  \begin{pmatrix}-1 \amp 1 \amp -1 \amp 1</mrow>
+            <mrow>-1 \amp 0 \amp 1 \amp -5\end{pmatrix}</mrow>
+            <mrow>\amp
+                  = \begin{pmatrix}-1 \amp 0 \amp 1 \amp 5</mrow>
+            <mrow>1 \amp -1 \amp 1 \amp -1\end{pmatrix}</mrow>
+          </md>.
+          \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+</exercises> \setcounter{problem}{0}
+
+\newpage
+
+\subsection{3.5 and 3.6, Matrix inverses and the Invertible Matrix Theorem}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: Suppose <m>A</m> is an <m>n \times n</m> matrix and <m>AB = I_n</m>.
+      Then <m>BA = I_n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  Even though matrix multiplication is generally
+          not commutative, it is a general fact that if two <m>n \times n</m>
+          matrices <m>A</m> and <m>B</m> satisfy <m>AB=I</m> then <m>BA=I</m>, and similarly if
+          <m>BA=I</m> then <m>AB=I</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: There is an invertible matrix <m>A</m> satisfying
+      <m>A \begin{pmatrix}1 \\ 2 \\ 3\end{pmatrix} = \begin{pmatrix}1 \\ 2\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>False.  Only square matrices cann be invertible.  If
+          <m>A \begin{pmatrix}1 \\ 2 \\ 3\end{pmatrix} = \begin{pmatrix}1 \\ 2\end{pmatrix}</m> then <m>A</m> is <m>2 \times 3</m>, so <m>A</m>
+          cannot be invertible.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> is an <m>n \times n</m> matrix and <m>Ax=0</m> has
+      only the trivial solution, then the equation <m>Ax=b</m> is consistent for
+      every <m>b</m> in <m>{\bf R}^n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  <m>A</m> is invertible by the Invertible Matrix Theorem.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: There are linear transformations <m>T: {\bf R}^3
+      \to {\bf R}^4</m> and <m>U: {\bf R}^4 \to {\bf R}^3</m> so that <m>T \circ U</m> is
+      invertible.</p>
+    </statement>
+    <solution>
+      <p>
+        False.  Since <m>T</m> and <m>U</m> are linear, they are matrix transformations <m>T(v) = Av</m> and <m>U(x) = Bx</m> for some matrices <m>A</m> and <m>B</m>.  Since <m>U</m> has domain <m>{\bf R}^4</m> and codomain <m>{\bf R}^3</m>, we know that <m>B</m> is <m>3 \times 4</m>, so <m>B</m> has <m>4</m> columns but at most <m>3</m> pivots.  Therefore, <m>B</m> has at least one column without a pivot, so <m>Bx = 0</m> has infinitely many solutions.  For any solution to <m>Bx=0</m>, we get
+        <md><mrow>(T \circ U)(x) = ABx = A(Bx)=A(0) = 0</mrow></md>,
+        so <m>(T \circ U)(x)=0</m> has infinitely many solutions, thus <m>T \circ U</m> cannot be one-to-one.  By the Invertible Matrix Theorem, <m>T \circ U</m> cannot be invertible.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: There are linear transformations <m>T: {\bf R}^4
+      \to {\bf R}^3</m> and <m>U: {\bf R}^3 \to {\bf R}^4</m> so that <m>T \circ U</m> is
+      invertible.</p>
+    </statement>
+    <solution>
+      <p>True.  Take <m>U(x_1, x_2, x_3)= (x_1, x_2, x_3, 0)</m> and
+        <m>T(x_1, x_2, x_3, x_4)= (x_1, x_2, x_3)</m>.  Then
+        <m>(T \circ U)(x_1, x_2, x_3)= (x_1, x_2, x_3)</m> so <m>T \circ U</m> is invertible (in
+        fact, it is the identity transformation!).</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: Let <m>A = \begin{pmatrix}2 \amp 0 \amp 0 \\ 0 \amp 3 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>. Then <m>A</m> is
+      invertible and <m>A^{-1} = \begin{pmatrix}\frac{1}{2} \amp 0 \amp 0 \\ 0 \amp \frac{1}{3} \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>True:
+          <m>\begin{pmatrix}2 \amp 0 \amp 0 \\ 0 \amp 3 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix} \begin{pmatrix}\frac{1}{2} \amp 0 \amp 0 \\ 0 \amp \frac{1}{3} \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix} = \begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}=I.</m>
+      This shows that
+          the inverse of <m>A</m> is
+          <m>\begin{pmatrix}\frac{1}{2} \amp 0 \amp 0 \\ 0 \amp \frac{1}{3} \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> is an <m>n \times n</m> matrix and <m>Ax = 0</m> has
+      infinitely many solutions, then <m>A</m> cannot be invertible.</p>
+    </statement>
+    <solution>
+      <p>True.  If <m>A</m> is invertible then for each <m>b</m> in
+          <m>{\bf R}^n</m>, the equation <m>Ax=b</m> has a unique solution
+          <m>x = A^{-1}b</m>.  In particular the homogeneous equation <m>Ax=0</m> must
+          have unique solution <m>x= A^{-1}0 = 0</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A</m> is the matrix whose inverse is given by
+      <m>A^{-1} = \begin{pmatrix}-4 \amp 1 \amp 1 \\ 0 \amp 2 \amp 3 \\ -1 \amp 2 \amp 2\end{pmatrix}</m>.</p>
+      <p>Find all solutions to <m>Ax = \begin{pmatrix}1 \\ -3 \\ 9\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        Since <m>A</m> is invertible, any matrix equation <m>Ax = b</m> (for any <m>b</m> in <m>{\bf R}^3</m>) has the unique solution <m>x = A^{-1} b</m>.
+        <md><mrow>Ax = \begin{pmatrix}1 \\ -3 \\ 9\end{pmatrix}, \qquad x = A^{-1}\begin{pmatrix}1 \\ -3 \\ 9\end{pmatrix}
+        = \begin{pmatrix}-4 \amp 1 \amp 1 \\ 0 \amp 2 \amp 3 \\ -1 \amp 2 \amp 2\end{pmatrix} \begin{pmatrix}1 \\ -3 \\ 9\end{pmatrix} =
+        \begin{pmatrix}2 \\ 21 \\ 11\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A = \begin{pmatrix}7 \amp 8 \\ 1 \amp 3\end{pmatrix}</m>. Is <m>A</m> invertible?  If so, find <m>A^{-1}</m>.</p>
+    </statement>
+    <solution>
+      <p>If <m>A = \begin{pmatrix}a \amp b \\ c \amp d\end{pmatrix}</m> with <m>ad - bc \neq 0</m>, then <m>A</m> is invertible and
+      <m>A^{-1} = \dfrac{1}{ad-bc}\begin{pmatrix}d \amp -b \\ -c \amp a\end{pmatrix}</m>.</p>
+      <p>
+        Here <m>A=\begin{pmatrix}7 \amp 8 \\ 1 \amp 3\end{pmatrix}</m> where <m>7(3)-8(1) = 13 \neq 0</m>, so <m>A</m> is
+        invertible and
+        <md><mrow>A^{-1} = \dfrac{1}{13} \begin{pmatrix}3 \amp -8 \\ -1 \amp 7\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A = \begin{pmatrix}4 \amp 1 \amp 1 \\ 2 \amp 6 \amp 0 \\ 3 \amp -1 \amp 1\end{pmatrix}</m>.  Find <m>A^{-1}</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We put <m>\left(\begin{array}{r|r}A \amp I\end{array}\right)</m> into RREF.
+        <md>
+          <mrow>\begin{pmatrix}4 \amp 1 \amp 1 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>2 \amp 6 \amp 0 \amp | \amp 0 \amp 1 \amp 0</mrow>
+          <mrow>3 \amp -1 \amp 1 \amp | \amp 0 \amp 0 \amp 1\end{pmatrix}
+            \amp  \xrightarrow[\textup{then } R_1 = R_1/2]{R_1 \leftrightarrow R_2}
+            \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>4 \amp 1 \amp 1 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>3 \amp -1 \amp 1 \amp | \amp 0 \amp 0 \amp 1\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[R_3 = R_3-3R_1]{R_2 = R_2 - 4R_1}
+                 \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>0 \amp -11 \amp 1 \amp | \amp 1 \amp -2 \amp 0</mrow>
+          <mrow>0 \amp -10 \amp 1 \amp | \amp 0 \amp -\frac{3}{2} \amp 1\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[]{R_2 = R_2/-11}
+            \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>0 \amp 1 \amp -\frac{1}{11} \amp | \amp -\frac{1}{11} \amp \frac{2}{11} \amp 0</mrow>
+          <mrow>0 \amp -10 \amp 1 \amp | \amp 0 \amp -\frac{3}{2} \amp 1\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[]{R_3 = R_3 + 10R_2}
+            \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>0 \amp 1 \amp -\frac{1}{11} \amp | \amp -\frac{1}{11} \amp \frac{2}{11} \amp 0</mrow>
+          <mrow>0 \amp 0 \amp \frac{1}{11} \amp | \amp -\frac{10}{11} \amp \frac{7}{22} \amp 1\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[\textup{then } R_3 = 11R_3]{R_2 = R_2 + R_3}
+            \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp -1 \amp \frac{1}{2} \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 1 \amp | \amp -10 \amp \frac{7}{2} \amp 11\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[]{R_1 = R_1 - 3R_2}
+                 \begin{pmatrix}1 \amp 0 \amp 0 \amp | \amp 3 \amp -1 \amp -3</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp -1 \amp \frac{1}{2} \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 1 \amp | \amp -10 \amp \frac{7}{2} \amp 11\end{pmatrix}</mrow>
+        </md>.
+        Therefore,
+        <md><mrow>A^{-1} = \begin{pmatrix}1 \amp 0 \amp 0 \amp | \amp 3 \amp -1 \amp -3 \\ 0 \amp 1 \amp 0 \amp | \amp -1 \amp \frac{1}{2} \amp 1 \\ 0 \amp 0 \amp 1 \amp | \amp -10 \amp \frac{7}{2} \amp 11\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find the matrix <m>A</m> satisfying <m>A^{-1} e_1 = \begin{pmatrix}0 \\ 1 \\ 2\end{pmatrix}</m>, \
+      <m>A^{-1} e_2 = \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}</m>, and \ <m>A^{-1}e_3 = \begin{pmatrix}0 \\ 1 \\ 3\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\begin{pmatrix}A^{-1} \amp | \amp I\end{pmatrix} \amp  = \begin{pmatrix}0 \amp 1 \amp 0 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>1 \amp 0 \amp 1 \amp | \amp 0 \amp 1 \amp 0</mrow>
+          <mrow>2 \amp 0 \amp 3 \amp | \amp 0 \amp 0 \amp 1\end{pmatrix} \xrightarrow[]{R_1 \leftrightarrow R_2} \begin{pmatrix}1 \amp 0 \amp 1 \amp | \amp 0 \amp 1 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>2 \amp 0 \amp 3 \amp | \amp 0 \amp 0 \amp 1\end{pmatrix}</mrow>
+          <mrow></mrow>
+          <mrow>\amp
+            \xrightarrow[]{R_3=R_3-2R_1} \begin{pmatrix}1 \amp 0 \amp 1 \amp | \amp 0 \amp 1 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 1 \amp | \amp 0 \amp -2 \amp 1\end{pmatrix} \xrightarrow[]{R_1=R_1-R_3} \begin{pmatrix}1 \amp 0 \amp 0 \amp | \amp 0 \amp 3 \amp -1</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 1 \amp | \amp 0 \amp -2 \amp 1\end{pmatrix}</mrow>
+        </md>.
+        Therefore, <m>A=(A^{-1})^{-1} = \begin{pmatrix}0 \amp 3 \amp -1 \\ 1 \amp 0 \amp 0 \\ 0 \amp -2 \amp 1\end{pmatrix}.</m>
+      </p>
+    </solution>
+  </exercise>
+</exercises>\setcounter{problem}{0}
+
+
+\newpage

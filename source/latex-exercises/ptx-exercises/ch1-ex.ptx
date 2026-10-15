@@ -1,0 +1,1087 @@
+\subsection{1.1, Systems of linear equations}
+<exercises>
+  <exercise>
+    <statement>
+      <p>
+        Is the following equation linear in the variables <m>x_1</m>, <m>x_2</m>, and
+          <m>x_3</m>?  Justify your answer.
+        <md><mrow>x_1 - 5 = x_2 - x_3</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>Linear.  Can be written as <m>x_1 - x_2 + x_3 = 5</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following equation linear in the variables <m>x_1</m>, <m>x_2</m>, and
+          <m>x_3</m>?  Justify your answer.
+        <md><mrow>x_1 - \sqrt[3]{x_2} = 1</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>Not linear, due to the <m>\sqrt[3]{x_2}</m> term.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following equation linear in the variables <m>x_1</m>, <m>x_2</m>, and
+          <m>x_3</m>?  Justify your answer.
+        <md><mrow>\ln(5) x_1 + x_2 - \sqrt{11} x_3 = 0</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>Linear.  Here, <m>\ln(5)</m> and <m>\sqrt{11}</m> are real number coefficients of
+            the <m>x_1</m> and <m>x_3</m> terms, respectively.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following equation linear in the variables <m>x_1</m>, <m>x_2</m>, and
+            <m>x_3</m>?  Justify your answer.
+        <md><mrow>e^{x_1} + e^{x_2} = e^{x_3}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>Not linear, due to variables being within exponents.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a consistent system of three linear equations in two
+        variables <m>x</m> and <m>y</m>?  If your answer is yes, write such a system and draw a
+        corresponding picture using <m>(x, y)</m> to label points in <m>{\bf R}^2</m>.  If your
+        answer is no, explain why no such system exists.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes, for example we could visualize three different lines in the
+            <m>xy</m>-plane that have exactly one point in common.
+            If we want <m>(1, 1)</m> to be that point, we could write equations for
+            three different lines that contain <m>(1,1)</m>.
+        <md><mrow>x + 2y = 3</mrow></md>
+        <md><mrow>x - y = 0</mrow></md>
+        <md><mrow>2x + y = 3</mrow></md>.
+      </p>
+      <image source="images/./1_1/lines.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        In each case, determine whether the point is in the plane
+          in <m>{\bf R}^3</m> given by
+        <md><mrow>3x - 10y + z = 15</mrow></md>.
+        We follow the usual
+          convention of using <m>(x, y, z)</m> to label points in <m>{\bf R}^3</m>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>(3, -10, 1)</m></p>
+      </statement>
+      <solution>
+        <p>No: <m>3(3)-10(-10)+1 = 110</m>, not <m>15</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>(3, -10, 1, 15)</m></p>
+      </statement>
+      <solution>
+        <p>No: <m>(3, -10, 1, 15)</m> is not even a point in
+              <m>{\bf R}^3</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>(5, 1, 10)</m></p>
+      </statement>
+      <solution>
+        <p>Yes: <m>3(5)-10(1)+10 = 15</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>(0, 0, 15)</m></p>
+      </statement>
+      <solution>
+        <p>Yes: <m>3(0)-10(0)+15 = 15</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>(1, -1, 1)</m></p>
+      </statement>
+      <solution>
+        <p>No: <m>3(1)-10(-1)+1 = 14</m>, not <m>15</m>.
+            \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there an inconsistent system of two linear equations in
+        three variables <m>x</m>, <m>y</m>, and <m>z</m>?  If your answer is yes, write
+        such a system and draw a corresponding picture using <m>(x, y, z)</m> to
+        label points in <m>{\bf R}^3</m>.  If your answer is no, explain why no
+        such system exists.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes, for example
+        <md><mrow>x + y + z = 0</mrow></md>
+        <md><mrow>x + y + z = 10</mrow></md>.
+        For this system to be consistent, we would need <m>0=10</m>, so the system
+            is inconsistent.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Consider the system of linear equations in <m>x</m>, <m>y</m>, and
+          <m>z</m> given by
+        <md><mrow>x + y + 0z = 0</mrow></md>
+        <md><mrow>0x + 0y + z = 5</mrow></md>.
+        Describe its solution set geometrically, where we use <m>(x, y, z)</m>
+          to label points in <m>{\bf R}^3</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>The solution set is a line.  It is the intersection of the
+          horizontal plane <m>z=5</m> with the vertical plane where <m>y= -x</m>.</p>
+      <p>We could parametrize the points on this line by <m>(x, -x, 5)</m> where
+          <m>x</m> is real.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a linear equation or a system of linear equations in
+        the variables <m>x</m>, <m>y</m>, and <m>z</m>, so that the solution set is
+        the <m>xy</m>-plane.</p>
+    </statement>
+    <solution>
+      <p>
+        The <m>yz</m>-plane in space is given by the single linear equation
+              <m>x=0</m>, or in longhand:
+        <md><mrow>x + 0y + 0z = 0</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a linear equation or a system of linear equations in
+        the variables <m>x</m>, <m>y</m>, and <m>z</m>, so that the solution set is
+        a line.</p>
+    </statement>
+    <solution>
+      <p>
+        The <m>x</m>-axis in space the set of all points in space
+              where <m>y=0</m> and <m>z=0</m>, so our system is simply
+        <md><mrow>0x + y + 0z =0</mrow></md>
+        <md><mrow>0x + 0y + z = 0</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a linear equation or a system of linear equations in
+        the variables <m>x</m>, <m>y</m>, and <m>z</m>, so that the solution set is the
+        point <m>(1, 2, 3)</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        The system of equations must only be satisfied when
+              <m>x=1</m>, <m>y=2</m>, and <m>z=3</m>.  One way to do this is simply to make
+              the three equations <m>x=1</m>, <m>y=2</m>, and <m>z=3</m>.  In long form,
+        <md><mrow>x + 0y + 0z = 1</mrow></md>
+        <md><mrow>0x + y + 0z = 2</mrow></md>
+        <md><mrow>0x + 0y + z = 3</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>The following is a kind of common brain teaser that many people answer
+      incorrectly.  We will use linear algebra to solve it now.</p>
+      <p>A rare baseball card and a coffee mug cost <m>\$110</m> together.
+      The baseball card costs <m>\$100</m> more than the mug.  How much does the
+      baseball card cost?</p>
+    </statement>
+    <solution>
+      <p>Let <m>x</m> be the cost of the baseball card and <m>y</m> be the cost of the
+        mug.  We have been told that <m>x + y = 110</m> and <m>x = y + 100</m>.  Now
+        that we have written down this system of two linear equations in two
+        variables, it is a standard high school algebra problem.  This gives
+        <m>(y+100)+y= 110</m> so <m>y=5</m> and thus <m>x=105</m>.  Therefore, the baseball
+        card costs <m>\$105</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>f</m> is a polynomial of the form <m>f(x) = ax^2+bx+c</m>
+      whose graph passes through the points <m>(-1, 11)</m>, <m>(2, 5)</m>, and
+      <m>(3, 7)</m>.  Write a system of linear equations that we could solve to
+      find <m>a</m>, <m>b</m>, and <m>c</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We use the facts <m>f(-1)=11</m>, <m>f(2) = 5</m>, and <m>f(3) = 7</m>:
+        <md><mrow>f(-1) = 11, \qquad a(-1)^2 + b(-1) + c = 11</mrow></md>
+        <md><mrow>f(2) = 5, \qquad a(2^2) + b(2) + c = 5</mrow></md>
+        <md><mrow>f(3) = 7 \qquad a(3^3) + b(3) + c = 7</mrow></md>.
+        This gives us the linear
+          system of equations:
+        <md><mrow>a - b + c = 11</mrow></md>
+        <md><mrow>4a + 2b + c = 5</mrow></md>
+        <md><mrow>9a + 3b + c = 7</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>This brain teaser comes from a memorial article for the mathematician
+      Paul Salley in the Notices of the American Mathematical Society,
+      Volume 65, Number 5.  The article is accessible at
+      <url href="https://www.ams.org/journals/notices/201805/rnoti-p555.pdf?fbclid=IwAR1C1f6EtMygzK81ZGVzHwQFaLopa_O3sSQLXXDxYT-xvAldpmymLC75kEQ">this
+            link</url>.
+      This type of so-called <q>Jim and John Problem</q> has many variations
+      that sound like tricky brain teasers but can be solved by writing
+      systems of equations and using linear algebra.  We give a slight
+      variation here:</p>
+      <p>Alice and Bob have the same
+      birthday.  Alice is 24 years old, which is twice as old as Bob was at
+      the time when Alice was as old as Bob is now.  How old is Bob now?</p>
+    </statement>
+    <solution>
+      <p>
+        While Alice and Bob are alive, the difference between their ages is
+          some constant <m>c</m> no matter what year we are in:
+        <md><mrow>(\textup{Alice's age}) - (\textup{Bob's age}) = c</mrow></md>.
+        We're told that alice is 24, so
+        <md><mrow>24-(\textup{Bob's age now}) = c</mrow></md>.
+        Also, from the information we are given, Bob was 12 when Alice was the same
+          age that Bob is now.
+        <md><mrow>(\textup{Alice's age when Bob was 12}) - 12 = c,
+            \quad \textup{ so} \quad (\textup{Bob's age now})-12 = c</mrow></md>.
+        We have a system of two equations:
+        <md><mrow>24-(\textup{Bob's age now}) = c</mrow></md>
+        <md><mrow>(\textup{Bob's age now}) - 12 = c</mrow></md>.
+        Subtracting the first equation from the second, we get
+        <md><mrow>-36 + 2(\textup{Bob's age now}) = 0</mrow></md>,
+        therefore Bob is now <m>18</m> years
+          old and <m>c = 6</m> (<m>c=6</m> means Alice is <m>6</m> years older than Bob, which
+          agrees with the fact that Alice is 24).
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Consider a <m>3 \times 3</m> QR code given by an array below,
+        where each spot can either have a 0 (for black) or 1 (for white).
+        <md><mrow>\begin{pmatrix}\cdot \amp \; \amp \cdot \amp \; \amp \cdot \\ \cdot \amp \; \amp \cdot \amp \; \amp \cdot \\ \cdot \amp \; \amp \cdot \amp \; \amp \cdot\end{pmatrix}</mrow></md>
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Each QR code is an element in some <m>{\bf R}^n</m>.  What is
+          <m>n</m>?</p>
+      </statement>
+      <solution>
+        <p>There are <m>3\times 3 = 9</m> spots where we can put a <m>0</m>
+            or a <m>1</m>, so <m>n = 9</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>How many <m>3 \times 3</m> QR codes are there?</p>
+      </statement>
+      <solution>
+        <p>
+          We have two choices for each
+              entry in each QR code, with possibilities ranging from all zeros
+              to all ones.  This gives us
+          <md><mrow>2^9 = 512</mrow></md>
+          such QR codes.
+            \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+</exercises>\setcounter{problem}{0}
+
+
+
+
+
+\newpage
+
+
+
+\subsection{1.2, Row reduction}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: The augmented matrix <m>\left(\begin{array}{rrr|r}0 \amp 1 \amp 0 \amp 2 \\ 0 \amp 0 \amp 1 \amp -3\end{array}\right)</m> is
+        in reduced row echelon form.</p>
+    </statement>
+    <solution>
+      <p>True.  The second and third columns are the pivot
+            columns, and the matrix satisfies all conditions for RREF.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If the reduced row echelon form of an augmented matrix has a row of
+          zeros, then the system of linear equations corresponding to the
+          augmented matrix must have infinitely many solutions.</p>
+    </statement>
+    <solution>
+      <p>
+        False.  For example, consider the augmented matrix
+        <md><mrow>\left(\begin{array}{rr|r}0 \amp 0 \amp 1 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix in reduced row echelon
+          form (RREF)?  If not, row reduce to put it in RREF.
+        <md><mrow>\left(\begin{array}{rr|r}1 \amp -2 \amp 4 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>The matrix is in RREF.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix in reduced row echelon
+          form (RREF)?  If not, row reduce to put it in RREF.
+        <md><mrow>\left(\begin{array}{rrr|r}0 \amp 1 \amp 2 \amp 3 \\ 0 \amp 0 \amp 1 \amp 4\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        The matrix is not in RREF because the pivot in the second line has a <q>2</q> in its column.  To put the matrix in RREF, we need to do one row operation:
+        <md><mrow>\left(\begin{array}{rrr|r}0 \amp 1 \amp 2 \amp 3 \\ 0 \amp 0 \amp 1 \amp 4\end{array}\right)
+            \xrightarrow[]{R_1 = R_1 - 2 R_2}
+            \left(\begin{array}{rrr|r}0 \amp 1 \amp 0 \amp -5 \\ 0 \amp 0 \amp 1 \amp 4\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix in reduced row echelon
+          form (RREF)?  If not, row reduce to put it in RREF.
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 1 \\ 0 \amp 1 \amp 0 \amp 1 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        No.  The rightmost column is a pivot column (with
+              pivot in the fourth row), but the column has nonzero entries in
+              its first and second row.
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 1 \\ 0 \amp 1 \amp 0 \amp 1 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1\end{array}\right)
+                \xrightarrow[R_1 = R_1 - R_4]{R_2 = R_2 - R_4}
+                \left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Put the following matrix into reduced row
+        echelon form (RREF).  Indicate which columns are pivot columns.
+        <m>\begin{pmatrix}3 \amp -9 \amp 0 \amp 3 \\ 1 \amp -3 \amp 1 \amp -4 \\ 4 \amp -12 \amp 2 \amp -6\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>Try this problem using the Interactive Row Reducer
+          <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=3,-9,0,3:1,-3,1,-4:4,-12,2,-6">here</url>.</p>
+      <p>
+        Columns 1 and 3 are the pivot columns, and the RREF of the matrix
+            is
+        <md><mrow>\begin{pmatrix}1 \amp -3 \amp 0 \amp 1 \\ 0 \amp 0 \amp 1 \amp -5 \\ 0 \amp 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Put the following matrix into reduced row echelon form
+        (RREF).  Indicate which columns are pivot columns.
+        <m>\begin{pmatrix}-3 \amp 4 \amp 7 \\ 2 \amp 1 \amp -1 \\ 3 \amp 1 \amp -2 \\ -2 \amp 2 \amp 4\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>Try this problem using the Interactive Row Reducer
+          <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=-3,4,7:2,1,-1:3,1,-2:-2,2,4">here</url>.</p>
+      <p>The quickest way might be to switch the first and fourth rows and
+          then divide the new first row by <m>-2</m> to make the numbers work
+          nicely.</p>
+      <p>
+        Columns 1 and 2 are the pivot columns, and the RREF of the matrix
+            is
+        <md><mrow>\begin{pmatrix}1 \amp 0 \amp -1 \\ 0 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Put the following matrix <m>A</m> into reduced row echelon form
+        (RREF).  Indicate which columns are pivot columns.  Is the
+        corresponding system of linear equations consistent or inconsistent?
+        <m>\left(\begin{array}{rrr|r}5 \amp 10 \amp -5 \amp 40 \\ 4 \amp -2 \amp 36 \amp -28 \\ 3 \amp 20 \amp 9 \amp 40\end{array}\right)</m>.</p>
+    </statement>
+    <solution>
+      <p>Try this problem using the Interactive Row Reducer
+          <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=5,10,-5,8:4,-2,36,-28:3,20,9,40">here</url>.</p>
+      <p>
+        One way to do this problem is to divide the first row by <m>5</m> and
+            then do row operations to create zeros below the first entry of
+            the left column.  Once we do this, we see that the second column
+            is also pivot column.  Doing one more row operation gives us a row
+            echelon form of the matrix, whereby we see all three columns to
+            the left of the augment bar are pivot columns.  One row echelon form
+            of the augmented matrix is
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 2 \amp -1 \amp 8 \\ 0 \amp 1 \amp -4 \amp 6 \\ 0 \amp 0 \amp 68 \amp -68\end{array}\right)</mrow></md>.
+      </p>
+      <p>
+        We keep row-reducing to get the RREF of the augmented matrix:
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 3 \\ 0 \amp 1 \amp 0 \amp 2 \\ 0 \amp 0 \amp 1 \amp -1\end{array}\right)</mrow></md>.
+        This system is consistent, with unique solution <m>x = 3</m>, <m>y = 2</m>,
+            <m>z = -1</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write an augmented matrix in RREF with three pivots that
+        represents an inconsistent system of three equations in four
+        variables.</p>
+    </statement>
+    <solution>
+      <p>
+        Many possibilities.  For example,
+        <md><mrow>\left(\begin{array}{rrrr|r}1 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right),
+                \qquad \left(\begin{array}{rrrr|r}0 \amp 1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right), \quad \textup{
+                  or } \quad \left(\begin{array}{rrrr|r}0 \amp 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a system of three equations in two variables
+          that has infinitely many solutions?  If your answer is yes, write
+          an augmented matrix in RREF that represents one such system.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes.  For example, consider the system
+        <md><mrow>x + y = 1</mrow></md>
+        <md><mrow>2x + 2y = 2</mrow></md>
+        <md><mrow>3x + 3y = 3</mrow></md>.
+        Each equation represents the line <m>x + y = 1</m>,
+            so the solution set is all points <m>(x,y)</m> on the line <m>y =
+            1-x</m>. The corresponding augmented matrix and its RREF are
+        <md><mrow>\left(\begin{array}{rr|r}1 \amp 1 \amp 1 \\ 2 \amp 2 \amp 2 \\ 3 \amp 3 \amp 3\end{array}\right) \xrightarrow[]{RREF} \left(\begin{array}{rr|r}1 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Row reduce the matrix to determine whether its
+          corresponding system of linear equations is consistent.
+        <md><mrow>\left(\begin{array}{rrrr|r}3 \amp -2 \amp 11 \amp 2 \amp 5 \\ 0 \amp 1 \amp -1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 3 \amp 2 \amp -1\end{array}\right)</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We swap the first and third rows to begin.
+        <md>
+          <mrow>\left(\begin{array}{rrrr|r}3 \amp -2 \amp 11 \amp 2 \amp 5</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2 \amp 3</mrow>
+          <mrow>1 \amp 0 \amp 3 \amp 2 \amp -1\end{array}\right)
+              \xrightarrow[]{R_1 \leftrightarrow R_3}
+              \amp
+                \left(\begin{array}{rrrr|r}1 \amp 0 \amp 3 \amp 2 \amp -1</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2 \amp 3</mrow>
+          <mrow>3 \amp -2 \amp 11 \amp 2 \amp 5\end{array}\right)</mrow>
+          <mrow>\xrightarrow[]{R_3 = R_3 - 3 R_1}
+              \amp
+                \left(\begin{array}{rrrr|r}1 \amp 0 \amp 3 \amp 2 \amp -1</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2 \amp 3</mrow>
+          <mrow>0 \amp -2 \amp 2 \amp -4 \amp 8\end{array}\right)</mrow>
+          <mrow>\xrightarrow[]{R_3 = R_3 + 2R_2}
+              \amp
+                \left(\begin{array}{rrrr|r}1 \amp 0 \amp 3 \amp 2 \amp -1</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2 \amp 3</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 14\end{array}\right)</mrow>
+        </md>
+        We do not need to row-reduce any further because we have found
+            a pivot in the rightmost column, therefore the system is inconsistent.
+            The final row of the augmented matrix corresponds to the equations
+            <q><m>0 = 14</m>.</q>
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Are there three lines in the <m>xy</m>-plane (not necessarily
+        distinct lines) whose common intersection is exactly one point?  If
+        so, give an example and write an augmented matrix for the
+        corresponding system of linear equations in <m>x</m> and <m>y</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes.  For example, take the lines <m>x - y = 0</m>, <m>2x-2y = 0</m>, and
+            <m>y =1</m>.  The first two lines are the same line, which intersects
+            the non-parallel line <m>y=1</m> at exactly one point, namely when
+            <m>x=y=1</m>. To illustrate the example, we solve the augmented system
+            below to find the unique solution.
+        <md>
+          <mrow>\left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
+          <mrow>2 \amp -2 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 1\end{array}\right)
+              \amp  \xrightarrow[]{R_2 = R_2 -2R_1}
+                \left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 1\end{array}\right) \xrightarrow[]{R_1 \leftrightarrow R_2}
+                \left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 0\end{array}\right) \xrightarrow[]{R_1 = R_1 + R_2}
+                \left(\begin{array}{rr|r}1 \amp 0 \amp 1</mrow>
+          <mrow>0 \amp 1 \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 0\end{array}\right)</mrow>
+        </md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following system of equations in augmented matrix
+          form, and put the matrix into RREF.  After this, write two solutions
+          <m>(x_1, x_2, x_3)</m>
+          to the system of equations.
+        <md><mrow>2x_1 - 3x_2 + x_3 = 6</mrow></md>
+        <md><mrow>x_1 - x_2 = 4</mrow></md>
+        <md><mrow>x_2 - x_3 = 2</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We put this into an augmented matrix and row-reduce:
+        <md>
+          <mrow>\left(\begin{array}{rrr|r}2 \amp -3 \amp 1 \amp 6</mrow>
+          <mrow>1 \amp -1 \amp 0 \amp 4</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2\end{array}\right)
+              \amp
+                \xrightarrow[]{R_1 \leftrightarrow R_2}
+                \left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 4</mrow>
+          <mrow>2 \amp -3 \amp 1 \amp 6</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2\end{array}\right)
+                \xrightarrow[]{R_2 = R_2 - 2 R_1}
+                \left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 4</mrow>
+          <mrow>0 \amp -1 \amp 1 \amp 2</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2\end{array}\right)</mrow>
+          <mrow>\amp
+                \xrightarrow[\textup{then } R_3 = R_3 - R_2]{R_2 = (-1)*R_2}
+                \left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 4</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0\end{array}\right)
+                \xrightarrow[]{R_1 = R_1 + R_2}
+                \left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 6</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow>
+        </md>.
+        Now that we have found the RREF of the matrix, we see that
+            <m>(x_1, x_2, x_3)</m> is a solution as long as <m>x_1 - x_3 = 6</m> and
+            <m>x_2 - x_3 = 2</m>.  To find a solution, we could just pre-set our
+            favorite value for one of the variables and see if we could solve
+            for the others.  For example, if we set <m>x_1 = 1</m>, then
+            to satisfy <m>x_1 - x_3 = 6</m> we need <m>x_3 = -5</m>, and now the second
+            equation becomes
+        <md><mrow>x_2 - x_3 = 2, \qquad x_2 - (-5) = 2, \qquad x_2 = -3</mrow></md>.
+        Therefore, <m>(1, -3, -5)</m> is a solution.
+      </p>
+      <p>To get a second solution, we could set <m>x_3 = 0</m> and solve for <m>x_1</m>
+          and <m>x_2</m>:  <m>x_1 - x_3 = 6</m> gives <m>x_1 = 6</m>, and then <m>x_2-x_3 = 2</m>
+          gives <m>x_2 = 2</m>, so <m>(6, 2, 0)</m> is a second solution.</p>
+      <p>In reality, there are infinitely many solutions to this system of
+          equations.  We'll see in section 1.3 that this consistent system
+          has <m>x_3</m> as a \emph{free} variable because its column does not
+          have a pivot, which means that we can set <m>x_3</m> equal to any real
+          number and then solve for <m>x_1</m> and <m>x_2</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Find all values of <m>h</m> so that the following system has at least one solution.
+        <md><mrow>x + y = 1</mrow></md>
+        <md><mrow>2x + 2y = h</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        The answer is <m>h=2</m> only.  Subtracting two times the first equation from the second equation gives us
+        <md><mrow>x+y = 1</mrow></md>
+        <md><mrow>0 = h - 2</mrow></md>.
+        The system will be consistent as long as <m>h-2 = 0</m> (so <m>h=2</m>).  In this case, the system has infinitely many solutions since both equations will describe the same line <m>x+y = 1</m>.
+      </p>
+      <p>If <m>h \neq 2</m>, then the equation <m>0= h-2</m> will not be satisfied, so the system is inconsistent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Extra practice with row reduction that you can check using the interactive row reducer.  Put the following matrix into reduced row echelon form (RREF).
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 2 \amp 3 \amp 9 \\ 2 \amp -1 \amp 1 \amp 8 \\ 3 \amp 0 \amp -1 \amp 3\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        You can check your work using the interactive row reducer
+              <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=1,2,3,9:2,-1,1,8:3,0,-1,3">here</url>.
+              The RREF is
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 2 \\ 0 \amp 1 \amp 0 \amp -1 \\ 0 \amp 0 \amp 1 \amp 3\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Extra practice with row reduction that you can check using the interactive row reducer.  Put the following matrix into reduced row echelon form (RREF).
+        <md><mrow>\left(\begin{array}{rrr|r}0 \amp 7 \amp -4 \amp 2 \\ 2 \amp 4 \amp 6 \amp 12 \\ 3 \amp 1 \amp -1 \amp -2\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        You can check your work using the interactive row reducer
+              <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=0,7,-4,2:2,4,6,12:3,1,-1,-2">here</url>.
+              The RREF is
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp -5/9 \\ 0 \amp 1 \amp 0 \amp 10/9 \\ 0 \amp 0 \amp 1 \amp 13/9\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Extra practice with row reduction that you can check using the interactive row reducer.  Put the following matrix into reduced row echelon form (RREF).
+        <md><mrow>\left(\begin{array}{rrr|r}4 \amp -5 \amp 3 \amp 2 \\ 1 \amp -1 \amp -2 \amp -6 \\ 4 \amp -4 \amp -14 \amp 18\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        You can check your work using the interactive row reducer
+              <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=4,-5,3,2:1,-1,-2,-6:4,-4,-14,18">here</url>.
+              The RREF is
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp -123 \\ 0 \amp 1 \amp 0 \amp -103 \\ 0 \amp 0 \amp 1 \amp -7\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+</exercises> \setcounter{problem}{0}
+
+
+
+\newpage
+
+\subsection{1.3, Parametric form}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: If a system of linear equations has 100 variables and 70
+        equations, then there must be infinitely many solutions.</p>
+    </statement>
+    <solution>
+      <p>
+        False.  It might be inconsistent, for example one equation could be <m>0 = 1</m>.
+          It might also have infinitely many solutions.  For example, if all 70
+          equations are each just the equation
+        <md><mrow>x_1 + x_2 + x_3 + \cdots + x_{100} = 0</mrow></md>.
+        The corresponding augmented matrix
+          will not have a pivot in its rightmost column, and it will have 99 non-pivot
+          columns to the left of the augment bar.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If a system of linear equations has 70 variables and 100
+      equations, then it must be inconsistent.</p>
+    </statement>
+    <solution>
+      <p>
+        False.  It might be consistent, for example a system where all 100 equations
+          are just repeats of the equation
+        <md><mrow>x_1 + x_2 + \cdots + x_{70} = 0</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <task>
+      <statement>
+        <p>How can we tell if an augmented matrix corresponds to a consistent
+          system of linear equations?</p>
+      </statement>
+      <solution>
+        <p>The system is consistent if and only if the rightmost column of
+          the augmented matrix is NOT a pivot column.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Suppose a consistent system of linear
+          equations has finitely many solutions.  How many solutions must it have?</p>
+      </statement>
+      <solution>
+        <p>It must have exactly one solution.  Since the system is
+          consistent, there is no pivot in the rightmost column of the augmented matrix,
+          leaving us with two possibilities: Either the augmented matrix has a pivot in
+          every column to the left of the augment bar (no free variables, thus exactly
+          one solution), or there is a non-pivot column to the left of the augment bar
+          (free variable, thus infinitely many solutions).
+        \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is it possible for a system of three linear equations in four
+      variables to have exactly one solution?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>No.  This system will correspond to an augmented matrix that has 3
+        rows and 4 columns to the left of the augment.  This means the
+        matrix has at most 3 pivots, so at least one variable will be free
+        and the system will have infinitely many solutions if it is
+        consistent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the augmented matrix corresponding to the system of
+        equations and put the matrix in reduced row echelon form.  Write the
+        set of solutions in parametric form.  Indicate which variables are
+        free variables.
+        <md><mrow>-5x_1 + 6x_2 - 5x_3 = 17</mrow></md>
+        <md><mrow>2x_2 = 4</mrow></md>
+        <md><mrow>-2x_1 + 2x_2 - 2x_3 = 6</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\left(\begin{array}{rrr|r}-5 \amp 6 \amp -5 \amp 17</mrow>
+          <mrow>0 \amp 2 \amp 0 \amp 4</mrow>
+          <mrow>-2 \amp 2 \amp -2 \amp 6\end{array}\right)
+            \amp
+              \xrightarrow[]{R_1 \leftrightarrow R_3}
+              \left(\begin{array}{rrr|r}-2 \amp 2 \amp -2 \amp 6</mrow>
+          <mrow>0 \amp 2 \amp 0 \amp 4</mrow>
+          <mrow>-5 \amp 6 \amp -5 \amp 17\end{array}\right)
+              \xrightarrow[]{R_1 = \frac{-R_1}{2}}
+              \left(\begin{array}{rrr|r}1 \amp -1 \amp 1 \amp -3</mrow>
+          <mrow>0 \amp 2 \amp 0 \amp 4</mrow>
+          <mrow>-5 \amp 6 \amp -5 \amp 17\end{array}\right)</mrow>
+          <mrow>\amp
+              \xrightarrow[]{R_3= R_3 + 5R_1} \left(\begin{array}{rrr|r}1 \amp -1 \amp 1 \amp -3</mrow>
+          <mrow>0 \amp 2 \amp 0 \amp 4</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp 2\end{array}\right)
+              \xrightarrow[]{R_2 = \frac{R_2}{2}} \left(\begin{array}{rrr|r}1 \amp -1 \amp 1 \amp -3</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp 2</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp 2\end{array}\right)</mrow>
+          <mrow>\amp
+              \xrightarrow[]{R_3 = R_3 - R_2}
+              \left(\begin{array}{rrr|r}1 \amp 0 \amp 1 \amp -1</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp 2</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow>
+        </md>
+        The first two columns are the pivot columns, so the system is
+          consistent and <m>x_3</m> is free.  The first equation is
+          <m>x_1 + x_3 = -1</m> and the second is <m>x_2 = 2</m>, so
+        <md><mrow>x_1 = -1-x_3, \qquad x_2 = 2, \qquad x_3 = x_3 \quad \textup{
+              (<m>x_3</m> any real number)}</mrow></md>.
+        Equivalently, \
+          <m>(x_1, x_2, x_3) = (-1 - x_3, \ 2, \ x_3) \ \textup{ where</m>x_3<m>is any real number}.</m>
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the augmented matrix corresponding to the system of
+        equations and put the matrix in reduced row echelon form.  Write the
+        set of solutions in parametric form.  Indicate which variables are
+        free variables.
+        <md><mrow>x_1 - 2x_2 -x_3 + x_5 = 3</mrow></md>
+        <md><mrow>x_3 - 2x_4 + 3x_5 = 1</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md><mrow>\left(\begin{array}{rrrrr|r}1 \amp -2 \amp -1 \amp 0 \amp 1 \amp 3 \\ 0 \amp 0 \amp 1 \amp -2 \amp 3 \amp 1\end{array}\right) \xrightarrow[]{R_1 = R_1+R_2}
+          \left(\begin{array}{rrrrr|r}1 \amp -2 \amp 0 \amp -2 \amp 4 \amp 3 \\ 0 \amp 0 \amp 1 \amp -2 \amp 3 \amp 1\end{array}\right)</mrow></md>.
+      </p>
+      <p>
+        The first and third columns are the pivot columns, so the system is
+        consistent and the variables <m>x_2</m>, <m>x_4</m>, and <m>x_5</m> are free.
+        Putting the free variables to the right hand side in the equations
+        <m>x_1 - 2x_2 - 2x_4 + 4x_5 = 3</m> and <m>x_3-2x_4+3x_5 = 1</m>, we get the
+        equations below where <m>x_2</m>, <m>x_4</m>, and <m>x_5</m> are any real numbers:
+        <md><mrow>x_1 = 3 + 2x_2 + 2x_4 -4x_5 \qquad x_2 = x_2 \qquad x_3 = 1 + 2x_4 -
+          3x_5 \qquad x_4 = x_4 \qquad x_5 = x_5</mrow></md>.
+        Equivalently,
+        <md><mrow>(x_1, x_2, x_3, x_4, x_5) = (3 + 2x_2 + 2x_4 -4x_5, \ x_2, \ 1 +
+          2x_4 - 3x_5, \ x_4, \ x_5)</mrow></md>
+        where <m>x_2</m>, <m>x_4</m>, and <m>x_5</m> are any
+        real numbers.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the augmented matrix corresponding to the system of
+        equations and put the matrix in reduced row echelon form.  Write the
+        set of solutions in parametric form.  Indicate which variables are
+        free variables.
+        <md><mrow>x_1 + x_2 - 2x_3 + 3x_4 = 4</mrow></md>
+        <md><mrow>-2x_1 + 3x_2 + x_4 = 1</mrow></md>
+        <md><mrow>3x_1 + 8x_2 - 10x_3 + 16x_4 = 21</mrow></md>
+        <md><mrow>-5x_1 + 5x_2 + 2x_3 - x_4 = -2</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\left(\begin{array}{rrrr|r}1 \amp 1 \amp -2 \amp 3 \amp 4</mrow>
+          <mrow>-2 \amp 3 \amp 0 \amp 1 \amp 1</mrow>
+          <mrow>3 \amp 8 \amp -10 \amp 16 \amp 21</mrow>
+          <mrow>-5 \amp 5 \amp 2 \amp -1 \amp -2\end{array}\right)
+            \xrightarrow[R_3 = R_3 -3R_1, \ R_4 = R_4 + 5R_1]{R_2 = R_2 + 2R_1}
+            \amp
+              \left(\begin{array}{rrrr|r}1 \amp 1 \amp -2 \amp 3 \amp 4</mrow>
+          <mrow>0 \amp 5 \amp -4 \amp 7 \amp 9</mrow>
+          <mrow>0 \amp 5 \amp -4 \amp 7 \amp 9</mrow>
+          <mrow>0 \amp 10 \amp -8 \amp 14 \amp 18\end{array}\right)</mrow>
+          <mrow>\xrightarrow[R_4 = R_4 - 2R_2]{R_3 = R_3 - R_2}
+            \amp
+              \left(\begin{array}{rrrr|r}1 \amp 1 \amp -2 \amp 3 \amp 4</mrow>
+          <mrow>0 \amp 5 \amp -4 \amp 7 \amp 9</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow>
+          <mrow>\xrightarrow[]{R_2 = R_2/5}
+            \amp
+              \left(\begin{array}{rrrr|r}1 \amp 1 \amp -2 \amp 3 \amp 4</mrow>
+          <mrow>0 \amp 1 \amp -4/5 \amp 7/5 \amp 9/5</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow>
+          <mrow>\xrightarrow[]{R_1 = R_1 - R_2}
+            \amp
+              \left(\begin{array}{rrrr|r}1 \amp 0 \amp -6/5 \amp 8/5 \amp 11/5</mrow>
+          <mrow>0 \amp 1 \amp -4/5 \amp 7/5 \amp 9/5</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow>
+        </md>.
+        The system is consistent, with free variables <m>x_3</m> and <m>x_4</m>:
+        <md><mrow>x_1 = \dfrac{11}{5} + \dfrac{6}{5} x_3 - \dfrac{8}{5} x_4
+            \qquad
+            x_2 = \dfrac{9}{5} + \dfrac{4}{5} x_2 - \dfrac{7}{5} x_4
+            \qquad
+            x_3 = x_3
+            \qquad
+            x_4 = x_4</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>We have seen that any system of linear equations with more
+      than one solution must have infinitely many solutions.  Give an
+      example of a system of two equations in two variables that is not
+      linear and has exactly two solutions.</p>
+    </statement>
+    <solution>
+      <p>
+        Picture curves that are described naturally by fundamental equations
+          in precalculus and intersect at two points.  For example, the curves
+          <m>y = \sqrt{x}</m> and <m>y=x^2</m> intersect at exactly two points, namely
+          <m>(0, 0)</m> and <m>(1,1)</m>.  One way to write this system is
+        <md><mrow>\sqrt{x} - y = 0</mrow></md>
+        <md><mrow>x^2 - y = 0</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is it possible for a system of four linear equations in four
+      unknowns to have infinitely many solutions?  If your answer is yes,
+      write such a system.  If your answer is no, justify why it is not
+      possible.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes.  We could simply write the same linear equation four times, but
+          this is not the only possibility.  For example,
+        <md><mrow>x_1 + x_2 + x_3 = 0</mrow></md>
+        <md><mrow>2x_1 + 2x_2 + x_3 = 0</mrow></md>
+        <md><mrow>2x_1 + 2x_2 + x_3 = 0</mrow></md>
+        <md><mrow>x_3 = 1</mrow></md>
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Bruce Hernandez is infatuated with the system of linear
+        equations given by
+        <md><mrow>3x - 2y = 4</mrow></md>
+        <md><mrow>6x + h y = k</mrow></md>,
+        where <m>h</m> and <m>k</m> are some real numbers.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Determine all values of <m>h</m> and <m>k</m> (if there are any)
+          so that the system of equations is inconsistent.</p>
+      </statement>
+      <solution>
+        <p>
+          The system is inconsistent if and only if the right
+            column is a pivot column.  Therefore, we need <m>h+4 = 0</m> and
+            <m>k-8 \neq 0</m> so that the rightmost entry of the second row is a
+            pivot.
+          <md><mrow>h= -4 \qquad k \neq 8</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Determine all values of <m>h</m> and <m>k</m> (if there are any)
+          so that the system of equations has infinitely many solutions.</p>
+      </statement>
+      <solution>
+        <p>
+          To have infinitely many solutions, we must have a free
+            variable AND the rightmost column cannot be a pivot colum, so the
+            entire second row above must be zero.  Thus <m>h+4=0</m> and <m>k-8=0</m>.
+          <md><mrow>h= -4 \qquad k = 8</mrow></md>.
+          *** In both parts, we are finding <m>h</m> and <m>k</m> so that the lines
+            given by each equation are parallel.  In (a), we solve so that we
+            get two \textit{different} parallel lines.  In (b), each equation
+            gives the \textit{same} line since the second row is two times the
+            first row.
+          \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write a system of linear equations in the variables
+        <m>x_1, x_2, x_3, x_4</m> whose general solution has parametric form
+        <md><mrow>x_1 = 5 + x_3 \qquad
+          x_2 = 10 - x_3 \qquad
+          x_3 = x_3 \qquad
+          x_4 = -7</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We have exactly 1 free variable in a consistent linear system in 4
+          variables, so we must have 3 pivots in our corresponding augmented
+          matrix.  This means we must have at least 3 rows in our augmented
+          matrix.  One possibility is
+        <md><mrow>\left(\begin{array}{rrrr|r}1 \amp 0 \amp -1 \amp 0 \amp 5 \\ 0 \amp 1 \amp 1 \amp 0 \amp 10 \\ 0 \amp 0 \amp 0 \amp 1 \amp -7\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find every polynomial <m>f</m> of degree <m>2</m> whose graph passes
+      through the points <m>(-1, 11)</m>, <m>(2, 5)</m>, and <m>(3, 7)</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        With <m>f(x) = ax^2 + bx + c</m> (where <m>a \neq 0</m> since <m>f</m> has degree
+          <m>2</m>), and using the facts <m>f(-1)=11</m>, <m>f(2) = 5</m>, and <m>f(3) = 7</m>:
+        <md><mrow>a(-1)^2 + b(-1) + c = 11</mrow></md>
+        <md><mrow>a(2^2) + b(2) + c = 5</mrow></md>
+        <md><mrow>a(3^3) + b(3) + c = 7</mrow></md>.
+        This gives us a linear system of
+          equations, which we put into an augmented matrix and row-reduce:
+        <md><mrow>a - b + c = 11</mrow></md>
+        <md><mrow>4a + 2b + c = 5</mrow></md>
+        <md><mrow>9a + 3b + c = 7</mrow></md>.
+      </p>
+      <p>
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp -1 \amp 1 \amp 11 \\ 4 \amp 2 \amp 1 \amp 5 \\ 9 \amp 3 \amp 1 \amp 7\end{array}\right)
+            \xrightarrow[]{RREF}
+            \left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 1 \\ 0 \amp 1 \amp 0 \amp -3 \\ 0 \amp 0 \amp 1 \amp 7\end{array}\right)</mrow></md>.
+        Therefore <m>a=1</m>, <m>b= -3</m>, and <m>c=7</m>, so there is exactly one
+          degree <m>2</m> polynomial <m>f</m> that goes through the three points given in the problem:
+        <md><mrow>f(x) = x^2 - 3x + 7</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find every polynomial <m>g</m> of degree <m>3</m> whose graph passes
+      through the points <m>(0, 1)</m>, <m>(1, 1)</m>, and <m>(2, 9)</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We let <m>g(x) = ax^3 + bx^2 + cx + d</m> (where <m>a \neq 0</m>) and plug in
+          the three points:
+        <md><mrow>a(0^3)+b(0^2)+c(0)+d = 1</mrow></md>
+        <md><mrow>a(1^3)+b(1^2)+c(1)+d = 1</mrow></md>
+        <md><mrow>a(2^3)+b(2^2)+c(2)+d = 9</mrow></md>.
+        We put this into a system and
+          row-reduce its corresponding augmented matrix:
+      </p>
+      <p>
+        <md><mrow>d = 1</mrow></md>
+        <md><mrow>a + b + c + d = 1</mrow></md>
+        <md><mrow>8a + 4b + 2c + d = 9</mrow></md>.
+      </p>
+      <p>
+        <md><mrow>\left(\begin{array}{rrrr|r}0 \amp 0 \amp 0 \amp 1 \amp 1 \\ 1 \amp 1 \amp 1 \amp 1 \amp 1 \\ 8 \amp 4 \amp 2 \amp 1 \amp 9\end{array}\right)
+            \xrightarrow[]{RREF} \left(\begin{array}{rrrr|r}1 \amp 0 \amp -1/2 \amp 0 \amp 2 \\ 0 \amp 1 \amp 3/2 \amp 0 \amp -2 \\ 0 \amp 0 \amp 0 \amp 1 \amp 1\end{array}\right)</mrow></md>.
+        Thus <m>c</m> is free and
+        <md><mrow>a = 2 + \frac{c}{2} \quad b = -2 - \frac{3c}{2}, \quad d = 1</mrow></md>.
+      </p>
+      <p>
+        This gives us infinitely degree <m>3</m> polynomials <m>g</m> going through
+          the three prescribed points, depending upon which value we choose
+          for <m>c</m> (we just need to choose <m>c \neq -4</m> so that <m>a \neq 0</m>,
+          otherwise <m>g</m> will have degree less than <m>3</m>).  For example, when
+          <m>c = 1</m> we get the polynomial
+        <md><mrow>g_1(x) = \frac{3}{2} x^3 - \frac{7}{2}x^2 + x + 1</mrow></md>
+        whereas when <m>c = 2</m> we get
+        <md><mrow>g_2(x) = 3x^3 - 5x^2 + 2x + 1</mrow></md>.
+        We could even take <m>c = 0</m> and get
+        <md><mrow>g_3(x) = 2x^3 - 2x^2 + 1</mrow></md>,
+        and so on.
+      </p>
+    </solution>
+  </exercise>
+</exercises>\setcounter{problem}{0}
+
+
+
+\newpage

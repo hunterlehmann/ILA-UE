@@ -1,0 +1,808 @@
+\subsection{1.1, Systems of linear equations}
+\begin{problems}
+  \problem Is the following equation linear in the variables $x_1$, $x_2$, and
+  $x_3$?  Justify your answer.
+  \[x_1 - 5 = x_2 - x_3.\]   %yes
+  \begin{solution}
+      Linear.  Can be written as $x_1 - x_2 + x_3 = 5$.
+  \end{solution}
+
+  \problem Is the following equation linear in the variables $x_1$, $x_2$, and
+  $x_3$?  Justify your answer.
+  \[x_1 - \sqrt[3]{x_2} = 1.\]
+  \begin{solution}
+    Not linear, due to the $\sqrt[3]{x_2}$ term.
+  \end{solution}
+
+  \problem Is the following equation linear in the variables $x_1$, $x_2$, and
+  $x_3$?  Justify your answer.
+    \[\ln(5) x_1 + x_2 - \sqrt{11} x_3 = 0.\]
+    \begin{solution}
+      Linear.  Here, $\ln(5)$ and $\sqrt{11}$ are real number coefficients of
+      the $x_1$ and $x_3$ terms, respectively.
+    \end{solution}
+    
+    \problem Is the following equation linear in the variables $x_1$, $x_2$, and
+    $x_3$?  Justify your answer.
+  \[e^{x_1} + e^{x_2} = e^{x_3}.\]
+  \begin{solution}
+      Not linear, due to variables being within exponents.
+  \end{solution}
+
+  \problem Is there a consistent system of three linear equations in two
+  variables $x$ and $y$?  If your answer is yes, write such a system and draw a
+  corresponding picture using $(x, y)$ to label points in ${\bf R}^2$.  If your
+  answer is no, explain why no such system exists.  \newline
+  \begin{solution}
+    Yes, for example we could visualize three different lines in the
+    $xy$-plane that have exactly one point in common.  
+    If we want $(1, 1)$ to be that point, we could write equations for
+    three different lines that contain $(1,1)$.
+    \[x + 2y = 3\]
+    \[x - y = 0\]
+    \[2x + y = 3.\]
+    \begin{center}
+      \includegraphics[scale=0.5]{./1_1/lines.pdf}
+    \end{center}      
+  \end{solution}
+
+  \problem In each case, determine whether the point is in the plane
+  in ${\bf R}^3$ given by \[3x - 10y + z = 15.\] We follow the usual
+  convention of using $(x, y, z)$ to label points in ${\bf R}^3$.
+  \begin{subproblems}
+    \subproblem $(3, -10, 1)$
+    \subproblem $(3, -10, 1, 15)$
+    \subproblem $(5, 1, 10)$
+    \subproblem $(0, 0, 15)$
+    \subproblem $(1, -1, 1)$
+  \end{subproblems}
+  \begin{solution}
+    \begin{subproblems}
+      \subproblem No: $3(3)-10(-10)+1 = 110$, not $15$. %
+      \subproblem No: $(3, -10, 1, 15)$ is not even a point in
+      ${\bf R}^3$. %
+      \subproblem Yes: $3(5)-10(1)+10 = 15$. %
+      \subproblem Yes: $3(0)-10(0)+15 = 15$. %
+      \subproblem No: $3(1)-10(-1)+1 = 14$, not $15$.
+    \end{subproblems}
+  \end{solution}
+  
+  \problem Is there an inconsistent system of two linear equations in
+  three variables $x$, $y$, and $z$?  If your answer is yes, write
+  such a system and draw a corresponding picture using $(x, y, z)$ to
+  label points in ${\bf R}^3$.  If your answer is no, explain why no
+  such system exists. 
+  \newline 
+  \begin{solution}
+    Yes, for example
+    \[x + y + z = 0\]
+    \[x + y + z = 10.\] %
+    For this system to be consistent, we would need $0=10$, so the system
+    is inconsistent. \newline \newline
+    %We graph this below.
+    %\begin{center}
+    %  \includegraphics[scale=0.5]{./1_1/xyz.pdf}
+    %\end{center}    
+  \end{solution}
+
+  \problem Consider the system of linear equations in $x$, $y$, and
+  $z$ given by
+  \[x + y + 0z = 0\]
+  \[0x + 0y + z = 5.\]
+  Describe its solution set geometrically, where we use $(x, y, z)$
+  to label points in ${\bf R}^3$.
+  \begin{solution}
+    The solution set is a line.  It is the intersection of the
+    horizontal plane $z=5$ with the vertical plane where $y= -x$.  
+    %We
+    %illustrate it graphically below.
+    %\begin{center}
+    %  \includegraphics[scale=0.4]{./1_1/intersection.png}
+    %\end{center}
+    We could parametrize the points on this line by $(x, -x, 5)$ where
+    $x$ is real.
+  \end{solution}
+  
+
+\problem Write a linear equation or a system of linear equations in
+  the variables $x$, $y$, and $z$, so that the solution set is 
+  the $xy$-plane. \newline
+  \begin{solution}
+      The $yz$-plane in space is given by the single linear equation 
+      $x=0$, or in longhand: %
+      \[x + 0y + 0z = 0.\] 
+  \end{solution}
+
+\problem Write a linear equation or a system of linear equations in
+  the variables $x$, $y$, and $z$, so that the solution set is 
+  a line. \newline
+  \begin{solution}
+      The $x$-axis in space the set of all points in space
+      where $y=0$ and $z=0$, so our system is simply
+      \[0x + y + 0z =0 \]
+      \[0x + 0y + z = 0.\]
+  \end{solution}
+
+\problem Write a linear equation or a system of linear equations in
+  the variables $x$, $y$, and $z$, so that the solution set is the 
+  point $(1, 2, 3)$. \newline
+  \begin{solution}
+      The system of equations must only be satisfied when
+      $x=1$, $y=2$, and $z=3$.  One way to do this is simply to make
+      the three equations $x=1$, $y=2$, and $z=3$.  In long form,
+      \[x + 0y + 0z = 1\]
+      \[0x + y + 0z = 2\]
+      \[0x + 0y + z = 3.\]      
+  \end{solution}
+
+\problem % Created for ILA
+The following is a kind of common brain teaser that many people answer
+incorrectly.  We will use linear algebra to solve it now. \newline
+\newline A rare baseball card and a coffee mug cost $\$110$ together.
+The baseball card costs $\$100$ more than the mug.  How much does the
+baseball card cost?
+
+\begin{solution}
+  Let $x$ be the cost of the baseball card and $y$ be the cost of the
+  mug.  We have been told that $x + y = 110$ and $x = y + 100$.  Now
+  that we have written down this system of two linear equations in two
+  variables, it is a standard high school algebra problem.  This gives
+  $(y+100)+y= 110$ so $y=5$ and thus $x=105$.  Therefore, the baseball
+  card costs $\$105$.
+\end{solution}
+
+\problem % Created for ILA
+Suppose $f$ is a polynomial of the form $f(x) = ax^2+bx+c$
+whose graph passes through the points $(-1, 11)$, $(2, 5)$, and
+$(3, 7)$.  Write a system of linear equations that we could solve to
+find $a$, $b$, and $c$.
+
+\begin{solution}
+  We use the facts $f(-1)=11$, $f(2) = 5$, and $f(3) = 7$:
+  \[f(-1) = 11, \qquad a(-1)^2 + b(-1) + c = 11\]
+  \[f(2) = 5, \qquad a(2^2) + b(2) + c = 5\]
+  \[f(3) = 7 \qquad a(3^3) + b(3) + c = 7.\] This gives us the linear
+  system of equations:
+  \[a - b + c = 11\]
+  \[4a + 2b + c = 5\]
+  \[9a + 3b + c = 7.\]
+\end{solution}
+
+\problem % From AMS Notices, page 562, Volume 65, Number 5
+This brain teaser comes from a memorial article for the mathematician
+Paul Salley in the Notices of the American Mathematical Society,
+Volume 65, Number 5.  The article is accessible at
+{\color{blue}{\href{https://www.ams.org/journals/notices/201805/rnoti-p555.pdf?fbclid=IwAR1C1f6EtMygzK81ZGVzHwQFaLopa_O3sSQLXXDxYT-xvAldpmymLC75kEQ}{this
+      link}}}.  %
+This type of so-called ``Jim and John Problem'' has many variations
+that sound like tricky brain teasers but can be solved by writing
+systems of equations and using linear algebra.  We give a slight
+variation here: \newline \newline Alice and Bob have the same
+birthday.  Alice is 24 years old, which is twice as old as Bob was at
+the time when Alice was as old as Bob is now.  How old is Bob now?
+
+\begin{solution}
+  While Alice and Bob are alive, the difference between their ages is
+  some constant $c$ no matter what year we are in:
+  \[(\textup{Alice's age}) - (\textup{Bob's age}) = c.\]
+  We're told that alice is 24, so
+  \[24-(\textup{Bob's age now}) = c.\]
+  Also, from the information we are given, Bob was 12 when Alice was the same
+  age that Bob is now.
+  \[(\textup{Alice's age when Bob was 12}) - 12 = c,
+    \quad \textup{ so} \quad (\textup{Bob's age now})-12 = c.\]
+  We have a system of two equations: 
+  \[24-(\textup{Bob's age now}) = c\]
+  \[(\textup{Bob's age now}) - 12 = c.\]
+  Subtracting the first equation from the second, we get
+  \[-36 + 2(\textup{Bob's age now}) = 0,\] therefore Bob is now $18$ years
+  old and $c = 6$ ($c=6$ means Alice is $6$ years older than Bob, which
+  agrees with the fact that Alice is 24).
+\end{solution}
+
+
+
+
+%\problem % Created for ILA
+%Iron, carbon, and oxygen can be combined to create steel in the
+%chemical equation
+%\[\textup{Fe}_2 \textup{O}_3 + 3 CO_2\]
+
+\problem Consider a $3 \times 3$ QR code given by an array below,
+where each spot can either have a 0 (for black) or 1 (for white).
+\[\mat{\cdot \; \cdot \; \cdot;
+    \cdot \; \cdot \; \cdot;
+    \cdot \; \cdot \; \cdot}\]
+\begin{subproblems}
+  \subproblem Each QR code is an element in some ${\bf R}^n$.  What is
+  $n$?
+  %
+  \subproblem How many $3 \times 3$ QR codes are there?
+\end{subproblems}
+
+\begin{solution}
+  \begin{subproblems}
+    \subproblem There are $3\times 3 = 9$ spots where we can put a $0$
+    or a $1$, so $n = 9$.  \subproblem We have two choices for each
+    entry in each QR code, with possibilities ranging from all zeros
+    to all ones.  This gives us \[2^9 = 512\] such QR codes.
+  \end{subproblems}
+\end{solution}
+
+\end{problems}\setcounter{problem}{0}
+
+
+
+%
+%
+\newpage
+%
+%
+
+\subsection{1.2, Row reduction}
+
+\begin{problems}
+\problem %Jankowski Spring 2018 exam
+  True or false: The augmented matrix $\amat{0 1 0 2; 0 0 1 -3}$ is
+  in reduced row echelon form. \newline
+  \begin{solution}
+      True.  The second and third columns are the pivot
+      columns, and the matrix satisfies all conditions for RREF.
+  \end{solution}
+	
+\problem %Jankowski Spring 2018 exam 
+    True or false: If the reduced row echelon form of an augmented matrix has a row of 
+    zeros, then the system of linear equations corresponding to the 
+    augmented matrix must have infinitely many solutions.
+    \newline
+    \begin{solution}
+        False.  For example, consider the augmented matrix
+	\[\amat{0 0 1; 0 0 0}.\]
+    \end{solution}
+
+\problem Is the following matrix in reduced row echelon
+  form (RREF)?  If not, row reduce to put it in RREF. %
+  \[\amat{1 -2 4; 0 0 0}\]
+  \begin{solution}
+    The matrix is in RREF. %
+  \end{solution}
+
+\problem Is the following matrix in reduced row echelon
+  form (RREF)?  If not, row reduce to put it in RREF. %
+  \[\amat{0 1 2 3; 0 0 1 4}\]
+  \begin{solution}
+    The matrix is not in RREF because the pivot in the second line has a ``2'' in its column.  To put the matrix in RREF, we need to do one row operation: 
+    \[\amat{0 1 2 3; 0 0 1 4}
+    \xrightarrow[]{R_1 = R_1 - 2 R_2}
+    \amat{0 1 0 -5; 0 0 1 4}.\]
+  \end{solution}
+
+\problem Is the following matrix in reduced row echelon
+  form (RREF)?  If not, row reduce to put it in RREF. %
+  \[\amat{1 0 0 1; 0 1 0 1; 0 0 1 0; 0 0 0 1}\]
+  \begin{solution}
+    No.  The rightmost column is a pivot column (with
+      pivot in the fourth row), but the column has nonzero entries in
+      its first and second row.
+      \[\amat{1 0 0 1; 0 1 0 1; 0 0 1 0; 0 0 0 1}
+        \xrightarrow[R_1 = R_1 - R_4]{R_2 = R_2 - R_4}
+        \amat{1 0 0 0; 0 1 0 0; 0 0 1 0; 0 0 0 1}.\]  
+  \end{solution}
+  
+  \problem Put the following matrix into reduced row
+  echelon form (RREF).  Indicate which columns are pivot columns.
+  $\mat{3 -9 0 3; 1 -3 1 -4; 4 -12 2 -6}$.
+
+  \begin{solution}
+    Try this problem using the Interactive Row Reducer
+    \href{https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=3,-9,0,3:1,-3,1,-4:4,-12,2,-6}{here}.
+
+    Columns 1 and 3 are the pivot columns, and the RREF of the matrix
+    is
+    \[\mat{1 -3 0 1; 0 0 1 -5; 0 0 0 0}.\]
+  \end{solution}
+
+  \problem Put the following matrix into reduced row echelon form
+  (RREF).  Indicate which columns are pivot columns.
+  $\mat{-3 4 7; 2 1 -1; 3 1 -2; -2 2 4}$.
+  
+  \begin{solution}
+    Try this problem using the Interactive Row Reducer
+    \href{https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=-3,4,7:2,1,-1:3,1,-2:-2,2,4}{here}.
+
+    The quickest way might be to switch the first and fourth rows and
+    then divide the new first row by $-2$ to make the numbers work
+    nicely.
+    
+    Columns 1 and 2 are the pivot columns, and the RREF of the matrix
+    is
+    \[\mat{1 0 -1; 0 1 1; 0 0 0; 0 0 0}.\]
+  \end{solution}
+
+  \problem Put the following matrix $A$ into reduced row echelon form
+  (RREF).  Indicate which columns are pivot columns.  Is the
+  corresponding system of linear equations consistent or inconsistent?
+  $\amat{5 10 -5 40; 4 -2 36 -28; 3 20 9 40}$.
+
+  \begin{solution}
+    Try this problem using the Interactive Row Reducer
+    \href{https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=5,10,-5,8:4,-2,36,-28:3,20,9,40}{here}.
+
+    One way to do this problem is to divide the first row by $5$ and
+    then do row operations to create zeros below the first entry of
+    the left column.  Once we do this, we see that the second column
+    is also pivot column.  Doing one more row operation gives us a row
+    echelon form of the matrix, whereby we see all three columns to
+    the left of the augment bar are pivot columns.  One row echelon form
+    of the augmented matrix is
+    \[\amat{1 2 -1 8; 0 1 -4 6; 0 0 68 -68}.\]
+
+    We keep row-reducing to get the RREF of the augmented matrix:
+    \[\amat{1 0 0 3; 0 1 0 2; 0 0 1 -1}.\]
+    This system is consistent, with unique solution $x = 3$, $y = 2$,
+    $z = -1$.
+  \end{solution}
+  
+
+
+\problem Write an augmented matrix in RREF with three pivots that
+  represents an inconsistent system of three equations in four
+  variables.
+
+	\begin{solution}
+      Many possibilities.  For example,
+      \[\amat{1 0 0 0 0; 0 1 0 0 0; 0 0 0 0 1},
+        \qquad \amat{0 1 0 0 0; 0 0 1 0 0; 0 0 0 0 1}, \quad \textup{
+          or } \quad \amat{0 0 1 0 0; 0 0 0 1 0; 0 0 0 0 1}.\]
+	\end{solution}
+	
+  \problem Is there a system of three equations in two variables
+    that has infinitely many solutions?  If your answer is yes, write
+    an augmented matrix in RREF that represents one such system.
+
+	\begin{solution}
+      Yes.  For example, consider the system
+	\[ x + y = 1\]
+	\[ 2x + 2y = 2\]
+	\[ 3x + 3y = 3.\] Each equation represents the line $x + y = 1$,
+    so the solution set is all points $(x,y)$ on the line $y =
+    1-x$. The corresponding augmented matrix and its RREF are
+	\[\amat{1 1 1; 2 2 2; 3 3 3} \xrightarrow[]{RREF} \amat{1 1 1; 0 0
+        0; 0 0 0}.\]
+  \end{solution}
+
+  \problem Row reduce the matrix to determine whether its
+  corresponding system of linear equations is consistent.
+  \[\amat{3 -2 11 2 5; 0 1 -1 2 3; 1 0 3 2 -1}.\]
+  \begin{solution}
+    We swap the first and third rows to begin.
+    \begin{align*}
+      \amat{3 -2 11 2 5; 0 1 -1 2 3; 1 0 3 2 -1}
+      \xrightarrow[]{R_1 \leftrightarrow R_3}
+      &
+        \amat{1 0 3 2 -1; 0 1 -1 2 3; 3 -2 11 2 5}
+      \\
+      \xrightarrow[]{R_3 = R_3 - 3 R_1}
+      &
+        \amat{1 0 3 2 -1; 0 1 -1 2 3; 0 -2 2 -4 8}
+      \\
+      \xrightarrow[]{R_3 = R_3 + 2R_2}
+      &
+        \amat{1 0 3 2 -1; 0 1 -1 2 3; 0 0 0 0 14}
+    \end{align*}
+    We do not need to row-reduce any further because we have found
+    a pivot in the rightmost column, therefore the system is inconsistent.
+    The final row of the augmented matrix corresponds to the equations
+    ``$0 = 14$.''
+  \end{solution}
+  
+  \problem Are there three lines in the $xy$-plane (not necessarily
+  distinct lines) whose common intersection is exactly one point?  If
+  so, give an example and write an augmented matrix for the
+  corresponding system of linear equations in $x$ and $y$.
+	
+  \begin{solution}
+    Yes.  For example, take the lines $x - y = 0$, $2x-2y = 0$, and
+    $y =1$.  The first two lines are the same line, which intersects
+    the non-parallel line $y=1$ at exactly one point, namely when
+    $x=y=1$. To illustrate the example, we solve the augmented system
+    below to find the unique solution.
+	\begin{align*}
+      \amat{1 -1 0; 2 -2 0;  0 1 1} 
+      & \xrightarrow[]{R_2 = R_2 -2R_1}
+        \amat{1 -1 0; 0 0 0; 0 1 1} \xrightarrow[]{R_1 \leftrightarrow R_2}
+        \amat{1 -1 0; 0 1 1; 0 0 0} \xrightarrow[]{R_1 = R_1 + R_2} 
+        \amat{1 0 1; 0 1 1; 0 0 0}.
+	\end{align*}
+  \end{solution}
+
+  \problem Write the following system of equations in augmented matrix
+  form, and put the matrix into RREF.  After this, write two solutions
+  $(x_1, x_2, x_3)$ 
+  to the system of equations.
+  \[2x_1 - 3x_2 + x_3 = 6\]
+  \[x_1 - x_2 = 4\]
+  \[x_2 - x_3 = 2.\]
+  \begin{solution}
+    We put this into an augmented matrix and row-reduce:
+    \begin{align*}
+      \amat{2 -3 1 6; 1 -1 0 4; 0 1 -1 2}
+      &
+        \xrightarrow[]{R_1 \leftrightarrow R_2}
+        \amat{1 -1 0 4; 2 -3 1 6; 0 1 -1 2}
+        \xrightarrow[]{R_2 = R_2 - 2 R_1}
+        \amat{1 -1 0 4; 0 -1 1 2; 0 1 -1 2}
+      \\
+      &
+        \xrightarrow[\textup{then } R_3 = R_3 - R_2]{R_2 = (-1)*R_2}
+        \amat{1 -1 0 4; 0 1 -1 2; 0 0 0 0}
+        \xrightarrow[]{R_1 = R_1 + R_2}
+        \amat{1 0 -1 6; 0 1 -1 2; 0 0 0 0}.
+    \end{align*}
+    Now that we have found the RREF of the matrix, we see that
+    $(x_1, x_2, x_3)$ is a solution as long as $x_1 - x_3 = 6$ and
+    $x_2 - x_3 = 2$.  To find a solution, we could just pre-set our
+    favorite value for one of the variables and see if we could solve
+    for the others.  For example, if we set $x_1 = 1$, then
+    to satisfy $x_1 - x_3 = 6$ we need $x_3 = -5$, and now the second
+    equation becomes
+    \[x_2 - x_3 = 2, \qquad x_2 - (-5) = 2, \qquad x_2 = -3.\]
+    Therefore, $(1, -3, -5)$ is a solution.
+
+    To get a second solution, we could set $x_3 = 0$ and solve for $x_1$
+    and $x_2$:  $x_1 - x_3 = 6$ gives $x_1 = 6$, and then $x_2-x_3 = 2$
+    gives $x_2 = 2$, so $(6, 2, 0)$ is a second solution.
+
+    In reality, there are infinitely many solutions to this system of
+    equations.  We'll see in section 1.3 that this consistent system
+    has $x_3$ as a \emph{free} variable because its column does not
+    have a pivot, which means that we can set $x_3$ equal to any real
+    number and then solve for $x_1$ and $x_2$.
+  \end{solution}
+
+  \problem Find all values of $h$ so that the following system has at least one solution. % Dan's notes
+  \[x + y = 1\]
+  \[2x + 2y = h.\]
+  \begin{solution}
+      The answer is $h=2$ only.  Subtracting two times the first equation from the second equation gives us
+      \[x+y = 1\]
+      \[0 = h - 2.\]
+      The system will be consistent as long as $h-2 = 0$ (so $h=2$).  In this case, the system has infinitely many solutions since both equations will describe the same line $x+y = 1$. 
+      
+      If $h \neq 2$, then the equation $0= h-2$ will not be satisfied, so the system is inconsistent.
+  \end{solution}
+
+  \problem Extra practice with row reduction that you can check using the interactive row reducer.  Put the following matrix into reduced row echelon form (RREF). % Dan's notes
+  \[\amat{1 2 3 9; 2 -1 1 8; 3 0 -1 3}\]
+  \begin{solution}
+      You can check your work using the interactive row reducer 
+      {\color{blue} \href{https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=1,2,3,9:2,-1,1,8:3,0,-1,3}{here}}.
+      The RREF is
+      \[\amat{1 0 0 2; 0 1 0 -1; 0 0 1 3}.\]
+  \end{solution}
+
+  \problem Extra practice with row reduction that you can check using the interactive row reducer.  Put the following matrix into reduced row echelon form (RREF). % Dan's notes
+  \[\amat{0 7 -4 2; 2 4 6 12; 3 1 -1 -2}\]
+  \begin{solution}
+      You can check your work using the interactive row reducer 
+      {\color{blue} \href{https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=0,7,-4,2:2,4,6,12:3,1,-1,-2}{here}}.
+      The RREF is
+      \[\amat{1 0 0 -5/9; 0 1 0 10/9; 0 0 1 13/9}.\]
+  \end{solution}
+
+ \problem Extra practice with row reduction that you can check using the interactive row reducer.  Put the following matrix into reduced row echelon form (RREF). % Dan's notes
+  \[\amat{4 -5 3 2; 1 -1 -2 -6; 4 -4 -14 18}\]
+  \begin{solution}
+      You can check your work using the interactive row reducer 
+      {\color{blue} \href{https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=4,-5,3,2:1,-1,-2,-6:4,-4,-14,18}{here}}.
+      The RREF is
+      \[\amat{1 0 0 -123; 0 1 0 -103; 0 0 1 -7}.\]
+  \end{solution}
+\end{problems} \setcounter{problem}{0}
+
+
+
+\newpage
+
+\subsection{1.3, Parametric form}
+
+\begin{problems}
+  \problem % Dan's notes
+  True or false: If a system of linear equations has 100 variables and 70
+  equations, then there must be infinitely many solutions.
+  
+\begin{solution}
+  False.  It might be inconsistent, for example one equation could be $0 = 1$.
+  It might also have infinitely many solutions.  For example, if all 70
+  equations are each just the equation
+  \[x_1 + x_2 + x_3 + \cdots + x_{100} = 0.\] The corresponding augmented matrix
+  will not have a pivot in its rightmost column, and it will have 99 non-pivot
+  columns to the left of the augment bar.
+\end{solution}
+
+
+\problem % Dan's notes
+True or false: If a system of linear equations has 70 variables and 100
+equations, then it must be inconsistent.
+
+\begin{solution}
+  False.  It might be consistent, for example a system where all 100 equations
+  are just repeats of the equation
+    \[x_1 + x_2 + \cdots + x_{70} = 0.\]
+\end{solution}
+
+
+
+\problem % Dan's notes
+\begin{subproblems}
+  \subproblem How can we tell if an augmented matrix corresponds to a consistent
+  system of linear equations?  \subproblem Suppose a consistent system of linear
+  equations has finitely many solutions.  How many solutions must it have?
+\end{subproblems}
+\begin{solution}
+\begin{subproblems}
+  \subproblem The system is consistent if and only if the rightmost column of
+  the augmented matrix is NOT a pivot column.  %
+  \subproblem It must have exactly one solution.  Since the system is
+  consistent, there is no pivot in the rightmost column of the augmented matrix,
+  leaving us with two possibilities: Either the augmented matrix has a pivot in
+  every column to the left of the augment bar (no free variables, thus exactly
+  one solution), or there is a non-pivot column to the left of the augment bar
+  (free variable, thus infinitely many solutions).
+\end{subproblems}
+\end{solution}
+
+\problem   %Jankowski Spring 2018 exam 1 
+Is it possible for a system of three linear equations in four
+variables to have exactly one solution?  Justify your answer.
+
+\begin{solution}
+  No.  This system will correspond to an augmented matrix that has 3
+  rows and 4 columns to the left of the augment.  This means the
+  matrix has at most 3 pivots, so at least one variable will be free
+  and the system will have infinitely many solutions if it is
+  consistent.
+\end{solution}
+
+
+\problem Write the augmented matrix corresponding to the system of
+equations and put the matrix in reduced row echelon form.  Write the
+set of solutions in parametric form.  Indicate which variables are
+free variables.
+  \[-5x_1 + 6x_2 - 5x_3 = 17\]
+  \[2x_2 = 4\]
+  \[-2x_1 + 2x_2 - 2x_3 = 6\]
+
+\begin{solution}
+  \begin{align*}
+    \amat{-5 6 -5 17; 0 2 0 4; -2 2 -2 6}
+    & 
+      \xrightarrow[]{R_1 \leftrightarrow R_3}
+      \amat{-2 2 -2 6; 0 2 0 4; -5 6 -5 17}
+      \xrightarrow[]{R_1 = \frac{-R_1}{2}}
+      \amat{1 -1 1 -3; 0 2 0 4; -5 6 -5 17}
+    \\
+    &
+      \xrightarrow[]{R_3= R_3 + 5R_1} \amat{1 -1 1 -3; 0 2 0 4; 0 1 0 2}
+      \xrightarrow[]{R_2 = \frac{R_2}{2}} \amat{1 -1 1 -3; 0 1 0 2; 0 1 0 2}
+    \\
+    &
+      \xrightarrow[]{R_3 = R_3 - R_2}
+      \amat{1 0 1 -1; 0 1 0 2; 0 0 0 0} 
+  \end{align*}
+  The first two columns are the pivot columns, so the system is
+  consistent and $x_3$ is free.  The first equation is
+  $x_1 + x_3 = -1$ and the second is $x_2 = 2$, so
+  \[x_1 = -1-x_3, \qquad x_2 = 2, \qquad x_3 = x_3 \quad \textup{
+      ($x_3$ any real number)}.\] Equivalently, \
+  $(x_1, x_2, x_3) = (-1 - x_3, \ 2, \ x_3) \ \textup{ where
+    $x_3$ is any real number}.$
+\end{solution}
+
+\problem % Created for ILA
+Write the augmented matrix corresponding to the system of
+equations and put the matrix in reduced row echelon form.  Write the
+set of solutions in parametric form.  Indicate which variables are
+free variables.
+\[x_1 - 2x_2 -x_3 + x_5 = 3\]
+  \[x_3 - 2x_4 + 3x_5 = 1\]
+\begin{solution}
+\[
+  \amat{1 -2 -1 0 1 3; 0 0 1 -2 3 1} \xrightarrow[]{R_1 = R_1+R_2}
+  \amat{1 -2 0 -2 4 3; 0 0 1 -2 3 1}.\]
+%
+The first and third columns are the pivot columns, so the system is
+consistent and the variables $x_2$, $x_4$, and $x_5$ are free.
+Putting the free variables to the right hand side in the equations
+$x_1 - 2x_2 - 2x_4 + 4x_5 = 3$ and $x_3-2x_4+3x_5 = 1$, we get the
+equations below where $x_2$, $x_4$, and $x_5$ are any real numbers:
+\[
+  x_1 = 3 + 2x_2 + 2x_4 -4x_5 \qquad x_2 = x_2 \qquad x_3 = 1 + 2x_4 -
+  3x_5 \qquad x_4 = x_4 \qquad x_5 = x_5.
+\]
+Equivalently,
+\[(x_1, x_2, x_3, x_4, x_5) = (3 + 2x_2 + 2x_4 -4x_5, \ x_2, \ 1 +
+  2x_4 - 3x_5, \ x_4, \ x_5)\] where $x_2$, $x_4$, and $x_5$ are any
+real numbers.
+\end{solution}
+
+\problem % created for ILA
+Write the augmented matrix corresponding to the system of
+equations and put the matrix in reduced row echelon form.  Write the
+set of solutions in parametric form.  Indicate which variables are
+free variables.
+\[x_1 + x_2 - 2x_3 + 3x_4 = 4\]
+\[-2x_1 + 3x_2 + x_4 = 1\]
+\[3x_1 + 8x_2 - 10x_3 + 16x_4 = 21\]
+\[-5x_1 + 5x_2 + 2x_3 - x_4 = -2.\]
+\begin{solution}
+  \begin{align*}
+    \amat{1 1 -2 3 4; -2 3 0 1 1; 3 8 -10 16 21; -5 5 2 -1 -2}
+    \xrightarrow[R_3 = R_3 -3R_1, \ R_4 = R_4 + 5R_1]{R_2 = R_2 + 2R_1}
+    &
+      \amat{1 1 -2 3 4; 0 5 -4 7 9; 0 5 -4 7 9; 0 10 -8 14 18}
+    \\
+    \xrightarrow[R_4 = R_4 - 2R_2]{R_3 = R_3 - R_2}
+    &                                                  
+      \amat{1 1 -2 3 4; 0 5 -4 7 9; 0 0 0 0 0; 0 0 0 0 0}
+    \\
+    \xrightarrow[]{R_2 = R_2/5}
+    &
+      \amat{1 1 -2 3 4; 0 1 -4/5 7/5 9/5; 0 0 0 0 0; 0 0 0 0 0}
+    \\
+    \xrightarrow[]{R_1 = R_1 - R_2}
+    &
+      \amat{1 0 -6/5 8/5 11/5; 0 1 -4/5 7/5 9/5; 0 0 0 0 0; 0 0 0 0 0}.
+  \end{align*}
+  The system is consistent, with free variables $x_3$ and $x_4$:
+  \[x_1 = \dfrac{11}{5} + \dfrac{6}{5} x_3 - \dfrac{8}{5} x_4
+    \qquad
+    x_2 = \dfrac{9}{5} + \dfrac{4}{5} x_2 - \dfrac{7}{5} x_4
+    \qquad
+    x_3 = x_3
+    \qquad
+    x_4 = x_4.
+    \]
+\end{solution}
+
+\problem We have seen that any system of linear equations with more
+than one solution must have infinitely many solutions.  Give an
+example of a system of two equations in two variables that is not
+linear and has exactly two solutions.
+
+\begin{solution}
+  Picture curves that are described naturally by fundamental equations
+  in precalculus and intersect at two points.  For example, the curves
+  $y = \sqrt{x}$ and $y=x^2$ intersect at exactly two points, namely
+  $(0, 0)$ and $(1,1)$.  One way to write this system is
+	\[\sqrt{x} - y = 0\]
+	\[x^2 - y = 0.\]	
+\end{solution}
+
+\problem Is it possible for a system of four linear equations in four
+unknowns to have infinitely many solutions?  If your answer is yes,
+write such a system.  If your answer is no, justify why it is not
+possible.
+	
+\begin{solution}
+  Yes.  We could simply write the same linear equation four times, but
+  this is not the only possibility.  For example,
+  \[x_1 + x_2 + x_3 = 0\]
+  \[2x_1 + 2x_2 + x_3 = 0\]
+  \[2x_1 + 2x_2 + x_3 = 0\]
+  \[x_3 = 1\]
+\end{solution}
+
+\problem Bruce Hernandez is infatuated with the system of linear
+equations given by
+  \[3x - 2y = 4\]
+  \[6x + h y = k,\] where $h$ and $k$ are some real numbers.
+
+\begin{subproblems}
+  \subproblem Determine all values of $h$ and $k$ (if there are any)
+  so that the system of equations is inconsistent.%
+  \subproblem Determine all values of $h$ and $k$ (if there are any)
+  so that the system of equations has infinitely many solutions.
+\end{subproblems}
+
+\begin{solution}
+  \[ \amat{3 -2 4; 6 h k} \xrightarrow[]{R_2=R_2-2R_1} \amat{3 -2 4; 0
+      h+4 k-8}.\]
+\begin{subproblems}
+  \subproblem The system is inconsistent if and only if the right
+  column is a pivot column.  Therefore, we need $h+4 = 0$ and
+  $k-8 \neq 0$ so that the rightmost entry of the second row is a
+  pivot.
+  \[ h= -4 \qquad k \neq 8.\] %
+  \subproblem To have infinitely many solutions, we must have a free
+  variable AND the rightmost column cannot be a pivot colum, so the
+  entire second row above must be zero.  Thus $h+4=0$ and $k-8=0$.
+  \[h= -4 \qquad k = 8.\] %
+  *** In both parts, we are finding $h$ and $k$ so that the lines
+  given by each equation are parallel.  In (a), we solve so that we
+  get two \textit{different} parallel lines.  In (b), each equation
+  gives the \textit{same} line since the second row is two times the
+  first row.
+\end{subproblems}
+\end{solution}
+
+\problem % created for ILA
+Write a system of linear equations in the variables
+$x_1, x_2, x_3, x_4$ whose general solution has parametric form
+\[x_1 = 5 + x_3 \qquad
+  x_2 = 10 - x_3 \qquad
+  x_3 = x_3 \qquad
+  x_4 = -7.
+\]
+\begin{solution}
+  We have exactly 1 free variable in a consistent linear system in 4
+  variables, so we must have 3 pivots in our corresponding augmented
+  matrix.  This means we must have at least 3 rows in our augmented
+  matrix.  One possibility is
+  \[\amat{1 0 -1 0 5; 0 1 1 0 10; 0 0 0 1 -7}.\]  
+\end{solution}
+
+\problem Find every polynomial $f$ of degree $2$ whose graph passes
+through the points $(-1, 11)$, $(2, 5)$, and $(3, 7)$.
+
+\begin{solution}
+  With $f(x) = ax^2 + bx + c$ (where $a \neq 0$ since $f$ has degree
+  $2$), and using the facts $f(-1)=11$, $f(2) = 5$, and $f(3) = 7$:
+  \[a(-1)^2 + b(-1) + c = 11\]
+  \[a(2^2) + b(2) + c = 5\]
+  \[a(3^3) + b(3) + c = 7.\] This gives us a linear system of
+  equations, which we put into an augmented matrix and row-reduce:
+  \[a - b + c = 11\]
+  \[4a + 2b + c = 5\]
+  \[9a + 3b + c = 7.\]
+  %
+  \[\amat{1 -1 1 11; 4 2 1 5; 9 3 1 7}
+    \xrightarrow[]{RREF}
+    \amat{1 0 0 1; 0 1 0 -3; 0 0 1 7}.\]
+  Therefore $a=1$, $b= -3$, and $c=7$, so there is exactly one
+  degree $2$ polynomial $f$ that goes through the three points given in the problem:
+  \[f(x) = x^2 - 3x + 7.\]
+\end{solution}
+
+\problem Find every polynomial $g$ of degree $3$ whose graph passes
+through the points $(0, 1)$, $(1, 1)$, and $(2, 9)$.
+%Compare your answer to the previous problem.
+
+\begin{solution}
+  We let $g(x) = ax^3 + bx^2 + cx + d$ (where $a \neq 0$) and plug in
+  the three points:
+  \[a(0^3)+b(0^2)+c(0)+d = 1\]
+  \[a(1^3)+b(1^2)+c(1)+d = 1\]
+  \[a(2^3)+b(2^2)+c(2)+d = 9.\] We put this into a system and
+  row-reduce its corresponding augmented matrix:
+  %
+  \[d = 1\]
+  \[a + b + c + d = 1\]
+  \[8a + 4b + 2c + d = 9.\]
+  %
+  \[\amat{0 0 0 1 1; 1 1 1 1 1; 8 4 2 1 9}
+    \xrightarrow[]{RREF} \amat{1 0 -1/2 0 2; 0 1 3/2 0 -2; 0 0 0 1
+      1}.\] Thus $c$ is free and
+  \[a = 2 + \frac{c}{2} \quad b = -2 - \frac{3c}{2}, \quad d = 1.\]
+
+  This gives us infinitely degree $3$ polynomials $g$ going through
+  the three prescribed points, depending upon which value we choose
+  for $c$ (we just need to choose $c \neq -4$ so that $a \neq 0$,
+  otherwise $g$ will have degree less than $3$).  For example, when
+  $c = 1$ we get the polynomial
+  \[g_1(x) = \frac{3}{2} x^3 - \frac{7}{2}x^2 + x + 1\]
+  whereas when $c = 2$ we get
+  \[g_2(x) = 3x^3 - 5x^2 + 2x + 1.\]
+  We could even take $c = 0$ and get
+  \[g_3(x) = 2x^3 - 2x^2 + 1,\]
+  and so on.
+\end{solution}
+
+\end{problems}\setcounter{problem}{0}
+
+%
+%
+\newpage
+%
+%
+

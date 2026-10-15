@@ -30,7 +30,7 @@
     <!-- them defaults to "yes".  The entries below are a plausible example, -->
     <!-- not the defaults.                                                   -->
       <!--<exercise-inline statement="yes" hint="yes" answer="no" solution="no" />-->
-      <!--<exercise-divisional statement="yes" hint="yes" answer="no" solution="yes" />-->
+      <exercise-divisional statement="yes" hint="yes" answer="no" solution="no" />
       <!--<exercise-worksheet statement="yes" hint="yes" answer="no" solution="no" />-->
       <!--<exercise-reading statement="yes" hint="yes" answer="no" solution="no" />-->
       <!--<exercise-project statement="yes" hint="yes" answer="yes" solution="yes" />-->
@@ -393,7 +393,7 @@
     <!-- Feedback button, with a link to an email or form.  @href is  -->
     <!-- required; optional text content replaces the default label   -->
     <!-- on the button and should contain no markup.                  -->
-      <feedback href="https://github.com/hunterlehmann/ILA-UE/issues">Comments, corrections, or suggestions</feedback>
+      <feedback href="https://github.com/hunterlehmann/ILA-UE/issues"/>
 
     <!-- Magic IDs identify HTML pages to analytics services.       -->
     <!-- Presence implies relevant Javascript will be added.        -->
