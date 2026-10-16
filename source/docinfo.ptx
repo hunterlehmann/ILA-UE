@@ -38,7 +38,7 @@
   \newcommand{\R}{\mathbf R}
   \newcommand{\C}{\mathbf C}
  \renewcommand{\mathbb}[1]{\mathbf{#1}}
-  
+  \newcommand{\matrow}[1]{\text{---}\,#1\,\text{---}}
   \newcommand{\Span}{\operatorname{Span}}
   \newcommand{\Nul}{\operatorname{Nul}}
   \newcommand{\Col}{\operatorname{Col}}

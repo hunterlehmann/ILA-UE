@@ -1295,5 +1295,368 @@ y \amp {}+{} \amp 2z \amp {}={} \amp -1. \amp {}
     </example>
 
   </subsection>
-
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: The augmented matrix <m>\left(\begin{array}{rrr|r}0 \amp 1 \amp 0 \amp 2 \\ 0 \amp 0 \amp 1 \amp -3\end{array}\right)</m> is
+        in reduced row echelon form.</p>
+    </statement>
+    <solution>
+      <p>True.  The second and third columns are the pivot
+            columns, and the matrix satisfies all conditions for RREF.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If the reduced row echelon form of an augmented matrix has a row of
+          zeros, then the system of linear equations corresponding to the
+          augmented matrix must have infinitely many solutions.</p>
+    </statement>
+    <solution>
+      <p>
+        False.  For example, consider the augmented matrix
+        <md><mrow>\left(\begin{array}{rr|r}0 \amp 0 \amp 1 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix in reduced row echelon
+          form (RREF)?  If not, row reduce to put it in RREF.
+        <md><mrow>\left(\begin{array}{rr|r}1 \amp -2 \amp 4 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>The matrix is in RREF.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix in reduced row echelon
+          form (RREF)?  If not, row reduce to put it in RREF.
+        <md><mrow>\left(\begin{array}{rrr|r}0 \amp 1 \amp 2 \amp 3 \\ 0 \amp 0 \amp 1 \amp 4\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        The matrix is not in RREF because the pivot in the second line has a <q>2</q> in its column.  To put the matrix in RREF, we need to do one row operation:
+        <md><mrow>\left(\begin{array}{rrr|r}0 \amp 1 \amp 2 \amp 3 \\ 0 \amp 0 \amp 1 \amp 4\end{array}\right)
+            \xrightarrow[]{R_1 = R_1 - 2 R_2}
+            \left(\begin{array}{rrr|r}0 \amp 1 \amp 0 \amp -5 \\ 0 \amp 0 \amp 1 \amp 4\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix in reduced row echelon
+          form (RREF)?  If not, row reduce to put it in RREF.
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 1 \\ 0 \amp 1 \amp 0 \amp 1 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        No.  The rightmost column is a pivot column (with
+              pivot in the fourth row), but the column has nonzero entries in
+              its first and second row.
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 1 \\ 0 \amp 1 \amp 0 \amp 1 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1\end{array}\right)
+                \xrightarrow[R_1 = R_1 - R_4]{R_2 = R_2 - R_4}
+                \left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Put the following matrix into reduced row
+        echelon form (RREF).  Indicate which columns are pivot columns.
+        <m>\begin{pmatrix}3 \amp -9 \amp 0 \amp 3 \\ 1 \amp -3 \amp 1 \amp -4 \\ 4 \amp -12 \amp 2 \amp -6\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>Try this problem using the Interactive Row Reducer
+          <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=3,-9,0,3:1,-3,1,-4:4,-12,2,-6">here</url>.</p>
+      <p>
+        Columns 1 and 3 are the pivot columns, and the RREF of the matrix
+            is
+        <md><mrow>\begin{pmatrix}1 \amp -3 \amp 0 \amp 1 \\ 0 \amp 0 \amp 1 \amp -5 \\ 0 \amp 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Put the following matrix into reduced row echelon form
+        (RREF).  Indicate which columns are pivot columns.
+        <m>\begin{pmatrix}-3 \amp 4 \amp 7 \\ 2 \amp 1 \amp -1 \\ 3 \amp 1 \amp -2 \\ -2 \amp 2 \amp 4\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>Try this problem using the Interactive Row Reducer
+          <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=-3,4,7:2,1,-1:3,1,-2:-2,2,4">here</url>.</p>
+      <p>The quickest way might be to switch the first and fourth rows and
+          then divide the new first row by <m>-2</m> to make the numbers work
+          nicely.</p>
+      <p>
+        Columns 1 and 2 are the pivot columns, and the RREF of the matrix
+            is
+        <md><mrow>\begin{pmatrix}1 \amp 0 \amp -1 \\ 0 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Put the following matrix <m>A</m> into reduced row echelon form
+        (RREF).  Indicate which columns are pivot columns.  Is the
+        corresponding system of linear equations consistent or inconsistent?
+        <m>\left(\begin{array}{rrr|r}5 \amp 10 \amp -5 \amp 40 \\ 4 \amp -2 \amp 36 \amp -28 \\ 3 \amp 20 \amp 9 \amp 40\end{array}\right)</m>.</p>
+    </statement>
+    <solution>
+      <p>Try this problem using the Interactive Row Reducer
+          <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=5,10,-5,8:4,-2,36,-28:3,20,9,40">here</url>.</p>
+      <p>
+        One way to do this problem is to divide the first row by <m>5</m> and
+            then do row operations to create zeros below the first entry of
+            the left column.  Once we do this, we see that the second column
+            is also pivot column.  Doing one more row operation gives us a row
+            echelon form of the matrix, whereby we see all three columns to
+            the left of the augment bar are pivot columns.  One row echelon form
+            of the augmented matrix is
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 2 \amp -1 \amp 8 \\ 0 \amp 1 \amp -4 \amp 6 \\ 0 \amp 0 \amp 68 \amp -68\end{array}\right)</mrow></md>.
+      </p>
+      <p>
+        We keep row-reducing to get the RREF of the augmented matrix:
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 3 \\ 0 \amp 1 \amp 0 \amp 2 \\ 0 \amp 0 \amp 1 \amp -1\end{array}\right)</mrow></md>.
+        This system is consistent, with unique solution <m>x = 3</m>, <m>y = 2</m>,
+            <m>z = -1</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write an augmented matrix in RREF with three pivots that
+        represents an inconsistent system of three equations in four
+        variables.</p>
+    </statement>
+    <solution>
+      <p>
+        Many possibilities.  For example,
+        <md><mrow>\left(\begin{array}{rrrr|r}1 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right),
+                \qquad \left(\begin{array}{rrrr|r}0 \amp 1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right), \quad \textup{
+                  or } \quad \left(\begin{array}{rrrr|r}0 \amp 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a system of three equations in two variables
+          that has infinitely many solutions?  If your answer is yes, write
+          an augmented matrix in RREF that represents one such system.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes.  For example, consider the system
+        <md><mrow>x + y = 1</mrow></md>
+        <md><mrow>2x + 2y = 2</mrow></md>
+        <md><mrow>3x + 3y = 3</mrow></md>.
+        Each equation represents the line <m>x + y = 1</m>,
+            so the solution set is all points <m>(x,y)</m> on the line <m>y =
+            1-x</m>. The corresponding augmented matrix and its RREF are
+        <md><mrow>\left(\begin{array}{rr|r}1 \amp 1 \amp 1 \\ 2 \amp 2 \amp 2 \\ 3 \amp 3 \amp 3\end{array}\right) \xrightarrow[]{RREF} \left(\begin{array}{rr|r}1 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Row reduce the matrix to determine whether its
+          corresponding system of linear equations is consistent.
+        <md><mrow>\left(\begin{array}{rrrr|r}3 \amp -2 \amp 11 \amp 2 \amp 5 \\ 0 \amp 1 \amp -1 \amp 2 \amp 3 \\ 1 \amp 0 \amp 3 \amp 2 \amp -1\end{array}\right)</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We swap the first and third rows to begin.
+        <md>
+          <mrow>\left(\begin{array}{rrrr|r}3 \amp -2 \amp 11 \amp 2 \amp 5</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2 \amp 3</mrow>
+          <mrow>1 \amp 0 \amp 3 \amp 2 \amp -1\end{array}\right)
+              \xrightarrow[]{R_1 \leftrightarrow R_3}
+              \amp
+                \left(\begin{array}{rrrr|r}1 \amp 0 \amp 3 \amp 2 \amp -1</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2 \amp 3</mrow>
+          <mrow>3 \amp -2 \amp 11 \amp 2 \amp 5\end{array}\right)</mrow>
+          <mrow>\xrightarrow[]{R_3 = R_3 - 3 R_1}
+              \amp
+                \left(\begin{array}{rrrr|r}1 \amp 0 \amp 3 \amp 2 \amp -1</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2 \amp 3</mrow>
+          <mrow>0 \amp -2 \amp 2 \amp -4 \amp 8\end{array}\right)</mrow>
+          <mrow>\xrightarrow[]{R_3 = R_3 + 2R_2}
+              \amp
+                \left(\begin{array}{rrrr|r}1 \amp 0 \amp 3 \amp 2 \amp -1</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2 \amp 3</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 14\end{array}\right)</mrow>
+        </md>
+        We do not need to row-reduce any further because we have found
+            a pivot in the rightmost column, therefore the system is inconsistent.
+            The final row of the augmented matrix corresponds to the equations
+            <q><m>0 = 14</m>.</q>
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Are there three lines in the <m>xy</m>-plane (not necessarily
+        distinct lines) whose common intersection is exactly one point?  If
+        so, give an example and write an augmented matrix for the
+        corresponding system of linear equations in <m>x</m> and <m>y</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes.  For example, take the lines <m>x - y = 0</m>, <m>2x-2y = 0</m>, and
+            <m>y =1</m>.  The first two lines are the same line, which intersects
+            the non-parallel line <m>y=1</m> at exactly one point, namely when
+            <m>x=y=1</m>. To illustrate the example, we solve the augmented system
+            below to find the unique solution.
+        <md>
+          <mrow>\left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
+          <mrow>2 \amp -2 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 1\end{array}\right)
+              \amp  \xrightarrow[]{R_2 = R_2 -2R_1}
+                \left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 1\end{array}\right) \xrightarrow[]{R_1 \leftrightarrow R_2}
+                \left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 0\end{array}\right) \xrightarrow[]{R_1 = R_1 + R_2}
+                \left(\begin{array}{rr|r}1 \amp 0 \amp 1</mrow>
+          <mrow>0 \amp 1 \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 0\end{array}\right)</mrow>
+        </md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following system of equations in augmented matrix
+          form, and put the matrix into RREF.  After this, write two solutions
+          <m>(x_1, x_2, x_3)</m>
+          to the system of equations.
+        <md><mrow>2x_1 - 3x_2 + x_3 = 6</mrow></md>
+        <md><mrow>x_1 - x_2 = 4</mrow></md>
+        <md><mrow>x_2 - x_3 = 2</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We put this into an augmented matrix and row-reduce:
+        <md>
+          <mrow>\left(\begin{array}{rrr|r}2 \amp -3 \amp 1 \amp 6</mrow>
+          <mrow>1 \amp -1 \amp 0 \amp 4</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2\end{array}\right)
+              \amp
+                \xrightarrow[]{R_1 \leftrightarrow R_2}
+                \left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 4</mrow>
+          <mrow>2 \amp -3 \amp 1 \amp 6</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2\end{array}\right)
+                \xrightarrow[]{R_2 = R_2 - 2 R_1}
+                \left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 4</mrow>
+          <mrow>0 \amp -1 \amp 1 \amp 2</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2\end{array}\right)</mrow>
+          <mrow>\amp
+                \xrightarrow[\textup{then } R_3 = R_3 - R_2]{R_2 = (-1)*R_2}
+                \left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 4</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0\end{array}\right)
+                \xrightarrow[]{R_1 = R_1 + R_2}
+                \left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 6</mrow>
+          <mrow>0 \amp 1 \amp -1 \amp 2</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow>
+        </md>.
+        Now that we have found the RREF of the matrix, we see that
+            <m>(x_1, x_2, x_3)</m> is a solution as long as <m>x_1 - x_3 = 6</m> and
+            <m>x_2 - x_3 = 2</m>.  To find a solution, we could just pre-set our
+            favorite value for one of the variables and see if we could solve
+            for the others.  For example, if we set <m>x_1 = 1</m>, then
+            to satisfy <m>x_1 - x_3 = 6</m> we need <m>x_3 = -5</m>, and now the second
+            equation becomes
+        <md><mrow>x_2 - x_3 = 2, \qquad x_2 - (-5) = 2, \qquad x_2 = -3</mrow></md>.
+        Therefore, <m>(1, -3, -5)</m> is a solution.
+      </p>
+      <p>To get a second solution, we could set <m>x_3 = 0</m> and solve for <m>x_1</m>
+          and <m>x_2</m>:  <m>x_1 - x_3 = 6</m> gives <m>x_1 = 6</m>, and then <m>x_2-x_3 = 2</m>
+          gives <m>x_2 = 2</m>, so <m>(6, 2, 0)</m> is a second solution.</p>
+      <p>In reality, there are infinitely many solutions to this system of
+          equations.  We'll see in section 1.3 that this consistent system
+          has <m>x_3</m> as a \emph{free} variable because its column does not
+          have a pivot, which means that we can set <m>x_3</m> equal to any real
+          number and then solve for <m>x_1</m> and <m>x_2</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Find all values of <m>h</m> so that the following system has at least one solution.
+        <md><mrow>x + y = 1</mrow></md>
+        <md><mrow>2x + 2y = h</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        The answer is <m>h=2</m> only.  Subtracting two times the first equation from the second equation gives us
+        <md><mrow>x+y = 1</mrow></md>
+        <md><mrow>0 = h - 2</mrow></md>.
+        The system will be consistent as long as <m>h-2 = 0</m> (so <m>h=2</m>).  In this case, the system has infinitely many solutions since both equations will describe the same line <m>x+y = 1</m>.
+      </p>
+      <p>If <m>h \neq 2</m>, then the equation <m>0= h-2</m> will not be satisfied, so the system is inconsistent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Extra practice with row reduction that you can check using the interactive row reducer.  Put the following matrix into reduced row echelon form (RREF).
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 2 \amp 3 \amp 9 \\ 2 \amp -1 \amp 1 \amp 8 \\ 3 \amp 0 \amp -1 \amp 3\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        You can check your work using the interactive row reducer
+              <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=1,2,3,9:2,-1,1,8:3,0,-1,3">here</url>.
+              The RREF is
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 2 \\ 0 \amp 1 \amp 0 \amp -1 \\ 0 \amp 0 \amp 1 \amp 3\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Extra practice with row reduction that you can check using the interactive row reducer.  Put the following matrix into reduced row echelon form (RREF).
+        <md><mrow>\left(\begin{array}{rrr|r}0 \amp 7 \amp -4 \amp 2 \\ 2 \amp 4 \amp 6 \amp 12 \\ 3 \amp 1 \amp -1 \amp -2\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        You can check your work using the interactive row reducer
+              <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=0,7,-4,2:2,4,6,12:3,1,-1,-2">here</url>.
+              The RREF is
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp -5/9 \\ 0 \amp 1 \amp 0 \amp 10/9 \\ 0 \amp 0 \amp 1 \amp 13/9\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Extra practice with row reduction that you can check using the interactive row reducer.  Put the following matrix into reduced row echelon form (RREF).
+        <md><mrow>\left(\begin{array}{rrr|r}4 \amp -5 \amp 3 \amp 2 \\ 1 \amp -1 \amp -2 \amp -6 \\ 4 \amp -4 \amp -14 \amp 18\end{array}\right)</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>
+        You can check your work using the interactive row reducer
+              <url href="https://textbooks.math.gatech.edu/ila/demos/rrinter.html?mat=4,-5,3,2:1,-1,-2,-6:4,-4,-14,18">here</url>.
+              The RREF is
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp -123 \\ 0 \amp 1 \amp 0 \amp -103 \\ 0 \amp 0 \amp 1 \amp -7\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+</exercises>
 </section>

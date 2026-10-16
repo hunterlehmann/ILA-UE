@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--********************************************************************
+Copyright 2019 Dan Margalit and Joseph Rabinoff
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation.  A copy of
+the license is included in gfdl.xml.
+*********************************************************************-->
+
+<section xml:id="sec-matrix-equations">
+  <title>Matrix Equations</title>
+
+  <objectives>
+    <ol>
+      <li><p>Understand the equivalence between a system of linear equations, an augmented matrix, a vector equation, and a matrix equation.</p></li>
+      <li><p>Characterize the vectors <m>b</m> such that <m>Ax=b</m> is consistent, in terms of the span of the columns of <m>A</m>.</p></li>
+      <li><p>Characterize matrices <m>A</m> such that <m>Ax=b</m> is consistent for all vectors <m>b</m>.</p></li>
+      <li><p><em>Recipe:</em> multiply a vector by a matrix (two ways).</p></li>
+      <li><p><em>Picture:</em> the set of all vectors <m>b</m> such that <m>Ax=b</m> is consistent.</p></li>
+      <li><p><em>Vocabulary word:</em> <term>matrix equation</term>.</p></li>
+    </ol>
+  </objectives>
+
+  <subsection xml:id="subsec-the-matrix-equation-axb">
+    <title>The Matrix Equation <m>Ax=b</m>.</title>
+
+    <p>In this section we introduce a very concise way of writing a system of linear equations: <m>Ax=b</m>.  Here <m>A</m> is a matrix and <m>x,b</m> are vectors (generally of different sizes), so first we must explain how to multiply a matrix by a vector.
+    </p>
+
+    <assemblage>
+      <p>When we say <q><m>A</m> is an <m>m\times n</m> matrix,</q> we mean that <m>A</m> has <m>m</m> rows and <m>n</m> columns.
+      <idx><h>Matrix</h><h>size of</h></idx>
+      <notation><usage><m>m\times n\text{ matrix}</m></usage><description>Size of a matrix</description></notation>
+      </p>
+    </assemblage>
+
+    <remark>
+      <p>In this book, we do <em>not</em> reserve the letters <m>m</m> and <m>n</m> for the numbers of rows and columns of a matrix.  If we write <q><m>A</m> is an <m>n\times m</m> matrix</q>, then <m>n</m> is the number of rows of <m>A</m> and <m>m</m> is the number of columns.</p>
+    </remark>
+
+    <definition xml:id="matrixeq-defn-Ax1">
+      <idx><h>Matrix-vector product</h><h>definition of</h></idx>
+      <idx><h>Matrix</h><h>product with vector</h><see>Matrix-vector product</see></idx>
+      <idx><h>Vector</h><h>product with matrix</h><see>Matrix-vector product</see></idx>
+      <statement>
+        <p>Let <m>A</m> be an <m>m\times n</m> matrix with columns <m>v_1,v_2,\ldots,v_n</m>:
+        <md>
+<mrow>A = \begin{pmatrix}
+| \amp | \amp {} \amp | \\
+v_1 \amp v_2 \amp \cdots \amp v_n \\
+| \amp | \amp {} \amp |
+\end{pmatrix}</mrow>
+</md>
+        The <term>product</term> of <m>A</m> with a vector <m>x</m> in <m>\R^n</m> is the linear combination
+        <md>
+<mrow>Ax = \begin{pmatrix}
+| \amp | \amp {} \amp | \\
+v_1 \amp v_2 \amp \cdots \amp v_n \\
+| \amp | \amp {} \amp |
+\end{pmatrix}
+        \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix} = x_1v_1 + x_2v_2 + \cdots + x_nv_n</mrow>
+</md>.
+        This is a vector in <m>\R^m</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <example>
+      <p><md>
+<mrow>\begin{pmatrix}
+4 \amp 5 \amp 6 \\
+7 \amp 8 \amp 9
+\end{pmatrix}
+        \begin{pmatrix}
+1 \\
+2 \\
+3
+\end{pmatrix}
+        = 1\begin{pmatrix}
+4 \\
+7
+\end{pmatrix} + 2\begin{pmatrix}
+5 \\
+8
+\end{pmatrix} + 3\begin{pmatrix}
+6 \\
+9
+\end{pmatrix} = \begin{pmatrix}
+32 \\
+50
+\end{pmatrix}</mrow>
+</md>.</p>
+    </example>
+
+    <p>In order for <m>Ax</m> to make sense, the number of entries of <m>x</m> has to be the same as the number of columns of <m>A</m>: we are using the entries of <m>x</m> as the coefficients of the columns of <m>A</m> in a linear combination.  The resulting vector has the same number of entries as the number of <em>rows</em> of <m>A</m>, since each column of <m>A</m> has that number of entries.
+    </p>
+
+    <assemblage>
+      <p>If <m>A</m> is an <m>m\times n</m> matrix (<m>m</m> rows, <m>n</m> columns), then <m>Ax</m> makes sense when <m>x</m> has <m>n</m> entries.  The product <m>Ax</m> has <m>m</m> entries.
+      </p>
+    </assemblage>
+
+
+    <proposition xml:id="matrix-linearity">
+      <title>Properties of the Matrix-Vector Product</title>
+      <statement>
+        <p>
+          Let <m>A</m> be an <m>m\times n</m> matrix, let <m>u,v</m> be vectors in <m>\R^n</m>, and let <m>c</m> be a scalar.  Then:
+          <ul>
+            <li><p><m>A(u+v) = Au + Av</m></p></li>
+            <li><p><m>A(cu) = cAu</m></p></li>
+          </ul>
+        </p>
+      </statement>
+    </proposition>
+
+    <definition>
+      <idx><h>Matrix equation</h><h>definition of</h></idx>
+      <statement>
+        <p>A <term>matrix equation</term> is an equation of the form <m>Ax=b</m>, where <m>A</m> is an <m>m\times n</m> matrix, <m>b</m> is a vector in <m>\R^m</m>, and <m>x</m> is a vector whose coefficients <m>x_1,x_2,\ldots,x_n</m> are unknown.</p>
+      </statement>
+    </definition>
+
+	<p>
+	In this book we will study two complementary questions about a matrix equation <m>Ax=b</m>:
+	<ol>
+	<li><p>Given a specific choice of <m>b</m>, what are all of the solutions to <m>Ax=b</m>?</p></li>
+	<li><p>What are all of the choices of <m>b</m> so that <m>Ax=b</m> is consistent?</p></li>
+	</ol>
+	The first question is more like the questions you might be used to from your earlier courses in algebra; you have a lot of practice solving equations like <m>x^2-1=0</m> for <m>x</m>.  The second question is perhaps a new concept for you.  The <xref ref="rank-theorem" text="title"/>, which is the culmination of this chapter, tells us that the two questions are intimately related.  
+	</p>
+
+    <note>
+      <title>Matrix Equations and Vector Equations</title>
+      <idx><h>Matrix equation</h><h>equivalence with vector equation</h></idx>
+      <idx><h>Vector equation</h><h>equivalence with matrix equation</h></idx>
+      <p>Let <m>v_1,v_2,\ldots,v_n</m> and <m>b</m> be vectors in <m>\R^m</m>.  Consider the vector equation
+      <md>
+<mrow>x_1v_1 + x_2v_2 + \cdots + x_nv_n = b</mrow>
+</md>.
+      This is equivalent to the matrix equation <m>Ax=b</m>, where
+      <md>
+<mrow>A = \begin{pmatrix}
+| \amp | \amp {} \amp | \\
+v_1 \amp v_2 \amp \cdots \amp v_n \\
+| \amp | \amp {} \amp |
+\end{pmatrix}
+      \sptxt{and}
+      x = \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}</mrow>
+</md>.
+      Conversely, if <m>A</m> is any <m>m\times n</m> matrix, then
+      <m>Ax=b</m> is equivalent to the vector equation
+      <md>
+<mrow>x_1v_1 + x_2v_2 + \cdots + x_nv_n = b</mrow>
+</md>,
+      where <m>v_1,v_2,\ldots,v_n</m> are the columns of <m>A</m>, and <m>x_1,x_2,\ldots,x_n</m> are the entries of <m>x</m>.
+      </p>
+    </note>
+
+    <example>
+      <statement>
+        <p>Write the vector equation
+        <md>
+<mrow>2v_1 + 3v_2 - 4v_3 = \begin{pmatrix}
+7 \\
+2 \\
+1
+\end{pmatrix}</mrow>
+</md>
+        as a matrix equation, where <m>v_1,v_2,v_3</m> are vectors in <m>\R^3</m>.
+        </p>
+      </statement>
+
+      <solution>
+        <p>Let <m>A</m> be the matrix with columns <m>v_1,v_2,v_3</m>, and let <m>x</m> be the vector with entries <m>2,3,-4</m>.  Then
+        <md>
+<mrow>Ax =  \begin{pmatrix}
+| \amp | \amp | \\
+v_1 \amp v_2 \amp v_3 \\
+| \amp | \amp |
+\end{pmatrix}\begin{pmatrix}
+2 \\
+3 \\
+-4
+\end{pmatrix}
+        = 2v_1 + 3v_2 - 4v_3</mrow>
+</md>,
+        so the vector equation is equivalent to the matrix equation
+        <m>Ax=\begin{pmatrix}
+7 \\
+2 \\
+1
+\end{pmatrix}.</m>
+        </p>
+      </solution>
+    </example>
+
+    <note>
+      <title>Four Ways of Writing a Linear System</title>
+      <p>We now have <em>four</em> equivalent ways of writing (and thinking about) a system of linear equations:
+      <idx><h>System of linear equations</h><h>four ways of writing</h></idx>
+      <ol>
+        <li><p>As a system of equations:
+        <md>
+<mrow>\left\{\begin{alignedat}{4}
+2x_1 \amp {}+{} \amp 3x_2 \amp {}-{} \amp 2x_3 \amp {}={} \amp 7 \amp {} \\
+x_1 \amp {}-{} \amp x_2 \amp {}-{} \amp 3x_3 \amp {}={} \amp 5 \amp {}
+\end{alignedat}\right.</mrow>
+</md>
+        </p></li>
+        <li><p>As an augmented matrix:
+        <md>
+<mrow>\left(\begin{array}{rrr|r}
+2 \amp 3 \amp -2 \amp 7 \\
+1 \amp -1 \amp -3 \amp 5
+\end{array}\right)</mrow>
+</md>
+        </p></li>
+        <li><p>As a vector equation (<m>x_1v_1 + x_2v_2 + \cdots + x_nv_n = b</m>):
+        <md>
+<mrow>x_1\begin{pmatrix}
+2 \\
+1
+\end{pmatrix} + x_2\begin{pmatrix}
+3 \\
+-1
+\end{pmatrix} + x_3\begin{pmatrix}
+-2 \\
+-3
+\end{pmatrix} = \begin{pmatrix}
+7 \\
+5
+\end{pmatrix}</mrow>
+</md>
+        </p></li>
+        <li><p>As a matrix equation (<m>Ax=b</m>):
+        <md>
+<mrow>\begin{pmatrix}
+2 \amp 3 \amp -2 \\
+1 \amp -1 \amp -3
+\end{pmatrix}\begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{pmatrix} = \begin{pmatrix}
+7 \\
+5
+\end{pmatrix}</mrow>
+</md>.
+        </p></li>
+      </ol>
+      In particular, <em>all four have the same solution set</em>.
+      </p>
+    </note>
+
+    <assemblage>
+      <p>We will move back and forth freely between the four ways of writing a linear system, over and over again, for the rest of the book.</p>
+    </assemblage>
+
+    <paragraphs>
+      <title>Another Way to Compute <m>Ax</m></title>
+
+      <p>The above <xref ref="matrixeq-defn-Ax1"/> is a useful way of defining the product of a matrix with a vector when it comes to understanding the relationship between matrix equations and vector equations.  Here we give a definition that is better-adapted to computations by hand.
+      </p>
+
+      <definition xml:id="matrixeq-row-column-prod">
+        <idx><h>Row vector</h><see>Vector</see></idx>
+        <idx><h>Vector</h><h>row vector</h></idx>
+        <idx><h>Vector</h><h>row vector</h><h>product with column vector</h></idx>
+        <statement>
+          <p>A <term>row vector</term> is a matrix with one row.  The <term>product</term> of a row vector of length <m>n</m> and a (column) vector of length <m>n</m> is
+          <md>
+<mrow>\begin{pmatrix}
+a_1 \amp a_2 \amp \cdots \amp a_n
+\end{pmatrix} \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}
+          = a_1x_1 + a_2x_2 + \cdots + a_nx_n</mrow>
+</md>.
+          This is a scalar.
+          </p>
+        </statement>
+      </definition>
+
+      <algorithm xml:id="matrixeq-row-column">
+        <title>The row-column rule for matrix-vector multiplication</title>
+        <idx><h>Matrix-vector product</h><h>row-column rule</h></idx>
+
+        <p>
+          If <m>A</m> is an <m>m\times n</m> matrix with rows <m>r_1,r_2,\ldots,r_m</m>, and <m>x</m> is a vector in <m>\R^n</m>, then
+          <md>
+<mrow>Ax = \left(\begin{array}{c}
+\matrow{r_1} \\
+\matrow{r_2} \\
+\vdots \\
+\matrow{r_m}
+\end{array}\right)
+          x
+          = \begin{pmatrix}
+r_1x \\
+r_2x \\
+\vdots \\
+r_mx
+\end{pmatrix}</mrow>
+</md>.
+        </p>
+      </algorithm>
+
+      <example>
+        <p><md>
+<mrow>\begin{pmatrix}
+4 \amp 5 \amp 6 \\
+7 \amp 8 \amp 9
+\end{pmatrix}
+          \begin{pmatrix}
+1 \\
+2 \\
+3
+\end{pmatrix} =
+          \begin{pmatrix}
+\begin{pmatrix}4 \amp 5 \amp 6\end{pmatrix}\begin{pmatrix} \amp 1 \amp \\ \amp 2 \amp \\ \amp 3 \amp \end{pmatrix} \\
+\begin{pmatrix}7 \amp 8 \amp 9\end{pmatrix}\begin{pmatrix} \amp 1 \amp \\ \amp 2 \amp \\ \amp 3 \amp \end{pmatrix}
+\end{pmatrix}
+          = \begin{pmatrix}
+4\cdot1+5\cdot2+6\cdot3 \\
+7\cdot1+8\cdot2+9\cdot3
+\end{pmatrix}
+          = \begin{pmatrix}
+32 \\
+50
+\end{pmatrix}</mrow>
+</md>.
+        This is the same answer as before:
+        <md>
+<mrow>\begin{pmatrix}
+4 \amp 5 \amp 6 \\
+7 \amp 8 \amp 9
+\end{pmatrix}
+        \begin{pmatrix}
+1 \\
+2 \\
+3
+\end{pmatrix}
+        = 1\begin{pmatrix}
+4 \\
+7
+\end{pmatrix} + 2\begin{pmatrix}
+5 \\
+8
+\end{pmatrix} + 3\begin{pmatrix}
+6 \\
+9
+\end{pmatrix}
+        = \begin{pmatrix}
+1\cdot4+2\cdot5+3\cdot6 \\
+1\cdot7+2\cdot8+3\cdot9
+\end{pmatrix}
+        = \begin{pmatrix}
+32 \\
+50
+\end{pmatrix}</mrow>
+</md>.
+        </p>
+      </example>
+    </paragraphs>
+
+  </subsection>
+
+  <subsection xml:id="subsec-spans-and-consistency">
+    <title>Spans and Consistency</title>
+
+    <p>Let <m>A</m> be a matrix with columns <m>v_1,v_2,\ldots,v_n</m>:
+    <md>
+<mrow>A = \begin{pmatrix}
+| \amp | \amp {} \amp | \\
+v_1 \amp v_2 \amp \cdots \amp v_n \\
+| \amp | \amp {} \amp |
+\end{pmatrix}</mrow>
+</md>.
+    Then
+    <md>
+<mrow>Ax=b\amp\text{ has a solution}</mrow>
+<mrow>\amp\iff \text{there exist $x_1,x_2,\ldots,x_n$ such that }
+    A\begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix} = b</mrow>
+<mrow>\amp\iff \text{there exist $x_1,x_2,\ldots,x_n$ such that }
+    x_1v_1 + x_2v_2 + \cdots + x_nv_n = b</mrow>
+<mrow>\amp\iff \text{$b$ is a linear combination of } v_1,v_2,\ldots,v_n</mrow>
+<mrow>\amp\iff \text{$b$ is in the span of the columns of $A$}</mrow>
+</md>.
+    </p>
+
+    <assemblage xml:id="matrixeq-spans-consistency" >
+      <title>Spans and Consistency</title>
+      <idx><h>Matrix equation</h><h>spans and consistency</h></idx>
+      <idx><h>System of linear equations</h><h>consistent</h><h>span criterion</h></idx>
+      <idx><h>Column span</h><see>Column space</see></idx>
+      <p>The matrix equation <m>Ax=b</m> has a solution if and only if <m>b</m> is in the span of the columns of <m>A</m>.</p>
+    </assemblage>
+
+    <p>This gives an equivalence between an <em>algebraic</em> statement (<m>Ax=b</m> is consistent), and a <em>geometric</em> statement (<m>b</m> is in the span of the columns of <m>A</m>).
+    </p>
+
+    <example>
+      <title>An Inconsistent System</title>
+      <statement><p>
+        Let <m>A=\begin{pmatrix}
+2 \amp 1 \\
+-1 \amp 0 \\
+1 \amp -1
+\end{pmatrix}</m>.  Does the equation <m>Ax=\begin{pmatrix}
+0 \\
+2 \\
+2
+\end{pmatrix}</m> have a solution?
+      </p></statement>
+
+      <solution>
+        <p>First we answer the question geometrically.  The columns of <m>A</m> are
+        <md>
+<mrow>\mh{v_1 = \begin{pmatrix}
+2 \\
+-1 \\
+1
+\end{pmatrix}}
+        \sptxt{and}
+        \mhb{v_2 = \begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix}}</mrow>
+</md>,
+        and the target vector (on the right-hand side of the equation) is <m>\mhg{w = \begin{pmatrix}
+0 \\
+2 \\
+2
+\end{pmatrix}}.</m>  The equation <m>Ax=w</m> is consistent if and only if <m>w</m> is contained in the span of the columns of <m>A</m>.  So we draw a picture:
+        </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image><![CDATA[
+\begin{tikzpicture}[myxyz, z={(0,0,1.2)}, thin border nodes]
+  \path[clip, resetxy] (-4,-4) rectangle (4,4);
+
+  \def\v{(2,-1,1)}
+  \def\w{(1,0,-1)}
+  \def\b{(0,2,2)}
+
+  \node[coordinate] (X) at \v {};
+  \node[coordinate] (Y) at \w {};
+
+  \begin{scope}[x=(X), y=(Y), transformxy]
+    \path[clip] (-5, -5) -- (5, 5) -- (5, 10) -- (-5, 10) -- cycle;
+    \fill[seq4!30, nearly opaque] (-1.5,-1) rectangle (1.5,2);
+    \draw[step=.5cm, seq4, very thin] (-1.5,-1) grid (1.5,2);
+  \end{scope}
+
+  \begin{scope}[transformxy]
+    \fill[white, nearly opaque] (-2, -2) rectangle (3, 3);
+    \draw[grid lines] (-2, -2) grid (3, 3);
+  \end{scope}
+
+  \begin{scope}[x=(X), y=(Y), transformxy]
+    \path[clip] (-5, -5) -- (5, 5) -- (5, -10) -- (-5, -10) -- cycle;
+    \fill[seq4!30, nearly opaque] (-1.5,-1) rectangle (1.5,2);
+    \draw[step=.5cm, seq4, very thin] (-1.5,-1) grid (1.5,2);
+  \end{scope}
+
+  \draw[vector, seq-blue] (0,0,0) --
+    node [midway, above right] {$v_1$} \v;
+  \draw[thin, densely dotted] \v -- \projxy\v;
+
+  \begin{scope}
+    \path[clip, transformxy] (-2, -2) rectangle (3, 3);
+    \draw[vector, seq-green!50!white] (0,0,0) --
+      node [pos=1.0, below left] {$v_2$} \w;
+  \end{scope}
+  \begin{scope}
+    \path[clip, transformxy] (5, -2) rectangle (3, 3);
+    \draw[vector, seq-green] (0,0,0) --
+      node [pos=1.0, below left] {$v_2$} \w;
+  \end{scope}
+  \draw[thin, densely dotted, black!50!white] \w -- \projxy\w;
+
+  \draw[vector, black] (0,0,0) --
+    node [pos=0.8, above left] {$w$} \b;
+  \draw[thin, densely dotted] \b -- \projxy\b;
+
+  \node[seq4] at (-1.5cm, 2.3cm) {$\Span\{v_1,v_2\}$};
+
+  \point at (0,0,0);
+
+\end{tikzpicture}
+              ]]></latex-image>
+</image>
+<p>
+        It does not appear that <m>w</m> lies in <m>\Span\{v_1,v_2\},</m> so the equation is inconsistent.</p>
+        <figure>
+          <caption>The vector <m>w</m> is not contained in <m>\Span\{v_1,v_2\}</m>, so the equation <m>Ax=b</m> is inconsistent.  (Try moving the sliders to solve the equation.)</caption>
+          <interactive
+              iframe="iframes/spans-if.html?v1=2,-1,1&amp;v2=1,0,-1&amp;target=0,2,2&amp;range=5"
+              width="90%"
+              aspect="4:3">
+            <shortdescription>
+              <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+            </shortdescription>
+            <description>
+              <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+              <p>
+                
+              </p>
+            </description>
+            <instructions>
+              <p>
+                
+              </p>
+            </instructions>
+          </interactive>
+        </figure>
+
+        <p>Let us check our geometric answer by solving the matrix equation using row reduction.  We put the system into an augmented matrix and row reduce:
+        <md>
+<mrow>\left(\begin{array}{rr|r}
+2 \amp 1 \amp 0 \\
+-1 \amp 0 \amp 2 \\
+1 \amp -1 \amp 2
+\end{array}\right)
+        \quad\xrightarrow{\text{RREF}}\quad
+        \left(\begin{array}{rr|r}
+1 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 1
+\end{array}\right)</mrow>
+</md>.
+        The last equation is <m>0=1</m>, so the system is indeed inconsistent, and the matrix equation
+        <md>
+<mrow>\begin{pmatrix}
+2 \amp 1 \\
+-1 \amp 0 \\
+1 \amp -1
+\end{pmatrix}x = \begin{pmatrix}
+0 \\
+2 \\
+2
+\end{pmatrix}</mrow>
+</md>
+        has no solution.
+        </p>
+
+      </solution>
+    </example>
+
+    <example>
+      <title>A Consistent System</title>
+
+      <statement><p>
+        Let <m>A=\begin{pmatrix}
+2 \amp 1 \\
+-1 \amp 0 \\
+1 \amp -1
+\end{pmatrix}</m>.  Does the equation <m>Ax=\begin{pmatrix}
+1 \\
+-1 \\
+2
+\end{pmatrix}</m> have a solution?
+      </p></statement>
+
+      <solution>
+        <p>First we answer the question geometrically.  The columns of <m>A</m> are
+        <md>
+<mrow>\mh{v_1 = \begin{pmatrix}
+2 \\
+-1 \\
+1
+\end{pmatrix}}
+        \sptxt{and}
+        \mhb{v_2 = \begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix}}</mrow>
+</md>,
+        and the target vector (on the right-hand side of the equation) is <m>\mhg{w = \begin{pmatrix}
+1 \\
+-1 \\
+2
+\end{pmatrix}}.</m>  The equation <m>Ax=w</m> is consistent if and only if <m>w</m> is contained in the span of the columns of <m>A</m>.  So we draw a picture:
+        </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image><![CDATA[
+\begin{tikzpicture}[myxyz, z={(0,0,1.2)}, thin border nodes]
+  \path[clip, resetxy] (-4,-4) rectangle (4,4);
+
+  \def\v{(2,-1,1)}
+  \def\w{(1,0,-1)}
+  \def\b{(1,-1,2)}
+
+  \node[coordinate] (X) at \v {};
+  \node[coordinate] (Y) at \w {};
+
+  \begin{scope}[x=(X), y=(Y), transformxy]
+    \path[clip] (-5, -5) -- (5, 5) -- (5, 10) -- (-5, 10) -- cycle;
+    \fill[seq4!30, nearly opaque] (-1.5,-1.5) rectangle (1.5,2);
+    \draw[step=.5cm, seq4, very thin] (-1.5,-1.5) grid (1.5,2);
+  \end{scope}
+
+  \begin{scope}[transformxy]
+    \fill[white, nearly opaque] (-2, -2) rectangle (3, 3);
+    \draw[help lines] (-2, -2) grid (3, 3);
+  \end{scope}
+
+  \begin{scope}[x=(X), y=(Y), transformxy]
+    \path[clip] (-5, -5) -- (5, 5) -- (5, -10) -- (-5, -10) -- cycle;
+    \fill[seq4!30, nearly opaque] (-1.5,-1.5) rectangle (1.5,2);
+    \draw[step=.5cm, seq4, very thin] (-1.5,-1.5) grid (1.5,2);
+  \end{scope}
+
+  \draw[vector, seq-blue] (0,0,0) --
+    node [midway, above right] {$v_1$} \v;
+  \draw[thin, densely dotted] \v -- \projxy\v;
+
+  \begin{scope}
+    \path[clip, transformxy] (-2, -2) rectangle (3, 3);
+    \draw[vector, seq-green!50!white] (0,0,0) --
+      node [pos=1.0, below left] {$v_2$} \w;
+  \end{scope}
+  \begin{scope}
+    \path[clip, transformxy] (5, -2) rectangle (3, 3);
+    \draw[vector, seq-green] (0,0,0) --
+      node [pos=1.0, below left] {$v_2$} \w;
+  \end{scope}
+  \draw[thin, densely dotted, black!50!white] \w -- \projxy\w;
+
+  \draw[vector, black] (0,0,0) --
+    node [midway, above right] {$w$} \b;
+  \draw[thin, densely dotted] \b -- \projxy\b;
+
+  \node[seq4] at (1.75cm, 2.1cm) {$\Span\{v_1,v_2\}$};
+
+  \point at (0,0,0);
+\end{tikzpicture}
+              ]]></latex-image>
+</image>
+<p>
+        It appears that <m>w</m> is indeed contained in the span of the columns of <m>A</m>; in fact, we can see
+        <md>
+<mrow>w = v_1 - v_2 \implies x = \begin{pmatrix}
+1 \\
+-1
+\end{pmatrix}</mrow>
+</md>.
+        </p>
+        <figure>
+          <caption>The vector <m>w</m> is contained in <m>\Span\{v_1,v_2\}</m>, so the equation <m>Ax=b</m> is consistent.  (Move the sliders to solve the equation.)</caption>
+          <interactive
+              iframe="iframes/spans-if.html?v1=2,-1,1&amp;v2=1,0,-1&amp;target=1,-1,2&amp;range=5"
+              width="90%"
+              aspect="4:3">
+            <shortdescription>
+              <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+            </shortdescription>
+            <description>
+              <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+              <p>
+                
+              </p>
+            </description>
+            <instructions>
+              <p>
+                
+              </p>
+            </instructions>
+          </interactive>
+        </figure>
+
+        <p>Let us check our geometric answer by solving the matrix equation using row reduction.  We put the system into an augmented matrix and row reduce:
+        <md>
+<mrow>\left(\begin{array}{rr|r}
+2 \amp 1 \amp 1 \\
+-1 \amp 0 \amp -1 \\
+1 \amp -1 \amp 2
+\end{array}\right)
+        \quad\xrightarrow{\text{RREF}}\quad
+        \left(\begin{array}{rr|r}
+1 \amp 0 \amp 1 \\
+0 \amp 1 \amp -1 \\
+0 \amp 0 \amp 0
+\end{array}\right)</mrow>
+</md>.
+        This gives us <m>x=1</m> and <m>y=-1</m>, which is consistent with the picture:
+        <md>
+<mrow>1\begin{pmatrix}
+2 \\
+-1 \\
+1
+\end{pmatrix} -1\begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix} = \begin{pmatrix}
+1 \\
+-1 \\
+2
+\end{pmatrix}
+        \sptxt{or}
+        A\begin{pmatrix}
+1 \\
+-1
+\end{pmatrix} = \begin{pmatrix}
+1 \\
+-1 \\
+2
+\end{pmatrix}</mrow>
+</md>.
+        </p>
+
+      </solution>
+    </example>
+
+    <paragraphs>
+      <title>When Solutions Always Exist</title>
+
+      <p>Building on <xref ref="matrixeq-spans-consistency" text="title"/>, we have the following criterion for when <m>Ax=b</m> is consistent for <em>every</em> choice of <m>b</m>.</p>
+
+      <theorem xml:id="matrixeq-thm-full-span">
+        <idx><h>Matrix equation</h><h>always consistent</h></idx>
+        <statement>
+          <p>Let <m>A</m> be an <m>m\times n</m> (non-augmented) matrix.  The following are equivalent:
+          <ol>
+            <li><p><m>Ax=b</m> has a solution for all <m>b</m> in <m>\R^m</m>.</p></li>
+            <li><p>The span of the columns of <m>A</m> is all of <m>\R^m</m>.</p></li>
+            <li><p><m>A</m> has a <xref ref="defn-pivot-pos" text="title">pivot position</xref> in every row.</p></li>
+          </ol>
+          </p>
+        </statement>
+
+        <proof>
+          <p>The equivalence of 1 and 2 is established by <xref ref="matrixeq-spans-consistency" text="title"/> as applied to every <m>b</m> in <m>\R^m</m>.
+          </p>
+
+          <p>Now we show that 1 and 3 are equivalent.  (Since we know 1 and 2 are equivalent, this implies 2 and 3 are equivalent as well.)  If <m>A</m> has a pivot in every row, then its reduced row echelon form looks like this:
+          <md>
+<mrow>\begin{pmatrix}
+1 \amp 0 \amp \star \amp 0 \amp \star \\
+0 \amp 1 \amp \star \amp 0 \amp \star \\
+0 \amp 0 \amp 0 \amp 1 \amp \star
+\end{pmatrix}</mrow>
+</md>,
+          and therefore <m>\left(\begin{array}{r|r}
+A \amp b
+\end{array}\right)</m> reduces to this:
+          <md>
+<mrow>\left(\begin{array}{ccccc|c}
+1 \amp 0 \amp \star \amp 0 \amp \star \amp \star \\
+0 \amp 1 \amp \star \amp 0 \amp \star \amp \star \\
+0 \amp 0 \amp 0 \amp 1 \amp \star \amp \star
+\end{array}\right)</mrow>
+</md>.
+          There is no <m>b</m> that makes it inconsistent, so there is always a solution.  Conversely, if <m>A</m> does not have a pivot in each row, then its reduced row echelon form looks like this:
+          <md>
+<mrow>\begin{pmatrix}
+1 \amp 0 \amp \star \amp 0 \amp \star \\
+0 \amp 1 \amp \star \amp 0 \amp \star \\
+0 \amp 0 \amp 0 \amp 0 \amp 0
+\end{pmatrix}</mrow>
+</md>,
+          which can give rise to an inconsistent system after augmenting with <m>b</m>:
+          <md>
+<mrow>\left(\begin{array}{rrrrr|r}
+1 \amp 0 \amp \star \amp 0 \amp \star \amp 0 \\
+0 \amp 1 \amp \star \amp 0 \amp \star \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 16
+\end{array}\right)</mrow>
+</md>.
+          </p>
+        </proof>
+      </theorem>
+
+      <p>Recall that <term>equivalent</term> means that, for any given matrix <m>A</m>, either <em>all</em> of the conditions of the above <xref ref="matrixeq-thm-full-span"/> are true, or they are all false.
+      </p>
+
+      <assemblage>
+        <p>Be careful when reading the statement of the above <xref ref="matrixeq-thm-full-span"/>.  The first two conditions look very much like <xref ref="matrixeq-spans-consistency" text="title"/>, but they are logically quite different because of the quantifier <q><em>for all</em> <m>b</m></q>.
+        </p>
+      </assemblage>
+
+      <question>
+        <title>The criteria of the theorem are satisfied</title>
+        <figure>
+          <caption>An example where the criteria of the above <xref ref="matrixeq-thm-full-span"/> are satisfied.  The violet region is the span of the columns <m>v_1,v_2,v_3</m> of <m>A</m>, which is the same as the set of all <m>b</m> such that <m>Ax=b</m> has a solution.  If you drag <m>b</m>, the demo will solve <m>Ax=b</m> for you and move <m>x</m>.</caption>
+          <interactive
+              iframe="iframes/Axequalsb-if.html?mat=2,1,-1:1,0,2&amp;range2=5&amp;show=false&amp;closed=true"
+              width="90%"
+              aspect="4:3">
+            <shortdescription>
+              <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+            </shortdescription>
+            <description>
+              <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+              <p>
+                
+              </p>
+            </description>
+            <instructions>
+              <p>
+                
+              </p>
+            </instructions>
+          </interactive>
+        </figure>
+      </question>
+
+      <question>
+        <title>The critera of the theorem are not satisfied</title>
+        <figure>
+          <caption>An example where the criteria of the above <xref ref="matrixeq-thm-full-span"/> are <em>not</em> satisfied.  The violet line is the span of the columns <m>v_1,v_2,v_3</m> of <m>A</m>, which is the same as the set of all <m>b</m> such that <m>Ax=b</m> has a solution.  Try dragging <m>b</m> in and out of the column span.</caption>
+          <interactive
+              iframe="iframes/Axequalsb-if.html?show=false&amp;closed=true"
+              width="90%"
+              aspect="4:3">
+            <shortdescription>
+              <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+            </shortdescription>
+            <description>
+              <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+              <p>
+                
+              </p>
+            </description>
+            <instructions>
+              <p>
+                
+              </p>
+            </instructions>
+          </interactive>
+        </figure>
+      </question>
+
+      <remark>
+        <p>
+          We will see in <xref ref="dimension-basis-colspace-dim"/> that the dimension of the span of the columns is equal to the number of pivots of <m>A</m>.  That is, the columns of <m>A</m> span a line if <m>A</m> has one pivot, they span a plane if <m>A</m> has two pivots, etc.  The whole space <m>\R^m</m> has dimension <m>m</m>, so this generalizes the fact that the columns of <m>A</m> span <m>\R^m</m> when <m>A</m> has <m>m</m> pivots.
+        </p>
+      </remark>
+
+    </paragraphs>
+
+  </subsection>
+<exercises>
+  <exercise>
+    <statement>
+      <p>True or false: Suppose <m>A</m> is a <m>2 \times 4</m> matrix.  Then the equation
+        <m>Ax = b</m> must be inconsistent for some <m>b</m> in <m>{\bf R}^2</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        False.  Since <m>A</m> has <m>2</m> rows and <m>4</m> columns, it is possible for <m>A</m> to
+        have a pivot in each row, in which case <m>Ax=b</m> will be consistent for
+        every <m>b</m> in <m>{\bf R}^2</m>.  For example:
+        <md><mrow>A = \begin{pmatrix}1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: Suppose <m>A</m> is an <m>m \times n</m> matrix and the matrix
+      equation <m>Ax = b</m> is consistent for each <m>b</m> in <m>{\bf R}^m</m>.
+      Then <m>m \leq n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  If <m>m > n</m>, then <m>A</m> has more rows than columns
+          and so the max number of pivots possible number of pivots is <m>n</m>,
+          thus <m>A</m> cannot have a pivot in every row.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>True or false: If <m>A</m> is a <m>3 \times 5</m> matrix and the product <m>Ax</m> makes sense, then which <m>{\bf R}^n</m> is <m>x</m> in?</p>
+    </statement>
+    <solution>
+      <p>The vector <m>x</m> must be in <m>{\bf R}^5</m>, since <m>A</m> has <m>5</m> columns.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear equation as a matrix equation:
+        <md><mrow>x + y + z = 1</mrow></md>
+        <md><mrow>x - 2y - z = 5</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}1 \amp 1 \amp 1 \\ 1 \amp -2 \amp -1\end{pmatrix} \begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}1 \\ 5\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md>
+          <mrow>x_1   + 2x_2 + 7x_4                      \amp = 10</mrow>
+          <mrow>3x_1  + 7x_2 + \tfrac{1}{2}x_3           \amp = 7</mrow>
+          <mrow>x_2  + x_3 + 15x_4                       \amp = 30</mrow>
+          <mrow>5x_1  +  12x_3                           \amp = 17</mrow>
+        </md>
+      </p>
+    </statement>
+    <solution>
+      <p>\(
+          \begin{pmatrix}1 \amp 2 \amp 0 \amp 7 \\ 3 \amp 7 \amp \tfrac{1}{2} \amp 0 \\ 0 \amp 1 \amp 1 \amp 15 \\ 5 \amp 0 \amp 12 \amp 0\end{pmatrix}
+          \begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix}
+          =
+          \begin{pmatrix}10 \\ 7 \\ 30 \\ 17\end{pmatrix}
+          \)</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md><mrow>\begin{aligned}
+        2x_1 - x_2 + 3x_3 \amp = 5 \\
+        x_1 + 4x_2        \amp = -2 \\
+        3x_2 + 2x_3       \amp = 7
+        \end{aligned}</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>\(
+      \begin{pmatrix}2 \amp -1 \amp 3 \\ 1 \amp 4 \amp 0 \\ 0 \amp 3 \amp 2\end{pmatrix}
+      \begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix}
+      =
+      \begin{pmatrix}5 \\ -2 \\ 7\end{pmatrix}
+      \)</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md><mrow>\begin{aligned}
+        x_1 + 3x_2 \amp = 12 \\
+        -2x_1      \amp = -6 \\
+        4x_2       \amp = 8 \\
+        5x_1 + x_2 \amp = 3
+        \end{aligned}</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>\(
+      \begin{pmatrix}1 \amp 3 \\ -2 \amp 0 \\ 0 \amp 4 \\ 5 \amp 1\end{pmatrix}
+      \begin{pmatrix}x_1 \\ x_2\end{pmatrix}
+      =
+      \begin{pmatrix}12 \\ -6 \\ 8 \\ 3\end{pmatrix}
+      \)</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md><mrow>\begin{aligned}
+        x_1 + 2x_3 - x_4 + 6x_5 \amp = 14 \\
+        3x_2 - 5x_3 + x_4        \amp = -2
+        \end{aligned}</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p>\(
+      \begin{pmatrix}1 \amp 0 \amp 2 \amp -1 \amp 6 \\ 0 \amp 3 \amp -5 \amp 1 \amp 0\end{pmatrix}
+      \begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5\end{pmatrix}
+      =
+      \begin{pmatrix}14 \\ -2\end{pmatrix}
+      \)</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Carry out the following matrix multiplication.
+        <md><mrow>\begin{pmatrix}0 \amp 2 \\ 0 \amp 4 \\ 5 \amp 0\end{pmatrix} \begin{pmatrix}3 \\ 2\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md><mrow>\begin{pmatrix}0 \amp 2 \\ 0 \amp 4 \\ 5 \amp 0\end{pmatrix} \begin{pmatrix}3 \\ 2\end{pmatrix}
+        = 3 \begin{pmatrix}0 \\ 0 \\ 5\end{pmatrix} + 2 \begin{pmatrix}2 \\ 4 \\ 0\end{pmatrix} = \begin{pmatrix}0 \\ 0 \\ 15\end{pmatrix} + \begin{pmatrix}4 \\ 8 \\ 0\end{pmatrix}
+        = \begin{pmatrix}4 \\ 8 \\ 15\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Carry out the following matrix multiplication.
+        <md><mrow>\begin{pmatrix}2 \amp 3 \amp -5 \\ -3 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}3 \\ -1 \\ 2\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\begin{pmatrix}2 \amp 3 \amp -5</mrow>
+          <mrow>-3 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}3</mrow>
+          <mrow>-1</mrow>
+          <mrow>2\end{pmatrix}
+            \amp  = 3 \begin{pmatrix}2</mrow>
+          <mrow>-3\end{pmatrix} + (-1) \begin{pmatrix}3</mrow>
+          <mrow>1\end{pmatrix} + 2 \begin{pmatrix}-5</mrow>
+          <mrow>0\end{pmatrix}</mrow>
+          <mrow>\amp  = \begin{pmatrix}6</mrow>
+          <mrow>-9\end{pmatrix} + \begin{pmatrix}-3</mrow>
+          <mrow>-1\end{pmatrix} + \begin{pmatrix}-10</mrow>
+          <mrow>0\end{pmatrix}</mrow>
+          <mrow>\amp  = \begin{pmatrix}-7</mrow>
+          <mrow>-10\end{pmatrix}</mrow>
+        </md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix equation consistent?  If so, solve it.
+        <md><mrow>\begin{pmatrix}1 \amp 1 \\ 1 \amp 0 \\ 1 \amp 1\end{pmatrix} \begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}2 \\ 3 \\ 2\end{pmatrix}</mrow></md>.
+        Can you do this problem without row-reducing?
+      </p>
+    </statement>
+    <solution>
+      <p>This matrix equation is consistent: <m>x_1 = 3</m> and <m>x_2 = -1</m>.  We can do this without row-reduction.  We see <m>x_1</m> must equal <m>3</m> in order for the second entry to be <m>3</m>, and <m>3\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix} = \begin{pmatrix}3 \\ 3 \\ 3\end{pmatrix}</m> so we need to subtract <m>\begin{pmatrix}1 \\ 0 \\ 1\end{pmatrix}</m> to get <m>\begin{pmatrix}2 \\ 3 \\ 2\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix equation consistent?  If so, solve it.
+        <md><mrow>\begin{pmatrix}1 \amp 1 \\ 1 \amp 0 \\ 1 \amp 1\end{pmatrix} \begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}2 \\ 3 \\ 3\end{pmatrix}</mrow></md>.
+        Can you do this problem without row-reducing?
+      </p>
+    </statement>
+    <solution>
+      <p>This matrix equation is inconsistent.  Each of the vectors <m>\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix}</m> and <m>\begin{pmatrix}1 \\ 0 \\ 1\end{pmatrix}</m> has its first entry equal to its third entry (so any linear combination will also have first and third entries equal), but the target vector <m>\begin{pmatrix}2 \\ 3 \\ 3\end{pmatrix}</m> has first entry different than third entry.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Todd Stromboly sells apples, bananas, and dragonfruits.  At his fruit
+      stand:</p>
+      <p>You purchased <m>2</m> apples, <m>4</m> bananas, and <m>1</m> dragonfruit, at a cost
+      of <m>\$3</m>.</p>
+      <p>Your friend bought <m>3</m> apples, <m>2</m> bananas, and <m>2</m> dragonfruits at a
+      cost of <m>\$4</m>.</p>
+      <p>Your sworn enemy bought <m>1</m> apple, <m>2</m> bananas, and <m>5</m> dragonfruits
+      at a cost of <m>\$6</m>.
+      Let <m>a</m>, <m>b</m>, and <m>c</m>, be the sale price
+      of an apple, banana, and dragonfruit, respectively.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write a system of equations whose solution would give us
+          the price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          The system of equations is
+          <md><mrow>2a + 4b + c = 3</mrow></md>
+          <md><mrow>3a + 2b + 2c = 4</mrow></md>
+          <md><mrow>a + 2b + 5c = 6</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a vector equation whose solution would give us the
+          price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          The vector equation is
+          <md><mrow>a \begin{pmatrix}2 \\ 3 \\ 1\end{pmatrix} + b \begin{pmatrix}4 \\ 2 \\ 2\end{pmatrix} + c \begin{pmatrix}1 \\ 2 \\ 5\end{pmatrix} = \begin{pmatrix}3 \\ 4 \\ 6\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a matrix equation whose solution would give us the
+          price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          The matrix equation is
+          <md><mrow>\begin{pmatrix}2 \amp 4 \amp 1 \\ 3 \amp 2 \amp 2 \\ 1 \amp 2 \amp 5\end{pmatrix}x = \begin{pmatrix}3 \\ 4 \\ 6\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find the price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          We put an augmented matrix into RREF.
+          <md><mrow>\left(\begin{array}{rrr|r}2 \amp 4 \amp 1 \amp 3 \\ 3 \amp 2 \amp 2 \amp 4 \\ 1 \amp 2 \amp 5 \amp 6\end{array}\right) \xrightarrow[]{RREF}
+                \left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 1/2 \\ 0 \amp 1 \amp 0 \amp 1/4 \\ 0 \amp 0 \amp 1 \amp 1\end{array}\right)</mrow></md>.
+          Thus <m>a = \frac{1}{2}</m>,
+              \ <m>b = \frac{1}{4}</m>, and <m>c=1</m>. In other words, an apple costs
+              <m>\$0.50</m>, a banana costs <m>\$0.25</m>, and a dragonfruit costs <m>\$1</m>.
+          	\end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Suppose <m>A = \begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}</m> is a
+        matrix whose columns are nonzero vectors and
+        <md><mrow>5v_1 - v_2 + v_3 - v_4 = 0</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write one nonzero vector <m>b</m> so that <m>Ax=b</m> is
+            consistent.</p>
+      </statement>
+      <solution>
+        <p>
+          Many possible answers.  For example, <m>Ax = v_1</m> is
+                  consistent since
+          <md><mrow>A \begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix} = \begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}
+                    \begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix} = v_1</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write one nonzero solution to the
+            equation <m>Ax=0</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          By definition of matrix multiplication,
+          <md><mrow>\begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}
+                    \begin{pmatrix}5 \\ -1 \\ 1 \\ -1\end{pmatrix} = 5v_1 - v_2 + v_3 - v_4 = 0</mrow></md>
+          so
+                  <m>x= \begin{pmatrix}5 \\ -1 \\ 1 \\ -1\end{pmatrix}</m> satisfies <m>Ax=0</m>.
+          	\end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Your overall semester score in Math <m>9123</m> will be determined by
+      the weights: <m>15\%</m> homework, <m>15\%</m> quizzes, <m>20\%</m> for midterm 1,
+      <m>20\%</m> for midterm 2, and <m>30\%</m> for the final exam.</p>
+      <p>Your grades were <m>95\%</m> on homework, <m>85\%</m> for quizzes, <m>83\%</m>
+      for midterm 1, and <m>87\%</m> for midterm 2.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write <m>A</m>, <m>x</m>, and <m>b</m> so that solving the matrix
+          equation <m>Ax = b</m> will give us the final exam score we need in order
+          to get a <m>90\%</m> overall score for the course.</p>
+      </statement>
+      <solution>
+        <p>
+          We arrange the matrix entries of <m>A</m> in the order that
+              the categories were given, and we put the grades in each category as
+              the corresponding entries of <m>x</m>.
+          <md><mrow>A = \begin{pmatrix}0.15 \amp 0.15 \amp 0.20 \amp 0.20 \amp 0.30\end{pmatrix}, \qquad
+                x = \begin{pmatrix}95 \\ 85 \\ 83 \\ 87 \\ x_5\end{pmatrix}, \qquad b = 90</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Solve the equation in part (a).</p>
+      </statement>
+      <solution>
+        <p>
+          Carrying out the multiplication and solving gives us
+          <md><mrow>(0.15)95 + (0.15)85 + (0.20)83 + (0.20)87 + (0.30)x_5 = 90</mrow></md>
+          <md><mrow>61 + 0.30 x_5 = 90, \qquad 0.30 x_5 = 29, \qquad x_5 =
+                290 / 3 = 96.\bar{6}</mrow></md>
+          If the exam does not give fractions of a point as credit, you will
+              need to get a <m>97\%</m> on the final exam.
+            \end{subproblems}
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>The diagram below represents the temperature at points along
+          wires, in celcius.</p>
+      <image>
+        <shortdescription><!-- TODO: concise alt text for this TikZ image --></shortdescription>
+        <description>
+          <p><!-- TODO: complete description of this TikZ image --></p>
+        </description>
+        <latex-image>
+          \begin{tikzpicture}[scale=1, thick, every node/.style={inner
+                sep=3pt, label distance=1mm}]
+
+             \node at (0,2.3) {$30$};
+              \node at (1.9,-2) {$60$};
+              \node at (-1.9,-2) {$90$};
+              \node at (-0.4,1) {$T_1$};
+              \node at (1.4,-1) {$T_2$};
+               \node at (-1.4,-1) {$T_3$};
+              \point[scale=1.5] (A) at (0,1);
+              \point[scale=1.5] (C) at (1,-1);
+              \point[scale=1.5] (D) at (-1,-1);
+               \point[scale=1.5] (P) at (0,2);
+               \point[scale=1.5] (Q) at (3/2,-2);
+               \point[scale=1.5] (R) at (-1.5,-2);
+
+             \draw(A.center) to (C.center);
+
+              \draw(D.center) to (C.center);
+
+              \draw(D.center) to (A.center);
+
+              \draw(A.center) to+(0,1);
+               \draw(C.center) to+(1/2,-1);
+              \draw(D.center) to+(-1/2,-1);
+            \end{tikzpicture}
+        </latex-image>
+      </image>
+      <p>Let <m>T_1, \ T_2, \ T_3</m> be the temperatures at the interior points.
+      Assume the temperature at each interior point is the average of the
+      temperatures of the three adjacent points.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write a system of three linear equations whose solution
+          would give the temperatures <m>T_1</m>, <m>T_2</m>, and <m>T_3</m>.  Do not solve
+          it.</p>
+      </statement>
+      <solution>
+        <p>The left side system below or right-side system below
+          are both fine.</p>
+        <p><m>T_1 = \dfrac{T_2+T_3+30}{3}</m>, \quad or \quad
+          <m>3T_1 - T_2 - T_3 = 30</m>.
+        <m>T_2 = \dfrac{T_1+T_3+60}{3}</m>,
+          \quad or \quad <m>-T_1+3T_2-T_3 = 60</m>.</p>
+        <p><m>T_3 = \dfrac{T_1+T_2+90}{3}</m>, \quad or \quad <m>-T_1-T_2+3T_3 = 90</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write the system as a vector equation. Do not
+          solve it.</p>
+      </statement>
+      <solution>
+        <p><m>T_1 \begin{pmatrix}3 \\ -1 \\ -1\end{pmatrix} + T_2 \begin{pmatrix}-1 \\ 3 \\ -1\end{pmatrix} + T_3 \begin{pmatrix}-1 \\ -1 \\ 3\end{pmatrix} = \begin{pmatrix}30 \\ 60 \\ 90\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a matrix equation <m>Ax=b</m> that represents this
+          system.  Specify every entry of <m>A</m>, <m>x</m>, and <m>b</m>.  Do not solve it.</p>
+      </statement>
+      <solution>
+        <p><m>\begin{pmatrix}3 \amp -1 \amp -1 \\ -1 \amp 3 \amp -1 \\ -1 \amp -1 \amp 3\end{pmatrix} \begin{pmatrix}T_1 \\ T_2 \\ T_3\end{pmatrix} = \begin{pmatrix}30 \\ 60 \\ 90\end{pmatrix}</m>.
+        \end{subproblems}</p>
+      </solution>
+    </task>
+  </exercise>
+</exercises>
+</section>

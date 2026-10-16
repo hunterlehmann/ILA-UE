@@ -10,7 +10,6 @@
 
   <!-- <solutions divisional="hint"> <title>Selected Hints</title> </solutions> -->
 
-  <!-- <solutions divisional="solution"> <title>Selected Solutions</title> </solutions> -->
   <!-- <xi:include href="./cplx-nums.ptx"/> -->
 
   <appendix> <title>Notation</title>
@@ -18,6 +17,7 @@
     <notation-list/> 
   </appendix>
 
+  <solutions divisional="solution"> <title>Solutions to Selected Exercises</title> </solutions>
   <xi:include href="./gfdl.ptx"/>
   <index> <title>Index</title> <index-list/> </index>
 

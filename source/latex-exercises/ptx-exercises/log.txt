@@ -1,4 +1,4 @@
-latex_exercises_to_pretext run 2026-10-15T16:17:07
+latex_exercises_to_pretext run 2026-10-16T12:38:18
 input: C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises
 
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch1-ex.tex
@@ -8,6 +8,7 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch1-ex.tex
   exercise: 45
   href: 7
   image: 1
+  image-dot-slash-removed: 1
   inline-math: 233
   mat: 5
   md-punctuation-moved: 62
@@ -16,7 +17,7 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch1-ex.tex
   problems-environment: 3
   quote: 3
   url-color-removed: 4
-  REVIEW: Fill accessibility descriptions for image images/./1_1/lines.pdf
+  REVIEW: Fill accessibility descriptions for image images/1_1/lines.pdf
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch1-ex.ptx
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch2-ex.tex
   align*: 8
@@ -25,32 +26,36 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch2-ex.tex
   exercise: 109
   href: 1
   image: 13
-  inline-math: 1184
+  image-dot-slash-removed: 11
+  inline-math: 1169
   mat: 39
   md-punctuation-moved: 92
   newline-paragraph-break: 13
   newline-removed: 10
   problems-environment: 7
+  tikz-image: 2
   url-color-removed: 1
   vec: 269
   REVIEW: Fill accessibility descriptions for image images/2_1-colors-1.png
   REVIEW: Fill accessibility descriptions for image images/2_1-colors-2.png
+  REVIEW: Fill accessibility descriptions (TODO) for a TikZ <latex-image>
   REVIEW: A subproblems environment had no \subproblem commands
   REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
-  REVIEW: Fill accessibility descriptions for image images/./2_4/solution_sets1-sol.pdf
-  REVIEW: Fill accessibility descriptions for image images/./2_4/solution_sets1.pdf
+  REVIEW: Fill accessibility descriptions for image images/2_4/solution_sets1-sol.pdf
+  REVIEW: Fill accessibility descriptions for image images/2_4/solution_sets1.pdf
   REVIEW: A subproblems environment had no \subproblem commands
+  REVIEW: Fill accessibility descriptions (TODO) for a TikZ <latex-image>
   REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
-  REVIEW: Fill accessibility descriptions for image images/./2_6/2_6-lineorigin
-  REVIEW: Fill accessibility descriptions for image images/./2_6/2_6-which.pdf
-  REVIEW: Fill accessibility descriptions for image images/./2_6/paraboloid
-  REVIEW: Fill accessibility descriptions for image images/./2_6/planeno0
+  REVIEW: Fill accessibility descriptions for image images/2_6/2_6-lineorigin
+  REVIEW: Fill accessibility descriptions for image images/2_6/2_6-which.pdf
+  REVIEW: Fill accessibility descriptions for image images/2_6/paraboloid
+  REVIEW: Fill accessibility descriptions for image images/2_6/planeno0
   REVIEW: Subproblem/solution count mismatch: 3 tasks, 2 parallel solutions
-  REVIEW: Fill accessibility descriptions for image images/./2_7/blank-graph
-  REVIEW: Fill accessibility descriptions for image images/./2_7/blank-graph
-  REVIEW: Fill accessibility descriptions for image images/./2_7/2_7-pr-11-col.pdf
-  REVIEW: Fill accessibility descriptions for image images/./2_7/2_7-pr-11-null.pdf
-  REVIEW: Fill accessibility descriptions for image images/./2_7/2_7-pr-12.pdf
+  REVIEW: Fill accessibility descriptions for image images/2_7/blank-graph
+  REVIEW: Fill accessibility descriptions for image images/2_7/blank-graph
+  REVIEW: Fill accessibility descriptions for image images/2_7/2_7-pr-11-col.pdf
+  REVIEW: Fill accessibility descriptions for image images/2_7/2_7-pr-11-null.pdf
+  REVIEW: Fill accessibility descriptions for image images/2_7/2_7-pr-12.pdf
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch2-ex.ptx
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch3-ex.tex
   align*: 3
@@ -103,6 +108,7 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch6-ex.tex
   display-math: 19
   exercise: 27
   image: 1
+  image-dot-slash-removed: 1
   inline-math: 214
   mat: 17
   md-punctuation-moved: 19
@@ -110,7 +116,7 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch6-ex.tex
   newline-removed: 2
   problems-environment: 4
   vec: 44
-  REVIEW: Fill accessibility descriptions for image images/./6_4/projj
+  REVIEW: Fill accessibility descriptions for image images/6_4/projj
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch6-ex.ptx
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch8-ex.tex
   align*: 1
@@ -122,4 +128,4 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch8-ex.tex
   problems-environment: 1
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch8-ex.ptx
 
-7 file(s) processed, 25 REVIEW item(s).
+7 file(s) processed, 27 REVIEW item(s).

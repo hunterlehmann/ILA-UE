@@ -231,7 +231,7 @@
     <statement>
       <p>Let <m>A</m> be the matrix for orthogonal projection onto the line <m>W</m>
       drawn below.</p>
-      <image source="images/./6_4/projj">
+      <image source="images/6_4/projj">
         <shortdescription><!-- FILL: concise image description --></shortdescription>
         <description><p><!-- FILL: complete image description --></p></description>
       </image>

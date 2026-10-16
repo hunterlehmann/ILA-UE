@@ -224,11 +224,25 @@ def convert_href(text: str, report: Report) -> str:
         pos=e; report.add("href")
     out.append(text[pos:]); return "".join(out)
 
+def normalize_image_source(source: str, report: Report) -> str:
+    """Remove redundant ./ path segments (./a.png, ./images/a.png, images/./a.png)."""
+    src = source.strip()
+    new = re.sub(r'(?:(?<=/)|^)(?:\./)+', '', src)
+    if new != src: report.add("image-dot-slash-removed")
+    return new
+
+_IMAGE_SOURCE_ATTR_RE = re.compile(r'(<image\b[^>]*?\bsource\s*=\s*)(["\'])([^"\']*)\2')
+
+def clean_existing_image_sources(text: str, report: Report) -> str:
+    """Apply the same ./ cleanup to <image source="..."> already in the source."""
+    return _IMAGE_SOURCE_ATTR_RE.sub(
+        lambda m: m.group(1) + m.group(2) + normalize_image_source(m.group(3), report) + m.group(2), text)
+
 def convert_graphics(text: str, report: Report) -> str:
     pat=re.compile(r"\\includegraphics\s*(?:\[([^\]]*)\])?\s*\{([^}]+)\}")
     def repl(m):
         report.add("image")
-        source=m.group(2).strip()
+        source=normalize_image_source(m.group(2), report)
         if not source.startswith("images/"): source="images/"+source
         width=""
         if m.group(1):
@@ -240,6 +254,59 @@ def convert_graphics(text: str, report: Report) -> str:
                 '  <description><p><!-- FILL: complete image description --></p></description>\n'
                 '</image>')
     return pat.sub(repl,text)
+
+# ---------- TikZ -> <image><latex-image> ----------
+# tikzpicture source is raw LaTeX that PreTeXt hands to LaTeX unchanged, so it
+# is pulled out BEFORE any other conversion (\newline, \vec, $...$, \[...\],
+# quotes, ...) and restored at the very end of convert_content.  Already
+# generated <latex-image> blocks are protected the same way, so the second
+# convert_content pass in convert_text cannot touch them.
+_TIKZ_SLOT_RE = re.compile(r'\x02TIKZ(\d+)\x02')
+_LATEX_IMAGE_RE = re.compile(r'<latex-image\b[^>]*>[\s\S]*?</latex-image>')
+_IMAGE_WITH_LATEX_RE = re.compile(r'<image\b[^>]*>(?:(?!</image>)[\s\S])*?<latex-image\b[\s\S]*?</image>')
+
+def _xml_escape_code(code: str) -> str:
+    return code.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+def _dedent_block(code: str) -> str:
+    lines = code.strip("\n").splitlines()
+    pads = [len(l) - len(l.lstrip()) for l in lines if l.strip()]
+    pad = min(pads) if pads else 0
+    return "\n".join(l[pad:].rstrip() if l.strip() else "" for l in lines)
+
+def tikz_image_xml(env_source: str) -> str:
+    code = _xml_escape_code(_dedent_block(env_source))
+    return ('<image>\n'
+            '  <shortdescription><!-- TODO: concise alt text for this TikZ image --></shortdescription>\n'
+            '  <description>\n'
+            '    <p><!-- TODO: complete description of this TikZ image --></p>\n'
+            '  </description>\n'
+            '  <latex-image>\n'
+            + indent(code, 4) + '\n'
+            '  </latex-image>\n'
+            '</image>')
+
+def stash_tikz(text: str, report: Report, store: list[str]) -> str:
+    """Replace tikzpicture environments (and existing latex-image images) with slots."""
+    def _slot(xml: str) -> str:
+        store.append(xml); return f"\x02TIKZ{len(store) - 1}\x02"
+    # 1. Protect images that already contain a <latex-image> (second pass / pre-converted source).
+    text = _IMAGE_WITH_LATEX_RE.sub(lambda m: _slot(m.group(0)), text)
+    text = _LATEX_IMAGE_RE.sub(lambda m: _slot(m.group(0)), text)
+    # 2. Convert raw tikzpicture environments (outermost first; nesting is kept intact).
+    out = []; pos = 0
+    while True:
+        span = find_environment(text, "tikzpicture", pos)
+        if not span:
+            out.append(text[pos:]); break
+        s, e, _bs, _be = span
+        out.append(text[pos:s]); out.append(_slot(tikz_image_xml(text[s:e]))); pos = e
+        report.add("tikz-image")
+        report.warn("Fill accessibility descriptions (TODO) for a TikZ <latex-image>")
+    return "".join(out)
+
+def restore_tikz(text: str, store: list[str]) -> str:
+    return _TIKZ_SLOT_RE.sub(lambda m: store[int(m.group(1))], text)
 
 def split_math_rows(body: str) -> list[str]:
     rows=[]; buf=[]; depth=0; i=0
@@ -387,12 +454,15 @@ def convert_inline_math(text: str, report: Report) -> str:
     return "".join(out)
 
 def convert_content(text: str, report: Report) -> str:
+    tikz: list[str] = []
+    text=stash_tikz(text,report,tikz)   # must run first: TikZ code is raw LaTeX
     text=convert_newlines(text,report)
     text=convert_special_math_macros(text,report)
     text=convert_href(text,report)
     text=convert_url_macro(text,report)
     text=strip_url_colors(text,report)
     text=convert_graphics(text,report)
+    text=clean_existing_image_sources(text,report)
     text=replace_environments(text,"center",lambda b:b.strip())
     text=convert_display_math(text,report)
     text=move_md_punctuation(text,report)
@@ -400,6 +470,9 @@ def convert_content(text: str, report: Report) -> str:
     text=convert_quotes(text,report)
     text=re.sub(r"\\(?:noindent|medskip|smallskip|bigskip)\b", "", text)
     text=re.sub(r"[ \t]+\n", "\n", text)
+    # A tikzpicture that sat alone in a center environment / own line becomes a
+    # block-level <image>; blockify() lifts it out of the surrounding <p>.
+    text=restore_tikz(text,tikz)
     return text.strip()
 
 # ---------- exercise structure ----------

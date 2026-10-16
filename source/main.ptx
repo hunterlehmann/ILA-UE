@@ -90,13 +90,13 @@
       </introduction>
       <xi:include href="./vectors.ptx" />
        <xi:include href="./spans.ptx" />
-      <!--<xi:include href="./matrixeq.ptx" />
+      <xi:include href="./matrixeq.ptx" />
       <xi:include href="./solnsets.ptx" />
       <xi:include href="./linindep.ptx" />
       <xi:include href="./subspaces.ptx" />
       <xi:include href="./dimension.ptx" />
       <xi:include href="./b-coordinates.ptx" />
-      <xi:include href="./rank-thm.ptx" /> -->
+      <xi:include href="./rank-thm.ptx" />
     </chapter>
 
     <chapter xml:id="chap-matrices">
@@ -118,11 +118,12 @@
             Suppose you are building a robot arm with three joints that can move its hand around a plane, as in the following picture.
             <image>
 <shortdescription>
-
+<!-- TODO fill alt text -->
 </shortdescription>
 <description>
 <p>
 
+<!-- TODO fill long alt text -->
 </p>
 </description>
 <latex-image>
