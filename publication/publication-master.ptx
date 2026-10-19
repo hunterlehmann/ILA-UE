@@ -30,7 +30,7 @@
     <!-- them defaults to "yes".  The entries below are a plausible example, -->
     <!-- not the defaults.                                                   -->
       <!--<exercise-inline statement="yes" hint="yes" answer="no" solution="no" />-->
-      <exercise-divisional statement="yes" hint="yes" answer="no" solution="no" />
+      <exercise-divisional statement="yes" hint="yes" answer="no" solution="yes" />  <!-- solution yes for now for easier checking-->
       <!--<exercise-worksheet statement="yes" hint="yes" answer="no" solution="no" />-->
       <!--<exercise-reading statement="yes" hint="yes" answer="no" solution="no" />-->
       <!--<exercise-project statement="yes" hint="yes" answer="yes" solution="yes" />-->
