@@ -896,7 +896,7 @@ x_3
     <p>In <xref ref="solnsets-eg-plane2"/> and the <xref ref="solnsets-eg-line2"/> before it, the parametric vector form of the solution set of <m>Ax=b</m> was exactly the same as the parametric vector form of the solution set of <m>Ax=0</m> (from <xref ref="solnsets-eg-plane"/> and <xref ref="solnsets-eg-line"/>, respectively), plus a particular solution.
     </p>
 
-    <assemblage xml:id="solnsets-translate-span" type-name="Key Observation">
+    <assemblage xml:id="solnsets-translate-span">
       <title>Key Observation</title>
       <idx><h>Parametric vector form</h><h>particular solution</h></idx>
       <idx><h>Particular solution</h><see>Parametric vector form</see></idx>

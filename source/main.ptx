@@ -5,8 +5,9 @@
   <xi:include href="./docinfo.ptx" />
 
   <book xml:id="main">
-    <title component="default">Interactive Linear Algebra: Updated Edition</title>
-    <title component="1553">Interactive Linear Algebra: Updated Edition [1553]</title>
+    <title component="default">Interactive Linear Algebra</title>
+    <title component="1553">Interactive Linear Algebra [1553]</title>
+    <subtitle>Updated Edition</subtitle>
 
     <!-- Title Page, Preface, etc. -->
     <xi:include href="./frontmatter.ptx" />
@@ -335,11 +336,6 @@
           In <xref ref="sec-similarity"/> we introduce the notion of <em>similar</em> matrices, and demonstrate that similar matrices do indeed behave similarly.  In <xref ref="sec-diagonalization"/> we study matrices that are similar to diagonal matrices and in <xref ref="sec-complex-eigenvalues"/> we study matrices that are similar to rotation-scaling matrices, thus gaining a solid geometric understanding of large classes of matrices. Finally, we spend <xref ref="sec-stochastic-matrices"/> presenting a common kind of application of eigenvalues and eigenvectors to real-world problems, including searching the Internet using Google<rsq/>s PageRank algorithm.
         </p>
 
-        <p component="1554">
-          In <xref ref="sec-eigenvectors"/>, we will define eigenvalues and eigenvectors, and show how to compute the latter; in <xref ref="sec-characteristic-polynomial"/> we will learn to compute the former.
-          In <xref ref="sec-similarity"/> we introduce the notion of <em>similar</em> matrices, and demonstrate that similar matrices do indeed behave similarly.  In <xref ref="sec-diagonalization"/> we study matrices that are similar to diagonal matrices and in <xref ref="sec-complex-eigenvalues"/> we study matrices that are similar to rotation-scaling matrices, thus gaining a solid geometric understanding of large classes of matrices. Finally, we spend <xref ref="sec-stochastic-matrices"/> presenting a common kind of application of eigenvalues and eigenvectors to real-world problems, including searching the Internet using Google<rsq/>s PageRank algorithm.
-        </p>
-
         <p component="1553">
           In <xref ref="sec-eigenvectors"/>, we will define eigenvalues and eigenvectors, and show how to compute the latter; in <xref ref="sec-characteristic-polynomial"/> we will learn to compute the former.
   In <xref ref="sec-diagonalization"/> we will use eigenvalues and eigenvectors to determine when a matrix is <q>similar</q> to a diagonal matrix, and we will see that the algebra and geometry of such a matrix is much simpler to understand.
@@ -411,11 +407,6 @@ Finally, we spend <xref ref="sec-stochastic-matrices"/> presenting a common kind
 </image>
 
         <p component="default">
-          First we will define orthogonality and learn to find orthogonal complements of subspaces in <xref ref="sec-dot-product"/> and <xref ref="sec-orthogonal-complements"/>.  The core of this chapter is <xref ref="sec-projections"/>, in which we discuss <em>the orthogonal projection</em> of a vector onto a subspace; this is a method of calculating the closest vector on a subspace to a given vector.
-          These calculations become easier in the presence of an orthogonal set, as we will see in <xref ref="sec-orthogonal-sets"/>.
-          In <xref ref="sec-least-squares"/> we will present the least-squares method of approximately solving systems of equations, and we will give applications to data modeling.
-        </p>
-        <p component="1554">
           First we will define orthogonality and learn to find orthogonal complements of subspaces in <xref ref="sec-dot-product"/> and <xref ref="sec-orthogonal-complements"/>.  The core of this chapter is <xref ref="sec-projections"/>, in which we discuss <em>the orthogonal projection</em> of a vector onto a subspace; this is a method of calculating the closest vector on a subspace to a given vector.
           These calculations become easier in the presence of an orthogonal set, as we will see in <xref ref="sec-orthogonal-sets"/>.
           In <xref ref="sec-least-squares"/> we will present the least-squares method of approximately solving systems of equations, and we will give applications to data modeling.

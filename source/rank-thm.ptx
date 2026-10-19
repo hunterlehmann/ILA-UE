@@ -269,11 +269,8 @@ the license is included in gfdl.xml.
     </p>
 
     <theorem xml:id="rank-theorem">
-      <title>Rank Theorem</title>
       <idx><h>Rank</h><h>rank theorem</h></idx>
       <idx><h>Nullity</h><h>rank theorem</h></idx>
-      
-      
       <statement>
         <p>
           If <m>A</m> is a matrix with <m>n</m> columns, then

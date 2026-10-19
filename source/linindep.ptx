@@ -520,7 +520,7 @@ v_1 \amp v_2 \amp \cdots \amp v_k \\
       </proof>
     </theorem>
 
-    <insight type-name="Warning" xml:id="linindep-not-any"><p>
+    <insight xml:id="linindep-not-any"><p>
       In a linearly dependent set <m>\{v_1,v_2,\ldots,v_k\}</m>, it is not generally true that <em>any</em> vector <m>v_j</m> is in the span of the others, only that <em>at least one</em> of them is.
     </p></insight>
 

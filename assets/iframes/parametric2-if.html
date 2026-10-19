@@ -65,6 +65,11 @@
     }
     #fs-btn:hover { background: rgba(0,0,0,.07); }
     :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
   </style>
 </head>
 <body>
@@ -98,6 +103,8 @@
   </div>
 
   <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
 
   <script>
   "use strict";
@@ -136,6 +143,7 @@
     new Demo({
       mathbox: { element: document.getElementById('mathbox1') },
       scaleUI: true,
+      fullscreen: false,
       camera:  { position: [1.5, 3, 1.5] }
     }, function() {
 
@@ -182,17 +190,21 @@
         size:   15,
         zIndex: 3,
         zTest:  false
-      }).format({
-        expr: function(x, y, z) {
-          return '(' + x.toPrecision(2) + ', ' + y.toPrecision(2) + ', ' + z.toPrecision(2) + ')';
-        }
-      }).label({
-        outline: 0,
-        color:   pointColor.arr(),
-        offset:  [0, 20],
-        size:    13,
-        zIndex:  3
       });
+
+      // Coordinate label as MathJax (replaces WebGL .format().label())
+      var labelLayer = makeLabelLayer(document.getElementById('mathbox1'), this, view);
+      var ptLabel = labelLayer.add({
+        position: function() { return [t, 1 - 2 * t, t]; },
+        offset:   [0, 20]
+      });
+      var lastPtTex = '';
+      (function refreshPtLabel() {
+        var q = [t, 1 - 2 * t, t];
+        var tex = texColored(pointColor, '(' + q.map(function(c) { return (Math.abs(c) < 0.005 ? 0 : c).toFixed(2); }).join(',\\,') + ')');
+        if (tex !== lastPtTex) { lastPtTex = tex; ptLabel.set(tex); }
+        requestAnimationFrame(refreshPtLabel);
+      })();
 
       // ── Static MathJax plane equations ───────────────────────────────────
       renderMath(

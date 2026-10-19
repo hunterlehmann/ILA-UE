@@ -2,8 +2,8 @@
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is an <m>n \times n</m> matrix and <m>\det(A)=2</m>, then <m>2</m> is an
+    <statement correct="no">
+      <p>If <m>A</m> is an <m>n \times n</m> matrix and <m>\det(A)=2</m>, then <m>2</m> is an
       eigenvalue of <m>A</m>.</p>
     </statement>
     <solution>
@@ -12,8 +12,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: Suppose <m>A</m> is a <m>n \times n</m> matrix and <m>u</m> and <m>v</m> are nonzero
+    <statement correct="yes">
+      <p>Suppose <m>A</m> is a <m>n \times n</m> matrix and <m>u</m> and <m>v</m> are nonzero
       vectors in <m>{\bf R}^{n}</m> satisfying <m>Au = 2u</m> and <m>Av = 3v</m>.  Then <m>\{u, v\}</m> must
       be linearly independent.</p>
     </statement>
@@ -25,8 +25,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The matrices <m>A=\begin{pmatrix}2 \amp 1 \\ 0 \amp -1\end{pmatrix}</m> and <m>B=\begin{pmatrix}2 \amp 20 \\ 0 \amp -1\end{pmatrix}</m> have
+    <statement correct="yes">
+      <p>The matrices <m>A=\begin{pmatrix}2 \amp 1 \\ 0 \amp -1\end{pmatrix}</m> and <m>B=\begin{pmatrix}2 \amp 20 \\ 0 \amp -1\end{pmatrix}</m> have
       the same eigenvalues.</p>
     </statement>
     <solution>
@@ -34,8 +34,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is an <m>n \times n</m> matrix and <m>v</m> and <m>w</m> are eigenvectors
+    <statement correct="no">
+      <p>If <m>A</m> is an <m>n \times n</m> matrix and <m>v</m> and <m>w</m> are eigenvectors
       of <m>A</m>, then <m>v+w</m> is also an eigenvector of <m>A</m>.</p>
     </statement>
     <solution>
@@ -45,8 +45,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The zero vector is an eigenvector for every square matrix.</p>
+    <statement correct="no">
+      <p>The zero vector is an eigenvector for every square matrix.</p>
     </statement>
     <solution>
       <p>False.  By definition of eigenvector, the zero vector is never an eigenvector
@@ -332,8 +332,8 @@
 \subsection{5.2, The characteristic polynomial}
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: Every <m>n \times n</m> matrix has a real eigenvalue.</p>
+    <statement correct="no">
+      <p>Every <m>n \times n</m> matrix has a real eigenvalue.</p>
     </statement>
     <solution>
       <p>False.  For example, the <m>2 \times 2</m> matrix for rotation by <m>\pi/2</m> radians
@@ -344,8 +344,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: Every <m>n \times n</m> matrix has <m>n</m> distinct eigenvalues.</p>
+    <statement correct="no">
+      <p>Every <m>n \times n</m> matrix has <m>n</m> distinct eigenvalues.</p>
     </statement>
     <solution>
       <p>False.  The <m>2 \times 2</m> identity matrix <m>I = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m> has only one
@@ -353,8 +353,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>\lambda</m> is an eigenvalue of a matrix <m>A</m>, then the nullity
+    <statement correct="yes">
+      <p>If <m>\lambda</m> is an eigenvalue of a matrix <m>A</m>, then the nullity
       of <m>A- \lambda I</m> is the dimension of the <m>\lambda</m>-eigenspace.</p>
     </statement>
     <solution>
@@ -565,8 +565,8 @@
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is a <m>3 \times 3</m> matrix with eigenvalues <m>0</m>, <m>1</m>, and <m>2</m>, then
+    <statement correct="yes">
+      <p>If <m>A</m> is a <m>3 \times 3</m> matrix with eigenvalues <m>0</m>, <m>1</m>, and <m>2</m>, then
       <m>A</m> is diagonalizable.</p>
     </statement>
     <solution>
@@ -580,8 +580,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>\lambda</m> is an eigenvalue of a matrix <m>A</m>, it is possible
+    <statement correct="no">
+      <p>If <m>\lambda</m> is an eigenvalue of a matrix <m>A</m>, it is possible
       that the <m>\lambda</m>-eigenspace is <m>0</m>-dimensional.</p>
     </statement>
     <solution>
@@ -593,8 +593,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: All diagonalizable matrices are invertible.</p>
+    <statement correct="no">
+      <p>All diagonalizable matrices are invertible.</p>
     </statement>
     <solution>
       <p>False: for example, zero matrix is diagonalizable (in fact, diagonal!) but is
@@ -602,8 +602,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: All invertible matrices are diagonalizable.</p>
+    <statement correct="no">
+      <p>All invertible matrices are diagonalizable.</p>
     </statement>
     <solution>
       <p>False: for example, take <m>A = \begin{pmatrix}1 \amp 1 \\ 0 \amp 1\end{pmatrix}</m>. Note <m>\det(A) = 1</m>, so <m>A</m> is
@@ -613,8 +613,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: All diagonal <m>n \times n</m> matrices are diagonalizable.</p>
+    <statement correct="yes">
+      <p>All diagonal <m>n \times n</m> matrices are diagonalizable.</p>
     </statement>
     <solution>
       <p>True: if <m>A</m> is diagonal, then <m>A = I A I^{-1}</m>, so <m>A</m> is diagonalizable.  In
@@ -623,8 +623,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: All upper-triangular <m>n \times n</m> matrices are diagonalizable.</p>
+    <statement correct="no">
+      <p>All upper-triangular <m>n \times n</m> matrices are diagonalizable.</p>
     </statement>
     <solution>
       <p>
@@ -999,8 +999,8 @@ of all matrices are real numbers unless specified otherwise.
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: If <m>v</m> is an eigenvector for <m>A</m> and <m>v</m> has complex entries,
+    <statement correct="yes">
+      <p>If <m>v</m> is an eigenvector for <m>A</m> and <m>v</m> has complex entries,
       then <m>i \cdot v</m> is also an eigenvector for <m>A</m>.</p>
     </statement>
     <solution>
@@ -1014,8 +1014,8 @@ of all matrices are real numbers unless specified otherwise.
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>\begin{pmatrix}i \\ 1\end{pmatrix}</m> is an eigenvector for <m>A</m>, then <m>\begin{pmatrix}i \\ -1\end{pmatrix}</m> is
+    <statement correct="yes">
+      <p>If <m>\begin{pmatrix}i \\ 1\end{pmatrix}</m> is an eigenvector for <m>A</m>, then <m>\begin{pmatrix}i \\ -1\end{pmatrix}</m> is
       also an eigenvector for <m>A</m>.</p>
     </statement>
     <solution>

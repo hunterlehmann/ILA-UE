@@ -58,6 +58,11 @@
     }
     #fs-btn:hover { background: rgba(0,0,0,.07); }
     :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
   </style>
 </head>
 <body>
@@ -108,6 +113,8 @@
       external/iframes/js/demo.js
   -->
   <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
 
   <script>
   "use strict";
@@ -170,6 +177,7 @@
     new Demo({
       mathbox: { element: document.getElementById('mathbox1') },
       scaleUI: true,
+      fullscreen: false,
       camera:  { position: [2, 1.5, 2] }
     }, function() {
       var view = this.view({
@@ -188,17 +196,21 @@
         size:   18,
         zIndex: 3,
         zTest:  false
-      }).format({
-        expr: function(x, y, z) {
-          return '(' + x.toFixed(1) + ', ' + y.toFixed(1) + ', ' + z.toFixed(1) + ')';
-        }
-      }).label({
-        outline: 0,
-        color:   pointColor.arr(),
-        offset:  [0, 22],
-        size:    13,
-        zIndex:  3
       });
+
+      // Coordinate label as MathJax (replaces WebGL .format().label())
+      var labelLayer = makeLabelLayer(document.getElementById('mathbox1'), this, view);
+      var ptLabel = labelLayer.add({
+        position: function() { return [pt[0], pt[1], pt[2]]; },
+        offset:   [0, 20]
+      });
+      var lastPtTex = '';
+      (function refreshPtLabel() {
+        var q = [pt[0], pt[1], pt[2]];
+        var tex = texColored(pointColor, '(' + q.map(function(c) { return (Math.abs(c) < 0.05 ? 0 : c).toFixed(1); }).join(',\\,') + ')');
+        if (tex !== lastPtTex) { lastPtTex = tex; ptLabel.set(tex); }
+        requestAnimationFrame(refreshPtLabel);
+      })();
 
       // Projection lines from the point to each axis — visual aid for coordinates
       [

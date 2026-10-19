@@ -2,9 +2,9 @@
 
 <exercises>
   <exercise>
-    <statement>
+    <statement correct="yes">
       <p>
-        True or false: If <m>A</m> is a <m>3 \times 3</m> matrix satisfying
+        If <m>A</m> is a <m>3 \times 3</m> matrix satisfying
         <md><mrow>Ae_1 = e_2, \qquad Ae_2 = e_2 + e_3, \qquad Ae_3 = e_2-e_3</mrow></md>,
         then
         <m>\det(A) = 0</m>.
@@ -23,8 +23,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is an <m>n \times n</m> matrix and the equation <m>Ax = b</m> has
+    <statement correct="yes">
+      <p>If <m>A</m> is an <m>n \times n</m> matrix and the equation <m>Ax = b</m> has
       more than one solution for some <m>b</m> in <m>{\bf R}^n</m>, then <m>\det(A) = 0</m>.</p>
     </statement>
     <solution>
@@ -34,8 +34,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> and <m>B</m> are <m>n \times n</m> matrices and <m>\det(AB) \neq 0</m>,
+    <statement correct="yes">
+      <p>If <m>A</m> and <m>B</m> are <m>n \times n</m> matrices and <m>\det(AB) \neq 0</m>,
       then <m>A</m> and <m>B</m> must both be invertible.</p>
     </statement>
     <solution>
@@ -45,8 +45,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> and <m>B</m> are <m>n \times n</m> matrices and <m>\det(A)=0</m>, then
+    <statement correct="yes">
+      <p>If <m>A</m> and <m>B</m> are <m>n \times n</m> matrices and <m>\det(A)=0</m>, then
       <m>AB</m> is not invertible.</p>
     </statement>
     <solution>
@@ -281,8 +281,8 @@
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: The cofactor expansion of an <m>n \times n</m> matrix along the
+    <statement correct="no">
+      <p>The cofactor expansion of an <m>n \times n</m> matrix along the
         first row gives the negative of the cofactor expansion along the second row.</p>
     </statement>
     <solution>

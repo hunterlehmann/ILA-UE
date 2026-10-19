@@ -50,7 +50,7 @@
   </exercise>
   <exercise>
     <statement>
-      <p>Is the set of polynomials with \textbf{integer} coefficients of degree at most \(d\) an abstract vector space over \(\mathbb{R}\)? Verify the axioms or provide a counterexample.</p>
+      <p>Is the set of polynomials with <em>integer</em> coefficients of degree at most \(d\) an abstract vector space over \(\mathbb{R}\)? Verify the axioms or provide a counterexample.</p>
     </statement>
     <solution>
       <p>No, consider \(p(x) = x^d\). If we multiply it by \(\frac{1}{2}\), then the resulting polynomial no longer has integer coefficients, so the set is not closed under scalar multiplication.</p>

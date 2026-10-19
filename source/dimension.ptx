@@ -751,7 +751,7 @@ z
       The basis theorem is an abstract version of the preceding statement, that applies to any subspace.
     </p>
 
-    <theorem type-name="Basis Theorem" xml:id="basis-theorem">
+    <theorem xml:id="basis-theorem">
       <idx><h>Basis</h><h>basis theorem</h></idx>
       <statement>
         <p>

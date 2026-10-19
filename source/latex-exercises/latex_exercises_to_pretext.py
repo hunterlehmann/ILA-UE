@@ -437,6 +437,47 @@ def convert_quotes(text: str, report: Report) -> str:
     if n: report.add("quote", n)
     return re.sub(r'\x01(\d+)\x01', lambda m: saved[int(m.group(1))], masked)
 
+# \textbf{...} and \emph{...} -> <em>...</em>.  Runs after math conversion so
+# anything inside <m>/<md> (e.g. \textbf{v} vector notation) is left alone.
+# TikZ is already stashed in slots, so <latex-image> code is never touched.
+_EM_PROTECT_RE = re.compile(r'<m\b[^>]*>[\s\S]*?</m>|<md\b[^>]*>[\s\S]*?</md>'
+                            r'|\\\([\s\S]*?\\\)|<!--[\s\S]*?-->')
+_EM_CMD_RE = re.compile(r'\\(?:textbf|emph)(?![A-Za-z])\s*\{')
+def _convert_em_segment(text: str, report: Report) -> str:
+    out=[]; pos=0
+    while True:
+        m=_EM_CMD_RE.search(text,pos)
+        if not m: out.append(text[pos:]); break
+        close=matching_brace(text,m.end()-1)
+        if close < 0:
+            report.warn(f"Unbalanced braces after {text[m.start():m.start()+40]!r}; left unconverted")
+            out.append(text[pos:m.end()]); pos=m.end(); continue
+        inner=_convert_em_segment(text[m.end():close],report)   # nested \textbf/\emph
+        out += [text[pos:m.start()], f"<em>{inner}</em>"]
+        report.add("em"); pos=close+1
+    return "".join(out)
+def _strip_em_segment(text: str, report: Report) -> str:
+    """Remove \\textbf{X} / \\emph{X} wrappers, keeping X (used inside <url>)."""
+    out=[]; pos=0
+    while True:
+        m=_EM_CMD_RE.search(text,pos)
+        if not m: out.append(text[pos:]); break
+        close=matching_brace(text,m.end()-1)
+        if close < 0:
+            report.warn(f"Unbalanced braces after {text[m.start():m.start()+40]!r}; left unconverted")
+            out.append(text[pos:m.end()]); pos=m.end(); continue
+        out += [text[pos:m.start()], _strip_em_segment(text[m.end():close],report)]
+        report.add("em-stripped-in-url"); pos=close+1
+    return "".join(out)
+def convert_emphasis(text: str, report: Report) -> str:
+    if "\\textbf" not in text and "\\emph" not in text: return text
+    # Emphasis inside a link label is stripped, not converted.
+    text=_URL_PARTS_RE.sub(lambda m: m.group(1)+_strip_em_segment(m.group(2),report)+m.group(3), text)
+    out=[]; pos=0
+    for m in _EM_PROTECT_RE.finditer(text):
+        out += [_convert_em_segment(text[pos:m.start()],report), m.group(0)]; pos=m.end()
+    out.append(_convert_em_segment(text[pos:],report))
+    return "".join(out)
 def convert_inline_math(text: str, report: Report) -> str:
     out=[]; i=0; n=0
     while i < len(text):
@@ -468,6 +509,7 @@ def convert_content(text: str, report: Report) -> str:
     text=move_md_punctuation(text,report)
     text=convert_inline_math(text,report)
     text=convert_quotes(text,report)
+    text=convert_emphasis(text,report)
     text=re.sub(r"\\(?:noindent|medskip|smallskip|bigskip)\b", "", text)
     text=re.sub(r"[ \t]+\n", "\n", text)
     # A tikzpicture that sat alone in a center environment / own line becomes a
@@ -572,8 +614,59 @@ def convert_subproblems(body: str, exercise_solutions: list[str], report: Report
             if embedded[i] is None: embedded[i]=s
     return "\n".join(task_xml(st,embedded[i],report) for i,st in enumerate(statements)),remaining
 
+# ---------- True/false problems -> interactive exercises ----------
+_TF_PREFIX_RE = re.compile(r'^\s*True\s+or\s+false\s*:\s*', re.I)
+
+def _plain_words(latex: str) -> str:
+    """Rough plain text of a LaTeX snippet, used only to read a true/false verdict."""
+    t = re.sub(r'\$[^$]*\$', ' ', latex)                 # drop inline math
+    t = re.sub(r'\\[A-Za-z]+\*?', ' ', t)                # drop command names (\textbf, \emph, ...)
+    t = re.sub(r'[{}\[\]~]', ' ', t)
+    return re.sub(r'\s+', ' ', t).strip()
+
+_VERDICT_LEAD_RE = re.compile(r'^\W*(true|false)\b', re.I)
+_VERDICT_PHRASE_RE = re.compile(
+    r'\b(?:statement|answer|claim|this|it)\s+(?:is|was)\s+(?:\w+\s+)?(true|false)\b', re.I)
+
+def tf_verdict(solution: str) -> str | None:
+    """'yes' / 'no' from a solution saying True or False; None when unclear."""
+    words = _plain_words(solution)
+    m = _VERDICT_LEAD_RE.match(words)
+    if m: return "yes" if m.group(1).lower() == "true" else "no"
+    found = {v.group(1).lower() for v in _VERDICT_PHRASE_RE.finditer(words)}
+    if len(found) == 1: return "yes" if found == {"true"} else "no"
+    return None
+
+def convert_true_false(statement: str, solutions: list[str], report: Report) -> str | None:
+    """Interactive true/false exercise, or None if this problem is not one."""
+    if not _TF_PREFIX_RE.match(statement): return None
+    if find_environment(statement, "subproblems"):
+        report.warn("A 'True or false:' problem has subproblems; converted as an ordinary exercise")
+        return None
+    claim = _TF_PREFIX_RE.sub("", statement, count=1)
+    verdict = tf_verdict(solutions[0]) if solutions else None
+    if verdict is None:
+        snippet = _plain_words(claim)[:60]
+        report.warn(f"Could not read True/False from the solution of '{snippet}...'; "
+                    "set correct=\"yes\" or \"no\" by hand")
+        attr, todo = "", '<!-- TODO: add correct="yes" or correct="no" to <statement> -->\n'
+    else:
+        attr, todo = f' correct="{verdict}"', ""
+        report.add("true-false-" + ("true" if verdict == "yes" else "false"))
+    if len(solutions) > 1:
+        report.warn("A true/false problem had several solutions; the first was used for correct=")
+    result = (f"<exercise>\n  <statement{attr}>\n"
+              + indent(todo + blockify(convert_content(claim, report)), 4)
+              + "\n  </statement>")
+    for sol in solutions:
+        result += "\n  <solution>\n" + indent(blockify(convert_content(sol, report)), 4) + "\n  </solution>"
+    report.add("exercise"); report.add("true-false")
+    return result + "\n</exercise>"
+
 def convert_exercise(body: str, report: Report) -> str:
     statement,solutions=extract_solution_blocks(body)
+    tf=convert_true_false(statement,solutions,report)
+    if tf is not None: return tf
     sub=find_environment(statement,"subproblems")
     if sub:
         s,e,bs,be=sub

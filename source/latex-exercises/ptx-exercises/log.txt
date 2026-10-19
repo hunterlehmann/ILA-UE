@@ -1,10 +1,11 @@
-latex_exercises_to_pretext run 2026-10-16T12:38:18
+latex_exercises_to_pretext run 2026-10-19T10:59:21
 input: C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises
 
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch1-ex.tex
   align*: 5
   amat: 55
   display-math: 109
+  em: 1
   exercise: 45
   href: 7
   image: 1
@@ -16,6 +17,9 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch1-ex.tex
   newline-removed: 7
   problems-environment: 3
   quote: 3
+  true-false: 4
+  true-false-false: 3
+  true-false-true: 1
   url-color-removed: 4
   REVIEW: Fill accessibility descriptions for image images/1_1/lines.pdf
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch1-ex.ptx
@@ -23,6 +27,7 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch2-ex.tex
   align*: 8
   amat: 53
   display-math: 118
+  em: 5
   exercise: 109
   href: 1
   image: 13
@@ -34,10 +39,14 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch2-ex.tex
   newline-removed: 10
   problems-environment: 7
   tikz-image: 2
+  true-false: 33
+  true-false-false: 14
+  true-false-true: 18
   url-color-removed: 1
   vec: 269
   REVIEW: Fill accessibility descriptions for image images/2_1-colors-1.png
   REVIEW: Fill accessibility descriptions for image images/2_1-colors-2.png
+  REVIEW: Could not read True/False from the solution of 'If is a matrix and the product makes sense, then which is in...'; set correct="yes" or "no" by hand
   REVIEW: Fill accessibility descriptions (TODO) for a TikZ <latex-image>
   REVIEW: A subproblems environment had no \subproblem commands
   REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
@@ -68,6 +77,9 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch3-ex.tex
   newline-paragraph-break: 6
   newline-removed: 17
   problems-environment: 5
+  true-false: 11
+  true-false-false: 3
+  true-false-true: 8
   vec: 144
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch3-ex.ptx
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch4-ex.tex
@@ -80,6 +92,9 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch4-ex.tex
   newline-paragraph-break: 2
   newline-removed: 10
   problems-environment: 3
+  true-false: 5
+  true-false-false: 1
+  true-false-true: 4
   vec: 41
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch4-ex.ptx
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch5-ex.tex
@@ -95,6 +110,9 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch5-ex.tex
   newline-removed: 21
   problems-environment: 5
   quote: 2
+  true-false: 16
+  true-false-false: 9
+  true-false-true: 7
   vec: 122
   REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
   REVIEW: Fill accessibility descriptions for image images/q6_18s-answer
@@ -122,10 +140,11 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch8-ex.tex
   align*: 1
   amat: 9
   display-math: 5
+  em: 1
   exercise: 5
   inline-math: 9
   md-punctuation-moved: 4
   problems-environment: 1
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch8-ex.ptx
 
-7 file(s) processed, 27 REVIEW item(s).
+7 file(s) processed, 28 REVIEW item(s).

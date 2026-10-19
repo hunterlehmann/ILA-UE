@@ -2,8 +2,8 @@
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is a matrix and <m>T</m> is the associated matrix
+    <statement correct="yes">
+      <p>If <m>A</m> is a matrix and <m>T</m> is the associated matrix
       transformation, then the statement that <m>Ax = b</m> is consistent is
       equivalent to the statement that <m>b</m> is in the range of <m>T</m>.</p>
     </statement>
@@ -310,8 +310,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: Suppose <m>A</m> is
+    <statement correct="yes">
+      <p>Suppose <m>A</m> is
       a matrix and <m>A \begin{pmatrix}-3 \\ 5 \\ 8 \\ 1\end{pmatrix}</m> is the zero vector.  Then the transformation
       <m>T(x) = Ax</m> cannot be one-to-one.</p>
     </statement>
@@ -787,8 +787,8 @@
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> and <m>B</m> are matrices and <m>AB</m> is an <m>3 \times 3</m> matrix,
+    <statement correct="no">
+      <p>If <m>A</m> and <m>B</m> are matrices and <m>AB</m> is an <m>3 \times 3</m> matrix,
         then <m>A</m> and <m>B</m> must be <m>3 \times 3</m> matrices.</p>
     </statement>
     <solution>
@@ -797,8 +797,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: Suppose <m>A</m> and <m>B</m> are matrices so that <m>AB</m> and <m>BA</m> are both
+    <statement correct="yes">
+      <p>Suppose <m>A</m> and <m>B</m> are matrices so that <m>AB</m> and <m>BA</m> are both
       defined.  If <m>AB</m> and <m>BA</m> are each <m>r \times r</m> matrices, then <m>A</m> and <m>B</m> must
       each be <m>n \times n</m>.</p>
     </statement>
@@ -1109,8 +1109,8 @@
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: Suppose <m>A</m> is an <m>n \times n</m> matrix and <m>AB = I_n</m>.
+    <statement correct="yes">
+      <p>Suppose <m>A</m> is an <m>n \times n</m> matrix and <m>AB = I_n</m>.
       Then <m>BA = I_n</m>.</p>
     </statement>
     <solution>
@@ -1121,8 +1121,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: There is an invertible matrix <m>A</m> satisfying
+    <statement correct="no">
+      <p>There is an invertible matrix <m>A</m> satisfying
       <m>A \begin{pmatrix}1 \\ 2 \\ 3\end{pmatrix} = \begin{pmatrix}1 \\ 2\end{pmatrix}</m>.</p>
     </statement>
     <solution>
@@ -1132,8 +1132,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is an <m>n \times n</m> matrix and <m>Ax=0</m> has
+    <statement correct="yes">
+      <p>If <m>A</m> is an <m>n \times n</m> matrix and <m>Ax=0</m> has
       only the trivial solution, then the equation <m>Ax=b</m> is consistent for
       every <m>b</m> in <m>{\bf R}^n</m>.</p>
     </statement>
@@ -1142,8 +1142,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: There are linear transformations <m>T: {\bf R}^3
+    <statement correct="no">
+      <p>There are linear transformations <m>T: {\bf R}^3
       \to {\bf R}^4</m> and <m>U: {\bf R}^4 \to {\bf R}^3</m> so that <m>T \circ U</m> is
       invertible.</p>
     </statement>
@@ -1156,8 +1156,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: There are linear transformations <m>T: {\bf R}^4
+    <statement correct="yes">
+      <p>There are linear transformations <m>T: {\bf R}^4
       \to {\bf R}^3</m> and <m>U: {\bf R}^3 \to {\bf R}^4</m> so that <m>T \circ U</m> is
       invertible.</p>
     </statement>
@@ -1169,8 +1169,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: Let <m>A = \begin{pmatrix}2 \amp 0 \amp 0 \\ 0 \amp 3 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>. Then <m>A</m> is
+    <statement correct="yes">
+      <p>Let <m>A = \begin{pmatrix}2 \amp 0 \amp 0 \\ 0 \amp 3 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>. Then <m>A</m> is
       invertible and <m>A^{-1} = \begin{pmatrix}\frac{1}{2} \amp 0 \amp 0 \\ 0 \amp \frac{1}{3} \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>.</p>
     </statement>
     <solution>
@@ -1182,8 +1182,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is an <m>n \times n</m> matrix and <m>Ax = 0</m> has
+    <statement correct="yes">
+      <p>If <m>A</m> is an <m>n \times n</m> matrix and <m>Ax = 0</m> has
       infinitely many solutions, then <m>A</m> cannot be invertible.</p>
     </statement>
     <solution>

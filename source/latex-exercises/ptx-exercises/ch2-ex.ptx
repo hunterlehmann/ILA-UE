@@ -1,24 +1,24 @@
 \subsection{2.1+2.2, Vectors, vector equations, and spans}
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: For any collection of vectors <m>v_1, \ldots, v_k</m> in <m>{\bf R}^n</m>, the zero vector in <m>{\bf R}^n</m> is a linear combination of <m>v_1, \ldots, v_k</m>.</p>
+    <statement correct="yes">
+      <p>For any collection of vectors <m>v_1, \ldots, v_k</m> in <m>{\bf R}^n</m>, the zero vector in <m>{\bf R}^n</m> is a linear combination of <m>v_1, \ldots, v_k</m>.</p>
     </statement>
     <solution>
       <p>True: <m>0 = 0 v_1 + \cdots + 0 v_k</m>.</p>
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The vector <m>\begin{pmatrix}1 \\ 1\end{pmatrix}</m> can be written as a linear combination of <m>\begin{pmatrix}2 \\ 2\end{pmatrix}</m> and <m>\begin{pmatrix}-2 \\ -2\end{pmatrix}</m> in infinitely many ways.</p>
+    <statement correct="yes">
+      <p>The vector <m>\begin{pmatrix}1 \\ 1\end{pmatrix}</m> can be written as a linear combination of <m>\begin{pmatrix}2 \\ 2\end{pmatrix}</m> and <m>\begin{pmatrix}-2 \\ -2\end{pmatrix}</m> in infinitely many ways.</p>
     </statement>
     <solution>
       <p>True: the equation <m>x_1 \begin{pmatrix}2 \\ 2\end{pmatrix} + x_2 \begin{pmatrix}-2 \\ -2\end{pmatrix} = \begin{pmatrix}1 \\ 1\end{pmatrix}</m> corresponds to the augmented matrix <m>\left(\begin{array}{rr|r}2 \amp -2 \amp 1 \\ 2 \amp -2 \amp 1\end{array}\right)</m>.  One step of row-reduction gives us <m>\left(\begin{array}{rr|r}2 \amp -2 \amp 1 \\ 0 \amp 0 \amp 0\end{array}\right)</m>, so the system is consistent and has a free variable, so it has infinitely many solutions.</p>
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The vector <m>\begin{pmatrix}8 \\ 16 \\ 1\end{pmatrix}</m> in the span of <m>\begin{pmatrix}1 \\ 2 \\ 6\end{pmatrix}</m> and
+    <statement correct="yes">
+      <p>The vector <m>\begin{pmatrix}8 \\ 16 \\ 1\end{pmatrix}</m> in the span of <m>\begin{pmatrix}1 \\ 2 \\ 6\end{pmatrix}</m> and
       <m>\begin{pmatrix}-1 \\ -2 \\ -1\end{pmatrix}</m>.</p>
     </statement>
     <solution>
@@ -26,8 +26,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>v_1, \ldots, v_k</m> are vectors in <m>{\bf R}^n</m>, then the equation <m>x_1 v_1 + \cdots + x_k v_k = 0</m> must be consistent.</p>
+    <statement correct="yes">
+      <p>If <m>v_1, \ldots, v_k</m> are vectors in <m>{\bf R}^n</m>, then the equation <m>x_1 v_1 + \cdots + x_k v_k = 0</m> must be consistent.</p>
     </statement>
     <solution>
       <p>True: If we set <m>x_1</m> through <m>x_k</m> all equal to <m>0</m>, then
@@ -35,16 +35,16 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The plane <m>z=1</m> in <m>{\bf R}^3</m> is a span.</p>
+    <statement correct="no">
+      <p>The plane <m>z=1</m> in <m>{\bf R}^3</m> is a span.</p>
     </statement>
     <solution>
       <p>False: any span contains the zero vector but the plane <m>z=1</m> does not contain the zero vector, so it is not a span.</p>
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The three vectors
+    <statement correct="yes">
+      <p>The three vectors
         <m>v_1 = \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}, \ v_2 = \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix},</m> and <m>v_3 = \begin{pmatrix}-1 \\ 0 \\ 1\end{pmatrix}</m>
         span <m>{\bf R}^3</m>.</p>
     </statement>
@@ -59,8 +59,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>u</m>, <m>v</m>, and <m>w</m> are nonzero vectors in <m>{\bf R}^2</m>,
+    <statement correct="no">
+      <p>If <m>u</m>, <m>v</m>, and <m>w</m> are nonzero vectors in <m>{\bf R}^2</m>,
       then Span<m>\{u, v, w\}</m> is <m>{\bf R}^2</m>.</p>
     </statement>
     <solution>
@@ -69,9 +69,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false:
-        The line <m>y = 2x + 1</m> is a span of some number of vectors in
+    <statement correct="no">
+      <p>The line <m>y = 2x + 1</m> is a span of some number of vectors in
         <m>{\bf R}^2</m>.</p>
     </statement>
     <solution>
@@ -331,7 +330,7 @@
   <exercise>
     <statement>
       <p>Let <m>v_1 = \begin{pmatrix}1 \\ 0 \\ 2\end{pmatrix}</m> and <m>v_2 = \begin{pmatrix}0 \\ 1 \\ 3\end{pmatrix}</m>.  Write a vector <m>w</m>
-      in <m>{\bf R}^3</m> that is \emph{not} in <m>\textup{Span}\{v_1, v_2\}</m>.</p>
+      in <m>{\bf R}^3</m> that is <em>not</em> in <m>\textup{Span}\{v_1, v_2\}</m>.</p>
     </statement>
     <solution>
       <p>
@@ -401,8 +400,8 @@
 \subsection{2.3, Matrix equations}
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: Suppose <m>A</m> is a <m>2 \times 4</m> matrix.  Then the equation
+    <statement correct="no">
+      <p>Suppose <m>A</m> is a <m>2 \times 4</m> matrix.  Then the equation
         <m>Ax = b</m> must be inconsistent for some <m>b</m> in <m>{\bf R}^2</m>.</p>
     </statement>
     <solution>
@@ -415,8 +414,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: Suppose <m>A</m> is an <m>m \times n</m> matrix and the matrix
+    <statement correct="yes">
+      <p>Suppose <m>A</m> is an <m>m \times n</m> matrix and the matrix
       equation <m>Ax = b</m> is consistent for each <m>b</m> in <m>{\bf R}^m</m>.
       Then <m>m \leq n</m>.</p>
     </statement>
@@ -428,7 +427,8 @@
   </exercise>
   <exercise>
     <statement>
-      <p>True or false: If <m>A</m> is a <m>3 \times 5</m> matrix and the product <m>Ax</m> makes sense, then which <m>{\bf R}^n</m> is <m>x</m> in?</p>
+      <!-- TODO: add correct="yes" or correct="no" to <statement> -->
+      <p>If <m>A</m> is a <m>3 \times 5</m> matrix and the product <m>Ax</m> makes sense, then which <m>{\bf R}^n</m> is <m>x</m> in?</p>
     </statement>
     <solution>
       <p>The vector <m>x</m> must be in <m>{\bf R}^5</m>, since <m>A</m> has <m>5</m> columns.</p>
@@ -826,8 +826,8 @@
 \subsection{2.4, Solution sets}
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is a <m>4 \times 6</m> matrix with four pivots, then
+    <statement correct="yes">
+      <p>If <m>A</m> is a <m>4 \times 6</m> matrix with four pivots, then
         the matrix equation <m>Ax = b</m> must be consistent for every <m>b</m> in
         <m>{\bf R}^4</m>.</p>
     </statement>
@@ -852,8 +852,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>b</m> is a nonzero vector and <m>Ax=b</m> has infinitely many
+    <statement correct="yes">
+      <p>If <m>b</m> is a nonzero vector and <m>Ax=b</m> has infinitely many
       solutions, then <m>Ax=0</m> must have infinitely many solutions.</p>
     </statement>
     <solution>
@@ -862,8 +862,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is a <m>3 \times 4</m> matrix and the solution set for
+    <statement correct="no">
+      <p>If <m>A</m> is a <m>3 \times 4</m> matrix and the solution set for
       <m>Ax=0</m> is a line, then <m>A</m> has exactly <m>2</m> pivots.</p>
     </statement>
     <solution>
@@ -873,8 +873,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: There is a <m>3 \times 2</m> matrix <m>A</m> whose homogeneous solution set
+    <statement correct="no">
+      <p>There is a <m>3 \times 2</m> matrix <m>A</m> whose homogeneous solution set
       <m>Ax=0</m> is the line <m>x_1 + x_2 = 1</m>.</p>
     </statement>
     <solution>
@@ -1122,8 +1122,8 @@
     </task>
     <task>
       <statement>
-        <p>Write two \emph{nonzero} solutions to the corresponding
-          \emph{homogeneous} linear system of equations.</p>
+        <p>Write two <em>nonzero</em> solutions to the corresponding
+          <em>homogeneous</em> linear system of equations.</p>
       </statement>
       <solution>
         <p>The solutions to the corresponding homogeneous system
@@ -1299,8 +1299,8 @@
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: Suppose <m>v_1</m> and <m>v_2</m> are vectors in <m>{\bf R}^2</m>
+    <statement correct="yes">
+      <p>Suppose <m>v_1</m> and <m>v_2</m> are vectors in <m>{\bf R}^2</m>
       and neither vector is a scalar multiple of the other.  Then
       <m>\{v_1, v_2\}</m> must be a linearly independent set.</p>
     </statement>
@@ -1314,9 +1314,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false:
-      Suppose <m>v_1</m>, <m>v_2</m>, and <m>v_3</m> are vectors in <m>{\bf R}^3</m> and
+    <statement correct="no">
+      <p>Suppose <m>v_1</m>, <m>v_2</m>, and <m>v_3</m> are vectors in <m>{\bf R}^3</m> and
       that <m>v_j</m> and <m>v_k</m> are not collinear whenever <m>j \neq k</m>.
       <m>\Span\{v_j, v_k\}</m> is a plane whenever <m>j \neq k</m>.  Then
       <m>\{v_1, v_2, v_3\}</m> is a linearly independent set.</p>
@@ -1329,9 +1328,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false:
-      If <m>A</m> is <m>4 \times 2</m> matrix and the solution set to <m>Ax=\begin{pmatrix}1 \\ 2 \\ 2 \\ 1\end{pmatrix}</m>
+    <statement correct="yes">
+      <p>If <m>A</m> is <m>4 \times 2</m> matrix and the solution set to <m>Ax=\begin{pmatrix}1 \\ 2 \\ 2 \\ 1\end{pmatrix}</m>
       is a line, then the columns of <m>A</m> are linearly dependent.</p>
     </statement>
     <solution>
@@ -1344,9 +1342,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false:
-      If a set <m>S</m> of vectors contains fewer vectors than there are entries in
+    <statement correct="no">
+      <p>If a set <m>S</m> of vectors contains fewer vectors than there are entries in
       the vectors, then the set is linearly independent.</p>
     </statement>
     <solution>
@@ -1355,9 +1352,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false:
-      If <m>u</m> and <m>v</m> are vectors in <m>{\bf R}^5</m>, then the set
+    <statement correct="no">
+      <p>If <m>u</m> and <m>v</m> are vectors in <m>{\bf R}^5</m>, then the set
       <m>\{u, v, \sqrt{2}u - \pi v\}</m> is linearly independent.</p>
     </statement>
     <solution>
@@ -1366,9 +1362,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false:
-      If a matrix <m>A</m> has a pivot in each column, then the columns of <m>A</m> are
+    <statement correct="yes">
+      <p>If a matrix <m>A</m> has a pivot in each column, then the columns of <m>A</m> are
       linearly independent.</p>
     </statement>
     <solution>
@@ -1536,8 +1531,8 @@
 \subsection{2.6, Subspaces}
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: The set of solutions to a consistent matrix equation is
+    <statement correct="no">
+      <p>The set of solutions to a consistent matrix equation is
       always a subspace.</p>
     </statement>
     <solution>
@@ -1547,8 +1542,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The set of <m>{\bf R}^n</m> that consists only of the zero
+    <statement correct="yes">
+      <p>The set of <m>{\bf R}^n</m> that consists only of the zero
       vector is a subspace of <m>{\bf R}^n</m>.</p>
     </statement>
     <solution>
@@ -1558,8 +1553,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is a <m>9 \times 15</m> matrix, then the null space of
+    <statement correct="no">
+      <p>If <m>A</m> is a <m>9 \times 15</m> matrix, then the null space of
       <m>A</m> is a subspace of <m>{\bf R}^9</m>.</p>
     </statement>
     <solution>
@@ -1567,8 +1562,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: Every subspace of <m>{\bf R}^n</m> is the span of some
+    <statement correct="yes">
+      <p>Every subspace of <m>{\bf R}^n</m> is the span of some
         vectors in <m>{\bf R}^n</m>.</p>
     </statement>
     <solution>
@@ -1742,7 +1737,7 @@
       <p>(3) <m>W</m> is not closed under multiplication since, for example,
         <m>(-2, 0)</m> is in <m>W</m> but <m>-(-2,0)=(2, 0)</m> is not in <m>W</m>.</p>
       <p>Although it fails all subspace properties, the truth is that <m>W</m> is
-        \emph{almost} a subspace because it is a line in <m>{\bf R}^2</m>, but
+        <em>almost</em> a subspace because it is a line in <m>{\bf R}^2</m>, but
         the fact that it does not pass through the origin ruins all three
         subspace properties.</p>
     </solution>
@@ -1777,7 +1772,7 @@
       </image>
     </statement>
     <solution>
-      <p><m>W</m> is a plane in <m>{\bf R}^3</m> that does \emph{not} contain the
+      <p><m>W</m> is a plane in <m>{\bf R}^3</m> that does <em>not</em> contain the
         origin.  It will fail all three properties of a subspace in the same
         way that a line not through the origin in <m>{\bf R}^2</m> will fail all
         three subspace properties.</p>
@@ -1962,8 +1957,8 @@
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: If <m>S</m> is a plane containing the origin in <m>{\bf R}^3</m>, then
+    <statement correct="yes">
+      <p>If <m>S</m> is a plane containing the origin in <m>{\bf R}^3</m>, then
         every basis for <m>S</m> has exactly two vectors.</p>
     </statement>
     <solution>
@@ -1973,8 +1968,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If two vectors are in the same plane through the origin in
+    <statement correct="yes">
+      <p>If two vectors are in the same plane through the origin in
       <m>{\bf R}^3</m>, and if the two vectors are not collinear, then they form a basis
       for the plane.</p>
     </statement>
@@ -1986,8 +1981,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The dimension of the null space of <m>A</m> is the number of
+    <statement correct="no">
+      <p>The dimension of the null space of <m>A</m> is the number of
       pivots of <m>A</m>.</p>
     </statement>
     <solution>
@@ -1996,8 +1991,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>b</m> lies in the column space of <m>A</m> and the columns of <m>A</m> are
+    <statement correct="no">
+      <p>If <m>b</m> lies in the column space of <m>A</m> and the columns of <m>A</m> are
       linearly independent, then <m>Ax = b</m> has infinitely many solutions.</p>
     </statement>
     <solution>
@@ -2009,8 +2004,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: Any three vectors that span <m>{\bf R}^3</m> must be linearly
+    <statement correct="yes">
+      <p>Any three vectors that span <m>{\bf R}^3</m> must be linearly
       independent.</p>
     </statement>
     <solution>
@@ -2341,8 +2336,8 @@
 
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: There is a <m>3 \times 2</m> matrix <m>A</m> so that the column space of
+    <statement correct="yes">
+      <p>There is a <m>3 \times 2</m> matrix <m>A</m> so that the column space of
         <m>A</m> is a line and the null space of <m>A</m> is a line.</p>
     </statement>
     <solution>
@@ -2352,8 +2347,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: There is a <m>2 \times 3</m> matrix <m>A</m> so that the column space of
+    <statement correct="no">
+      <p>There is a <m>2 \times 3</m> matrix <m>A</m> so that the column space of
       <m>A</m> is a line and the null space of <m>A</m> is a line.</p>
     </statement>
     <solution>
@@ -2365,8 +2360,8 @@
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>A</m> is a
+    <statement correct="yes">
+      <p>If <m>A</m> is a
       <m>10 \times 11</m> matrix and its null space is a line, then every vector
       in <m>{\bf R}^{10}</m> is a linear combination of the columns of <m>A</m>.</p>
     </statement>

@@ -571,6 +571,7 @@
     window.demo1 = new Demo({
       mathbox: { element: document.getElementById('mathbox1') },
       scaleUI: true,
+      fullscreen: false,
       camera:  { position: urlParams.get('camera1', 'float[]', [3, 1.5, 1.5]) }
     }, function() {
       var clipCube, cube, geo, mesh, view;
