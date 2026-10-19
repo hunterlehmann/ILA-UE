@@ -407,7 +407,7 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
       <p>Drawing a picture of <m>\Span\{v_1,v_2,\ldots,v_k\}</m> is the same as drawing a picture of all linear combinations of <m>v_1,v_2,\ldots,v_k</m>.</p>
       <figure>
         <caption>Pictures of spans in <m>\R^2</m>.</caption>
-        <image width="60%">
+        <image width="90%">
           <shortdescription>
 <!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
 </shortdescription>
@@ -452,7 +452,7 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
 
       <figure>
         <caption>Pictures of spans in <m>\R^3</m>.  The span of two noncollinear vectors is the plane containing the origin and the heads of the vectors.  Note that three coplanar (but not collinear) vectors span a plane and not a 3-space, just as two collinear vectors span a line and not a plane.</caption>
-        <image width="60%">
+        <image width="90%">
           <shortdescription>
 <!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
 </shortdescription>

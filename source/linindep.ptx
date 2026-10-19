@@ -109,9 +109,10 @@ number of vectors, as in the picture below.  This means that (at least) one of t
       <idx><h>Linear independence</h><h>definition of</h></idx>
       <idx><h>Linear dependence</h><see>Linear independence</see></idx>
       <statement>
-        <image source="important.svg" width="8%">
-          <shortdescription>Essential definition</shortdescription>
-        </image>
+        <sidebyside widths="5% 90%">
+          <image source="images/important.svg" width="5%">
+            <shortdescription>Essential definition</shortdescription>
+          </image>
         <p>
           A set of vectors <m>\{v_1,v_2,\ldots,v_k\}</m> is <term>linearly independent</term> if the vector equation
           <md>
@@ -119,6 +120,7 @@ number of vectors, as in the picture below.  This means that (at least) one of t
 </md>
           has only the trivial solution <m>x_1=x_2=\cdots=x_k=0</m>.  The set <m>\{v_1,v_2,\ldots,v_k\}</m> is <term>linearly dependent</term> otherwise.
         </p>
+        </sidebyside>
       </statement>
     </definition>
 
