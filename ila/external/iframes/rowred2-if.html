@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Row Reducing a Matrix</title>
+  <!-- ILA slideshow styles: external/iframes/css/slideshow.css -->
+  <link rel="stylesheet" href="css/slideshow.css">
+  <style>
+    html, body { margin: 0; height: 100%; background: white; overflow: hidden; }
+    body { text-align: center; }
+    /* Fixed 800px layout from ILA, scaled down to fit the iframe width */
+    #stage { width: 800px; display: inline-block; transform-origin: top center; }
+    #mathbox { width: 800px; height: 300px; margin: 0; border: 0; position: relative; display: inline-block; }
+    .centered { width: 800px; display: inline-block; }
+    .my-turn { width: 30%; text-align: center; }
+    /* Keyboard-operable slideshow controls */
+    .control-button[role="button"] { cursor: pointer; }
+    .control-button[aria-disabled="true"] { cursor: default; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <div id="stage">
+    <!-- Matrix drawn by MathBox; the caption below carries the narration -->
+    <div id="mathbox" aria-hidden="true"></div>
+    <div class="centered">
+      <div class="slideshow rrmat">
+        <div class="controls">
+          <span class="control-button">
+            <span class="icon-arrow prev-button inactive"><span></span><span></span></span>
+          </span>
+          <span class="control-button">
+            <span class="icon-repeat reload-button inactive"><span></span><span></span><span></span><span></span></span>
+          </span>
+          <span class="control-button" id="next-button">
+            <span class="icon-arrow next-button"><span></span><span></span></span>
+          </span><br>
+          <span class="pages"></span>
+        </div>
+        <div class="caption" aria-live="polite">Let's row reduce this matrix.</div>
+      </div>
+      <div class="my-turn">
+        <button class="slideshow-button">Let me take it from here (opens in a new window).</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ILA slideshow bundle (MathBox + RRMatrix): external/iframes/js/slideshow.js -->
+  <script src="js/slideshow.js"></script>
+  <script>
+  "use strict";
+  // Book palette (same values as js/demo-theme.js; that file needs demo.js's Color)
+  var THEME = { red: '#B5121F', blue: '#385B8A', green: '#376529' };
+
+  // ── Fit the fixed-width stage to the iframe ───────────────────────────────
+  (function() {
+    var stage = document.getElementById('stage');
+    function fit() {
+      var s = Math.min(1, window.innerWidth / 800, window.innerHeight / stage.offsetHeight);
+      stage.style.transform = 'scale(' + s + ')';
+    }
+    window.addEventListener('resize', fit);
+    window.addEventListener('load', fit);
+    fit();
+  })();
+
+  DomReady.ready(function() {
+    var augment, blink, camera, height, mathbox, ortho, three, view, width;
+    ortho = 10000;
+    width = 800;
+    height = 300;
+    mathbox = window.mathbox = mathBox({
+      element: document.getElementById("mathbox"),
+      size: { width: width, height: height },
+      plugins: ['core'],
+      mathbox: { warmup: 2, splash: true, inspect: false },
+      splash: { fancy: true, color: "blue" },
+      camera: { near: ortho / 4, far: ortho * 4, lookAt: -width / 4 }
+    });
+    if (mathbox.fallback) throw "WebGL not supported";
+    three = mathbox.three;
+    three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+    camera = mathbox.camera({
+      proxy: false,
+      position: [0, 0, ortho],
+      fov: Math.atan(height / ortho) * 360 / Math.PI,
+      lookAt: [width / 4, 0, 0]
+    });
+    view = mathbox.cartesian({
+      range: [[-width / 2, width / 2], [-height / 2, height / 2], [-50, 50]],
+      scale: [width, height, 100]
+    });
+    mathbox.set('focus', ortho);
+    window.rrmat = new RRMatrix(3, 4, view, mathbox, { augmentCol: 2, startAugmented: true });
+    window.blink = blink = function(color, entries, times) {
+      var arr = [], delay = 0, last, i;
+      if (!times) times = 2;
+      for (i = 0; i < times; i++) {
+        arr.push({ color: color, transform: "scale(2,2)", entries: entries, duration: 0.4, delay: delay });
+        delay += 0.4;
+        last = { color: "black", transform: "", entries: entries, duration: 0.4, delay: delay };
+        delay += 0.4;
+        arr.push(last);
+      }
+      delete last.color;
+      return arr;
+    };
+    augment = null;
+    rrmat.setMatrix([[0, -7, -4, 2], [2, 4, 6, 12], [3, 1, -1, -2]]);
+    window.slideshow = rrmat.slideshow()
+      .caption("<b>Step 1a:</b> These are the pivots in the first column.")
+      .setStyle(blink(THEME.red, [[1, 0], [2, 0]]))
+      .caption("<b>Step 1a:</b> These are the pivots in the first column. We need to move one of them to the first row.")
+      ["break"]()
+      .setStyle({ color: "black", entries: [[2, 0]], duration: 0.2 })
+      .rowSwap(0, 1)
+      ["break"]()
+      .caption("<b>Step 1b:</b> Make this entry a 1 by dividing by 2.")
+      .setStyle(blink(THEME.red, [[0, 0]], 1))
+      .rowMult(0, 1 / 2)
+      ["break"]()
+      .caption("Let's get rid of this distracting line.")
+      .unAugment()
+      ["break"]()
+      .caption("<b>Step 1c:</b> We kill this entry...")
+      .setStyle(blink(THEME.blue, [[2, 0]], 1))
+      .caption("<b>Step 1c:</b> We kill this entry by subtracting 3 times the first row.")
+      .rowRep(0, -3, 2)
+      .setStyle({ color: "black", entries: [[2, 0]], duration: 0.2 })
+      ["break"]()
+      .caption("Now that the first column is clear except for the pivot in\nthe first row, we can ignore the first row and the first\ncolumn and concentrate on the rest of the matrix.")
+      .setStyle({ color: "rgb(200,200,200)", entries: [[0, 0], [0, 1], [0, 2], [0, 3], [1, 0], [2, 0]], duration: 0.5 })
+      ["break"]()
+      .caption("<b>Step 2a</b> (optional):\nBoth of the remaining entries in\nthe second column are pivots.")
+      .setStyle(blink(THEME.red, [[1, 1], [2, 1]]))
+      ["break"]()
+      .caption("<b>Step 2a</b> (optional):\nWe'll use the bottom entry as our pivot...")
+      .setStyle({ color: "black", entries: [[1, 1]], duration: 1 })
+      .caption("<b>Step 2a</b> (optional):\nWe'll use the bottom entry as our pivot,\nso we have to switch rows.")
+      .rowSwap(1, 2)
+      ["break"]()
+      .caption("<b>Step 2b:</b> Divide row 2 by -5 to make this pivot a 1.")
+      .rowMult(1, -1 / 5)
+      .caption("<b>Step 2b:</b> Divide row 2 by -5 to make this pivot a 1.\n(The other entries in this row are divisible by 5; that's why we\nused this row as the pivot row.)")
+      ["break"]()
+      .caption("<b>Step 2c:</b> To kill this entry...")
+      .setStyle(blink(THEME.blue, [[2, 1]], 1))
+      .caption("<b>Step 2c:</b>\nTo kill this entry, we add 7 times row 2 to row 3.")
+      .rowRep(1, 7, 2)
+      .setStyle({ color: "black", entries: [[2, 1]], duration: 0.2 })
+      ["break"]()
+      .caption("Now the second column (the part we care about) is clear\nexcept for the pivot in the pivot, so we can ignore the\nsecond column and second row.")
+      .setStyle({ color: "rgb(200,200,200)", entries: [[1, 1], [1, 2], [1, 3], [2, 1]], duration: 1 })
+      ["break"]()
+      .caption("<b>Step 3a:</b>\nThe first nonzero entry of the last row is a pivot.")
+      .setStyle(blink(THEME.red, [[2, 2]]))
+      ["break"]()
+      .caption("<b>Step 3b:</b> We divide by 10 to make it equal to 1.")
+      .rowMult(2, 1 / 10)
+      ["break"]()
+      .caption("Notice that the matrix is now in <i>row echelon form</i>.")
+      // (The ILA source listed duplicate keys here; this is the style that took effect.)
+      .setStyle([{
+        color: "black", entries: [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]], duration: 1
+      }])
+      ["break"]()
+      .caption("To put the matrix in <i>reduced</i> row echelon form, we\nneed to clear the entries in\n<span style=\"color: " + THEME.blue + ";\">blue</span>.")
+      .setStyle([{ color: "black", entries: [[0, 0], [1, 1], [2, 2]], duration: 1 }]
+                .concat(blink(THEME.blue, [[0, 1], [0, 2], [1, 2]], 1)))
+      ["break"]()
+      .caption("<b>Last step:</b>\nWe do this by taking advantage of the pivots in each column\nand doing row replacement.")
+      .setStyle(blink(THEME.red, [[1, 1], [2, 2]]))
+      ["break"]()
+      .caption("<b>Last step:</b> First we clear the third column...")
+      .setStyle([{ color: "black", entries: [[0, 1], [1, 1]], duration: 1 }]
+                .concat(blink(THEME.red, [[2, 2]], 1)).concat(blink(THEME.blue, [[0, 2], [1, 2]], 1)))
+      .caption("<b>Last step:</b>\nFirst we clear the third column using row replacement.")
+      .rowRep(2, -2, 1)
+      .rowRep(2, -3, 0)
+      ["break"]()
+      .caption("<b>Last step:</b> Then we clear the second column...")
+      .setStyle([{ color: "black", entries: [[0, 2], [1, 2], [2, 2]], duration: 1 }]
+                .concat(blink(THEME.red, [[1, 1]], 1)).concat(blink(THEME.blue, [[0, 1]], 1)))
+      .caption("<b>Last step:</b>\nThen we clear the second column in the same way.")
+      .rowRep(1, -2, 0)
+      ["break"]()
+      .caption("The matrix is now in reduced row echelon form!")
+      .setStyle([{
+        color: THEME.red, entries: [[0, 0], [1, 1], [2, 2]], duration: 1
+      }])
+      ["break"]()
+      .caption("Add back the divider...")
+      .reAugment()
+      .caption("Add back the divider, and we're done!")
+      .setStyle({
+        transform: "rotate(360deg)",
+        entries: [[0, 0], [0, 1], [0, 2], [0, 3], [1, 0], [1, 1], [1, 2], [1, 3], [2, 0], [2, 1], [2, 2], [2, 3]],
+        duration: 1.5,
+        timing: 'linear'
+      })
+      ["break"]();
+
+    document.querySelector(".my-turn button").onclick = function() {
+      var mat = slideshow.states[0].matrix, rows = [], i, j, row, nd, ops, str;
+      for (i = 0; i < mat.length; i++) {
+        row = [];
+        for (j = 0; j < mat[0].length; j++) {
+          nd = RRMatrix.approxFraction(mat[i][j]);
+          row.push(nd[1] !== 1 ? nd[0] + "%2F" + nd[1] : String(nd[0]));
+        }
+        rows.push(row.join(","));
+      }
+      function getOps(slide) {
+        if (slide.slides) {
+          var ret = [];
+          for (var k = 0; k < slide.slides.length; k++) ret = ret.concat(getOps(slide.slides[k]));
+          return ret;
+        }
+        return slide.data.shortOp ? [slide.data.shortOp] : [];
+      }
+      ops = [];
+      for (i = 0; i < slideshow.currentSlideNum; i++) ops = ops.concat(getOps(slideshow.slides[i]));
+      str = "rrinter.html?mat=" + rows.join(":") + "&ops=" + ops.join(",") + "&cur=" + ops.length;
+      if (augment != null) str += "&augment=" + augment;
+      return window.open(str);
+    };
+
+    // ── WCAG 2.1.1: make the slideshow's span controls keyboard-operable ────
+    [['.prev-button', 'Previous step'], ['.reload-button', 'Restart'], ['.next-button', 'Next step']]
+      .forEach(function(a) {
+        var icon = document.querySelector(a[0]);
+        if (!icon) return;
+        var btn = icon.closest('.control-button') || icon;
+        btn.setAttribute('role', 'button');
+        btn.setAttribute('tabindex', '0');
+        btn.setAttribute('aria-label', a[1]);
+        function update() {
+          btn.setAttribute('aria-disabled', icon.classList.contains('inactive') ? 'true' : 'false');
+        }
+        update();
+        new MutationObserver(update).observe(icon, { attributes: true, attributeFilter: ['class'] });
+        btn.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            icon.click();
+          }
+        });
+      });
+  }); // end DomReady.ready
+  </script>
+</body>
+</html>

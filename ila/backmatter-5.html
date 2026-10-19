@@ -14,13 +14,14 @@
 <!--******************************************-->
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Colophon</title>
+<title>Index</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="_static/pretext/fonts/material-symbols-outlined.css">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
 <style>
-@counter-style ptx-marker-1 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-1 { system: extends decimal; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-2 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
 </style>
 <link rel="stylesheet" type="text/css" href="external/css/highlight-math.css">
 <script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
@@ -62,14 +63,14 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '8.3.5';
+eBookConfig.runestone_version = '8.3.6';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.3adcbea95009347b.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.7a45395f326e122c.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
+<script src="_static/prefix-runtime.4beca1fdeed766a2.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.ebd33f6a21eed414.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
 <link rel="stylesheet" type="text/css" href="_static/prefix-runestone.9963089870a016c8.css">
 <script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><link rel="icon" type="image/png" sizes="32x32" href="external/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="external/favicon/favicon-16x16.png">
@@ -79,11 +80,14 @@ eBookConfig.enable_chatcodes =  false;
 <body id="ILA-UE" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" target="_blank" href="https://gatech.edu/"><img src="external/images/logo.gif" alt="Logo image"></a><div class="title-container">
-<div class="heading ptx-banner-heading"><a href="main.html"><span class="title">Interactive Linear Algebra: Updated Edition</span></a></div>
-<p class="byline">Dan Margalit, Joseph Rabinoff</p>
+<div class="heading ptx-banner-heading"><a href="main.html"><span class="title">Interactive Linear Algebra</span> <span class="subtitle">Updated Edition</span></a></div>
+<p class="byline">Dan Margalit, Joseph Rabinoff, Hunter Lehmann, Chris Jankowski</p>
 </div>
 </div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
-<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-4.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="ptx-search-box">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="indexnav">
+<span class="mininav">Jump to:</span><span class="indexjump"><a href="#indexletter-a">A </a><a href="#indexletter-b">B </a><a href="#indexletter-c">C </a><a href="#indexletter-d">D </a><a href="#indexletter-e">E </a><a href="#indexletter-f">F </a><a href="#indexletter-g">G </a><a href="#indexletter-h">H </a><a href="#indexletter-i">I </a><a href="#indexletter-j">J </a><a href="#indexletter-k">K </a><a href="#indexletter-l">L </a><a href="#indexletter-m">M </a><br><a href="#indexletter-n">N </a><a href="#indexletter-o">O </a><a href="#indexletter-p">P </a><a href="#indexletter-q">Q </a><a href="#indexletter-r">R </a><a href="#indexletter-s">S </a><a href="#indexletter-t">T </a><a href="#indexletter-u">U </a><a href="#indexletter-v">V </a><a href="#indexletter-w">W </a><a href="#indexletter-x">X </a><a href="#indexletter-y">Y </a><a href="#indexletter-z">Z </a></span>
+</div>
+<div class="ptx-search-box">
 <div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
 <dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
 <input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
@@ -121,8 +125,8 @@ eBookConfig.enable_chatcodes =  false;
 <legend>Assistive technologies</legend>
 <label for="ptx-readability-accessible-permalinks"><input type="checkbox" id="ptx-readability-accessible-permalinks"><span>🔗</span><span>Expose permalinks</span></label>
 </fieldset>
-<div class="ptx-readability-options-group"><button type="button" class="ptx-readability-reset-button button" id="ptx-readability-reset-button"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf053;</span><span class="name">Reset All</span></button></div></dialog></span><span class="treebuttons"><a class="previous-button button" href="backmatter-4.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="backmatter.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span></span>
-</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{html}\require{color}    \definecolor{cLGold}{RGB}{143, 113, 61}
+<div class="ptx-readability-options-group"><button type="button" class="ptx-readability-reset-button button" id="ptx-readability-reset-button"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf053;</span><span class="name">Reset All</span></button></div></dialog></span><span class="treebuttons"><a class="previous-button button" href="appendix-gfdl.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="backmatter.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="backmatter-6.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{color}    \definecolor{cLGold}{RGB}{143, 113, 61}
     \definecolor{cLGreen}{RGB}{57, 121, 76}
     \definecolor{cLPurple}{RGB}{148,68,161}
     \definecolor{cLBlue}{RGB}{0, 98, 217}
@@ -137,7 +141,7 @@ eBookConfig.enable_chatcodes =  false;
   \newcommand{\R}{\mathbf R}
   \newcommand{\C}{\mathbf C}
  \renewcommand{\mathbb}[1]{\mathbf{#1}}
-  
+  \newcommand{\matrow}[1]{\text{---}\,#1\,\text{---}}
   \newcommand{\Span}{\operatorname{Span}}
   \newcommand{\Nul}{\operatorname{Nul}}
   \newcommand{\Col}{\operatorname{Col}}
@@ -246,7 +250,57 @@ eBookConfig.enable_chatcodes =  false;
 <ul id="ptx-toc-group-sec-spans" class="structural toc-item-list">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spans.html#subsec-vector-equations" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Vector Equations</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spans.html#subsec-spans" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Spans</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-spans.html#sec-spans-5" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-equations.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Matrix Equations</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-equations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb" class="internal"><span class="codenumber">2.3.1</span> <span class="title">The Matrix Equation <span class="process-math">\(Ax=b\text{.}\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-equations.html#subsec-spans-and-consistency" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Spans and Consistency</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-equations.html#sec-matrix-equations-5" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-solution-sets.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Solution Sets</span></a></div>
+<ul id="ptx-toc-group-sec-solution-sets" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-solnsets-homog" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Homogeneous Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-inhomogeneous-systems" class="internal"><span class="codenumber">2.4.2</span> <span class="title">Inhomogeneous Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-solnsets-ss-and-cs" class="internal"><span class="codenumber">2.4.3</span> <span class="title">Solution Sets and Column Spans</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-solution-sets.html#sec-solution-sets-7" class="internal"><span class="codenumber">2.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-independence.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Linear Independence</span></a></div>
+<ul id="ptx-toc-group-sec-linear-independence" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-the-definition-of-linear-independence" class="internal"><span class="codenumber">2.5.1</span> <span class="title">The Definition of Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-criteria-for-linear-independence" class="internal"><span class="codenumber">2.5.2</span> <span class="title">Criteria for Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-pictures-of-linear-independence" class="internal"><span class="codenumber">2.5.3</span> <span class="title">Pictures of Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-linear-dependence-and-free-variables" class="internal"><span class="codenumber">2.5.4</span> <span class="title">Linear Dependence and Free Variables</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-linear-independence.html#sec-linear-independence-8" class="internal"><span class="codenumber">2.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-subspaces.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Subspaces</span></a></div>
+<ul id="ptx-toc-group-sec-subspaces" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-subspaces.html#subsec-subspaces-definition-and-examples" class="internal"><span class="codenumber">2.6.1</span> <span class="title">Subspaces: Definition and Examples</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-subspaces.html#subsec-common-types-of-subspaces" class="internal"><span class="codenumber">2.6.2</span> <span class="title">Common Types of Subspaces</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-subspaces.html#sec-subspaces-6" class="internal"><span class="codenumber">2.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-dimension.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Basis and Dimension</span></a></div>
+<ul id="ptx-toc-group-sec-dimension" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-basis-of-a-subspace" class="internal"><span class="codenumber">2.7.1</span> <span class="title">Basis of a Subspace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-computing-a-basis-for-a-subspace" class="internal"><span class="codenumber">2.7.2</span> <span class="title">Computing a Basis for a Subspace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-the-basis-theorem" class="internal"><span class="codenumber">2.7.3</span> <span class="title">The Basis Theorem</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-dimension.html#sec-dimension-6" class="internal"><span class="codenumber">2.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-bases-as-coord-systems.html" class="internal"><span class="codenumber">2.8</span> <span class="title">Bases as Coordinate Systems</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-rank-thm.html" class="internal"><span class="codenumber">2.9</span> <span class="title">The Rank Theorem</span></a></div>
+<ul id="ptx-toc-group-sec-rank-thm" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-rank-thm.html#sec-rank-thm-22" class="internal"><span class="codenumber">2.9</span> <span class="title">Exercises</span></a></div></li></ul>
 </li>
 </ul>
 </li>
@@ -258,24 +312,418 @@ eBookConfig.enable_chatcodes =  false;
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
 <ul class="structural toc-item-list contains-active" id="ptx-toc-group-backmatter">
 <li class="toc-item toc-appendix"><div class="toc-title-box"><a href="backmatter-2.html" class="internal"><span class="codenumber">A.</span> <span class="title">Notation</span></a></div></li>
-<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">B.</span> <span class="title">GNU Free Documentation License</span></a></div></li>
-<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="title">Index</span></a></div></li>
-<li class="toc-item toc-colophon active"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="backmatter-3.html" class="internal"><span class="codenumber">B.</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">C.</span> <span class="title">GNU Free Documentation License</span></a></div></li>
+<li class="toc-item toc-index active"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-6.html" class="internal"><span class="title">Colophon</span></a></div></li>
 </ul>
 </li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content">
-<section class="colophon" id="backmatter-5">
+<section class="index" id="backmatter-5">
 <h1 class="heading hide-type">
-<span class="type">Colophon</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Colophon</span>
+<span class="type">Index</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Index</span>
 </h1>
-<div class="para" id="backmatter-5-1">This book was authored in PreTeXt.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#backmatter-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="indexletter" id="indexletter-\">
+<div class="indexitem">
+<span class="process-math">\(\cB\)</span>-coordinates</div>
+<div class="subindexitem">computing</div>
+<div class="subsubindexitem">row reduction<span class="indexknowl"> <a href="sec-bases-as-coord-systems.html#sec-bases-as-coord-systems-14" class="xref" data-knowl="./knowl/index/sec-bases-as-coord-systems-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Recipes: \cB-coordinates">Summary</a></span>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Colophon"><a tabindex="-1" href="#backmatter-5" title="Copy heading and permalink for Colophon" aria-label="Copy heading and permalink for Colophon">🔗</a></div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-bases-as-coord-systems.html#dimension-defn-Bcoords" class="xref" data-knowl="./knowl/index/dimension-defn-Bcoords.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.8.3">Definition</a></span>
+</div>
+<div class="subindexitem">informally<span class="indexknowl"> <a href="sec-bases-as-coord-systems.html#sec-bases-as-coord-systems-8" class="xref" data-knowl="./knowl/index/sec-bases-as-coord-systems-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">labeling points<span class="indexknowl"> <a href="sec-bases-as-coord-systems.html#sec-bases-as-coord-systems-9" class="xref" data-knowl="./knowl/index/sec-bases-as-coord-systems-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary">Summary</a></span>
+</div>
+<div class="subindexitem">nonstandard grid<span class="indexknowl"> <a href="sec-bases-as-coord-systems.html#sec-bases-as-coord-systems-11" class="xref" data-knowl="./knowl/index/sec-bases-as-coord-systems-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.8.6">Example</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-a"><div class="indexitem">Augmented matrix<span class="indexknowl">. <span class="see"><em>See</em> Matrix</span></span>
+</div></div>
+<div class="indexletter" id="indexletter-b">
+<div class="indexitem">Basis</div>
+<div class="subindexitem">basis theorem<span class="indexknowl"> <a href="sec-dimension.html#basis-theorem" class="xref" data-knowl="./knowl/index/basis-theorem.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.7.19">Theorem</a></span>
+</div>
+<div class="subindexitem">coordinates with respect to<span class="indexknowl"> <span class="see">(<em>see</em> <span class="process-math">\(\cB\)</span>-coordinates)</span></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-dimension.html#dimension-defn-basis" class="xref" data-knowl="./knowl/index/dimension-defn-basis.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.7.1">Definition</a></span>
+</div>
+<div class="subindexitem">infinitely many<span class="indexknowl"> <a href="sec-dimension.html#subsec-basis-of-a-subspace-5" class="xref" data-knowl="./knowl/index/subsec-basis-of-a-subspace-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 2.7.2">Insight</a></span>
+</div>
+<div class="subindexitem">of <span class="process-math">\(\R^n\)</span><span class="indexknowl"> <a href="sec-dimension.html#dimension-eg-Rn" class="xref" data-knowl="./knowl/index/dimension-eg-Rn.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.7.6: The standard basis of \R^n">Example</a> <a href="sec-dimension.html#dimension-eg-Rn-any" class="xref" data-knowl="./knowl/index/dimension-eg-Rn-any.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.7.7">Example</a></span>
+</div>
+<div class="subindexitem">of a column space<span class="indexknowl"> <a href="sec-dimension.html#dimension-basis-colspace" class="xref" data-knowl="./knowl/index/dimension-basis-colspace.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.7.10">Theorem</a></span>
+</div>
+<div class="subindexitem">of a null space<span class="indexknowl"> <a href="sec-dimension.html#dimension-basis-nulspace" class="xref" data-knowl="./knowl/index/dimension-basis-nulspace.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.7.17">Theorem</a></span>
+</div>
+<div class="subindexitem">of a span<span class="indexknowl"> <a href="sec-dimension.html#subsec-computing-a-basis-for-a-subspace-4" class="xref" data-knowl="./knowl/index/subsec-computing-a-basis-for-a-subspace-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: A basis of a span">Paragraphs</a></span>
+</div>
+<div class="subindexitem">uniqueness with respect to<span class="indexknowl"> <a href="sec-bases-as-coord-systems.html#dimension-unique-coeff" class="xref" data-knowl="./knowl/index/dimension-unique-coeff.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 2.8.1">Fact</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-c">
+<div class="indexitem">Color space<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-13" class="xref" data-knowl="./knowl/index/subsec-Rn-13.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.10: Color Space">Example</a></span>
+</div>
+<div class="indexitem">Column space</div>
+<div class="subindexitem">and rank<span class="indexknowl"> <span class="see">(<em>see</em> Rank)</span></span>
+</div>
+<div class="subindexitem">basis of<span class="indexknowl"> <span class="see">(<em>see</em> Basis)</span></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces-5" class="xref" data-knowl="./knowl/index/subsec-common-types-of-subspaces-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.6.15">Definition</a></span>
+</div>
+<div class="subindexitem">is a subspace<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces-6" class="xref" data-knowl="./knowl/index/subsec-common-types-of-subspaces-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">versus the solution set<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-ss-and-cs" class="internal" title="Subsection 2.4.3: Solution Sets and Column Spans">Subsection</a></span>
+</div>
+<div class="indexitem">Column span<span class="indexknowl">. <span class="see"><em>See</em> Column space</span></span>
+</div>
+<div class="indexitem">Consistent<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-d">
+<div class="indexitem">Dimension</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-dimension.html#dimension-defn-dimension" class="xref" data-knowl="./knowl/index/dimension-defn-dimension.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.7.3">Definition</a></span>
+</div>
+<div class="subindexitem">of a column space<span class="indexknowl"> <a href="sec-rank-thm.html#sec-rank-thm-11" class="xref" data-knowl="./knowl/index/sec-rank-thm-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.9.1">Definition</a></span>
+</div>
+<div class="subindexitem">of a null space<span class="indexknowl"> <a href="sec-rank-thm.html#sec-rank-thm-11" class="xref" data-knowl="./knowl/index/sec-rank-thm-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.9.1">Definition</a></span>
+</div>
+<div class="subindexitem">of a solution set<span class="indexknowl"> <a href="sec-solution-sets.html#soln-sets-dim-hom" class="xref" data-knowl="./knowl/index/soln-sets-dim-hom.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Dimension of the solution set">Summary</a> <a href="sec-solution-sets.html#soln-sets-dim-inhom" class="xref" data-knowl="./knowl/index/soln-sets-dim-inhom.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Dimension of the solution set">Summary</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-e">
+<div class="indexitem">Elimination method<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination" class="internal" title="Subsection 1.2.1: The Elimination Method">Subsection</a></span>
+</div>
+<div class="indexitem">Equation of linear dependence<span class="indexknowl">. <span class="see"><em>See</em> Linear independence</span></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-f"><div class="indexitem">Free variable<span class="indexknowl"> <a href="sec-parametric-form.html#subsec-free-variables-5" class="xref" data-knowl="./knowl/index/subsec-free-variables-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.3.3">Definition</a></span>
+</div></div>
+<div class="indexletter" id="indexletter-g"><div class="indexitem">Gaussian elimination<span class="indexknowl">. <span class="see"><em>See</em> Row reduction</span></span>
+</div></div>
+<div class="indexletter" id="indexletter-h"><div class="indexitem">Homogeneous<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div></div>
+<div class="indexletter" id="indexletter-i">
+<div class="indexitem">Implicit equation<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-parametric-description" class="internal" title="Subsection 1.1.3: Parametric Description of Solution Sets">Subsection</a> <a href="sec-parametric-form.html#subsec-free-variables-9" class="xref" data-knowl="./knowl/index/subsec-free-variables-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 1.3.5: Implicit Versus Parameterized Equations">Note</a></span>
+</div>
+<div class="indexitem">Inconsistent<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div>
+<div class="indexitem">Increasing span criterion<span class="indexknowl">. <span class="see"><em>See</em> Linear independence</span></span>
+</div>
+<div class="indexitem">Inhomogeneous<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-l">
+<div class="indexitem">Line</div>
+<div class="subindexitem">dimension-1 solution set<span class="indexknowl"> <a href="sec-solution-sets.html#soln-sets-dim-hom" class="xref" data-knowl="./knowl/index/soln-sets-dim-hom.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Dimension of the solution set">Summary</a> <a href="sec-solution-sets.html#soln-sets-dim-inhom" class="xref" data-knowl="./knowl/index/soln-sets-dim-inhom.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Dimension of the solution set">Summary</a></span>
+</div>
+<div class="subindexitem">geometric definition of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#defn-lines" class="xref" data-knowl="./knowl/index/defn-lines.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.15: Lines">Definition</a></span>
+</div>
+<div class="subindexitem">number line<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-5" class="xref" data-knowl="./knowl/index/subsec-Rn-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.5: The number line">Example</a></span>
+</div>
+<div class="subindexitem">parametric form of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-parametric-description-5" class="xref" data-knowl="./knowl/index/subsec-parametric-description-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.23: Lines">Example</a></span>
+</div>
+<div class="indexitem">Linear combination</div>
+<div class="subindexitem">collinear vectors, picture of<span class="indexknowl"> <a href="sec-vectors.html#subsec-linear-combinations-9" class="xref" data-knowl="./knowl/index/subsec-linear-combinations-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.1.20: Linear Combinations of Collinear Vectors">Example</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-vectors.html#subsec-linear-combinations-3" class="xref" data-knowl="./knowl/index/subsec-linear-combinations-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.1.14">Definition</a></span>
+</div>
+<div class="subindexitem">single vector, picture of<span class="indexknowl"> <a href="sec-vectors.html#subsec-linear-combinations-8" class="xref" data-knowl="./knowl/index/subsec-linear-combinations-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.1.19: Linear Combinations of a Single Vector">Example</a></span>
+</div>
+<div class="subindexitem">two vectors, picture of<span class="indexknowl"> <a href="sec-vectors.html#vectors-eg-lincombo-plane" class="xref" data-knowl="./knowl/index/vectors-eg-lincombo-plane.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.1.15">Example</a></span>
+</div>
+<div class="indexitem">Linear dependence<span class="indexknowl">. <span class="see"><em>See</em> Linear independence</span></span>
+</div>
+<div class="indexitem">Linear dependence relation<span class="indexknowl">. <span class="see"><em>See</em> Linear independence</span></span>
+</div>
+<div class="indexitem">Linear equation</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#sec-systems-of-eqns-3-2" class="xref" data-knowl="./knowl/index/sec-systems-of-eqns-3-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.1">Definition</a></span>
+</div>
+<div class="subindexitem">system of<span class="indexknowl"> <span class="see">(<em>see</em> System of linear equations)</span></span>
+</div>
+<div class="indexitem">Linear Independence</div>
+<div class="subindexitem">basic facts<span class="indexknowl"> <a href="sec-linear-independence.html#linindep-facts" class="xref" data-knowl="./knowl/index/linindep-facts.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 2.5.11: Facts about linear independence">Fact</a></span>
+</div>
+<div class="subindexitem">equation of linear dependence<span class="indexknowl"> <a href="sec-linear-independence.html#subsec-the-definition-of-linear-independence-3" class="xref" data-knowl="./knowl/index/subsec-the-definition-of-linear-independence-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">increasing span criterion<span class="indexknowl"> <a href="sec-linear-independence.html#linindep-increasing-span" class="xref" data-knowl="./knowl/index/linindep-increasing-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.5.14: Increasing Span Criterion">Theorem</a></span>
+</div>
+<div class="subindexitem">linear dependence relation<span class="indexknowl"> <a href="sec-linear-independence.html#subsec-the-definition-of-linear-independence-3" class="xref" data-knowl="./knowl/index/subsec-the-definition-of-linear-independence-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">pictures of<span class="indexknowl"> <a href="sec-linear-independence.html#subsec-pictures-of-linear-independence" class="internal" title="Subsection 2.5.3: Pictures of Linear Independence">Subsection</a></span>
+</div>
+<div class="subindexitem">verifying<span class="indexknowl"> <a href="sec-linear-independence.html#linindep-matrix-cols" class="xref" data-knowl="./knowl/index/linindep-matrix-cols.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 2.5.9: Checking linear independence">Recipe</a></span>
+</div>
+<div class="subindexitem">wide matrices<span class="indexknowl"> <a href="sec-linear-independence.html#linindep-wide-matrix" class="xref" data-knowl="./knowl/index/linindep-wide-matrix.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 2.5.10">Insight</a></span>
+</div>
+<div class="indexitem">Linear independence</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-linear-independence.html#linindep-defn-linindep" class="xref" data-knowl="./knowl/index/linindep-defn-linindep.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.5.2">Definition</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-m">
+<div class="indexitem">Matrix</div>
+<div class="subindexitem">augmented<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Augmented Matrices and Row Operations">Paragraphs</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Augmented Matrices and Row Operations">Paragraphs</a></span>
+</div>
+<div class="subindexitem">nullity of<span class="indexknowl"> <span class="see">(<em>see</em> Nullity)</span></span>
+</div>
+<div class="subindexitem">product with vector<span class="indexknowl"> <span class="see">(<em>see</em> Matrix-vector product)</span></span>
+</div>
+<div class="subindexitem">rank of<span class="indexknowl"> <span class="see">(<em>see</em> Rank)</span></span>
+</div>
+<div class="subindexitem">size of<span class="indexknowl"> <a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb-3" class="xref" data-knowl="./knowl/index/subsec-the-matrix-equation-axb-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary">Summary</a></span>
+</div>
+<div class="indexitem">Matrix equation</div>
+<div class="subindexitem">always consistent<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-thm-full-span" class="xref" data-knowl="./knowl/index/matrixeq-thm-full-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.3.16">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb-10" class="xref" data-knowl="./knowl/index/subsec-the-matrix-equation-axb-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.3.5">Definition</a></span>
+</div>
+<div class="subindexitem">equivalence with vector equation<span class="indexknowl"> <a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb-12" class="xref" data-knowl="./knowl/index/subsec-the-matrix-equation-axb-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 2.3.6: Matrix Equations and Vector Equations">Note</a></span>
+</div>
+<div class="subindexitem">spans and consistency<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-spans-consistency" class="xref" data-knowl="./knowl/index/matrixeq-spans-consistency.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Spans and Consistency">Summary</a></span>
+</div>
+<div class="indexitem">Matrix-vector product</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-defn-Ax1" class="xref" data-knowl="./knowl/index/matrixeq-defn-Ax1.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.3.2">Definition</a></span>
+</div>
+<div class="subindexitem">row-column rule<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-row-column" class="xref" data-knowl="./knowl/index/matrixeq-row-column.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 2.3.10: The row-column rule for matrix-vector multiplication">Recipe</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-n">
+<div class="indexitem">Nontrivial solution<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div>
+<div class="indexitem">Null space</div>
+<div class="subindexitem">basis of<span class="indexknowl"> <span class="see">(<em>see</em> Basis)</span></span>
+</div>
+<div class="subindexitem">computing<span class="indexknowl"> <a href="sec-subspaces.html#subspaces-span-nullspace" class="xref" data-knowl="./knowl/index/subspaces-span-nullspace.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 2.6.18: Compute a spanning set for a null space">Recipe</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces-5" class="xref" data-knowl="./knowl/index/subsec-common-types-of-subspaces-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.6.15">Definition</a></span>
+</div>
+<div class="subindexitem">is a solution set<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces-10" class="xref" data-knowl="./knowl/index/subsec-common-types-of-subspaces-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.6.17: Null Spaces are Solution Sets">Example</a></span>
+</div>
+<div class="subindexitem">is a subspace<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces" class="internal" title="Subsection 2.6.2: Common Types of Subspaces">Subsection</a></span>
+</div>
+<div class="indexitem">Nullity<span class="indexknowl"> <a href="sec-rank-thm.html#sec-rank-thm-11" class="xref" data-knowl="./knowl/index/sec-rank-thm-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.9.1">Definition</a></span>
+</div>
+<div class="subindexitem">rank theorem<span class="indexknowl"> <a href="sec-rank-thm.html#rank-theorem" class="xref" data-knowl="./knowl/index/rank-theorem.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.9.2: Rank Theorem">Theorem</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-p">
+<div class="indexitem">Parameterized equation<span class="indexknowl"> <a href="sec-parametric-form.html#subsec-free-variables-9" class="xref" data-knowl="./knowl/index/subsec-free-variables-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 1.3.5: Implicit Versus Parameterized Equations">Note</a></span>
+</div>
+<div class="indexitem">Parametric form<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-parametric-description" class="internal" title="Subsection 1.1.3: Parametric Description of Solution Sets">Subsection</a> <a href="sec-parametric-form.html#subsec-free-variables-7" class="xref" data-knowl="./knowl/index/subsec-free-variables-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 1.3.4: Parametric form">Recipe</a></span>
+</div>
+<div class="indexitem">Parametric vector form</div>
+<div class="subindexitem">of a homogeneous equation<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-homog-10" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.4.5: Parametric Vector Form (homogeneous case)">Example</a> <a href="sec-solution-sets.html#subsec-solnsets-homog-12" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 2.4.6: Parametric vector form (homogeneous case)">Recipe</a></span>
+</div>
+<div class="subindexitem">of an inhomogeneous equation<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-inhomogeneous-systems-11" class="xref" data-knowl="./knowl/index/subsec-inhomogeneous-systems-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">particular solution<span class="indexknowl"> <a href="sec-solution-sets.html#solnsets-translate-span" class="xref" data-knowl="./knowl/index/solnsets-translate-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Key Observation">Summary</a></span>
+</div>
+<div class="indexitem">Particular solution<span class="indexknowl">. <span class="see"><em>See</em> Parametric vector form</span></span>
+</div>
+<div class="indexitem">Pivot<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-echelon-forms-5" class="xref" data-knowl="./knowl/index/subsec-row-reduction-echelon-forms-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.2.7">Definition</a></span>
+</div>
+<div class="indexitem">Pivot position<span class="indexknowl"> <a href="sec-row-reduction.html#defn-pivot-pos" class="xref" data-knowl="./knowl/index/defn-pivot-pos.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.2.15: Pivots">Definition</a></span>
+</div>
+<div class="indexitem">Plane</div>
+<div class="subindexitem">
+<span class="process-math">\(xy\)</span>-plane<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-6" class="xref" data-knowl="./knowl/index/subsec-Rn-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.6: The Euclidean plane">Example</a></span>
+</div>
+<div class="subindexitem">dimension-2 solution set<span class="indexknowl"> <a href="sec-solution-sets.html#soln-sets-dim-hom" class="xref" data-knowl="./knowl/index/soln-sets-dim-hom.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Dimension of the solution set">Summary</a> <a href="sec-solution-sets.html#soln-sets-dim-inhom" class="xref" data-knowl="./knowl/index/soln-sets-dim-inhom.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Dimension of the solution set">Summary</a></span>
+</div>
+<div class="subindexitem">geometric definition of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-systems-eqns-pictures-7" class="xref" data-knowl="./knowl/index/subsec-systems-eqns-pictures-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.17: Planes">Definition</a></span>
+</div>
+<div class="subindexitem">parametric form of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-parametric-description-6" class="xref" data-knowl="./knowl/index/subsec-parametric-description-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.25: Planes">Example</a></span>
+</div>
+<div class="indexitem">Point<span class="indexknowl"> <a href="sec-vectors.html#subsec-vectors-in-rn-3" class="xref" data-knowl="./knowl/index/subsec-vectors-in-rn-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.1.1: Points and Vectors">Definition</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-q"><div class="indexitem">QR codes<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-15" class="xref" data-knowl="./knowl/index/subsec-Rn-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.12: QR Codes">Example</a></span>
+</div></div>
+<div class="indexletter" id="indexletter-r">
+<div class="indexitem">Rank<span class="indexknowl"> <a href="sec-rank-thm.html#sec-rank-thm-11" class="xref" data-knowl="./knowl/index/sec-rank-thm-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.9.1">Definition</a></span>
+</div>
+<div class="subindexitem">rank theorem<span class="indexknowl"> <a href="sec-rank-thm.html#rank-theorem" class="xref" data-knowl="./knowl/index/rank-theorem.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.9.2: Rank Theorem">Theorem</a></span>
+</div>
+<div class="indexitem">Real <span class="process-math">\(n\)</span>-space<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-3" class="xref" data-knowl="./knowl/index/subsec-Rn-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.4">Definition</a></span>
+</div>
+<div class="subindexitem">as a subspace of itself<span class="indexknowl"> <a href="sec-subspaces.html#subsec-subspaces-definition-and-examples-8" class="xref" data-knowl="./knowl/index/subsec-subspaces-definition-and-examples-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.6.4">Example</a></span>
+</div>
+<div class="subindexitem">point of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-3" class="xref" data-knowl="./knowl/index/subsec-Rn-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.4">Definition</a></span>
+</div>
+<div class="indexitem">Real numbers <span class="process-math">\(\R\)</span><span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-2" class="xref" data-knowl="./knowl/index/subsec-Rn-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a> <a href="sec-systems-of-eqns.html#subsec-Rn-5" class="xref" data-knowl="./knowl/index/subsec-Rn-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.5: The number line">Example</a></span>
+</div>
+<div class="indexitem">Reduced row echelon form<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-echelon-forms-7" class="xref" data-knowl="./knowl/index/subsec-row-reduction-echelon-forms-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.2.8">Definition</a></span>
+</div>
+<div class="indexitem">Row echelon form<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-echelon-forms-3" class="xref" data-knowl="./knowl/index/subsec-row-reduction-echelon-forms-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.2.6">Definition</a></span>
+</div>
+<div class="indexitem">Row equivalence<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5-7" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.2.4">Definition</a></span>
+</div>
+<div class="indexitem">Row operations<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Augmented Matrices and Row Operations">Paragraphs</a></span>
+</div>
+<div class="subindexitem">replacement<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5-2-13-2" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5-2-13-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Item">Item</a></span>
+</div>
+<div class="subindexitem">scaling<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5-2-13-1" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5-2-13-1.html" data-reveal-label="Reveal" data-close-label="Close" title="Item">Item</a></span>
+</div>
+<div class="subindexitem">swap<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5-2-13-3" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5-2-13-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Item">Item</a></span>
+</div>
+<div class="indexitem">Row reduction</div>
+<div class="subindexitem">algorithm<span class="indexknowl"> <a href="sec-row-reduction.html#algo-row-reduction" class="xref" data-knowl="./knowl/index/algo-row-reduction.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 1.2.12: Row Reduction">Recipe</a></span>
+</div>
+<div class="subindexitem">picture of<span class="indexknowl"> <a href="sec-row-reduction.html#sec-row-reduction-6-9" class="xref" data-knowl="./knowl/index/sec-row-reduction-6-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Row replacement<span class="indexknowl">. <span class="see"><em>See</em> Row operations, replacement</span></span>
+</div>
+<div class="indexitem">Row vector<span class="indexknowl">. <span class="see"><em>See</em> Vector</span></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-s">
+<div class="indexitem">Set builder notation<span class="indexknowl"> <a href="sec-spans.html#set-builder-notation" class="xref" data-knowl="./knowl/index/set-builder-notation.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 2.2.7: Set Builder Notation">Note</a></span>
+</div>
+<div class="indexitem">Solution<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div>
+<div class="indexitem">Solution set</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#systems-eqns-soln-sets" class="xref" data-knowl="./knowl/index/systems-eqns-soln-sets.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.2: Solution sets">Definition</a></span>
+</div>
+<div class="subindexitem">of a homogeneous system is a null space<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces-10" class="xref" data-knowl="./knowl/index/subsec-common-types-of-subspaces-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.6.17: Null Spaces are Solution Sets">Example</a></span>
+</div>
+<div class="subindexitem">of a homogeneous system is a span<span class="indexknowl"> <a href="sec-solution-sets.html#solnsets-are-spans" class="xref" data-knowl="./knowl/index/solnsets-are-spans.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary">Summary</a></span>
+</div>
+<div class="subindexitem">picture of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-systems-eqns-pictures" class="internal" title="Subsection 1.1.2: Pictures of Solution Sets">Subsection</a></span>
+</div>
+<div class="subindexitem">size of<span class="indexknowl"> <a href="sec-parametric-form.html#subsec-number-of-solutions" class="internal" title="Subsection 1.3.2: Number of Solutions">Subsection</a></span>
+</div>
+<div class="subindexitem">translate of a span<span class="indexknowl"> <a href="sec-solution-sets.html#solnsets-translate-span" class="xref" data-knowl="./knowl/index/solnsets-translate-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Key Observation">Summary</a></span>
+</div>
+<div class="subindexitem">versus the column space<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-ss-and-cs" class="internal" title="Subsection 2.4.3: Solution Sets and Column Spans">Subsection</a></span>
+</div>
+<div class="indexitem">Space</div>
+<div class="subindexitem">
+<span class="process-math">\(\R^3\)</span><span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-7" class="xref" data-knowl="./knowl/index/subsec-Rn-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.7: 3-Space">Example</a></span>
+</div>
+<div class="subindexitem">color space<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-13" class="xref" data-knowl="./knowl/index/subsec-Rn-13.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.10: Color Space">Example</a></span>
+</div>
+<div class="subindexitem">dimension-3 solution set<span class="indexknowl"> <a href="sec-solution-sets.html#soln-sets-dim-hom" class="xref" data-knowl="./knowl/index/soln-sets-dim-hom.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Dimension of the solution set">Summary</a> <a href="sec-solution-sets.html#soln-sets-dim-inhom" class="xref" data-knowl="./knowl/index/soln-sets-dim-inhom.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Dimension of the solution set">Summary</a></span>
+</div>
+<div class="indexitem">Span</div>
+<div class="subindexitem">basis of<span class="indexknowl"> <span class="see">(<em>see</em> Basis)</span></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-spans.html#vectors-defn-span" class="xref" data-knowl="./knowl/index/vectors-defn-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.2.6">Definition</a></span>
+</div>
+<div class="subindexitem">is a subspace<span class="indexknowl"> <a href="sec-subspaces.html#subspaces-spans-are-subspaces" class="xref" data-knowl="./knowl/index/subspaces-spans-are-subspaces.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.6.14: Spans are Subspaces and Subspaces are Spans">Theorem</a></span>
+</div>
+<div class="subindexitem">pictures of<span class="indexknowl"> <a href="sec-spans.html#subsec-spans-9" class="xref" data-knowl="./knowl/index/subsec-spans-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Pictures of Spans">Paragraphs</a></span>
+</div>
+<div class="indexitem">Subset</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-subspaces.html#subsec-subspaces-definition-and-examples-2" class="xref" data-knowl="./knowl/index/subsec-subspaces-definition-and-examples-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.6.1">Definition</a></span>
+</div>
+<div class="subindexitem">set builder notation<span class="indexknowl"> <a href="sec-spans.html#set-builder-notation" class="xref" data-knowl="./knowl/index/set-builder-notation.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 2.2.7: Set Builder Notation">Note</a></span>
+</div>
+<div class="subindexitem">versus subspace<span class="indexknowl"> <a href="sec-subspaces.html#subsec-subspaces-definition-and-examples-16" class="xref" data-knowl="./knowl/index/subsec-subspaces-definition-and-examples-16.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Subsets versus Subspaces">Summary</a></span>
+</div>
+<div class="indexitem">Subspace</div>
+<div class="subindexitem">and spans<span class="indexknowl"> <a href="sec-subspaces.html#subspaces-spans-are-subspaces" class="xref" data-knowl="./knowl/index/subspaces-spans-are-subspaces.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.6.14: Spans are Subspaces and Subspaces are Spans">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-subspaces.html#subspaces-defn-of" class="xref" data-knowl="./knowl/index/subspaces-defn-of.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.6.2">Definition</a></span>
+</div>
+<div class="subindexitem">is a span<span class="indexknowl"> <a href="sec-subspaces.html#subspaces-spans-are-subspaces" class="xref" data-knowl="./knowl/index/subspaces-spans-are-subspaces.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.6.14: Spans are Subspaces and Subspaces are Spans">Theorem</a></span>
+</div>
+<div class="subindexitem">real <span class="process-math">\(n\)</span>-space<span class="indexknowl"> <a href="sec-subspaces.html#subsec-subspaces-definition-and-examples-8" class="xref" data-knowl="./knowl/index/subsec-subspaces-definition-and-examples-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.6.4">Example</a></span>
+</div>
+<div class="subindexitem">versus subset<span class="indexknowl"> <a href="sec-subspaces.html#subsec-subspaces-definition-and-examples-16" class="xref" data-knowl="./knowl/index/subsec-subspaces-definition-and-examples-16.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Subsets versus Subspaces">Summary</a></span>
+</div>
+<div class="subindexitem">writing as column or null space<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces-15" class="xref" data-knowl="./knowl/index/subsec-common-types-of-subspaces-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Writing a subspace as a column space or a null space">Paragraphs</a></span>
+</div>
+<div class="subindexitem">zero<span class="indexknowl"> <a href="sec-subspaces.html#subsec-subspaces-definition-and-examples-9" class="xref" data-knowl="./knowl/index/subsec-subspaces-definition-and-examples-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.6.5">Example</a></span>
+</div>
+<div class="indexitem">System of linear equations</div>
+<div class="subindexitem">consistent<span class="indexknowl"> <a href="sec-systems-of-eqns.html#sec-systems-of-eqns-3-8" class="xref" data-knowl="./knowl/index/sec-systems-of-eqns-3-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.3">Definition</a></span>
+</div>
+<div class="subsubindexitem">picture of<span class="indexknowl"> <a href="sec-spans.html#subsec-vector-equations-7" class="xref" data-knowl="./knowl/index/subsec-vector-equations-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 2.2.2: A Picture of a Consistent System">Note</a></span>
+</div>
+<div class="subsubindexitem">span criterion<span class="indexknowl"> <a href="sec-spans.html#subsec-spans-6" class="xref" data-knowl="./knowl/index/subsec-spans-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 2.2.8: Three characterizations of consistency">Note</a> <a href="sec-matrix-equations.html#matrixeq-spans-consistency" class="xref" data-knowl="./knowl/index/matrixeq-spans-consistency.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary: Spans and Consistency">Summary</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#sec-systems-of-eqns-3-5" class="xref" data-knowl="./knowl/index/sec-systems-of-eqns-3-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">four ways of writing<span class="indexknowl"> <a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb-14" class="xref" data-knowl="./knowl/index/subsec-the-matrix-equation-axb-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 2.3.8: Four Ways of Writing a Linear System">Note</a></span>
+</div>
+<div class="subindexitem">homogeneous<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-homog-3" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.4.1">Definition</a></span>
+</div>
+<div class="subsubindexitem">trivial solution<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-homog-5" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary">Summary</a></span>
+</div>
+<div class="subindexitem">inconsistent<span class="indexknowl"> <a href="sec-systems-of-eqns.html#sec-systems-of-eqns-3-8" class="xref" data-knowl="./knowl/index/sec-systems-of-eqns-3-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.3">Definition</a></span>
+</div>
+<div class="subsubindexitem">picture of<span class="indexknowl"> <a href="sec-spans.html#vectors-fig-inconsistent" class="xref" data-knowl="./knowl/index/vectors-fig-inconsistent.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 2.2.9">Figure</a></span>
+</div>
+<div class="subsubindexitem">RREF criterion<span class="indexknowl"> <a href="sec-row-reduction.html#sec-row-reduction-6-16" class="xref" data-knowl="./knowl/index/sec-row-reduction-6-16.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 1.2.18: The Row Echelon Form of an Inconsistent System">Theorem</a></span>
+</div>
+<div class="subindexitem">inhomogeneous<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-homog-3" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.4.1">Definition</a></span>
+</div>
+<div class="subindexitem">nontrivial solution<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-homog-5" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary">Summary</a></span>
+</div>
+<div class="subsubindexitem">and free variables<span class="indexknowl"> <a href="sec-solution-sets.html#solnsets-nontrivial" class="xref" data-knowl="./knowl/index/solnsets-nontrivial.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.4.2">Example</a></span>
+</div>
+<div class="subsubindexitem">finding<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-homog-18" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary">Summary</a></span>
+</div>
+<div class="subindexitem">number of solutions of<span class="indexknowl"> <a href="sec-parametric-form.html#subsec-number-of-solutions" class="internal" title="Subsection 1.3.2: Number of Solutions">Subsection</a></span>
+</div>
+<div class="subindexitem">parametric form of<span class="indexknowl"> <span class="see">(<em>see</em> Parametric form)</span></span>
+</div>
+<div class="subindexitem">parametric vector form of<span class="indexknowl"> <span class="see">(<em>see</em> Parametric vector form)</span></span>
+</div>
+<div class="subindexitem">particular solution of<span class="indexknowl"> <span class="see">(<em>see</em> Parametric vector form)</span></span>
+</div>
+<div class="subindexitem">solution of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#systems-eqns-soln-sets" class="xref" data-knowl="./knowl/index/systems-eqns-soln-sets.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.2: Solution sets">Definition</a></span>
+</div>
+<div class="subindexitem">trivial solution<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-homog-5" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Summary">Summary</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-t"><div class="indexitem">Trivial solution<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div></div>
+<div class="indexletter" id="indexletter-v">
+<div class="indexitem">Vector</div>
+<div class="subindexitem">addition<span class="indexknowl"> <a href="sec-vectors.html#subsec-vector-algebra-and-geometry-3-2-1-1-1" class="xref" data-knowl="./knowl/index/subsec-vector-algebra-and-geometry-3-2-1-1-1.html" data-reveal-label="Reveal" data-close-label="Close" title="Item">Item</a></span>
+</div>
+<div class="subsubindexitem">parallelogram law<span class="indexknowl"> <a href="sec-vectors.html#subsec-vector-algebra-and-geometry-5" class="xref" data-knowl="./knowl/index/subsec-vector-algebra-and-geometry-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: The Parallelogram Law for Vector Addition">Paragraphs</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-vectors.html#subsec-vectors-in-rn-3" class="xref" data-knowl="./knowl/index/subsec-vectors-in-rn-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.1.1: Points and Vectors">Definition</a></span>
+</div>
+<div class="subindexitem">linear combination of<span class="indexknowl"> <span class="see">(<em>see</em> Linear combination)</span></span>
+</div>
+<div class="subindexitem">product with matrix<span class="indexknowl"> <span class="see">(<em>see</em> Matrix-vector product)</span></span>
+</div>
+<div class="subindexitem">row vector<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-row-column-prod" class="xref" data-knowl="./knowl/index/matrixeq-row-column-prod.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.3.9">Definition</a></span>
+</div>
+<div class="subsubindexitem">product with column vector<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-row-column-prod" class="xref" data-knowl="./knowl/index/matrixeq-row-column-prod.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.3.9">Definition</a></span>
+</div>
+<div class="subindexitem">scalar multiplication<span class="indexknowl"> <a href="sec-vectors.html#subsec-vector-algebra-and-geometry-3-2-1-1-2" class="xref" data-knowl="./knowl/index/subsec-vector-algebra-and-geometry-3-2-1-1-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Item">Item</a></span>
+</div>
+<div class="subsubindexitem">picture of<span class="indexknowl"> <a href="sec-vectors.html#subsec-vector-algebra-and-geometry-7" class="xref" data-knowl="./knowl/index/subsec-vector-algebra-and-geometry-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Scalar Multiplication">Paragraphs</a></span>
+</div>
+<div class="subindexitem">subtraction</div>
+<div class="subsubindexitem">picture of<span class="indexknowl"> <a href="sec-vectors.html#subsec-vector-algebra-and-geometry-6" class="xref" data-knowl="./knowl/index/subsec-vector-algebra-and-geometry-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Vector Subtraction">Paragraphs</a></span>
+</div>
+<div class="indexitem">Vector equation</div>
+<div class="subindexitem">consistent<span class="indexknowl"> <span class="see">(<em>see</em> System of linear equations, consistent)</span></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-spans.html#subsec-vector-equations-3" class="xref" data-knowl="./knowl/index/subsec-vector-equations-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.2.1">Definition</a></span>
+</div>
+<div class="subindexitem">equivalence with matrix equation<span class="indexknowl"> <a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb-12" class="xref" data-knowl="./knowl/index/subsec-the-matrix-equation-axb-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 2.3.6: Matrix Equations and Vector Equations">Note</a></span>
+</div>
+<div class="subindexitem">equivalence with system of equations<span class="indexknowl"> <a href="sec-spans.html#subsec-vector-equations-2" class="xref" data-knowl="./knowl/index/subsec-vector-equations-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">inconsistent<span class="indexknowl"> <span class="see">(<em>see</em> System of linear equations, inconsistent)</span></span>
+</div>
+<div class="subindexitem">solving<span class="indexknowl"> <a href="sec-spans.html#subsec-vector-equations-11" class="xref" data-knowl="./knowl/index/subsec-vector-equations-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 2.2.5: Solving a vector equation">Recipe</a></span>
+</div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Index: Index"><a tabindex="-1" href="#backmatter-5" title="Copy heading and permalink for Index: Index" aria-label="Copy heading and permalink for Index: Index">🔗</a></div>
 </section>
 </div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<a class="previous-button button" href="backmatter-4.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><span class="next-button button disabled"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></span>
+<a class="previous-button button" href="appendix-gfdl.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="backmatter-6.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">

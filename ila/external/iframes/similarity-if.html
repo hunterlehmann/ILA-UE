@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Similar matrices</title>
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
+    .caption-bar {
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
+    }
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Similar matrices controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <p><span id="mat-here1"></span> <span id="mult-here1" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p><span id="mat-here2"></span> <span id="mult-here2" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p><span id="mat-here3"></span> <span id="sim-here"></span></p>
+    <p class="hint">Drag either vector head, or edit the coordinates below.</p>
+    <details class="panel">
+      <summary>Options and coordinates</summary>
+      <div id="check-panel" class="ctrl-row"></div>
+      <div id="vec-inputs" class="vec-grid" role="group" aria-label="Vector coordinates"></div>
+    </details>
+  </div>
+
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
+  <div id="mathbox-container" aria-hidden="true">
+    <div class="mb-panel"><div id="mathbox1">
+        <div class="mathbox-label mathjax-static">\(B\)-coordinates</div>
+      </div></div>
+    <div class="mb-panel"><div id="mathbox2">
+        <div class="mathbox-label mathjax-static">Standard coordinates</div>
+      </div></div>
+  </div>
+
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
+  <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+    var vectorIn1  = urlParams.get('x', 'float[]', [-1, 1, 3]);
+    var vectorOut1 = [0, 0, 0];
+    var vectorIn2  = [-1, 1, 3];
+    var vectorOut2 = [0, 0, 0];
+    var labels = urlParams.get('labels', 'str[]', ['v1', 'v2', 'v3']);
+    var AName = urlParams.AName != null ? urlParams.AName : 'A';
+    var BName = urlParams.BName != null ? urlParams.BName : 'B';
+    var CName = urlParams.CName != null ? urlParams.CName : 'C';
+    var B = urlParams.get('B', 'matrix', [[2, 0], [0, 3]]);
+    var C = urlParams.get('C', 'matrix', [[2, 1], [1, 1]]);
+    var size = B.length;
+    if (size === 2) { vectorIn1[2] = 0; vectorIn2[2] = 0; }
+
+    // ── Matrices (unchanged from ILA) ───────────────────────────────────────
+    function transpose(mat) {
+      var tmp = [], i, j, r;
+      for (i = 0; i < 3; i++) {
+        tmp[i] = [];
+        for (j = 0; j < 3; j++) {
+          r = mat[j] != null ? mat[j][i] : void 0;
+          tmp[i][j] = r != null ? r : 0;
+        }
+      }
+      if (size === 2) tmp[2][2] = 1;
+      return tmp;
+    }
+    B = transpose(B);
+    C = transpose(C);
+    var tB = new THREE.Matrix3();
+    tB.set(B[0][0], B[1][0], B[2][0], B[0][1], B[1][1], B[2][1], B[0][2], B[1][2], B[2][2]);
+    var tC = new THREE.Matrix3();
+    tC.set(C[0][0], C[1][0], C[2][0], C[0][1], C[1][1], C[2][1], C[0][2], C[1][2], C[2][2]);
+    var tC4 = new THREE.Matrix4();
+    tC4.set(C[0][0], C[1][0], C[2][0], 0, C[0][1], C[1][1], C[2][1], 0, C[0][2], C[1][2], C[2][2], 0, 0, 0, 0, 1);
+    var tCinv = new THREE.Matrix3().getInverse(tC4);
+    var Cinv = tCinv.toArray();
+    Cinv = [[Cinv[0], Cinv[1], Cinv[2]], [Cinv[3], Cinv[4], Cinv[5]], [Cinv[6], Cinv[7], Cinv[8]]];
+    function mult33(m1, m2) {
+      var out = [[0, 0, 0], [0, 0, 0], [0, 0, 0]], i, j, k;
+      for (i = 0; i < 3; i++) for (j = 0; j < 3; j++) {
+        for (k = 0; k < 3; k++) out[i][j] += m1[k][j] * m2[i][k];
+      }
+      return out;
+    }
+    var A = mult33(mult33(C, B), Cinv);
+    var e1 = [1, 0, 0], e2 = [0, 1, 0], e3 = [0, 0, 1];
+    var Ce1 = C[0], Ce2 = C[1], Ce3 = C[2];
+
+    var bColor     = new Color("yellow");
+    var bxBColor   = bColor.darken(.2);
+    var xColor     = new Color("violet");
+    var aXColor    = xColor.darken(.2);
+    var axis1Color = new Color("red");
+    var axis2Color = new Color("blue");
+    var axis3Color = new Color("green");
+    var colors = [bColor.arr(1), bxBColor.arr(.7), axis1Color.arr(.8), axis2Color.arr(.8), axis3Color.arr(.8)].slice(0, size + 2);
+
+    var updateCaption = null, computeOut = null, computeIn = null;
+    var editor1 = null, editor2 = null;
+    function syncEditors() { if (editor1) editor1.sync(); if (editor2) editor2.sync(); }
+
+    // ── Snap-to-axes option (replaces dat.GUI) ──────────────────────────────
+    var snap = false;
+    if (urlParams.snap !== 'disabled') {
+      snap = urlParams.snap !== 'off';
+      addCheckbox(document.getElementById('check-panel'), {
+        id: 'snap', label: 'Snap to axes', checked: snap,
+        onChange: function(v) { snap = v; }
+      });
+    }
+    var snapped = new THREE.Vector3(), diff = new THREE.Vector3(), tmp3 = new THREE.Vector3();
+    function makeSnapper(subspaces, threshold) {
+      return function(vec) {
+        if (!snap) return;
+        subspaces.forEach(function(subspace) {
+          subspace.project(vec, snapped);
+          diff.copy(vec).sub(snapped);
+          if (diff.lengthSq() <= threshold) vec.copy(snapped);
+        });
+      };
+    }
+    function arrayConstrain(snapFn) {
+      return function(v) {
+        tmp3.set(v[0], v[1], v[2] || 0);
+        snapFn(tmp3);
+        v[0] = tmp3.x; v[1] = tmp3.y;
+        if (size === 3) v[2] = tmp3.z;
+      };
+    }
+    var snapper1, snapper2, range1, range2;
+
+    // ── Left panel: B-coordinates ───────────────────────────────────────────
+    window.demo1 = new (size === 3 ? Demo : Demo2D)({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox1')
+    }, function() {
+      var r, view, clipCube, tmpVec;
+      window.mathbox1 = this.mathbox;
+      this.range = range1 = this.urlParams.get('range1', 'float', 5);
+      r = this.range;
+      view = this.view({
+        name: 'view1',
+        viewRange: [[-r, r], [-r, r], [-r, r]].slice(0, size),
+        axes: false,
+        grid: false
+      });
+      // No `labels` option: WebGL text replaced by MathJax labels below
+      this.labeledVectors(view, {
+        vectors: [vectorIn1, vectorOut1, e1, e2, e3].slice(0, size + 2),
+        colors: colors,
+        live: true,
+        zeroPoints: true,
+        zeroThreshold: 0.3,
+        vectorOpts: { zIndex: 2 },
+        zeroOpts: { zIndex: 3 }
+      });
+      var layer = makeLabelLayer(document.getElementById('mathbox1'), this, view);
+      addVectorLabels(layer,
+        [vectorIn1, vectorOut1, e1, e2, e3].slice(0, size + 2),
+        [bColor, bxBColor, axis1Color, axis2Color, axis3Color].slice(0, size + 2),
+        ['[x]_{\\mathcal B}', BName + '[x]_{\\mathcal B}', 'e1', 'e2', 'e3'].slice(0, size + 2));
+      clipCube = this.clipCube(view, { draw: true, hilite: size === 3 });
+      clipCube.clipped.area({
+        width: 11, height: 11, channels: size, rangeX: [-r, r], rangeY: [-r, r]
+      }).surface({
+        color: [0.5, 0.5, 0.5, 0.5], opacity: 0.5, lineX: true, lineY: true, fill: false, zBias: 0
+      }).array({
+        channels: 4, width: 2, items: size,
+        data: [[colors[2], colors[3], colors[4]].slice(0, size), [colors[2], colors[3], colors[4]].slice(0, size)]
+      }).array({
+        width: 2, items: size, channels: size,
+        data: size === 2 ? [[-r, 0], [0, -r], [r, 0], [0, r]]
+                         : [[-r, 0, 0], [0, -r, 0], [0, 0, -r], [r, 0, 0], [0, r, 0], [0, 0, r]]
+      }).line({ color: "white", colors: "<<", width: 2, opacity: 1, zBias: 1 });
+
+      tmpVec = new THREE.Vector3();
+      computeOut = function() {
+        tmpVec.set.apply(tmpVec, vectorIn1).applyMatrix3(tB);
+        vectorOut1[0] = tmpVec.x; vectorOut1[1] = tmpVec.y; vectorOut1[2] = tmpVec.z;
+        tmpVec.applyMatrix3(tC);
+        vectorOut2[0] = tmpVec.x; vectorOut2[1] = tmpVec.y; vectorOut2[2] = tmpVec.z;
+        tmpVec.set.apply(tmpVec, vectorIn1).applyMatrix3(tC);
+        vectorIn2[0] = tmpVec.x; vectorIn2[1] = tmpVec.y; vectorIn2[2] = tmpVec.z;
+        syncEditors();
+        return updateCaption();
+      };
+      snapper1 = makeSnapper([
+        this.subspace({ vectors: [e1] }), this.subspace({ vectors: [e2] }), this.subspace({ vectors: [e3] })
+      ], 1.0 * this.range / 10.0);
+      this.drag = this.draggable(view, { points: [vectorIn1], onDrag: snapper1, postDrag: computeOut });
+
+      renderMath(BName + ' = ' + texMat(B, { rows: size, cols: size }), document.getElementById('mat-here1'));
+      renderMath(AName + ' = ' + texMat(A, { rows: size, cols: size }), document.getElementById('mat-here2'));
+      renderMath(CName + ' = ' + texMat(C, { rows: size, cols: size }), document.getElementById('mat-here3'));
+      renderMath('\\qquad ' + AName + ' = ' + CName + BName + CName + '^{-1} \\quad ' +
+                 texC(xColor, 'x') + ' = ' + CName + texC(bColor, '[x]_{\\mathcal B}'),
+                 document.getElementById('sim-here'));
+      var eq1Elt = document.getElementById('mult-here1');
+      var eq2Elt = document.getElementById('mult-here2');
+      updateCaption = function() {
+        renderMath('\\qquad ' + BName + texVec(vectorIn1, bColor, size) + '=' + texVec(vectorOut1, bxBColor, size), eq1Elt);
+        renderMath('\\qquad ' + AName + texVec(vectorIn2, xColor, size) + '=' + texVec(vectorOut2, aXColor, size), eq2Elt);
+      };
+    });
+
+    // ── Right panel: standard coordinates ───────────────────────────────────
+    window.demo2 = new (size === 3 ? Demo : Demo2D)({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox2')
+    }, function() {
+      var r, r2, view, clipCube, tmpVec, colors2;
+      window.mathbox2 = this.mathbox;
+      this.range = range2 = this.urlParams.get('range2', 'float', 5);
+      r = this.range;
+      view = this.view({
+        name: 'view2',
+        viewRange: [[-r, r], [-r, r], [-r, r]].slice(0, size),
+        axes: false,
+        grid: false
+      });
+      colors2 = colors.slice();
+      colors2[0] = xColor.arr(1);
+      colors2[1] = aXColor.arr(.7);
+      this.labeledVectors(view, {
+        vectors: [vectorIn2, vectorOut2, Ce1, Ce2, Ce3].slice(0, size + 2),
+        colors: colors2,
+        live: true,
+        zeroPoints: true,
+        zeroThreshold: 0.3,
+        vectorOpts: { zIndex: 2 },
+        zeroOpts: { zIndex: 3 }
+      });
+      var layer = makeLabelLayer(document.getElementById('mathbox2'), this, view);
+      addVectorLabels(layer,
+        [vectorIn2, vectorOut2, Ce1, Ce2, Ce3].slice(0, size + 2),
+        [xColor, aXColor, axis1Color, axis2Color, axis3Color].slice(0, size + 2),
+        ['x', AName + 'x'].concat(labels).slice(0, size + 2));
+      clipCube = this.clipCube(view, { draw: true, hilite: size === 3 });
+      this.transformed = clipCube.clipped.transform({
+        matrix: [C[0][0], C[1][0], C[2][0], 0, C[0][1], C[1][1], C[2][1], 0, C[0][2], C[1][2], C[2][2], 0, 0, 0, 0, 1]
+      });
+      r2 = demo1.range * 5;
+      this.transformed.area({
+        width: 51, height: 51, channels: size, rangeX: [-r2, r2], rangeY: [-r2, r2]
+      }).surface({
+        color: [0.5, 0.5, 0.5, 0.5], opacity: 0.5, lineX: true, lineY: true, fill: false, zBias: 0
+      }).array({
+        channels: 4, width: 2, items: size,
+        data: [[colors[2], colors[3], colors[4]].slice(0, size), [colors[2], colors[3], colors[4]].slice(0, size)]
+      }).array({
+        width: 2, items: size, channels: size,
+        data: size === 2 ? [[-r2, 0], [0, -r2], [r2, 0], [0, r2]]
+                         : [[-r2, 0, 0], [0, -r2, 0], [0, 0, -r2], [r2, 0, 0], [0, r2, 0], [0, 0, r2]]
+      }).line({ color: "white", colors: "<<", width: 2, opacity: 1, zBias: 1 });
+
+      tmpVec = new THREE.Vector3();
+      computeIn = function() {
+        tmpVec.set.apply(tmpVec, vectorIn2).applyMatrix3(tCinv);
+        vectorIn1[0] = tmpVec.x; vectorIn1[1] = tmpVec.y; vectorIn1[2] = tmpVec.z;
+        tmpVec.applyMatrix3(tB);
+        vectorOut1[0] = tmpVec.x; vectorOut1[1] = tmpVec.y; vectorOut1[2] = tmpVec.z;
+        tmpVec.applyMatrix3(tC);
+        vectorOut2[0] = tmpVec.x; vectorOut2[1] = tmpVec.y; vectorOut2[2] = tmpVec.z;
+        syncEditors();
+        return updateCaption();
+      };
+      snapper2 = makeSnapper([
+        this.subspace({ vectors: [Ce1] }), this.subspace({ vectors: [Ce2] }), this.subspace({ vectors: [Ce3] })
+      ], 1.0 * this.range / 10.0);
+      this.drag = this.draggable(view, { points: [vectorIn2], onDrag: snapper2, postDrag: computeIn });
+    });
+
+    groupControls(demo1, demo2);
+
+    // WCAG 2.1.1 / 2.5.1: keyboard alternative to dragging either vector
+    var vecInputs = document.getElementById('vec-inputs');
+    editor1 = buildVectorEditor(vecInputs, [{
+      name: '[x]_B', ariaName: 'x in B-coordinates', tex: '[x]_{\\mathcal B}', vec: vectorIn1, dim: size,
+      constrain: arrayConstrain(snapper1)
+    }], range1, function() { computeOut(); });
+    editor2 = buildVectorEditor(vecInputs, [{
+      name: 'x', tex: 'x', vec: vectorIn2, dim: size,
+      constrain: arrayConstrain(snapper2)
+    }], range2, function() { computeIn(); });
+
+    computeOut();
+  }); // end DomReady.ready
+
+  initFullscreenButton('fs-btn');
+  </script>
+</body>
+</html>

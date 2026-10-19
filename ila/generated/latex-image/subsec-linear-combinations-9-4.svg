@@ -9,17 +9,17 @@
 </defs>
 <path transform="matrix(1.00005,0,0,-1.00005,87.04039,115.08995)" stroke-width=".19926" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#b2b3b2" d="M-85.03934-85.03934H113.38579M-85.03934-56.6929H113.38579M-85.03934-28.34645H113.38579M-85.03934 0H113.38579M-85.03934 28.34645H113.38579M-85.03934 56.6929H113.38579M-85.03934 85.03934H113.38579M-85.03934 113.37582H113.38579M-85.03934-85.03934V113.38579M-56.6929-85.03934V113.38579M-28.34645-85.03934V113.38579M0-85.03934V113.38579M28.34645-85.03934V113.38579M56.6929-85.03934V113.38579M85.03934-85.03934V113.38579M113.37582-85.03934V113.38579M113.38579 113.38579"/>
 <g clip-path="url(#clip_1)">
-<path transform="matrix(1.00005,0,0,-1.00005,87.04039,115.08995)" stroke-width=".39851" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#a059ab" d="M-113.38579-113.38579 113.38579 113.38579"/>
+<path transform="matrix(1.00005,0,0,-1.00005,87.04039,115.08995)" stroke-width=".39851" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#9444a1" d="M-113.38579-113.38579 113.38579 113.38579"/>
 <path transform="matrix(1.00005,0,0,-1.00005,87.04039,115.08995)" stroke-width="1.19553" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#e41a1c" d="M0 0 52.98198 52.98198"/>
 <path transform="matrix(.7071353,-.7071353,-.7071353,-.7071353,137.72263,64.407718)" d="M6.80153 0 1.93037 1.84627 3.55475 0 1.93037-1.84627Z" fill="#e41a1c"/>
 <path transform="matrix(.7071353,-.7071353,-.7071353,-.7071353,137.72263,64.407718)" stroke-width="1.19553" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#e41a1c" d="M6.80153 0 1.93037 1.84627 3.55475 0 1.93037-1.84627Z"/>
 <use data-text="v" xlink:href="#font_2_1" transform="matrix(9.963098,0,0,-9.963098,105.09329,84.25141)" fill="#e41a1c"/>
 <use data-text="1" xlink:href="#font_3_1" transform="matrix(6.9741489,0,0,-6.9741489,109.92253,85.74649)" fill="#e41a1c"/>
-<path transform="matrix(1.00005,0,0,-1.00005,87.04039,115.08995)" stroke-width="1.19553" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#377eb8" d="M0 0-24.63553-24.63553"/>
-<path transform="matrix(-.7071353,.7071353,.7071353,.7071353,64.70601,137.42433)" d="M6.80153 0 1.93037 1.84627 3.55475 0 1.93037-1.84627Z" fill="#377eb8"/>
-<path transform="matrix(-.7071353,.7071353,.7071353,.7071353,64.70601,137.42433)" stroke-width="1.19553" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#377eb8" d="M6.80153 0 1.93037 1.84627 3.55475 0 1.93037-1.84627Z"/>
-<use data-text="v" xlink:href="#font_2_1" transform="matrix(9.963098,0,0,-9.963098,62.571168,126.77353)" fill="#377eb8"/>
-<use data-text="2" xlink:href="#font_3_2" transform="matrix(6.9741489,0,0,-6.9741489,67.400409,128.26862)" fill="#377eb8"/>
+<path transform="matrix(1.00005,0,0,-1.00005,87.04039,115.08995)" stroke-width="1.19553" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#0062d9" d="M0 0-24.63553-24.63553"/>
+<path transform="matrix(-.7071353,.7071353,.7071353,.7071353,64.70601,137.42433)" d="M6.80153 0 1.93037 1.84627 3.55475 0 1.93037-1.84627Z" fill="#0062d9"/>
+<path transform="matrix(-.7071353,.7071353,.7071353,.7071353,64.70601,137.42433)" stroke-width="1.19553" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#0062d9" d="M6.80153 0 1.93037 1.84627 3.55475 0 1.93037-1.84627Z"/>
+<use data-text="v" xlink:href="#font_2_1" transform="matrix(9.963098,0,0,-9.963098,62.571168,126.77353)" fill="#0062d9"/>
+<use data-text="2" xlink:href="#font_3_2" transform="matrix(6.9741489,0,0,-6.9741489,67.400409,128.26862)" fill="#0062d9"/>
 <path transform="matrix(1.00005,0,0,-1.00005,87.04039,115.08995)" d="M2.12598 0C2.12598 1.17416 1.17416 2.12598 0 2.12598-1.17416 2.12598-2.12598 1.17416-2.12598 0-2.12598-1.17416-1.17416-2.12598 0-2.12598 1.17416-2.12598 2.12598-1.17416 2.12598 0ZM0 0"/>
 </g>
 </svg>

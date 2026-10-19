@@ -20,7 +20,8 @@
 <link rel="stylesheet" href="_static/pretext/fonts/material-symbols-outlined.css">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
 <style>
-@counter-style ptx-marker-1 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-1 { system: extends decimal; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-2 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
 </style>
 <link rel="stylesheet" type="text/css" href="external/css/highlight-math.css">
 <script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
@@ -62,14 +63,14 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '8.3.5';
+eBookConfig.runestone_version = '8.3.6';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.3adcbea95009347b.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.7a45395f326e122c.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
+<script src="_static/prefix-runtime.4beca1fdeed766a2.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.ebd33f6a21eed414.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
 <link rel="stylesheet" type="text/css" href="_static/prefix-runestone.9963089870a016c8.css">
 <script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><link rel="icon" type="image/png" sizes="32x32" href="external/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="external/favicon/favicon-16x16.png">
@@ -79,11 +80,11 @@ eBookConfig.enable_chatcodes =  false;
 <body id="ILA-UE" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" target="_blank" href="https://gatech.edu/"><img src="external/images/logo.gif" alt="Logo image"></a><div class="title-container">
-<div class="heading ptx-banner-heading"><a href="main.html"><span class="title">Interactive Linear Algebra: Updated Edition</span></a></div>
-<p class="byline">Dan Margalit, Joseph Rabinoff</p>
+<div class="heading ptx-banner-heading"><a href="main.html"><span class="title">Interactive Linear Algebra</span> <span class="subtitle">Updated Edition</span></a></div>
+<p class="byline">Dan Margalit, Joseph Rabinoff, Hunter Lehmann, Chris Jankowski</p>
 </div>
 </div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
-<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-4.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="ptx-search-box">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-5.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="ptx-search-box">
 <div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
 <dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
 <input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
@@ -122,7 +123,7 @@ eBookConfig.enable_chatcodes =  false;
 <label for="ptx-readability-accessible-permalinks"><input type="checkbox" id="ptx-readability-accessible-permalinks"><span>🔗</span><span>Expose permalinks</span></label>
 </fieldset>
 <div class="ptx-readability-options-group"><button type="button" class="ptx-readability-reset-button button" id="ptx-readability-reset-button"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf053;</span><span class="name">Reset All</span></button></div></dialog></span><span class="treebuttons"><a class="previous-button button" href="chap-algebra-2.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="chap-algebra.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-row-reduction.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
-</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{html}\require{color}    \definecolor{cLGold}{RGB}{143, 113, 61}
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{color}    \definecolor{cLGold}{RGB}{143, 113, 61}
     \definecolor{cLGreen}{RGB}{57, 121, 76}
     \definecolor{cLPurple}{RGB}{148,68,161}
     \definecolor{cLBlue}{RGB}{0, 98, 217}
@@ -137,7 +138,7 @@ eBookConfig.enable_chatcodes =  false;
   \newcommand{\R}{\mathbf R}
   \newcommand{\C}{\mathbf C}
  \renewcommand{\mathbb}[1]{\mathbf{#1}}
-  
+  \newcommand{\matrow}[1]{\text{---}\,#1\,\text{---}}
   \newcommand{\Span}{\operatorname{Span}}
   \newcommand{\Nul}{\operatorname{Nul}}
   \newcommand{\Col}{\operatorname{Col}}
@@ -246,7 +247,57 @@ eBookConfig.enable_chatcodes =  false;
 <ul id="ptx-toc-group-sec-spans" class="structural toc-item-list">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spans.html#subsec-vector-equations" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Vector Equations</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spans.html#subsec-spans" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Spans</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-spans.html#sec-spans-5" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-equations.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Matrix Equations</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-equations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb" class="internal"><span class="codenumber">2.3.1</span> <span class="title">The Matrix Equation <span class="process-math">\(Ax=b\text{.}\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-equations.html#subsec-spans-and-consistency" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Spans and Consistency</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-equations.html#sec-matrix-equations-5" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-solution-sets.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Solution Sets</span></a></div>
+<ul id="ptx-toc-group-sec-solution-sets" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-solnsets-homog" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Homogeneous Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-inhomogeneous-systems" class="internal"><span class="codenumber">2.4.2</span> <span class="title">Inhomogeneous Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-solnsets-ss-and-cs" class="internal"><span class="codenumber">2.4.3</span> <span class="title">Solution Sets and Column Spans</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-solution-sets.html#sec-solution-sets-7" class="internal"><span class="codenumber">2.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-independence.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Linear Independence</span></a></div>
+<ul id="ptx-toc-group-sec-linear-independence" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-the-definition-of-linear-independence" class="internal"><span class="codenumber">2.5.1</span> <span class="title">The Definition of Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-criteria-for-linear-independence" class="internal"><span class="codenumber">2.5.2</span> <span class="title">Criteria for Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-pictures-of-linear-independence" class="internal"><span class="codenumber">2.5.3</span> <span class="title">Pictures of Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-linear-dependence-and-free-variables" class="internal"><span class="codenumber">2.5.4</span> <span class="title">Linear Dependence and Free Variables</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-linear-independence.html#sec-linear-independence-8" class="internal"><span class="codenumber">2.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-subspaces.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Subspaces</span></a></div>
+<ul id="ptx-toc-group-sec-subspaces" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-subspaces.html#subsec-subspaces-definition-and-examples" class="internal"><span class="codenumber">2.6.1</span> <span class="title">Subspaces: Definition and Examples</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-subspaces.html#subsec-common-types-of-subspaces" class="internal"><span class="codenumber">2.6.2</span> <span class="title">Common Types of Subspaces</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-subspaces.html#sec-subspaces-6" class="internal"><span class="codenumber">2.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-dimension.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Basis and Dimension</span></a></div>
+<ul id="ptx-toc-group-sec-dimension" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-basis-of-a-subspace" class="internal"><span class="codenumber">2.7.1</span> <span class="title">Basis of a Subspace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-computing-a-basis-for-a-subspace" class="internal"><span class="codenumber">2.7.2</span> <span class="title">Computing a Basis for a Subspace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-the-basis-theorem" class="internal"><span class="codenumber">2.7.3</span> <span class="title">The Basis Theorem</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-dimension.html#sec-dimension-6" class="internal"><span class="codenumber">2.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-bases-as-coord-systems.html" class="internal"><span class="codenumber">2.8</span> <span class="title">Bases as Coordinate Systems</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-rank-thm.html" class="internal"><span class="codenumber">2.9</span> <span class="title">The Rank Theorem</span></a></div>
+<ul id="ptx-toc-group-sec-rank-thm" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-rank-thm.html#sec-rank-thm-22" class="internal"><span class="codenumber">2.9</span> <span class="title">Exercises</span></a></div></li></ul>
 </li>
 </ul>
 </li>
@@ -258,9 +309,10 @@ eBookConfig.enable_chatcodes =  false;
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
 <ul id="ptx-toc-group-backmatter" class="structural toc-item-list">
 <li class="toc-item toc-appendix"><div class="toc-title-box"><a href="backmatter-2.html" class="internal"><span class="codenumber">A.</span> <span class="title">Notation</span></a></div></li>
-<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">B.</span> <span class="title">GNU Free Documentation License</span></a></div></li>
-<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="title">Index</span></a></div></li>
-<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="backmatter-3.html" class="internal"><span class="codenumber">B.</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">C.</span> <span class="title">GNU Free Documentation License</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-6.html" class="internal"><span class="title">Colophon</span></a></div></li>
 </ul>
 </li>
 </ul></nav></div>
@@ -295,11 +347,11 @@ eBookConfig.enable_chatcodes =  false;
 <div class="para" id="sec-systems-of-eqns-3-1">During the first half of this textbook, we will be primarily concerned with understanding the solutions of systems of linear equations.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="definition definition-like" id="sec-systems-of-eqns-3-2"><h2 class="heading">
-<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h2>
 <div class="para" id="sec-systems-of-eqns-3-2-2-1">An equation in the unknowns <span class="process-math">\(x,y,z,\ldots\)</span> is called <dfn class="terminology">linear</dfn> if both sides of the equation are a sum of (constant) multiples of <span class="process-math">\(x,y,z,\ldots\text{,}\)</span> plus an optional constant.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Definition 1.2"><a tabindex="-1" href="#sec-systems-of-eqns-3-2" title="Copy heading and permalink for Definition 1.2" aria-label="Copy heading and permalink for Definition 1.2">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Definition 1.1.1"><a tabindex="-1" href="#sec-systems-of-eqns-3-2" title="Copy heading and permalink for Definition 1.1.1" aria-label="Copy heading and permalink for Definition 1.1.1">🔗</a></div>
 </article>
 <div class="para logical" id="sec-systems-of-eqns-3-3">
 <div class="para">For instance,</div>
@@ -341,7 +393,7 @@ x\, \amp {}\, +\, \amp {} 2y \,\amp {}+{} \amp 3z \amp {}={} \amp 6\\
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-3-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="definition definition-like" id="systems-eqns-soln-sets"><h2 class="heading">
-<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Solution sets.</span>
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Solution sets.</span>
 </h2>
 <div class="para logical" id="systems-eqns-soln-sets-2-1">
 <ul class="disc" id="systems-eqns-soln-sets-2-1-1">
@@ -364,7 +416,7 @@ x\, \amp {}\, +\, \amp {} 2y \,\amp {}+{} \amp 3z \amp {}={} \amp 6\\
 </ul>
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#systems-eqns-soln-sets-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Definition 1.3: Solution sets"><a tabindex="-1" href="#systems-eqns-soln-sets" title="Copy heading and permalink for Definition 1.3: Solution sets" aria-label="Copy heading and permalink for Definition 1.3: Solution sets">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Definition 1.1.2: Solution sets"><a tabindex="-1" href="#systems-eqns-soln-sets" title="Copy heading and permalink for Definition 1.1.2: Solution sets" aria-label="Copy heading and permalink for Definition 1.1.2: Solution sets">🔗</a></div>
 </article>
 <div class="para logical" id="sec-systems-of-eqns-3-7">
 <div class="para">A system of linear equations need not have a solution.  For example, there do not exist numbers <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> making the following two equations true simultaneously:</div>
@@ -382,11 +434,11 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-3-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="definition definition-like" id="sec-systems-of-eqns-3-8"><h2 class="heading">
-<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h2>
 <div class="para" id="sec-systems-of-eqns-3-8-5-1">A system of equations is called <dfn class="terminology">inconsistent</dfn> if it has no solutions.  It is called <dfn class="terminology">consistent</dfn> otherwise.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-3-8-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Definition 1.4"><a tabindex="-1" href="#sec-systems-of-eqns-3-8" title="Copy heading and permalink for Definition 1.4" aria-label="Copy heading and permalink for Definition 1.4">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Definition 1.1.3"><a tabindex="-1" href="#sec-systems-of-eqns-3-8" title="Copy heading and permalink for Definition 1.1.3" aria-label="Copy heading and permalink for Definition 1.1.3">🔗</a></div>
 </article>
 <div class="para" id="sec-systems-of-eqns-3-9">A solution of a system of equations in <span class="process-math">\(n\)</span> variables is a list of <span class="process-math">\(n\)</span> numbers.  For example, <span class="process-math">\((x,y,z) = (1,-2,3)\)</span> is a solution of <a href="sec-systems-of-eqns.html#systems-eqns-example" class="xref" data-knowl="./knowl/xref/systems-eqns-example.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 1.1.1">(1.1.1)</a>.  As we will be studying solutions of systems of equations throughout this text, now is a good time to fix our notions regarding lists of numbers.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-3-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div></section>
@@ -397,7 +449,7 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 <div class="para" id="subsec-Rn-2"> We use <span class="process-math">\(\R\)</span> to denote the set of all real numbers, i.e., the number line.  This contains numbers like <span class="process-math">\(0, \frac 32, -\pi, 104, \ldots\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="definition definition-like" id="subsec-Rn-3"><h3 class="heading">
-<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h3>
 <div class="para logical" id="subsec-Rn-3-4-1">
 <div class="para">Let <span class="process-math">\(n\)</span> be a positive whole number.  We define</div>
@@ -410,20 +462,20 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-3-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Definition 1.5"><a tabindex="-1" href="#subsec-Rn-3" title="Copy heading and permalink for Definition 1.5" aria-label="Copy heading and permalink for Definition 1.5">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Definition 1.1.4"><a tabindex="-1" href="#subsec-Rn-3" title="Copy heading and permalink for Definition 1.1.4" aria-label="Copy heading and permalink for Definition 1.1.4">🔗</a></div>
 </article>
 <div class="para" id="subsec-Rn-4">In other words, <span class="process-math">\(\R^n\)</span> is just the set of all (ordered) lists of <span class="process-math">\(n\)</span> real numbers.  We will draw pictures of <span class="process-math">\(\R^n\)</span> in a moment, but keep in mind that <em class="emphasis">this is the definition</em>.  For example, <span class="process-math">\((0, \frac 32, -\pi)\)</span> and <span class="process-math">\((1,-2,3)\)</span> are points of <span class="process-math">\(\R^3\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="observation remark-like" id="subsec-Rn-5"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The number line.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The number line.</span>
 </h3>
 <div class="para" id="subsec-Rn-5-4">When <span class="process-math">\(n=1\text{,}\)</span> we just get <span class="process-math">\(\R\)</span> back: <span class="process-math">\(\R^1=\R\text{.}\)</span>  Geometrically, this is the number line.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-5-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="generated/latex-image/subsec-Rn-5-5.svg" role="img" class="contained" alt="The number line marked with integers from -3 to 3"></div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.6: The number line"><a tabindex="-1" href="#subsec-Rn-5" title="Copy heading and permalink for Example 1.6: The number line" aria-label="Copy heading and permalink for Example 1.6: The number line">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.5: The number line"><a tabindex="-1" href="#subsec-Rn-5" title="Copy heading and permalink for Example 1.1.5: The number line" aria-label="Copy heading and permalink for Example 1.1.5: The number line">🔗</a></div>
 </article>
 <article class="observation remark-like" id="subsec-Rn-6"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Euclidean plane.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Euclidean plane.</span>
 </h3>
 <div class="para" id="subsec-Rn-6-3">When <span class="process-math">\(n=2\text{,}\)</span> we can think of <span class="process-math">\(\R^2\)</span> as the <span class="process-math">\(xy\)</span>-plane.  We can do so because every point on the plane can be represented by an ordered pair of real numbers, namely, its <span class="process-math">\(x\)</span>- and <span class="process-math">\(y\)</span>-coordinates.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-6-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -433,10 +485,10 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 </div>
 </div></details>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.7: The Euclidean plane"><a tabindex="-1" href="#subsec-Rn-6" title="Copy heading and permalink for Example 1.7: The Euclidean plane" aria-label="Copy heading and permalink for Example 1.7: The Euclidean plane">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.6: The Euclidean plane"><a tabindex="-1" href="#subsec-Rn-6" title="Copy heading and permalink for Example 1.1.6: The Euclidean plane" aria-label="Copy heading and permalink for Example 1.1.6: The Euclidean plane">🔗</a></div>
 </article>
 <article class="observation remark-like" id="subsec-Rn-7"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">3-Space.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">3-Space.</span>
 </h3>
 <div class="para" id="subsec-Rn-7-3">When <span class="process-math">\(n=3\text{,}\)</span> we can think of <span class="process-math">\(\R^3\)</span> as the <em class="emphasis">space</em> we (appear to) live in.  We can do so because every point in space can be represented by an ordered triple of real numbers, namely, its <span class="process-math">\(x\)</span>-, <span class="process-math">\(y\)</span>-, and <span class="process-math">\(z\)</span>-coordinates.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-7-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -446,10 +498,10 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 </div>
 </div></details>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.8: 3-Space"><a tabindex="-1" href="#subsec-Rn-7" title="Copy heading and permalink for Example 1.8: 3-Space" aria-label="Copy heading and permalink for Example 1.8: 3-Space">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.7: 3-Space"><a tabindex="-1" href="#subsec-Rn-7" title="Copy heading and permalink for Example 1.1.7: 3-Space" aria-label="Copy heading and permalink for Example 1.1.7: 3-Space">🔗</a></div>
 </article>
 <details id="subsec-Rn-8" class="question example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
-<span class="type">Interactive</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Points in 3-Space.</span>
+<span class="type">Interactive</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Points in 3-Space.</span>
 </h3></summary>
 <article class="question example-like knowl__content">
 <figure class="figure figure-like" id="subsec-Rn-8-2"><div class="interactive-iframe-container">
@@ -467,8 +519,8 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 <div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#demo-point-3space-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
 </div></details>
 </div>
-<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A point in 3-space, and its coordinates.<div class="autopermalink" aria-hidden="true" data-description="Figure 1.10"><a tabindex="-1" href="#subsec-Rn-8-2" title="Copy heading and permalink for Figure 1.10" aria-label="Copy heading and permalink for Figure 1.10">🔗</a></div></figcaption>
-</figure><div class="autopermalink" aria-hidden="true" data-description="Interactive 1.9: Points in 3-Space"><a tabindex="-1" href="#subsec-Rn-8" title="Copy heading and permalink for Interactive 1.9: Points in 3-Space" aria-label="Copy heading and permalink for Interactive 1.9: Points in 3-Space">🔗</a></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A point in 3-space, and its coordinates.<div class="autopermalink" aria-hidden="true" data-description="Figure 1.1.9"><a tabindex="-1" href="#subsec-Rn-8-2" title="Copy heading and permalink for Figure 1.1.9" aria-label="Copy heading and permalink for Figure 1.1.9">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Interactive 1.1.8: Points in 3-Space"><a tabindex="-1" href="#subsec-Rn-8" title="Copy heading and permalink for Interactive 1.1.8: Points in 3-Space" aria-label="Copy heading and permalink for Interactive 1.1.8: Points in 3-Space">🔗</a></div>
 </article></details>
 <div class="para" id="subsec-Rn-9">So what is <span class="process-math">\(\R^4\text{?}\)</span>  or <span class="process-math">\(\R^5\text{?}\)</span>  or <span class="process-math">\(\R^n\text{?}\)</span> These are harder to visualize, so you have to go back to the definition: <span class="process-math">\(\R^n\)</span> is the set of all ordered <span class="process-math">\(n\)</span>-tuples of real numbers <span class="process-math">\((x_1,x_2,x_3,\ldots,x_n)\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -479,32 +531,32 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 <div class="para" id="subsec-Rn-12">The power of using these spaces is the ability to <em class="emphasis">label</em> various objects of interest, such as geometric objects and solutions of systems of equations, by the points of <span class="process-math">\(\R^n\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <details id="subsec-Rn-13" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Color Space.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Color Space.</span>
 </h3></summary>
 <article class="example example-like knowl__content">
 <div class="para" id="subsec-Rn-13-4">All colors you can see can be described by three quantities: the amount of red, green, and blue light in that color.  (Humans are <a class="external" href="https://en.wikipedia.org/wiki/Trichromacy" target="_blank">trichromatic</a>.)  Therefore, we can use the points of <span class="process-math">\(\R^3\)</span> to <em class="emphasis">label</em> all colors: for instance, the point <span class="process-math">\((.2, .4, .9)\)</span> labels the color with <span class="process-math">\(20\%\)</span> red, <span class="process-math">\(40\%\)</span> green, and <span class="process-math">\(90\%\)</span> blue intensity.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-13-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/latex-image/img-color-space.svg" role="img" class="contained" alt="Gradient of colors on a cube, with red, green, and blue axes labeled"></div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.11: Color Space"><a tabindex="-1" href="#subsec-Rn-13" title="Copy heading and permalink for Example 1.11: Color Space" aria-label="Copy heading and permalink for Example 1.11: Color Space">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.10: Color Space"><a tabindex="-1" href="#subsec-Rn-13" title="Copy heading and permalink for Example 1.1.10: Color Space" aria-label="Copy heading and permalink for Example 1.1.10: Color Space">🔗</a></div>
 </article></details>
 <details id="systems-eqns-R4" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.12</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Traffic Flow.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Traffic Flow.</span>
 </h3></summary>
 <article class="example example-like knowl__content">
 <div class="para" id="systems-eqns-R4-2">In the <a href="overview.html" class="internal" title="Preface: Overview">Overview</a>, we could have used <span class="process-math">\(\R^4\)</span> to <em class="emphasis">label</em> the amount of traffic <span class="process-math">\((x,y,z,w)\)</span> passing through four streets.  In other words, if there are <span class="process-math">\(10,5,3,11\)</span> cars per hour passing through roads <span class="process-math">\(x,y,z,w\text{,}\)</span> respectively, then this can be recorded by the point <span class="process-math">\((10,5,3,11)\)</span> in <span class="process-math">\(\R^4\text{.}\)</span>  This is useful from a psychological standpoint: instead of having four numbers, we are now dealing with just <em class="emphasis">one</em> piece of data.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#systems-eqns-R4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="image-box" style="width: 30%; margin-left: 35%; margin-right: 35%;"><img src="generated/latex-image/img-traffic-flow.svg" role="img" class="contained" alt="Directed traffic flows into, out of, and around a square formed by four intersections."></div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.12: Traffic Flow"><a tabindex="-1" href="#systems-eqns-R4" title="Copy heading and permalink for Example 1.12: Traffic Flow" aria-label="Copy heading and permalink for Example 1.12: Traffic Flow">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.11: Traffic Flow"><a tabindex="-1" href="#systems-eqns-R4" title="Copy heading and permalink for Example 1.1.11: Traffic Flow" aria-label="Copy heading and permalink for Example 1.1.11: Traffic Flow">🔗</a></div>
 </article></details>
 <details id="subsec-Rn-15" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.13</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">QR Codes.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.12</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">QR Codes.</span>
 </h3></summary>
 <article class="example example-like knowl__content">
-<div class="para" id="subsec-Rn-15-3">A <a class="external" href="https://en.wikipedia.org/wiki/QR_code" target="_blank">QR code</a> is a method of storing data in a grid of black and white squares in a way that computers can easily read.  A typical QR code is a <span class="process-math">\(29 \times 29\)</span> grid.  Reading each line left-to-right and reading the lines top-to-bottom (like you read a book) we can think of such a QR code as a sequence of <span class="process-math">\(29 \times 29 = 841\)</span> digits, each digit being 1 (for white) or 0 (for black).  In such a way, the entire QR code can be regarded as a point in <span class="process-math">\(\R^{841}\text{.}\)</span>  As in the previous <a href="sec-systems-of-eqns.html#systems-eqns-R4" class="xref" data-knowl="./knowl/xref/systems-eqns-R4.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.12: Traffic Flow">Example 12</a>, it is very useful from a psychological perspective to view a QR code as a <em class="emphasis">single</em> piece of data in this way.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-15-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-Rn-15-3">A <a class="external" href="https://en.wikipedia.org/wiki/QR_code" target="_blank">QR code</a> is a method of storing data in a grid of black and white squares in a way that computers can easily read.  A typical QR code is a <span class="process-math">\(29 \times 29\)</span> grid.  Reading each line left-to-right and reading the lines top-to-bottom (like you read a book) we can think of such a QR code as a sequence of <span class="process-math">\(29 \times 29 = 841\)</span> digits, each digit being 1 (for white) or 0 (for black).  In such a way, the entire QR code can be regarded as a point in <span class="process-math">\(\R^{841}\text{.}\)</span>  As in the previous <a href="sec-systems-of-eqns.html#systems-eqns-R4" class="xref" data-knowl="./knowl/xref/systems-eqns-R4.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.11: Traffic Flow">Example 11</a>, it is very useful from a psychological perspective to view a QR code as a <em class="emphasis">single</em> piece of data in this way.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-15-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <figure class="figure figure-like" id="subsec-Rn-15-4"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/qrcode.png" class="contained" alt="QR code that links to the textbook homepage"></div>
-<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.14<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The QR code for this textbook is a <span class="process-math">\(29\times29\)</span> array of black/white squares.<div class="autopermalink" aria-hidden="true" data-description="Figure 1.14"><a tabindex="-1" href="#subsec-Rn-15-4" title="Copy heading and permalink for Figure 1.14" aria-label="Copy heading and permalink for Figure 1.14">🔗</a></div></figcaption>
-</figure><div class="autopermalink" aria-hidden="true" data-description="Example 1.13: QR Codes"><a tabindex="-1" href="#subsec-Rn-15" title="Copy heading and permalink for Example 1.13: QR Codes" aria-label="Copy heading and permalink for Example 1.13: QR Codes">🔗</a></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The QR code for this textbook is a <span class="process-math">\(29\times29\)</span> array of black/white squares.<div class="autopermalink" aria-hidden="true" data-description="Figure 1.1.13"><a tabindex="-1" href="#subsec-Rn-15-4" title="Copy heading and permalink for Figure 1.1.13" aria-label="Copy heading and permalink for Figure 1.1.13">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Example 1.1.12: QR Codes"><a tabindex="-1" href="#subsec-Rn-15" title="Copy heading and permalink for Example 1.1.12: QR Codes" aria-label="Copy heading and permalink for Example 1.1.12: QR Codes">🔗</a></div>
 </article></details>
 <div class="para" id="subsec-Rn-16">In the above examples, it was useful from a psychological perspective to replace a list of four numbers (representing traffic flow) or of 841 numbers (representing a QR code) by a single piece of data: a point in some <span class="process-math">\(\R^n\text{.}\)</span>  This is a powerful concept;   starting in <code class="code-inline tex2jax_ignore">[provisional cross-reference: spans]</code>, we will almost exclusively record solutions of systems of linear equations in this way.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-Rn-16" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -517,45 +569,45 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 <div class="para" id="subsec-systems-eqns-pictures-3">Before discussing how to solve a system of linear equations below, it is helpful to see some pictures of what these solution sets look like geometrically.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-systems-eqns-pictures-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="observation remark-like" id="systems-eqns-picture-line"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.15</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">One Equation in Two Variables.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.14</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">One Equation in Two Variables.</span>
 </h3>
 <div class="para" id="systems-eqns-picture-line-2">Consider the linear equation <span class="process-math">\(x+y=1\text{.}\)</span>  We can rewrite this as <span class="process-math">\(y = 1-x\text{,}\)</span> which defines a line in the plane: the slope is <span class="process-math">\(-1\text{,}\)</span> and the <span class="process-math">\(x\)</span>-intercept is <span class="process-math">\(1\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#systems-eqns-picture-line-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="image-box" style="width: 30%; margin-left: 35%; margin-right: 35%;"><img src="generated/latex-image/img-one-equation-two-variables.svg" role="img" class="contained" alt="Line in the plane with slope negative 1 and interecept 1"></div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.15: One Equation in Two Variables"><a tabindex="-1" href="#systems-eqns-picture-line" title="Copy heading and permalink for Example 1.15: One Equation in Two Variables" aria-label="Copy heading and permalink for Example 1.15: One Equation in Two Variables">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.14: One Equation in Two Variables"><a tabindex="-1" href="#systems-eqns-picture-line" title="Copy heading and permalink for Example 1.1.14: One Equation in Two Variables" aria-label="Copy heading and permalink for Example 1.1.14: One Equation in Two Variables">🔗</a></div>
 </article>
 <article class="definition definition-like" id="defn-lines"><h3 class="heading">
-<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.16</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Lines.</span>
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.15</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Lines.</span>
 </h3>
 <div class="para" id="defn-lines-3-1">For our purposes, a <dfn class="terminology">line</dfn> is a ray that is <em class="emphasis">straight</em> and <em class="emphasis">infinite</em> in both directions.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#defn-lines-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Definition 1.16: Lines"><a tabindex="-1" href="#defn-lines" title="Copy heading and permalink for Definition 1.16: Lines" aria-label="Copy heading and permalink for Definition 1.16: Lines">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Definition 1.1.15: Lines"><a tabindex="-1" href="#defn-lines" title="Copy heading and permalink for Definition 1.1.15: Lines" aria-label="Copy heading and permalink for Definition 1.1.15: Lines">🔗</a></div>
 </article>
 <article class="observation remark-like" id="systems-eqns-picture-plane"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.17</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">One Equation in Three Variables.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.16</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">One Equation in Three Variables.</span>
 </h3>
 <div class="para" id="systems-eqns-picture-plane-2">Consider the linear equation <span class="process-math">\(x+y+z=1\text{.}\)</span>  This is the <dfn class="terminology">implicit equation</dfn> for a plane in space.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#systems-eqns-picture-plane-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;"><img src="generated/latex-image/img-one-equation-three-variables.svg" role="img" class="contained" alt="Plane in 3-space"></div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.17: One Equation in Three Variables"><a tabindex="-1" href="#systems-eqns-picture-plane" title="Copy heading and permalink for Example 1.17: One Equation in Three Variables" aria-label="Copy heading and permalink for Example 1.17: One Equation in Three Variables">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.16: One Equation in Three Variables"><a tabindex="-1" href="#systems-eqns-picture-plane" title="Copy heading and permalink for Example 1.1.16: One Equation in Three Variables" aria-label="Copy heading and permalink for Example 1.1.16: One Equation in Three Variables">🔗</a></div>
 </article>
 <article class="definition definition-like" id="subsec-systems-eqns-pictures-7"><h3 class="heading">
-<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.18</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Planes.</span>
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.17</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Planes.</span>
 </h3>
 <div class="para" id="subsec-systems-eqns-pictures-7-3-1">A <dfn class="terminology">plane</dfn> is a flat sheet that is infinite in all directions.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-systems-eqns-pictures-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Definition 1.18: Planes"><a tabindex="-1" href="#subsec-systems-eqns-pictures-7" title="Copy heading and permalink for Definition 1.18: Planes" aria-label="Copy heading and permalink for Definition 1.18: Planes">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Definition 1.1.17: Planes"><a tabindex="-1" href="#subsec-systems-eqns-pictures-7" title="Copy heading and permalink for Definition 1.1.17: Planes" aria-label="Copy heading and permalink for Definition 1.1.17: Planes">🔗</a></div>
 </article>
 <details id="subsec-systems-eqns-pictures-8" class="problem example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
-<span class="type">Remark</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.19</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+<span class="type">Remark</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.18</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h3></summary>
 <article class="problem example-like knowl__content">
 <div class="para" id="subsec-systems-eqns-pictures-8-1">The equation <span class="process-math">\(x+y+z+w=1\)</span> defines a “<span class="process-math">\(3\)</span>-plane” in <span class="process-math">\(4\)</span>-space, and more generally, a single linear equation in <span class="process-math">\(n\)</span> variables defines an “<span class="process-math">\((n-1)\)</span>-plane” in <span class="process-math">\(n\)</span>-space.  We will make these statements precise in <code class="code-inline tex2jax_ignore">[provisional cross-reference: dimension]</code>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-systems-eqns-pictures-8-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Remark 1.19"><a tabindex="-1" href="#subsec-systems-eqns-pictures-8" title="Copy heading and permalink for Remark 1.19" aria-label="Copy heading and permalink for Remark 1.19">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Remark 1.1.18"><a tabindex="-1" href="#subsec-systems-eqns-pictures-8" title="Copy heading and permalink for Remark 1.1.18" aria-label="Copy heading and permalink for Remark 1.1.18">🔗</a></div>
 </article></details>
 <article class="observation remark-like" id="systems-eqns-picture-2lines"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.20</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Two Equations in Two Variables.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.19</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Two Equations in Two Variables.</span>
 </h3>
 <div class="para logical" id="systems-eqns-picture-2lines-2">
 <div class="para">Now consider the system of two linear equations</div>
@@ -612,10 +664,10 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 <div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/latex-image/img-two-equations-two-variables-same.svg" role="img" class="contained" alt="Two lines in the plane that are equal"></div>
 <div class="para" id="systems-eqns-picture-2lines-10">In this case, there are infinitely many solutions of the system of equations.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#systems-eqns-picture-2lines-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.20: Two Equations in Two Variables"><a tabindex="-1" href="#systems-eqns-picture-2lines" title="Copy heading and permalink for Example 1.20: Two Equations in Two Variables" aria-label="Copy heading and permalink for Example 1.20: Two Equations in Two Variables">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.19: Two Equations in Two Variables"><a tabindex="-1" href="#systems-eqns-picture-2lines" title="Copy heading and permalink for Example 1.1.19: Two Equations in Two Variables" aria-label="Copy heading and permalink for Example 1.1.19: Two Equations in Two Variables">🔗</a></div>
 </article>
 <article class="observation remark-like" id="systems-eqns-two-planes"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.21</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Two Equations in Three Variables.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.20</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Two Equations in Three Variables.</span>
 </h3>
 <div class="para logical" id="systems-eqns-two-planes-2">
 <div class="para">Consider the system of two linear equations</div>
@@ -638,29 +690,29 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 </div></details>
 </div>
 <div class="interactive-iframe-container__opener"><a href="demo-planes-intersection.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
-<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.22<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The planes defined by the equations <span class="process-math">\(\mhp{x+y+z=1}\)</span> and <span class="process-math">\(\mhg{x-z=0}\)</span> intersect in the red line, which is the solution set of the system of both equations.<div class="autopermalink" aria-hidden="true" data-description="Figure 1.22"><a tabindex="-1" href="#systems-eqns-two-planes-3" title="Copy heading and permalink for Figure 1.22" aria-label="Copy heading and permalink for Figure 1.22">🔗</a></div></figcaption>
-</figure><div class="autopermalink" aria-hidden="true" data-description="Example 1.21: Two Equations in Three Variables"><a tabindex="-1" href="#systems-eqns-two-planes" title="Copy heading and permalink for Example 1.21: Two Equations in Three Variables" aria-label="Copy heading and permalink for Example 1.21: Two Equations in Three Variables">🔗</a></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The planes defined by the equations <span class="process-math">\(\mhp{x+y+z=1}\)</span> and <span class="process-math">\(\mhg{x-z=0}\)</span> intersect in the red line, which is the solution set of the system of both equations.<div class="autopermalink" aria-hidden="true" data-description="Figure 1.1.21"><a tabindex="-1" href="#systems-eqns-two-planes-3" title="Copy heading and permalink for Figure 1.1.21" aria-label="Copy heading and permalink for Figure 1.1.21">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Example 1.1.20: Two Equations in Three Variables"><a tabindex="-1" href="#systems-eqns-two-planes" title="Copy heading and permalink for Example 1.1.20: Two Equations in Three Variables" aria-label="Copy heading and permalink for Example 1.1.20: Two Equations in Three Variables">🔗</a></div>
 </article>
 <details id="subsec-systems-eqns-pictures-11" class="problem example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
-<span class="type">Remark</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.23</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+<span class="type">Remark</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.22</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
 </h3></summary>
 <article class="problem example-like knowl__content">
 <div class="para" id="subsec-systems-eqns-pictures-11-1">In general, the solutions of a system of equations in <span class="process-math">\(n\)</span> variables is the intersection of “<span class="process-math">\((n-1)\)</span>-planes” in <span class="process-math">\(n\)</span>-space.  This is always some kind of linear space, as we will discuss in <code class="code-inline tex2jax_ignore">[provisional cross-reference: solution-sets]</code>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-systems-eqns-pictures-11-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Remark 1.23"><a tabindex="-1" href="#subsec-systems-eqns-pictures-11" title="Copy heading and permalink for Remark 1.23" aria-label="Copy heading and permalink for Remark 1.23">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Remark 1.1.22"><a tabindex="-1" href="#subsec-systems-eqns-pictures-11" title="Copy heading and permalink for Remark 1.1.22" aria-label="Copy heading and permalink for Remark 1.1.22">🔗</a></div>
 </article></details><div class="autopermalink" aria-hidden="true" data-description="Subsection 1.1.2: Pictures of Solution Sets"><a tabindex="-1" href="#subsec-systems-eqns-pictures" title="Copy heading and permalink for Subsection 1.1.2: Pictures of Solution Sets" aria-label="Copy heading and permalink for Subsection 1.1.2: Pictures of Solution Sets">🔗</a></div>
 </section>
 <section class="subsection" id="subsec-parametric-description">
 <h2 class="heading hide-type">
 <span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Parametric Description of Solution Sets</span>
 </h2>
-<div class="para" id="subsec-parametric-description-4">According to <a href="sec-systems-of-eqns.html#systems-eqns-soln-sets" class="xref" data-knowl="./knowl/xref/systems-eqns-soln-sets.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.3: Solution sets">Definition 3</a>, solving a system of equations means writing down all solutions in terms of some number of parameters.  We will give a systematic way of doing so in <a href="sec-parametric-form.html" class="internal" title="Section 1.3: Parametric Form">Section 1.3</a>; for now we give parametric descriptions in the examples of the previous <a href="sec-systems-of-eqns.html#subsec-systems-eqns-pictures" class="internal" title="Subsection 1.1.2: Pictures of Solution Sets">Subsection 1.1.2</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-parametric-description-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-parametric-description-4">According to <a href="sec-systems-of-eqns.html#systems-eqns-soln-sets" class="xref" data-knowl="./knowl/xref/systems-eqns-soln-sets.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.2: Solution sets">Definition 2</a>, solving a system of equations means writing down all solutions in terms of some number of parameters.  We will give a systematic way of doing so in <a href="sec-parametric-form.html" class="internal" title="Section 1.3: Parametric Form">Section 1.3</a>; for now we give parametric descriptions in the examples of the previous <a href="sec-systems-of-eqns.html#subsec-systems-eqns-pictures" class="internal" title="Subsection 1.1.2: Pictures of Solution Sets">Subsection 1.1.2</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-parametric-description-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="observation remark-like" id="subsec-parametric-description-5"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.24</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Lines.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.23</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Lines.</span>
 </h3>
 <div class="para logical" id="subsec-parametric-description-5-3">
-<div class="para">Consider the linear equation <span class="process-math">\(x+y=1\)</span> of <a href="sec-systems-of-eqns.html#systems-eqns-picture-line" class="xref" data-knowl="./knowl/xref/systems-eqns-picture-line.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.15: One Equation in Two Variables">Example 15</a>.  In this context, we call <span class="process-math">\(x+y=1\)</span> an <dfn class="terminology">implicit equation</dfn> of the line.  We can write the same line in <dfn class="terminology">parametric form</dfn> as follows:</div>
+<div class="para">Consider the linear equation <span class="process-math">\(x+y=1\)</span> of <a href="sec-systems-of-eqns.html#systems-eqns-picture-line" class="xref" data-knowl="./knowl/xref/systems-eqns-picture-line.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.14: One Equation in Two Variables">Example 14</a>.  In this context, we call <span class="process-math">\(x+y=1\)</span> an <dfn class="terminology">implicit equation</dfn> of the line.  We can write the same line in <dfn class="terminology">parametric form</dfn> as follows:</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/systems-eqns-picture-line.html" id="subsec-parametric-description-5-3-6">
 \begin{gather*}
 (x, y) = (t,\, 1-t) \sptxt{for any} t \in \R.
@@ -684,7 +736,7 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 \end{alignedat}\right.
 \end{align*}
 </div>
-<div class="para">of <a href="sec-systems-of-eqns.html#systems-eqns-two-planes" class="xref" data-knowl="./knowl/xref/systems-eqns-two-planes.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.21: Two Equations in Three Variables">Example 21</a>.  These collectively form the <dfn class="terminology">implicit equations</dfn> for a line in <span class="process-math">\(\R^3\text{.}\)</span>  (At least two equations are needed to define a line in space.)  This line also has a <dfn class="terminology">parametric form</dfn> with one <dfn class="terminology">parameter</dfn> <span class="process-math">\(t\text{:}\)</span>
+<div class="para">of <a href="sec-systems-of-eqns.html#systems-eqns-two-planes" class="xref" data-knowl="./knowl/xref/systems-eqns-two-planes.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.20: Two Equations in Three Variables">Example 20</a>.  These collectively form the <dfn class="terminology">implicit equations</dfn> for a line in <span class="process-math">\(\R^3\text{.}\)</span>  (At least two equations are needed to define a line in space.)  This line also has a <dfn class="terminology">parametric form</dfn> with one <dfn class="terminology">parameter</dfn> <span class="process-math">\(t\text{:}\)</span>
 </div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/systems-eqns-two-planes.html" id="subsec-parametric-description-5-5-8">
 \begin{gather*}
@@ -707,17 +759,17 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 <div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#demo-parametric2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
 </div></details>
 </div>
-<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.25<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The planes defined by the equations <span class="process-math">\(\mhp{x+y+z=1}\)</span> and <span class="process-math">\(\mhg{x-z=0}\)</span> intersect in the yellow line, which is parameterized by <span class="process-math">\((x,y,z) = (t,1-2t,t)\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Figure 1.25"><a tabindex="-1" href="#subsec-parametric-description-5-6" title="Copy heading and permalink for Figure 1.25" aria-label="Copy heading and permalink for Figure 1.25">🔗</a></div></figcaption>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.24<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The planes defined by the equations <span class="process-math">\(\mhp{x+y+z=1}\)</span> and <span class="process-math">\(\mhg{x-z=0}\)</span> intersect in the yellow line, which is parameterized by <span class="process-math">\((x,y,z) = (t,1-2t,t)\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Figure 1.1.24"><a tabindex="-1" href="#subsec-parametric-description-5-6" title="Copy heading and permalink for Figure 1.1.24" aria-label="Copy heading and permalink for Figure 1.1.24">🔗</a></div></figcaption>
 </figure>
 <div class="para" id="subsec-parametric-description-5-7">Note that in each case, the parameter <span class="process-math">\(t\)</span> allows us to use <span class="process-math">\(\R\)</span> to <em class="emphasis">label</em> the points on the line.  However, neither line is the same as the number line <span class="process-math">\(\R\text{:}\)</span> indeed, every point on the first line has two coordinates, like the point <span class="process-math">\((0,1)\text{,}\)</span> and every point on the second line has three coordinates, like <span class="process-math">\((0,1,0)\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-parametric-description-5-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.24: Lines"><a tabindex="-1" href="#subsec-parametric-description-5" title="Copy heading and permalink for Example 1.24: Lines" aria-label="Copy heading and permalink for Example 1.24: Lines">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.23: Lines"><a tabindex="-1" href="#subsec-parametric-description-5" title="Copy heading and permalink for Example 1.1.23: Lines" aria-label="Copy heading and permalink for Example 1.1.23: Lines">🔗</a></div>
 </article>
 <article class="observation remark-like" id="subsec-parametric-description-6"><h3 class="heading">
-<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.26</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Planes.</span>
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.25</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Planes.</span>
 </h3>
 <div class="para logical" id="subsec-parametric-description-6-3">
-<div class="para">Consider the linear equation <span class="process-math">\(x+y+z=1\)</span> of <a href="sec-systems-of-eqns.html#systems-eqns-picture-plane" class="xref" data-knowl="./knowl/xref/systems-eqns-picture-plane.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.17: One Equation in Three Variables">Example 17</a>.  This is an <dfn class="terminology">implicit equation</dfn> of a plane in space.  This plane has an equation in <dfn class="terminology">parametric form</dfn>: we can write every point on the plane as</div>
+<div class="para">Consider the linear equation <span class="process-math">\(x+y+z=1\)</span> of <a href="sec-systems-of-eqns.html#systems-eqns-picture-plane" class="xref" data-knowl="./knowl/xref/systems-eqns-picture-plane.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.16: One Equation in Three Variables">Example 16</a>.  This is an <dfn class="terminology">implicit equation</dfn> of a plane in space.  This plane has an equation in <dfn class="terminology">parametric form</dfn>: we can write every point on the plane as</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/systems-eqns-picture-plane.html" id="subsec-parametric-description-6-3-5">
 \begin{gather*}
 (x,\, y,\, z) = (1-t-w,\, t,\, w) \sptxt{for any} t,w\in\R.
@@ -740,13 +792,13 @@ x \amp {}+{} \amp 2y \amp {}={} \amp -3.
 <div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#demo-plane-parametric-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
 </div></details>
 </div>
-<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.27<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The plane in <span class="process-math">\(\R^3\)</span> defined by the equation <span class="process-math">\(x+y+z=1\text{.}\)</span> This plane is parameterized by two numbers <span class="process-math">\(t,w\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Figure 1.27"><a tabindex="-1" href="#subsec-parametric-description-6-4" title="Copy heading and permalink for Figure 1.27" aria-label="Copy heading and permalink for Figure 1.27">🔗</a></div></figcaption>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1.26<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The plane in <span class="process-math">\(\R^3\)</span> defined by the equation <span class="process-math">\(x+y+z=1\text{.}\)</span> This plane is parameterized by two numbers <span class="process-math">\(t,w\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Figure 1.1.26"><a tabindex="-1" href="#subsec-parametric-description-6-4" title="Copy heading and permalink for Figure 1.1.26" aria-label="Copy heading and permalink for Figure 1.1.26">🔗</a></div></figcaption>
 </figure>
 <div class="para" id="subsec-parametric-description-6-5">Note that the parameters <span class="process-math">\(t,w\)</span> allow us to use <span class="process-math">\(\R^2\)</span> to <em class="emphasis">label</em> the points on the plane.  However, this plane is <em class="emphasis">not</em> the same as the plane <span class="process-math">\(\R^2\text{:}\)</span> indeed, every point on this plane has three coordinates, like the point <span class="process-math">\((0,0,1)\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-parametric-description-6-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" aria-hidden="true" data-description="Example 1.26: Planes"><a tabindex="-1" href="#subsec-parametric-description-6" title="Copy heading and permalink for Example 1.26: Planes" aria-label="Copy heading and permalink for Example 1.26: Planes">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 1.1.25: Planes"><a tabindex="-1" href="#subsec-parametric-description-6" title="Copy heading and permalink for Example 1.1.25: Planes" aria-label="Copy heading and permalink for Example 1.1.25: Planes">🔗</a></div>
 </article>
-<div class="para" id="subsec-parametric-description-7">When there is a unique solution, as in <a href="sec-systems-of-eqns.html#systems-eqns-picture-2lines" class="xref" data-knowl="./knowl/xref/systems-eqns-picture-2lines.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.20: Two Equations in Two Variables">Example 20</a>, it is not necessary to use parameters to describe the solution set.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-parametric-description-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="subsec-parametric-description-7">When there is a unique solution, as in <a href="sec-systems-of-eqns.html#systems-eqns-picture-2lines" class="xref" data-knowl="./knowl/xref/systems-eqns-picture-2lines.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.19: Two Equations in Two Variables">Example 19</a>, it is not necessary to use parameters to describe the solution set.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-parametric-description-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Subsection 1.1.3: Parametric Description of Solution Sets"><a tabindex="-1" href="#subsec-parametric-description" title="Copy heading and permalink for Subsection 1.1.3: Parametric Description of Solution Sets" aria-label="Copy heading and permalink for Subsection 1.1.3: Parametric Description of Solution Sets">🔗</a></div>
 </section>
@@ -764,6 +816,14 @@ x_1 - 5 = x_2 - x_3\text{.}
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-1-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-1-2-1">Linear.  Can be written as <span class="process-math">\(x_1 - x_2 + x_3 = 5\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.1.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-1-2" title="Copy heading and permalink for Solution 1.1.4.1.1" aria-label="Copy heading and permalink for Solution 1.1.4.1.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-1" title="Copy heading and permalink for Exercise 1.1.4.1" aria-label="Copy heading and permalink for Exercise 1.1.4.1">🔗</a></div>
 </article>
 <article class="exercise exercise-like" id="sec-systems-of-eqns-7-2"><h3 class="heading"><span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
@@ -775,6 +835,14 @@ x_1 - \sqrt[3]{x_2} = 1\text{.}
 \end{gather*}
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-2-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-2-2-1">Not linear, due to the <span class="process-math">\(\sqrt[3]{x_2}\)</span> term.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.2.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-2-2" title="Copy heading and permalink for Solution 1.1.4.2.1" aria-label="Copy heading and permalink for Solution 1.1.4.2.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.2"><a tabindex="-1" href="#sec-systems-of-eqns-7-2" title="Copy heading and permalink for Exercise 1.1.4.2" aria-label="Copy heading and permalink for Exercise 1.1.4.2">🔗</a></div>
 </article>
@@ -788,6 +856,14 @@ x_1 - \sqrt[3]{x_2} = 1\text{.}
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-3-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-3-2-1">Linear.  Here, <span class="process-math">\(\ln(5)\)</span> and <span class="process-math">\(\sqrt{11}\)</span> are real number coefficients of the <span class="process-math">\(x_1\)</span> and <span class="process-math">\(x_3\)</span> terms, respectively.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.3.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-3-2" title="Copy heading and permalink for Solution 1.1.4.3.1" aria-label="Copy heading and permalink for Solution 1.1.4.3.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.3"><a tabindex="-1" href="#sec-systems-of-eqns-7-3" title="Copy heading and permalink for Exercise 1.1.4.3" aria-label="Copy heading and permalink for Exercise 1.1.4.3">🔗</a></div>
 </article>
 <article class="exercise exercise-like" id="sec-systems-of-eqns-7-4"><h3 class="heading"><span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
@@ -800,10 +876,49 @@ e^{x_1} + e^{x_2} = e^{x_3}\text{.}
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-4-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-4-2-1">Not linear, due to variables being within exponents.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.4.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-4-2" title="Copy heading and permalink for Solution 1.1.4.4.1" aria-label="Copy heading and permalink for Solution 1.1.4.4.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.4"><a tabindex="-1" href="#sec-systems-of-eqns-7-4" title="Copy heading and permalink for Exercise 1.1.4.4" aria-label="Copy heading and permalink for Exercise 1.1.4.4">🔗</a></div>
 </article>
 <article class="exercise exercise-like" id="sec-systems-of-eqns-7-5"><h3 class="heading"><span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="para" id="sec-systems-of-eqns-7-5-1-1">Is there a consistent system of three linear equations in two variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{?}\)</span>  If your answer is yes, write such a system and draw a corresponding picture using <span class="process-math">\((x, y)\)</span> to label points in <span class="process-math">\({\bf R}^2\text{.}\)</span>  If your answer is no, explain why no such system exists.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-5-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sec-systems-of-eqns-7-5-2-1">
+<div class="para">Yes, for example we could visualize three different lines in the <span class="process-math">\(xy\)</span>-plane that have exactly one point in common. If we want <span class="process-math">\((1, 1)\)</span> to be that point, we could write equations for three different lines that contain <span class="process-math">\((1,1)\text{.}\)</span>
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-5-2-1-4">
+\begin{gather*}
+x + 2y = 3
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-5-2-1-5">
+\begin{gather*}
+x - y = 0
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-5-2-1-6">
+\begin{gather*}
+2x + y = 3\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<img src="external/images/./1_1/lines.pdf" class="contained" alt="described in detail following the image" aria-describedby="sec-systems-of-eqns-7-5-2-2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="sec-systems-of-eqns-7-5-2-2-description">
+<div class="para" id="sec-systems-of-eqns-7-5-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-5-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.5.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-5-2" title="Copy heading and permalink for Solution 1.1.4.5.1" aria-label="Copy heading and permalink for Solution 1.1.4.5.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.5"><a tabindex="-1" href="#sec-systems-of-eqns-7-5" title="Copy heading and permalink for Exercise 1.1.4.5" aria-label="Copy heading and permalink for Exercise 1.1.4.5">🔗</a></div>
 </article>
@@ -825,11 +940,27 @@ e^{x_1} + e^{x_2} = e^{x_3}\text{.}
 <div class="para" id="sec-systems-of-eqns-7-6-2-1-1">
 <span class="process-math">\((3, -10, 1)\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-6-2-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-6-2-2-1">No: <span class="process-math">\(3(3)-10(-10)+1 = 110\text{,}\)</span> not <span class="process-math">\(15\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.6.a.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-2-2" title="Copy heading and permalink for Solution 1.1.4.6.a.1" aria-label="Copy heading and permalink for Solution 1.1.4.6.a.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Task 1.1.4.6.a"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-2" title="Copy heading and permalink for Task 1.1.4.6.a" aria-label="Copy heading and permalink for Task 1.1.4.6.a">🔗</a></div>
 </article>
 <article class="task exercise-like" id="sec-systems-of-eqns-7-6-3"><h4 class="heading"><span class="codenumber">(b)</span></h4>
 <div class="para" id="sec-systems-of-eqns-7-6-3-1-1">
 <span class="process-math">\((3, -10, 1, 15)\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-6-3-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-6-3-2-1">No: <span class="process-math">\((3, -10, 1, 15)\)</span> is not even a point in <span class="process-math">\({\bf R}^3\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.6.b.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-3-2" title="Copy heading and permalink for Solution 1.1.4.6.b.1" aria-label="Copy heading and permalink for Solution 1.1.4.6.b.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Task 1.1.4.6.b"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-3" title="Copy heading and permalink for Task 1.1.4.6.b" aria-label="Copy heading and permalink for Task 1.1.4.6.b">🔗</a></div>
 </article>
@@ -837,11 +968,27 @@ e^{x_1} + e^{x_2} = e^{x_3}\text{.}
 <div class="para" id="sec-systems-of-eqns-7-6-4-1-1">
 <span class="process-math">\((5, 1, 10)\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-6-4-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-6-4-2-1">Yes: <span class="process-math">\(3(5)-10(1)+10 = 15\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.6.c.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-4-2" title="Copy heading and permalink for Solution 1.1.4.6.c.1" aria-label="Copy heading and permalink for Solution 1.1.4.6.c.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Task 1.1.4.6.c"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-4" title="Copy heading and permalink for Task 1.1.4.6.c" aria-label="Copy heading and permalink for Task 1.1.4.6.c">🔗</a></div>
 </article>
 <article class="task exercise-like" id="sec-systems-of-eqns-7-6-5"><h4 class="heading"><span class="codenumber">(d)</span></h4>
 <div class="para" id="sec-systems-of-eqns-7-6-5-1-1">
 <span class="process-math">\((0, 0, 15)\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-6-5-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-6-5-2-1">Yes: <span class="process-math">\(3(0)-10(0)+15 = 15\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.6.d.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-5-2" title="Copy heading and permalink for Solution 1.1.4.6.d.1" aria-label="Copy heading and permalink for Solution 1.1.4.6.d.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Task 1.1.4.6.d"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-5" title="Copy heading and permalink for Task 1.1.4.6.d" aria-label="Copy heading and permalink for Task 1.1.4.6.d">🔗</a></div>
 </article>
@@ -849,11 +996,40 @@ e^{x_1} + e^{x_2} = e^{x_3}\text{.}
 <div class="para" id="sec-systems-of-eqns-7-6-6-1-1">
 <span class="process-math">\((1, -1, 1)\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-6-6-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-6-6-2-1">No: <span class="process-math">\(3(1)-10(-1)+1 = 14\text{,}\)</span> not <span class="process-math">\(15\text{.}\)</span> \end{subproblems}<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.6.e.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-6-2" title="Copy heading and permalink for Solution 1.1.4.6.e.1" aria-label="Copy heading and permalink for Solution 1.1.4.6.e.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Task 1.1.4.6.e"><a tabindex="-1" href="#sec-systems-of-eqns-7-6-6" title="Copy heading and permalink for Task 1.1.4.6.e" aria-label="Copy heading and permalink for Task 1.1.4.6.e">🔗</a></div>
 </article><div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.6"><a tabindex="-1" href="#sec-systems-of-eqns-7-6" title="Copy heading and permalink for Exercise 1.1.4.6" aria-label="Copy heading and permalink for Exercise 1.1.4.6">🔗</a></div>
 </article>
 <article class="exercise exercise-like" id="sec-systems-of-eqns-7-7"><h3 class="heading"><span class="codenumber">7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="para" id="sec-systems-of-eqns-7-7-1-1">Is there an inconsistent system of two linear equations in three variables <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\text{?}\)</span>  If your answer is yes, write such a system and draw a corresponding picture using <span class="process-math">\((x, y, z)\)</span> to label points in <span class="process-math">\({\bf R}^3\text{.}\)</span>  If your answer is no, explain why no such system exists.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-7-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sec-systems-of-eqns-7-7-2-1">
+<div class="para">Yes, for example</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-7-2-1-1">
+\begin{gather*}
+x + y + z = 0
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-7-2-1-2">
+\begin{gather*}
+x + y + z = 10\text{.}
+\end{gather*}
+</div>
+<div class="para">For this system to be consistent, we would need <span class="process-math">\(0=10\text{,}\)</span> so the system is inconsistent.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.7.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-7-2" title="Copy heading and permalink for Solution 1.1.4.7.1" aria-label="Copy heading and permalink for Solution 1.1.4.7.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.7"><a tabindex="-1" href="#sec-systems-of-eqns-7-7" title="Copy heading and permalink for Exercise 1.1.4.7" aria-label="Copy heading and permalink for Exercise 1.1.4.7">🔗</a></div>
 </article>
@@ -874,20 +1050,90 @@ x + y + 0z = 0
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-8-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-8-2-1">The solution set is a line.  It is the intersection of the horizontal plane <span class="process-math">\(z=5\)</span> with the vertical plane where <span class="process-math">\(y= -x\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-systems-of-eqns-7-8-2-2">We could parametrize the points on this line by <span class="process-math">\((x, -x, 5)\)</span> where <span class="process-math">\(x\)</span> is real.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-8-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.8.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-8-2" title="Copy heading and permalink for Solution 1.1.4.8.1" aria-label="Copy heading and permalink for Solution 1.1.4.8.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.8"><a tabindex="-1" href="#sec-systems-of-eqns-7-8" title="Copy heading and permalink for Exercise 1.1.4.8" aria-label="Copy heading and permalink for Exercise 1.1.4.8">🔗</a></div>
 </article>
 <article class="exercise exercise-like" id="sec-systems-of-eqns-7-9"><h3 class="heading"><span class="codenumber">9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="para" id="sec-systems-of-eqns-7-9-1-1">Write a linear equation or a system of linear equations in the variables <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\text{,}\)</span> so that the solution set is the <span class="process-math">\(xy\)</span>-plane.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-9-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-9-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sec-systems-of-eqns-7-9-2-1">
+<div class="para">The <span class="process-math">\(yz\)</span>-plane in space is given by the single linear equation <span class="process-math">\(x=0\text{,}\)</span> or in longhand:</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-9-2-1-3">
+\begin{gather*}
+x + 0y + 0z = 0\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-9-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.9.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-9-2" title="Copy heading and permalink for Solution 1.1.4.9.1" aria-label="Copy heading and permalink for Solution 1.1.4.9.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.9"><a tabindex="-1" href="#sec-systems-of-eqns-7-9" title="Copy heading and permalink for Exercise 1.1.4.9" aria-label="Copy heading and permalink for Exercise 1.1.4.9">🔗</a></div>
 </article>
 <article class="exercise exercise-like" id="sec-systems-of-eqns-7-10"><h3 class="heading"><span class="codenumber">10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="para" id="sec-systems-of-eqns-7-10-1-1">Write a linear equation or a system of linear equations in the variables <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\text{,}\)</span> so that the solution set is a line.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-10-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-10-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sec-systems-of-eqns-7-10-2-1">
+<div class="para">The <span class="process-math">\(x\)</span>-axis in space the set of all points in space where <span class="process-math">\(y=0\)</span> and <span class="process-math">\(z=0\text{,}\)</span> so our system is simply</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-10-2-1-4">
+\begin{gather*}
+0x + y + 0z =0
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-10-2-1-5">
+\begin{gather*}
+0x + 0y + z = 0\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-10-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.10.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-10-2" title="Copy heading and permalink for Solution 1.1.4.10.1" aria-label="Copy heading and permalink for Solution 1.1.4.10.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.10"><a tabindex="-1" href="#sec-systems-of-eqns-7-10" title="Copy heading and permalink for Exercise 1.1.4.10" aria-label="Copy heading and permalink for Exercise 1.1.4.10">🔗</a></div>
 </article>
 <article class="exercise exercise-like" id="sec-systems-of-eqns-7-11"><h3 class="heading"><span class="codenumber">11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="para" id="sec-systems-of-eqns-7-11-1-1">Write a linear equation or a system of linear equations in the variables <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\text{,}\)</span> so that the solution set is the point <span class="process-math">\((1, 2, 3)\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-11-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-11-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sec-systems-of-eqns-7-11-2-1">
+<div class="para">The system of equations must only be satisfied when <span class="process-math">\(x=1\text{,}\)</span> <span class="process-math">\(y=2\text{,}\)</span> and <span class="process-math">\(z=3\text{.}\)</span>  One way to do this is simply to make the three equations <span class="process-math">\(x=1\text{,}\)</span> <span class="process-math">\(y=2\text{,}\)</span> and <span class="process-math">\(z=3\text{.}\)</span>  In long form,</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-11-2-1-7">
+\begin{gather*}
+x + 0y + 0z = 1
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-11-2-1-8">
+\begin{gather*}
+0x + y + 0z = 2
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-11-2-1-9">
+\begin{gather*}
+0x + 0y + z = 3\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-11-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.11.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-11-2" title="Copy heading and permalink for Solution 1.1.4.11.1" aria-label="Copy heading and permalink for Solution 1.1.4.11.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.11"><a tabindex="-1" href="#sec-systems-of-eqns-7-11" title="Copy heading and permalink for Exercise 1.1.4.11" aria-label="Copy heading and permalink for Exercise 1.1.4.11">🔗</a></div>
 </article>
@@ -896,10 +1142,60 @@ x + y + 0z = 0
 </div> 
 <div class="para" id="sec-systems-of-eqns-7-12-1-2">A rare baseball card and a coffee mug cost <span class="process-math">\(\$110\)</span> together. The baseball card costs <span class="process-math">\(\$100\)</span> more than the mug.  How much does the baseball card cost?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-12-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-12-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-12-2-1">Let <span class="process-math">\(x\)</span> be the cost of the baseball card and <span class="process-math">\(y\)</span> be the cost of the mug.  We have been told that <span class="process-math">\(x + y = 110\)</span> and <span class="process-math">\(x = y + 100\text{.}\)</span>  Now that we have written down this system of two linear equations in two variables, it is a standard high school algebra problem.  This gives <span class="process-math">\((y+100)+y= 110\)</span> so <span class="process-math">\(y=5\)</span> and thus <span class="process-math">\(x=105\text{.}\)</span>  Therefore, the baseball card costs <span class="process-math">\(\$105\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-12-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.12.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-12-2" title="Copy heading and permalink for Solution 1.1.4.12.1" aria-label="Copy heading and permalink for Solution 1.1.4.12.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.12"><a tabindex="-1" href="#sec-systems-of-eqns-7-12" title="Copy heading and permalink for Exercise 1.1.4.12" aria-label="Copy heading and permalink for Exercise 1.1.4.12">🔗</a></div>
 </article>
 <article class="exercise exercise-like" id="sec-systems-of-eqns-7-13"><h3 class="heading"><span class="codenumber">13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
 <div class="para" id="sec-systems-of-eqns-7-13-1-1">Suppose <span class="process-math">\(f\)</span> is a polynomial of the form <span class="process-math">\(f(x) = ax^2+bx+c\)</span> whose graph passes through the points <span class="process-math">\((-1, 11)\text{,}\)</span> <span class="process-math">\((2, 5)\text{,}\)</span> and <span class="process-math">\((3, 7)\text{.}\)</span>  Write a system of linear equations that we could solve to find <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(b\text{,}\)</span> and <span class="process-math">\(c\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-13-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-13-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sec-systems-of-eqns-7-13-2-1">
+<div class="para">We use the facts <span class="process-math">\(f(-1)=11\text{,}\)</span> <span class="process-math">\(f(2) = 5\text{,}\)</span> and <span class="process-math">\(f(3) = 7\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-13-2-1-4">
+\begin{gather*}
+f(-1) = 11, \qquad a(-1)^2 + b(-1) + c = 11
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-13-2-1-5">
+\begin{gather*}
+f(2) = 5, \qquad a(2^2) + b(2) + c = 5
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-13-2-1-6">
+\begin{gather*}
+f(3) = 7 \qquad a(3^3) + b(3) + c = 7\text{.}
+\end{gather*}
+</div>
+<div class="para">This gives us the linear system of equations:</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-13-2-1-7">
+\begin{gather*}
+a - b + c = 11
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-13-2-1-8">
+\begin{gather*}
+4a + 2b + c = 5
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-13-2-1-9">
+\begin{gather*}
+9a + 3b + c = 7\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-13-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.13.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-13-2" title="Copy heading and permalink for Solution 1.1.4.13.1" aria-label="Copy heading and permalink for Solution 1.1.4.13.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.13"><a tabindex="-1" href="#sec-systems-of-eqns-7-13" title="Copy heading and permalink for Exercise 1.1.4.13" aria-label="Copy heading and permalink for Exercise 1.1.4.13">🔗</a></div>
 </article>
@@ -907,6 +1203,52 @@ x + y + 0z = 0
 <div class="para" id="sec-systems-of-eqns-7-14-1-1">This brain teaser comes from a memorial article for the mathematician Paul Salley in the Notices of the American Mathematical Society, Volume 65, Number 5.  The article is accessible at <a class="external" href="https://www.ams.org/journals/notices/201805/rnoti-p555.pdf?fbclid=IwAR1C1f6EtMygzK81ZGVzHwQFaLopa_O3sSQLXXDxYT-xvAldpmymLC75kEQ" target="_blank">this link</a>. This type of so-called “Jim and John Problem” has many variations that sound like tricky brain teasers but can be solved by writing systems of equations and using linear algebra.  We give a slight variation here:<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-14-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div> 
 <div class="para" id="sec-systems-of-eqns-7-14-1-2">Alice and Bob have the same birthday.  Alice is 24 years old, which is twice as old as Bob was at the time when Alice was as old as Bob is now.  How old is Bob now?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-14-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-14-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sec-systems-of-eqns-7-14-2-1">
+<div class="para">While Alice and Bob are alive, the difference between their ages is some constant <span class="process-math">\(c\)</span> no matter what year we are in:</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-14-2-1-2">
+\begin{gather*}
+(\textup{Alice's age}) - (\textup{Bob's age}) = c\text{.}
+\end{gather*}
+</div>
+<div class="para">We’re told that alice is 24, so</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-14-2-1-3">
+\begin{gather*}
+24-(\textup{Bob's age now}) = c\text{.}
+\end{gather*}
+</div>
+<div class="para">Also, from the information we are given, Bob was 12 when Alice was the same age that Bob is now.</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-14-2-1-4">
+\begin{gather*}
+(\textup{Alice's age when Bob was 12}) - 12 = c,
+\quad \textup{ so} \quad (\textup{Bob's age now})-12 = c\text{.}
+\end{gather*}
+</div>
+<div class="para">We have a system of two equations:</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-14-2-1-5">
+\begin{gather*}
+24-(\textup{Bob's age now}) = c
+\end{gather*}
+</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-14-2-1-6">
+\begin{gather*}
+(\textup{Bob's age now}) - 12 = c\text{.}
+\end{gather*}
+</div>
+<div class="para">Subtracting the first equation from the second, we get</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-14-2-1-7">
+\begin{gather*}
+-36 + 2(\textup{Bob's age now}) = 0\text{,}
+\end{gather*}
+</div>
+<div class="para">therefore Bob is now <span class="process-math">\(18\)</span> years old and <span class="process-math">\(c = 6\)</span> (<span class="process-math">\(c=6\)</span> means Alice is <span class="process-math">\(6\)</span> years older than Bob, which agrees with the fact that Alice is 24).</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-14-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.14.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-14-2" title="Copy heading and permalink for Solution 1.1.4.14.1" aria-label="Copy heading and permalink for Solution 1.1.4.14.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.14"><a tabindex="-1" href="#sec-systems-of-eqns-7-14" title="Copy heading and permalink for Exercise 1.1.4.14" aria-label="Copy heading and permalink for Exercise 1.1.4.14">🔗</a></div>
 </article>
@@ -925,10 +1267,34 @@ x + y + 0z = 0
 <article class="task exercise-like" id="sec-systems-of-eqns-7-15-2"><h4 class="heading"><span class="codenumber">(a)</span></h4>
 <div class="para" id="sec-systems-of-eqns-7-15-2-1-1">Each QR code is an element in some <span class="process-math">\({\bf R}^n\text{.}\)</span>  What is <span class="process-math">\(n\text{?}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-15-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-15-2-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sec-systems-of-eqns-7-15-2-2-1">There are <span class="process-math">\(3\times 3 = 9\)</span> spots where we can put a <span class="process-math">\(0\)</span> or a <span class="process-math">\(1\text{,}\)</span> so <span class="process-math">\(n = 9\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-15-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.15.a.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-15-2-2" title="Copy heading and permalink for Solution 1.1.4.15.a.1" aria-label="Copy heading and permalink for Solution 1.1.4.15.a.1">🔗</a></div>
+</div></details>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Task 1.1.4.15.a"><a tabindex="-1" href="#sec-systems-of-eqns-7-15-2" title="Copy heading and permalink for Task 1.1.4.15.a" aria-label="Copy heading and permalink for Task 1.1.4.15.a">🔗</a></div>
 </article>
 <article class="task exercise-like" id="sec-systems-of-eqns-7-15-3"><h4 class="heading"><span class="codenumber">(b)</span></h4>
 <div class="para" id="sec-systems-of-eqns-7-15-3-1-1">How many <span class="process-math">\(3 \times 3\)</span> QR codes are there?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-15-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="sec-systems-of-eqns-7-15-3-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sec-systems-of-eqns-7-15-3-2-1">
+<div class="para">We have two choices for each entry in each QR code, with possibilities ranging from all zeros to all ones.  This gives us</div>
+<div class="displaymath process-math" id="sec-systems-of-eqns-7-15-3-2-1-1">
+\begin{gather*}
+2^9 = 512
+\end{gather*}
+</div>
+<div class="para">such QR codes. \end{subproblems}</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-systems-of-eqns-7-15-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 1.1.4.15.b.1"><a tabindex="-1" href="#sec-systems-of-eqns-7-15-3-2" title="Copy heading and permalink for Solution 1.1.4.15.b.1" aria-label="Copy heading and permalink for Solution 1.1.4.15.b.1">🔗</a></div>
+</div></details>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Task 1.1.4.15.b"><a tabindex="-1" href="#sec-systems-of-eqns-7-15-3" title="Copy heading and permalink for Task 1.1.4.15.b" aria-label="Copy heading and permalink for Task 1.1.4.15.b">🔗</a></div>
 </article><div class="autopermalink" aria-hidden="true" data-description="Exercise 1.1.4.15"><a tabindex="-1" href="#sec-systems-of-eqns-7-15" title="Copy heading and permalink for Exercise 1.1.4.15" aria-label="Copy heading and permalink for Exercise 1.1.4.15">🔗</a></div>

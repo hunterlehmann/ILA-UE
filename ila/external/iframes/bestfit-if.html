@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Function of Best Fit</title>
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
+    .caption-bar {
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
+    }
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+    #eqn-here   { color: var(--palette-red); }
+    #sumsq-here { color: var(--palette-violet); }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Function of best fit controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <p>Best-fit equation: <span id="eqn-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p>Quantity minimized: <span id="sumsq-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p class="hint">Drag the data points, or edit their coordinates below.</p>
+    <details class="panel">
+      <summary>Edit points</summary>
+      <div id="vec-inputs" class="vec-grid" role="group" aria-label="Data point coordinates"></div>
+    </details>
+  </div>
+
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
+  <div id="mathbox-container" aria-hidden="true">
+    <div class="mb-panel"><div id="mathbox1"></div></div>
+  </div>
+
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
+  <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+    var bestFitStr, bestfit, bvec, func, funcStr, i, k, letter, matrix, numParams, numTargets,
+        obj, op, params, range, size, targets, units, updateCaption, vars, xhat, zeroParams;
+    var editor = null;
+    range = urlParams.get('range', 'float', 10);
+    funcStr = urlParams.func != null ? urlParams.func : 'C*x+D';
+    funcStr = funcStr.replace(/\s+/g, '+');
+    func = exprEval.Parser.parse(funcStr);
+    for (op in func.unaryOps) {
+      if (op.match(/^[a-zA-Z]+$/)) funcStr = funcStr.replace(new RegExp(op, 'g'), '\\' + op);
+    }
+    params = [];
+    zeroParams = {};
+    vars = [];
+    func.variables().sort().forEach(function(letter) {
+      if (letter === 'x' || letter === 'y') vars.push(letter);
+      else { params.push(letter); zeroParams[letter] = 0; }
+    });
+    size = vars.length + 1;
+    numParams = params.length;
+    units = params.map(function(p0) {
+      obj = {};
+      params.forEach(function(p) { obj[p] = 0; });
+      obj[p0] = 1;
+      return obj;
+    });
+    targets = [];
+    i = 1;
+    while (urlParams['v' + i] != null) {
+      targets.push(urlParams.get('v' + i, 'float[]'));
+      i++;
+    }
+    numTargets = targets.length;
+    matrix = params.map(function() { return targets.map(function() { return 0; }); });
+    bvec = targets.map(function() { return 0; });
+    window.xhat = xhat = params.map(function() { return 0; });
+    bestfit = function() { return 0; };
+    bestFitStr = '';
+    function dot(v1, v2) {
+      var ret = 0;
+      for (var n = 0; n < v1.length; n++) ret += v1[n] * v2[n];
+      return ret;
+    }
+    updateCaption = function() {};
+
+    function makeString() {
+      bestFitStr = funcStr;
+      params.forEach(function(letter, n) {
+        var val = xhat[n], valAlone, valPlus, valMinus;
+        if (val >= 0) {
+          valAlone = val.toFixed(2); valPlus = '+' + valAlone; valMinus = '-' + valAlone;
+        } else {
+          valAlone = (-val).toFixed(2); valPlus = '-' + valAlone; valMinus = '+' + valAlone;
+          valAlone = '-' + valAlone;
+        }
+        bestFitStr = bestFitStr.replace(new RegExp('\\+' + letter + '\\*', 'g'), valPlus + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp('\\+' + letter, 'g'), valPlus);
+        bestFitStr = bestFitStr.replace(new RegExp('-' + letter + '\\*', 'g'), valMinus + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp('-' + letter, 'g'), valMinus);
+        bestFitStr = bestFitStr.replace(new RegExp(letter + '\\*', 'g'), valAlone + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp(letter, 'g'), valAlone);
+        bestFitStr = bestFitStr.replace(/\*/g, '');
+      });
+    }
+
+    function solve() {
+      var eqno, n, linear, constant, toEval, ATA, ATb;
+      for (eqno = 0; eqno < numTargets; eqno++) {
+        toEval = {};
+        vars.forEach(function(letter, v) { toEval[letter] = targets[eqno][v]; });
+        linear = func.simplify(toEval);
+        constant = linear.evaluate(zeroParams);
+        for (n = 0; n < numParams; n++) matrix[n][eqno] = linear.evaluate(units[n]) - constant;
+        bvec[eqno] = targets[eqno][size - 1] - constant;
+      }
+      ATA = params.map(function(p, j) { return params.map(function(q, i2) { return dot(matrix[i2], matrix[j]); }); });
+      ATb = params.map(function(p, i2) { return dot(matrix[i2], bvec); });
+      rowReduce(ATA)[3](ATb, xhat);
+      toEval = {};
+      params.forEach(function(letter, n) { toEval[letter] = xhat[n]; });
+      bestfit = func.simplify(toEval).toJSFunction(vars.join(','));
+      makeString();
+      if (editor) editor.sync();
+      return updateCaption();
+    }
+    solve();
+
+    window.demo = new (size === 2 ? Demo2D : Demo)({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox1')
+    }, function() {
+      window.mathbox = this.mathbox;
+      var view = this.view({
+        axes: true,
+        grid: true,
+        viewRange: [[-range, range], [-range, range], [-range, range]].slice(0, size)
+      });
+      this.labeledPoints(view, {
+        name: 'targets',
+        points: targets,
+        colors: targets.map(function() { return new Color("blue"); }),
+        live: true,
+        pointOpts: { zIndex: 2 }
+      });
+      if (size === 2) {
+        view.interval({
+          channels: 2, range: [-range, range], width: 100,
+          expr: function(emit, x) { return emit(x, bestfit(x)); }
+        }).line({ color: new Color("red").arr(), width: 4, zIndex: 1 });
+      }
+      if (size === 3) {
+        var clipCube = this.clipCube(view, { draw: true });
+        clipCube.clipped.area({
+          channels: 3, rangeX: [-range, range], rangeY: [-range, range], width: 100, height: 100,
+          expr: function(emit, x, y) { return emit(x, y, bestfit(x, y)); }
+        }).surface({
+          color: new Color("red").arr(), opacity: .25, zIndex: 1, fill: true, lineX: false, lineY: false
+        }).resample({
+          shader: null, size: 'relative', width: 1 / 10, height: 1 / 10
+        }).surface({
+          color: new Color("red").arr(), opacity: .6, zIndex: 1, zBias: 2, fill: false, lineX: true, lineY: true
+        });
+      }
+      view.array({
+        channels: size, width: 2, items: numTargets,
+        expr: function(emit, end) {
+          for (var n = 0; n < numTargets; n++) {
+            var x = targets[n][0], y = targets[n][1];
+            if (size === 2) {
+              if (end) emit(x, bestfit(x)); else emit(x, y);
+            } else {
+              if (end) emit(x, y, bestfit(x, y)); else emit(x, y, targets[n][2]);
+            }
+          }
+        }
+      }).line({ color: new Color("violet").arr(), width: 3, zIndex: 3 });
+      this.draggable(view, { points: targets, postDrag: solve });
+
+      // WCAG 2.1.1 / 2.5.1: keyboard alternative to dragging the data points
+      editor = buildVectorEditor(document.getElementById('vec-inputs'),
+        targets.map(function(t, n) {
+          return { name: 'Point ' + (n + 1), tex: 'P_{' + (n + 1) + '}', vec: t, dim: size };
+        }), range, solve);
+
+      var bestFitElt = document.getElementById('eqn-here');
+      var minimElt   = document.getElementById('sumsq-here');
+      var varsStr    = vars.join(',');
+      updateCaption = function() {
+        var minimized = [], quantity = 0, diff;
+        renderMath('\\quad f(' + varsStr + ') = ' + bestFitStr, bestFitElt);
+        targets.forEach(function(target) {
+          diff = size === 2 ? target[1] - bestfit(target[0]) : target[2] - bestfit(target[0], target[1]);
+          minimized.push(diff.toFixed(2) + '^2');
+          quantity += diff * diff;
+        });
+        renderMath('\\quad' + quantity.toFixed(2) + '=' + minimized.join('+'), minimElt);
+      };
+      updateCaption();
+    });
+  }); // end DomReady.ready
+
+  initFullscreenButton('fs-btn');
+  </script>
+</body>
+</html>

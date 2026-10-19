@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Orthogonal Projection</title>
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
+    .caption-bar {
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
+    }
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Orthogonal projection controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <p><span id="cap1" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p><span id="cap2" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p class="hint" id="hint"></p>
+    <details id="controls" class="panel">
+      <summary>Display options</summary>
+      <div id="check-panel" class="ctrl-row"></div>
+    </details>
+    <details class="panel">
+      <summary id="edit-summary">Edit vector</summary>
+      <div id="vec-inputs" class="vec-grid" role="group" aria-label="Vector coordinates"></div>
+    </details>
+  </div>
+
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
+  <div id="mathbox-container" aria-hidden="true">
+    <div class="mb-panel"><div id="mathbox1"></div></div>
+  </div>
+
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
+  <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+    var range = urlParams.get('range', 'float', 10);
+    var surfaceColor    = new Color("violet");
+    var complementColor = new Color("green");
+    var vectorColor     = new Color(0, 0, 0);
+    var vector1Color    = new Color("orange");
+    var vector2Color    = new Color("brown");
+    var projColor       = new Color("red");
+    var vector1 = urlParams.get('u1', 'float[]', [1, 0, 0]);
+    var vector2 = urlParams.get('u2', 'float[]', [0, 1, 0]);
+    var vector  = urlParams.get('vec', 'float[]', [1, 1, 0]);
+    var numVecs = (urlParams.u1 != null && urlParams.u2 == null) ? 1 : 2;
+    var size = vector1.length;
+    if (vector1[2] == null) vector1[2] = 0;
+    if (vector2[2] == null) vector2[2] = 0;
+    if (vector[2]  == null) vector[2]  = 0;
+    var vectors    = [vector1, vector2].slice(0, numVecs);
+    var decompProj = [1, 0, 0];
+    var decompPerp = [0, 1, 0];
+    var summand1   = [0, 0, 0];
+    var summand2   = [0, 0, 0];
+    var summands   = [summand1, summand2].slice(0, numVecs);
+    var labels   = urlParams.get('labels', 'str[]', ['u1', 'u2']).slice(0, numVecs);
+    var vecLabel = urlParams.vecLabel != null ? urlParams.vecLabel : 'x';
+    var subName  = urlParams.subname != null ? urlParams.subname : (numVecs === 2 ? 'W' : 'L');
+    var projTex  = vecLabel + '_{' + subName + '}';
+    var perpTex  = vecLabel + '_{' + subName + '^\\perp}';
+    function dot(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+    var norm1 = dot(vector1, vector1);
+    var norm2 = dot(vector2, vector2);
+
+    var mode = urlParams.mode != null ? urlParams.mode : 'full';
+    var MODES = {
+      full:     { basis: true,  grid: true,  summands: numVecs > 1, decomp: true,  proj: false, distance: false, complement: true,  constrain: false },
+      decomp:   { basis: false, grid: false, summands: false,       decomp: true,  proj: false, distance: false, complement: true,  constrain: false },
+      basis:    { basis: true,  grid: true,  summands: numVecs > 1, decomp: false, proj: false, distance: false, complement: false, constrain: true  },
+      badbasis: { basis: true,  grid: true,  summands: numVecs > 1, decomp: false, proj: true,  distance: false, complement: false, constrain: true  },
+      distance: { basis: false, grid: false, summands: false,       decomp: false, proj: false, distance: true,  complement: true,  constrain: false }
+    };
+    if (!MODES[mode]) mode = 'full';
+    var m0 = MODES[mode];
+    var show = {
+      basis:      urlParams.get('basis',      'bool', m0.basis),
+      grid:       urlParams.get('grid',       'bool', m0.grid),
+      summands:   urlParams.get('summands',   'bool', m0.summands),
+      decomp:     urlParams.get('decomp',     'bool', m0.decomp),
+      distance:   urlParams.get('distance',   'bool', m0.distance),
+      complement: urlParams.get('complement', 'bool', m0.complement),
+      constrain:  urlParams.get('constrain',  'bool', m0.constrain),
+      proj:       m0.proj
+    };
+
+    window.demo = new (size === 2 ? Demo2D : Demo)({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox1')
+    }, function() {
+      var complement = null, editor = null;
+      window.mathbox = this.mathbox;
+      var view = this.view({
+        axes: false,
+        grid: false,
+        viewRange: [[-range, range], [-range, range], [-range, range]].slice(0, size)
+      });
+      var clipCube = this.clipCube(view, { draw: true, hilite: size === 3 });
+      var subspace = this.subspace({
+        vectors: vectors, live: false, noPlane: size === 2, color: surfaceColor,
+        lineOpts: { zOrder: 0 }, surfaceOpts: { zOrder: 1 }
+      });
+      subspace.draw(clipCube.clipped);
+      this.grid(clipCube.clipped, { vectors: vectors, live: false, lineOpts: { color: surfaceColor } });
+      if (show.complement) {
+        complement = this.subspace({
+          vectors: subspace.complementFull(size === 2),
+          name: 'complement', color: complementColor, noPlane: size === 2, live: false,
+          lineOpts: { zOrder: 0 }, surfaceOpts: { zOrder: 1 }
+        });
+        complement.draw(clipCube.clipped);
+      }
+
+      // No `labels` options: WebGL text replaced by MathJax labels below
+      var projDark = surfaceColor.darken(.1);
+      var perpDark = complementColor.darken(.1);
+      this.labeledVectors(view, {
+        vectors: [vector], colors: [vectorColor], live: true, vectorOpts: { zIndex: 4 }
+      });
+      this.labeledVectors(view, {
+        name: 'basis', vectors: vectors,
+        colors: [vector1Color.arr(.7), vector2Color.arr(.7)].slice(0, numVecs),
+        live: false, vectorOpts: { zIndex: 2 }
+      });
+      this.labeledVectors(view, {
+        name: 'summands', vectors: summands,
+        colors: [vector1Color.brighten(.3).arr(.9), vector2Color.brighten(.3).arr(.9)].slice(0, numVecs),
+        live: true, vectorOpts: { zIndex: 3 }
+      });
+      this.labeledVectors(view, {
+        name: 'decomp', vectors: [decompProj, vector], origins: [[0, 0, 0], decompProj],
+        colors: [projDark, perpDark], live: true, vectorOpts: { zIndex: 4 }
+      });
+      if (show.proj) {
+        this.labeledVectors(view, {
+          name: 'proj', vectors: [decompProj], colors: [projColor], live: true, vectorOpts: { zIndex: 4 }
+        });
+        var c1 = new Color("blue").arr(.7), c2 = new Color("green").arr(.7);
+        view.array({
+          width: 2, channels: 3, items: 4,
+          data: [[summands[0], summands[1], summands[0], summands[1]], [vector, vector, decompProj, decompProj]]
+        }).array({
+          width: 2, channels: 4, items: 4,
+          data: [[[1, 1, 1, .7], [1, 1, 1, .7], c1, c2], [[1, 1, 1, .7], [1, 1, 1, .7], c1, c2]]
+        }).line({ width: 2, points: "<<", color: "black", colors: "<" });
+      }
+      this.labeledVectors(view, {
+        name: 'distance', vectors: [decompProj, vector], origins: [[0, 0, 0], decompProj],
+        colors: [projDark, perpDark], live: true, vectorOpts: { zIndex: 4, end: false }
+      });
+      view.array({ width: 1, channels: 3, data: [decompProj] })
+          .point({ size: 15, color: projDark.arr(), classes: ['distance'] });
+
+      function applyVisibility() {
+        mathbox.select('.basis').set('visible', show.basis);
+        mathbox.select('#vecgrid').set('visible', show.grid);
+        mathbox.select('.decomp').set('visible', show.decomp);
+        mathbox.select('.distance').set('visible', show.distance);
+        mathbox.select('.summands').set('visible', show.summands);
+      }
+      applyVisibility();
+
+      // ── MathJax canvas labels ─────────────────────────────────────────────
+      function midpoint(v, o) {
+        return function() {
+          return o ? [(v[0] + o[0]) / 2, (v[1] + o[1]) / 2, (v[2] + o[2]) / 2]
+                   : [v[0] / 2, v[1] / 2, v[2] / 2];
+        };
+      }
+      var labelLayer = makeLabelLayer(document.getElementById('mathbox1'), this, view);
+      labelLayer.add({ position: midpoint(vector), tex: texC(vectorColor, vecLabel) });
+      vectors.forEach(function(v, i) {
+        labelLayer.add({
+          position: midpoint(v),
+          visible:  function() { return show.basis; },
+          tex: texC([vector1Color, vector2Color][i], texLabel(labels[i]))
+        });
+      });
+      labelLayer.add({ position: midpoint(decompProj), visible: function() { return show.decomp; },
+                       tex: texC(projDark, projTex) });
+      labelLayer.add({ position: midpoint(vector, decompProj), visible: function() { return show.decomp; },
+                       tex: texC(perpDark, perpTex) });
+      labelLayer.add({ position: midpoint(decompProj), visible: function() { return show.distance; },
+                       tex: texC(projDark, projTex) });
+      var distLabel = labelLayer.add({ position: midpoint(vector, decompProj),
+                                       visible: function() { return show.distance; } });
+      labelLayer.add({ position: function() { return decompProj; }, offset: [0, -25],
+                       visible: function() { return show.distance; },
+                       tex: texC(projDark, '\\text{closest}') });
+      if (show.proj) {
+        labelLayer.add({ position: midpoint(decompProj), tex: texC(projColor, '?') });
+      }
+
+      // ── Display options (replace dat.GUI) ─────────────────────────────────
+      var checks = document.getElementById('check-panel');
+      [['basis', 'Show basis'], ['grid', 'Show grid'], ['decomp', 'Show decomposition'],
+       ['distance', 'Show distance'], ['summands', 'Show summands']].forEach(function(a) {
+        addCheckbox(checks, {
+          id: a[0], label: a[1], checked: show[a[0]],
+          onChange: function(v) { show[a[0]] = v; applyVisibility(); }
+        });
+      });
+
+      // ── Computation ───────────────────────────────────────────────────────
+      var coeffs = [0, 0];
+      var updateCaptions;
+      function computeOut() {
+        coeffs[0] = dot(vector, vector1) / norm1;
+        for (var k = 0; k < 3; k++) summand1[k] = decompProj[k] = vector1[k] * coeffs[0];
+        if (numVecs > 1) {
+          coeffs[1] = dot(vector, vector2) / norm2;
+          for (k = 0; k < 3; k++) {
+            summand2[k] = vector2[k] * coeffs[1];
+            decompProj[k] += summand2[k];
+          }
+        }
+        for (k = 0; k < 3; k++) decompPerp[k] = vector[k] - decompProj[k];
+        distLabel.set(texC(perpDark, fmt(Math.sqrt(dot(decompPerp, decompPerp)))));
+        if (editor) editor.sync();
+        updateCaptions();
+      }
+
+      var tmpVec = new THREE.Vector3();
+      function snap(vec) {
+        if (show.constrain) subspace.project(vec, vec);
+      }
+      this.draggable(view, { points: [vector], onDrag: snap, postDrag: computeOut });
+      editor = buildVectorEditor(document.getElementById('vec-inputs'), [{
+        name: vecLabel, tex: vecLabel, vec: vector, dim: size,
+        constrain: function(v) {
+          if (!show.constrain) return;
+          tmpVec.set(v[0], v[1], v[2]);
+          subspace.project(tmpVec, tmpVec);
+          v[0] = tmpVec.x; v[1] = tmpVec.y; v[2] = tmpVec.z;
+        }
+      }], range, computeOut);
+      document.getElementById('edit-summary').textContent = 'Edit ' + vecLabel;
+      document.getElementById('hint').textContent =
+        'Drag the head of ' + vecLabel + (show.constrain ? ' (it stays in ' + subName + ')' : '') +
+        ', or edit its coordinates below.';
+
+      // ── Captions ──────────────────────────────────────────────────────────
+      var cap1 = document.getElementById('cap1');
+      var cap2 = document.getElementById('cap2');
+      var basisCols = [vector1Color, vector2Color].slice(0, numVecs);
+      var sumCols   = [vector1Color.brighten(.1), vector2Color.brighten(.1)].slice(0, numVecs);
+      function combo() {
+        return texComb(vectors, coeffs, { dim: size, colors: basisCols, coeffColors: sumCols });
+      }
+      switch (mode) {
+        case 'full':
+          updateCaptions = function() {
+            renderMath(texC(surfaceColor, projTex) + '=' + texVec(decompProj, surfaceColor, size) +
+                       '=' + combo(), cap1);
+          };
+          break;
+        case 'decomp':
+          updateCaptions = function() {
+            renderMath(texVec(vector, null, size) + '=' + texVec(decompProj, surfaceColor, size) +
+                       '+' + texVec(decompPerp, complementColor, size), cap1);
+          };
+          break;
+        case 'distance':
+          updateCaptions = function() {
+            renderMath(texC(surfaceColor, projTex) + '=' + texVec(decompProj, surfaceColor, size) +
+                       '=' + combo(), cap1);
+            renderMath('\\|' + texC(complementColor, perpTex) + '\\| = \\left\\|' +
+                       texVec(vector, null, size) + '-' + texVec(decompProj, surfaceColor, size) +
+                       '\\right\\| = ' + fmt(Math.sqrt(dot(decompPerp, decompPerp))), cap2);
+          };
+          break;
+        case 'basis':
+          updateCaptions = function() {
+            renderMath('x = \\text{proj}_{' + subName + '}(' + vecLabel + ') =' +
+                       texVec(vector, null, size) + '=' + combo(), cap1);
+            renderMath('[x]_{\\mathcal B} = \\big(' + coeffs.slice(0, numVecs).map(function(c, i) {
+              return texC(sumCols[i], fmt(c));
+            }).join(',\\;') + '\\big)', cap2);
+          };
+          break;
+        case 'badbasis':
+          updateCaptions = function() {
+            renderMath('x = ' + texVec(vector, null, size) + '\\neq' + combo() +
+                       '=' + texVec(decompProj, projColor, size), cap1);
+          };
+          break;
+      }
+
+      if (show.constrain) {
+        tmpVec.set(vector[0], vector[1], vector[2]);
+        subspace.project(tmpVec, tmpVec);
+        vector[0] = tmpVec.x; vector[1] = tmpVec.y; vector[2] = tmpVec.z;
+      }
+      computeOut();
+    });
+  }); // end DomReady.ready
+
+  initFullscreenButton('fs-btn');
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.6.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<div class="para">Describe the column space and the null space of</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp 1 \\
+1 \amp 1 \\
+1 \amp 1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subspaces-col-nul-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">The column space is the span of the columns of <span class="process-math">\(A\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\Col(A) = \Span\left\{\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix},\;\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}\right\}
+= \Span\left\{\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}\right\}\text{.}
+\end{gather*}
+</div>
+<div class="para">This is a line in <span class="process-math">\(\R^3\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subspaces-col-nul-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subspaces-col-nul-1-2-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subspaces-col-nul-1-2-2-description">
+<div class="para" id="subspaces-col-nul-1-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subspaces-col-nul-1-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">The null space is the solution set of the homogeneous system <span class="process-math">\(Ax=0\text{.}\)</span>  To compute this, we need to row reduce <span class="process-math">\(A\text{.}\)</span>  Its reduced row echelon form is</div>
+<div class="displaymath process-math">
+\begin{align*}
+\begin{pmatrix}
+1 \amp 1 \\
+0 \amp 0 \\
+0 \amp 0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">This gives the equation <span class="process-math">\(x+y=0\text{,}\)</span> or</div>
+<div class="displaymath process-math">
+\begin{align*}
+\left\{\begin{alignedat}{2}
+x \amp {}={} \amp -y \amp {} \\
+y \amp {}={} \amp y \amp {}
+\end{alignedat}\right.
+\quad\xrightarrow{\text{parametric vector form}}\quad
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = y\begin{pmatrix}
+-1 \\
+1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Hence the null space is <span class="process-math">\(\Span\bigl\{{-1\choose 1}\bigr\}\text{,}\)</span> which is a line in <span class="process-math">\(\R^2\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subspaces-col-nul-1-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subspaces-col-nul-1-2-4.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subspaces-col-nul-1-2-4-description">
+<div class="para" id="subspaces-col-nul-1-2-4-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subspaces-col-nul-1-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para">Notice that the column space is a subspace of <span class="process-math">\(\R^3\text{,}\)</span> whereas the null space is a subspace of <span class="process-math">\(\R^2\text{.}\)</span>  This is because <span class="process-math">\(A\)</span> has three rows and two columns.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subspaces-col-nul-1-2-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 2.6.16.1"><a tabindex="-1" href="#subspaces-col-nul-1-2" title="Copy heading and permalink for Solution 2.6.16.1" aria-label="Copy heading and permalink for Solution 2.6.16.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 2.6.16"><a tabindex="-1" href="#subspaces-col-nul-1" title="Copy heading and permalink for Example 2.6.16" aria-label="Copy heading and permalink for Example 2.6.16">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-subspaces.html#subspaces-col-nul-1">In Context</a></span>
+</body>
+</html>

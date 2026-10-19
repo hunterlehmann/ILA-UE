@@ -20,7 +20,8 @@
 <link rel="stylesheet" href="_static/pretext/fonts/material-symbols-outlined.css">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
 <style>
-@counter-style ptx-marker-1 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-1 { system: extends decimal; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-2 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
 </style>
 <link rel="stylesheet" type="text/css" href="external/css/highlight-math.css">
 <script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
@@ -62,14 +63,14 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '8.3.5';
+eBookConfig.runestone_version = '8.3.6';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.3adcbea95009347b.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.7a45395f326e122c.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
+<script src="_static/prefix-runtime.4beca1fdeed766a2.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.ebd33f6a21eed414.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
 <link rel="stylesheet" type="text/css" href="_static/prefix-runestone.9963089870a016c8.css">
 <script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><link rel="icon" type="image/png" sizes="32x32" href="external/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="external/favicon/favicon-16x16.png">
@@ -79,11 +80,11 @@ eBookConfig.enable_chatcodes =  false;
 <body id="ILA-UE" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" target="_blank" href="https://gatech.edu/"><img src="external/images/logo.gif" alt="Logo image"></a><div class="title-container">
-<div class="heading ptx-banner-heading"><a href="main.html"><span class="title">Interactive Linear Algebra: Updated Edition</span></a></div>
-<p class="byline">Dan Margalit, Joseph Rabinoff</p>
+<div class="heading ptx-banner-heading"><a href="main.html"><span class="title">Interactive Linear Algebra</span> <span class="subtitle">Updated Edition</span></a></div>
+<p class="byline">Dan Margalit, Joseph Rabinoff, Hunter Lehmann, Chris Jankowski</p>
 </div>
 </div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
-<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-4.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="ptx-search-box">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-5.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="ptx-search-box">
 <div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
 <dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
 <input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
@@ -122,7 +123,7 @@ eBookConfig.enable_chatcodes =  false;
 <label for="ptx-readability-accessible-permalinks"><input type="checkbox" id="ptx-readability-accessible-permalinks"><span>🔗</span><span>Expose permalinks</span></label>
 </fieldset>
 <div class="ptx-readability-options-group"><button type="button" class="ptx-readability-reset-button button" id="ptx-readability-reset-button"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf053;</span><span class="name">Reset All</span></button></div></dialog></span><span class="treebuttons"><a class="previous-button button" href="frontmatter-3.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="frontmatter.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="frontmatter-5.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
-</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{html}\require{color}    \definecolor{cLGold}{RGB}{143, 113, 61}
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{color}    \definecolor{cLGold}{RGB}{143, 113, 61}
     \definecolor{cLGreen}{RGB}{57, 121, 76}
     \definecolor{cLPurple}{RGB}{148,68,161}
     \definecolor{cLBlue}{RGB}{0, 98, 217}
@@ -137,7 +138,7 @@ eBookConfig.enable_chatcodes =  false;
   \newcommand{\R}{\mathbf R}
   \newcommand{\C}{\mathbf C}
  \renewcommand{\mathbb}[1]{\mathbf{#1}}
-  
+  \newcommand{\matrow}[1]{\text{---}\,#1\,\text{---}}
   \newcommand{\Span}{\operatorname{Span}}
   \newcommand{\Nul}{\operatorname{Nul}}
   \newcommand{\Col}{\operatorname{Col}}
@@ -246,7 +247,57 @@ eBookConfig.enable_chatcodes =  false;
 <ul id="ptx-toc-group-sec-spans" class="structural toc-item-list">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spans.html#subsec-vector-equations" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Vector Equations</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spans.html#subsec-spans" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Spans</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-spans.html#sec-spans-5" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-equations.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Matrix Equations</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-equations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb" class="internal"><span class="codenumber">2.3.1</span> <span class="title">The Matrix Equation <span class="process-math">\(Ax=b\text{.}\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-equations.html#subsec-spans-and-consistency" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Spans and Consistency</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-equations.html#sec-matrix-equations-5" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-solution-sets.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Solution Sets</span></a></div>
+<ul id="ptx-toc-group-sec-solution-sets" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-solnsets-homog" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Homogeneous Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-inhomogeneous-systems" class="internal"><span class="codenumber">2.4.2</span> <span class="title">Inhomogeneous Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-solnsets-ss-and-cs" class="internal"><span class="codenumber">2.4.3</span> <span class="title">Solution Sets and Column Spans</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-solution-sets.html#sec-solution-sets-7" class="internal"><span class="codenumber">2.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-independence.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Linear Independence</span></a></div>
+<ul id="ptx-toc-group-sec-linear-independence" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-the-definition-of-linear-independence" class="internal"><span class="codenumber">2.5.1</span> <span class="title">The Definition of Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-criteria-for-linear-independence" class="internal"><span class="codenumber">2.5.2</span> <span class="title">Criteria for Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-pictures-of-linear-independence" class="internal"><span class="codenumber">2.5.3</span> <span class="title">Pictures of Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-linear-dependence-and-free-variables" class="internal"><span class="codenumber">2.5.4</span> <span class="title">Linear Dependence and Free Variables</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-linear-independence.html#sec-linear-independence-8" class="internal"><span class="codenumber">2.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-subspaces.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Subspaces</span></a></div>
+<ul id="ptx-toc-group-sec-subspaces" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-subspaces.html#subsec-subspaces-definition-and-examples" class="internal"><span class="codenumber">2.6.1</span> <span class="title">Subspaces: Definition and Examples</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-subspaces.html#subsec-common-types-of-subspaces" class="internal"><span class="codenumber">2.6.2</span> <span class="title">Common Types of Subspaces</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-subspaces.html#sec-subspaces-6" class="internal"><span class="codenumber">2.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-dimension.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Basis and Dimension</span></a></div>
+<ul id="ptx-toc-group-sec-dimension" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-basis-of-a-subspace" class="internal"><span class="codenumber">2.7.1</span> <span class="title">Basis of a Subspace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-computing-a-basis-for-a-subspace" class="internal"><span class="codenumber">2.7.2</span> <span class="title">Computing a Basis for a Subspace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-the-basis-theorem" class="internal"><span class="codenumber">2.7.3</span> <span class="title">The Basis Theorem</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-dimension.html#sec-dimension-6" class="internal"><span class="codenumber">2.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-bases-as-coord-systems.html" class="internal"><span class="codenumber">2.8</span> <span class="title">Bases as Coordinate Systems</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-rank-thm.html" class="internal"><span class="codenumber">2.9</span> <span class="title">The Rank Theorem</span></a></div>
+<ul id="ptx-toc-group-sec-rank-thm" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-rank-thm.html#sec-rank-thm-22" class="internal"><span class="codenumber">2.9</span> <span class="title">Exercises</span></a></div></li></ul>
 </li>
 </ul>
 </li>
@@ -258,9 +309,10 @@ eBookConfig.enable_chatcodes =  false;
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
 <ul id="ptx-toc-group-backmatter" class="structural toc-item-list">
 <li class="toc-item toc-appendix"><div class="toc-title-box"><a href="backmatter-2.html" class="internal"><span class="codenumber">A.</span> <span class="title">Notation</span></a></div></li>
-<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">B.</span> <span class="title">GNU Free Documentation License</span></a></div></li>
-<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="title">Index</span></a></div></li>
-<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="backmatter-3.html" class="internal"><span class="codenumber">B.</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">C.</span> <span class="title">GNU Free Documentation License</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-6.html" class="internal"><span class="title">Colophon</span></a></div></li>
 </ul>
 </li>
 </ul></nav></div>
@@ -293,23 +345,29 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Contributor"><a tabindex="-1" href="#lehmann" title="Copy heading and permalink for Contributor" aria-label="Copy heading and permalink for Contributor">🔗</a></div>
 </div>
+<div class="contributor" id="jankowski">
+<div class="contributor-name">Chris Jankowski</div>
+<div class="contributor-info">Department of Mathematics<br>Georgia Institute of Technology<br><a href="mailto:cjankowski3@gatech.edu">cjankowski3@gatech.edu</a>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Contributor"><a tabindex="-1" href="#jankowski" title="Copy heading and permalink for Contributor" aria-label="Copy heading and permalink for Contributor">🔗</a></div>
+</div>
 <div class="para logical" id="frontmatter-4-3">
-<div class="para">Rabinoff contributed all of the figures, the demos, and the technical aspects of the project, as detailed below. Hunter Lehmann worked to update the project to the latest version of PreTeXt and add accessibility features throughout the text.</div>
+<div class="para">Rabinoff contributed all of the original figures, demos, and technical aspects of the project, as detailed below. Hunter Lehmann worked to update the project to the latest version of PreTeXt and add accessibility features throughout the text.</div>
 <ul class="disc" id="frontmatter-4-3-1">
 <li id="frontmatter-4-3-1-1">
-<div class="para" id="p-derived-frontmatter-4-3-1-1">The textbook is written in XML and compiled using a variant of Robert Beezer’s <a class="external" href="https://mathbook.pugetsound.edu/" target="_blank">MathBook XML</a>, as heavily modified by Rabinoff.</div>
+<div class="para" id="p-derived-frontmatter-4-3-1-1">The textbook was originally written in XML and compiled using a variant of Robert Beezer’s <a class="external" href="https://mathbook.pugetsound.edu/" target="_blank">MathBook XML</a>, as heavily modified by Rabinoff.</div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#frontmatter-4-3-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="frontmatter-4-3-1-2">
-<div class="para" id="p-derived-frontmatter-4-3-1-2">The mathematical content of the textbook is written in LaTeX, then converted to HTML-friendly SVG format using a collection of scripts called PreTeX: this was coded by Rabinoff and depends heavily on <a class="external" href="https://inkscape.org/" target="_blank">Inkscape</a> for pdf decoding and <a class="external" href="https://fontforge.github.io/" target="_blank">FontForge</a> for font embedding.  The figures are written in <a class="external" href="https://en.wikipedia.org/wiki/PGF/TikZ" target="_blank">PGF/TikZ</a> and processed with PreTeX as well.</div>
+<div class="para" id="p-derived-frontmatter-4-3-1-2">The mathematical content of the textbook was  written in LaTeX, then converted to HTML-friendly SVG format using a collection of scripts called PreTeX: this was coded by Rabinoff and depends heavily on <a class="external" href="https://inkscape.org/" target="_blank">Inkscape</a> for pdf decoding and <a class="external" href="https://fontforge.github.io/" target="_blank">FontForge</a> for font embedding.  The figures are written in <a class="external" href="https://en.wikipedia.org/wiki/PGF/TikZ" target="_blank">PGF/TikZ</a> and processed with PreTeX as well.</div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#frontmatter-4-3-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="frontmatter-4-3-1-3">
-<div class="para" id="p-derived-frontmatter-4-3-1-3">The demonstrations are written in JavaScript+WebGL using Steven Wittens’ brilliant framework called <a class="external" href="https://github.com/unconed/mathbox" target="_blank">MathBox</a>.</div>
+<div class="para" id="p-derived-frontmatter-4-3-1-3">The demonstrations were written in JavaScript+WebGL using Steven Wittens’ brilliant framework called <a class="external" href="https://github.com/unconed/mathbox" target="_blank">MathBox</a>.</div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#frontmatter-4-3-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 </ul>
-<div class="para">All source code can be found on <a class="external" href="https://github.com/QBobWatson/ila" target="_blank">GitHub</a>.  It may be freely copied, modified, and redistributed, as detailed in the appendix entitled “GNU Free Documentation License.”</div>
+<div class="para">All source code can be found on <a class="external" href="https://github.com/hunterlehmann/ILA-UE" target="_blank">GitHub</a>.  It may be freely copied, modified, and redistributed, as detailed in the appendix entitled “GNU Free Documentation License.”</div>
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#frontmatter-4-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para" id="frontmatter-4-4">Larry Rolen wrote many of the exercises.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#frontmatter-4-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>

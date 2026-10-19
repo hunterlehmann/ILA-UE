@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.5.14</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Increasing Span Criterion.</span>
+</h2>
+<div class="para">A set of vectors <span class="process-math">\(\{v_1,v_2,\ldots,v_k\}\)</span> is linearly independent if and only if, for every <span class="process-math">\(j\text{,}\)</span> the vector <span class="process-math">\(v_j\)</span> is not in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{j-1}\}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linindep-increasing-span-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 2.5.14: Increasing Span Criterion"><a tabindex="-1" href="#linindep-increasing-span" title="Copy heading and permalink for Theorem 2.5.14: Increasing Span Criterion" aria-label="Copy heading and permalink for Theorem 2.5.14: Increasing Span Criterion">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<div class="para">It is equivalent to show that <span class="process-math">\(\{v_1,v_2,\ldots,v_k\}\)</span> is linearly dependent if and only if <span class="process-math">\(v_j\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{j-1}\}\)</span> for some <span class="process-math">\(j\text{.}\)</span>  The “if” implication is an immediate consequence of <a href="sec-linear-independence.html#linindep-criterion-inspan" class="xref" data-knowl="./knowl/xref/linindep-criterion-inspan.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.5.12">Theorem 12</a>.  Suppose then that <span class="process-math">\(\{v_1,v_2,\ldots,v_k\}\)</span> is linearly dependent.  This means that some <span class="process-math">\(v_j\)</span> is in the span of the others.  Choose the largest such <span class="process-math">\(j\text{.}\)</span>  We claim that this <span class="process-math">\(v_j\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{j-1}\}\text{.}\)</span>  If not, then</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linindep-criterion-inspan.html">
+\begin{gather*}
+v_j = x_1v_1 + x_2v_2 + \cdots + x_{j-1}v_{j-1} + x_{j+1}v_{j+1} + \cdots + x_kv_k
+\end{gather*}
+</div>
+<div class="para">with not all of <span class="process-math">\(x_{j+1},\ldots,x_k\)</span> equal to zero.  Suppose for simplicity that <span class="process-math">\(x_k\neq 0\text{.}\)</span>  Then we can rearrange:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linindep-criterion-inspan.html">
+\begin{gather*}
+v_k = -\frac 1{x_k}\bigl( x_1v_1 + x_2v_2 + \cdots + x_{j-1}v_{j-1}
+- v_j + x_{j+1}v_{j+1} + \cdots + x_{p-1}v_{p-1}
+\bigr)\text{.}
+\end{gather*}
+</div>
+<div class="para">This says that <span class="process-math">\(v_k\)</span> is in the span of <span class="process-math">\(\{v_1,v_2,\ldots,v_{p-1}\}\text{,}\)</span> which contradicts our assumption that <span class="process-math">\(v_j\)</span> is the last vector in the span of the others.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linindep-increasing-span-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 2.5.14.1"><a tabindex="-1" href="#linindep-increasing-span-5" title="Copy heading and permalink for Proof 2.5.14.1" aria-label="Copy heading and permalink for Proof 2.5.14.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-linear-independence.html#linindep-increasing-span">In Context</a></span>
+</body>
+</html>

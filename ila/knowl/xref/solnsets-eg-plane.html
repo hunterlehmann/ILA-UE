@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.4.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The solution set is a plane.</span>
+</h2>
+<div class="para logical">
+<div class="para">Compute the parametric vector form of the solution set of <span class="process-math">\(Ax=0\text{,}\)</span> where</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp -1 \amp 2 \\
+-2 \amp 2 \amp -4
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#solnsets-eg-plane-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">We row reduce (without augmenting, as suggested in the above <a href="sec-solution-sets.html#solnsets-no-augment" class="xref" data-knowl="./knowl/xref/solnsets-no-augment.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.4.4">Example 4</a>):</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/solnsets-no-augment.html">
+\begin{align*}
+\begin{pmatrix}
+1 \amp -1 \amp 2 \\
+-2 \amp 2 \amp -4
+\end{pmatrix} \quad\xrightarrow{\text{RREF}}\quad
+\begin{pmatrix}
+1 \amp -1 \amp 2 \\
+0 \amp 0 \amp 0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">This corresponds to the single equation <span class="process-math">\(x_1 - x_2 + 2x_3 = 0\text{.}\)</span>  We  write the parametric form including the redundant equations <span class="process-math">\(x_2=x_2\)</span> and <span class="process-math">\(x_3=x_3\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/solnsets-no-augment.html">
+\begin{align*}
+\left\{\begin{alignedat}{2}
+x_1 \amp {}={} \amp x_2 - 2x_3 \amp {} \\
+x_2 \amp {}={} \amp x_2 \amp {} \\
+x_3 \amp {}={} \amp x_3 \amp .
+\end{alignedat}\right.
+\end{align*}
+</div>
+<div class="para">We turn these into a single vector equation:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/solnsets-no-augment.html">
+\begin{gather*}
+x = \begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{pmatrix} = x_2\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix} + x_3\begin{pmatrix}
+-2 \\
+0 \\
+1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">This is the parametric vector form of the solution set. Since <span class="process-math">\(x_2\)</span> and <span class="process-math">\(x_3\)</span> are allowed to be anything, this says that the solution set is the set of all linear combinations of <span class="process-math">\(\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix}\)</span> and <span class="process-math">\(\begin{pmatrix}
+-2 \\
+0 \\
+1
+\end{pmatrix}\text{.}\)</span>  In other words, the solution set is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/solnsets-no-augment.html">
+\begin{gather*}
+\Span\left\{\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix},\;\begin{pmatrix}
+-2 \\
+0 \\
+1
+\end{pmatrix}\right\}\text{.}
+\end{gather*}
+</div>
+<div class="para">We know how to draw the span of two noncollinear vectors in <span class="process-math">\(\R^3\text{:}\)</span> it is a plane.  Therefore, this is a picture of the solution set:</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#solnsets-eg-plane-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/solnsets-eg-plane-3-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="solnsets-eg-plane-3-2-description">
+<div class="para" id="solnsets-eg-plane-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#solnsets-eg-plane-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/Axequalsb-if.html?lock=true&amp;closed=true&amp;x=0,0,0" id="solnsets-eg-plane-3-3-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="solnsets-eg-plane-3-3-2-description"> 
+<div class="para" id="solnsets-eg-plane-3-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#solnsets-eg-plane-3-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="solnsets-eg-plane-3-3-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="solnsets-eg-plane-3-3-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="solnsets-eg-plane-3-3-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#solnsets-eg-plane-3-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#solnsets-eg-plane-3-3-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.4.10<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Interactive picture of the solution set of <span class="process-math">\(Ax=0\text{.}\)</span>  If you drag <span class="process-math">\(x\)</span> along the violet plane, the product <span class="process-math">\(Ax\)</span> is always equal to zero.  This is what it means for the plane to be the solution set of <span class="process-math">\(Ax=0\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Figure 2.4.10"><a tabindex="-1" href="#solnsets-eg-plane-3-3" title="Copy heading and permalink for Figure 2.4.10" aria-label="Copy heading and permalink for Figure 2.4.10">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 2.4.9.1"><a tabindex="-1" href="#solnsets-eg-plane-3" title="Copy heading and permalink for Solution 2.4.9.1" aria-label="Copy heading and permalink for Solution 2.4.9.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 2.4.9: The solution set is a plane"><a tabindex="-1" href="#solnsets-eg-plane" title="Copy heading and permalink for Example 2.4.9: The solution set is a plane" aria-label="Copy heading and permalink for Example 2.4.9: The solution set is a plane">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-solution-sets.html#solnsets-eg-plane">In Context</a></span>
+</body>
+</html>

@@ -4,56 +4,66 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <title>Points in 3-Space</title>
-
-  <!-- Shared MathJax config + helpers (renderMath, texColor). Plain script: no defer/async. -->
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
   <script src="js/mathjax-setup.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-
     html, body {
       margin: 0; height: 100%;
       background: white; overflow: hidden;
       display: flex; flex-direction: column;
     }
-
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
     .caption-bar {
-      flex: 0 0 auto;
-      padding: 5px 10px;
-      background: white;
-      border-bottom: 1px solid #ccc;
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
     }
     .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
     .caption-bar p.hint { font-size: 0.8em; color: #555; }
-
-    /* Reserve height for the live equation so the layout doesn't jump
-       while MathJax replaces the content */
-    #coord-here { display: inline-block; min-height: 1.4em; }
-
-    /* 3-column grid: label | slider | value */
-    .ctrl-grid {
-      display: grid;
-      grid-template-columns: 1.6em 1fr 3.2em;
-      gap: 2px 6px;
-      align-items: center;
-      margin-top: 4px;
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
     }
-    .ctrl-grid label { font-size: 0.88em; text-align: right; }
-    .ctrl-grid input[type="range"] { width: 100%; }
-    .ctrl-val {
-      font-size: 0.85em;
-      font-variant-numeric: tabular-nums;
-      text-align: right;
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
     }
-
-    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; }
-    #mathbox1 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
     :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
-
     #fs-btn {
-      float: right;
-      cursor: pointer; background: none;
-      border: 1px solid #aaa; border-radius: 3px;
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
       padding: 2px 6px; font-size: 0.85em; color: #444;
     }
     #fs-btn:hover { background: rgba(0,0,0,.07); }
@@ -64,143 +74,81 @@
 
   <div class="caption-bar" role="region" aria-label="Point in 3-space controls">
     <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
-
-    <!-- Live coordinate display (rendered by MathJax) -->
-    <p><span id="coord-here" aria-live="polite" aria-atomic="true"></span></p>
-
+    <p><span id="coord-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
     <p class="hint">Drag the point, or use the sliders (arrow keys work when a slider has focus).</p>
-
-    <!--
-      WCAG 2.1.1 / 2.5.1: the sliders are the keyboard / single-pointer
-      alternative to dragging the point on the canvas. Both stay in sync.
-      Labels contain \( \) math, typeset once by MathJax; each slider also
-      has an aria-label so its accessible name doesn't depend on MathJax.
-    -->
-    <div class="ctrl-grid mathjax-static" role="group" aria-label="Point coordinates">
-      <label for="x-slider">\(x\)</label>
-      <input id="x-slider" type="range"
-             min="-4" max="4" step="0.1" value="1"
-             aria-label="x coordinate"/>
-      <span class="ctrl-val" id="x-val">1.0</span>
-
-      <label for="y-slider">\(y\)</label>
-      <input id="y-slider" type="range"
-             min="-4" max="4" step="0.1" value="2"
-             aria-label="y coordinate"/>
-      <span class="ctrl-val" id="y-val">2.0</span>
-
-      <label for="z-slider">\(z\)</label>
-      <input id="z-slider" type="range"
-             min="-4" max="4" step="0.1" value="1"
-             aria-label="z coordinate"/>
-      <span class="ctrl-val" id="z-val">1.0</span>
-    </div>
+    <div id="slider-panel" class="slider-grid" role="group" aria-label="Point coordinates"></div>
   </div>
 
-  <!-- Canvas: draggable for pointer users; aria-hidden because the sliders and
-       coordinate display expose the same state to assistive technology -->
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
   <div id="mathbox-container" aria-hidden="true">
-    <div id="mathbox1"></div>
+    <div class="mb-panel"><div id="mathbox1"></div></div>
   </div>
 
-  <!--
-    Place the ILA demo bundle at:
-      external/iframes/js/demo.js
-  -->
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
   <script src="js/demo.js"></script>
-
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
   <script>
   "use strict";
 
-  // renderMath, texColor, mathJaxReady come from js/mathjax-setup.js
-
-  // ── Demo ─────────────────────────────────────────────────────────────────
   DomReady.ready(function() {
-
     var pointColor = new Color("red");
-    var RANGE      = 4;
-    // Single source of truth. demo.js's draggable mutates this array in place,
-    // and the sliders write into it, so both control paths share one state.
-    var pt         = [1.0, 2.0, 1.0];
-
+    var RANGE = 4;
+    // Single source of truth: draggable mutates pt in place; sliders write into it
+    var pt = [1.0, 2.0, 1.0];
     var coordElt = document.getElementById('coord-here');
-    var xSlider  = document.getElementById('x-slider');
-    var ySlider  = document.getElementById('y-slider');
-    var zSlider  = document.getElementById('z-slider');
-    var xVal     = document.getElementById('x-val');
-    var yVal     = document.getElementById('y-val');
-    var zVal     = document.getElementById('z-val');
-
     function updateCaption() {
-      var x = pt[0].toFixed(1);
-      var y = pt[1].toFixed(1);
-      var z = pt[2].toFixed(1);
-      renderMath(
-        '(x, y, z) = \\color' + texColor(pointColor) +
-        '{(' + x + ',\\, ' + y + ',\\, ' + z + ')}',
-        coordElt
-      );
-      xVal.textContent = x;
-      yVal.textContent = y;
-      zVal.textContent = z;
-      [[xSlider, 'x', x], [ySlider, 'y', y], [zSlider, 'z', z]].forEach(function(a) {
-        a[0].setAttribute('aria-valuetext', a[1] + ' equals ' + a[2]);
-      });
+      renderMath('(x, y, z) = ' +
+                 texC(pointColor, '(' + fmt(pt[0], 1) + ',\\, ' + fmt(pt[1], 1) + ',\\, ' + fmt(pt[2], 1) + ')'),
+                 coordElt);
     }
-
-    // Called after each drag step: clamp to the view box, then push the
-    // dragged position back into the sliders so both controls stay in sync.
+    var panelElt = document.getElementById('slider-panel');
+    var sliders = ['x', 'y', 'z'].map(function(name, k) {
+      return buildSlider(panelElt, {
+        name: name + ' coordinate', tex: name, id: name + '-slider',
+        min: -RANGE, max: RANGE, step: 0.1, value: pt[k],
+        onInput: function(v) { pt[k] = v; updateCaption(); }
+      });
+    });
+    // After each drag step: clamp to the view box, then sync the sliders
     function syncFromDrag() {
-      for (var i = 0; i < 3; i++) {
-        pt[i] = Math.max(-RANGE, Math.min(RANGE, pt[i]));
+      for (var k = 0; k < 3; k++) {
+        pt[k] = Math.max(-RANGE, Math.min(RANGE, pt[k]));
+        sliders[k].set(pt[k]);
       }
-      xSlider.value = pt[0];
-      ySlider.value = pt[1];
-      zSlider.value = pt[2];
       updateCaption();
     }
-
-    // WCAG 2.5.2: 'input' is correct for range (live feedback while dragging/arrowing)
-    xSlider.addEventListener('input', function() { pt[0] = parseFloat(this.value); updateCaption(); });
-    ySlider.addEventListener('input', function() { pt[1] = parseFloat(this.value); updateCaption(); });
-    zSlider.addEventListener('input', function() { pt[2] = parseFloat(this.value); updateCaption(); });
-
     updateCaption();
 
     new Demo({
-      mathbox: { element: document.getElementById('mathbox1') },
+      fullscreen: false,
+      mathbox: mbOpts('mathbox1'),
       scaleUI: true,
-      camera:  { position: [2, 1.5, 2] }
+      camera: { position: [2, 1.5, 2] }
     }, function() {
-      var view = this.view({
-        viewRange: [[-RANGE, RANGE], [-RANGE, RANGE], [-RANGE, RANGE]]
-      });
-
-      // Moving point — live expr reads pt on every frame
+      var view = this.view({ viewRange: [[-RANGE, RANGE], [-RANGE, RANGE], [-RANGE, RANGE]] });
       view.array({
-        channels: 3,
-        width:    1,
-        expr: function(emit) {
-          return emit(pt[0], pt[1], pt[2]);
-        }
-      }).point({
-        color:  pointColor.arr(),
-        size:   18,
-        zIndex: 3,
-        zTest:  false
-      }).format({
-        expr: function(x, y, z) {
-          return '(' + x.toFixed(1) + ', ' + y.toFixed(1) + ', ' + z.toFixed(1) + ')';
-        }
-      }).label({
-        outline: 0,
-        color:   pointColor.arr(),
-        offset:  [0, 22],
-        size:    13,
-        zIndex:  3
-      });
+        channels: 3, width: 1,
+        expr: function(emit) { return emit(pt[0], pt[1], pt[2]); }
+      }).point({ color: pointColor.arr(), size: 18, zIndex: 3, zTest: false });
 
-      // Projection lines from the point to each axis — visual aid for coordinates
+      // Coordinate label as MathJax (replaces WebGL .format().label())
+      var labelLayer = makeLabelLayer(document.getElementById('mathbox1'), this, view);
+      var ptLabel = labelLayer.add({
+        position: function() { return [pt[0], pt[1], pt[2]]; },
+        offset:   [0, 20]
+      });
+      var lastPtTex = '';
+      (function refreshPtLabel() {
+        var q = [pt[0], pt[1], pt[2]];
+        var tex = texC(pointColor, '(' + q.map(function(c) { return fmt(c, 1); }).join(',\\,') + ')');
+        if (tex !== lastPtTex) { lastPtTex = tex; ptLabel.set(tex); }
+        requestAnimationFrame(refreshPtLabel);
+      })();
+
+      // Projection lines from the point to each axis
       [
         function(emit) { emit(pt[0], pt[1], pt[2]); emit(pt[0], 0,     0    ); },
         function(emit) { emit(pt[0], pt[1], pt[2]); emit(0,     pt[1], 0    ); },
@@ -209,43 +157,11 @@
         view.array({ channels: 3, width: 2, expr: expr })
             .line({ color: pointColor.arr(), width: 1, opacity: 0.4, zIndex: 1 });
       });
-
-      // Make the point draggable (same demo.js API the ILA demos use).
-      // demo.js updates pt in place; postDrag runs after each move.
-      this.draggable(view, {
-        points:   [pt],
-        postDrag: syncFromDrag
-      });
+      this.draggable(view, { points: [pt], postDrag: syncFromDrag });
     });
-
   }); // end DomReady.ready
 
-  // ── Fullscreen toggle (works standalone; may be blocked when embedded) ───
-  (function() {
-    var btn = document.getElementById('fs-btn');
-    function isFS() {
-      return !!(document.fullscreenElement || document.webkitFullscreenElement);
-    }
-    function updateLabel() {
-      var label = isFS() ? 'Exit fullscreen' : 'Toggle fullscreen';
-      btn.textContent = isFS() ? '✕' : '⛶';
-      btn.title = label;
-      btn.setAttribute('aria-label', label);
-    }
-    btn.addEventListener('click', function() {
-      var el = document.documentElement, p;
-      if (!isFS()) {
-        var req = el.requestFullscreen || el.webkitRequestFullscreen;
-        if (req) p = req.call(el);
-      } else {
-        var exit = document.exitFullscreen || document.webkitExitFullscreen;
-        if (exit) p = exit.call(document);
-      }
-      if (p && p.catch) p.catch(function() {});
-    });
-    ['fullscreenchange', 'webkitfullscreenchange']
-      .forEach(function(e) { document.addEventListener(e, updateLabel); });
-  })();
+  initFullscreenButton('fs-btn');
   </script>
 </body>
 </html>
