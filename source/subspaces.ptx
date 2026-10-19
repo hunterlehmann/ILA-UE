@@ -931,5 +931,423 @@ x-y \\
     </paragraphs>
 
   </subsection>
-
+<exercises>
+  <exercise>
+    <statement correct="no">
+      <p>The set of solutions to a consistent matrix equation is
+      always a subspace.</p>
+    </statement>
+    <solution>
+      <p>False.  The set of solutions to a consistent matrix equation <m>Ax = b</m> is
+      only a subspace when <m>b=0</m>.  If <m>b</m> is not the zero vector, then the
+      solution set to <m>Ax = b</m> will not contain the zero vector.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>The set of <m>{\bf R}^n</m> that consists only of the zero
+      vector is a subspace of <m>{\bf R}^n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  The set <m>\{0\}</m> contains the zero vector, and it is closed under
+      addition and scalar multiplication because any linear combination of the
+      <m>0</m> vector is itself the zero vector.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>If <m>A</m> is a <m>9 \times 15</m> matrix, then the null space of
+      <m>A</m> is a subspace of <m>{\bf R}^9</m>.</p>
+    </statement>
+    <solution>
+      <p>False: <m>\Nul(A)</m> is a subspace of <m>{\bf R}^{15}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>Every subspace of <m>{\bf R}^n</m> is the span of some
+        vectors in <m>{\bf R}^n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  It is a fundamental fact that every subspace of
+          <m>{\bf R}^n</m> is the span of some vectors in <m>{\bf R}^n</m>, and,
+          conversely, the span of any number of vectors in <m>{\bf R}^n</m> is a
+          subspace of <m>{\bf R}^n</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Consider the set <m>S = \{(x, y) \textup{ in } {\bf R}^2 \ | \ xy \geq 0\}</m>.  Is
+      <m>S</m> a subspace of <m>{\bf R}^2</m>?  If not, which properties does it fail?</p>
+    </statement>
+    <solution>
+      <p>(1) <m>S</m> contains the zero vector, since <m>0\cdot 0 = 0 \geq 0</m>.</p>
+      <p>(2) <m>S</m> is not closed under addition.  For example, take <m>u = \begin{pmatrix}1 \\ 2\end{pmatrix}</m> and
+        <m>v = \begin{pmatrix}-2 \\ -1\end{pmatrix}</m>.  Both vectors are in <m>S</m> since <m>1\cdot 2 > 0</m> and
+        <m>(-2)(-1) = 2 >0</m>.  However, their sum is <m>u+v = \begin{pmatrix}-1 \\ 1\end{pmatrix}</m>, which is not in
+        <m>S</m> since <m>(-1)(1)\lt 0</m>.</p>
+      <p>
+        (3) <m>S</m> is closed under scalar multiplication.  If <m>u = \begin{pmatrix}x \\ y\end{pmatrix}</m> is in <m>S</m>
+          and <m>c</m> is any scalar, then for <m>cu = \begin{pmatrix}cx \\ cy\end{pmatrix}</m> we have
+        <md><mrow>(cx)(cy) = c^2 (xy) \geq 0 \quad \textup{ since } c^2 \geq 0 \textup{ and } xy \geq 0</mrow></md>.
+      </p>
+      <p>Most students find it easier if we first draw a picture of <m>S</m> to gain
+          intuition, rather than plugging in random vectors to test properties.  In
+          order for a vector to be in <m>S</m>, either both entries are positive, or both
+          entries are negative, or at least one entry is zero.  Putting this together,
+          we see that <m>S</m> is the union of the first and third quadrants of the
+          <m>xy</m>-plane (including the <m>x</m>-axis and <m>y</m>-axis).</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Consider the <m>x</m>-axis in <m>{\bf R}^3</m>.  Is it a subspace of <m>{\bf R}^3</m>?  If not,
+      which properties does it fail?</p>
+    </statement>
+    <solution>
+      <p>Yes: the <m>x</m>-axis in <m>{\bf R}^3</m> is the span of <m>\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}</m>, and spans are
+        automatically subspaces of the appropriate <m>{\bf R}^n</m>how, so the <m>x</m>-axis is a
+        subspace of <m>{\bf R}^3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Consider the set
+      <m>S = \{(x, y, z, w) \textup{ in } {\bf R}^4 \ | \ x + y - z + w = 0\}</m>.  Is <m>S</m>
+      a subspace of <m>{\bf R}^4</m>?  If not, which properties does it fail?</p>
+    </statement>
+    <solution>
+      <p>Yes: <m>S</m> is the solution set to the augmented system <m>\left(\begin{array}{rrrr|r}1 \amp 1 \amp -1 \amp 1 \amp 0\end{array}\right)</m>,
+        which is precisely <m>\Nul\begin{pmatrix}1 \amp 1 \amp -1 \amp 1\end{pmatrix}</m>.  Null spaces are always subspaces of
+        the appropriate <m>{\bf R}^{n}</m>, and in this case <m>S</m> is the null space of a
+        matrix with <m>4</m> columns, so <m>S</m> is a subspace of <m>{\bf R}^{4}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>W</m> be the green graph below.  Determine which properties
+      of a subspace of <m>{\bf R}^2</m> are satisfied by <m>W</m>.</p>
+      <image source="images/2_6/2_6-lineorigin">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p>(1) <m>W</m> contains the zero vector, since the line passes through the origin.</p>
+      <p>(2) <m>W</m> is closed under addition.  If <m>v</m> and <m>w</m> are vectors along the line
+        <m>W</m>, their sum is just another vector along the line.</p>
+      <p>(3) <m>W</m> is closed under scalar multiplication.  If you scale any vector along
+        <m>W</m>, the result is still a vector along <m>W</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let
+      <m>V = \left\{ \begin{pmatrix}a \\ b \\ c\end{pmatrix} \ \textup{ in } {\bf R}^3 \ : \ a-b = c\right\}</m>.  Is
+      <m>V</m> a subspace of <m>{\bf R}^3</m>?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>Yes: <m>V</m> is the set of solutions to the homogeneous system of equations
+        <m>a-b-c = 0</m>.  In other words, <m>V = \Nul\begin{pmatrix}1 \amp -1 \amp -1\end{pmatrix}</m>.  The null space
+        of any matrix with <m>3</m> columns is a subspace of <m>{\bf R}^3</m>.</p>
+      <p>Alternatively, we could verify the subspace properties individually.
+        For example, <m>V</m> contains <m>\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}</m> since <m>0 - 0 = 0</m>, and we
+        could similarly verify that <m>V</m> is closed under addition and
+        multiplication.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Which of the following are subspaces of <m>{\bf R}^4</m>?  Answer yes or nox
+      in each case.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>\Col\begin{pmatrix}4 \amp 3 \amp 2 \amp 1 \\ 1 \amp 2 \amp 3 \amp 4 \\ 4 \amp 3 \amp 2 \amp 1\end{pmatrix}</m></p>
+      </statement>
+      <solution>
+        <p>No.  This is a subspace of <m>{\bf R}^3</m>, not <m>{\bf R}^4</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>\Nul\begin{pmatrix}1 \amp 2 \amp 3 \amp 4 \\ 1 \amp 2 \amp 3 \amp 4 \\ 1 \amp 2 \amp 3 \amp 4\end{pmatrix}</m></p>
+      </statement>
+      <solution>
+        <p>Yes.  The null space of any <m>3 \times 4</m> matrix is a
+          subspace of <m>{\bf R}^4</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          The set of solutions to the system of equations in the
+            variables <m>x_1, x_2, x_3, x_4</m> given by
+          <md><mrow>x_1 - x_2 + x_3 + x_4 = 1</mrow></md>
+          <md><mrow>x_1 + x_4 = 2</mrow></md>.
+        </p>
+      </statement>
+      <solution>
+        <p>No.  This solution set does not contain the origin,
+          since it corresponds to a non-homogeneous linear system of
+          equations.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>If <m>V</m> and <m>W</m> are sets in <m>{\bf R}^n</m>, then their \textit{union},
+      denoted <m>V \cup W</m>, is the set of all vectors that are in at least one of <m>V</m>
+      and <m>W</m>.  In other words, a vector <m>x</m> is in <m>V \cup W</m> if <m>x</m> is in <m>V</m> or <m>x</m>
+      is in <m>W</m> (or <m>x</m> is in both <m>V</m> and <m>W</m>).</p>
+      <p>Suppose <m>U</m> and <m>W</m> are subspaces of <m>{\bf R}^n</m>.  When will <m>U \cup W</m> also a
+      subspace of <m>{\bf R}^n</m>?</p>
+    </statement>
+    <solution>
+      <p>The union will be a subspace of <m>{\bf R}^n</m> if and only if one of one of <m>U</m>
+        or <m>V</m> is contained in the other (or both are equal).  In this case, the union
+        <m>U \cup V</m> will just be one of <m>U</m> or <m>V</m>, which we already know to be
+        subspaces.</p>
+      <p>
+        On the other hand, suppose neither <m>U</m> nor <m>V</m> is contained in the other.  Then there is a vector <m>u</m> that is in <m>U</m> but not in <m>V</m>, and there is a vector <m>v</m> that is in <m>V</m> but not in <m>U</m>.  We show that:
+        <md><mrow>u+v \textup{ is not in } U \cup V</mrow></md>.
+        After all, <m>u+v</m> cannot be in the
+        subspace <m>U</m>, because if it were then <m>(u+v)-u = v</m> would need to be in <m>U</m>
+        since <m>U</m> is closed under addition.  Similarly, <m>u+v</m> cannot be in <m>V</m> because
+        then <m>(u+v)-v = u</m> would need to be in <m>V</m> since <m>V</m> is closed under addition.
+      </p>
+      <p>In summary: <m>u</m> and <m>v</m> are in <m>U \cup V</m>, but <m>u+v</m> is not in <m>U \cup V</m>, so
+      <m>U \cup V</m> is not closed under addition and is therefore not a subspace of
+      <m>{\bf R}^n</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>W</m> be the green graph below.  Determine which properties
+      of a subspace of <m>{\bf R}^2</m> are satisfied by <m>W</m>.</p>
+      <image source="images/2_6/2_6-which.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p><m>W</m> doesn't satisfy any of the properties of a subspace:</p>
+      <p>(1) <m>W</m> does not pass through the origin.</p>
+      <p>(2) <m>W</m> is not closed under addition since for example <m>(-2,0)</m> and
+        <m>(0, 2)</m> are in <m>W</m> but their sum <m>(-2,2)</m> is not in <m>W</m>.</p>
+      <p>(3) <m>W</m> is not closed under multiplication since, for example,
+        <m>(-2, 0)</m> is in <m>W</m> but <m>-(-2,0)=(2, 0)</m> is not in <m>W</m>.</p>
+      <p>Although it fails all subspace properties, the truth is that <m>W</m> is
+        <em>almost</em> a subspace because it is a line in <m>{\bf R}^2</m>, but
+        the fact that it does not pass through the origin ruins all three
+        subspace properties.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>W</m> be the red graph below.  It is the paraboloid
+      <m>z = x^2 + y^2</m>. Determine which properties of a subspace of
+      <m>{\bf R}^3</m> are satisfied by <m>W</m>.</p>
+      <image source="images/2_6/paraboloid">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p>(1) <m>W</m> contains the zero vector since it passes through the
+        origin.</p>
+      <p>(2) <m>W</m> is not closed under scalar multiplication because if <m>u</m> is
+        any nonzero vector in <m>W</m> then it is above the <m>z</m>-axis, but <m>-u</m> is
+        below the <m>z</m>-axis and thus not in <m>W</m>.</p>
+      <p>(3) <m>W</m> is not closed under addition because, for example, the point
+        <m>(0, 1, 1)</m> is in <m>W</m> but <m>(0, 2, 2)</m> is not in <m>W</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>W</m> be the light blue graph below.  Determine which
+      properties of a subspace of <m>{\bf R}^3</m> are satisfied by <m>W</m>.</p>
+      <image source="images/2_6/planeno0">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p><m>W</m> is a plane in <m>{\bf R}^3</m> that does <em>not</em> contain the
+        origin.  It will fail all three properties of a subspace in the same
+        way that a line not through the origin in <m>{\bf R}^2</m> will fail all
+        three subspace properties.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Recall from section 2.1 that a QR code is a
+      <m>29 \times 29</m> grid of boxes, where each box is colored black or
+      white.  We can think of each box as labeled by <m>1</m> (if white) or <m>0</m>
+      (if black).  Reading from top to bottom and left to right, we can
+      regard a QR code as a vector <m>x</m> in
+      <m>{\bf R}^{29 \times 29} = {\bf R}^{841}</m>, where each entry of <m>x</m> is
+      <m>0</m> or <m>1</m>.</p>
+      <p>Let <m>S</m> be the set of all QR codes, considered as a subset of
+      <m>{\bf R}^{841}</m>.  Determine which properties of a subspace <m>S</m>
+      satisfies.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Does <m>S</m> contain the <m>0</m> vector?</p>
+      </statement>
+      <solution>
+        <p>Yes.  The vector <m>v = (0, 0, \ldots, 0)</m> is the QR
+            code where every box is black.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>S</m>
+          closed under addition?</p>
+      </statement>
+      <solution>
+        <p>No.  The vectors <m>x = (1, 0, 0, \ldots 0)</m> and
+            <m>y=(1, 1, 0, \ldots, 0)</m> are in <m>S</m>.  However, if we add <m>x</m> and
+            <m>y</m> we obtain <m>x+y = (2, 1, 0, \ldots, 0)</m>, which is not in <m>S</m>
+            because it has an entry (its first entry) which is neither <m>0</m> nor
+            <m>1</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>S</m> closed under scalar
+          multiplication?</p>
+      </statement>
+      <solution>
+        <p>No.  The vector <m>x = (1, 0, 0, \ldots, 0)</m> is in <m>S</m>
+            but <m>2x = (2, 0, 0, \ldots, 0)</m> is not in <m>S</m> because it has an
+            entry (its first entry) which is neither <m>0</m> nor <m>1</m>.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>V</m> be the set of all points <m>(x, y)</m> in <m>{\bf R}^2</m>
+      satisfying <m>x - y > 1</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Does <m>V</m> contain the zero vector?</p>
+      </statement>
+      <solution>
+        <p>No, since <m>0-0</m> is not greater than <m>1</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>V</m> closed under addition?</p>
+      </statement>
+      <solution>
+        <p>
+          Yes: take any vectors <m>u = \begin{pmatrix}x_1 \\ y_1\end{pmatrix}</m> and
+              <m>v = \begin{pmatrix}x_2 \\ y_2\end{pmatrix}</m> in <m>V</m>, so <m>x_1 - y_1 \geq 1</m>.  For the vector
+              <m>u+v = \begin{pmatrix}x_1+x_2 \\ y_1+y_2\end{pmatrix}</m>, we subtract the second coordinate
+              from the first and regroup terms:
+          <md>
+            <mrow>(x_1+x_2)-(y_1+y_2)
+                \amp   = x_1+x_2 - y_1 - y_2</mrow>
+            <mrow>\amp   = (x_1 - y_1) + (x_2 - y_2)</mrow>
+            <mrow>\amp  > 1 + 1 > 1</mrow>
+          </md>,
+          therefore <m>u+v</m> is in <m>V</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>V</m> closed under scalar multiplication?</p>
+      </statement>
+      <solution>
+        <p>No: for example, <m>u = \begin{pmatrix}1 \\ 0\end{pmatrix}</m> is in <m>V</m>, but
+            <m>-u = \begin{pmatrix}-1 \\ 0\end{pmatrix}</m> is not in <m>V</m> since <m>-1 - 0 = -1</m> which is not
+            greater than <m>1</m>.</p>
+      </solution>
+    </task>
+    <solution>
+      <p>An alternative approach is to draw <m>V</m>, which is relatively
+        straightforward since <m>V</m> consists of all points satisfying
+        <m>y \lt x - 1</m>, which is all points that are strictly below the line
+        <m>y = x-1</m>.  Once you graph <m>V</m>, you can tell right away that it does
+        not contain the zero vector and is not closed under scalar
+        multiplication, and you can also deduce that it is closed under
+        addition.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>V</m> be the set of all points <m>(x, y, z)</m> in <m>{\bf R}^3</m>
+        satisfying <m>xyz \geq 0</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Does <m>V</m> contain the zero vector?</p>
+      </statement>
+      <solution>
+        <p>Yes: the origin satisfies
+              <m>0\cdot 0 \cdot 0 = 0 \geq 0</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>V</m> closed under addition?</p>
+      </statement>
+      <solution>
+        <p>
+          No: for example, let
+          <md><mrow>u = \begin{pmatrix}1 \\ -1 \\ -1\end{pmatrix} \qquad v = \begin{pmatrix}1 \\ 0 \\ 2\end{pmatrix}</mrow></md>.
+          Then <m>u</m> and <m>v</m>
+                are both in <m>V</m> but their sum is <m>u+v = \begin{pmatrix}2 \\ -1 \\ 1\end{pmatrix}</m> which is
+                not in <m>V</m> since <m>(2)(-1)(1) = -2 \lt 0</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>V</m> closed under scalar multiplication?</p>
+      </statement>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>(Challenge problem) Abstract spaces go beyond just
+        <m>{\bf R}^n</m>.  For example, the set of all polynomials with real
+        coefficients forms an abstract vector space.</p>
+      <p>
+        Consider the set <m>W</m> consisting of all polynomials that have degree
+          <m>2</m> or less.  In other words, <m>W</m> is the set of all functions of the
+          form
+        <md><mrow>f(x) = a_0 + a_1 x + a_2 x^2</mrow></md>
+        where <m>a_0</m>, <m>a_1</m>, and <m>a_2</m> are real numbers.
+          Show that <m>W</m> satisfies the properties of a subspace:
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>W</m> contains the zero polynomial.  In other words, <m>W</m>
+            contains the polynomial given by <m>p(x) = 0</m> for all <m>x</m>.</p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          If polynomials <m>f</m> and <m>g</m> are in <m>W</m>, then so is the
+              polynomial <m>f+g</m> given by
+          <md><mrow>(f+g)(x) = f(x) + g(x)</mrow></md>.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>If <m>f</m> is in <m>W</m> and <m>c</m> is a scalar, then the
+            polynomial <m>cf</m> given by <m>(cf)(x) = cf(x)</m> is also in <m>W</m>.</p>
+      </statement>
+    </task>
+  </exercise>
+</exercises>
 </section>

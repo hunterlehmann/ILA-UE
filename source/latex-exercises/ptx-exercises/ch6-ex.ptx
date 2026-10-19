@@ -87,7 +87,6 @@
                 = \Big[\dfrac{x^5}{5} - \dfrac{1}{3}cx^3\Big]_{-1}^1
                 = \dfrac{2}{5} - \dfrac{2}{3}c</mrow></md>.
           Therefore, <m>c = \dfrac{3}{5}</m>.
-            \end{subproblems}
         </p>
       </solution>
     </task>

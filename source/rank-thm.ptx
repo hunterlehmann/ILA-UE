@@ -9,7 +9,7 @@ any later version published by the Free Software Foundation.  A copy of
 the license is included in gfdl.xml.
 *********************************************************************-->
 
-<section xml:id="sec-rank-thm" number="9">
+<section xml:id="sec-rank-thm">
   <title>The Rank Theorem</title>
 
   <objectives>
@@ -250,7 +250,7 @@ the license is included in gfdl.xml.
   </definition>
 
 	<p>
-	The rank of a matrix <m>A</m> gives us important information about the solutions to <m>Ax=b</m>.  Recall from <xref ref="matrixeq-spans-consistency"/> that <m>Ax=b</m> is consistent exactly when <m>b</m> is in the span of the columns of <m>A</m>, in other words when <m>b</m> is in the column space of <m>A</m>.  Thus, <m>\rank(A)</m> is the dimension of the set of <m>b</m> with the property that <m>Ax=b</m> is consistent.
+	The rank of a matrix <m>A</m> gives us important information about the solutions to <m>Ax=b</m>.  Recall from <xref ref="matrixeq-spans-consistency" text="title"/> that <m>Ax=b</m> is consistent exactly when <m>b</m> is in the span of the columns of <m>A</m>, in other words when <m>b</m> is in the column space of <m>A</m>.  Thus, <m>\rank(A)</m> is the dimension of the set of <m>b</m> with the property that <m>Ax=b</m> is consistent.
 	</p>
 
     <p>
@@ -269,6 +269,9 @@ the license is included in gfdl.xml.
     </p>
 
     <theorem xml:id="rank-theorem">
+      <title>Rank Theorem</title>
+      
+      
       <idx><h>Rank</h><h>rank theorem</h></idx>
       <idx><h>Nullity</h><h>rank theorem</h></idx>
       <statement>
@@ -454,5 +457,207 @@ the license is included in gfdl.xml.
       </figure>
     </question>
 
-
+<exercises>
+  <exercise>
+    <statement correct="yes">
+      <p>There is a <m>3 \times 2</m> matrix <m>A</m> so that the column space of
+        <m>A</m> is a line and the null space of <m>A</m> is a line.</p>
+    </statement>
+    <solution>
+      <p>True: for example, <m>A = \begin{pmatrix}1 \amp 0 \\ 1 \amp 0 \\ 1 \amp 0\end{pmatrix}</m>.  This has one column with a
+        pivot (so <m>\Col(A)</m> is a line) and one column without a pivot (so <m>\Nul(A)</m> is
+        a line).</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>There is a <m>2 \times 3</m> matrix <m>A</m> so that the column space of
+      <m>A</m> is a line and the null space of <m>A</m> is a line.</p>
+    </statement>
+    <solution>
+      <p>
+        False: If <m>\Col(A)</m> and <m>\Nul(A)</m> are both lines, then the sum of their
+          dimensions is <m>2</m>, but this is impossible by the Rank Theorem since
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = \ (\textup{number of columns of }A) = 3</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>If <m>A</m> is a
+      <m>10 \times 11</m> matrix and its null space is a line, then every vector
+      in <m>{\bf R}^{10}</m> is a linear combination of the columns of <m>A</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        True.  First we recall that since <m>A</m> has <m>10</m> rows, the column
+          space of <m>A</m> is a subspace of <m>{\bf R}^{10}</m>. By the Rank Theorem
+          and the fact that the null space is a line, we get
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 11, \qquad
+            \dim(\Col \ A) + 1 = 11, \qquad
+            \dim(\Col \ A) = 10</mrow></md>.
+        Therefore, <m>\Col(A)</m> is a <m>10</m>-dimensional subspace of <m>{\bf R}^{10}</m>,
+          which is just another way of saying <m>\Col(A) = {\bf R}^{10}</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Suppose <m>A</m> is a <m>66 \times 77</m> matrix.  Which of the following statements are true?  Select all that apply.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>The homogeneous equation <m>Ax=0</m> must have infinitely
+          many solutions.</p>
+      </statement>
+      <solution>
+        <p>True: <m>A</m> is <m>66 \times 77</m>, so <m>A</m> has at most <m>66</m>
+            pivots.  Since <m>A</m> has <m>77</m> columns, this means at least <m>11</m>
+            columns in <m>A</m> will not have pivots, therefore the equation
+            <m>Ax=0</m> has at least <m>11</m> free variables.  This is just another
+            way of rephrasing the consequences of the Rank Theorem, which
+            expresses this succinctly in part (c).</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>The column space of <m>A</m> is a subspace <m>{\bf R}^{66}</m>.</p>
+      </statement>
+      <solution>
+        <p>True, since <m>A</m> has <m>66</m> rows.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>\dim(\Nul(A)) \geq 11</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          True.  By the Rank Theorem,
+          <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 77</mrow></md>,
+          but since <m>\Col \ A</m> is a subspace of <m>{\bf R}^{66}</m> we know
+              <m>\dim(\Col(A)) \leq 66</m>, therefore <m>\dim(\Nul \ A) \geq 11</m>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a <m>3 \times 3</m> matrix <m>A</m> with the property
+      that <m>\textup{Nul}(A) = \textup{Col}(A)</m>?  If so, write one.</p>
+    </statement>
+    <solution>
+      <p>
+        No: if <m>\textup{Nul}(A) = \textup{Col}(A)</m>, then by
+            the Rank Theorem,
+        <md><mrow>3 = \dim(\textup{Nul} \ A) + \dim(\textup{Col} \ A) = 2
+              \dim(\textup{Nul} \ A)</mrow></md>.
+        This would mean
+            <m>\dim(\textup{Nul} \ A) = 3/2</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a <m>2 \times 2</m> matrix <m>A</m> with the property
+      that <m>\textup{Nul}(A) = \textup{Col}(A)</m>?  If so, write one.</p>
+    </statement>
+    <solution>
+      <p>Yes: unlike in the <m>3 \times 3</m> case, the Rank Theorem
+          does not rule out the possibility that
+          <m>\textup{Nul}(A) = \textup{Col}(A)</m>.  However, it may take some
+          time and trial and error to write such an <m>A</m>.  One example is
+          <m>A = \begin{pmatrix}0 \amp 1 \\ 0 \amp 0\end{pmatrix}</m>.  Both its range and null space are the span
+          of <m>\begin{pmatrix}1 \\ 0\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that <m>A</m> is a <m>6 \times 2</m> matrix and that the column space of <m>A</m> is
+      <m>2</m>-dimensional.  Is it possible for <m>\begin{pmatrix}1 \\ 0\end{pmatrix}</m> and <m>\begin{pmatrix}1 \\ 1\end{pmatrix}</m> to be solutions
+      to <m>Ax = b</m> for some <m>b</m> in <m>{\bf R}^6</m>?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>No, it is not possible.  Here <m>A</m> is <m>6 \times 2</m> with a <m>2</m>-dimensional
+        column space, so both of its columns are pivot columns.  In other words, its
+        columns are linearly independent.  Therefore, <m>Ax = 0</m> has exactly one
+        solution, so any consistent system <m>Ax = b</m> must have exactly one solution.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that <m>A</m> is a <m>5 \times 7</m> matrix and the column space of <m>A</m> is a line
+      in <m>{\bf R}^5</m>.  Describe the set of solutions to <m>Ax = 0</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We are told that <m>\dim(\Col \ A) = 1</m>.  By the Rank Theorem:
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 7, \qquad
+        1 + \dim(\Nul \ A) = 7, \qquad \dim(\Nul \ A) = 6</mrow></md>.
+        Also, the null space of <m>A</m> lives in <m>{\bf R}^7</m> since <m>A</m> has <m>7</m> columns.
+        Therefore, the set of solutions to <m>Ax = 0</m> is <m>6</m>-dimensional subspace of <m>{\bf R}^7</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that <m>A</m> is a <m>5 \times 7</m> matrix and the column space of <m>A</m> is
+      <m>{\bf R}^5</m>.  Describe the set of solutions to <m>Ax = 0</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We are told that <m>\dim(\Col \ A) = 5</m>.  By the Rank Theorem:
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 7, \qquad
+        5 + \dim(\Nul \ A) = 7, \qquad \dim(\Nul \ A) = 2</mrow></md>.
+        Also, the null space of <m>A</m> lives in <m>{\bf R}^7</m> since <m>A</m> has <m>7</m> columns.
+        Therefore, the set of solutions to <m>Ax = 0</m> is a plane in <m>{\bf R}^7</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that <m>A</m> is a <m>5 \times 7</m> matrix and the null space of <m>A</m> is a plane.
+      Is the matrix equation <m>Ax = (1, 2, 3, 4, 5)</m> consistent?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes.  The Rank Theorem gives us
+        <md><mrow>\dim(\Col \ A) + \dim(\Nul \ A) = 7, \qquad
+          \dim(\Col \ A) + 2 = 7, \qquad \dim(\Col \ A) = 5</mrow></md>.
+        In other words, the
+        column space of <m>A</m> is all of <m>{\bf R}^5</m>, therefore <m>Ax = b</m> is consistent for
+        every <m>b</m> in <m>{\bf R}^5</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Fill in the blanks: If <m>A</m> is a <m>5 \times 6</m> matrix and whose columns span a
+      plane, then the null space of <m>A</m> is a \underline{\qquad \qquad}-dimensional
+      subspace of
+      <m>\R^{\fbox{\phantom{\tiny 2}}}</m>.</p>
+    </statement>
+    <solution>
+      <p><m>\Nul A</m> is a subspace of <m>{\bf R}^6</m>, and
+        <m>\dim(\Col \ A)+ \dim(\Nul \ A)=6</m> so <m>2+\dim(\Nul A)=6</m>.  Thus
+        <m>\Nul \ A</m> is a 4-dimensional subspace of <m>{\bf R}^6</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a matrix <m>A</m> whose null space is <m>3</m>-dimensional and whose
+      column space is <m>4</m>-dimensional.</p>
+    </statement>
+    <solution>
+      <p>By the Rank Theorem, the sum of the dimensions of the null and
+        column spaces is equal to the number of columns of <m>A</m>, so <m>A</m> must
+        have <m>7</m> columns.  Moreover, exactly <m>4</m> columns must be pivot
+        columns so that <m>\rank(A)=4</m>.</p>
+      <p>
+        One example is
+        <md><mrow>A = \begin{pmatrix}1 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1 \amp 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+</exercises> 
 </section>

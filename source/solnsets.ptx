@@ -1016,7 +1016,7 @@ x_3
     <idx><h>Plane</h><h>dimension-2 solution set</h></idx>
     <idx><h>Space</h><h>dimension-3 solution set</h></idx>
     <idx><h>Dimension</h><h>of a solution set</h></idx>
-    <p>As in <xref ref="soln-sets-dim-inhom"/>, when there is one free variable in a consistent matrix equation, the solution set is a line<mdash/>this line does not pass through the origin when the system is inhomogeneous<mdash/>when there are two free variables, the solution set is a plane (again not through the origin when the system is inhomogeneous), etc.
+    <p>As in <xref ref="soln-sets-dim-inhom" text="title"/>, when there is one free variable in a consistent matrix equation, the solution set is a line<mdash/>this line does not pass through the origin when the system is inhomogeneous<mdash/>when there are two free variables, the solution set is a plane (again not through the origin when the system is inhomogeneous), etc.
     </p>
     </assemblage>
 
@@ -1139,5 +1139,495 @@ x_3
     </question>
 
   </subsection>
+<exercises>
+  <exercise>
+    <statement correct="yes">
+      <p>If <m>A</m> is a <m>4 \times 6</m> matrix with four pivots, then
+        the matrix equation <m>Ax = b</m> must be consistent for every <m>b</m> in
+        <m>{\bf R}^4</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  Since <m>A</m> has <m>4</m> pivots, it follows that for
+          any vector <m>b</m> in <m>{\bf R}^4</m>, the matrix <m>(A \ | \ b)</m> will have
+          a pivot in each of its <m>4</m> rows, and each pivot will be to the
+          left of the augment bar.  Therefore, the system <m>Ax = b</m> will be
+          consistent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>If <m>A</m> is a <m>3 \times 5</m> matrix with three pivots, then
+        the set of solutions to <m>Ax = 0</m> is a plane.</p>
+    </statement>
+    <solution>
+      <p>True.  Since <m>A</m> has <m>3</m> pivots but <m>5</m> columns, there
+          will be exactly <m>2</m> columns that do not have a pivot.  Therefore,
+          the system <m>Ax = 0</m> will have exactly two free variables, which
+          means that its solution set is a plane.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>If <m>b</m> is a nonzero vector and <m>Ax=b</m> has infinitely many
+      solutions, then <m>Ax=0</m> must have infinitely many solutions.</p>
+    </statement>
+    <solution>
+      <p>True.  The solution set to <m>Ax=b</m> is a translate of the solution set to
+      <m>Ax=0</m>, hence <m>Ax=0</m> must also have infinitely many solutions.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>If <m>A</m> is a <m>3 \times 4</m> matrix and the solution set for
+      <m>Ax=0</m> is a line, then <m>A</m> has exactly <m>2</m> pivots.</p>
+    </statement>
+    <solution>
+      <p>False.  The solution set to <m>Ax=0</m> will be a line if and only if <m>A</m> has
+      exactly <m>1</m> free variable.  Since <m>A</m> has <m>4</m> columns, this means <m>A</m> has
+      exactly <m>3</m> (not <m>2</m>) pivots.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>There is a <m>3 \times 2</m> matrix <m>A</m> whose homogeneous solution set
+      <m>Ax=0</m> is the line <m>x_1 + x_2 = 1</m>.</p>
+    </statement>
+    <solution>
+      <p>False.  The zero vector <m>x_1 = x_2 = 0</m> does not satisfy the equation
+      <m>x_1 + x_2 = 1</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that the set of solutions to <m>Ax = b</m> is the plane <m>z=1</m>.  What is the
+      set of solutions to <m>Ax = 0</m>?</p>
+    </statement>
+    <solution>
+      <p>From the theory of section 2.4, the solution set to <m>Ax = 0</m> is the plane
+        through the origin parallel to the plane <m>z=1</m>.  Therefore, the solution set
+        to <m>Ax = 0</m> is the <m>x_1x_2</m>-plane in <m>{\bf R}^3</m> (this is the plane <m>z=0</m>).</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that the set of solutions to <m>Ax = 0</m> is the plane
+      <m>y=x</m> in <m>{\bf R}^2</m>.  Is it possible that there is a <m>b</m> so that
+      the set of solutions to <m>Ax = b</m> is the line <m>x+y=1</m>?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>No.  If <m>Ax=b</m> is consistent, then its solution set must be parallel to the solution set to <m>Ax=0</m>, namely the line <m>y=x</m> which has slope <m>1</m>.  The line <m>x+y=1</m> is the line <m>y= -x + 1</m>, which has slope <m>-1</m>, so it cannot be the solution set to any consistent system <m>Ax=b</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose that the set of solutions to <m>Ax = 0</m> is the plane
+      <m>x+y = 0</m> in <m>{\bf R}^3</m>.  Is it possible that there is a <m>b</m> so that
+      the set of solutions to <m>Ax = b</m> is the <m>z</m>-axis in <m>{\bf R}^3</m>?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>No.  The solution set to <m>Ax=0</m> is a plane, then the solution set of any
+        consistent equation <m>Ax=b</m> must be a parallel plane, but the <m>z</m>-axis is a
+        line.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Suppose that the set of solutions to <m>Ax = 0</m> is the plane
+      <m>x + 2y - 3z = 0</m> in <m>{\bf R}^3</m> and that the vector <m>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix}</m> is a solution to <m>Ax = b</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Find one other solution to <m>Ax=b</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          We can get the solution set to <m>Ax=b</m> by taking any particular solution to <m>Ax = b</m> (in this case, <m>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix}</m>) and then adding all homogeneous solutions.  The solution set to <m>Ax=0</m> is the plane <m>x+2y-3z=0</m>, and we can find a homogeneous solution by just guessing and checking to find <m>x</m>, <m>y</m>, and <m>z</m> that satisfy the equation.  One such homogeneous solution is <m>\begin{pmatrix}3 \\ 0 \\ 1\end{pmatrix}</m>.  Another solution to <m>Ax = b</m> is
+          <md><mrow>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix} + \begin{pmatrix}3 \\ 0 \\ 1\end{pmatrix} = \begin{pmatrix}4 \\ 3 \\ 6\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find all solutions to <m>Ax=b</m>.  Write your answer in parametric vector form.</p>
+      </statement>
+      <solution>
+        <p>
+          The homogeneous equation <m>x+2y-3z=0</m> corresponds to <m>\left(\begin{array}{rrr|r}1 \amp 2 \amp -3 \amp 0\end{array}\right)</m>, which gives <m>x = -2y + 3z</m> where <m>y</m> and <m>z</m> are free.
+          <md><mrow>\begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}-2y+3z \\ y \\ z\end{pmatrix} = \begin{pmatrix}-2y \\ y \\ 0\end{pmatrix} + \begin{pmatrix}3z \\ 0 \\ z\end{pmatrix}
+          = y \begin{pmatrix}-2 \\ 1 \\ 0\end{pmatrix} + z \begin{pmatrix}3 \\ 0 \\ 1\end{pmatrix}</mrow></md>.
+          The solution set to <m>Ax = b</m> is the translation of the homogeneous solution set by the particular solution <m>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix}</m>:
+          <md><mrow>\begin{pmatrix}1 \\ 3 \\ 5\end{pmatrix} + y \begin{pmatrix}-2 \\ 1 \\ 0\end{pmatrix} + z \begin{pmatrix}3 \\ 0 \\ 1\end{pmatrix}, \quad \textup{ where } y, z \textup{ real}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a <m>2 \times 2</m> matrix so that the set of solutions to <m>Av = \begin{pmatrix}1 \\ 2\end{pmatrix}</m> is the line <m>y = x + 1</m>?  If so, find such an <m>A</m>.  If not, explain why not.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes: we need <m>\begin{pmatrix}1 \\ 2\end{pmatrix}</m> to be in the span of the columns of <m>A</m>, so that <m>Av = \begin{pmatrix}1 \\ 2\end{pmatrix}</m> is consistent.  Also, we need for the line <m>y=x</m> to be the set of solutions to <m>Ax=0</m> since that is the line through the origin parallel to <m>y=x+1</m>.  One way to get <m>A</m> is to start as if both columns are <m>\begin{pmatrix}1 \\ 2\end{pmatrix}</m>, then modify <m>A</m> until we satisfy the above.  One such matrix is
+        <md><mrow>A = \begin{pmatrix}-1 \amp 1 \\ -2 \amp 2\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Fill in the blanks: If <m>A</m> is a <m>5 \times 3</m> matrix with two pivots,
+      then the set of solutions to <m>Ax = 0</m> is a \underline{\qquad \quad}
+      that lives in \underline{\qquad}.</p>
+    </statement>
+    <solution>
+      <p><m>A</m> has two pivot columns, so we will get one free variable in the
+        when we solve <m>Ax = 0</m>, therefore the solution set will be a line.
+        The solution set lives in <m>{\bf R}^3</m> since <m>A</m> has three columns.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Let
+        <md><mrow>A = \begin{pmatrix}1 \amp -2 \amp 1 \\ 0 \amp 1 \amp 2\end{pmatrix}, \qquad
+          b_1 = \begin{pmatrix}1 \\ -1 \\ 0\end{pmatrix}, \qquad
+          b_2 = \begin{pmatrix}2 \\ 3\end{pmatrix}</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Which matrix equation makes sense: <m>Ax = b_1</m> or
+          <m>Ax = b_2</m>?</p>
+      </statement>
+      <solution>
+        <p><m>A</m> is a <m>2 \times 3</m> matrix, so any solution <m>x</m> must
+            be in <m>{\bf R}^3</m> and the target vector must be in <m>{\bf R}^2</m>.
+            Therefore, <m>Ax = b_2</m> makes sense but <m>Ax = b_1</m> does not. One way
+            to check this is to translate the matrix equation into a system of
+            equations to confirm our answer, which we do in part (b).</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>For the answer you chose in part (a), write the matrix
+          equation as a system of equations.</p>
+      </statement>
+      <solution>
+        <p>
+          The linear system corresponding to <m>Ax = b_2</m> is
+          <md><mrow>x_1 - 2x_2 + x_3 = 2</mrow></md>
+          <md><mrow>0x_1 + x_2 + 2x_3 = 3</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>For the answer you chose in part (a), write the matrix
+          equation as a vector equation.</p>
+      </statement>
+      <solution>
+        <p>
+          The corresponding vector equation is
+          <md><mrow>x_1 \begin{pmatrix}1 \\ 0\end{pmatrix} + x_2 \begin{pmatrix}-2 \\ 1\end{pmatrix} + x_3 \begin{pmatrix}1 \\ 2\end{pmatrix} = \begin{pmatrix}2 \\ 3\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Solve the matrix equation and write your answer in
+          parametric vector form.</p>
+      </statement>
+      <solution>
+        <p>
+          We row-reduce <m>(A \ | \ b_2)</m>:
+          <md><mrow>\left(\begin{array}{rrr|r}1 \amp -2 \amp 1 \amp 2 \\ 0 \amp 1 \amp 2 \amp 3\end{array}\right) \xrightarrow[]{R_1 = R_1 + 2R_2}
+                \left(\begin{array}{rrr|r}1 \amp 0 \amp 5 \amp 8 \\ 0 \amp 1 \amp 2 \amp 3\end{array}\right)</mrow></md>.
+          This gives us <m>x_1 + 5 x_3 = 8</m> and
+              <m>x_2 + 2x_3 = 3</m>, with <m>x_3</m> free.
+          <md><mrow>x_1 = 8 - 5x_3, \qquad x_2 = 3 - 2x_3, \qquad x_3 = x_3
+                \textup{ (free)}</mrow></md>.
+          We finish the problem by putting this into parametric vector form:
+          <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix} = \begin{pmatrix}8-5x_3 \\ 3-2x_3 \\ x_3\end{pmatrix}
+                \ = \ \begin{pmatrix}8 \\ 3 \\ 0\end{pmatrix} + \begin{pmatrix}-5x_3 \\ -2x_3 \\ x_3\end{pmatrix}
+                \ = \ \begin{pmatrix}8 \\ 3 \\ 0\end{pmatrix} + x_3 \begin{pmatrix}-5 \\ -2 \\ 1\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Consider the system of equations in <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m>
+          given below.
+        <md><mrow>x_1 - x_2 + 2x_3 - 2x_4 \ = \ -1</mrow></md>
+        <md><mrow>-x_1 + x_2 -2x_3 + x_4 = \ 2</mrow></md>
+        <md><mrow>-4x_1 + 4x_2 -8x_3 + 6x_4 \ = \ 6</mrow></md>.
+        Put an augmented matrix
+            into reduced row echelon form to solve the system of equations.
+            Write your answer in parametric vector form.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\left(\begin{array}{rrrr|r}1 \amp -1 \amp 2 \amp -2 \amp -1</mrow>
+          <mrow>-1 \amp 1 \amp -2 \amp 1 \amp 2</mrow>
+          <mrow>-4 \amp 4 \amp -8 \amp 6 \amp 6\end{array}\right)
+                \amp
+                  \xrightarrow[R_3=R_3+4R_1]{R_2=R_2+R_1}
+                  \left(\begin{array}{rrrr|r}1 \amp -1 \amp 2 \amp -2 \amp -1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp -1 \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp -2 \amp 2\end{array}\right)
+                  \xrightarrow[R_3= R_3/-2]{R_2= \ -R_2}
+                  \left(\begin{array}{rrrr|r}1 \amp -1 \amp 2 \amp -2 \amp -1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 1 \amp -1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 1 \amp -1\end{array}\right)</mrow>
+          <mrow></mrow>
+          <mrow>\amp  \xrightarrow[R_1= R_1+2R_2]{R_3=R_3-R_2}
+                  \left(\begin{array}{rrrr|r}1 \amp -1 \amp 2 \amp 0 \amp -3</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 1 \amp -1</mrow>
+          <mrow>0 \amp 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow>
+        </md>
+      </p>
+      <p>
+        The free variables are <m>x_2</m> and <m>x_3</m>:
+        <md><mrow>x_1= x_2-2x_3-3, \qquad x_2=x_2, \qquad x_3=x_3, \qquad x_4=
+                -1</mrow></md>.
+      </p>
+      <p>
+        <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}x_2-2x_3-3 \\ x_2 \\ x_3 \\ -1\end{pmatrix}
+                = \begin{pmatrix}x_2 \\ x_2 \\ 0 \\ 0\end{pmatrix} + \begin{pmatrix}-2x_3 \\ 0 \\ x_3 \\ 0\end{pmatrix} + \begin{pmatrix}-3 \\ 0 \\ 0 \\ -1\end{pmatrix} \
+                = \ \boxed{\begin{pmatrix}-3 \\ 0 \\ 0 \\ -1\end{pmatrix} + x_2 \begin{pmatrix}1 \\ 1 \\ 0 \\ 0\end{pmatrix} + x_3 \begin{pmatrix}-2 \\ 0 \\ 1 \\ 0\end{pmatrix}}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Consider the linear system of equations in <m>x_1</m>, <m>x_2</m>,
+        <m>x_3</m>, and <m>x_4</m> given below.
+        <md><mrow>-2x_1 - 2x_2 + x_3 - 4x_4 = -8</mrow></md>
+        <md><mrow>-x_1 - x_2 + x_3 - 2x_4 = -5</mrow></md>
+        <md><mrow>4x_1 + 4x_2 - x_3 + 8x_4 = 14</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write the set of solutions to the system in parametric
+          vector form.</p>
+      </statement>
+      <solution>
+        <p>
+          We put the system into an augmented matrix and
+            row-reduce:
+          <md><mrow>\left(\begin{array}{rrrr|r}-2 \amp -2 \amp 1 \amp -4 \amp -8 \\ -1 \amp -1 \amp 1 \amp -2 \amp -5 \\ 4 \amp 4 \amp -1 \amp 8 \amp 14\end{array}\right)
+              \xrightarrow[]{RREF}
+              \left(\begin{array}{rrrr|r}1 \amp 1 \amp 0 \amp 2 \amp 3 \\ 0 \amp 0 \amp 1 \amp 0 \amp -2 \\ 0 \amp 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+          Therefore, <m>x_1 = 3 - x_2 - 2x_4</m> and <m>x_3 = -2</m> while <m>x_2</m> and
+            <m>x_4</m> are free:
+          <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}3-x_2-2x_4 \\ x_2 \\ -2 \\ x_4\end{pmatrix}
+              = \boxed{\begin{pmatrix}3 \\ 0 \\ -2 \\ 0\end{pmatrix} + x_2 \begin{pmatrix}-1 \\ 1 \\ 0 \\ 0\end{pmatrix} + x_4 \begin{pmatrix}-2 \\ 0 \\ 0 \\ 1\end{pmatrix}}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write two different solutions to the system of equations.</p>
+      </statement>
+      <solution>
+        <p>
+          We can obtain a solution to the system by choosing any
+            values we wish for <m>x_2</m> and <m>x_4</m>.  For example, if we choose <m>x_2 = 0</m>
+            and <m>x_4 = 0</m> we get
+          <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}3 \\ 0 \\ -2 \\ 0\end{pmatrix}</mrow></md>.
+          If we choose <m>x_2 = 1</m> and <m>x_4 = 0</m> we get
+          <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}2 \\ 1 \\ -2 \\ 0\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write two <em>nonzero</em> solutions to the corresponding
+          <em>homogeneous</em> linear system of equations.</p>
+      </statement>
+      <solution>
+        <p>The solutions to the corresponding homogeneous system
+          (where <m>-8</m>, <m>-5</m>, and <m>14</m> are all replaced by zero) are given by
+          everything in the span of the two vectors <m>\begin{pmatrix}-1 \\ 1 \\ 0 \\ 0\end{pmatrix}</m> and
+          <m>\begin{pmatrix}-2 \\ 0 \\ 0 \\ 1\end{pmatrix}</m>.  Therefore, <m>\begin{pmatrix}-1 \\ 1 \\ 0 \\ 0\end{pmatrix}</m> and <m>\begin{pmatrix}-2 \\ 0 \\ 0 \\ 1\end{pmatrix}</m>
+          are two solutions to the homogeneous equations.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A</m> is a <m>2 \times 2</m> matrix and that for some vector <m>b</m>, the
+      set of solutions to <m>Ax = b</m> is the line <m>x_2 = 4-x_1</m>.  Write the
+      general solution to the homogeneous equation <m>Ax=0</m> in parametric
+      vector form.</p>
+    </statement>
+    <solution>
+      <p>
+        The solution set for <m>Ax = 0</m> must include the origin and also must
+          be a translate to the solution set to <m>Ax = b</m>.  In other words,
+          the solution set for <m>Ax = 0</m> is the line through the origin that
+          is parallel to <m>x_2 = 4-x_1</m>.  This is the line <m>x_2 = -x_1</m>,
+          so <m>x_1 = -x_2</m> and <m>x_2</m> is free.
+        <md><mrow>\begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}-x_2 \\ x_2\end{pmatrix} = x_2 \begin{pmatrix}-1 \\ 1\end{pmatrix}</mrow></md>.
+        Another way to do this problem is to draw the line <m>x_2 = 4-x_1</m>,
+          then draw its parallel line through the origin and notice that this
+          line is the span of <m>\begin{pmatrix}-1 \\ 1\end{pmatrix}</m> (or equivalently the span of
+          <m>\begin{pmatrix}1 \\ -1\end{pmatrix}</m>).
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>For some matrix <m>A</m> and some vector <m>b</m>, the dashed line below
+      is the solution set to the matrix equation <m>Ax = b</m>.</p>
+      <image source="images/2_4/solution_sets1.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </introduction>
+    <task>
+      <statement>
+        <p>On the same graph, draw the solution set to <m>Ax = 0</m>.</p>
+      </statement>
+      <solution>
+        <p>The solution set is the line through the origin that
+            is parallel to the dashed blue line.</p>
+        <image source="images/2_4/solution_sets1-sol.pdf">
+          <shortdescription><!-- FILL: concise image description --></shortdescription>
+          <description><p><!-- FILL: complete image description --></p></description>
+        </image>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>True or false: It is possible that for some vector <m>v</m>,
+          the solution set to <m>Ax = v</m> is a single point.</p>
+      </statement>
+      <solution>
+        <p>False.  If <m>Ax = v</m> is consistent, then its solution
+            set must be a translation of the solution set to <m>Ax = 0</m>, which
+            is a line.  If <m>Ax = v</m> is inconsistent, then it has no solution.
+            Either way, it is not possible for <m>Ax = v</m> to have exactly one
+            solution.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write a system of linear equations whose solution set has parametric
+        form
+        <md><mrow>x = \begin{pmatrix}3 \\ 0\end{pmatrix} + x_2 \begin{pmatrix}2 \\ 1\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Writing <m>x</m> as a single vector, we get:
+        <md><mrow>x = \begin{pmatrix}3 \\ 0\end{pmatrix} + \begin{pmatrix}2x_2 \\ x_2\end{pmatrix} = \begin{pmatrix}3+2x_2 \\ x_2\end{pmatrix}</mrow></md>.
+        Therefore,
+          <m>x_1 = 3+x_2</m> and <m>x_2 = x_2</m> (free).  One possible answer is the
+          following single equation, which will give us <m>x_1 = 3+x_2</m> with <m>x_2</m>
+          as a free variable:
+        <md><mrow>x_1 - x_2 = 3</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>The diagram below describes traffic in a part of town.</p>
+      <image>
+        <shortdescription><!-- TODO: concise alt text for this TikZ image --></shortdescription>
+        <description>
+          <p><!-- TODO: complete description of this TikZ image --></p>
+        </description>
+        <latex-image>
+          \begin{tikzpicture}[scale=1.4, thick,
+                every node/.style={inner sep=3pt, label distance=1mm}]
+              \node at (0,2.4) {Traffic flow (cars/hr)};
+              \point[scale=1.5] (A) at (0,1);
 
+              \point[scale=1.5] (C) at (1,-1);
+              \point[scale=1.5] (D) at (-1,-1);
+
+              \draw[mid arrow] (A.center) to["$x_1$"] (C.center);
+              \draw[mid arrow] (D.center) to["$x_2$"] (C.center);
+              \draw[mid arrow] (D.center) to["$x_3$"] (A.center);
+              \draw[rmid arrow=.3] (A.center) to["$110$"] +(-1/2,1);
+              \draw[mid arrow=.5] (A.center) to["$40$" swap] +(1/2,1);
+
+
+
+              \draw[mid arrow=.7] (C.center) to["$320$"] +(1,0);
+              \draw[mid arrow=.7] (C.center) to["$40$"] +(0,-1);
+              \draw[rmid arrow=.7] (D.center) to["$200$" swap] +(-1,0);
+              \draw[rmid arrow=.3] (D.center) to["$90$" swap] +(0,-1);
+            \end{tikzpicture}
+        </latex-image>
+      </image>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write a system of three linear equations in <m>x_1</m>, <m>x_2</m>, and
+          <m>x_3</m> corresponding to the traffic flow.</p>
+      </statement>
+      <solution>
+        <p>
+          For the top, bottom right, and bottom left nodes, the
+             number of cars entering must match the number of cars exiting, so
+             the system is:
+          <md><mrow>x_1 + 40 = x_3 + 110</mrow></md>
+          <md><mrow>x_1 + x_2 = 360</mrow></md>
+          <md><mrow>x_2 + x_3 = 290</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Use an augmented matrix to solve this system of linear equations.</p>
+      </statement>
+      <solution>
+        <p>
+          The system can be written
+          <md><mrow>x_1 - x_3 = 70</mrow></md>
+          <md><mrow>x_1 + x_2 = 360</mrow></md>
+          <md><mrow>x_2 + x_3 = 290</mrow></md>.
+          We form an augmented matrix and perform row
+             operations.
+          <md><mrow>\left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 70 \\ 1 \amp 1 \amp 0 \amp 360 \\ 0 \amp 1 \amp 1 \amp 290\end{array}\right)
+               \xrightarrow[]{R_2 = R_2 - R_1} \left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 70 \\ 0 \amp 1 \amp 1 \amp 290 \\ 0 \amp 1 \amp 1 \amp 290\end{array}\right) \xrightarrow[]{R_3 = R_3 - R_2} \left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 70 \\ 0 \amp 1 \amp 1 \amp 290 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+          Therefore, <m>x_3</m> is a free variable,
+             <m>x_1 = x_3 + 70</m>, and <m>x_2 = 290-x_3</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Were we given enough information to know the exact
+          values of <m>x_1</m>, <m>x_2</m>, and <m>x_3</m>?  If your answer is yes, justify why.
+          If your answer is no, give the range of possible values for <m>x_1</m>,
+          <m>x_2</m>, and <m>x_3</m>.</p>
+      </statement>
+      <solution>
+        <p>We cannot know the exact values of <m>x_1</m>, <m>x_2</m>, and
+           <m>x_3</m> with the information we have only been given.  For example,
+           we could have <m>x_3=0</m>, <m>x_2 = 290</m>, <m>x_1=70</m>.  Or, we could have
+           <m>x_3= 100</m>, <m>x_2= 190</m>, <m>x_1=170</m>, etc.</p>
+        <p>Even though <m>x_3</m> is a free variable in the system of equations,
+           the real-world constraints of the problem make us consider what is
+           actually possible here.  Since the variables are counting the
+           number of cars at each intersection, they must all be at least
+           zero.  Therefore, we need to have <m>x_3 \geq 0</m> (whereby
+           <m>x_1 = x_3 + 70</m>), and since <m>x_2 = 290-x_3 \geq 0</m> we also need
+           <m>x_3 \leq 290</m>.</p>
+        <p>To summarize: As the values of <m>x_3</m> range from <m>0</m> to <m>290</m>, the
+           values of <m>x_1</m> range from <m>70</m> to <m>360</m> while the values for <m>x_3</m>
+           range from <m>290</m> (when <m>x_3=0</m>) down to <m>0</m> (when <m>x_3 = 290</m>).</p>
+      </solution>
+    </task>
+  </exercise>
+</exercises> 
 </section>

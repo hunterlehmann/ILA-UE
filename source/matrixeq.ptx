@@ -758,7 +758,7 @@ x_n
     <paragraphs>
       <title>When Solutions Always Exist</title>
 
-      <p>Building on <xref ref="matrixeq-spans-consistency">note</xref>, we have the following criterion for when <m>Ax=b</m> is consistent for <em>every</em> choice of <m>b</m>.</p>
+      <p>Building on <xref ref="matrixeq-spans-consistency" text="title"/>, we have the following criterion for when <m>Ax=b</m> is consistent for <em>every</em> choice of <m>b</m>.</p>
 
       <theorem xml:id="matrixeq-thm-full-span">
         <idx><h>Matrix equation</h><h>always consistent</h></idx>
@@ -773,7 +773,7 @@ x_n
         </statement>
 
         <proof>
-          <p>The equivalence of 1 and 2 is established by <xref ref="matrixeq-spans-consistency"/> as applied to every <m>b</m> in <m>\R^m</m>.
+          <p>The equivalence of 1 and 2 is established by <xref ref="matrixeq-spans-consistency" text="title"/> as applied to every <m>b</m> in <m>\R^m</m>.
           </p>
 
           <p>Now we show that 1 and 3 are equivalent.  (Since we know 1 and 2 are equivalent, this implies 2 and 3 are equivalent as well.)  If <m>A</m> has a pivot in every row, then its reduced row echelon form looks like this:
@@ -818,7 +818,7 @@ A \amp b
       </p>
 
       <assemblage>
-        <p>Be careful when reading the statement of the above <xref ref="matrixeq-thm-full-span"/>.  The first two conditions look very much like <xref ref="matrixeq-spans-consistency"/>, but they are logically quite different because of the quantifier <q><em>for all</em> <m>b</m></q>.
+        <p>Be careful when reading the statement of the above <xref ref="matrixeq-thm-full-span"/>.  The first two conditions look very much like <xref ref="matrixeq-spans-consistency" text="title"/>, but they are logically quite different because of the quantifier <q><em>for all</em> <m>b</m></q>.
         </p>
       </assemblage>
 
@@ -882,6 +882,403 @@ A \amp b
 
     </paragraphs>
 
-  </subsection>
+  </subsection><exercises>
+  <exercise>
+    <statement correct="no">
+      <p>Suppose <m>A</m> is a <m>2 \times 4</m> matrix.  Then the equation
+        <m>Ax = b</m> must be inconsistent for some <m>b</m> in <m>{\bf R}^2</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        False.  Since <m>A</m> has <m>2</m> rows and <m>4</m> columns, it is possible for <m>A</m> to
+        have a pivot in each row, in which case <m>Ax=b</m> will be consistent for
+        every <m>b</m> in <m>{\bf R}^2</m>.  For example:
+        <md><mrow>A = \begin{pmatrix}1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>Suppose <m>A</m> is an <m>m \times n</m> matrix and the matrix
+      equation <m>Ax = b</m> is consistent for each <m>b</m> in <m>{\bf R}^m</m>.
+      Then <m>m \leq n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  If <m>m > n</m>, then <m>A</m> has more rows than columns
+          and so the max number of pivots possible number of pivots is <m>n</m>,
+          thus <m>A</m> cannot have a pivot in every row.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <!-- TODO: add correct="yes" or correct="no" to <statement> -->
+      <p>If <m>A</m> is a <m>3 \times 5</m> matrix and the product <m>Ax</m> makes sense, then which <m>{\bf R}^n</m> is <m>x</m> in?</p>
+    </statement>
+    <solution>
+      <p>The vector <m>x</m> must be in <m>{\bf R}^5</m>, since <m>A</m> has <m>5</m> columns.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear equation as a matrix equation:
+        <md><mrow>x + y + z = 1</mrow></md>
+        <md><mrow>x - 2y - z = 5</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}1 \amp 1 \amp 1 \\ 1 \amp -2 \amp -1\end{pmatrix} \begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}1 \\ 5\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md>
+          <mrow>x_1   + 2x_2 + 7x_4                      \amp = 10</mrow>
+          <mrow>3x_1  + 7x_2 + \tfrac{1}{2}x_3           \amp = 7</mrow>
+          <mrow>x_2  + x_3 + 15x_4                       \amp = 30</mrow>
+          <mrow>5x_1  +  12x_3                           \amp = 17</mrow>
+        </md>
+      </p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}1 \amp 2 \amp 0 \amp 7 \\ 3 \amp 7 \amp \tfrac{1}{2} \amp 0 \\ 0 \amp 1 \amp 1 \amp 15 \\ 5 \amp 0 \amp 12 \amp 0\end{pmatrix} \begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}10 \\ 7 \\ 30 \\ 17\end{pmatrix}</m></p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md><mrow>\begin{aligned}
+        2x_1 - x_2 + 3x_3 \amp = 5 \\
+        x_1 + 4x_2        \amp = -2 \\
+        3x_2 + 2x_3       \amp = 7
+        \end{aligned}</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}2 \amp -1 \amp 3 \\ 1 \amp 4 \amp 0 \\ 0 \amp 3 \amp 2\end{pmatrix} \begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix} = \begin{pmatrix}5 \\ -2 \\ 7\end{pmatrix}</m></p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md><mrow>\begin{aligned}
+        x_1 + 3x_2 \amp = 12 \\
+        -2x_1      \amp = -6 \\
+        4x_2       \amp = 8 \\
+        5x_1 + x_2 \amp = 3
+        \end{aligned}</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}1 \amp 3 \\ -2 \amp 0 \\ 0 \amp 4 \\ 5 \amp 1\end{pmatrix} \begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}12 \\ -6 \\ 8 \\ 3\end{pmatrix}</m></p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Write the following linear system as a matrix equation:
+        <md><mrow>\begin{aligned}
+        x_1 + 2x_3 - x_4 + 6x_5 \amp = 14 \\
+        3x_2 - 5x_3 + x_4        \amp = -2
+        \end{aligned}</mrow></md>
+      </p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}1 \amp 0 \amp 2 \amp -1 \amp 6 \\ 0 \amp 3 \amp -5 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5\end{pmatrix} = \begin{pmatrix}14 \\ -2\end{pmatrix}</m></p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Carry out the following matrix multiplication.
+        <md><mrow>\begin{pmatrix}0 \amp 2 \\ 0 \amp 4 \\ 5 \amp 0\end{pmatrix} \begin{pmatrix}3 \\ 2\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md><mrow>\begin{pmatrix}0 \amp 2 \\ 0 \amp 4 \\ 5 \amp 0\end{pmatrix} \begin{pmatrix}3 \\ 2\end{pmatrix}
+        = 3 \begin{pmatrix}0 \\ 0 \\ 5\end{pmatrix} + 2 \begin{pmatrix}2 \\ 4 \\ 0\end{pmatrix} = \begin{pmatrix}0 \\ 0 \\ 15\end{pmatrix} + \begin{pmatrix}4 \\ 8 \\ 0\end{pmatrix}
+        = \begin{pmatrix}4 \\ 8 \\ 15\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Carry out the following matrix multiplication.
+        <md><mrow>\begin{pmatrix}2 \amp 3 \amp -5 \\ -3 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}3 \\ -1 \\ 2\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\begin{pmatrix}2 \amp 3 \amp -5</mrow>
+          <mrow>-3 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}3</mrow>
+          <mrow>-1</mrow>
+          <mrow>2\end{pmatrix}
+            \amp  = 3 \begin{pmatrix}2</mrow>
+          <mrow>-3\end{pmatrix} + (-1) \begin{pmatrix}3</mrow>
+          <mrow>1\end{pmatrix} + 2 \begin{pmatrix}-5</mrow>
+          <mrow>0\end{pmatrix}</mrow>
+          <mrow>\amp  = \begin{pmatrix}6</mrow>
+          <mrow>-9\end{pmatrix} + \begin{pmatrix}-3</mrow>
+          <mrow>-1\end{pmatrix} + \begin{pmatrix}-10</mrow>
+          <mrow>0\end{pmatrix}</mrow>
+          <mrow>\amp  = \begin{pmatrix}-7</mrow>
+          <mrow>-10\end{pmatrix}</mrow>
+        </md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix equation consistent?  If so, solve it.
+        <md><mrow>\begin{pmatrix}1 \amp 1 \\ 1 \amp 0 \\ 1 \amp 1\end{pmatrix} \begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}2 \\ 3 \\ 2\end{pmatrix}</mrow></md>.
+        Can you do this problem without row-reducing?
+      </p>
+    </statement>
+    <solution>
+      <p>This matrix equation is consistent: <m>x_1 = 3</m> and <m>x_2 = -1</m>.  We can do this without row-reduction.  We see <m>x_1</m> must equal <m>3</m> in order for the second entry to be <m>3</m>, and <m>3\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix} = \begin{pmatrix}3 \\ 3 \\ 3\end{pmatrix}</m> so we need to subtract <m>\begin{pmatrix}1 \\ 0 \\ 1\end{pmatrix}</m> to get <m>\begin{pmatrix}2 \\ 3 \\ 2\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is the following matrix equation consistent?  If so, solve it.
+        <md><mrow>\begin{pmatrix}1 \amp 1 \\ 1 \amp 0 \\ 1 \amp 1\end{pmatrix} \begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}2 \\ 3 \\ 3\end{pmatrix}</mrow></md>.
+        Can you do this problem without row-reducing?
+      </p>
+    </statement>
+    <solution>
+      <p>This matrix equation is inconsistent.  Each of the vectors <m>\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix}</m> and <m>\begin{pmatrix}1 \\ 0 \\ 1\end{pmatrix}</m> has its first entry equal to its third entry (so any linear combination will also have first and third entries equal), but the target vector <m>\begin{pmatrix}2 \\ 3 \\ 3\end{pmatrix}</m> has first entry different than third entry.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Todd Stromboly sells apples, bananas, and dragonfruits.  At his fruit
+      stand:</p>
+      <p>You purchased <m>2</m> apples, <m>4</m> bananas, and <m>1</m> dragonfruit, at a cost
+      of <m>\$3</m>.</p>
+      <p>Your friend bought <m>3</m> apples, <m>2</m> bananas, and <m>2</m> dragonfruits at a
+      cost of <m>\$4</m>.</p>
+      <p>Your sworn enemy bought <m>1</m> apple, <m>2</m> bananas, and <m>5</m> dragonfruits
+      at a cost of <m>\$6</m>.
+      Let <m>a</m>, <m>b</m>, and <m>c</m>, be the sale price
+      of an apple, banana, and dragonfruit, respectively.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write a system of equations whose solution would give us
+          the price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          The system of equations is
+          <md><mrow>2a + 4b + c = 3</mrow></md>
+          <md><mrow>3a + 2b + 2c = 4</mrow></md>
+          <md><mrow>a + 2b + 5c = 6</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a vector equation whose solution would give us the
+          price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          The vector equation is
+          <md><mrow>a \begin{pmatrix}2 \\ 3 \\ 1\end{pmatrix} + b \begin{pmatrix}4 \\ 2 \\ 2\end{pmatrix} + c \begin{pmatrix}1 \\ 2 \\ 5\end{pmatrix} = \begin{pmatrix}3 \\ 4 \\ 6\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a matrix equation whose solution would give us the
+          price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          The matrix equation is
+          <md><mrow>\begin{pmatrix}2 \amp 4 \amp 1 \\ 3 \amp 2 \amp 2 \\ 1 \amp 2 \amp 5\end{pmatrix}x = \begin{pmatrix}3 \\ 4 \\ 6\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find the price of each item.</p>
+      </statement>
+      <solution>
+        <p>
+          We put an augmented matrix into RREF.
+          <md><mrow>\left(\begin{array}{rrr|r}2 \amp 4 \amp 1 \amp 3 \\ 3 \amp 2 \amp 2 \amp 4 \\ 1 \amp 2 \amp 5 \amp 6\end{array}\right) \xrightarrow[]{RREF}
+                \left(\begin{array}{rrr|r}1 \amp 0 \amp 0 \amp 1/2 \\ 0 \amp 1 \amp 0 \amp 1/4 \\ 0 \amp 0 \amp 1 \amp 1\end{array}\right)</mrow></md>.
+          Thus <m>a = \frac{1}{2}</m>,
+              \ <m>b = \frac{1}{4}</m>, and <m>c=1</m>. In other words, an apple costs
+              <m>\$0.50</m>, a banana costs <m>\$0.25</m>, and a dragonfruit costs <m>\$1</m>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Suppose <m>A = \begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}</m> is a
+        matrix whose columns are nonzero vectors and
+        <md><mrow>5v_1 - v_2 + v_3 - v_4 = 0</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write one nonzero vector <m>b</m> so that <m>Ax=b</m> is
+            consistent.</p>
+      </statement>
+      <solution>
+        <p>
+          Many possible answers.  For example, <m>Ax = v_1</m> is
+                  consistent since
+          <md><mrow>A \begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix} = \begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}
+                    \begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix} = v_1</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write one nonzero solution to the
+            equation <m>Ax=0</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          By definition of matrix multiplication,
+          <md><mrow>\begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}
+                    \begin{pmatrix}5 \\ -1 \\ 1 \\ -1\end{pmatrix} = 5v_1 - v_2 + v_3 - v_4 = 0</mrow></md>
+          so
+                  <m>x= \begin{pmatrix}5 \\ -1 \\ 1 \\ -1\end{pmatrix}</m> satisfies <m>Ax=0</m>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Your overall semester score in Math <m>9123</m> will be determined by
+      the weights: <m>15\%</m> homework, <m>15\%</m> quizzes, <m>20\%</m> for midterm 1,
+      <m>20\%</m> for midterm 2, and <m>30\%</m> for the final exam.</p>
+      <p>Your grades were <m>95\%</m> on homework, <m>85\%</m> for quizzes, <m>83\%</m>
+      for midterm 1, and <m>87\%</m> for midterm 2.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write <m>A</m>, <m>x</m>, and <m>b</m> so that solving the matrix
+          equation <m>Ax = b</m> will give us the final exam score we need in order
+          to get a <m>90\%</m> overall score for the course.</p>
+      </statement>
+      <solution>
+        <p>
+          We arrange the matrix entries of <m>A</m> in the order that
+              the categories were given, and we put the grades in each category as
+              the corresponding entries of <m>x</m>.
+          <md><mrow>A = \begin{pmatrix}0.15 \amp 0.15 \amp 0.20 \amp 0.20 \amp 0.30\end{pmatrix}, \qquad
+                x = \begin{pmatrix}95 \\ 85 \\ 83 \\ 87 \\ x_5\end{pmatrix}, \qquad b = 90</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Solve the equation in part (a).</p>
+      </statement>
+      <solution>
+        <p>
+          Carrying out the multiplication and solving gives us
+          <md><mrow>(0.15)95 + (0.15)85 + (0.20)83 + (0.20)87 + (0.30)x_5 = 90</mrow></md>
+          <md><mrow>61 + 0.30 x_5 = 90, \qquad 0.30 x_5 = 29, \qquad x_5 =
+                290 / 3 = 96.\bar{6}</mrow></md>
+          If the exam does not give fractions of a point as credit, you will
+              need to get a <m>97\%</m> on the final exam.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>The diagram below represents the temperature at points along
+          wires, in celcius.</p>
+      <image>
+        <shortdescription><!-- TODO: concise alt text for this TikZ image --></shortdescription>
+        <description>
+          <p><!-- TODO: complete description of this TikZ image --></p>
+        </description>
+        <latex-image>
+          \begin{tikzpicture}[scale=1, thick, every node/.style={inner
+                sep=3pt, label distance=1mm}]
 
+             \node at (0,2.3) {$30$};
+              \node at (1.9,-2) {$60$};
+              \node at (-1.9,-2) {$90$};
+              \node at (-0.4,1) {$T_1$};
+              \node at (1.4,-1) {$T_2$};
+               \node at (-1.4,-1) {$T_3$};
+              \point[scale=1.5] (A) at (0,1);
+              \point[scale=1.5] (C) at (1,-1);
+              \point[scale=1.5] (D) at (-1,-1);
+               \point[scale=1.5] (P) at (0,2);
+               \point[scale=1.5] (Q) at (3/2,-2);
+               \point[scale=1.5] (R) at (-1.5,-2);
+
+             \draw(A.center) to (C.center);
+
+              \draw(D.center) to (C.center);
+
+              \draw(D.center) to (A.center);
+
+              \draw(A.center) to+(0,1);
+               \draw(C.center) to+(1/2,-1);
+              \draw(D.center) to+(-1/2,-1);
+            \end{tikzpicture}
+        </latex-image>
+      </image>
+      <p>Let <m>T_1, \ T_2, \ T_3</m> be the temperatures at the interior points.
+      Assume the temperature at each interior point is the average of the
+      temperatures of the three adjacent points.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write a system of three linear equations whose solution
+          would give the temperatures <m>T_1</m>, <m>T_2</m>, and <m>T_3</m>.  Do not solve
+          it.</p>
+      </statement>
+      <solution>
+        <p>The left side system below or right-side system below
+          are both fine.</p>
+        <p><m>T_1 = \dfrac{T_2+T_3+30}{3}</m>, \quad or \quad
+          <m>3T_1 - T_2 - T_3 = 30</m>.
+        <m>T_2 = \dfrac{T_1+T_3+60}{3}</m>,
+          \quad or \quad <m>-T_1+3T_2-T_3 = 60</m>.</p>
+        <p><m>T_3 = \dfrac{T_1+T_2+90}{3}</m>, \quad or \quad <m>-T_1-T_2+3T_3 = 90</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write the system as a vector equation. Do not
+          solve it.</p>
+      </statement>
+      <solution>
+        <p><m>T_1 \begin{pmatrix}3 \\ -1 \\ -1\end{pmatrix} + T_2 \begin{pmatrix}-1 \\ 3 \\ -1\end{pmatrix} + T_3 \begin{pmatrix}-1 \\ -1 \\ 3\end{pmatrix} = \begin{pmatrix}30 \\ 60 \\ 90\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a matrix equation <m>Ax=b</m> that represents this
+          system.  Specify every entry of <m>A</m>, <m>x</m>, and <m>b</m>.  Do not solve it.</p>
+      </statement>
+      <solution>
+        <p><m>\begin{pmatrix}3 \amp -1 \amp -1 \\ -1 \amp 3 \amp -1 \\ -1 \amp -1 \amp 3\end{pmatrix} \begin{pmatrix}T_1 \\ T_2 \\ T_3\end{pmatrix} = \begin{pmatrix}30 \\ 60 \\ 90\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+  </exercise>
+</exercises>
 </section>

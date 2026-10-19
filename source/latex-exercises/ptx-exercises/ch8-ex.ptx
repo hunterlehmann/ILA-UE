@@ -42,23 +42,23 @@
 <exercises>
   <exercise>
     <statement>
-      <p>Let \(P^2\) be the set of polynomials exactly of degree \(2\). Is this an abstract vector space? Verify the axioms or provide a counterexample.</p>
+      <p>Let <m>P^2</m> be the set of polynomials exactly of degree <m>2</m>. Is this an abstract vector space? Verify the axioms or provide a counterexample.</p>
     </statement>
     <solution>
-      <p>This is not an abstract vector space, as the zero polynomial is not of degree \(2\) and thus not included in the set.</p>
+      <p>This is not an abstract vector space, as the zero polynomial is not of degree <m>2</m> and thus not included in the set.</p>
     </solution>
   </exercise>
   <exercise>
     <statement>
-      <p>Is the set of polynomials with <em>integer</em> coefficients of degree at most \(d\) an abstract vector space over \(\mathbb{R}\)? Verify the axioms or provide a counterexample.</p>
+      <p>Is the set of polynomials with <em>integer</em> coefficients of degree at most <m>d</m> an abstract vector space over <m>\mathbb{R}</m>? Verify the axioms or provide a counterexample.</p>
     </statement>
     <solution>
-      <p>No, consider \(p(x) = x^d\). If we multiply it by \(\frac{1}{2}\), then the resulting polynomial no longer has integer coefficients, so the set is not closed under scalar multiplication.</p>
+      <p>No, consider <m>p(x) = x^d</m>. If we multiply it by <m>\frac{1}{2}</m>, then the resulting polynomial no longer has integer coefficients, so the set is not closed under scalar multiplication.</p>
     </solution>
   </exercise>
   <exercise>
     <statement>
-      <p>Is \(P_d\) still an abstract vector space if we replace addition with multiplication? What about \(P\)?</p>
+      <p>Is <m>P_d</m> still an abstract vector space if we replace addition with multiplication? What about <m>P</m>?</p>
     </statement>
   </exercise>
   <exercise>
@@ -107,50 +107,80 @@ OLD from 2.2
 
 \problem
 
-	\begin{subproblems}
-	\subproblem Write an augmented matrix in RREF with three pivots that represents an
-	inconsistent system of three equations in four variables.
-	\subproblem Is there a system of three equations in two variables that has infinitely many
-	solutions?  If
-	your answer is yes, write an augmented matrix in RREF that represents one such system.
-	\subproblem Are there three lines in the <m>xy</m>-plane (not necessarily distinct lines) whose
-	common intersection is exactly one
-	point?  If so, give an example and write the corresponding augmented matrix.
-	\end{subproblems}
+
+
+<p>
+<ol marker="(a)">
+  <li>
+    <p>Write an augmented matrix in RREF with three pivots that represents an
+    	inconsistent system of three equations in four variables.</p>
+  </li>
+  <li>
+    <p>Is there a system of three equations in two variables that has infinitely many
+    	solutions?  If
+    	your answer is yes, write an augmented matrix in RREF that represents one such system.</p>
+  </li>
+  <li>
+    <p>Are there three lines in the <m>xy</m>-plane (not necessarily distinct lines) whose
+    	common intersection is exactly one
+    	point?  If so, give an example and write the corresponding augmented matrix.</p>
+  </li>
+</ol>
+</p>
+
+
 
 	\begin{solution}
-	\begin{subproblems}
-	\subproblem Many possibilities.  For example,
-	<md><mrow>\left(\begin{array}{rrrr|r}1 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right), \qquad \left(\begin{array}{rrrr|r}0 \amp 1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right),
-	\quad  \textup{ or } \quad \left(\begin{array}{rrrr|r}0 \amp 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right)</mrow></md>.
-	\subproblem Yes.  For example, consider the system
-	<md><mrow>x + y = 1</mrow></md>
-	<md><mrow>2x + 2y = 2</mrow></md>
-	<md><mrow>3x + 3y = 3</mrow></md>.
-	Each equation represents the line <m>x + y = 1</m>, so the solution set is all points <m>(x,y)</m> on the line
-	<m>y = 1-x</m>. The corresponding augmented matrix and its
-	RREF are
-	<md><mrow>\left(\begin{array}{rr|r}1 \amp 1 \amp 1 \\ 2 \amp 2 \amp 2 \\ 3 \amp 3 \amp 3\end{array}\right) \xrightarrow[]{RREF} \left(\begin{array}{rr|r}1 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
-	\subproblem Yes.  For example, take the lines <m>x - y = 0</m>,
-    <m>2x-2y = 0</m>, and <m>y =1</m>.  The first two lines are the same line,
-    which intersects the non-parallel line <m>y=1</m> at exactly one point,
-    namely when <m>x=y=1</m>. To illustrate the example, we solve the
-    augmented system below to find the unique solution.
-	<md>
-  <mrow>\left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
-  <mrow>2 \amp -2 \amp 0</mrow>
-  <mrow>0 \amp 1 \amp 1\end{array}\right)
-	\amp  \xrightarrow[]{R_2 = R_2 -2R_1}
-	\left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
-  <mrow>0 \amp 0 \amp 0</mrow>
-  <mrow>0 \amp 1 \amp 1\end{array}\right) \xrightarrow[]{R_1 \leftrightarrow R_2}
-	\left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
-  <mrow>0 \amp 1 \amp 1</mrow>
-  <mrow>0 \amp 0 \amp 0\end{array}\right) \xrightarrow[]{R_1 = R_1 + R_2}
-	\left(\begin{array}{rr|r}1 \amp 0 \amp 1</mrow>
-  <mrow>0 \amp 1 \amp 1</mrow>
-  <mrow>0 \amp 0 \amp 0\end{array}\right)</mrow>
-</md>.
-	\end{subproblems}
+
+
+<p>
+<ol marker="(a)">
+  <li>
+    <p>
+      Many possibilities.  For example,
+      <md><mrow>\left(\begin{array}{rrrr|r}1 \amp 0 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right), \qquad \left(\begin{array}{rrrr|r}0 \amp 1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right),
+      	\quad  \textup{ or } \quad \left(\begin{array}{rrrr|r}0 \amp 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0 \amp 1\end{array}\right)</mrow></md>.
+    </p>
+  </li>
+  <li>
+    <p>
+      Yes.  For example, consider the system
+      <md><mrow>x + y = 1</mrow></md>
+      <md><mrow>2x + 2y = 2</mrow></md>
+      <md><mrow>3x + 3y = 3</mrow></md>.
+      Each equation represents the line <m>x + y = 1</m>, so the solution set is all points <m>(x,y)</m> on the line
+      	<m>y = 1-x</m>. The corresponding augmented matrix and its
+      	RREF are
+      <md><mrow>\left(\begin{array}{rr|r}1 \amp 1 \amp 1 \\ 2 \amp 2 \amp 2 \\ 3 \amp 3 \amp 3\end{array}\right) \xrightarrow[]{RREF} \left(\begin{array}{rr|r}1 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+    </p>
+  </li>
+  <li>
+    <p>
+      Yes.  For example, take the lines <m>x - y = 0</m>,
+          <m>2x-2y = 0</m>, and <m>y =1</m>.  The first two lines are the same line,
+          which intersects the non-parallel line <m>y=1</m> at exactly one point,
+          namely when <m>x=y=1</m>. To illustrate the example, we solve the
+          augmented system below to find the unique solution.
+      <md>
+        <mrow>\left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
+        <mrow>2 \amp -2 \amp 0</mrow>
+        <mrow>0 \amp 1 \amp 1\end{array}\right)
+      	\amp  \xrightarrow[]{R_2 = R_2 -2R_1}
+      	\left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
+        <mrow>0 \amp 0 \amp 0</mrow>
+        <mrow>0 \amp 1 \amp 1\end{array}\right) \xrightarrow[]{R_1 \leftrightarrow R_2}
+      	\left(\begin{array}{rr|r}1 \amp -1 \amp 0</mrow>
+        <mrow>0 \amp 1 \amp 1</mrow>
+        <mrow>0 \amp 0 \amp 0\end{array}\right) \xrightarrow[]{R_1 = R_1 + R_2}
+      	\left(\begin{array}{rr|r}1 \amp 0 \amp 1</mrow>
+        <mrow>0 \amp 1 \amp 1</mrow>
+        <mrow>0 \amp 0 \amp 0\end{array}\right)</mrow>
+      </md>.
+    </p>
+  </li>
+</ol>
+</p>
+
+
 	\end{solution}
 \end{problems}

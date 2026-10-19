@@ -260,7 +260,7 @@ z
       <solution>
         <p>
           First we observe that <m>V</m> is the solution set of the homogeneous equation <m>x + 3y + z = 0</m>, so it is a subspace: see <xref ref="subspace-is-col-or-nul"/>.  To show that <m>\cB</m> is a basis, we really need to verify three things:
-          <ol start="0">
+          <ol marker="(1)">
             <li><p>Both vectors are in <m>V</m> because
             <md>
 <mrow>\spalignsysdelims..
@@ -918,5 +918,370 @@ x_3
 
   </subsection>
 
-
+<exercises>
+  <exercise>
+    <statement correct="yes">
+      <p>If <m>S</m> is a plane containing the origin in <m>{\bf R}^3</m>, then
+        every basis for <m>S</m> has exactly two vectors.</p>
+    </statement>
+    <solution>
+      <p>True. Since <m>S</m> is a plane through the origin in <m>{\bf R}^3</m>, it is a subspace
+        of <m>{\bf R}^3</m> and it is two-dimensional, so any basis for <m>S</m> conssists of
+        exactly two vectors.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>If two vectors are in the same plane through the origin in
+      <m>{\bf R}^3</m>, and if the two vectors are not collinear, then they form a basis
+      for the plane.</p>
+    </statement>
+    <solution>
+      <p>True.  The span of the two vectors must be a plane, otherwise their span
+      would be a line or a point which is impossible since the two vectors is
+      not collinear.  Any two vectors that span a plane must be linearly
+      independent, therefore the two vectors form a basis for the plane.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>The dimension of the null space of <m>A</m> is the number of
+      pivots of <m>A</m>.</p>
+    </statement>
+    <solution>
+      <p>False: <m>\dim(\Nul \ A)</m> is the number of columns in <m>A</m> that do NOT have
+      a pivot.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>If <m>b</m> lies in the column space of <m>A</m> and the columns of <m>A</m> are
+      linearly independent, then <m>Ax = b</m> has infinitely many solutions.</p>
+    </statement>
+    <solution>
+      <p>False: the columns of <m>A</m> are linearly independent, so <m>A</m> has a pivot in
+        every column, therefore the augmented matrix <m>(A | b)</m> has a pivot in each
+        column to the left of the augment bar, so either the system is inconsistent or
+        has exactly one solution.  We were told that <m>b</m> is in the column space of
+        <m>A</m>, so the system is consistent, hence <m>Ax = b</m> has exactly one solution.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>Any three vectors that span <m>{\bf R}^3</m> must be linearly
+      independent.</p>
+    </statement>
+    <solution>
+      <p>True.  Let <m>A</m> be the <m>3 \times 3</m> matrix whose columns are the three vectors.
+        Since these vectors span <m>{\bf R}^3</m>, we conclude <m>A</m> has a pivot in every
+        row, so <m>A</m> has <m>3</m> pivots.  This means that <m>A</m> has a pivot in each of its
+        <m>3</m> columns, so its columns are linearly independent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>How many vectors are there in a basis for a line <m>S</m> through the origin
+      in <m>{\bf R}^7</m>?</p>
+    </statement>
+    <solution>
+      <p>One.  Take any nonzero vector <m>v</m> along the line <m>S</m>.  Then <m>\{v\}</m> is
+        linearly independent, and any vector along the line <m>S</m> can be obtained by
+        scaling <m>v</m> by an appropriate scalar <m>c</m>.  In fact, the set of all vectors of
+        the form <m>cv</m> (where <m>c</m> is a scalar) is the line <m>S</m>. Therefore, <m>\{v\}</m> is a
+        basis for <m>S</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find a basis for the <m>yz</m>-plane in <m>{\bf R}^3</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        The <m>yz</m>-plane is all vectors of the form <m>\begin{pmatrix}0 \\ y \\ z\end{pmatrix}</m> where <m>y</m> and <m>z</m> are
+          real.  A basis for the <m>yz</m>-plane is
+          <m>\left\{\begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}\right\}</m>: the two vectors are clearly
+          linearly independent, and they span the <m>yz</m>-plane since any vector of the
+          form <m>\begin{pmatrix}0 \\ y \\ z\end{pmatrix}</m> can be written as the linear combination
+        <md><mrow>\begin{pmatrix}0 \\ y \\ z\end{pmatrix} = y \begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix} + z \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Find a basis for the column space and the null space of
+        <md><mrow>A = \begin{pmatrix}1 \amp 2 \amp 3 \\ 4 \amp 5 \amp 6 \\ -7 \amp -8 \amp -9\end{pmatrix}</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We row-reduce <m>\left(\begin{array}{r|r}A \amp 0\end{array}\right)</m> to find
+        <md><mrow>\left(\begin{array}{rrr|r}1 \amp 2 \amp 3 \amp 0 \\ 4 \amp 5 \amp 6 \amp 0 \\ -7 \amp -8 \amp -9 \amp 0\end{array}\right)
+        \xrightarrow[]{RREF}
+        \left(\begin{array}{rrr|r}1 \amp 0 \amp -1 \amp 0 \\ 0 \amp 1 \amp 2 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+        The pivot columns of <m>A</m> form a basis for <m>\Col(A)</m>:
+        <md><mrow>\left\{\begin{pmatrix}1 \\ 4 \\ -7\end{pmatrix}, \begin{pmatrix}2 \\ 5 \\ -8\end{pmatrix}\right\}</mrow></md>.
+        For <m>\Nul(A)</m>, the RREF of <m>\left(\begin{array}{r|r}A \amp 0\end{array}\right)</m> gives us <m>x_1 - x_3 = 0</m>, <m>x_2 + 2x_3 = 0</m>, and <m>x_3</m> is free, so <m>x_1 = x_3</m> and <m>x_2 = -2x_3</m>.
+        <md><mrow>\begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix} = \begin{pmatrix}x_3 \\ -2x_3 \\ x_3\end{pmatrix} = x_3 \begin{pmatrix}1 \\ -2 \\ 1\end{pmatrix}.
+        \qquad \textup{Basis for } \Nul(A): \left\{\begin{pmatrix}1 \\ -2 \\ 1\end{pmatrix}\right\}</mrow></md>
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find a basis for <m>{\bf R}^3</m> where no basis vector has <m>0</m> as entry.</p>
+    </statement>
+    <solution>
+      <p>
+        Many answers possible, for example:
+        <md><mrow>\left\{\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix}, \begin{pmatrix}1 \\ 2 \\ 1\end{pmatrix}, \begin{pmatrix}1 \\ 1 \\ 2\end{pmatrix}\right\}</mrow></md>.
+        We could row-reduce to find that <m>\begin{pmatrix}1 \amp 1 \amp 1 \\ 1 \amp 2 \amp 1 \\ 1 \amp 1 \amp 2\end{pmatrix}</m> has a pivot in
+        every row and column.
+        This answer was obtained by starting with the
+        standard basis
+        <md><mrow>\left\{\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}\right\}</mrow></md>
+        and doing row replacements until there were no zeros left in the matrix (added the second and third rows to the first row, then added the new first row to the second and third rows).
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Allen Argent has put the matrix <m>A</m> below in its reduced row echelon
+        form:
+        <md><mrow>A=\begin{pmatrix}1 \amp -2 \amp 0 \amp 4 \\ -7 \amp 14 \amp 3 \amp 2 \\ 4 \amp -8 \amp -2 \amp -4\end{pmatrix} \xrightarrow[]{RREF} \begin{pmatrix}1 \amp -2 \amp 0 \amp 4 \\ 0 \amp 0 \amp 1 \amp 10 \\ 0 \amp 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Find a basis <m>\mathcal{B}</m> for <m>\Nul(A)</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          The RREF of <m>A</m> shows that if <m>Ax=0</m> then
+          <md><mrow>x_1 = 2x_2 - 4x_4, \ x_2 = x_2, \ x_3 = -10x_4, \ x_4 = x_4</mrow></md>.
+          So <m>\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}2x_2-4x_4 \\ x_2 \\ -10x_4 \\ x_4\end{pmatrix}
+          	= x_2 \begin{pmatrix}2 \\ 1 \\ 0 \\ 0\end{pmatrix} + x_4 \begin{pmatrix}-4 \\ 0 \\ -10 \\ 1\end{pmatrix}</m>.
+          	Thus <m>\mathcal{B} = \left\{\begin{pmatrix}2 \\ 1 \\ 0 \\ 0\end{pmatrix}, \begin{pmatrix}-4 \\ 0 \\ -10 \\ 1\end{pmatrix}\right\}.</m>
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>x=\begin{pmatrix}2 \\ 3 \\ -10 \\ 1\end{pmatrix}</m> in <m>\Nul(A)</m>?  If so, write <m>x</m>
+          as a linear combination of the basis vectors of <m>\Nul(A)</m>.  If not,
+          justify why <m>x</m> is not in <m>\Nul(A)</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          <md><mrow>\left(\begin{array}{rr|r}2 \amp -4 \amp 2 \\ 1 \amp 0 \amp 3 \\ 0 \amp -10 \amp -10 \\ 0 \amp 1 \amp 1\end{array}\right)
+                \xrightarrow[R_3= -R_3/10]{R_1 \leftrightarrow R_2} \left(\begin{array}{rr|r}1 \amp 0 \amp 3 \\ 2 \amp -4 \amp 2 \\ 0 \amp 1 \amp 1 \\ 0 \amp 1 \amp 1\end{array}\right) \xrightarrow[R_4=R_4-R_3]{R_2=R_2-2R_1}
+                \left(\begin{array}{rr|r}1 \amp 0 \amp 3 \\ 0 \amp -4 \amp -4 \\ 0 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0\end{array}\right)
+                \xrightarrow[R_3=R_3-R_2]{R_2=R_2/-4} \left(\begin{array}{rr|r}1 \amp 0 \amp 3 \\ 0 \amp 1 \amp 1 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+          Therefore, <m>x</m> is in <m>\Nul(A)</m>, in fact <m>x=3b_1 + b_2</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Is <m>\begin{pmatrix}0 \\ -3 \\ 2\end{pmatrix}</m> in <m>\Col(A)</m>?</p>
+      </statement>
+      <solution>
+        <p>Yes.  <m>\begin{pmatrix}0 \\ -3 \\ 2\end{pmatrix}</m> is
+            <m>(-1)*(\textup{third column of</m>A<m>})</m> so it is in <m>\Col(A)</m>, no
+            work required.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A=\begin{pmatrix}1 \amp -2 \\ -2 \amp 4\end{pmatrix}</m>.  Clearly draw <m>\Col(A)</m> and
+      <m>\Nul(A)</m>, using the usual convention of labeling points in
+      <m>{\bf R}^2</m> by <m>(x,y)</m>.</p>
+      <image source="images/2_7/blank-graph">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+      <p>\qquad
+      \quad</p>
+      <image source="images/2_7/blank-graph">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p><m>\Col(A)</m> is the span of <m>\begin{pmatrix}1 \\ -2\end{pmatrix}</m>; <m>\Nul(A)</m> is the span of <m>\begin{pmatrix}2 \\ 1\end{pmatrix}</m>.
+         We graph <m>\Col(A)</m> first, then graph <m>\Nul(A)</m>.  For emphasis, we draw the
+         column space a solid line and the null space as a dashed line.</p>
+      <image source="images/2_7/2_7-pr-11-col.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+      <p>\qquad \qquad</p>
+      <image source="images/2_7/2_7-pr-11-null.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a matrix whose column space is the solid line and whose null space is the
+       dashed line graphed below.</p>
+      <image source="images/2_7/2_7-pr-12.pdf">
+        <shortdescription><!-- FILL: concise image description --></shortdescription>
+        <description><p><!-- FILL: complete image description --></p></description>
+      </image>
+    </statement>
+    <solution>
+      <p>
+        Here <m>\Col(A)</m> is the span of <m>\begin{pmatrix}1 \\ 3\end{pmatrix}</m>, so each column must be a scalar
+          multiple of <m>\begin{pmatrix}1 \\ 3\end{pmatrix}</m>.  Also, we need <m>\Nul(A)</m> to be the span of
+          <m>\begin{pmatrix}1 \\ -4\end{pmatrix}</m>, so <m>x_1 = -x_2/4</m>, which is the homogeneous equation
+          <m>x_1 + x_2/4 = 0</m>.  Therefore, each row of <m>\left(\begin{array}{r|r}A \amp 0\end{array}\right)</m> must be a scalar
+          multiple of <m>\left(\begin{array}{rr|r}1 \amp 1/4 \amp 0\end{array}\right)</m>.  Some possible examples for <m>A</m> is
+        <md><mrow>\begin{pmatrix}1 \amp 1/4 \\ 3 \amp 3/4\end{pmatrix}, \qquad \begin{pmatrix}4 \amp 1 \\ 12 \amp 3\end{pmatrix}, \qquad
+        \begin{pmatrix}-4 \amp -1 \\ -12 \amp -3\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>W</m> is a <m>4</m>-dimensional subspace of <m>{\bf R}^{13}</m>.
+      Must it be true that <m>W = \Col(A)</m> for some matrix <m>A</m>?
+      Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>Yes.  Just from the fact that <m>\dim(W) = 4</m>, we know that there is a
+        basis of <m>W</m> consisting of exactly <m>4</m> vectors
+        <m>v_1, \ v_2, \ v_3, \ v_4</m> so that
+        <m>W = \Span\{v_1, v_2, v_3, v_4\}</m>.  Therefore, <m>W = \Col(A)</m> for the
+        matrix <m>A = \begin{pmatrix}| \amp | \amp | \amp | \\ v_1 \amp v_2 \amp v_3 \amp v_4 \\ | \amp | \amp | \amp |\end{pmatrix}.</m></p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Let
+        <md><mrow>V = \left\{\begin{pmatrix}x \\ y \\ z\end{pmatrix} \textup{ in } {\bf R}^3
+             \ : \ x = y \right\}</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Show that <m>V</m> is a subspace of <m>{\bf R}^3</m>.</p>
+      </statement>
+      <solution>
+        <p>We could verify that <m>V</m> is a subspace using the
+             properties of a subspace, but there is a much faster way.  <m>V</m> is
+             the set of all points <m>(x, y, z)</m> in <m>{\bf R}^3</m> so that
+             <m>x - y = 0</m>.  This is <m>\textup{Nul}\begin{pmatrix}1 \amp -1 \amp 0\end{pmatrix}</m>, which is
+             automatically a subspace of <m>{\bf R}^3</m> since the null space of
+             \textit{any} matrix with <m>3</m> columns is a subspace of
+             <m>{\bf R}^3</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find a basis for <m>V</m>.  (Hint: it may be helpful to
+           write <m>V</m> as the null space of some matrix)</p>
+      </statement>
+      <solution>
+        <p>
+          To find <m>\textup{Nul}\begin{pmatrix}1 \amp -1 \amp 0\end{pmatrix}</m> we use the
+               augmented matrix <m>\left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 0\end{array}\right)</m>, which gives us <m>x_1 = x_2</m>,
+               <m>x_2</m> is free, and <m>x_3</m> is free.  Therefore, a basis for <m>V</m> is
+          <md><mrow>\begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write a matrix <m>B</m> so that <m>\Col(B) = V</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          This problem might seem complicated at first, but if
+               we go back to the fundamentals, we see it is a concept check
+               using the definition of column space.  We just need to write a
+               matrix <m>B</m> so that
+               <m>\Col(B)= \textup{Span}\left\{\begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}\right\} =
+               V</m>.  One way to do this is just to let
+          <md><mrow>B = \begin{pmatrix}1 \amp 0 \\ 1 \amp 0 \\ 0 \amp 1\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        (Challenge) Consider the set <m>W</m> consisting of all polynomials that have degree
+          <m>2</m> or less.  In other words, <m>W</m> is the set of all functions of the
+          form
+        <md><mrow>f(x) = a_0 + a_1 x + a_2 x^2</mrow></md>
+        where <m>a_0</m>, <m>a_1</m>, and <m>a_2</m> are real numbers.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>What should it mean for a set of polynomials in <m>W</m> to be
+            linearly independent?</p>
+      </statement>
+      <solution>
+        <p>
+          A set of polynomials <m>\{f_1, \ldots, f_k\}</m> in <m>W</m> is linearly
+              independent if the equation
+          <md><mrow>c_1 f_1 + \cdots + c_k f_k = {\bf 0}</mrow></md>
+          has only the trivial solution <m>c_1 = \cdots c_k = 0</m>.
+        </p>
+        <p>
+          In other words, if
+          <md><mrow>c_1 f_1(x) + \cdots + c_k f_k(x) = 0</mrow></md>
+          for every real number <m>x</m>, then
+                <m>c_1 = \cdots c_k = 0</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find a basis for <m>W</m>.  In other words, find a linearly
+            independent set <m>S</m> of polynomials in <m>W</m>, so that any polynomial in <m>W</m> can
+            be written as a linear combination of elements in <m>S</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          A basis for <m>W</m> is <m>\{f_1, f_2, f_3\}</m> where
+          <md><mrow>f_1(x) = 1 + 0x + 0x^2, \qquad f_2(x) = 0 + 1x + 0x^2,
+                \qquad f_3(x) = 0 + 0x + 1x^2</mrow></md>.
+        </p>
+        <p>
+          First we show that <m>f_1, f_2</m>, and <m>f_3</m> span <m>W</m>.  Let <m>f</m> be any
+              polynomial in <m>W</m>.  Then for some <m>a_0</m>, <m>a_1</m>, and <m>a_2</m> we have
+          <md><mrow>f(x) = a_0 + a_1 x + a_2 x^2</mrow></md>,
+          so <m>f= a_0 f_1 + a_1 f_2 + a_2 f_3</m> and therefore <m>f</m> is in
+                <m>\textup{Span}\{f_1, f_2, f_3\}</m>.
+        </p>
+        <p>
+          Also, <m>\{f_1, f_2, f_3\}</m> is linearly independent: if
+          <md><mrow>{\bf 0} = c_1 f_1 + c_2 f_2 + c_3 f_3</mrow></md>,
+          then for all <m>x</m> we have
+          <md><mrow>0 = c_1 + c_2 x + c_3 x^2</mrow></md>.
+          This means that the polynomial
+                <m>c_1 + c_2 x + c_3 x^2</m> has infinitely many roots, which is only possible
+                if all coefficients are <m>0</m> (otherwise, it would have a maximum of <m>2</m>
+                roots).
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the dimension of <m>W</m>?</p>
+      </statement>
+      <solution>
+        <p>Since <m>W</m> has a basis consisting of <m>3</m> elements, the
+              dimension of <m>W</m> is <m>3</m>.</p>
+      </solution>
+    </task>
+  </exercise>
+</exercises>
 </section>

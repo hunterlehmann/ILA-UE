@@ -180,10 +180,13 @@
           Thus, the first two columns
               are pivot columns, so range<m>(T)</m> is
           <md><mrow>\textup{Span}\left\{\begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix}, \begin{pmatrix}-1 \\ 2 \\ 1 \\ 1\end{pmatrix}\right\}</mrow></md>.
-          \end{subproblems}
         </p>
       </solution>
     </task>
+    <solution>
+      <p><m>T</m> is the matrix transformation <m>T(x) = Ax</m> for the
+        <m>4 \times 3</m> matrix <m>A = \begin{pmatrix}1 \amp -1 \amp 9 \\ 0 \amp 2 \amp 4 \\ 0 \amp 1 \amp 2 \\ 0 \amp 1 \amp 2\end{pmatrix}</m>.</p>
+    </solution>
   </exercise>
   <exercise>
     <introduction>
@@ -217,10 +220,13 @@
             do one step of row-reduction to see that the first two columns of
             <m>A</m> are pivot columns.  Therefore, the first two columns are
             linearly independent vectors in <m>{\bf R}^2</m>, so the range of <m>T</m>
-            is <m>{\bf R}^2</m>.
-          \end{subproblems}</p>
+            is <m>{\bf R}^2</m>.</p>
       </solution>
     </task>
+    <solution>
+      <p><m>T(x) = Ax</m> for the <m>2 \times 5</m> matrix
+        <m>A = \begin{pmatrix}2 \amp 2 \amp 3 \amp 1 \amp 2 \\ 3 \amp 4 \amp 0 \amp 0 \amp -1\end{pmatrix}</m>.</p>
+    </solution>
   </exercise>
   <exercise>
     <statement>
@@ -369,8 +375,7 @@
       </statement>
       <solution>
         <p>No: for example, <m>T(1, 0, 0) = (1, 0)</m> and
-            <m>T(1, 1, -1) = (1, 0)</m>.
-          \end{subproblems}</p>
+            <m>T(1, 1, -1) = (1, 0)</m>.</p>
       </solution>
     </task>
   </exercise>
@@ -416,8 +421,7 @@
             of <m>A</m>.  Since <m>A</m> has <m>3</m> pivots and <m>4</m> columns, the system
             <m>Ax=0</m> will have one free variable and thus infinitely many
             solutions.  Therefore, <m>T</m> is not one-to-one and the solution set
-            to <m>T(x)=0</m> is a one-dimensional subspace of <m>{\bf R}^4</m>.
-          \end{subproblems}</p>
+            to <m>T(x)=0</m> is a one-dimensional subspace of <m>{\bf R}^4</m>.</p>
       </solution>
     </task>
   </exercise>
@@ -611,7 +615,6 @@
           <md><mrow>T(u) = (0, 1, 0), \quad T(-u) = T(0,-1,0)= (0,1,0)</mrow></md>,
           so
               <m>T(-u) \neq -T(u)</m>.
-            \end{subproblems}
         </p>
       </solution>
     </task>
@@ -639,7 +642,6 @@
               we get
           <md><mrow>T(u) = 1(1)-0 = 1, \qquad T(2u) = T\begin{pmatrix}2 \\ 2 \\ 0\end{pmatrix} = 2(2)-0 = 4</mrow></md>.
           Therefore, <m>T(2u) \neq 2 T(u)</m>, so <m>T</m> is not linear.
-            \end{subproblems}
         </p>
       </solution>
     </task>
@@ -675,10 +677,13 @@
       </statement>
       <solution>
         <p>Yes.  If <m>k = \ell</m> then <m>A</m> can have a pivot in every
-            column, for example <m>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m>.
-          \end{subproblems}</p>
+            column, for example <m>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m>.</p>
       </solution>
     </task>
+    <solution>
+      <p>Let <m>A</m> be the standard matrix for <m>T</m>, so <m>A</m> is an <m>\ell \times k</m>
+        matrix.</p>
+    </solution>
   </exercise>
   <exercise>
     <introduction>
@@ -712,10 +717,13 @@
       </statement>
       <solution>
         <p>Yes.  If <m>a = b</m> then <m>A</m> can have a pivot in every
-            row, for example <m>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m>.
-          \end{subproblems}</p>
+            row, for example <m>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m>.</p>
       </solution>
     </task>
+    <solution>
+      <p>Let <m>A</m> be the standard matrix for <m>T</m>, so <m>A</m> is a <m>b \times a</m>
+        matrix.</p>
+    </solution>
   </exercise>
   <exercise>
     <introduction>
@@ -755,8 +763,7 @@
             whose first and fourth entries are different, or whose second and
             third entries are different, will NOT be in the range of <m>T</m>.
             Many examples possible, for example <m>\begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix}</m>,
-            <m>\begin{pmatrix}0 \\ 1 \\ 0 \\ 0\end{pmatrix}</m>, <m>\begin{pmatrix}1 \\ 2 \\ 0 \\ -1\end{pmatrix}</m>, <m>\begin{pmatrix}1 \\ 1 \\ 0 \\ 1\end{pmatrix}</m>, etc.
-          \end{subproblems}</p>
+            <m>\begin{pmatrix}0 \\ 1 \\ 0 \\ 0\end{pmatrix}</m>, <m>\begin{pmatrix}1 \\ 2 \\ 0 \\ -1\end{pmatrix}</m>, <m>\begin{pmatrix}1 \\ 1 \\ 0 \\ 1\end{pmatrix}</m>, etc.</p>
       </solution>
     </task>
   </exercise>
@@ -895,15 +902,25 @@
         be the codomain of <m>S</m>, because we need to be able to take <m>R(S(v))</m> for any
         vector <m>v</m> in the domain of <m>S</m>.
       The composition of all <m>4</m>
-        transformations that makes sense is <m>V \circ U \circ W \circ T</m>.
-        \begin{itemize}
-        \item If <m>x</m> is a vector in <m>{\bf R}^{4}</m>, then <m>T(x)</m> is a vector in
-          <m>{\bf R}^{7}</m>, which is the domain of <m>W</m>.
-        \item Next step: <m>W(T(x))</m> is in <m>{\bf R}^{13}</m>, which is the domain of <m>U</m>.
-        \item Next step: <m>U(W(T(x)))</m> is in <m>{\bf R}^{41}</m>, which is the domain of <m>V</m>,
-        \item Finally: <m>V(U(W(T(x))))</m> is a vector in <m>{\bf R}^{17}</m>.
-        \end{itemize}
-        Following all of the steps, we see that if <m>x</m> is in <m>{\bf R}^{4}</m> then
+        transformations that makes sense is <m>V \circ U \circ W \circ T</m>.</p>
+      <p>
+      <ul>
+        <li>
+          <p>If <m>x</m> is a vector in <m>{\bf R}^{4}</m>, then <m>T(x)</m> is a vector in
+              <m>{\bf R}^{7}</m>, which is the domain of <m>W</m>.</p>
+        </li>
+        <li>
+          <p>Next step: <m>W(T(x))</m> is in <m>{\bf R}^{13}</m>, which is the domain of <m>U</m>.</p>
+        </li>
+        <li>
+          <p>Next step: <m>U(W(T(x)))</m> is in <m>{\bf R}^{41}</m>, which is the domain of <m>V</m>,</p>
+        </li>
+        <li>
+          <p>Finally: <m>V(U(W(T(x))))</m> is a vector in <m>{\bf R}^{17}</m>.</p>
+        </li>
+      </ul>
+      </p>
+      <p>Following all of the steps, we see that if <m>x</m> is in <m>{\bf R}^{4}</m> then
         <m>(V \circ U \circ W \circ T)(x)</m> is a vector in <m>{\bf R}^{17}</m>, so the
         transformation has domain <m>{\bf R}^{4}</m> and codomain <m>{\bf R}^{17}</m>.
         Therefore, its standard matrix is <m>17 \times 4</m>, so it has <m>17</m> rows and <m>4</m>
@@ -954,8 +971,7 @@
       </statement>
       <solution>
         <p><m>AB = \begin{pmatrix}1 \amp -1 \amp 4 \\ 0 \amp 1 \amp 2 \\ 4 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}1 \amp -1 \\ 2 \amp -2 \\ 0 \amp 1\end{pmatrix} =
-            \begin{pmatrix}-1 \amp 5 \\ 2 \amp 2 \\ 6 \amp -6\end{pmatrix}</m>.
-          \end{subproblems}</p>
+            \begin{pmatrix}-1 \amp 5 \\ 2 \amp 2 \\ 6 \amp -6\end{pmatrix}</m>.</p>
       </solution>
     </task>
   </exercise>
@@ -993,7 +1009,6 @@
           <md><mrow>A = \begin{pmatrix}\frac{1}{\sqrt{2}} \amp \frac{-1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}}\end{pmatrix}
             \begin{pmatrix}0 \amp 1 \\ 1 \amp 0\end{pmatrix}
             = \begin{pmatrix}\frac{-1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}}\end{pmatrix}</mrow></md>.
-          \end{subproblems}
         </p>
       </solution>
     </task>
@@ -1040,8 +1055,7 @@
       </statement>
       <solution>
         <p><m>BA = \begin{pmatrix}1 \amp -1 \\ 1 \amp 0 \\ 0 \amp 3\end{pmatrix} \begin{pmatrix}0 \amp -1 \\ -1 \amp 0\end{pmatrix} =
-            \begin{pmatrix}1 \amp -1 \\ 0 \amp -1 \\ -3 \amp 0\end{pmatrix}</m>.
-          \end{subproblems}</p>
+            \begin{pmatrix}1 \amp -1 \\ 0 \amp -1 \\ -3 \amp 0\end{pmatrix}</m>.</p>
       </solution>
     </task>
   </exercise>
@@ -1096,7 +1110,6 @@
                   = \begin{pmatrix}-1 \amp 0 \amp 1 \amp 5</mrow>
             <mrow>1 \amp -1 \amp 1 \amp -1\end{pmatrix}</mrow>
           </md>.
-          \end{subproblems}
         </p>
       </solution>
     </task>

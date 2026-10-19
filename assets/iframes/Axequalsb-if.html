@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>The function Ax=b</title>
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
+    .caption-bar {
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
+    }
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+    #inconsistent { font-weight: bold; padding: 0 1em; color: var(--palette-red); }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Matrix equation controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <div id="cap-main" aria-live="polite" aria-atomic="true">
+      <p id="matrix-here" hidden><span id="the-matrix"></span></p>
+      <p><span id="the-equation" class="live-math"></span>
+         <span id="inconsistent" hidden>inconsistent</span></p>
+    </div>
+    <p class="hint" id="hint">Drag the heads of the vectors in either panel, or edit their coordinates below.</p>
+    <details id="controls" class="panel" hidden>
+      <summary>Display options</summary>
+      <div id="check-panel" class="ctrl-row"></div>
+    </details>
+    <details class="panel">
+      <summary>Edit vectors</summary>
+      <div id="vec-inputs" class="vec-grid" role="group" aria-label="Vector coordinates"></div>
+    </details>
+  </div>
+
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
+  <div id="mathbox-container" aria-hidden="true">
+    <div class="mb-panel"><div id="mathbox1">
+        <div class="mathbox-label mathjax-static">Input</div>
+      </div></div>
+    <div class="mb-panel"><div id="mathbox2">
+        <div class="mathbox-label mathjax-static">Output</div>
+      </div></div>
+  </div>
+
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
+  <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+    var vector = [-1, 2, 3], outVec = [0, 0, 0], colBasis = [];
+    var showSolnsKey = 'Show solution set', lockSolnsKey = 'Lock solution set';
+    var solve = null, solnspace = null, params = null, labeled = null;
+    var updateCaption = null, computeOut = null, computeIn = null;
+    var doGrid = null, basisMode = false, editor = null, cbs = {};
+    var matrix = urlParams.get('mat', 'matrix', [[1, -1, 2], [-2, 2, -4]]);
+    var rows = matrix.length, cols = matrix[0].length;
+    var tmp = [], i, j, r;
+    for (i = 0; i < 3; i++) {
+      tmp[i] = [];
+      for (j = 0; j < 3; j++) {
+        r = matrix[j] != null ? matrix[j][i] : void 0;
+        tmp[i][j] = r != null ? r : 0;
+      }
+    }
+    matrix = tmp;   // columns
+    var vecColor     = new Color("green");
+    var outVecColor  = new Color("red");
+    var surfaceColor = new Color("violet");
+    var color1 = new Color("orange"), color2 = new Color("brown"), color3 = new Color("pink");
+    function syncEditor() { if (editor) editor.sync(); }
+
+    // ── Input panel ─────────────────────────────────────────────────────────
+    window.demo1 = new (cols === 3 ? Demo : Demo2D)({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox1'),
+      scaleUI: true
+    }, function() {
+      var self = this, c, str, rr;
+      window.mathbox1 = this.mathbox;
+      this.showSolns = true;
+      this.lockSolns = false;
+      doGrid = 'disabled';
+      switch (this.urlParams.captions) {
+        case 'rankthm':
+          vector = [0, 0, 0];
+          break;
+        case 'basis':
+          basisMode = true;
+          this.showSolns = false;
+          this.lockSolns = false;
+          doGrid = 'on';
+          this.urlParams.axes = 'disabled';
+      }
+      if (!basisMode) {
+        this.showSolns = this.urlParams.get('show', 'bool', true);
+        this.lockSolns = this.urlParams.get('lock', 'bool', false);
+      }
+      this.range = this.urlParams.get('range1', 'float', 5);
+      vector = this.urlParams.get('x', 'float[]', vector);
+      if (vector[2] == null) vector[2] = 0;
+      if (cols === 2) vector[2] = 0;
+      this.tMatrix = new THREE.Matrix3();
+      this.tMatrix.set(matrix[0][0], matrix[1][0], matrix[2][0], matrix[0][1], matrix[1][1], matrix[2][1], matrix[0][2], matrix[1][2], matrix[2][2]);
+      var tmpVec = new THREE.Vector3();
+      var axesParam = this.urlParams.axes;
+      params = { Axes: !(axesParam === 'off' || axesParam === 'disabled') };
+      params[showSolnsKey] = this.showSolns;
+      params[lockSolnsKey] = this.lockSolns;
+
+      // ── Options (replace dat.GUI) ───────────────────────────────────────
+      if (!basisMode) {
+        var panel = document.getElementById('check-panel');
+        if (axesParam !== 'disabled') {
+          cbs.axes = addCheckbox(panel, { id: 'axes', label: 'Show axes', checked: params.Axes,
+            onChange: function(v) {
+              params.Axes = v;
+              self.mathbox.select('.view1-axes').set('visible', v);
+              demo2.mathbox.select('.view2-axes').set('visible', v);
+            } });
+        }
+        cbs.show = addCheckbox(panel, { id: 'show', label: 'Show solution set', checked: params[showSolnsKey],
+          onChange: function(v) { params[showSolnsKey] = v; solnspace.setVisibility(v); } });
+        cbs.lock = addCheckbox(panel, { id: 'lock', label: 'Lock solution set', checked: params[lockSolnsKey],
+          onChange: function(v) { params[lockSolnsKey] = v; } });
+        addButton(panel, { label: 'Homogeneous', ariaLabel: 'Homogeneous: set x to zero and lock the solution set',
+          onClick: function() {
+            vector[0] = vector[1] = vector[2] = 0;
+            params[showSolnsKey] = true;
+            params[lockSolnsKey] = true;
+            cbs.show.set(true);
+            cbs.lock.set(true);
+            solnspace.setVisibility(true);
+            computeOut();
+          } });
+        var controls = document.getElementById('controls');
+        controls.hidden = false;
+        controls.open = this.urlParams.closed == null;
+      }
+
+      var rg = this.range;
+      var view = this.view({
+        name: 'view1',
+        viewRange: [[-rg, rg], [-rg, rg], [-rg, rg]].slice(0, cols),
+        axisLabels: false,
+        grid: doGrid !== 'on'
+      });
+      this.mathbox.select('.view1-axes').set('visible', params.Axes);
+      var vectors = [vector], colors = [vecColor], labelCols = [vecColor], labelTex = [];
+      if (basisMode) {
+        labelTex.push('[x]_{\\mathcal B}');
+        vectors.push([1, 0, 0]); colors.push(color1.arr(.8)); labelCols.push(color1); labelTex.push('e_1');
+        vectors.push([0, 1, 0]); colors.push(color2.arr(.8)); labelCols.push(color2); labelTex.push('e_2');
+        if (cols === 3) {
+          vectors.push([0, 0, 1]); colors.push(color3.arr(.8)); labelCols.push(color3); labelTex.push('e_3');
+        }
+      } else {
+        labelTex.push('x');
+      }
+      // No `labels` option: WebGL text replaced by MathJax labels below
+      labeled = this.labeledVectors(view, {
+        vectors: vectors, colors: colors, live: true,
+        zeroPoints: true, zeroThreshold: 0.1,
+        vectorOpts: { zIndex: 2 }, zeroOpts: { zIndex: 3 }
+      });
+      var layer = makeLabelLayer(document.getElementById('mathbox1'), this, view);
+      vectors.forEach(function(v, k) {
+        layer.add({
+          position: function() { return [v[0] / 2, v[1] / 2, v[2] / 2]; },
+          visible:  function() { return !labeled.hidden; },   // hidden when Ax = b is inconsistent
+          tex: texC(labelCols[k], labelTex[k])
+        });
+      });
+
+      var clipCube = this.clipCube(view, {
+        draw: cols === 3,
+        hilite: cols === 3,
+        material: new THREE.MeshBasicMaterial({
+          color: surfaceColor.three(), opacity: 0.5, transparent: true,
+          visible: false, depthWrite: false, depthTest: true
+        })
+      });
+      if (doGrid === 'on') {
+        this.grid(clipCube.clipped, {
+          vectors: [[1, 0, 0], [0, 1, 0], [0, 0, 1]].slice(0, cols),
+          live: false, lineOpts: { color: surfaceColor }
+        });
+      }
+      rr = this.rowred(matrix.map(function(col) { return col.slice(); }), { rows: rows, cols: cols });
+      var nulBasis = rr[0];
+      colBasis = rr[1];
+      solve = rr[3];
+      this.nulspace = solnspace = this.subspace({
+        name: 'nulspace', vectors: nulBasis, live: false, mesh: clipCube.mesh, color: surfaceColor
+      });
+      var tform = clipCube.clipped.transform().bind({ position: function() { return vector; } });
+      solnspace.draw(tform);
+      if (solnspace.dim === 3) clipCube.installMesh();
+      solnspace.setVisibility(params[showSolnsKey]);
+
+      computeOut = function() {
+        tmpVec.set.apply(tmpVec, vector).applyMatrix3(self.tMatrix);
+        outVec[0] = tmpVec.x; outVec[1] = tmpVec.y; outVec[2] = tmpVec.z;
+        syncEditor();
+        return updateCaption();
+      };
+      // Drag and typed input both stay on the solution set when it is locked
+      this.lockConstrain = function(v, old) {
+        if (params[showSolnsKey] && params[lockSolnsKey]) {
+          var o = new THREE.Vector3(old[0], old[1], old[2] || 0);
+          var d = new THREE.Vector3(v[0] - o.x, v[1] - o.y, (v[2] || 0) - o.z);
+          solnspace.project(d, d);
+          v[0] = o.x + d.x; v[1] = o.y + d.y; v[2] = o.z + d.z;
+        }
+      };
+      this.draggable(view, {
+        points: [vector],
+        onDrag: function(vec) {
+          if (params[showSolnsKey] && params[lockSolnsKey]) {
+            tmpVec.set.apply(tmpVec, vector);
+            solnspace.project(vec.sub(tmpVec), vec);
+            return vec.add(tmpVec);
+          }
+        },
+        postDrag: computeOut
+      });
+
+      // ── Captions ────────────────────────────────────────────────────────
+      var eqnElt    = document.getElementById('the-equation');
+      var inconsElt = document.getElementById('inconsistent');
+      var mainElt   = document.getElementById('cap-main');
+      switch (this.urlParams.captions) {
+        case 'rankthm':
+          document.getElementById('matrix-here').hidden = false;
+          renderMath('A=' + texMat(matrix, { rows: rows, cols: cols, precision: -1 }),
+                     document.getElementById('the-matrix'));
+          renderMath('\\text{rank}(A) = ' + (cols - solnspace.dim) + ' \\qquad \\text{dim Nul}(A) = ' +
+                     solnspace.dim + ' \\qquad \\#\\text{ columns of } A = ' + cols, eqnElt);
+          updateCaption = function() {};
+          break;
+        case 'basis':
+          document.querySelector('#mathbox1 .mathbox-label').textContent = 'B-coordinates';
+          document.querySelector('#mathbox2 .mathbox-label').textContent = 'Usual coordinates';
+          mainElt.innerHTML = '<p><span id="x-B-here" class="live-math"></span></p>' +
+                              '<p><span id="vector-eq-here" class="live-math"></span></p>';
+          var xBelt = document.getElementById('x-B-here');
+          var vectorEqElt = document.getElementById('vector-eq-here');
+          var basisCols = [color1, color2, color3].slice(0, cols);
+          var identity = [];
+          for (i = 0; i < cols; i++) {
+            identity.push([0, 0, 0].slice(0, cols));
+            identity[i][i] = 1;
+          }
+          updateCaption = function() {
+            renderMath(texC(vecColor, '[x]_{\\mathcal B}') + ' = ' + texVec(vector, vecColor, cols) + '=' +
+                       texComb(identity, vector.slice(0, cols), { dim: cols, colors: basisCols, coeffColors: vecColor }),
+                       xBelt);
+            renderMath(texC(outVecColor, 'x') + ' =' + texVec(outVec, outVecColor, rows) + '=' +
+                       texComb(matrix.slice(0, cols), vector.slice(0, cols), { dim: rows, colors: basisCols, coeffColors: vecColor }),
+                       vectorEqElt);
+          };
+          break;
+        default:
+          updateCaption = function() {
+            str = texMat(matrix, { rows: rows, cols: cols, precision: -1 });
+            if (labeled.hidden) {
+              renderMath(str + texC(vecColor, 'x') + ' = ' + texVec(outVec, outVecColor, rows), eqnElt);
+              inconsElt.hidden = false;
+            } else {
+              renderMath(str + texVec(vector, vecColor, cols) + ' = ' + texVec(outVec, outVecColor, rows), eqnElt);
+              inconsElt.hidden = true;
+            }
+          };
+      }
+      return computeOut();
+    });
+
+    // ── Output panel ────────────────────────────────────────────────────────
+    window.demo2 = new (rows === 3 ? Demo : Demo2D)({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox2'),
+      scaleUI: true
+    }, function() {
+      window.mathbox2 = this.mathbox;
+      this.range = this.urlParams.get('range2', 'float', 10);
+      var rg = this.range;
+      var view = this.view({
+        name: 'view2',
+        viewRange: [[-rg, rg], [-rg, rg], [-rg, rg]].slice(0, rows),
+        axisLabels: false,
+        grid: doGrid !== 'on'
+      });
+      this.mathbox.select('.view2-axes').set('visible', params.Axes);
+      var vectors = [outVec], colors = [outVecColor], labelCols = [outVecColor], labelTex = [];
+      if (basisMode) {
+        labelTex.push('x');
+        vectors.push(matrix[0]); colors.push(color1.arr(.8)); labelCols.push(color1); labelTex.push('v_1');
+        vectors.push(matrix[1]); colors.push(color2.arr(.8)); labelCols.push(color2); labelTex.push('v_2');
+        if (cols === 3) {
+          vectors.push(matrix[2]); colors.push(color3.arr(.8)); labelCols.push(color3); labelTex.push('v_3');
+        }
+      } else {
+        labelTex.push('b');
+      }
+      this.labeledVectors(view, {
+        vectors: vectors, colors: colors, live: true,
+        zeroPoints: true, zeroThreshold: 0.3,
+        vectorOpts: { zIndex: 2 }, zeroOpts: { zIndex: 3 }
+      });
+      var layer = makeLabelLayer(document.getElementById('mathbox2'), this, view);
+      addVectorLabels(layer, vectors, labelCols, labelTex);
+      var clipCube = this.clipCube(view, {
+        draw: rows === 3,
+        hilite: rows === 3,
+        material: new THREE.MeshBasicMaterial({
+          color: surfaceColor.three(), opacity: 0.5, transparent: true,
+          visible: false, depthWrite: false, depthTest: true
+        })
+      });
+      if (doGrid === 'on') {
+        this.grid(clipCube.clipped, {
+          vectors: matrix.slice(0, rows), live: false, lineOpts: { color: surfaceColor }
+        });
+      }
+      var subspace = this.subspace({
+        name: 'colspace', vectors: colBasis, live: false,
+        noPlane: basisMode && rows === 2, color: surfaceColor
+      });
+      subspace.draw(clipCube.clipped);
+      if (subspace.dim === 3) {
+        clipCube.installMesh();
+        clipCube.mesh.material.visible = true;
+      }
+      var snapThreshold = 1.0 * 10.0 / this.range;
+      var snapped = new THREE.Vector3(), diff = new THREE.Vector3(), tmpVec = new THREE.Vector3();
+      function snapToColspace(vec) {
+        subspace.project(vec, snapped);
+        diff.copy(vec).sub(snapped);
+        if (diff.lengthSq() <= snapThreshold || basisMode) vec.copy(snapped);
+      }
+      this.snapConstrain = function(v) {
+        var t = new THREE.Vector3(v[0], v[1], v[2] || 0);
+        snapToColspace(t);
+        v[0] = t.x; v[1] = t.y; v[2] = t.z;
+      };
+      computeIn = function() {
+        var inVec = solve(outVec);
+        if (inVec != null) {
+          if (inVec[2] == null) inVec[2] = 0;
+          tmpVec.set(vector[0] - inVec[0], vector[1] - inVec[1], vector[2] - inVec[2]);
+          solnspace.project(tmpVec, tmpVec);
+          vector[0] = tmpVec.x + inVec[0];
+          vector[1] = tmpVec.y + inVec[1];
+          vector[2] = tmpVec.z + inVec[2];
+          demo1.nulspace.setVisibility(params[showSolnsKey]);
+          labeled.show();
+        } else {
+          demo1.nulspace.setVisibility(false);
+          labeled.hide();
+        }
+        syncEditor();
+        return updateCaption();
+      };
+      this.draggable(view, { points: [outVec], onDrag: snapToColspace, postDrag: computeIn });
+    });
+
+    groupControls(demo1, demo2);
+
+    // WCAG 2.1.1 / 2.5.1: keyboard alternative to dragging; typed values follow
+    // the same lock / snap rules as dragging.
+    editor = buildVectorEditor(document.getElementById('vec-inputs'), [
+      { name: basisMode ? '[x]_B' : 'x', ariaName: basisMode ? 'x in B-coordinates' : 'x',
+        tex: basisMode ? '[x]_{\\mathcal B}' : 'x', vec: vector, dim: cols,
+        range: demo1.range, constrain: demo1.lockConstrain },
+      { name: basisMode ? 'x' : 'b', tex: basisMode ? 'x' : 'b', vec: outVec, dim: rows,
+        range: demo2.range, constrain: demo2.snapConstrain }
+    ], 10, function(si) { if (si === 0) computeOut(); else computeIn(); });
+  }); // end DomReady.ready
+
+  initFullscreenButton('fs-btn');
+  </script>
+</body>
+</html>

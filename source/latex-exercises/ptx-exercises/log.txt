@@ -1,10 +1,10 @@
-latex_exercises_to_pretext run 2026-10-19T10:59:21
+latex_exercises_to_pretext run 2026-10-19T13:38:32
 input: C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises
 
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch1-ex.tex
   align*: 5
-  amat: 55
-  display-math: 109
+  amat: 57
+  display-math: 110
   em: 1
   exercise: 45
   href: 7
@@ -12,7 +12,7 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch1-ex.tex
   image-dot-slash-removed: 1
   inline-math: 233
   mat: 5
-  md-punctuation-moved: 62
+  md-punctuation-moved: 63
   newline-paragraph-break: 3
   newline-removed: 7
   problems-environment: 3
@@ -22,19 +22,22 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch1-ex.tex
   true-false-true: 1
   url-color-removed: 4
   REVIEW: Fill accessibility descriptions for image images/1_1/lines.pdf
+  REVIEW: Solution text outside its subproblems was kept as an exercise-level solution
+  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch1-ex.ptx
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch2-ex.tex
   align*: 8
   amat: 53
-  display-math: 118
+  display-math: 119
   em: 5
   exercise: 109
   href: 1
   image: 13
   image-dot-slash-removed: 11
-  inline-math: 1169
+  inline-math: 1170
+  inline-math-paren: 4
   mat: 39
-  md-punctuation-moved: 92
+  md-punctuation-moved: 93
   newline-paragraph-break: 13
   newline-removed: 10
   problems-environment: 7
@@ -48,31 +51,32 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch2-ex.tex
   REVIEW: Fill accessibility descriptions for image images/2_1-colors-2.png
   REVIEW: Could not read True/False from the solution of 'If is a matrix and the product makes sense, then which is in...'; set correct="yes" or "no" by hand
   REVIEW: Fill accessibility descriptions (TODO) for a TikZ <latex-image>
-  REVIEW: A subproblems environment had no \subproblem commands
-  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
   REVIEW: Fill accessibility descriptions for image images/2_4/solution_sets1-sol.pdf
   REVIEW: Fill accessibility descriptions for image images/2_4/solution_sets1.pdf
-  REVIEW: A subproblems environment had no \subproblem commands
   REVIEW: Fill accessibility descriptions (TODO) for a TikZ <latex-image>
-  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
   REVIEW: Fill accessibility descriptions for image images/2_6/2_6-lineorigin
   REVIEW: Fill accessibility descriptions for image images/2_6/2_6-which.pdf
   REVIEW: Fill accessibility descriptions for image images/2_6/paraboloid
   REVIEW: Fill accessibility descriptions for image images/2_6/planeno0
+  REVIEW: Solution text outside its subproblems was kept as an exercise-level solution
+  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
   REVIEW: Subproblem/solution count mismatch: 3 tasks, 2 parallel solutions
   REVIEW: Fill accessibility descriptions for image images/2_7/blank-graph
   REVIEW: Fill accessibility descriptions for image images/2_7/blank-graph
   REVIEW: Fill accessibility descriptions for image images/2_7/2_7-pr-11-col.pdf
   REVIEW: Fill accessibility descriptions for image images/2_7/2_7-pr-11-null.pdf
   REVIEW: Fill accessibility descriptions for image images/2_7/2_7-pr-12.pdf
+  REVIEW: Solution text outside its subproblems was kept as an exercise-level solution
+  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch2-ex.ptx
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch3-ex.tex
   align*: 3
   amat: 1
   display-math: 39
   exercise: 64
-  inline-math: 787
-  mat: 117
+  inline-math: 802
+  itemize: 1
+  mat: 119
   md-punctuation-moved: 38
   newline-paragraph-break: 6
   newline-removed: 17
@@ -81,6 +85,14 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch3-ex.tex
   true-false-false: 3
   true-false-true: 8
   vec: 144
+  REVIEW: Solution text outside its subproblems was kept as an exercise-level solution
+  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
+  REVIEW: Solution text outside its subproblems was kept as an exercise-level solution
+  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
+  REVIEW: Solution text outside its subproblems was kept as an exercise-level solution
+  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
+  REVIEW: Solution text outside its subproblems was kept as an exercise-level solution
+  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch3-ex.ptx
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch4-ex.tex
   align*: 8
@@ -104,12 +116,14 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch5-ex.tex
   exercise: 56
   image: 3
   inline-math: 636
+  itemize: 1
   mat: 95
   md-punctuation-moved: 59
   newline-paragraph-break: 16
   newline-removed: 21
   problems-environment: 5
   quote: 2
+  subproblems-list: 1
   true-false: 16
   true-false-false: 9
   true-false-true: 7
@@ -119,6 +133,8 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch5-ex.tex
   REVIEW: Fill accessibility descriptions for image images/q6_18s-line.pdf
   REVIEW: Subproblem/solution count mismatch: 3 tasks, 2 parallel solutions
   REVIEW: Fill accessibility descriptions for image images/e3_pic1
+  REVIEW: Solution text outside its subproblems was kept as an exercise-level solution
+  REVIEW: An exercise-level solution remained after task pairing and was preserved after the tasks
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch5-ex.ptx
 C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch6-ex.tex
   align*: 2
@@ -143,8 +159,10 @@ C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ch8-ex.tex
   em: 1
   exercise: 5
   inline-math: 9
+  inline-math-paren: 9
   md-punctuation-moved: 4
   problems-environment: 1
+  subproblems-list: 2
   -> C:\Users\hlehmann3\PreTeXt\ILA-UE\source\latex-exercises\ptx-exercises\ch8-ex.ptx
 
-7 file(s) processed, 28 REVIEW item(s).
+7 file(s) processed, 40 REVIEW item(s).

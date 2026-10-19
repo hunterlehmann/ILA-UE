@@ -119,6 +119,34 @@ def split_commands(text: str, command: str) -> tuple[str, list[str]]:
     bodies = [text[e:(starts[k + 1][0] if k + 1 < len(starts) else len(text))] for k, (_, e) in enumerate(starts)]
     return pre, bodies
 
+_SUBPART_CMD_RE = re.compile(r"\\(subproblem|item)(?![A-Za-z])(?:\s*\[[^\]]*\])?")
+_ENV_TOKEN_RE   = re.compile(r"\\(begin|end)\s*\{[^}]*\}")
+def split_subparts(text: str, cmds=("subproblem","item")) -> tuple[str, list[str]]:
+    r"""Split a subproblems body on top-level \subproblem (preferred) or \item.
+    Commands inside nested environments (enumerate, ...) or braces are ignored."""
+    for cmd in cmds:
+        starts=[]; depth=0; env=0; i=0
+        while i < len(text):
+            c=text[i]
+            if c == "%":
+                nl=text.find("\n",i); i=len(text) if nl<0 else nl+1; continue
+            if c == "{": depth+=1; i+=1; continue
+            if c == "}": depth=max(0,depth-1); i+=1; continue
+            if c == "\\":
+                t=_ENV_TOKEN_RE.match(text,i)
+                if t:
+                    env+=1 if t.group(1)=="begin" else -1; env=max(0,env); i=t.end(); continue
+                m=_SUBPART_CMD_RE.match(text,i)
+                if m and m.group(1)==cmd and depth==0 and env==0:
+                    starts.append((m.start(),m.end())); i=m.end(); continue
+                i+=2; continue
+            i+=1
+        if starts:
+            pre=text[:starts[0][0]]
+            bodies=[text[e:(starts[k+1][0] if k+1<len(starts) else len(text))] for k,(_,e) in enumerate(starts)]
+            return pre,bodies
+    return text,[]
+
 # ---------- math macro conversions adapted from mbx_to_ptx.py ----------
 def split_semicolons(s: str) -> list[str]:
     rows=[]; buf=[]; depth=0; i=0
@@ -478,7 +506,11 @@ def convert_emphasis(text: str, report: Report) -> str:
         out += [_convert_em_segment(text[pos:m.start()],report), m.group(0)]; pos=m.end()
     out.append(_convert_em_segment(text[pos:],report))
     return "".join(out)
+_PAREN_MATH_RE = re.compile(r'(?<!\\)\\\(([\s\S]*?)(?<!\\)\\\)')
 def convert_inline_math(text: str, report: Report) -> str:
+    # \( ... \) first; delimiters may be separated from the content by newlines.
+    text,k=_PAREN_MATH_RE.subn(lambda m: "<m>"+re.sub(r"\s*\n\s*"," ",m.group(1)).strip()+"</m>", text)
+    if k: report.add("inline-math-paren",k)
     out=[]; i=0; n=0
     while i < len(text):
         if text[i] == "\\" and i+1 < len(text): out.append(text[i:i+2]); i+=2; continue
@@ -494,9 +526,59 @@ def convert_inline_math(text: str, report: Report) -> str:
     if n: report.add("inline-math",n)
     return "".join(out)
 
+# Leftover subproblems environments (e.g. in a solution whose statement has no
+# subproblems) become a block-level <p><ol>.  They are held as placeholders so
+# blockify() places them between paragraphs instead of inside one.
+_LIST_STORE: list[str] = []
+_LIST_SLOT_RE = re.compile(r'\x03OL(\d+)\x03')
+def stash_subproblem_lists(text: str, report: Report) -> str:
+    def repl(body: str) -> str:
+        _pre,items=split_subparts(body)
+        if not items:
+            report.warn("A subproblems environment had no \\subproblem or \\item commands")
+            return body
+        lis="\n".join("  <li>\n"+indent(blockify(convert_content(it,report)),4)+"\n  </li>" for it in items)
+        _LIST_STORE.append('<p>\n<ol marker="(a)">\n'+lis+'\n</ol>\n</p>')
+        report.add("subproblems-list")
+        return f"\n\n\x03OL{len(_LIST_STORE)-1}\x03\n\n"
+    text=replace_environments(text,"subproblems",repl)
+    # enumerate -> <ol>, itemize -> <ul>.  Outermost first; nested lists are
+    # converted when each item's content goes back through convert_content.
+    for env,tag in (("enumerate","ol"),("itemize","ul")):
+        def lrepl(body: str, env=env, tag=tag) -> str:
+            marker=""
+            om=re.match(r"^\s*\[([^\]]*)\]",body)            # enumitem options, e.g. [label=(\alph*)]
+            if om:
+                lm=re.search(r"label\s*=\s*\{?([^,}]*)",om.group(1))
+                if tag=="ol" and lm:
+                    lab=lm.group(1).strip()
+                    for k,v in ((r"\alph*","a"),(r"\Alph*","A"),(r"\roman*","i"),(r"\Roman*","I"),(r"\arabic*","1")):
+                        lab=lab.replace(k,v)
+                    if re.fullmatch(r"[^A-Za-z0-9]*[aAiI1][^A-Za-z0-9]*",lab):
+                        marker=f' marker="{html.escape(lab,quote=True)}"'
+                    else:
+                        report.warn(f"Unrecognized enumerate label {lm.group(1)!r}; default marker used")
+                body=body[om.end():]
+            _pre,items=split_subparts(body,("item",))
+            if not items:
+                report.warn(f"An {env} environment had no \\item commands")
+                return body
+            if _pre.strip():
+                report.warn(f"Text before the first \\item in an {env} was dropped: {_pre.strip()[:40]!r}")
+            lis="\n".join("  <li>\n"+indent(blockify(convert_content(it,report)),4)+"\n  </li>" for it in items)
+            _LIST_STORE.append(f'<p>\n<{tag}{marker}>\n'+lis+f'\n</{tag}>\n</p>')
+            report.add(env)
+            return f"\n\n\x03OL{len(_LIST_STORE)-1}\x03\n\n"
+        text=replace_environments(text,env,lrepl)
+    return text
+def restore_lists(text: str) -> str:
+    while _LIST_SLOT_RE.search(text):
+        text=_LIST_SLOT_RE.sub(lambda m: _LIST_STORE[int(m.group(1))], text)
+    return text
 def convert_content(text: str, report: Report) -> str:
     tikz: list[str] = []
     text=stash_tikz(text,report,tikz)   # must run first: TikZ code is raw LaTeX
+    text=stash_subproblem_lists(text,report)
     text=convert_newlines(text,report)
     text=convert_special_math_macros(text,report)
     text=convert_href(text,report)
@@ -576,9 +658,10 @@ def blockify(text: str) -> str:
     for para in _PAR_BREAK_RE.split(text):
         pos = 0
         pieces: list[tuple[str, str]] = []
-        for m in re.finditer(r'\x00IMG(\d+)\x00', para):
+        for m in re.finditer(r'\x00IMG(\d+)\x00|\x03OL(\d+)\x03', para):
             pieces.append(("p", para[pos:m.start()]))
-            pieces.append(("img", imgs[int(m.group(1))]))
+            pieces.append(("img", imgs[int(m.group(1))] if m.group(1) is not None
+                                  else _LIST_STORE[int(m.group(2))]))
             pos = m.end()
         pieces.append(("p", para[pos:]))
         for kind, chunk in pieces:
@@ -595,9 +678,9 @@ def task_xml(statement: str, solution: str|None, report: Report) -> str:
     return result+"\n</task>"
 
 def convert_subproblems(body: str, exercise_solutions: list[str], report: Report) -> tuple[str,list[str]]:
-    _pre,tasks=split_commands(body,"subproblem")
+    _pre,tasks=split_subparts(body)
     if not tasks:
-        report.warn("A subproblems environment had no \\subproblem commands")
+        report.warn("A subproblems environment had no \\subproblem or \\item commands")
         return convert_content(body,report),exercise_solutions
     statements=[]; embedded=[]
     for t in tasks:
@@ -605,8 +688,20 @@ def convert_subproblems(body: str, exercise_solutions: list[str], report: Report
         if len(sols)>1: report.warn("A subproblem had multiple solution environments; only the first was attached")
     parallel=[]; remaining=[]
     for sol in exercise_solutions:
-        _p,parts=split_commands(sol,"subproblem")
-        if parts and not parallel: parallel=parts
+        parts=[]; leftover=sol
+        span=find_environment(sol,"subproblems")
+        if span:
+            s,e,bs,be=span
+            _p,parts=split_subparts(sol[bs:be])
+            leftover=sol[:s]+sol[e:]
+        else:
+            _p,parts=split_subparts(sol)
+            leftover=_p
+        if parts and not parallel:
+            parallel=parts
+            if leftover.strip():
+                report.warn("Solution text outside its subproblems was kept as an exercise-level solution")
+                remaining.append(leftover)
         else: remaining.append(sol)
     if parallel:
         if len(parallel)!=len(statements): report.warn(f"Subproblem/solution count mismatch: {len(statements)} tasks, {len(parallel)} parallel solutions")
@@ -709,7 +804,10 @@ def convert_text(source: str) -> tuple[str,Report]:
     source=re.sub(r"(?m)(?<!\\)%.*$", "", source)
     result=replace_environments(source,"problems",lambda b:convert_problems(b,report))
     # Convert any math/links/images outside problems too, useful for subsection lead-ins.
-    result=convert_content(result,report)
+    result=restore_lists(convert_content(result,report))
+    _LIST_STORE.clear()
+    if re.search(r"\\(?:begin|end)\s*\{subproblems\}", result):
+        report.warn("Unconverted \\begin/\\end{subproblems} remains in the output")
     return result.strip()+"\n",report
 
 # ---------- files / CLI ----------

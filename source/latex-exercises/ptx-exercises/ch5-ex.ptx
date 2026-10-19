@@ -191,8 +191,7 @@
             <m>Ax = 0</m> has a non-trivial solution.</p>
         <p>Alternatively, we could have noted from the form of <m>A</m> that
             <m>A(e_1-e_2) = 0</m>, which shows that <m>\lambda = 0</m> is an eigenvalue
-            and <m>e_1 - e_2</m> is a corresponding eigenvector.
-           \end{subproblems}</p>
+            and <m>e_1 - e_2</m> is a corresponding eigenvector.</p>
       </solution>
     </task>
   </exercise>
@@ -241,8 +240,7 @@
         The line
                 is actually the line <m>y = \dfrac{3}{7} x</m>, the matrix is
                 <m>A= \dfrac{1}{29} \begin{pmatrix}20 \amp 21 \\ 21 \amp -20\end{pmatrix}</m>, and the eigenvectors
-                drawn are <m>v_1 = \begin{pmatrix}7/3 \\ 1\end{pmatrix}</m> and <m>v_2 = \begin{pmatrix}-1 \\ 7/3\end{pmatrix}</m>.
-              \end{subproblems}</p>
+                drawn are <m>v_1 = \begin{pmatrix}7/3 \\ 1\end{pmatrix}</m> and <m>v_2 = \begin{pmatrix}-1 \\ 7/3\end{pmatrix}</m>.</p>
       </solution>
     </task>
   </exercise>
@@ -482,8 +480,7 @@
       <solution>
         <p>The eigenvalues of <m>A</m> are <m>\lambda = 1</m> and
             <m>\lambda = -1</m>, since <m>A</m> fixes vectors along the <m>z</m>-axis while
-            <m>Ae_1 = -e_1</m> and <m>Ae_2 = -e_2</m>.
-          \end{subproblems}</p>
+            <m>Ae_1 = -e_1</m> and <m>Ae_2 = -e_2</m>.</p>
       </solution>
     </task>
   </exercise>
@@ -719,8 +716,7 @@
       <solution>
         <p><m>A</m> is diagonalizable; <m>A=PDP^{-1}</m> where
               <m>P = \begin{pmatrix}-1 \amp 0 \amp -2/3 \\ 0 \amp 1 \amp 0 \\ 1 \amp 0 \amp 1\end{pmatrix}</m> and
-              <m>D= \begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 2 \amp 0 \\ 0 \amp 0 \amp 2\end{pmatrix}</m>.
-            \end{subproblems}</p>
+              <m>D= \begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 2 \amp 0 \\ 0 \amp 0 \amp 2\end{pmatrix}</m>.</p>
       </solution>
     </task>
     <task>
@@ -738,42 +734,50 @@
       If so, find a basis of <m>{\bf R}^3</m> consisting of eigenvectors of <m>A</m>.</p>
     </statement>
     <solution>
-      <p>\begin{subproblems}
-        \subproblem The matrix is upper-triangular, so the eigenvalues are
-        the diagonal entries: <m>\lambda_1 = -1</m>, <m>\lambda_2 = 4</m>, and
-        <m>\lambda_3 = 5</m>.</p>
       <p>
-        \subproblem We find a basis for each eigenspace.
-        <md><mrow>\left(\begin{array}{r|r}A-\lambda_1I \amp 0\end{array}\right) =
-            \left(\begin{array}{r|r}A+I \amp 0\end{array}\right) =
-            \left(\begin{array}{rrr|r}0 \amp 5 \amp 10 \amp 0 \\ 0 \amp 5 \amp 10 \amp 0 \\ 0 \amp 0 \amp 6 \amp 0\end{array}\right)
-            \xrightarrow[]{RREF}
-            \left(\begin{array}{rrr|r}0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
-        This means <m>x_2 = x_3 = 0</m>, so a basis for <m>(-1)</m>-eigenspace
-          is <m>\left\{\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}\right\}</m>.
-        <md><mrow>\left(\begin{array}{r|r}A-\lambda_2I \amp 0\end{array}\right) =
-            \left(\begin{array}{r|r}A-4I \amp 0\end{array}\right) =
-            \left(\begin{array}{rrr|r}-5 \amp 5 \amp 10 \amp 0 \\ 0 \amp 0 \amp 10 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0\end{array}\right)
-            \xrightarrow[]{RREF}
-            \left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
-        So <m>x_1 = x_2</m> (with <m>x_2</m> free) and <m>x_3 = 0</m>, so
-          a basis for the <m>4</m>-eigenspace is <m>\left\{\begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}\right\}</m>.
-      </p>
-      <p>
-        <md><mrow>\left(\begin{array}{r|r}A-\lambda_3I \amp 0\end{array}\right) =
-            \left(\begin{array}{r|r}A-5I \amp 0\end{array}\right) = \left(\begin{array}{rrr|r}-6 \amp 5 \amp 10 \amp 0 \\ 0 \amp -1 \amp 10 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)
-            \xrightarrow[]{RREF} \left(\begin{array}{rrr|r}1 \amp 0 \amp -10 \amp 0 \\ 0 \amp 1 \amp -10 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
-        Thus
-          <m>x_1 = 10x_3</m> and <m>x_2 = 10x_3</m> (<m>x_3</m> free). Basis for
-          <m>5</m>-eigenspace is <m>\left\{ \begin{pmatrix}10 \\ 10 \\ 1\end{pmatrix} \right\}</m>.
-      </p>
-      <p>
-        \subproblem Yes.  We form <m>C</m> using the three eigenvectors we found
-          in part (b), and <m>D</m> is the diagonal matrix with corresponding
-          eigenvalues.
-        <md><mrow>C = \begin{pmatrix}1 \amp 1 \amp 10 \\ 0 \amp 1 \amp 10 \\ 0 \amp 0 \amp 1\end{pmatrix} \qquad
-            D = \begin{pmatrix}-1 \amp 0 \amp 0 \\ 0 \amp 4 \amp 0 \\ 0 \amp 0 \amp 5\end{pmatrix}</mrow></md>.
-        \end{subproblems}
+      <ol marker="(a)">
+        <li>
+          <p>The matrix is upper-triangular, so the eigenvalues are
+            the diagonal entries: <m>\lambda_1 = -1</m>, <m>\lambda_2 = 4</m>, and
+            <m>\lambda_3 = 5</m>.</p>
+        </li>
+        <li>
+          <p>
+            We find a basis for each eigenspace.
+            <md><mrow>\left(\begin{array}{r|r}A-\lambda_1I \amp 0\end{array}\right) =
+                \left(\begin{array}{r|r}A+I \amp 0\end{array}\right) =
+                \left(\begin{array}{rrr|r}0 \amp 5 \amp 10 \amp 0 \\ 0 \amp 5 \amp 10 \amp 0 \\ 0 \amp 0 \amp 6 \amp 0\end{array}\right)
+                \xrightarrow[]{RREF}
+                \left(\begin{array}{rrr|r}0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+            This means <m>x_2 = x_3 = 0</m>, so a basis for <m>(-1)</m>-eigenspace
+              is <m>\left\{\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}\right\}</m>.
+            <md><mrow>\left(\begin{array}{r|r}A-\lambda_2I \amp 0\end{array}\right) =
+                \left(\begin{array}{r|r}A-4I \amp 0\end{array}\right) =
+                \left(\begin{array}{rrr|r}-5 \amp 5 \amp 10 \amp 0 \\ 0 \amp 0 \amp 10 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0\end{array}\right)
+                \xrightarrow[]{RREF}
+                \left(\begin{array}{rrr|r}1 \amp -1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+            So <m>x_1 = x_2</m> (with <m>x_2</m> free) and <m>x_3 = 0</m>, so
+              a basis for the <m>4</m>-eigenspace is <m>\left\{\begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}\right\}</m>.
+          </p>
+          <p>
+            <md><mrow>\left(\begin{array}{r|r}A-\lambda_3I \amp 0\end{array}\right) =
+                \left(\begin{array}{r|r}A-5I \amp 0\end{array}\right) = \left(\begin{array}{rrr|r}-6 \amp 5 \amp 10 \amp 0 \\ 0 \amp -1 \amp 10 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)
+                \xrightarrow[]{RREF} \left(\begin{array}{rrr|r}1 \amp 0 \amp -10 \amp 0 \\ 0 \amp 1 \amp -10 \amp 0 \\ 0 \amp 0 \amp 0 \amp 0\end{array}\right)</mrow></md>.
+            Thus
+              <m>x_1 = 10x_3</m> and <m>x_2 = 10x_3</m> (<m>x_3</m> free). Basis for
+              <m>5</m>-eigenspace is <m>\left\{ \begin{pmatrix}10 \\ 10 \\ 1\end{pmatrix} \right\}</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            Yes.  We form <m>C</m> using the three eigenvectors we found
+              in part (b), and <m>D</m> is the diagonal matrix with corresponding
+              eigenvalues.
+            <md><mrow>C = \begin{pmatrix}1 \amp 1 \amp 10 \\ 0 \amp 1 \amp 10 \\ 0 \amp 0 \amp 1\end{pmatrix} \qquad
+                D = \begin{pmatrix}-1 \amp 0 \amp 0 \\ 0 \amp 4 \amp 0 \\ 0 \amp 0 \amp 5\end{pmatrix}</mrow></md>.
+          </p>
+        </li>
+      </ol>
       </p>
     </solution>
   </exercise>
@@ -850,14 +854,20 @@
     </statement>
     <solution>
       <p>We do not need to do any matrix multiplication, since <m>A</m> has been
-        diagonalized for us:
-        \begin{itemize}
-        \item <m>\lambda = -2</m> is an eigenvalue with corresponding eigenspace
-          Span<m>\left\{\begin{pmatrix}1 \\ 18\end{pmatrix}\right\}</m>
-        \item <m>\lambda = 3</m> is an eigenvalue with corresponding eigenspace
-          Span<m>\left\{\begin{pmatrix}3 \\ 2\end{pmatrix}\right\}</m>
-        \end{itemize}
-        The problem is subtly asking us to find <m>k</m> so that <m>\begin{pmatrix}9 \\ k\end{pmatrix}</m> is
+        diagonalized for us:</p>
+      <p>
+      <ul>
+        <li>
+          <p><m>\lambda = -2</m> is an eigenvalue with corresponding eigenspace
+              Span<m>\left\{\begin{pmatrix}1 \\ 18\end{pmatrix}\right\}</m></p>
+        </li>
+        <li>
+          <p><m>\lambda = 3</m> is an eigenvalue with corresponding eigenspace
+              Span<m>\left\{\begin{pmatrix}3 \\ 2\end{pmatrix}\right\}</m></p>
+        </li>
+      </ul>
+      </p>
+      <p>The problem is subtly asking us to find <m>k</m> so that <m>\begin{pmatrix}9 \\ k\end{pmatrix}</m> is
         in the <m>3</m>-eigenspace of <m>A</m>.  This means <m>\begin{pmatrix}9 \\ k\end{pmatrix}</m> is a scalar
         multiple of <m>\begin{pmatrix}3 \\ 2\end{pmatrix}</m>, so <m>k = 6</m>.</p>
     </solution>
@@ -889,8 +899,7 @@
             <m>B = \begin{pmatrix}0 \amp 2 \\ 0 \amp 0\end{pmatrix}</m>.  Each matrix has only one eigenvalue
             <m>\lambda = 0</m> with algebraic multiplicity <m>2</m>, and the
             <m>0</m>-eigenspace for each matrix is the span of <m>\begin{pmatrix}1 \\ 0\end{pmatrix}</m>, yet
-            <m>A \neq B</m>.
-          \end{subproblems}</p>
+            <m>A \neq B</m>.</p>
       </solution>
     </task>
   </exercise>
@@ -960,10 +969,13 @@
               of <m>D</m> are the eigenvalues and the columns of <m>P</m> are eigenvectors written
               in the corresponding order.  Many answers are possible, for example:
           <md><mrow>P = \begin{pmatrix}1 \amp 1 \amp 10 \\ 0 \amp 1 \amp 10 \\ 0 \amp 0 \amp 1\end{pmatrix}, \qquad D = \begin{pmatrix}-1 \amp 0 \amp 0 \\ 0 \amp 4 \amp 0 \\ 0 \amp 0 \amp 5\end{pmatrix}</mrow></md>.
-          \end{subproblems}
         </p>
       </solution>
     </task>
+    <solution>
+      <p>For this problem, we give the answers and leave the
+        computations to the reader.</p>
+    </solution>
   </exercise>
   <exercise>
     <statement>

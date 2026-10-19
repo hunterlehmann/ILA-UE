@@ -1355,12 +1355,237 @@ v_1 \amp v_2 \amp \cdots \amp v_k \\
           <li><p>If <m>d=3</m> then <m>\Span\{v_1,v_2,\ldots,v_k\}</m> is a 3-space.</p></li>
           <li><p>Et cetera.</p></li>
         </ul>
-	The number <m>d</m> is called the dimension.  We discussed this notion in <xref ref="soln-sets-dim-hom"/> and <xref ref="soln-sets-dim-inhom"/>.  We will define this concept rigorously in <xref ref="sec-dimension" text="type-global"/>.
+	The number <m>d</m> is called the dimension.  We discussed this notion in <xref ref="soln-sets-dim-hom" text="title"/> and <xref ref="soln-sets-dim-inhom" text="title"/>.  We will define this concept rigorously in <xref ref="sec-dimension" text="type-global"/>.
       </p>
     </insight>
 
   </subsection>
 
+<exercises>
+  <exercise>
+    <statement correct="yes">
+      <p>Suppose <m>v_1</m> and <m>v_2</m> are vectors in <m>{\bf R}^2</m>
+      and neither vector is a scalar multiple of the other.  Then
+      <m>\{v_1, v_2\}</m> must be a linearly independent set.</p>
+    </statement>
+    <solution>
+      <p>True.  The vectors <m>v_1</m> and <m>v_2</m> cannot be
+            linearly dependent, since then <m>x_1 v_1 + x_2 v_2 = 0</m> would
+            have a solution where <m>x_1 \neq 0</m> or <m>x_2 \neq 0</m>.  This would
+            mean <m>v_1</m> and <m>v_2</m> are scalar multiples of each other: if
+            <m>x_1 \neq 0</m> then <m>v_1 = - \frac{x_2}{x_1} v_2</m>, and similarly
+            if <m>x_2 \neq 0</m> then <m>v_2 = -\frac{x_1}{x_2} v_1</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>Suppose <m>v_1</m>, <m>v_2</m>, and <m>v_3</m> are vectors in <m>{\bf R}^3</m> and
+      that <m>v_j</m> and <m>v_k</m> are not collinear whenever <m>j \neq k</m>.
+      <m>\Span\{v_j, v_k\}</m> is a plane whenever <m>j \neq k</m>.  Then
+      <m>\{v_1, v_2, v_3\}</m> is a linearly independent set.</p>
+    </statement>
+    <solution>
+      <p>False.  Let <m>v_1 = \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}</m>, \ <m>v_2 = \begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix}</m>, \
+      <m>v_3 = \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}</m>.  No two among them are collinear, so any two vectors
+      chosen among them will span a plane.  However, they are linearly dependent
+      since <m>v_1 + v_2 = v_3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>If <m>A</m> is <m>4 \times 2</m> matrix and the solution set to <m>Ax=\begin{pmatrix}1 \\ 2 \\ 2 \\ 1\end{pmatrix}</m>
+      is a line, then the columns of <m>A</m> are linearly dependent.</p>
+    </statement>
+    <solution>
+      <p>True.  From section 2.4, we know that the solution set of any consistent
+      system <m>Ax=b</m> is a translation of the homogeneous solution set.  Here, the
+      system <m>Ax=\begin{pmatrix}1 \\ 2 \\ 2 \\ 1\end{pmatrix}</m> has a line as its solution set, so the
+      homogeneous system <m>Ax=0</m> has a line as its solution set and
+      thus has infinitely many solutions.  Therefore, the columns of <m>A</m> are
+      linearly dependent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>If a set <m>S</m> of vectors contains fewer vectors than there are entries in
+      the vectors, then the set is linearly independent.</p>
+    </statement>
+    <solution>
+      <p>False.  For example, the set <m>S=\left\{\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}\right\}</m>
+      in <m>{\bf R}^3</m> is linearly dependent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>If <m>u</m> and <m>v</m> are vectors in <m>{\bf R}^5</m>, then the set
+      <m>\{u, v, \sqrt{2}u - \pi v\}</m> is linearly independent.</p>
+    </statement>
+    <solution>
+      <p>False.  The third vector is a linear combination of the first two vectors,
+      so the set is linearly dependent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>If a matrix <m>A</m> has a pivot in each column, then the columns of <m>A</m> are
+      linearly independent.</p>
+    </statement>
+    <solution>
+      <p>True.  Having a pivot in each column guarantees that <m>Ax = 0</m> has only the
+      trivial solution, which is what it means for the columns of <m>A</m> to be
+      linearly independent.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>If you have a set of linearly independent set <m>S</m> of vectors, and the span of
+      the vectors in <m>S</m> is a line, then how many vectors are in <m>S</m>?</p>
+    </statement>
+    <solution>
+      <p>There is exactly one vector in <m>S</m>.  The span of any single nonzero vector is
+        a line, whereas a linearly independent set with two (or more) vectors would
+        span at least a plane.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>In each case answer Always, Sometimes, or Never.  Justify your answers.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>A collection of 99 vectors in <m>{\bf R}^{100}</m> is linearly
+          dependent.</p>
+      </statement>
+      <solution>
+        <p>
+          False.  We could get a set of 99 linearly independent vectors
+              <m>\{v_1, v_2, \ldots, v_{99}\}</m> by putting <m>1</m> in the <m>k^{th}</m> entry of <m>v_k</m>
+              for each <m>k</m> and making all other entries <m>0</m>.
+          <md><mrow>v_1 = \begin{pmatrix}1 \\ 0 \\ 0 \\ \vdots \\ \ \\ 0 \\ 0\end{pmatrix}, \quad v_2 = \begin{pmatrix}0 \\ 1 \\ 0 \\ \vdots \\ \ \\ 0 \\ 0\end{pmatrix},
+                \cdots, \quad v_{99} = \begin{pmatrix}0 \\ 0 \\ 0 \\ \vdots \\ \ \\ 1 \\ 0\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>A collection of 100 vectors in <m>{\bf R}^{99}</m> is
+          linearly dependent.</p>
+      </statement>
+      <solution>
+        <p>True.  If
+            we put the 100 vectors as columns of a matrix, we will get a <m>99 \times 100</m>
+            matrix.  This means the matrix has <m>100</m> columns but a max of <m>99</m> pivots,
+            so it cannot have a pivot in each column, therefore the set of vectors is
+            linearly dependent.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Find all values of <m>h</m> so that the following set vectors is linearly independent.
+        <md><mrow>\left\{ \begin{pmatrix}5 \\ 7 \\ 1\end{pmatrix}, \begin{pmatrix}-5 \\ 7 \\ 0\end{pmatrix}, \begin{pmatrix}10 \\ 0 \\ h\end{pmatrix}\right\}</mrow></md>
+      </p>
+    </statement>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>In each case, determine whether the set of vectors is linearly
+          dependent or linearly independent.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>\left\{\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}, \ \begin{pmatrix}2 \\ -5 \\ 0\end{pmatrix}, \ \begin{pmatrix}3 \\ 1 \\ 7\end{pmatrix}\right\}</m></p>
+      </statement>
+      <solution>
+        <p>Forming a matrix <m>A</m> with the vectors as columns
+                gives 3 pivot columns (no row-reduction required), so the
+                vectors are linearly independent. Alternatively, use the
+                Increasing Span Criterion.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>\left\{\begin{pmatrix}1 \\ 2 \\ 3\end{pmatrix}, \ \begin{pmatrix}0 \\ 0 \\ -1\end{pmatrix}, \ \begin{pmatrix}2 \\ 4 \\ 6\end{pmatrix}\right\}</m></p>
+      </statement>
+      <solution>
+        <p>The first and third vectors are multiples of each
+                other, so the vectors are linearly dependent.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>\left\{\begin{pmatrix}1 \\ 0\end{pmatrix}, \ \begin{pmatrix}0 \\ 1\end{pmatrix}, \ \begin{pmatrix}-2 \\ 3\end{pmatrix}\right\}</m></p>
+      </statement>
+      <solution>
+        <p>Any three vectors in <m>{\bf R}^2</m> are automatically
+                linearly dependent.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Suppose that <m>v_1, v_2, v_3, v_4, b</m> are vectors in
+            <m>{\bf R}^6</m> and the equation
+        <md><mrow>x_1 v_1 + x_2 v_2 + x_3 v_3 + x_4 v_4 = b</mrow></md>
+        has exactly one solution.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Must <m>\{v_1, v_2, v_3, v_4\}</m> be
+              linearly independent?</p>
+      </statement>
+      <solution>
+        <p>Yes.  Since the first equation has exactly one
+                solution, the matrix <m>A</m> whose columns are <m>v_1</m> through <m>v_4</m>
+                has a pivot in every column, therefore
+                <m>\{v_1, v_2, v_3, v_4\}</m> are linearly independent.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Must the equation
+          <md><mrow>x_1 v_1 + x_2 v_2 + x_3 v_3 = 0</mrow></md>
+          have exactly one solution?
+        </p>
+      </statement>
+      <solution>
+        <p>Yes.  Since <m>\{v_1, v_2, v_3, v_4\}</m> is linearly
+                independent, so is <m>\{v_1, v_2, v_3\}</m>, which is the same
+                thing as saying <m>x_1 v_1 + x_2 v_2 + x_3 v_3 = 0</m> has only
+                the trivial solution <m>x_1 = x_2 = x_3 = 0</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Must there be a vector <m>v</m> so that
+                <m>\{b, v\}</m> is linearly independent and the equation
+          <md><mrow>x_1 v_1 + x_2 v_2 + x_3 v_3 + x_4 v_4 = v</mrow></md>
+          is consistent?
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Yes. Since <m>\{v_1, v_2, v_3, v_4\}</m> is linearly
+                  independent, there is at least one vector <m>v</m> in
+                  <m>\{v_1, v_2, v_3, v_4\}</m> that is not a scalar multiple of <m>b</m>
+                  (otherwise they would all be scalar multiples of <m>b</m> and
+                  therefore linearly dependent).  Since <m>v</m> is in the set
+                  <m>\{v_1, v_2, v_3, v_4\}</m> it is also in
+                  <m>\textup{Span}\{v_1, v_2, v_3, v_4\}</m>, therefore there is at
+                  least one solution to
+          <md><mrow>x_1 v_1 + x_2 v_2 + x_3 v_3 + x_4 v_4 = v</mrow></md>.
+          It will become much easier to see why this part of the problem
+                  is true by the end of chapter 2.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+</exercises>
   <!--
   <exercises>
     <title>Reading Questions</title>

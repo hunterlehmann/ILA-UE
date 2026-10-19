@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Dynamics of Similar Matrices</title>
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
+    .caption-bar {
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
+    }
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+    .cap-cols { display: flex; gap: 0 2em; flex-wrap: wrap; }
+    .cap-cols > div { flex: 1 1 0; min-width: 14em; }
+    .cap-cols p { margin: 2px 0; font-size: 0.9em; }
+    .espace-1 { color: var(--palette-green); }
+    .espace-2 { color: var(--palette-violet); }
+    .espace-3 { color: var(--palette-brown); }
+    .mult-hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Dynamics of similar matrices controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <div class="cap-cols">
+      <div id="captions1" aria-live="polite" aria-atomic="true"></div>
+      <div id="captions2" aria-live="polite" aria-atomic="true"></div>
+    </div>
+    <p><span id="C-here"></span> <span id="sim-here"></span></p>
+    <div id="check-panel" class="ctrl-row" role="group" aria-label="Controls"></div>
+    <details class="panel">
+      <summary>Edit test vectors</summary>
+      <div id="vec-inputs" class="vec-grid" role="group" aria-label="Test vector coordinates"></div>
+    </details>
+  </div>
+
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
+  <div id="mathbox-container" aria-hidden="true">
+    <div class="mb-panel"><div id="mathbox1"></div></div>
+    <div class="mb-panel"><div id="mathbox2"></div></div>
+  </div>
+
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
+  <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
+  <script src="js/dynamics.js"></script>       <!-- ILA dynamics bundle (unchanged) -->
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+    var C, Cinv, i, matrix, size, eigenz, w1, w2, w3, v1, v2, v3, vectorIn, info, eigenStr;
+    var testMatrices = {
+      Shear:         [[2 / 3, 1 / 3], [-1 / 3, 4 / 3]],
+      ScaleOutShear: [[5 / 3, 1 / 3], [-1 / 3, 7 / 3]],
+      ScaleInShear:  [[1 / 3, 1 / 6], [-1 / 6, 2 / 3]],
+      Circle:        [[1 / 3, -1 / 3], [5 / 6, 2 / 3]],
+      SpiralIn:      [[1 / 3, -1 / 3], [5 / 6, 2 / 3]],
+      SpiralOut:     [[2 / 3, -2 / 3], [5 / 3, 4 / 3]],
+      AttractLine:   [[5 / 6, 1 / 6], [1 / 3, 2 / 3]],
+      RepelLine:     [[4 / 3, -1 / 3], [-2 / 3, 5 / 3]],
+      Attract:       [[7 / 18, -1 / 18], [-1 / 9, 4 / 9]],
+      Repel:         [[8 / 3, 1 / 3], [2 / 3, 7 / 3]],
+      Hyperbolas:    [[8 / 9, -5 / 9], [-10 / 9, 13 / 9]]
+    };
+    testMatrices.Circle.forEach(function(row) { row[0] *= Math.sqrt(2); row[1] *= Math.sqrt(2); });
+    function almostZero(x) { return Math.abs(x) < 1e-5; }
+    function normalize(b) { var n = Math.sqrt(b[0] * b[0] + b[1] * b[1]); return [b[0] / n, b[1] / n]; }
+    function mv3v2(a, b, c) {
+      return [a[0] * c[0] + b[0] * c[1], a[1] * c[0] + b[1] * c[1], a[2] * c[0] + b[2] * c[1]];
+    }
+
+    // ── Classify the matrix (unchanged from ILA, except katex.renderToString
+    //    → \( \) that MathJax typesets when the caption is inserted) ────────
+    function matrixInfo(matrix) {
+      var a = matrix[0][0], b = matrix[0][1], c = matrix[1][0], d = matrix[1][1];
+      var trace = a + d, determinant = a * d - b * c, discriminant = trace * trace - 4 * determinant;
+      var basis1 = [], basis2 = [], type = null, opts = {}, eigenStrs = [];
+      var axisColors = [new Color("green").arr(1), new Color("violet").arr(1), new Color("brown").arr(1)];
+      var λ, v, Reλ, Imλ, δ, λ1, λ2, negate1, negate2, tmpSwap, λ1p, λ2p;
+      if (almostZero(determinant)) throw "Can't handle non-invertible matrix";
+      if (almostZero(discriminant)) {
+        λ = trace / 2;
+        if (λ < 0) throw "Can't handle negative real eigenvalues";
+        if (almostZero(b) && almostZero(c)) {
+          basis1 = [1, 0]; basis2 = [0, 1];
+          axisColors[1] = axisColors[0];
+          eigenStrs.push('The whole plane is the <span class="espace-1">' + λ.toFixed(2) + '-eigenspace.</span>');
+          type = λ > 1 ? dynamics.Repel : dynamics.Attract;
+          opts = { λ1: λ, λ2: λ };
+        } else {
+          basis1 = almostZero(b) ? normalize([λ - d, c]) : normalize([b, λ - a]);
+          basis2 = [basis1[1], -basis1[0]];
+          axisColors[1] = [0.5, 0.5, 0.5, 0.3];
+          eigenStrs.push('This is the <span class="espace-1">' + λ.toFixed(2) + '-eigenspace.</span>');
+          v = [(a - λ) * basis2[0] + b * basis2[1], c * basis2[0] + (d - λ) * basis2[1]];
+          opts.translate = almostZero(basis1[0]) ? v[1] / (λ * basis1[1]) : v[0] / (λ * basis1[0]);
+          if (almostZero(λ - 1)) {
+            type = dynamics.Shear;
+          } else {
+            type = λ > 1 ? dynamics.ScaleOutShear : dynamics.ScaleInShear;
+            opts.scale = λ;
+          }
+        }
+      } else if (discriminant < 0) {
+        Reλ = trace / 2;
+        Imλ = Math.sqrt(-discriminant) / 2;
+        basis1 = [b / Imλ, (Reλ - a) / Imλ];
+        basis2 = [0, 1];
+        axisColors[0] = [0.5, 0.5, 0.5, 0.3];
+        axisColors[1] = [0.5, 0.5, 0.5, 0.3];
+        eigenStrs.push('This matrix has complex eigenvalues \\(\\lambda = ' + Reλ.toFixed(2) +
+                       '\\pm ' + Imλ.toFixed(2) + 'i.\\)');
+        opts = { θ: Math.atan2(-Imλ, Reλ), scale: Math.sqrt(determinant), dist: 'cont' };
+        if (almostZero(opts.scale - 1)) type = dynamics.Circle;
+        else type = opts.scale > 1 ? dynamics.SpiralOut : dynamics.SpiralIn;
+      } else {
+        δ = Math.sqrt(discriminant);
+        λ1 = (trace - δ) / 2;
+        λ2 = (trace + δ) / 2;
+        negate1 = false; negate2 = false;
+        if (λ1 < 0) { λ1 *= -1; negate1 = true; }
+        if (λ2 < 0) { λ2 *= -1; negate2 = true; }
+        if (λ1 >= λ2) {
+          tmpSwap = λ1; λ1 = λ2; λ2 = tmpSwap;
+          tmpSwap = negate1; negate1 = negate2; negate2 = tmpSwap;
+        }
+        opts = { λ1: λ1, λ2: λ2, negate1: negate1, negate2: negate2 };
+        if (almostZero(b)) {
+          if (almostZero(c)) {
+            if (almostZero(a - λ1)) { basis1 = [1, 0]; basis2 = [0, 1]; }
+            else { basis2 = [1, 0]; basis1 = [0, 1]; }
+          } else {
+            basis1 = normalize([λ1 - d, c]);
+            basis2 = normalize([λ2 - d, c]);
+          }
+        } else {
+          basis1 = normalize([b, λ1 - a]);
+          basis2 = normalize([b, λ2 - a]);
+        }
+        var swap = function() {
+          var t = opts.negate1; opts.negate1 = opts.negate2; opts.negate2 = t;
+          t = opts.λ1; opts.λ1 = opts.λ2; opts.λ2 = t;
+          t = basis1; basis1 = basis2; basis2 = t;
+        };
+        if (almostZero(λ1 - 1)) type = dynamics.RepelLine;
+        else if (almostZero(λ2 - 1)) { type = dynamics.AttractLine; swap(); }
+        else if (λ1 < 1 && λ2 < 1) { type = dynamics.Attract; swap(); }
+        else if (λ1 < 1 && λ2 > 1) type = dynamics.Hyperbolas;
+        else if (λ1 > 1 && λ2 > 1) type = dynamics.Repel;
+        λ1p = opts.λ1 * (opts.negate1 ? -1 : 1);
+        λ2p = opts.λ2 * (opts.negate2 ? -1 : 1);
+        eigenStrs.push('This is the <span class="espace-1">' + λ1p.toFixed(2) + '-eigenspace.</span>');
+        eigenStrs.push('This is the <span class="espace-2">' + λ2p.toFixed(2) + '-eigenspace.</span>');
+      }
+      return { basis1: basis1, basis2: basis2, type: type, typeOpts: opts, axisColors: axisColors, eigenStrs: eigenStrs };
+    }
+
+    var params = {
+      'Test vector': urlParams.get('vec', 'bool', true),
+      'Show path':   urlParams.get('path', 'bool', true)
+    };
+    var vecEditorElt = document.getElementById('vec-inputs');
+
+    // ── One panel (unchanged structure; labels, captions and controls updated) ─
+    function dynamicsDemo(controller, opts) {
+      var dynView = opts.dynView, matName = opts.matName || 'A', vecName = opts.vecName || 'x';
+      var size = opts.size || 2, suffix = opts.suffix || '';
+      var element = opts.element, captionElt = opts.captionElt;
+      var vecColor = opts.vecColor || new Color("red");
+      var outColor = vecColor.darken(.1);
+      var dragHook = opts.dragHook || function() {};
+      var vectorIn = opts.vectorIn ? opts.vectorIn.slice() : [.5, 0, 0];
+      var vectorOut = [0, 0, 0];
+      var disp = [0, 0, 0];   // vectorIn in displayed units (x10), for the number inputs
+      return new (size === 3 ? Demo : Demo2D)({
+        fullscreen: false,
+        mathbox: mbOpts(element.id, { size: { aspect: 1 } }),
+        vertical: 1.05
+      }, function() {
+        var self = this, editor = null, displayMat, te, str, path, pathElt, drag, snap, computeOut, computePath;
+        var view = this.view({ viewRange: [[-1, 1], [-1, 1], [-1, 1]], axes: false, grid: false });
+        var clipCube = this.clipCube(view, { draw: size === 3, hilite: false });
+        dynView.updateView(this.mathbox, clipCube.clipped);
+        this.dynView = dynView;
+        this.controller = controller;
+        te = dynView.matrixOrigCoords.elements;
+        displayMat = size === 2 ? [[te[0], te[1]], [te[4], te[5]]]
+                                : [[te[0], te[1], te[2]], [te[4], te[5], te[6]], [te[8], te[9], te[10]]];
+        captionElt.innerHTML = '<p><span id="mat-here' + suffix + '"></span>' +
+                               '<span id="mult-here' + suffix + '" class="live-math"></span></p>' +
+                               '<p>' + opts.eigenStr + '</p>';
+        typesetIn(captionElt);
+        var matElt  = document.getElementById('mat-here' + suffix);
+        var multElt = document.getElementById('mult-here' + suffix);
+        renderMath(matName + ' = ' + texMat(displayMat, { rows: size }), matElt);
+        function updateCaption() {
+          renderMath('\\qquad ' + matName +
+                     texVec(vectorIn.slice(0, size).map(function(x) { return x * 10; }), vecColor) + ' = ' +
+                     texVec(vectorOut.slice(0, size).map(function(x) { return x * 10; }), outColor), multElt);
+        }
+        var viewT = dynView.view;
+        // No `labels` option: WebGL text replaced by MathJax labels below
+        var labeled = this.labeledVectors(view, {
+          vectors: [vectorIn, vectorOut], colors: [vecColor, outColor], live: true,
+          zeroPoints: false, zeroThreshold: 0.3, vectorOpts: { zIndex: 4 }, zeroOpts: { zIndex: 5 }
+        });
+        var layer = makeLabelLayer(element, this, view);
+        [[vectorIn, vecColor, vecName], [vectorOut, outColor, matName + vecName]].forEach(function(a) {
+          layer.add({
+            position: function() { return [a[0][0] / 2, a[0][1] / 2, a[0][2] / 2]; },
+            visible:  function() { return params['Test vector']; },
+            tex: texC(a[1], a[2])
+          });
+        });
+        if (size === 2) {
+          snap = function() {};
+        } else {
+          var subspace = this.subspace({ vectors: [dynView.v1, dynView.v2] });
+          var snapped = new THREE.Vector3(), diff = new THREE.Vector3();
+          snap = function(vec) {
+            subspace.project(vec, snapped);
+            diff.copy(vec).sub(snapped);
+            if (diff.lengthSq() <= 0.01) vec.copy(snapped);
+          };
+        }
+        function refreshDisp() {
+          for (var k = 0; k < 3; k++) disp[k] = vectorIn[k] * 10;
+          if (editor) editor.sync();
+        }
+        drag = this.draggable(view, {
+          points: [vectorIn],
+          onDrag: snap,
+          postDrag: function() { computeOut(); computePath(); refreshDisp(); dragHook(vectorIn); }
+        });
+        computeOut = function() {
+          if (!params['Test vector']) return;
+          vectorOut[0] = vectorIn[0]; vectorOut[1] = vectorIn[1]; vectorOut[2] = vectorIn[2];
+          dynView.matrixOrigCoords.applyToVector3Array(vectorOut);
+          updateCaption();
+        };
+        this.setVec = function(vec) {
+          vectorIn[0] = vec[0]; vectorIn[1] = vec[1]; vectorIn[2] = vec[2];
+          computeOut();
+          computePath();
+          refreshDisp();
+        };
+        // WCAG 2.1.1 / 2.5.1: keyboard alternative to dragging (displayed units)
+        refreshDisp();
+        editor = buildVectorEditor(vecEditorElt,
+          [{ name: vecName, tex: vecName, vec: disp, dim: size }], 10, function() {
+            for (var k = 0; k < 3; k++) vectorIn[k] = (disp[k] || 0) / 10;
+            computeOut();
+            computePath();
+            dragHook(vectorIn);
+          });
+        function setEnabled() {
+          var on = params['Test vector'] || params['Show path'];
+          drag.enabled = on;
+          editor.setDisabled(0, !on);
+        }
+        this.toggleVector = function(val) {
+          setEnabled();
+          if (val) {
+            labeled.show();
+            computeOut();
+            multElt.classList.remove('mult-hidden');
+          } else {
+            labeled.hide();
+            multElt.classList.add('mult-hidden');
+          }
+        };
+        this.toggleVector(params['Test vector']);
+        path = [];
+        for (var p = 0; p <= 100; p++) path.push([0, 0, 0]);
+        computePath = function() {
+          if (!params['Show path']) return;
+          var vec = vectorIn.slice();
+          dynView.coordMatInv.applyToVector3Array(vec);
+          controller.current.makePath(vec, path);
+        };
+        viewT.array({ channels: 3, width: path.length, live: true, data: path });
+        pathElt = viewT.line({ color: new Color("orange").arr(), width: 5, opacity: 1, zBias: 0, zIndex: 4 });
+        this.togglePath = function(val) {
+          if (val) computePath();
+          pathElt.set('visible', val);
+          setEnabled();
+        };
+        this.togglePath(params['Show path']);
+      });
+    }
+
+    // ── Setup (unchanged from ILA) ──────────────────────────────────────────
+    matrix = urlParams.get('mat', 'matrix', [[1 / 2, 1 / 2], [-1 / 2, 1 / 2]]);
+    var matNames = urlParams.get('matnames', 'str[]', ['A', 'D', 'C']);
+    var vecNames = urlParams.get('vecnames', 'str[]', ['x', 'y']);
+    size = urlParams.eigenz != null ? 3 : 2;
+    eigenz = urlParams.get('eigenz', 'float', 1);
+    w1 = urlParams.get('w1', 'float[]', [1, 0, 0]);
+    w2 = urlParams.get('w2', 'float[]', [0, 1, 0]);
+    w3 = urlParams.get('w3', 'float[]', [0, 0, 1]);
+    v1 = urlParams.get('v1', 'float[]', [1, 0, 0]);
+    v2 = urlParams.get('v2', 'float[]', [0, 1, 0]);
+    v3 = urlParams.get('v3', 'float[]', [0, 0, 1]);
+    [v1, v2, v3, w1, w2, w3].forEach(function(v) { if (v[2] == null) v[2] = 0; });
+    if (urlParams.testmat != null) matrix = testMatrices[urlParams.testmat];
+    var duration = urlParams.get('duration', 'float', 2.5);
+    vectorIn = urlParams.get('y', 'float[]', [5, 0, 1]);
+    if (vectorIn[2] == null) vectorIn[2] = 0;
+    for (i = 0; i < 3; i++) vectorIn[i] /= 10;
+    info = matrixInfo(matrix);
+    if (size === 3) {
+      info.eigenStrs.push('This is the <span class="espace-3">' + eigenz.toFixed(2) + '-eigenspace.</span>');
+      info.typeOpts.scaleZ = eigenz;
+    }
+    eigenStr = info.eigenStrs.join('<br>');
+    var controller = new dynamics.Controller({
+      continuous: false, flow: urlParams.get('flow', 'bool', false), duration: duration, is3D: size === 3
+    });
+    var dynView1 = new dynamics.DynamicsView({
+      is3D: size === 3, axisOpts: { width: size === 3 ? 5 : 3, opacity: 1.0 },
+      axisColors: info.axisColors, refColor: new Color("blue").arr(), timer: true
+    });
+    dynView1.setCoords(mv3v2(w1, w2, info.basis1), mv3v2(w1, w2, info.basis2), w3);
+    controller.addView(dynView1);
+    var dynView2 = new dynamics.DynamicsView({
+      is3D: size === 3, axisOpts: { width: size === 3 ? 5 : 3, opacity: 1.0 },
+      axisColors: info.axisColors, refColor: new Color("blue").arr(), timer: false
+    });
+    dynView2.setCoords(mv3v2(v1, v2, info.basis1), mv3v2(v1, v2, info.basis2), v3);
+    controller.addView(dynView2);
+    controller.loadDynamics(info.type, info.typeOpts);
+    C = (function() {
+      var m1 = new THREE.Matrix4().set(w1[0], w2[0], w3[0], 0, w1[1], w2[1], w3[1], 0, w1[2], w2[2], w3[2], 0, 0, 0, 0, 1);
+      m1 = new THREE.Matrix4().getInverse(m1);
+      var m2 = new THREE.Matrix4().set(v1[0], v2[0], v3[0], 0, v1[1], v2[1], v3[1], 0, v1[2], v2[2], v3[2], 0, 0, 0, 0, 1);
+      return m1.multiply(m2);
+    })();
+    Cinv = new THREE.Matrix4().getInverse(C);
+
+    var demo1, demo2;
+    window.demo1 = demo1 = dynamicsDemo(controller, {
+      dynView: dynView1, element: document.getElementById('mathbox1'),
+      captionElt: document.getElementById('captions1'), suffix: '1',
+      matName: matNames[1], vecName: vecNames[1], size: size, eigenStr: eigenStr, vectorIn: vectorIn,
+      dragHook: function(v) { v = v.slice(); C.applyToVector3Array(v); demo2.setVec(v); }
+    });
+    C.applyToVector3Array(vectorIn);
+    window.demo2 = demo2 = dynamicsDemo(controller, {
+      dynView: dynView2, element: document.getElementById('mathbox2'),
+      captionElt: document.getElementById('captions2'), suffix: '2',
+      matName: matNames[0], vecName: vecNames[0], size: size, eigenStr: eigenStr, vectorIn: vectorIn,
+      dragHook: function(v) { v = v.slice(); Cinv.applyToVector3Array(v); demo1.setVec(v); }
+    });
+
+    (function() {
+      var te = C.elements;
+      var displayMat = size === 2 ? [[te[0], te[1]], [te[4], te[5]]]
+                                  : [[te[0], te[1], te[2]], [te[4], te[5], te[6]], [te[8], te[9], te[10]]];
+      var red = new Color("red");
+      renderMath(matNames[2] + ' = ' + texMat(displayMat, { rows: size }), document.getElementById('C-here'));
+      renderMath('\\qquad ' + matNames[0] + ' = ' + matNames[2] + matNames[1] + matNames[2] + '^{-1} \\quad ' +
+                 texC(red, vecNames[0]) + ' = ' + matNames[2] + texC(red, vecNames[1]),
+                 document.getElementById('sim-here'));
+    })();
+    if (size === 3) groupControls(demo1, demo2);
+
+    // ── Controls (replace dat.GUI) ──────────────────────────────────────────
+    var panel = document.getElementById('check-panel');
+    addButton(panel, { label: 'Multiply', ariaLabel: 'Multiply: apply the matrix once',
+                       onClick: function() { controller.step(); } });
+    addButton(panel, { label: 'Un-multiply', ariaLabel: 'Un-multiply: apply the inverse matrix once',
+                       onClick: function() { controller.unStep(); } });
+    addCheckbox(panel, { id: 'testvec', label: 'Test vector', checked: params['Test vector'],
+      onChange: function(v) { params['Test vector'] = v; demo1.toggleVector(v); demo2.toggleVector(v); } });
+    addCheckbox(panel, { id: 'path', label: 'Show path', checked: params['Show path'],
+      onChange: function(v) { params['Show path'] = v; demo1.togglePath(v); demo2.togglePath(v); } });
+  }); // end DomReady.ready
+
+  initFullscreenButton('fs-btn');
+  </script>
+</body>
+</html>

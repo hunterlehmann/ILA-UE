@@ -8,14 +8,18 @@
 // uses the theme. It also resets the --palette-* CSS variables demo.js sets.
 //
 // Per-demo overrides: before loading this file, set e.g.
-//   window.DEMO_THEME_OVERRIDES = { orange: '#B35806' };
+//   window.DEMO_THEME_OVERRIDES = { brown: '#…' };
 
 var DEMO_THEME = (function () {
   var theme = {
     // High contrast against the violet span surface
-    blue:  '#385B8A',
-    red:   '#B5121F',
-    green: '#376529'
+    blue:   '#385B8A',
+    red:    '#B5121F',
+    green:  '#376529',
+    // demo.js orange (#FF7F00) and yellow (#B3B300) are too light for text on white
+    orange: '#8B6E3C',
+    yellow: '#8B6E3C',
+    pink:   '#B25783'
   };
   var extra = window.DEMO_THEME_OVERRIDES || {};
   for (var k in extra) {

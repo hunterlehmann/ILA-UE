@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Composing 2x2 Transformations</title>
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
+    .caption-bar {
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
+    }
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Composing 2 by 2 transformations controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <p><span id="matrix1-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p><span id="matrix2-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p><span id="matrix3-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <div id="inv-status" class="status" role="status" hidden></div>
+    <p class="hint mathjax-static">Drag \(x\) in the left view, use the transform sliders, or edit \(x\) below.</p>
+    <div id="transforms"></div>
+    <details class="panel">
+      <summary class="mathjax-static">Edit \(x\)</summary>
+      <div id="vec-inputs" class="vec-grid" role="group" aria-label="Coordinates of x"></div>
+    </details>
+  </div>
+
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
+  <div id="mathbox-container" aria-hidden="true">
+    <div class="mb-panel"><div id="mathbox1"></div></div>
+  </div>
+
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
+  <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+    var ortho  = 10000;
+    var color1 = new Color("green");
+    var color2 = new Color("violet");
+    var color3 = new Color("red");
+
+    // ── Transform sliders (replace dat.GUI folders) ─────────────────────────
+    // matrix is row-major [a, b, c, d]; onChange() is called after any change.
+    // plainName: text used in accessible names (title may contain TeX)
+    function TransformControls(container, title, plainName, matrix, onChange, open, idPrefix) {
+      var self = this;
+      this.matrix = matrix;
+      this.v = { xscale: 1, yscale: 1, rotate: 0, xshear: 0, yshear: 0 };
+      var det = document.createElement('details');
+      det.className = 'panel';
+      det.open = !!open;
+      var sum = document.createElement('summary');
+      sum.innerHTML = title;
+      det.appendChild(sum);
+      var grid = document.createElement('div');
+      grid.className = 'slider-grid';
+      grid.setAttribute('role', 'group');
+      grid.setAttribute('aria-label', plainName);
+      det.appendChild(grid);
+      this.extra = document.createElement('div');
+      this.extra.className = 'ctrl-row';
+      det.appendChild(this.extra);
+      container.appendChild(det);
+      if (/\\\(/.test(title)) typesetIn(sum);
+      this.sliders = {};
+      var specs = [
+        ['xscale', 'x-scale', -2, 2, 0.05, ''],
+        ['yscale', 'y-scale', -2, 2, 0.05, ''],
+        ['rotate', 'rotate',  -Math.PI, Math.PI, 0.1 * Math.PI, 'radians'],
+        ['xshear', 'x-shear', -2, 2, 0.05, ''],
+        ['yshear', 'y-shear', -2, 2, 0.05, '']
+      ];
+      specs.forEach(function(s) {
+        self.sliders[s[0]] = buildSlider(grid, {
+          id: idPrefix + '-' + s[0], name: plainName + ' ' + s[1], labelHtml: s[1],
+          min: s[2], max: s[3], step: s[4], value: self.v[s[0]], unit: s[5],
+          onInput: function(val) { self.v[s[0]] = val; self.apply(s[0]); onChange(); }
+        });
+      });
+    }
+    // Changing one kind of transform resets the others (as in the ILA demo)
+    TransformControls.prototype.reset = function(keep) {
+      var v = this.v;
+      if (keep !== 'xscale' && keep !== 'yscale') { v.xscale = 1; v.yscale = 1; }
+      ['rotate', 'xshear', 'yshear'].forEach(function(k) { if (k !== keep) v[k] = 0; });
+      for (var k in this.sliders) this.sliders[k].set(v[k]);
+    };
+    TransformControls.prototype.apply = function(which) {
+      var m = this.matrix, v = this.v, c, s;
+      this.reset(which);
+      if (which === 'xscale' || which === 'yscale') { m[0] = v.xscale; m[1] = 0; m[2] = 0; m[3] = v.yscale; }
+      else if (which === 'xshear') { m[0] = 1; m[1] = v.xshear; m[2] = 0; m[3] = 1; }
+      else if (which === 'yshear') { m[0] = 1; m[1] = 0; m[2] = v.yshear; m[3] = 1; }
+      else if (which === 'rotate') {
+        c = Math.cos(v.rotate); s = Math.sin(v.rotate);
+        m[0] = c; m[1] = -s; m[2] = s; m[3] = c;
+      }
+    };
+    TransformControls.prototype.setMatrix = function(a, b, c, d) {
+      this.reset(null);
+      this.matrix[0] = a; this.matrix[1] = b; this.matrix[2] = c; this.matrix[3] = d;
+    };
+
+    window.demo = new Demo2D({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox1'),
+      ortho: ortho,
+      camera: { position: [2.2, 0, ortho], lookAt: [2.2, 0, 0] },
+      vertical: 3.0
+    }, function() {
+      window.mathbox = this.mathbox;
+      var range = this.urlParams.get('range', 'float', 3);
+      var names = this.urlParams.get('names', 'str[]', ['T', 'U']).map(function(s) {
+        return s.replace(/^\s+|\s+$/g, '');
+      });
+      var vector1 = this.urlParams.get('vec', 'float[]', [1, 2]);
+      var vector2 = [0, 0];
+      var vector3 = [0, 0];
+      var matrix1 = this.urlParams.get('mat1', 'float[]', [1, 0, 0, 1]);   // U, applied first
+      var matrix2 = this.urlParams.get('mat2', 'float[]', [1, 0, 0, 1]);   // T
+      var matrix3 = [0, 0, 0, 0];
+      var matrices = [matrix1, matrix2, matrix3];
+      var editor = null;
+      var statusBox = document.getElementById('inv-status');
+
+      function computeOut() {
+        vector2[0] = matrix1[0] * vector1[0] + matrix1[1] * vector1[1];
+        vector2[1] = matrix1[2] * vector1[0] + matrix1[3] * vector1[1];
+        vector3[0] = matrix2[0] * vector2[0] + matrix2[1] * vector2[1];
+        vector3[1] = matrix2[2] * vector2[0] + matrix2[3] * vector2[1];
+        if (editor) editor.sync();
+        updateCaption();
+      }
+      function computeProduct() {
+        matrix3[0] = matrix2[0] * matrix1[0] + matrix2[1] * matrix1[2];
+        matrix3[1] = matrix2[0] * matrix1[1] + matrix2[1] * matrix1[3];
+        matrix3[2] = matrix2[2] * matrix1[0] + matrix2[3] * matrix1[2];
+        matrix3[3] = matrix2[2] * matrix1[1] + matrix2[3] * matrix1[3];
+        computeOut();
+      }
+
+      // Folder 0 controls U (matrix1), folder 1 controls T (matrix2), as in ILA
+      var folderNames = [names[1], names[0]];
+      var tContainer = document.getElementById('transforms');
+      var showGrid = [urlParams.show1 != null, urlParams.show2 != null];
+      var tcs = [0, 1].map(function(i) {
+        return new TransformControls(tContainer, '\\(' + folderNames[i] + '\\)', 'Transform ' + folderNames[i], matrices[i],
+          function() { statusBox.hidden = true; computeProduct(); }, true, 'f' + i);
+      });
+      [0, 1].forEach(function(i) {
+        var other = matrices[1 - i];
+        // "T inverse" in folder U sets U = T^{-1} (and vice versa)
+        addButton(tcs[i].extra, {
+          label: 'Set \\(' + folderNames[i] + ' = ' + folderNames[1 - i] + '^{-1}\\)',
+          ariaLabel: 'Set ' + folderNames[i] + ' to the inverse of ' + folderNames[1 - i],
+          onClick: function() {
+            var det = other[0] * other[3] - other[1] * other[2];
+            if (Math.abs(det) < .00001) {
+              statusBox.textContent = folderNames[1 - i] + ' is not invertible.';
+              statusBox.hidden = false;
+              return;
+            }
+            statusBox.hidden = true;
+            tcs[i].setMatrix(other[3] / det, -other[1] / det, -other[2] / det, other[0] / det);
+            computeProduct();
+          }
+        });
+        addCheckbox(tcs[i].extra, {
+          id: 'grid' + (i + 1), label: 'Show grid', checked: showGrid[i],
+          onChange: function(v) { mathbox.select('.grid' + (i + 1)).set('visible', v); }
+        });
+      });
+
+      var views = [0, 1, 2].map(function(i) {
+        return this.view({
+          name: 'view' + (i + 1), axisLabels: false, grid: false,
+          viewOpts: { position: [2.2 * i, 0, 0] },
+          viewRange: [[-range, range], [-range, range]]
+        });
+      }, this);
+      var clipCube2 = this.clipCube(views[1], { draw: false, hilite: false, range: range, pass: 'view' });
+      var clipCube3 = this.clipCube(views[2], { draw: false, hilite: false, range: range, pass: 'view' });
+      var gridData = mathbox.area({ width: 11, height: 11, channels: 2, rangeX: [-range, range], rangeY: [-range, range] });
+      function makeSurface(view, matrix, color, klass) {
+        return view.transform({}, {
+          matrix: function() { return [matrix[0], matrix[1], 0, 0, matrix[2], matrix[3], 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]; }
+        }).surface({
+          color: color.arr(), points: gridData, fill: false, lineX: true, lineY: true,
+          width: 2, opacity: 0.5, zOrder: 0, classes: [klass]
+        });
+      }
+      makeSurface(views[0], [1, 0, 0, 1], color1, 'grid1');
+      makeSurface(clipCube2.clipped, [1, 0, 0, 1], color2, 'grid2');
+      makeSurface(clipCube2.clipped, matrix1, color1.darken(.15), 'grid1');
+      makeSurface(clipCube3.clipped, matrix2, color2.darken(.15), 'grid2');
+      makeSurface(clipCube3.clipped, matrix3, color1.darken(.3), 'grid1');
+      mathbox.select('.grid1').set('visible', showGrid[0]);
+      mathbox.select('.grid2').set('visible', showGrid[1]);
+
+      var vectorOpts = { size: 4, width: 3, zIndex: 2 };
+      var zeroOpts   = { zIndex: 2, size: 15 };
+      var hiliteOpts = { zTest: true, zWrite: true, zOrder: 2, opacity: 0.5 };
+      var vecs   = [vector1, vector2, vector3];
+      var cols   = [color1, color2, color3];
+      var labels = ['x', names[1] + '(x)', names[0] + '(' + names[1] + '(x))'];
+      var container = document.getElementById('mathbox1');
+      // No `labels` options: WebGL text replaced by MathJax labels below
+      [0, 1, 2].forEach(function(i) {
+        this.labeledVectors(views[i], {
+          name: 'labeled' + (i + 1), vectors: [vecs[i]], colors: [cols[i]], live: true,
+          zeroPoints: true, zeroThreshold: 0.3, vectorOpts: vectorOpts, zeroOpts: zeroOpts
+        });
+        addVectorLabels(makeLabelLayer(container, this, views[i]), [vecs[i]], [cols[i]], [labels[i]]);
+      }, this);
+      this.draggable(views[0], { name: 'drag1', points: [vector1], postDrag: computeOut, hiliteOpts: hiliteOpts });
+
+      // WCAG 2.1.1 / 2.5.1: keyboard alternative to dragging x
+      editor = buildVectorEditor(document.getElementById('vec-inputs'),
+        [{ name: 'x', tex: 'x', vec: vector1, dim: 2 }], range, computeOut);
+
+      var matrix1Elt = document.getElementById('matrix1-here');
+      var matrix2Elt = document.getElementById('matrix2-here');
+      var matrix3Elt = document.getElementById('matrix3-here');
+      function colsOf(m) { return [[m[0], m[2]], [m[1], m[3]]]; }
+      function updateCaption() {
+        renderMath(names[1] + '(' + texC(color1, 'x') + ') = ' + texMat(colsOf(matrix1), { rows: 2 }) +
+                   texVec(vector1, color1, 2) + '=' + texVec(vector2, color2, 2), matrix1Elt);
+        renderMath(names[0] + '(' + texC(color2, names[1] + '(x)') + ') = ' + texMat(colsOf(matrix2), { rows: 2 }) +
+                   texVec(vector2, color2, 2) + '=' + texVec(vector3, color3, 2), matrix2Elt);
+        renderMath(names[0] + '\\circ ' + names[1] + '(' + texC(color1, 'x') + ') = ' +
+                   texMat(colsOf(matrix3), { rows: 2 }) + texVec(vector1, color1, 2) + '=' +
+                   texVec(vector3, color3, 2), matrix3Elt);
+      }
+      computeProduct();
+    });
+  }); // end DomReady.ready
+
+  initFullscreenButton('fs-btn');
+  </script>
+</body>
+</html>

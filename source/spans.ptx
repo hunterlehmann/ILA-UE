@@ -113,7 +113,7 @@ x \amp {}-{} \amp y \amp {}={} \amp 8 \amp {} \\
       <interactive
           iframe="iframes/spans-if.html?v1=1,2,6&amp;v2=-1,-2,-1&amp;target=8,16,3&amp;range=20&amp;camera=3,.5,1.5"
           width="90%"
-          aspect="4:3">
+          aspect="4:5">
         <shortdescription>
           <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
         </shortdescription>
@@ -382,7 +382,7 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
       <interactive
           iframe="iframes/spans-if.html?v1=1,2,6&amp;v2=-1,-2,-1&amp;target=2,-2,0&amp;range=8&amp;camera=3,.5,1.5"
           width="90%"
-          aspect="4:3">
+          aspect="4:5">
         <shortdescription>
           <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
         </shortdescription>
@@ -594,11 +594,11 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
             <question>
         <title>Span of two vectors in <m>\R^2</m></title>
         <figure>
-          <caption>Interactive picture of a span of two vectors in <m>\R^2</m>.  Check <q>Show x.v + y.w</q> and move the sliders to see how every point in the violet region is in fact a linear combination of the two vectors.</caption>
+          <caption>Interactive picture of a span of two vectors in <m>\R^2</m>.  </caption>
           <interactive
               iframe="iframes/spans-if.html?v1=1,2&amp;v2=1,0&amp;showPlane=true&amp;range=5&amp;labels=v,w"
               width="90%"
-              aspect="4:3">
+              aspect="4:5">
             <shortdescription>
               <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
             </shortdescription>
@@ -610,7 +610,7 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
             </description>
             <instructions>
               <p>
-                
+                Check <q>Show <m>xv+yw</m></q> and move the sliders to see how every point in the violet region is in fact a linear combination of the two vectors.
               </p>
             </instructions>
           </interactive>
@@ -622,11 +622,11 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
       <question>
         <title>Span of two vectors in <m>\R^3</m></title>
         <figure>
-          <caption>Interactive picture of a span of two vectors in <m>\R^3</m>.  Check <q>Show x.v + y.w</q> and move the sliders to see how every point in the violet region is in fact a linear combination of the two vectors.</caption>
+          <caption>Interactive picture of a span of two vectors in <m>\R^3</m>.  </caption>
           <interactive
               iframe="iframes/spans-if.html?v1=3,2,4&amp;v2=-4,2,1&amp;labels=v,w"
               width="90%"
-              aspect="4:3">
+              aspect="4:5">
             <shortdescription>
               <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
             </shortdescription>
@@ -638,7 +638,7 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
             </description>
             <instructions>
               <p>
-                
+                Check <q>Show <m>xv + yw</m></q> and move the sliders to see how every point in the violet region is in fact a linear combination of the two vectors.
               </p>
             </instructions>
           </interactive>
@@ -648,11 +648,11 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
       <question>
         <title>Span of three vectors in <m>\R^3</m></title>
         <figure>
-          <caption>Interactive picture of a span of three vectors in <m>\R^3</m>.  Check <q>Show x.v + y.w + z.u</q> and move the sliders to see how every point in the violet region is in fact a linear combination of the three vectors.</caption>
+          <caption>Interactive picture of a span of three vectors in <m>\R^3</m>.  </caption>
           <interactive
               iframe="iframes/spans-if.html?labels=v,w,u"
               width="90%"
-              aspect="4:3">
+              aspect="4:5">
             <shortdescription>
               <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
             </shortdescription>
@@ -664,7 +664,7 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
             </description>
             <instructions>
               <p>
-                
+                Check <q>Show <m>xv + yw + zu</m></q> and move the sliders to see how every point in the violet region is in fact a linear combination of the three vectors.
               </p>
             </instructions>
           </interactive>
@@ -676,24 +676,24 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
   </subsection>
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: For any collection of vectors <m>v_1, \ldots, v_k</m> in <m>{\bf R}^n</m>, the zero vector in <m>{\bf R}^n</m> is a linear combination of <m>v_1, \ldots, v_k</m>.</p>
+    <statement correct="yes">
+      <p>For any collection of vectors <m>v_1, \ldots, v_k</m> in <m>{\bf R}^n</m>, the zero vector in <m>{\bf R}^n</m> is a linear combination of <m>v_1, \ldots, v_k</m>.</p>
     </statement>
     <solution>
       <p>True: <m>0 = 0 v_1 + \cdots + 0 v_k</m>.</p>
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The vector <m>\begin{pmatrix}1 \\ 1\end{pmatrix}</m> can be written as a linear combination of <m>\begin{pmatrix}2 \\ 2\end{pmatrix}</m> and <m>\begin{pmatrix}-2 \\ -2\end{pmatrix}</m> in infinitely many ways.</p>
+    <statement correct="yes">
+      <p>The vector <m>\begin{pmatrix}1 \\ 1\end{pmatrix}</m> can be written as a linear combination of <m>\begin{pmatrix}2 \\ 2\end{pmatrix}</m> and <m>\begin{pmatrix}-2 \\ -2\end{pmatrix}</m> in infinitely many ways.</p>
     </statement>
     <solution>
       <p>True: the equation <m>x_1 \begin{pmatrix}2 \\ 2\end{pmatrix} + x_2 \begin{pmatrix}-2 \\ -2\end{pmatrix} = \begin{pmatrix}1 \\ 1\end{pmatrix}</m> corresponds to the augmented matrix <m>\left(\begin{array}{rr|r}2 \amp -2 \amp 1 \\ 2 \amp -2 \amp 1\end{array}\right)</m>.  One step of row-reduction gives us <m>\left(\begin{array}{rr|r}2 \amp -2 \amp 1 \\ 0 \amp 0 \amp 0\end{array}\right)</m>, so the system is consistent and has a free variable, so it has infinitely many solutions.</p>
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The vector <m>\begin{pmatrix}8 \\ 16 \\ 1\end{pmatrix}</m> in the span of <m>\begin{pmatrix}1 \\ 2 \\ 6\end{pmatrix}</m> and
+    <statement correct="yes">
+      <p>The vector <m>\begin{pmatrix}8 \\ 16 \\ 1\end{pmatrix}</m> in the span of <m>\begin{pmatrix}1 \\ 2 \\ 6\end{pmatrix}</m> and
       <m>\begin{pmatrix}-1 \\ -2 \\ -1\end{pmatrix}</m>.</p>
     </statement>
     <solution>
@@ -701,8 +701,8 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>v_1, \ldots, v_k</m> are vectors in <m>{\bf R}^n</m>, then the equation <m>x_1 v_1 + \cdots + x_k v_k = 0</m> must be consistent.</p>
+    <statement correct="yes">
+      <p>If <m>v_1, \ldots, v_k</m> are vectors in <m>{\bf R}^n</m>, then the equation <m>x_1 v_1 + \cdots + x_k v_k = 0</m> must be consistent.</p>
     </statement>
     <solution>
       <p>True: If we set <m>x_1</m> through <m>x_k</m> all equal to <m>0</m>, then
@@ -710,16 +710,16 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The plane <m>z=1</m> in <m>{\bf R}^3</m> is a span.</p>
+    <statement correct="no">
+      <p>The plane <m>z=1</m> in <m>{\bf R}^3</m> is a span.</p>
     </statement>
     <solution>
       <p>False: any span contains the zero vector but the plane <m>z=1</m> does not contain the zero vector, so it is not a span.</p>
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: The three vectors
+    <statement correct="yes">
+      <p>The three vectors
         <m>v_1 = \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}, \ v_2 = \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix},</m> and <m>v_3 = \begin{pmatrix}-1 \\ 0 \\ 1\end{pmatrix}</m>
         span <m>{\bf R}^3</m>.</p>
     </statement>
@@ -734,8 +734,8 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If <m>u</m>, <m>v</m>, and <m>w</m> are nonzero vectors in <m>{\bf R}^2</m>,
+    <statement correct="no">
+      <p>If <m>u</m>, <m>v</m>, and <m>w</m> are nonzero vectors in <m>{\bf R}^2</m>,
       then Span<m>\{u, v, w\}</m> is <m>{\bf R}^2</m>.</p>
     </statement>
     <solution>
@@ -744,9 +744,8 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false:
-        The line <m>y = 2x + 1</m> is a span of some number of vectors in
+    <statement correct="no">
+      <p>The line <m>y = 2x + 1</m> is a span of some number of vectors in
         <m>{\bf R}^2</m>.</p>
     </statement>
     <solution>
@@ -836,7 +835,6 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
           This gives <m>x_1 = 4/5</m>, <m>x_2 = -1</m>, and <m>x_3 = -3/5</m>. Therefore,
           <md><mrow>\frac{4}{5} \begin{pmatrix}5 \\ -1 \\ 2\end{pmatrix} - \begin{pmatrix}-1 \\ 0 \\ 1\end{pmatrix}
                 - \frac{3}{5} \begin{pmatrix}5 \\ -8 \\ 1\end{pmatrix} = \begin{pmatrix}2 \\ 4 \\ 0\end{pmatrix}</mrow></md>.
-          \end{subproblems}
         </p>
       </solution>
     </task>
@@ -865,7 +863,6 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
           We can choose any two nonzero vectors that are on the
               line <m>y = -4x</m>, which is the span of <m>\begin{pmatrix}1 \\ -4\end{pmatrix}</m>.  For example,
           <md><mrow>v_1 = \begin{pmatrix}1 \\ -4\end{pmatrix}, \quad v_2 = \begin{pmatrix}2 \\ -8\end{pmatrix}</mrow></md>.
-          \end{subproblems}
         </p>
       </solution>
     </task>
@@ -943,8 +940,7 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
       </statement>
       <solution>
         <p>Write <m>\begin{pmatrix}-1 \\ 2 \\ 3 \\ 4\end{pmatrix}</m> as a linear combination of
-            <m>\begin{pmatrix}1 \\ 2 \\ -1\end{pmatrix}</m>, <m>\begin{pmatrix}-2 \\ 0 \\ 2\end{pmatrix}</m>, and <m>\begin{pmatrix}3 \\ 1 \\ 3\end{pmatrix}</m>.
-          \end{subproblems}</p>
+            <m>\begin{pmatrix}1 \\ 2 \\ -1\end{pmatrix}</m>, <m>\begin{pmatrix}-2 \\ 0 \\ 2\end{pmatrix}</m>, and <m>\begin{pmatrix}3 \\ 1 \\ 3\end{pmatrix}</m>.</p>
       </solution>
     </task>
   </exercise>
@@ -1070,4 +1066,5 @@ v_1 \amp v_2 \amp \cdots \amp v_k \amp b \\
     </solution>
   </exercise>
 </exercises>
+
 </section>

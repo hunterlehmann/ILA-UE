@@ -4,78 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <title>Vector addition</title>
-
-  <!-- Shared MathJax config + helpers (renderMath, texColor, mathJaxReady). Plain script: no defer/async. -->
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
   <script src="js/mathjax-setup.js"></script>
-
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-
     html, body {
       margin: 0; height: 100%;
       background: white; overflow: hidden;
       display: flex; flex-direction: column;
     }
-
-    :root {
-      --palette-violet: #7722bb;
-    }
-
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
     .caption-bar {
-      flex: 0 0 auto;
-      padding: 5px 10px;
-      background: white;
-      border-bottom: 1px solid #ccc;
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
     }
     .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
     .caption-bar p.hint { font-size: 0.8em; color: #555; }
     .live-math { display: inline-block; min-height: 1.4em; }
-
     details.panel { margin-top: 3px; font-size: 0.82em; }
-    details.panel summary { cursor: pointer; color: #555; user-select: none; }
-
-    /* Vector coordinate editor (keyboard alternative to dragging) */
-    .vec-grid {
-      display: flex; flex-wrap: wrap;
-      gap: 2px 16px; margin-top: 3px;
-    }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
     .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
     .vec-label { min-width: 1.6em; text-align: right; }
     .vec-row input[type="number"] {
       width: 58px; padding: 1px 3px; font-size: 0.95em;
-      border: 1px solid #bbb; border-radius: 2px;
+      border: 1px solid #767676; border-radius: 2px;
     }
-
-    /* Slider rows: label | slider | value */
     .slider-grid {
-      display: grid;
-      grid-template-columns: auto 1fr 3.5em;
-      gap: 2px 6px; align-items: center; margin-top: 4px;
-      font-size: 0.88em;
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
     }
     .slider-grid label { text-align: right; white-space: nowrap; }
     .slider-grid input[type="range"] { width: 100%; }
     .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
-
-    .check-row { display: flex; align-items: center; gap: 6px; margin-top: 3px; font-size: 0.88em; }
-
-    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; }
-    #mathbox1 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
-
-    #fs-btn {
-      float: right; cursor: pointer; background: none;
-      border: 1px solid #aaa; border-radius: 3px;
-      padding: 2px 6px; font-size: 0.85em; color: #444;
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
     }
-    #fs-btn:hover { background: rgba(0,0,0,.07); }
-    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
     /* MathJax labels over the canvas (js/demo-labels.js) */
     .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
                     pointer-events: none; overflow: hidden; z-index: 1; }
     .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
                     text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
   </style>
 </head>
 <body>
@@ -85,7 +77,7 @@
     <p><span id="vectors-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
     <p class="hint mathjax-static">Drag the heads of \(v\) and \(w\), or edit their coordinates below.</p>
     <details class="panel">
-      <summary>Edit vectors</summary>
+      <summary class="mathjax-static">Edit vectors</summary>
       <div id="vec-inputs" class="vec-grid" role="group" aria-label="Vector coordinates"></div>
     </details>
   </div>
@@ -93,123 +85,16 @@
   <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
        and controls expose the same state to assistive technology -->
   <div id="mathbox-container" aria-hidden="true">
-    <div id="mathbox1"></div>
+    <div class="mb-panel"><div id="mathbox1"></div></div>
   </div>
 
-  <!-- ILA demo bundle: external/iframes/js/demo.js -->
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
   <script src="js/demo.js"></script>
   <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
   <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
-
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
   <script>
   "use strict";
-
-  // ── Local helpers (names do not clash with js/mathjax-setup.js) ──────────
-
-  // Format a coordinate for TeX; avoids "-0.00".
-  function fmt(x) {
-    return (Math.abs(x) < 0.005 ? 0 : x).toFixed(2);
-  }
-
-  // Column vector as TeX, optionally coloured. Replaces demo.js texVector(),
-  // whose colour output uses CSS strings that MathJax does not reliably accept.
-  function texVec(v, color, dim) {
-    dim = dim || v.length;
-    var body = '\\begin{bmatrix}' +
-      v.slice(0, dim).map(fmt).join('\\\\') +
-      '\\end{bmatrix}';
-    return color ? '\\color' + texColor(color) + '{' + body + '}' : body;
-  }
-
-  // Number-input editor for one or more vectors (WCAG 2.1.1 / 2.5.1 alternative
-  // to dragging). Inputs write into the same arrays that draggable mutates.
-  //   specs: [{ name: 'v', tex: 'v', vec: array, dim: 3 }, ...]
-  //   onInput(specIndex, component) is called after a committed change.
-  function buildVectorEditor(container, specs, range, onInput) {
-    var entries = [];
-    specs.forEach(function(spec, si) {
-      var row = document.createElement('div');
-      row.className = 'vec-row';
-      var lab = document.createElement('span');
-      lab.className = 'vec-label';
-      lab.setAttribute('aria-hidden', 'true');
-      lab.textContent = '\\(' + spec.tex + '\\) :';
-      row.appendChild(lab);
-      var inputs = [];
-      for (var k = 0; k < spec.dim; k++) {
-        (function(k) {
-          var inp = document.createElement('input');
-          inp.type  = 'number';
-          inp.min   = -range;
-          inp.max   =  range;
-          inp.step  = '0.1';
-          inp.value = +spec.vec[k].toFixed(2);
-          inp.setAttribute('aria-label', spec.name + ' component ' + (k + 1));
-          // WCAG 2.5.2: 'change' commits on Enter/blur, not every keystroke
-          inp.addEventListener('change', function() {
-            var x = parseFloat(inp.value);
-            if (isFinite(x)) {
-              spec.vec[k] = Math.max(-range, Math.min(range, x));
-            }
-            inp.value = +spec.vec[k].toFixed(2);
-            onInput(si, k);
-          });
-          inputs.push(inp);
-          row.appendChild(inp);
-        })(k);
-      }
-      entries.push({ spec: spec, inputs: inputs });
-      container.appendChild(row);
-    });
-    // Labels were created after load, so typeset them explicitly
-    mathJaxReady.then(function() { return MathJax.typesetPromise([container]); });
-    return {
-      // Push current vector values back into the inputs (after a drag)
-      sync: function() {
-        entries.forEach(function(e) {
-          e.inputs.forEach(function(inp, k) {
-            if (document.activeElement !== inp) inp.value = +e.spec.vec[k].toFixed(2);
-          });
-        });
-      }
-    };
-  }
-
-  // Labelled range slider (replaces dat.GUI). Returns { input, set(value) }.
-  function buildSlider(container, opts) {
-    var id = 'slider-' + opts.name.replace(/\W/g, '_');
-    var label = document.createElement('label');
-    label.setAttribute('for', id);
-    label.textContent = '\\(' + opts.tex + '\\) =';
-    var input = document.createElement('input');
-    input.type  = 'range';
-    input.id    = id;
-    input.min   = opts.min;
-    input.max   = opts.max;
-    input.step  = opts.step;
-    input.value = opts.value;
-    input.setAttribute('aria-label', opts.name + ' value');
-    var val = document.createElement('span');
-    val.className = 'slider-val';
-    function show(v) {
-      var s = (+v).toFixed(2);
-      val.textContent = s;
-      input.setAttribute('aria-valuetext', opts.name + ' equals ' + s);
-    }
-    show(opts.value);
-    input.addEventListener('input', function() {
-      var v = parseFloat(input.value);
-      show(v);
-      opts.onInput(v);
-    });
-    container.appendChild(label);
-    container.appendChild(input);
-    container.appendChild(val);
-    return {
-      input: input,
-      set: function(v) { input.value = v; show(v); }
-    };
-  }
 
   DomReady.ready(function() {
     var RANGE   = 10;
@@ -220,30 +105,20 @@
     var color2  = new Color("green");
     var color3  = new Color("red");
     var eqnElt  = document.getElementById('vectors-here');
-
-    function recompute() {
-      for (var k = 0; k < 3; k++) vector3[k] = vector1[k] + vector2[k];
-    }
+    function recompute() { for (var k = 0; k < 3; k++) vector3[k] = vector1[k] + vector2[k]; }
     function updateCaption() {
-      renderMath(texVec(vector1, color1) + '+' + texVec(vector2, color2) +
-                 '=' + texVec(vector3, color3), eqnElt);
+      renderMath(texVec(vector1, color1) + '+' + texVec(vector2, color2) + '=' + texVec(vector3, color3), eqnElt);
     }
-
     var editor = buildVectorEditor(document.getElementById('vec-inputs'), [
       { name: 'v', tex: 'v', vec: vector1, dim: 3 },
       { name: 'w', tex: 'w', vec: vector2, dim: 3 }
     ], RANGE, function() { recompute(); updateCaption(); });
-
     recompute();
     updateCaption();
 
     new Demo({
-      // demo.js binds a bare 'f' key to fullscreen (WCAG 2.1.4); turn it off
       fullscreen: false,
-      mathbox: {
-        element: document.getElementById('mathbox1'),
-        mathbox: { warmup: 10, splash: false, inspect: false }
-      },
+      mathbox: mbOpts('mathbox1'),
       camera: { position: [-1.5, -3, 1.5] }
     }, function() {
       window.mathbox = this.mathbox;
@@ -252,10 +127,9 @@
       var origins = [[0, 0, 0], [0, 0, 0], vector2, vector1, [0, 0, 0]];
       var colors  = [color1, color2, color1, color2, color3];
       var labelColors = colors.slice();   // labeledVectors overwrites entries with arrays
-      // No `labels` option: WebGL text replaced by MathJax labels below
       this.labeledVectors(view, { vectors: vecs, origins: origins, colors: colors });
-      var labelLayer = makeLabelLayer(document.getElementById('mathbox1'), this, view);
-      addVectorLabels(labelLayer, vecs, labelColors, ['v', 'w', 'v', 'w', 'v+w'], origins);
+      addVectorLabels(makeLabelLayer(document.getElementById('mathbox1'), this, view),
+                      vecs, labelColors, ['v', 'w', 'v', 'w', 'v+w'], origins);
       this.draggable(view, {
         points:   [vector1, vector2],
         onDrag:   function(vec) { vec.clampScalar(-RANGE, RANGE); },
@@ -264,32 +138,7 @@
     });
   }); // end DomReady.ready
 
-  // ── Fullscreen toggle (works standalone; may be blocked when embedded) ───
-  (function() {
-    var btn = document.getElementById('fs-btn');
-    function isFS() {
-      return !!(document.fullscreenElement || document.webkitFullscreenElement);
-    }
-    function updateLabel() {
-      var label = isFS() ? 'Exit fullscreen' : 'Toggle fullscreen';
-      btn.textContent = isFS() ? '✕' : '⛶';
-      btn.title = label;
-      btn.setAttribute('aria-label', label);
-    }
-    btn.addEventListener('click', function() {
-      var el = document.documentElement, p;
-      if (!isFS()) {
-        var req = el.requestFullscreen || el.webkitRequestFullscreen;
-        if (req) p = req.call(el);
-      } else {
-        var exit = document.exitFullscreen || document.webkitExitFullscreen;
-        if (exit) p = exit.call(document);
-      }
-      if (p && p.catch) p.catch(function() {});
-    });
-    ['fullscreenchange', 'webkitfullscreenchange']
-      .forEach(function(e) { document.addEventListener(e, updateLabel); });
-  })();
+  initFullscreenButton('fs-btn');
   </script>
 </body>
 </html>
