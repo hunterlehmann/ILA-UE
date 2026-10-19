@@ -280,8 +280,7 @@
 
 
   <math-package latex-name="mathtools" mathjax-name="mathtools" />
-  
-  <math-package latex-name="html" mathjax-name="html" />
+
   <math-package latex-name="color" mathjax-name="color" />
 
 
