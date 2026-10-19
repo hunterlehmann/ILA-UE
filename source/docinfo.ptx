@@ -15,6 +15,8 @@
   <rename element="problem">Remark</rename>
   <rename element="convention">Primary Goal</rename>
   <rename element="algorithm">Recipe</rename>
+  <rename element="assemblage" xml:lang="en-US">Summary</rename>
+  
   <defaults>
     <xrefs text="phrase-hybrid" />
   </defaults>
