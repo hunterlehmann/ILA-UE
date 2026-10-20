@@ -1297,8 +1297,8 @@ y \amp {}+{} \amp 2z \amp {}={} \amp -1. \amp {}
   </subsection>
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: The augmented matrix <m>\left(\begin{array}{rrr|r}0 \amp 1 \amp 0 \amp 2 \\ 0 \amp 0 \amp 1 \amp -3\end{array}\right)</m> is
+    <statement correct="yes">
+      <p>The augmented matrix <m>\left(\begin{array}{rrr|r}0 \amp 1 \amp 0 \amp 2 \\ 0 \amp 0 \amp 1 \amp -3\end{array}\right)</m> is
         in reduced row echelon form.</p>
     </statement>
     <solution>
@@ -1307,8 +1307,8 @@ y \amp {}+{} \amp 2z \amp {}={} \amp -1. \amp {}
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If the reduced row echelon form of an augmented matrix has a row of
+    <statement correct="no">
+      <p>If the reduced row echelon form of an augmented matrix has a row of
           zeros, then the system of linear equations corresponding to the
           augmented matrix must have infinitely many solutions.</p>
     </statement>
@@ -1587,7 +1587,7 @@ y \amp {}+{} \amp 2z \amp {}={} \amp -1. \amp {}
           gives <m>x_2 = 2</m>, so <m>(6, 2, 0)</m> is a second solution.</p>
       <p>In reality, there are infinitely many solutions to this system of
           equations.  We'll see in section 1.3 that this consistent system
-          has <m>x_3</m> as a \emph{free} variable because its column does not
+          has <m>x_3</m> as a <em>free</em> variable because its column does not
           have a pivot, which means that we can set <m>x_3</m> equal to any real
           number and then solve for <m>x_1</m> and <m>x_2</m>.</p>
     </solution>
@@ -1658,5 +1658,5 @@ y \amp {}+{} \amp 2z \amp {}={} \amp -1. \amp {}
       </p>
     </solution>
   </exercise>
-</exercises>
+</exercises> 
 </section>

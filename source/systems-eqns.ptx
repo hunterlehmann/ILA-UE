@@ -728,7 +728,7 @@ Two lines in the plane that are equal
     </p>
 
   </subsection>
-  <exercises>
+<exercises>
   <exercise>
     <statement>
       <p>
@@ -795,7 +795,7 @@ Two lines in the plane that are equal
         <md><mrow>x - y = 0</mrow></md>
         <md><mrow>2x + y = 3</mrow></md>.
       </p>
-      <image source="images/./1_1/lines.pdf">
+      <image source="images/1_1/lines">
         <shortdescription><!-- FILL: concise image description --></shortdescription>
         <description><p><!-- FILL: complete image description --></p></description>
       </image>
@@ -849,8 +849,7 @@ Two lines in the plane that are equal
         <p><m>(1, -1, 1)</m></p>
       </statement>
       <solution>
-        <p>No: <m>3(1)-10(-1)+1 = 14</m>, not <m>15</m>.
-            \end{subproblems}</p>
+        <p>No: <m>3(1)-10(-1)+1 = 14</m>, not <m>15</m>.</p>
       </solution>
     </task>
   </exercise>
@@ -1040,7 +1039,6 @@ Two lines in the plane that are equal
               to all ones.  This gives us
           <md><mrow>2^9 = 512</mrow></md>
           such QR codes.
-            \end{subproblems}
         </p>
       </solution>
     </task>

@@ -340,8 +340,8 @@ x_3 \amp {}={} \amp -1 - 4x_4 \amp .
   </subsection>
 <exercises>
   <exercise>
-    <statement>
-      <p>True or false: If a system of linear equations has 100 variables and 70
+    <statement correct="no">
+      <p>If a system of linear equations has 100 variables and 70
         equations, then there must be infinitely many solutions.</p>
     </statement>
     <solution>
@@ -357,8 +357,8 @@ x_3 \amp {}={} \amp -1 - 4x_4 \amp .
     </solution>
   </exercise>
   <exercise>
-    <statement>
-      <p>True or false: If a system of linear equations has 70 variables and 100
+    <statement correct="no">
+      <p>If a system of linear equations has 70 variables and 100
       equations, then it must be inconsistent.</p>
     </statement>
     <solution>
@@ -391,8 +391,7 @@ x_3 \amp {}={} \amp -1 - 4x_4 \amp .
           leaving us with two possibilities: Either the augmented matrix has a pivot in
           every column to the left of the augment bar (no free variables, thus exactly
           one solution), or there is a non-pivot column to the left of the augment bar
-          (free variable, thus infinitely many solutions).
-        \end{subproblems}</p>
+          (free variable, thus infinitely many solutions).</p>
       </solution>
     </task>
   </exercise>
@@ -624,10 +623,14 @@ x_3 \amp {}={} \amp -1 - 4x_4 \amp .
             get two \textit{different} parallel lines.  In (b), each equation
             gives the \textit{same} line since the second row is two times the
             first row.
-          \end{subproblems}
         </p>
       </solution>
     </task>
+    <solution>
+      <p>
+        <md><mrow>\left(\begin{array}{rr|r}3 \amp -2 \amp 4 \\ 6 \amp h \amp k\end{array}\right) \xrightarrow[]{R_2=R_2-2R_1} \left(\begin{array}{rr|r}3 \amp -2 \amp 4 \\ 0 \amp h+4 \amp k-8\end{array}\right)</mrow></md>.
+      </p>
+    </solution>
   </exercise>
   <exercise>
     <statement>
