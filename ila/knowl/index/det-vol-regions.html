@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.3.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(n\times n\)</span> matrix, and let <span class="process-math">\(T\colon\R^n\to\R^n\)</span> be the associated matrix transformation <span class="process-math">\(T(x)=Ax\text{.}\)</span>  If <span class="process-math">\(S\)</span> is any region in <span class="process-math">\(\R^n\text{,}\)</span> then</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\vol(T(S))=|\det(A)|\cdot\vol(S)\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-vol-regions-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 4.3.13"><a tabindex="-1" href="#det-vol-regions" title="Copy heading and permalink for Theorem 4.3.13" aria-label="Copy heading and permalink for Theorem 4.3.13">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para">Let <span class="process-math">\(C\)</span> be the unit cube, let <span class="process-math">\(v_1,v_2,\ldots,v_n\)</span> be the columns of <span class="process-math">\(A\text{,}\)</span> and let <span class="process-math">\(P\)</span> be the paralellepiped determined by these vectors, so <span class="process-math">\(T(C) = P\)</span> and <span class="process-math">\(\vol(P) = |\det(A)|\text{.}\)</span>  For <span class="process-math">\(\epsilon &gt; 0\)</span> we let <span class="process-math">\(\epsilon C\)</span> be the cube with side lengths <span class="process-math">\(\epsilon\text{,}\)</span> i.e., the paralellepiped determined by the vectors <span class="process-math">\(\epsilon e_1,\epsilon e_2,\ldots,\epsilon e_n\text{,}\)</span> and we define <span class="process-math">\(\epsilon P\)</span> similarly.  By the second <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">defining property</a>, <span class="process-math">\(T\)</span> takes <span class="process-math">\(\epsilon C\)</span> to <span class="process-math">\(\epsilon P\text{.}\)</span>  The volume of <span class="process-math">\(\epsilon C\)</span> is <span class="process-math">\(\epsilon^n\)</span> (we scaled each of the <span class="process-math">\(n\)</span> standard vectors by a factor of <span class="process-math">\(\epsilon\)</span>) and the volume of <span class="process-math">\(\epsilon P\)</span> is <span class="process-math">\(\epsilon^n|\det(A)|\)</span> (for the same reason), so we have shown that <span class="process-math">\(T\)</span> scales the volume of <span class="process-math">\(\epsilon C\)</span> by <span class="process-math">\(|\det(A)|\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-vol-regions-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/det-vol-regions-5-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="det-vol-regions-5-2-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="det-vol-regions-5-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-vol-regions-5-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">By the first <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">defining property</a>, the image of a translate of <span class="process-math">\(\epsilon C\)</span> is a translate of <span class="process-math">\(\epsilon P\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{gather*}
+T(x + \epsilon C) = T(x) + \epsilon T(C) = T(x) + \epsilon P\text{.}
+\end{gather*}
+</div>
+<div class="para">Since a translation does not change volumes, this proves that <span class="process-math">\(T\)</span> scales the volume of a translate of <span class="process-math">\(\epsilon C\)</span> by <span class="process-math">\(|\det(A)|\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-vol-regions-5-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">At this point, we need to use techniques from multivariable calculus, so we only give an idea of the rest of the proof.  Any region <span class="process-math">\(S\)</span> can be approximated by a collection of very small cubes of the form <span class="process-math">\(x + \epsilon C\text{.}\)</span>  The image <span class="process-math">\(T(S)\)</span> is then approximated by the image of this collection of cubes, which is a collection of very small paralellepipeds of the form <span class="process-math">\(T(x) + \epsilon P\text{.}\)</span> \def\curvy{(-37.3333, 2.6667) .. controls (-37.3333, -5.3333) and (-26.6667, -10.6667) .. (-16, -24) .. controls (-5.3333, -37.3333) and (5.3333, -58.6667) .. (18.6667, -48) .. controls (32, -37.3333) and (48, 5.3333) .. (45.3333, 18.6667) .. controls (42.6667, 32) and (21.3333, 16) .. (8, 13.3333) .. controls (-5.3333, 10.6667) and (-10.6667, 21.3333) .. (-18.6667, 21.3333) .. controls (-26.6667, 21.3333) and (-37.3333, 10.6667) .. cycle} \begin{tikzpicture}[scale=1, thin border nodes] \draw[help lines, black!25] (-2,-2) rectangle (2,2); \begin{scope}[fill=seq-orange, fill opacity=.2, thin, x=1.7*.7bp, y=1.7*.7bp, yshift=.4cm, xshift=-.2cm] \expandafter\filldraw\curvy; \expandafter\clip\curvy; \fill[seq-red, opacity=.5, shift={(2*4,-4*4)}] (0,0) rectangle (4,4); \coordinate (a) at (2*4,-4*4); \draw[very thin, black!70!white, step=4] (-60,-60) grid (60,60); \end{scope} \draw[thin] (-1.2, -1.2) node[below] {$x + \epsilon C$} -- (a); \node at (0,1.5) {$S$}; %\point at (0,0); \draw[-&gt;, thick] (2.1,0) to[bend left, "$T$" above=1mm] (8-2.1,0); \begin{scope}[xshift=8cm] \draw[help lines, black!25] (-2,-2) rectangle (2,2); \begin{scope}[cm={2,1,1,2,(0,.5)}, x=.7bp, y=.7bp, fill=seq-orange, fill opacity=.2, thin] \expandafter\filldraw\curvy; \expandafter\clip\curvy; \fill[seq-red, opacity=.5, shift={(2*4,-4*4)}] (0,0) rectangle (4,4); \draw[very thin, black!70!white, step=4] (-60,-60) grid (60,60); \coordinate (b) at (3*4,-4*4); \end{scope} \draw[thin] (.9,-1.3) node[below] {$T(x) + \epsilon P$} -- (b); \node at (-.7,1.5) {$T(S)$}; % \point at (0,0); \end{scope} \end{tikzpicture} The volume of <span class="process-math">\(S\)</span> is closely approximated by the sum of the volumes of the cubes; in fact, as <span class="process-math">\(\epsilon\)</span> goes to zero, the limit of this sum is precisely <span class="process-math">\(\vol(S)\text{.}\)</span>  Likewise, the volume of <span class="process-math">\(T(S)\)</span> is equal to the sum of the volumes of the paralellepipeds, take in the limit as <span class="process-math">\(\epsilon\to 0\text{.}\)</span>  The key point is that <em class="emphasis">the volume of each cube is scaled by <span class="process-math">\(|\det(A)|\text{.}\)</span></em>  Therefore, the sum of the volumes of the paralellepipeds is <span class="process-math">\(|\det(A)|\)</span> times the sum of the volumes of the cubes.  This proves that <span class="process-math">\(\vol(T(S)) = |\det(A)|\vol(S).\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-vol-regions-5-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 4.3.13.1"><a tabindex="-1" href="#det-vol-regions-5" title="Copy heading and permalink for Proof 4.3.13.1" aria-label="Copy heading and permalink for Proof 4.3.13.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-determinants-volumes.html#det-vol-regions">In Context</a></span>
+</body>
+</html>

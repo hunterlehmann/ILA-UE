@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h2 class="heading"><span class="title">Least Squares: Picture.</span></h2>
+<div class="para">Suppose that the equation <span class="process-math">\(Ax=b\)</span> is inconsistent.  Recall from <a href="sec-matrix-equations.html#matrixeq-spans-consistency" class="xref" data-knowl="./knowl/xref/matrixeq-spans-consistency.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Spans and Consistency">Note </a> that the column space of <span class="process-math">\(A\)</span> is the set of all other vectors <span class="process-math">\(c\)</span> such that <span class="process-math">\(Ax=c\)</span> is consistent.  In other words, <span class="process-math">\(\Col(A)\)</span> is the set of all vectors of the form <span class="process-math">\(Ax.\)</span>  Hence, the <a href="sec-projections.html#projections-closest-vector" class="xref" data-knowl="./knowl/xref/projections-closest-vector.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Closest vector and distance">closest vector</a> of the form <span class="process-math">\(Ax\)</span> to <span class="process-math">\(b\)</span> is the orthogonal projection of <span class="process-math">\(b\)</span> onto <span class="process-math">\(\Col(A)\text{.}\)</span>  This is denoted <span class="process-math">\(b_{\Col(A)}\text{,}\)</span> following <a href="sec-projections.html#projections-closest-notn" class="xref" data-knowl="./knowl/xref/projections-closest-notn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 6.3.1">Definition 1 of Section 6.3</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-least-squares-solutions-5-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-least-squares-solutions-5-4.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-least-squares-solutions-5-4-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-least-squares-solutions-5-4-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-least-squares-solutions-5-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<article class="insight remark-like"><h3 class="heading">
+<span class="type">Insight</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para">A least-squares solution of <span class="process-math">\(Ax=b\)</span> is a solution <span class="process-math">\(\hat x\)</span> of the consistent equation <span class="process-math">\(Ax=b_{\Col(A)}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-least-squares-solutions-5-5-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Insight 6.4.2"><a tabindex="-1" href="#subsec-least-squares-solutions-5-5" title="Copy heading and permalink for Insight 6.4.2" aria-label="Copy heading and permalink for Insight 6.4.2">🔗</a></div>
+</article>
+<article class="note remark-like"><h3 class="heading">
+<span class="type">Note</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para">If <span class="process-math">\(Ax=b\)</span> is consistent, then <span class="process-math">\(b_{\Col(A)} = b\text{,}\)</span> so that a least-squares solution is the same as a usual solution.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-least-squares-solutions-5-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Note 6.4.3"><a tabindex="-1" href="#subsec-least-squares-solutions-5-6" title="Copy heading and permalink for Note 6.4.3" aria-label="Copy heading and permalink for Note 6.4.3">🔗</a></div>
+</article>
+<div class="para logical">
+<div class="para">Where is <span class="process-math">\(\hat x\)</span> in this picture?  If <span class="process-math">\(v_1,v_2,\ldots,v_n\)</span> are the columns of <span class="process-math">\(A\text{,}\)</span> then</div>
+<div class="displaymath process-math">
+\begin{gather*}
+A\hat x = A\begin{pmatrix}
+\hat \\
+x_1 \\
+\hat \\
+x_2 \\
+\vdots \\
+\hat \\
+x_n
+\end{pmatrix}
+= \hat x_1v_1 + \hat x_2v_2 + \cdots + \hat x_nv_n\text{.}
+\end{gather*}
+</div>
+<div class="para">Hence the entries of <span class="process-math">\(\hat x\)</span> are the “coordinates” of <span class="process-math">\(b_{\Col(A)}\)</span> with respect to the spanning set <span class="process-math">\(\{v_1,v_2,\ldots,v_m\}\)</span> of <span class="process-math">\(\Col(A)\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-least-squares-solutions-5-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-least-squares-solutions-5-8.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-least-squares-solutions-5-8-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-least-squares-solutions-5-8-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-least-squares-solutions-5-8-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/leastsquares-if.html?v1=0,1,0&amp;v2=1.1,0,-.2&amp;range=2&amp;vec=1.4,-1.1,1.45" id="subsec-least-squares-solutions-5-9-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-least-squares-solutions-5-9-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-least-squares-solutions-5-9-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-least-squares-solutions-5-9-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-least-squares-solutions-5-9-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-least-squares-solutions-5-9-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-least-squares-solutions-5-9-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-least-squares-solutions-5-9-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-least-squares-solutions-5-9-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The violet plane is <span class="process-math">\(\Col(A)\text{.}\)</span>  The closest that <span class="process-math">\(Ax\)</span> can get to <span class="process-math">\(b\)</span> is the closest vector on <span class="process-math">\(\Col(A)\)</span> to <span class="process-math">\(b\text{,}\)</span> which is the orthogonal projection <span class="process-math">\(b_{\Col(A)}\)</span> (in blue).  The vectors <span class="process-math">\(v_1,v_2\)</span> are the columns of <span class="process-math">\(A\text{,}\)</span> and the coefficients of <span class="process-math">\(\hat x\)</span> are the lengths of the green lines.  Click and drag <span class="process-math">\(b\)</span> to move it.<div class="autopermalink" aria-hidden="true" data-description="Figure 6.4.4"><a tabindex="-1" href="#subsec-least-squares-solutions-5-9" title="Copy heading and permalink for Figure 6.4.4" aria-label="Copy heading and permalink for Figure 6.4.4">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Paragraphs: Least Squares: Picture"><a tabindex="-1" href="#subsec-least-squares-solutions-5" title="Copy heading and permalink for Paragraphs: Least Squares: Picture" aria-label="Copy heading and permalink for Paragraphs: Least Squares: Picture">🔗</a></div>
+</section><span class="incontext"><a class="internal" href="sec-least-squares.html#subsec-least-squares-solutions-5">In Context</a></span>
+</body>
+</html>

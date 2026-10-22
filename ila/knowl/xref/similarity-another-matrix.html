@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="question example-like"><h2 class="heading">
+<span class="type">Interactive</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.12</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Another matrix similar to <span class="process-math">\(B\)</span>.</span>
+</h2>
+<div class="para logical">
+<div class="para">Consider the matrices</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/similarity-worked-eg.html">
+\begin{align*}
+A' = \frac 15\begin{pmatrix}
+-8 \amp -9 \\
+6 \amp 13
+\end{pmatrix} \qquad
+B = \begin{pmatrix}
+2 \amp 0 \\
+0 \amp -1
+\end{pmatrix} \qquad
+C' = \frac 12\begin{pmatrix}
+-1 \amp -3 \\
+2 \amp 1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Then <span class="process-math">\(A' = C'B(C')\inv\text{,}\)</span> as one can verify.  Let <span class="process-math">\(v_1'=\frac 12{-1\choose 2}\)</span> and <span class="process-math">\(v_2' = \frac 12{-3\choose 1}\text{,}\)</span> the columns of <span class="process-math">\(C'\text{,}\)</span> and let <span class="process-math">\(\cB' = \{v_1',v_2'\}\text{.}\)</span>  Then <span class="process-math">\(A'\)</span> does the same thing as <span class="process-math">\(B\text{,}\)</span> as in <a href="sec-similarity.html#similarity-worked-eg" class="xref" data-knowl="./knowl/xref/similarity-worked-eg.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.3.10">Example 10</a>, except <span class="process-math">\(A'\)</span> uses the <span class="process-math">\(\cB'\)</span>-coordinate system.  In other words:</div>
+<ul class="disc" id="similarity-another-matrix-2-12">
+<li>
+<div class="para">
+<span class="process-math">\(B\)</span> scales the <span class="process-math">\(e_1\)</span>-direction by <span class="process-math">\(2\)</span> and the <span class="process-math">\(e_2\)</span>-direction by <span class="process-math">\(-1\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-another-matrix-2-12-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#similarity-another-matrix-2-12-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li>
+<div class="para">
+<span class="process-math">\(A'\)</span> scales the <span class="process-math">\(v_1'\)</span>-direction by <span class="process-math">\(2\)</span> and the <span class="process-math">\(v_2'\)</span>-direction by <span class="process-math">\(-1\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-another-matrix-2-12-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#similarity-another-matrix-2-12-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">\def\theo{\includegraphics[width=6cm]{theo6.jpg}} \begin{tikzpicture}[scale=.8, thin border nodes] \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1,0) node[right] {$e_1$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0,1) node[above] {$e_2$}; \point at (0, 0); \begin{scope}[xshift=9cm, xscale=2, yscale=-1] \clip (-1.5, -3) rectangle (1.5, 3); \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1, 0) node[right] {$Be_1$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0, 1) node[below] {$Be_2$}; \point at (0, 0); \end{scope} \begin{scope}[yshift=-9cm] \clip (-3, -3) rectangle (3, 3); \begin{scope}[cm={(-1/2,1,-3/2,1/2,(0,0))}] \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1,0) node[above] {$v_1’$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0,1) node[left] {$v_2’$}; \end{scope} \point at (0, 0); \end{scope} \begin{scope}[yshift=-9cm, xshift=9cm] \clip (-3, -3) rectangle (3, 3); \begin{scope}[cm={(-1/2,1,-3/2,1/2,(0,0))}] \begin{scope}[xscale=2, yscale=-1] \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1,0) node[above=-1mm] {$A’v_1’$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0,1) node[right] {$A’v_2’$}; \end{scope} \end{scope} \point at (0, 0); \end{scope} \draw (-3, -3) rectangle (3, 3); \draw[xshift=9cm] (-3, -3) rectangle (3, 3); \draw[yshift=-9cm] (-3, -3) rectangle (3, 3); \draw[xshift=9cm, yshift=-9cm] (-3, -3) rectangle (3, 3); \draw[-&gt;, shorten=2mm, thick] (3, 1) to[bend left, "$B$" above=.5mm] (6, 1); \draw[-&gt;, shorten=2mm, thick, yshift=-9cm] (3, -1) to[bend right, "$A’$" above=.5mm] (6, -1); \draw[-&gt;, shorten=2mm, thick] (-1, -6) to[bend left, "$(C’)\inv$" right=.5mm] (-1, -3); \draw[-&gt;, shorten=2mm, thick, xshift=9cm] (1, -3) to[bend left, "$C’$" left=.5mm] (1, -6); \end{tikzpicture}</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-another-matrix-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/similarity-if.html?B=2,0:0,-1&amp;C=-1/2,-3/2:1,1/2&amp;closed" id="similarity-another-matrix-3-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="similarity-another-matrix-3-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="similarity-another-matrix-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-another-matrix-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="similarity-another-matrix-3-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="similarity-another-matrix-3-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="similarity-another-matrix-3-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-another-matrix-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#similarity-another-matrix-3-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The geometric relationship between the similar matrices <span class="process-math">\(A'\)</span> and <span class="process-math">\(B\)</span> acting on <span class="process-math">\(\R^2\text{.}\)</span>  Click and drag the heads of <span class="process-math">\(x\)</span> and <span class="process-math">\([x]_{\cB'}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Figure 5.3.13"><a tabindex="-1" href="#similarity-another-matrix-3" title="Copy heading and permalink for Figure 5.3.13" aria-label="Copy heading and permalink for Figure 5.3.13">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Interactive 5.3.12: Another matrix similar to B"><a tabindex="-1" href="#similarity-another-matrix" title="Copy heading and permalink for Interactive 5.3.12: Another matrix similar to B" aria-label="Copy heading and permalink for Interactive 5.3.12: Another matrix similar to B">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-similarity.html#similarity-another-matrix">In Context</a></span>
+</body>
+</html>

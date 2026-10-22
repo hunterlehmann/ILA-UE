@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="fact theorem-like"><h2 class="heading">
+<span class="type">Fact</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.19</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Eigenvectors with distinct eigenvalues are linearly independent.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(v_1,v_2,\ldots,v_k\)</span> be eigenvectors of a matrix <span class="process-math">\(A\text{,}\)</span> and suppose that the corresponding eigenvalues <span class="process-math">\(\lambda_1,\lambda_2,\ldots,\lambda_k\)</span> are <em class="emphasis">distinct</em> (all different from each other).  Then <span class="process-math">\(\{v_1,v_2,\ldots,v_k\}\)</span> is linearly independent.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#evecs-linindep-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Fact 5.1.19: Eigenvectors with distinct eigenvalues are linearly independent"><a tabindex="-1" href="#evecs-linindep" title="Copy heading and permalink for Fact 5.1.19: Eigenvectors with distinct eigenvalues are linearly independent" aria-label="Copy heading and permalink for Fact 5.1.19: Eigenvectors with distinct eigenvalues are linearly independent">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para">Suppose that <span class="process-math">\(\{v_1,v_2,\ldots,v_k\}\)</span> were linearly <em class="emphasis">de</em>pendent.  According to the <a href="sec-linear-independence.html#linindep-increasing-span" class="xref" data-knowl="./knowl/xref/linindep-increasing-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.5.14: Increasing Span Criterion">Theorem 14 of Section 2.5</a>, this means that for some <span class="process-math">\(j\text{,}\)</span> the vector <span class="process-math">\(v_j\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{j-1}\}.\)</span>  If we choose the <em class="emphasis">first</em> such <span class="process-math">\(j\text{,}\)</span> then <span class="process-math">\(\{v_1,v_2,\ldots,v_{j-1}\}\)</span> is linearly independent.  Note that <span class="process-math">\(j &gt; 1\)</span> since <span class="process-math">\(v_1\neq 0\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#evecs-linindep-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Since <span class="process-math">\(v_j\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{j-1}\},\text{,}\)</span> we can write</div>
+<div class="displaymath process-math">
+\begin{gather*}
+v_j = c_1v_1 + c_2v_2 + \cdots + c_{j-1}v_{j-1}
+\end{gather*}
+</div>
+<div class="para">for some scalars <span class="process-math">\(c_1,c_2,\ldots,c_{j-1}\text{.}\)</span>  Multiplying both sides of the above equation by <span class="process-math">\(A\)</span> gives</div>
+<div class="displaymath process-math">
+\begin{align*}
+\lambda_jv_j =
+Av_j \amp= A\bigl(c_1v_1 + c_2v_2 + \cdots + c_{j-1}v_{j-1}\bigr)\\
+\amp= c_1Av_1 + c_2Av_2 + \cdots + c_{j-1}Av_{j-1}\\
+\amp= c_1\lambda_1v_1 + c_2\lambda_2v_2 + \cdots + c_{j-1}\lambda_{j-1}v_{j-1}\text{.}
+\end{align*}
+</div>
+<div class="para">Subtracting <span class="process-math">\(\lambda_j\)</span> times the first equation from the second gives</div>
+<div class="displaymath process-math">
+\begin{gather*}
+0 = \lambda_jv_j - \lambda_jv_j
+= c_1(\lambda_1-\lambda_j)v_1 + c_2(\lambda_2-\lambda_j)v_2 + \cdots + c_{j-1}(\lambda_{j-1}-\lambda_j)v_{j-1}\text{.}
+\end{gather*}
+</div>
+<div class="para">Since <span class="process-math">\(\lambda_i\neq\lambda_j\)</span> for <span class="process-math">\(i \lt j\text{,}\)</span> this is an equation of linear dependence among <span class="process-math">\(v_1,v_2,\ldots,v_{j-1}\text{,}\)</span> which is impossible because those vectors are linearly independent.  Therefore, <span class="process-math">\(\{v_1,v_2,\ldots,v_k\}\)</span> must have been linearly independent after all.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#evecs-linindep-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 5.1.19.1"><a tabindex="-1" href="#evecs-linindep-4" title="Copy heading and permalink for Proof 5.1.19.1" aria-label="Copy heading and permalink for Proof 5.1.19.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-eigenvectors.html#evecs-linindep">In Context</a></span>
+</body>
+</html>

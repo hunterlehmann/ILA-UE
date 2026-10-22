@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.21</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Gram–Schmidt Process.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(v_1,v_2,\ldots,v_m\)</span> be a basis for a subspace <span class="process-math">\(W\)</span> of <span class="process-math">\(\R^n\text{.}\)</span>  Define:</div>
+<div class="displaymath process-math">
+\begin{align*}
+1.\quad u_1 \amp= v_1 \phantom{\dfrac{u_1}{u_1}}\\
+2.\quad u_2 \amp=
+\hbox to 3.4cm{$(v_2)_{\Span\{u_1\}^\perp}$}
+= v_2 - \frac{v_2\cdot u_1}{u_1\cdot u_1}\,u_1\\
+3.\quad u_3 \amp=
+\hbox to 3.4cm{$(v_3)_{\Span\{u_1,u_2\}^\perp}$}
+= v_3 - \frac{v_3\cdot u_1}{u_1\cdot u_1}\,u_1
+- \frac{v_3\cdot u_2}{u_2\cdot u_2}\,u_2\\
+\vdots\quad\amp\\
+m.\quad u_m \amp=
+\hbox to 3.4cm{$(v_m)_{\Span\{u_1,u_2,\ldots,u_{m-1}\}^\perp}$}
+= v_m - \sum_{i=1}^{m-1}\frac{v_m\cdot u_i}{u_i\cdot u_i}\,u_i\text{.}
+\end{align*}
+</div>
+<div class="para">Then <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is an orthogonal basis for the same subspace <span class="process-math">\(W\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 6.4.21: The Gram–Schmidt Process"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3" title="Copy heading and permalink for Theorem 6.4.21: The Gram–Schmidt Process" aria-label="Copy heading and permalink for Theorem 6.4.21: The Gram–Schmidt Process">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para">First we claim that each <span class="process-math">\(u_i\)</span> is in <span class="process-math">\(W\text{,}\)</span> and in fact that <span class="process-math">\(u_i\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_i\}\text{.}\)</span>  Clearly <span class="process-math">\(u_1 = v_1\)</span> is in <span class="process-math">\(\Span\{v_1\}\text{.}\)</span>  Then <span class="process-math">\(u_2\)</span> is a linear combination of <span class="process-math">\(u_1\)</span> and <span class="process-math">\(v_2\text{,}\)</span> which are both in <span class="process-math">\(\Span\{v_1,v_2\}\text{,}\)</span> so <span class="process-math">\(u_2\)</span> is in <span class="process-math">\(\Span\{v_1,v_2\}\)</span> as well.  Similarly, <span class="process-math">\(u_3\)</span> is a linear combination of <span class="process-math">\(u_1,\,u_2,\)</span> and <span class="process-math">\(v_3\text{,}\)</span> which are all in <span class="process-math">\(\Span\{v_1,v_2,v_3\}\text{,}\)</span> so <span class="process-math">\(u_3\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,v_3\}\text{.}\)</span>  Continuing in this way, we see that each <span class="process-math">\(u_i\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_i\}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Now we claim that <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is an orthogonal set.  Let <span class="process-math">\(1\leq i \lt j \leq m\text{.}\)</span>  Then <span class="process-math">\(u_j = (v_j)_{\Span\{u_1,u_2,\ldots,u_{j-1}\}^\perp}\text{,}\)</span> so by definition <span class="process-math">\(u_j\)</span> is orthogonal to every vector in <span class="process-math">\(\Span\{u_1,u_2,\ldots,u_{j-1}\}\text{.}\)</span>  In particular, <span class="process-math">\(u_j\)</span> is orthogonal to <span class="process-math">\(u_i\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">We still have to prove that each <span class="process-math">\(u_i\)</span> is nonzero.  Clearly <span class="process-math">\(u_1=v_1\neq 0\text{.}\)</span>  Suppose that <span class="process-math">\(u_i=0\text{.}\)</span>  Then <span class="process-math">\((v_i)_{\Span\{u_1,u_2,\ldots,u_{i-1}\}^\perp}=0\text{,}\)</span> which means that <span class="process-math">\(v_i\)</span> is in <span class="process-math">\(\Span\{u_1,u_2,\ldots,u_{i-1}\}.\)</span>  But each <span class="process-math">\(u_1,u_2,\ldots,u_{i-1}\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{i-1}\}\)</span> by the first paragraph, so <span class="process-math">\(v_i\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{i-1}\}.\)</span>  This contradicts the <a href="sec-linear-independence.html#linindep-increasing-span" class="xref" data-knowl="./knowl/xref/linindep-increasing-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.5.14: Increasing Span Criterion">Theorem 14 of Section 2.5</a>; therefore, <span class="process-math">\(u_i\)</span> must be nonzero.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">The previous two paragraphs justify the use of the <a href="sec-orthogonal-sets.html#projection-formula" class="xref" data-knowl="./knowl/xref/projection-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.4.8">Theorem 8</a> in the equalities</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/projection-formula.html">
+\begin{gather*}
+(v_i)_{\Span\{u_1,u_2,\ldots,u_{i-1}\}^\perp}
+= v_i - (v_i)_{\Span\{u_1,u_2,\ldots,u_{i-1}\}}
+= v_i - \sum_{j=1}^{i-1}\frac{v_i\cdot u_j}{u_j\cdot u_j}\,u_j
+\end{gather*}
+</div>
+<div class="para">in the statement of the theorem.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Since <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is an orthogonal set, it is linearly independent.  Thus it is a set of <span class="process-math">\(m\)</span> linearly independent vectors in <span class="process-math">\(W\text{,}\)</span> so it is a basis for <span class="process-math">\(W\)</span> by the <a href="sec-dimension.html#basis-theorem" class="xref" data-knowl="./knowl/xref/basis-theorem.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.7.19">Theorem 19 of Section 2.7</a>.  Similarly, for every <span class="process-math">\(i\text{,}\)</span> we saw that the set <span class="process-math">\(\{u_1,u_2,\ldots,u_i\}\)</span> is contained in the <span class="process-math">\(i\)</span>-dimensional subspace <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_i\}\text{,}\)</span> so <span class="process-math">\(\{u_1,u_2,\ldots,u_i\}\)</span> is an orthogonal basis for <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_i\}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 6.4.21.1"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6" title="Copy heading and permalink for Proof 6.4.21.1" aria-label="Copy heading and permalink for Proof 6.4.21.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-orthogonal-sets.html#subsec-orthosets-gram-schmidt-3">In Context</a></span>
+</body>
+</html>

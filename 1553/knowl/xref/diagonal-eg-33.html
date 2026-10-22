@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.18</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A diagonalizable <span class="process-math">\(3\times 3\)</span> matrix.</span>
+</h2>
+<div class="para logical">
+<div class="para">Diagonalize the matrix</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+4 \amp -3 \amp 0 \\
+2 \amp -1 \amp 0 \\
+1 \amp -1 \amp 1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-33-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">We need to find the eigenvalues and eigenvectors of <span class="process-math">\(A\text{.}\)</span>  First we compute the characteristic polynomial by expanding cofactors along the third column:</div>
+<div class="displaymath process-math">
+\begin{align*}
+f(\lambda) \amp= \det(A-\lambda I_3)
+= (1-\lambda)\det\left(\begin{pmatrix}
+4 \amp -3 \\
+2 \amp -1
+\end{pmatrix} - \lambda I_2\right)\\
+\amp= (1-\lambda)(\lambda^2 - 3\lambda + 2)
+= -(\lambda-1)^2(\lambda-2)\text{.}
+\end{align*}
+</div>
+<div class="para">Therefore, the eigenvalues are <span class="process-math">\(1\)</span> and <span class="process-math">\(2\text{.}\)</span>  We need to compute eigenvectors for each eigenvalue.  We start with <span class="process-math">\(\lambda_1 = 1\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+(A-I_3)v = 0 \iff
+\begin{pmatrix}
+3 \amp -3 \amp 0 \\
+2 \amp -2 \amp 0 \\
+1 \amp -1 \amp 0
+\end{pmatrix}v = 0
+\;\xrightarrow{\text{RREF}}\;
+\begin{pmatrix}
+1 \amp -1 \amp 0 \\
+0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0
+\end{pmatrix}v = 0\text{.}
+\end{align*}
+</div>
+<div class="para">The parametric vector form is</div>
+<div class="displaymath process-math">
+\begin{align*}
+\left\{\begin{alignedat}{2}
+x \amp {}={} \amp y \amp {} \\
+y \amp {}={} \amp y \amp {} \\
+z \amp {}={} \amp z \amp {}
+\end{alignedat}\right.
+\implies \begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix} = y\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix} + z\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Hence a basis for the <span class="process-math">\(1\)</span>-eigenspace is</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\cB_1 = \bigl\{ v_1,v_2 \bigr\} \sptxt{where}
+v_1 = \begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix}, \quad v_2 = \begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Now we compute the eigenspace for <span class="process-math">\(\lambda_2 = 2\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+(A-2I_3)v = 0 \iff
+\begin{pmatrix}
+2 \amp -3 \amp 0 \\
+2 \amp -3 \amp 0 \\
+1 \amp -1 \amp -1
+\end{pmatrix}v = 0
+\;\xrightarrow{\text{RREF}}\;
+\begin{pmatrix}
+1 \amp 0 \amp -3 \\
+0 \amp 1 \amp -2 \\
+0 \amp 0 \amp 0
+\end{pmatrix}v = 0
+\end{align*}
+</div>
+<div class="para">The parametric form is <span class="process-math">\(x = 3z, y = 2z\text{,}\)</span> so an eigenvector with eigenvalue <span class="process-math">\(2\)</span> is</div>
+<div class="displaymath process-math">
+\begin{gather*}
+v_3 = \begin{pmatrix}
+3 \\
+2 \\
+1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-33-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">The eigenvectors <span class="process-math">\(v_1,v_2,v_3\)</span> are linearly independent: <span class="process-math">\(v_1,v_2\)</span> form a basis for the <span class="process-math">\(1\)</span>-eigenspace, and <span class="process-math">\(v_3\)</span> is not contained in the <span class="process-math">\(1\)</span>-eigenspace because its eigenvalue is <span class="process-math">\(2\text{.}\)</span> Therefore, the <a href="sec-diagonalization.html#diagonalization-thm" class="xref" data-knowl="./knowl/xref/diagonalization-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.3.11">Theorem 11</a> says that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/diagonalization-thm.html">
+\begin{align*}
+A = CDC\inv \sptxt{for} C = \begin{pmatrix}
+1 \amp 0 \amp 3 \\
+1 \amp 0 \amp 2 \\
+0 \amp 1 \amp 1
+\end{pmatrix}
+\qquad D = \begin{pmatrix}
+1 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 2
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-33-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/eigenspace-if.html?mat=4,-3,0:2,-1,0:1,-1,1&amp;nomult" id="diagonal-eg-33-3-3-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="diagonal-eg-33-3-3-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="diagonal-eg-33-3-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-33-3-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="diagonal-eg-33-3-3-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="diagonal-eg-33-3-3-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="diagonal-eg-33-3-3-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-33-3-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#diagonal-eg-33-3-3-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.19<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The green plane is the <span class="process-math">\(1\)</span>-eigenspace of <span class="process-math">\(A\text{,}\)</span> and the violet line is the <span class="process-math">\(2\)</span>-eigenspace. There are three linearly independent eigenvectors visible in the picture: choose any two noncollinear vectors on the green plane, and any nonzero vector on the violet line.<div class="autopermalink" aria-hidden="true" data-description="Figure 5.3.19"><a tabindex="-1" href="#diagonal-eg-33-3-3" title="Copy heading and permalink for Figure 5.3.19" aria-label="Copy heading and permalink for Figure 5.3.19">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 5.3.18.1"><a tabindex="-1" href="#diagonal-eg-33-3" title="Copy heading and permalink for Solution 5.3.18.1" aria-label="Copy heading and permalink for Solution 5.3.18.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 5.3.18: A diagonalizable 3\times 3 matrix"><a tabindex="-1" href="#diagonal-eg-33" title="Copy heading and permalink for Example 5.3.18: A diagonalizable 3\times 3 matrix" aria-label="Copy heading and permalink for Example 5.3.18: A diagonalizable 3\times 3 matrix">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-diagonalization.html#diagonal-eg-33">In Context</a></span>
+</body>
+</html>

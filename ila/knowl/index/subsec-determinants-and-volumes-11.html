@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="remark remark-like"><h2 class="heading">
+<span class="type">Remark</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.3.12</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Signed volumes.</span>
+</h2>
+<div class="para">The <a href="sec-determinants-volumes.html#det-is-volume" class="xref" data-knowl="./knowl/xref/det-is-volume.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.3.6: Determinants and volumes">Theorem 6</a> on determinants and volumes tells us that the <em class="emphasis">absolute value</em> of the determinant is the volume of a paralellepiped.  This raises the question of whether the sign of the determinant has any geometric meaning.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-determinants-and-volumes-11-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">A <span class="process-math">\(1\times 1\)</span> matrix <span class="process-math">\(A\)</span> is just a number <span class="process-math">\(\mat a\text{.}\)</span>  In this case, the parallelepiped <span class="process-math">\(P\)</span> determined by its one row is just the interval <span class="process-math">\([0,a]\)</span> if <span class="process-math">\(a \geq 0\text{,}\)</span> and it is <span class="process-math">\([a,0]\)</span> if <span class="process-math">\(a\lt0\text{.}\)</span>  In this case, the sign of the determinant determines whether the interval is to the left or the right of the origin.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-determinants-and-volumes-11-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">For a <span class="process-math">\(2\times 2\)</span> matrix with rows <span class="process-math">\(v_1,v_2\text{,}\)</span> the sign of the determinant determines whether <span class="process-math">\(v_2\)</span> is counterclockwise or clockwise from <span class="process-math">\(v_1\text{.}\)</span>  That is, if the counterclockwise angle from <span class="process-math">\(v_1\)</span> to <span class="process-math">\(v_2\)</span> is less than <span class="process-math">\(180^\circ\text{,}\)</span> then the determinant is positive; otherwise it is negative (or zero). \usetikzlibrary{angles} \begin{tikzpicture}[thin border nodes, scale=1.3] \filldraw[fill=seq-orange, fill opacity=.2, very thin] (0,0) -- (1,2) -- (3,3) -- (2,1) -- cycle; \draw[vector] (0,0) -- node[auto]{$v_2$} (1,2); \draw[vector] (0,0) -- node[auto,swap]{$v_1$} (2,1); \coordinate (o) at (0,0); \coordinate (v1) at (2,1); \coordinate (v2) at (1,2); \pic[draw, -&gt;, angle radius=1cm] {angle=v1--o--v2}; \node at (1.5,-.7) {$\det\begin{pmatrix} \matrow{v_1} \\ \matrow{v_2} \end{pmatrix} &gt; 0$}; \end{tikzpicture} \qquad \begin{tikzpicture}[thin border nodes, scale=1.3] \filldraw[fill=seq-orange, fill opacity=.2, very thin] (0,0) -- (1,2) -- (3,3) -- (2,1) -- cycle; \draw[vector] (0,0) -- node[auto]{$v_1$} (1,2); \draw[vector] (0,0) -- node[auto,swap]{$v_2$} (2,1); \coordinate (o) at (0,0); \coordinate (v1) at (2,1); \coordinate (v2) at (1,2); \pic[draw, &lt;-, angle radius=1cm] {angle=v1--o--v2}; \node at (1.5,-.7) {$\det\begin{pmatrix} \matrow{v_1} \\ \matrow{v_2} \end{pmatrix} &lt; 0$}; \end{tikzpicture} For example, if <span class="process-math">\(v_1 = {a\choose b}\text{,}\)</span> then the counterclockwise rotation of <span class="process-math">\(v_1\)</span> by <span class="process-math">\(90^\circ\)</span> is <span class="process-math">\(v_2 = {-b\choose a}\)</span> by <a href="sec-linear-transformations.html#linear-trans-rotation-matrix" class="xref" data-knowl="./knowl/xref/linear-trans-rotation-matrix.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.3.18: The matrix of a rotation">Example 18 of Section 3.3</a>, and</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-rotation-matrix.html">
+\begin{align*}
+\det\begin{pmatrix}
+a \amp b \\
+-b \amp a
+\end{pmatrix} = a^2 + b^2 &gt; 0\text{.}
+\end{align*}
+</div>
+<div class="para">On the other hand, the <em class="emphasis">clockwise</em> rotation of <span class="process-math">\(v_1\)</span> by <span class="process-math">\(90^\circ\)</span> is <span class="process-math">\(b\choose -a\text{,}\)</span> and</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-rotation-matrix.html">
+\begin{align*}
+\det\begin{pmatrix}
+a \amp b \\
+b \amp -a
+\end{pmatrix} = -a^2 - b^2 \lt 0\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-determinants-and-volumes-11-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">For a <span class="process-math">\(3\times 3\)</span> matrix with rows <span class="process-math">\(v_1,v_2,v_3\text{,}\)</span> the <em class="emphasis">right-hand rule</em> determines the sign of the determinant.  If you point the index finger of your right hand in the direction of <span class="process-math">\(v_1\)</span> and your middle finger in the direction of <span class="process-math">\(v_2\text{,}\)</span> then the determinant is positive if your thumb points roughly in the direction of <span class="process-math">\(v_3\text{,}\)</span> and it is negative otherwise.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-determinants-and-volumes-11-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-determinants-and-volumes-11-7.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-determinants-and-volumes-11-7-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-determinants-and-volumes-11-7-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-determinants-and-volumes-11-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para">In higher dimensions, the notion of signed volume is still important, but it is usually <em class="emphasis">defined</em> in terms of the sign of a determinant.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-determinants-and-volumes-11-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Remark 4.3.12: Signed volumes"><a tabindex="-1" href="#subsec-determinants-and-volumes-11" title="Copy heading and permalink for Remark 4.3.12: Signed volumes" aria-label="Copy heading and permalink for Remark 4.3.12: Signed volumes">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-determinants-volumes.html#subsec-determinants-and-volumes-11">In Context</a></span>
+</body>
+</html>

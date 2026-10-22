@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="algorithm theorem-like"><h2 class="heading">
+<span class="type">Recipe</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.4.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A <span class="process-math">\(2\times 2\)</span> matrix with a complex eigenvalue.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A\)</span> be a <span class="process-math">\(2\times 2\)</span> real matrix.</div>
+<ol class="decimal" id="subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3-3">
+<li>
+<div class="para logical">
+<div class="para">Compute the characteristic polynomial</div>
+<div class="displaymath process-math">
+\begin{gather*}
+f(\lambda) = \lambda^2 - \Tr(A)\lambda + \det(A)\text{,}
+\end{gather*}
+</div>
+<div class="para">then compute its roots using the quadratic formula.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3-3-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">If the eigenvalues are complex, choose <em class="emphasis">one</em> of them, and call it <span class="process-math">\(\lambda\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3-3-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para">Find a corresponding (complex) eigenvalue <span class="process-math">\(v\)</span> using the <a href="sec-complex-eigenvalues.html#cplx-evals-22-trick" class="xref" data-knowl="./knowl/xref/cplx-evals-22-trick.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 5.4.5: Eigenvector Trick for 2\times 2 Matrices">Note 5</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3-3-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3-3-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">Then <span class="process-math">\(A=CBC\inv\)</span> for</div>
+<div class="displaymath process-math">
+\begin{align*}
+C = \begin{pmatrix}
+| \amp | \\
+\Re(v) \amp \Im(v) \\
+| \amp |
+\end{pmatrix}
+\sptxt{and}
+B = \begin{pmatrix}
+\Re(\lambda) \amp \Im(\lambda) \\
+-\Im(\lambda) \amp \Re(\lambda)
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">This scales by a factor of <span class="process-math">\(|\lambda|\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3-3-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 4"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3-3-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Recipe 5.4.8: A 2\times 2 matrix with a complex eigenvalue"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7" title="Copy heading and permalink for Recipe 5.4.8: A 2\times 2 matrix with a complex eigenvalue" aria-label="Copy heading and permalink for Recipe 5.4.8: A 2\times 2 matrix with a complex eigenvalue">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7">In Context</a></span>
+</body>
+</html>

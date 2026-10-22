@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="note remark-like"><h2 class="heading">
+<span class="type">Note</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.5.20</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Dynamics of a <span class="process-math">\(2\times 2\)</span> Matrix with a Complex Eigenvalue.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(A\)</span> be a <span class="process-math">\(2\times 2\)</span> matrix with a complex (non-real) eigenvalue <span class="process-math">\(\lambda\text{.}\)</span>  By the <a href="sec-complex-eigenvalues.html#cplx-diagonalization-thm" class="xref" data-knowl="./knowl/xref/cplx-diagonalization-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.5.14">Theorem 14</a>, the matrix <span class="process-math">\(A\)</span> is similar to a matrix that rotates by some amount and scales by <span class="process-math">\(|\lambda|\text{.}\)</span>  Hence, <span class="process-math">\(A\)</span> rotates around an ellipse and scales by <span class="process-math">\(|\lambda|\text{.}\)</span>  There are three different cases.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-13-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">
+<span class="process-math">\(\mh{|\lambda|} &gt; 1\text{:}\)</span> when the scaling factor is greater than <span class="process-math">\(1\text{,}\)</span> then vectors tend to get longer, i.e., farther from the origin.  In this case, repeatedly multiplying a vector by <span class="process-math">\(A\)</span> makes the vector “spiral out”.  For example,</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \frac 1{\sqrt 2}\begin{pmatrix}
+\sqrt3+1 \amp -2 \\
+1 \amp \sqrt3-1
+\end{pmatrix}
+\qquad
+\lambda = \frac{\sqrt3-i}{\sqrt 2}
+\qquad
+|\lambda| = \sqrt 2 &gt; 1
+\end{align*}
+</div>
+<div class="para">gives rise to the following picture: \pgfmathsetmacro{\sqrtii}{sqrt(2)} \begin{tikzpicture}[scale=1, samples at={0,.25,...,4.25}, smooth, tension=.5, thin border nodes=2pt] \draw[dashed, cm={1,1,-1,0,(0,0)}] (0,0) ellipse[radius=10/4]; \draw[-&gt;, very thin] (-4,0) -- (4,0); \draw[-&gt;, very thin] (0,-4) -- (0,4); \begin{scope}[cm={1,1,-1,0,(0,0)}, &lt;-&gt;/.tip={Stealth}] \foreach \rot in {0,60,...,359} { \draw[seq-blue,rotate=\rot] plot ({\sqrtii^\x*cos(\x*30)},{\sqrtii^\x*sin(\x*30)}); % Can’t use decorations.markings for this; it exceeds TeX’s limited % capacity for numerical calculations. \foreach \x in {0,3,4.25} { \draw[seq-blue,-&gt;,rotate=\rot] ({\sqrtii^\x*cos(\x*30)},{\sqrtii^\x*sin(\x*30)}) -- ({\sqrtii^(\x+.1)*cos((\x+.1)*30)},{\sqrtii^(\x+.1)*sin((\x+.1)*30)}); } } \foreach \x in {0,1,2,3} { \pgfmathsetmacro{\y}{\x+1.1} \coordinate (v\x) at ({\sqrtii^\y*cos(\y*30+180)},{\sqrtii^\y*sin(\y*30+180)}); \draw[vector,seq-green] (0,0) -- (v\x) node[point,seq-green,scale=.5] {}; } \end{scope} \foreach \x in {0,1,2,3} { \pgfmathanglebetweenpoints{\pgfpoint{0cm}{0cm}}{\pgfpointanchor{v\x}{center}} \node[anchor={\pgfmathresult+180},seq-green] at (v\x) {$\ifnum\x&gt;0\ifnum\x&gt;1A^\x\else A\fi\fi v$}; } \point at (0,0); \end{tikzpicture}</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-13-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">
+<span class="process-math">\(\mh{|\lambda|} = 1\text{:}\)</span> when the scaling factor is equal to <span class="process-math">\(1\text{,}\)</span> then vectors do not tend to get longer or shorter.  In this case, repeatedly multiplying a vector by <span class="process-math">\(A\)</span> simply “rotates around an ellipse”.  For example,</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \frac 12\begin{pmatrix}
+\sqrt3+1 \amp -2 \\
+1 \amp \sqrt3-1
+\end{pmatrix}
+\qquad
+\lambda = \frac{\sqrt3-i}2
+\qquad
+|\lambda| = 1
+\end{align*}
+</div>
+<div class="para">gives rise to the following picture: \pgfmathsetmacro{\sqrtii}{sqrt(2)} \begin{tikzpicture}[scale=.25, thin border nodes=2pt, decoration={markings, mark=between positions 0 and .75 step .25 with {\arrow{Stealth}}}] \draw[-&gt;, very thin] (-16,0) -- (16,0); \draw[-&gt;, very thin] (0,-16) -- (0,16); \draw[postaction=decorate, seq-blue, cm={1,1,-1,0,(0,0)}] (0,0) ellipse[radius=10]; \foreach \x in {0,...,3} { \pgfmathsetmacro{\y}{\x-.4} \begin{scope}[cm={1,1,-1,0,(0,0)}] \coordinate (v\x) at ({10*cos(\y*30)},{10*sin(\y*30)}); \draw[vector,seq-green] (0,0) -- (v\x) node[point,seq-green,scale=.5] {}; \end{scope} \pgfmathanglebetweenpoints{\pgfpoint{0cm}{0cm}}{\pgfpointanchor{v\x}{center}} \node[anchor={\pgfmathresult+180},seq-green] at (v\x) {$\ifnum\x&gt;0\ifnum\x&gt;1A^\x\else A\fi\fi v$}; } \point at (0,0); \end{tikzpicture}</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-13-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">
+<span class="process-math">\(\mh{|\lambda|} \lt 1\text{:}\)</span> when the scaling factor is less than <span class="process-math">\(1\text{,}\)</span> then vectors tend to get shorter, i.e., closer to the origin.  In this case, repeatedly multiplying a vector by <span class="process-math">\(A\)</span> makes the vector “spiral in”.  For example,</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \frac 1{2\sqrt 2}\begin{pmatrix}
+\sqrt3+1 \amp -2 \\
+1 \amp \sqrt3-1
+\end{pmatrix}
+\qquad
+\lambda = \frac{\sqrt3-i}{2\sqrt 2}
+\qquad
+|\lambda| = \frac 1{\sqrt 2} \lt 1
+\end{align*}
+</div>
+<div class="para">gives rise to the following picture: \pgfmathsetmacro{\sqrtii}{sqrt(2)} \begin{tikzpicture}[scale=1, samples at={0,.25,...,4.25}, smooth, tension=.5, thin border nodes=2pt] \draw[dashed, cm={1,1,-1,0,(0,0)}] (0,0) ellipse[radius=10/4]; \draw[-&gt;, very thin] (-4,0) -- (4,0); \draw[-&gt;, very thin] (0,-4) -- (0,4); \begin{scope}[cm={1,1,-1,0,(0,0)}, &lt;-&gt;/.tip={Stealth}] \foreach \rot in {0,60,...,359} { \draw[seq-blue,rotate=\rot] plot ({-\sqrtii^\x*cos(\x*30)},{\sqrtii^\x*sin(\x*30)}); % Can’t use decorations.markings for this; it exceeds TeX’s limited % capacity for numerical calculations. \foreach \x in {0,3,4.25} { \draw[seq-blue,&lt;-,rotate=\rot] ({-\sqrtii^\x*cos(\x*30)},{\sqrtii^\x*sin(\x*30)}) -- ({-\sqrtii^(\x+.1)*cos((\x+.1)*30)},{\sqrtii^(\x+.1)*sin((\x+.1)*30)}); } } \foreach \x in {3,2,1,0} { \pgfmathsetmacro{\y}{(3-\x)+1.1} \coordinate (v\x) at (-{\sqrtii^\y*cos(\y*30-120)},{\sqrtii^\y*sin(\y*30-120)}); \draw[vector,seq-green] (0,0) -- (v\x) node[point,seq-green,scale=.5] {}; } \end{scope} \foreach \x in {3,2,1,0} { \pgfmathanglebetweenpoints{\pgfpoint{0cm}{0cm}}{\pgfpointanchor{v\x}{center}} \node[anchor={\pgfmathresult+180},seq-green] at (v\x) {$\ifnum\x&gt;0\ifnum\x&gt;1A^\x\else A\fi\fi v$}; } \point at (0,0); \end{tikzpicture}</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-13-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Note 5.5.20: Dynamics of a 2\times 2 Matrix with a Complex Eigenvalue"><a tabindex="-1" href="#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-13" title="Copy heading and permalink for Note 5.5.20: Dynamics of a 2\times 2 Matrix with a Complex Eigenvalue" aria-label="Copy heading and permalink for Note 5.5.20: Dynamics of a 2\times 2 Matrix with a Complex Eigenvalue">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-13">In Context</a></span>
+</body>
+</html>

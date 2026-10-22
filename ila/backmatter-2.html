@@ -21,7 +21,8 @@
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
 <style>
 @counter-style ptx-marker-1 { system: extends decimal; prefix: '('; suffix: ') '; }
-@counter-style ptx-marker-2 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-2 { system: extends lower-alpha; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-3 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
 </style>
 <link rel="stylesheet" type="text/css" href="external/css/highlight-math.css">
 <script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
@@ -301,9 +302,148 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 </ul>
 </li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-matrices.html" class="internal"><span class="codenumber">3</span> <span class="title">Linear Transformations and Matrix Algebra</span></a></div></li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-determinant.html" class="internal"><span class="codenumber">4</span> <span class="title">Determinants</span></a></div></li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-eigenvalues.html" class="internal"><span class="codenumber">5</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-matrices.html" class="internal"><span class="codenumber">3</span> <span class="title">Linear Transformations and Matrix Algebra</span></a></div>
+<ul id="ptx-toc-group-chap-matrices" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-matrices-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-transformations.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Matrix Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-transformations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-trans-matrices-functions" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Matrices as Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-transformations" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Matrix Transformations</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-transformations.html#sec-matrix-transformations-7" class="internal"><span class="codenumber">3.1.4</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-transformations.html#sec-matrix-transformations-8" class="internal"><span class="codenumber">3.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-one-to-one-onto.html" class="internal"><span class="codenumber">3.2</span> <span class="title">One-to-one and Onto Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-one-to-one-onto" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-one-to-one-transformations" class="internal"><span class="codenumber">3.2.1</span> <span class="title">One-to-one Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-onto-transformations" class="internal"><span class="codenumber">3.2.2</span> <span class="title">Onto Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-comparison" class="internal"><span class="codenumber">3.2.3</span> <span class="title">Comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-transformations.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Linear Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-linear-transformations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-linear-transformations-definition" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Linear Transformations: Definition</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-the-standard-coordinate-vectors" class="internal"><span class="codenumber">3.3.2</span> <span class="title">The Standard Coordinate Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-linear-trans-is-matrix-trans" class="internal"><span class="codenumber">3.3.3</span> <span class="title">The Matrix of a Linear Transformation</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-linear-transformations.html#sec-linear-transformations-7" class="internal"><span class="codenumber">3.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-multiplication.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Matrix Multiplication</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-multiplication" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-composition-of-linear-transformations" class="internal"><span class="codenumber">3.4.1</span> <span class="title">Composition of linear transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-matrix-multiplication" class="internal"><span class="codenumber">3.4.2</span> <span class="title">Matrix multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-composition-and-matrix-multiplication" class="internal"><span class="codenumber">3.4.3</span> <span class="title">Composition and Matrix Multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices" class="internal"><span class="codenumber">3.4.4</span> <span class="title">The algebra of transformations and matrices</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#sec-matrix-multiplication-8" class="internal"><span class="codenumber">3.4.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-inverses.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Matrix Inverses</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-inverses" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-invertible-matrices" class="internal"><span class="codenumber">3.5.1</span> <span class="title">Invertible Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-matrix-inv-computing" class="internal"><span class="codenumber">3.5.2</span> <span class="title">Computing the Inverse Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-solving-linear-systems-using-inverses" class="internal"><span class="codenumber">3.5.3</span> <span class="title">Solving Linear Systems using Inverses</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms" class="internal"><span class="codenumber">3.5.4</span> <span class="title">Invertible linear transformations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-invertible-matrix-thm.html" class="internal"><span class="codenumber">3.6</span> <span class="title">The Invertible Matrix Theorem</span></a></div>
+<ul id="ptx-toc-group-sec-invertible-matrix-thm" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-invertible-matrix-thm.html#sec-invertible-matrix-thm-16" class="internal"><span class="codenumber">3.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-determinant.html" class="internal"><span class="codenumber">4</span> <span class="title">Determinants</span></a></div>
+<ul id="ptx-toc-group-chap-determinant" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-determinant-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-definitions-properties.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Determinants: Definition</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-definitions-properties" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant" class="internal"><span class="codenumber">4.1.1</span> <span class="title">The Definition of the Determinant</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#subsec-det-defn-magic-props" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Magical Properties of the Determinant</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#sec-determinants-definitions-properties-6" class="internal"><span class="codenumber">4.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-cofactors.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Cofactor Expansions</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-cofactors" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#subsec-cofactor-expansions" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Cofactor Expansions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#subsec-det-cofact-cramer-ss" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Cramer’s Rule and Matrix Inverses</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#sec-determinants-cofactors-6" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-volumes.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Determinants and Volumes</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-volumes" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-parallelograms-and-paralellepipeds" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Parallelograms and Paralellepipeds</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-determinants-and-volumes" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Determinants and Volumes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-volumes-of-regions" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Volumes of Regions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-volumes.html#sec-determinants-volumes-7" class="internal"><span class="codenumber">4.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-eigenvalues.html" class="internal"><span class="codenumber">5</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul id="ptx-toc-group-chap-eigenvalues" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-eigenvalues-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-eigenvectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul id="ptx-toc-group-sec-eigenvectors" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-eigenspaces" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Eigenspaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-the-invertible-matrix-theorem-addenda" class="internal"><span class="codenumber">5.1.3</span> <span class="title">The Invertible Matrix Theorem: Addenda</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-eigenvectors.html#sec-eigenvectors-7" class="internal"><span class="codenumber">5.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-characteristic-polynomial.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The Characteristic Polynomial</span></a></div>
+<ul id="ptx-toc-group-sec-characteristic-polynomial" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-15" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-similarity.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Similarity</span></a></div>
+<ul id="ptx-toc-group-sec-similarity" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-similar-matrices" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Similar Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-geometry-of-similar-matrices" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Geometry of Similar Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Eigenvalues of Similar Matrices</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-diagonalization.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Diagonalization</span></a></div>
+<ul id="ptx-toc-group-sec-diagonalization" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-diagonalizability" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Diagonalizability</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-diag-ss-geometry" class="internal"><span class="codenumber">5.4.2</span> <span class="title">The Geometry of Diagonalizable Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity" class="internal"><span class="codenumber">5.4.3</span> <span class="title">Algebraic and Geometric Multiplicity</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-diagonalization.html#sec-diagonalization-7" class="internal"><span class="codenumber">5.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-complex-eigenvalues.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Complex Eigenvalues</span></a></div>
+<ul id="ptx-toc-group-sec-complex-eigenvalues" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-matrices-with-complex-eigenvalues" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Matrices with Complex Eigenvalues</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-rotation-scaling-matrices" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Rotation-Scaling Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue" class="internal"><span class="codenumber">5.5.3</span> <span class="title">Geometry of <span class="process-math">\(2\times 2\)</span> Matrices with a Complex Eigenvalue</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-block-diagonalization" class="internal"><span class="codenumber">5.5.4</span> <span class="title">Block Diagonalization</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#sec-complex-eigenvalues-8" class="internal"><span class="codenumber">5.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-stochastic-matrices.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Stochastic Matrices</span></a></div>
+<ul id="ptx-toc-group-sec-stochastic-matrices" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-difference-equations" class="internal"><span class="codenumber">5.6.1</span> <span class="title">Difference Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state" class="internal"><span class="codenumber">5.6.2</span> <span class="title">Stochastic Matrices and the Steady State</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-googles-pagerank-algorithm" class="internal"><span class="codenumber">5.6.3</span> <span class="title">Google’s PageRank Algorithm</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#sec-stochastic-matrices-7" class="internal"><span class="codenumber">5.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-orthogonality.html" class="internal"><span class="codenumber">6</span> <span class="title">Orthogonality</span></a></div></li>
 <li class="toc-item toc-backmatter contains-active">
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
@@ -398,6 +538,108 @@ eBookConfig.enable_chatcodes =  false;
 <td><span class="process-math">\(\nullity(A)\)</span></td>
 <td>The nullity of a matrix</td>
 <td><a href="sec-rank-thm.html#sec-rank-thm-11" class="xref" data-knowl="./knowl/notation/sec-rank-thm-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.9.1">Definition 2.9.1</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(T\colon\R^n\to\R^m\)</span></td>
+<td>transformation with domain <span class="process-math">\(\R^n\)</span> and codomain <span class="process-math">\(\R^m\)</span>
+</td>
+<td><a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations-3" class="xref" data-knowl="./knowl/notation/subsec-matrix-trans-transformations-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.1.17">Definition 3.1.17</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(\Id_{\R^n}\)</span></td>
+<td>Identity transformation</td>
+<td><a href="sec-matrix-transformations.html#matrix-trans-identity" class="xref" data-knowl="./knowl/notation/matrix-trans-identity.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.1.20">Definition 3.1.20</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(e_1,e_2,\ldots\)</span></td>
+<td>Standard coordinate vectors</td>
+<td><a href="sec-linear-transformations.html#defn-standard-coord-vectors" class="xref" data-knowl="./knowl/notation/defn-standard-coord-vectors.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.3.11: Standard coordinate vectors">Insight 3.3.11</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(I_n\)</span></td>
+<td>
+<span class="process-math">\(n\times n\)</span> identity matrix</td>
+<td><a href="sec-linear-transformations.html#linear-trans-identity-mat" class="xref" data-knowl="./knowl/notation/linear-trans-identity-mat.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.13">Definition 3.3.13</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(a_{ij}\)</span></td>
+<td>The <span class="process-math">\(i,j\)</span> entry of a matrix</td>
+<td><a href="sec-matrix-multiplication.html#subsec-matrix-multiplication-3" class="xref" data-knowl="./knowl/notation/subsec-matrix-multiplication-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.4.16">Definition 3.4.16</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(0\)</span></td>
+<td>The zero transformation</td>
+<td><a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices-7" class="xref" data-knowl="./knowl/notation/subsec-the-algebra-of-transformations-and-matrices-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(0\)</span></td>
+<td>The zero matrix</td>
+<td><a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices-13" class="xref" data-knowl="./knowl/notation/subsec-the-algebra-of-transformations-and-matrices-13.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(A\inv\)</span></td>
+<td>Inverse of a matrix</td>
+<td><a href="sec-matrix-inverses.html#subsec-invertible-matrices-3" class="xref" data-knowl="./knowl/notation/subsec-invertible-matrices-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.5.1">Definition 3.5.1</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(T\inv\)</span></td>
+<td>Inverse of a transformation</td>
+<td><a href="sec-matrix-inverses.html#matrix-inv-trans-inv-def" class="xref" data-knowl="./knowl/notation/matrix-inv-trans-inv-def.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.5.14">Definition 3.5.14</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(\det(A)\)</span></td>
+<td>The determinant of a matrix</td>
+<td><a href="sec-determinants-definitions-properties.html#det-defn-the-defn" class="xref" data-knowl="./knowl/notation/det-defn-the-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.1">Definition 4.1.1</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(A^T\)</span></td>
+<td>Transpose of a matrix</td>
+<td><a href="sec-determinants-definitions-properties.html#subsec-det-defn-magic-props-17" class="xref" data-knowl="./knowl/notation/subsec-det-defn-magic-props-17.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.23">Definition 4.1.23</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(A_{ij}\)</span></td>
+<td>Minor of a matrix</td>
+<td><a href="sec-determinants-cofactors.html#det-cofact-defn-minor" class="xref" data-knowl="./knowl/notation/det-cofact-defn-minor.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.2.1">Definition 4.2.1</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(C_{ij}\)</span></td>
+<td>Cofactor of a matrix</td>
+<td><a href="sec-determinants-cofactors.html#det-cofact-defn-minor" class="xref" data-knowl="./knowl/notation/det-cofact-defn-minor.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.2.1">Definition 4.2.1</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(\adj(A)\)</span></td>
+<td>Adjugate matrix</td>
+<td><a href="sec-determinants-cofactors.html#subsec-det-cofact-cramer-ss-4" class="xref" data-knowl="./knowl/notation/subsec-det-cofact-cramer-ss-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(\vol(P)\)</span></td>
+<td>Volume of a region</td>
+<td><a href="sec-determinants-volumes.html#det-is-volume" class="xref" data-knowl="./knowl/notation/det-is-volume.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.3.6: Determinants and volumes">Theorem 4.3.6</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(\vol(A)\)</span></td>
+<td>Volume of the parallelepiped of a matrix</td>
+<td><a href="sec-determinants-volumes.html#det-is-volume" class="xref" data-knowl="./knowl/notation/det-is-volume.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.3.6: Determinants and volumes">Theorem 4.3.6</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(T(S)\)</span></td>
+<td>The image of a region under a transformation</td>
+<td><a href="sec-determinants-volumes.html#subsec-volumes-of-regions-6" class="xref" data-knowl="./knowl/notation/subsec-volumes-of-regions-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(\Tr(A)\)</span></td>
+<td>Trace of a matrix</td>
+<td><a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-12-3" class="xref" data-knowl="./knowl/notation/sec-characteristic-polynomial-12-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.2.9">Definition 5.2.9</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(\Re(v)\)</span></td>
+<td>Real part of a complex vector</td>
+<td><a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-5" class="xref" data-knowl="./knowl/notation/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></td>
+</tr>
+<tr>
+<td><span class="process-math">\(\Im(v)\)</span></td>
+<td>Imaginary part of a complex vector</td>
+<td><a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-5" class="xref" data-knowl="./knowl/notation/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></td>
 </tr>
 </table>
 <div class="autopermalink" aria-hidden="true" data-description="Appendix A: Notation"><a tabindex="-1" href="#backmatter-2" title="Copy heading and permalink for Appendix A: Notation" aria-label="Copy heading and permalink for Appendix A: Notation">🔗</a></div>

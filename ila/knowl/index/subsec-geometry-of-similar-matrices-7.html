@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="algorithm theorem-like"><h2 class="heading">
+<span class="type">Recipe</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Computing <span class="process-math">\(Ax\)</span> in terms of <span class="process-math">\(B\)</span>.</span>
+</h2>
+<div class="para logical">
+<div class="para">Suppose that <span class="process-math">\(A = CBC\inv,\)</span> where <span class="process-math">\(C\)</span> is an invertible matrix with columns <span class="process-math">\(v_1,v_2,\ldots,v_n.\)</span>  Let <span class="process-math">\(\cB = \{v_1,v_2,\ldots,v_n\}\text{,}\)</span> a basis for <span class="process-math">\(\R^n\text{.}\)</span>  Let <span class="process-math">\(x\)</span> be a vector in <span class="process-math">\(\R^n\text{.}\)</span>  To compute <span class="process-math">\(Ax\text{,}\)</span> one does the following:</div>
+<ol class="decimal" id="subsec-geometry-of-similar-matrices-7-3-9">
+<li>
+<div class="para">Multiply <span class="process-math">\(x\)</span> by <span class="process-math">\(C\inv\text{,}\)</span> which changes to the <span class="process-math">\(\cB\)</span>-coordinates: <span class="process-math">\([x]_\cB = C\inv x\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7-3-9-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7-3-9-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">Multiply this by <span class="process-math">\(B\text{:}\)</span> <span class="process-math">\(B[x]_\cB = BC\inv x\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7-3-9-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7-3-9-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para">Interpreting this vector as a <span class="process-math">\(\cB\)</span>-coordinate vector, we multiply it by <span class="process-math">\(C\)</span> to change back to the usual coordinates: <span class="process-math">\(Ax = CBC\inv x = CB[x]_\cB.\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7-3-9-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7-3-9-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-geometry-of-similar-matrices-7-4.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-geometry-of-similar-matrices-7-4-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-geometry-of-similar-matrices-7-4-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para">To summarize: if <span class="process-math">\(A = CBC\inv\text{,}\)</span> then <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> do the same thing, only in different coordinate systems.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Recipe 5.3.9: Computing Ax in terms of B"><a tabindex="-1" href="#subsec-geometry-of-similar-matrices-7" title="Copy heading and permalink for Recipe 5.3.9: Computing Ax in terms of B" aria-label="Copy heading and permalink for Recipe 5.3.9: Computing Ax in terms of B">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-similarity.html#subsec-geometry-of-similar-matrices-7">In Context</a></span>
+</body>
+</html>

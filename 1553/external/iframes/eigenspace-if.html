@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Eigenspaces</title>
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
+    .caption-bar {
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
+    }
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+    .espace-0 { color: var(--palette-green); }
+    .espace-1 { color: var(--palette-violet); }
+    .espace-2 { color: var(--palette-brown); }
+    .vector   { color: var(--palette-red); }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Eigenspaces controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <p><span id="eqn-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <div id="espaces"></div>
+    <!-- Replaces the demo.js popup -->
+    <div id="eig-status" class="status" role="status" hidden>
+      <span id="eig-status-text"></span> <span id="eig-status-math" class="live-math"></span>
+    </div>
+    <p class="hint mathjax-static">Drag the head of \(x\) (it snaps to the eigenspaces), or edit its coordinates below.</p>
+    <details class="panel">
+      <summary class="mathjax-static">Edit \(x\)</summary>
+      <div id="vec-inputs" class="vec-grid" role="group" aria-label="Coordinates of x"></div>
+    </details>
+  </div>
+
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
+  <div id="mathbox-container" aria-hidden="true">
+    <div class="mb-panel"><div id="mathbox1"></div></div>
+  </div>
+
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
+  <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+    var i, matrix, matrixT, size;
+    matrix = urlParams.get('mat', 'matrix', [[7 / 2, 0, 3], [-3 / 2, 2, -3], [-3 / 2, 0, -1]]);
+    size = matrix.length;
+    // Columns of the matrix (demo.js convention)
+    matrixT = [];
+    for (i = 0; i < size; i++) {
+      matrixT.push(matrix.map(function(row) { return row[i]; }));
+    }
+    var colors   = [new Color("green"), new Color("violet"), new Color("brown")];
+    var vecColor = new Color("red");
+    var outColor = vecColor.darken(.1);
+    var RANGE    = urlParams.get('range', 'float', 10);
+
+    window.demo = new (size === 2 ? Demo2D : Demo)({
+      // demo.js binds a bare 'f' key to fullscreen (WCAG 2.1.4); turn it off
+      fullscreen: false,
+      mathbox: mbOpts('mathbox1')
+    }, function() {
+      var j, k, eigenvalue, mult, matrix2, nulBasis, subspace, editor = null;
+      var eigenspaces = [];
+      window.mathbox = this.mathbox;
+      var view = this.view({ axes: false, grid: size === 2 });
+      var clipCube = this.clipCube(view, {
+        draw: size === 3,
+        hilite: size === 3,
+        material: new THREE.MeshBasicMaterial({
+          opacity: 0.5, transparent: true, visible: true, depthWrite: false, depthTest: true
+        })
+      });
+      view.array({ channels: 3, width: 1, live: false, data: [0, 0, 0] })
+          .point({ color: "black", size: 15, zIndex: 3 });
+
+      var eigenvals = eigenvalues(matrix);
+      eigenvals.sort(function(x, y) { return x[0] - y[0]; });
+      for (j = 0; j < eigenvals.length; j++) {
+        eigenvalue = eigenvals[j][0];
+        mult = eigenvals[j][1];
+        matrix2 = matrixT.map(function(col) { return col.slice(); });
+        for (k = 0; k < size; k++) matrix2[k][k] -= eigenvalue;
+        nulBasis = rowReduce(matrix2, { epsilon: 1e-6 })[0];
+        if (mult === 3) clipCube.installMesh();
+        subspace = this.subspace({
+          vectors: nulBasis,
+          name: "eigenspace-" + j,
+          live: false,
+          color: colors[j],
+          lineOpts: { zOrder: 0 },
+          surfaceOpts: { zOrder: 1 }
+        });
+        subspace.draw(clipCube.clipped);
+        eigenspaces.push(subspace);
+      }
+
+      var vectorIn  = [1, 2, 3].slice(0, size);
+      var vectorOut = [0, 0, 0].slice(0, size);
+      // No `labels` option: WebGL text replaced by MathJax labels below
+      this.labeledVectors(view, {
+        vectors: [vectorIn, vectorOut],
+        colors: [vecColor, outColor.arr(.7)],
+        live: true,
+        zeroPoints: true,
+        zeroThreshold: 0.3,
+        vectorOpts: { zIndex: 2 },
+        zeroOpts: { zIndex: 3 }
+      });
+      var labelLayer = makeLabelLayer(document.getElementById('mathbox1'), this, view);
+      addVectorLabels(labelLayer, [vectorIn, vectorOut], [vecColor, outColor], ['x', 'Ax']);
+
+      // ── Snapping to eigenspaces (drag and typed input) ────────────────────
+      var onSubspace = -1;
+      var snapped = new THREE.Vector3(), diff = new THREE.Vector3(), tmp = new THREE.Vector3();
+      function snap(vec) {
+        onSubspace = -1;
+        if (vec.lengthSq() <= 1.0) { vec.set(0, 0, 0); return; }
+        for (var n = 0; n < eigenspaces.length; n++) {
+          eigenspaces[n].project(vec, snapped);
+          diff.copy(vec).sub(snapped);
+          if (diff.lengthSq() <= 1.0) { vec.copy(snapped); onSubspace = n; return; }
+        }
+      }
+
+      // ── Captions ──────────────────────────────────────────────────────────
+      var eqnElt     = document.getElementById('eqn-here');
+      var statusBox  = document.getElementById('eig-status');
+      var statusText = document.getElementById('eig-status-text');
+      var statusMath = document.getElementById('eig-status-math');
+      var html = '';
+      eigenvals.forEach(function(ev, j) {
+        var val = fmt(ev[0]);
+        if (urlParams.nospace != null) return;
+        if (urlParams.nomult != null) {
+          html += '<p>This is the <span class="espace-' + j + '">' + val + '-eigenspace</span>.</p>';
+        } else {
+          html += '<p>The <span class="espace-' + j + '">' + val + '-eigenspace</span> has algebraic multiplicity ' +
+                  ev[1] + ' and geometric multiplicity ' + eigenspaces[j].dim + '.</p>';
+        }
+      });
+      document.getElementById('espaces').innerHTML = html;
+
+      function updateCaption() {
+        var str = texMat(matrixT, { rows: size }) + texVec(vectorIn, vecColor, size) +
+                  '=' + texVec(vectorOut, outColor, size);
+        if (onSubspace !== -1) {
+          var ev = fmt(eigenvals[onSubspace][0]);
+          str += '=' + texC(colors[onSubspace], ev) + texVec(vectorIn, vecColor, size);
+          statusText.innerHTML = '<span class="vector"><i>x</i></span> is an eigenvector with eigenvalue ' +
+                                 '<span class="espace-' + onSubspace + '">' + ev + '</span>:';
+          renderMath('A' + texC(vecColor, 'x') + '=' + texC(colors[onSubspace], ev) + texC(outColor, 'x'), statusMath);
+          statusBox.hidden = false;
+        } else {
+          statusBox.hidden = true;
+        }
+        renderMath(str, eqnElt);
+      }
+
+      function computeOut() {
+        for (var r = 0; r < size; r++) {
+          var s = 0;
+          for (var c = 0; c < size; c++) s += matrix[r][c] * vectorIn[c];
+          vectorOut[r] = s;
+        }
+        if (editor) editor.sync();
+        updateCaption();
+      }
+
+      this.draggable(view, { points: [vectorIn], onDrag: snap, postDrag: computeOut });
+      // WCAG 2.1.1 / 2.5.1: typed coordinates snap exactly like dragging
+      editor = buildVectorEditor(document.getElementById('vec-inputs'), [{
+        name: 'x', tex: 'x', vec: vectorIn, dim: size,
+        constrain: function(v) {
+          tmp.set(v[0], v[1], size === 3 ? v[2] : 0);
+          snap(tmp);
+          v[0] = tmp.x; v[1] = tmp.y;
+          if (size === 3) v[2] = tmp.z;
+        }
+      }], RANGE, computeOut);
+
+      if (vectorIn[0] * vectorIn[0] + vectorIn[1] * vectorIn[1] + (vectorIn[2] || 0) * (vectorIn[2] || 0) >= 1e-8) {
+        for (j = 0; j < eigenspaces.length; j++) {
+          if (eigenspaces[j].contains(vectorIn)) { onSubspace = j; break; }
+        }
+      }
+      computeOut();
+    });
+  }); // end DomReady.ready
+
+  initFullscreenButton('fs-btn');
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="proposition theorem-like"><h2 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3.31</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Properties of Orthogonal Projections.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(W\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and define <span class="process-math">\(T\colon\R^n\to\R^n\)</span> by <span class="process-math">\(T(x) = x_W\text{.}\)</span>  Then:</div>
+<ol class="decimal" id="projections-properties-of-6-1-5">
+<li>
+<div class="para">
+<span class="process-math">\(T\)</span> is a linear transformation.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-6-1-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#projections-properties-of-6-1-5-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">
+<span class="process-math">\(T(x)=x\)</span> if and only if <span class="process-math">\(x\)</span> is in <span class="process-math">\(W\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-6-1-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#projections-properties-of-6-1-5-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para">
+<span class="process-math">\(T(x)=0\)</span> if and only if <span class="process-math">\(x\)</span> is in <span class="process-math">\(W^\perp\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-6-1-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#projections-properties-of-6-1-5-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li>
+<div class="para">
+<span class="process-math">\(T\circ T = T\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-6-1-5-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 4"><a tabindex="-1" href="#projections-properties-of-6-1-5-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+<li>
+<div class="para">The range of <span class="process-math">\(T\)</span> is <span class="process-math">\(W\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-6-1-5-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 5"><a tabindex="-1" href="#projections-properties-of-6-1-5-5" title="Copy heading and permalink for Item 5" aria-label="Copy heading and permalink for Item 5">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proposition 6.3.31: Properties of Orthogonal Projections"><a tabindex="-1" href="#projections-properties-of" title="Copy heading and permalink for Proposition 6.3.31: Properties of Orthogonal Projections" aria-label="Copy heading and permalink for Proposition 6.3.31: Properties of Orthogonal Projections">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<ol class="decimal" id="projections-properties-of-7-1-1">
+<li>
+<div class="para logical">
+<div class="para">We have to verify the <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">Definition 1 of Section 3.3</a>.  Let <span class="process-math">\(x,y\)</span> be vectors in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(x = x_W + x_{W^\perp}\)</span> and <span class="process-math">\(y = y_W + y_{W^\perp}\)</span> be their orthogonal decompositions.  Since <span class="process-math">\(W\)</span> and <span class="process-math">\(W^\perp\)</span> are subspaces, the sums <span class="process-math">\(x_W+y_W\)</span> and <span class="process-math">\(x_{W^\perp}+y_{W^\perp}\)</span> are in <span class="process-math">\(W\)</span> and <span class="process-math">\(W^\perp\text{,}\)</span> respectively.  Therefore, the orthogonal decomposition of <span class="process-math">\(x+y\)</span> is <span class="process-math">\((x_W+y_W)+(x_{W^\perp}+y_{W^\perp})\text{,}\)</span> so</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html ./knowl/xref/linear-trans-defn.html">
+\begin{gather*}
+T(x+y) = (x+y)_W = x_W+y_W = T(x) + T(y)\text{.}
+\end{gather*}
+</div>
+<div class="para">Now let <span class="process-math">\(c\)</span> be a scalar.  Then <span class="process-math">\(cx_W\)</span> is in <span class="process-math">\(W\)</span> and <span class="process-math">\(cx_{W^\perp}\)</span> is in <span class="process-math">\(W^\perp\text{,}\)</span> so the orthogonal decomposition of <span class="process-math">\(cx\)</span> is <span class="process-math">\(cx_W + cx_{W^\perp}\text{,}\)</span> and therefore,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html ./knowl/xref/linear-trans-defn.html">
+\begin{gather*}
+T(cx) = (cx)_W = cx_W = cT(x)\text{.}
+\end{gather*}
+</div>
+<div class="para">Since <span class="process-math">\(T\)</span> satisfies the two <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">Definition 1 of Section 3.3</a>, it is a linear transformation.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-7-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#projections-properties-of-7-1-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">See <a href="sec-projections.html#projections-eg-inW" class="xref" data-knowl="./knowl/xref/projections-eg-inW.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 6.3.6: Orthogonal decomposition of a vector in W">Example 6</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-7-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#projections-properties-of-7-1-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para">See <a href="sec-projections.html#projections-eg-inWperp" class="xref" data-knowl="./knowl/xref/projections-eg-inWperp.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 6.3.7: Orthogonal decomposition of a vector in W^\perp">Example 7</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-7-1-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#projections-properties-of-7-1-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li>
+<div class="para">For any <span class="process-math">\(x\)</span> in <span class="process-math">\(\R^n\)</span> the vector <span class="process-math">\(T(x)\)</span> is in <span class="process-math">\(W\text{,}\)</span> so <span class="process-math">\(T\circ T(x) = T(T(x)) = T(x)\)</span> by 2.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-7-1-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 4"><a tabindex="-1" href="#projections-properties-of-7-1-1-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+<li>
+<div class="para">Any vector <span class="process-math">\(x\)</span> in <span class="process-math">\(W\)</span> is in the range of <span class="process-math">\(T\text{,}\)</span> because <span class="process-math">\(T(x) = x\)</span> for such vectors.  On the other hand, for any vector <span class="process-math">\(x\)</span> in <span class="process-math">\(\R^n\)</span> the output <span class="process-math">\(T(x) = x_W\)</span> is in <span class="process-math">\(W\text{,}\)</span> so <span class="process-math">\(W\)</span> is the range of <span class="process-math">\(T\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-7-1-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 5"><a tabindex="-1" href="#projections-properties-of-7-1-1-5" title="Copy heading and permalink for Item 5" aria-label="Copy heading and permalink for Item 5">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projections-properties-of-7-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 6.3.31.1"><a tabindex="-1" href="#projections-properties-of-7" title="Copy heading and permalink for Proof 6.3.31.1" aria-label="Copy heading and permalink for Proof 6.3.31.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-projections.html#projections-properties-of">In Context</a></span>
+</body>
+</html>

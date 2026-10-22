@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Orthogonal Sets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="_static/pretext/fonts/material-symbols-outlined.css">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<style>
+@counter-style ptx-marker-1 { system: extends decimal; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-2 { system: extends lower-alpha; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-3 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
+</style>
+<link rel="stylesheet" type="text/css" href="external/css/highlight-math.css">
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+lang: "en-US",
+});
+</script><script defer data-pretext-mathjax="true" onerror="this.dataset.loadFailed = 'true';" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Interactive Linear Algebra: Updated Edition">
+<meta property="og:title" content="Interactive Linear Algebra: Updated Edition">
+<meta property="book:title" content="Interactive Linear Algebra: Updated Edition">
+<meta name="twitter:description" content="An introduction to matrix algebra with an emphasis on geometric intuition.">
+<meta property="og:description" content="An introduction to matrix algebra with an emphasis on geometric intuition.">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.56"></script><script src="_static/pretext/js/dist/pretext-read-aloud.js?v=2.56"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '8.3.6';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.4beca1fdeed766a2.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.ebd33f6a21eed414.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.9963089870a016c8.css">
+<script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><link rel="icon" type="image/png" sizes="32x32" href="external/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="external/favicon/favicon-16x16.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="ILA-UE" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href="https://gatech.edu/"><img src="external/images/logo.gif" alt="Logo image"></a><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="main.html"><span class="title">Interactive Linear Algebra</span> <span class="subtitle">Updated Edition</span></a></div>
+<p class="byline">Dan Margalit, Joseph Rabinoff, Hunter Lehmann, Chris Jankowski</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-6.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="nav-other-controls"><button id="ptx-read-aloud-button" class="ptx-read-aloud-button button" title="Read aloud" aria-expanded="false"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf1bc;</span><span class="name">Read aloud</span></button><div id="ptx-read-aloud-player" class="ptx-read-aloud-player" hidden="hidden" role="group" aria-label="Read aloud">
+<button id="ptx-read-aloud-prev" class="button" title="Previous sentence"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe045;</span></button><button id="ptx-read-aloud-toggle" class="ptx-read-aloud-toggle button" title="Play"><span class="ptx-read-aloud-icon-play"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe037;</span></span><span class="ptx-read-aloud-icon-pause"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe034;</span></span></button><button id="ptx-read-aloud-next" class="button" title="Next sentence"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe044;</span></button><a id="ptx-read-aloud-continue" class="ptx-read-aloud-continue button" hidden="hidden">Continue<span class="icon material-symbols-outlined" aria-hidden="true">&#xe037;</span></a><button id="ptx-read-aloud-settings-button" class="ptx-read-aloud-settings-button button" title="Reading settings"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe429;</span></button>
+</div>
+<dialog class="ptx-dialog ptx-read-aloud-settings-popup" id="ptx-read-aloud-settings-popup"><div class="ptx-readability-options-popup-controls">
+<h2 class="heading">Read aloud settings</h2>
+<button class="ptx-read-aloud-settings-close-button button" id="ptx-read-aloud-settings-close-button" title="Close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
+</div>
+<div class="ptx-readability-options-group">
+<label for="ptx-read-aloud-voice"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe91f;</span><span>Voice</span></label><select id="ptx-read-aloud-voice"></select><label class="ptx-readability-slider-label" for="ptx-read-aloud-rate"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe9e4;</span><span>Reading speed</span><output id="ptx-read-aloud-rate-value" for="ptx-read-aloud-rate">1×</output></label><input type="range" id="ptx-read-aloud-rate" min="0.5" max="2" step="0.1" value="1"><label for="ptx-read-aloud-asides"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d7;</span><span>Collapsed content</span></label><select id="ptx-read-aloud-asides"><option value="skip">Announce, do not read</option>
+<option value="read">Read automatically</option></select><label for="ptx-read-aloud-autoscroll"><input type="checkbox" id="ptx-read-aloud-autoscroll" checked><span>Follow along (auto-scroll)</span></label><label for="ptx-read-aloud-autocontinue"><input type="checkbox" id="ptx-read-aloud-autocontinue"><span>Continue to the next page automatically</span></label>
+</div></dialog><button id="ptx-readability-options-button" class="ptx-readability-options-button button" title="Readability settings"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf6f1;</span><span class="name">Readability settings</span></button><dialog class="ptx-dialog ptx-readability-options-popup" id="ptx-readability-options-popup"><div class="ptx-readability-options-popup-controls">
+<h2 class="heading">Readability settings</h2>
+<button class="ptx-readability-options-close-button button" id="ptx-readability-options-close-button" title="Close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
+</div>
+<div class="ptx-readability-options-group">
+<label class="ptx-readability-slider-label" for="ptx-readability-line-height"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe240;</span><span>Line height</span><output id="ptx-readability-line-height-value" for="ptx-readability-line-height">1.35</output></label><input type="range" id="ptx-readability-line-height" min="1.10" max="3" step="0.05" value="1.35">
+</div>
+<div class="ptx-readability-options-group">
+<label class="ptx-readability-slider-label" for="ptx-readability-font-size"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe245;</span><span>Content font size</span><output id="ptx-readability-font-size-value" for="ptx-readability-font-size">100%</output></label><input type="range" id="ptx-readability-font-size" min="0.8" max="1.5" step="0.05" value="1">
+</div>
+<fieldset class="ptx-readability-options-group ptx-readability-options-group-theme">
+<legend>Theme</legend>
+<label for="ptx-readability-theme-system"><input type="radio" name="ptx-readability-theme" id="ptx-readability-theme-system" value="system"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe1ab;</span><span>System</span></label><label for="ptx-readability-theme-light"><input type="radio" name="ptx-readability-theme" id="ptx-readability-theme-light" value="light"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe518;</span><span>Light</span></label><label for="ptx-readability-theme-dark"><input type="radio" name="ptx-readability-theme" id="ptx-readability-theme-dark" value="dark"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span>Dark</span></label>
+</fieldset>
+<fieldset class="ptx-readability-options-group">
+<legend>Assistive technologies</legend>
+<label for="ptx-readability-accessible-permalinks"><input type="checkbox" id="ptx-readability-accessible-permalinks"><span>🔗</span><span>Expose permalinks</span></label>
+</fieldset>
+<div class="ptx-readability-options-group"><button type="button" class="ptx-readability-reset-button button" id="ptx-readability-reset-button"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf053;</span><span class="name">Reset All</span></button></div></dialog></span><span class="treebuttons"><a class="previous-button button" href="sec-projections.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="chap-orthogonality.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-least-squares.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{mathtools}\require{color}    \definecolor{cLGold}{RGB}{143, 113, 61}
+    \definecolor{cLGreen}{RGB}{57, 121, 76}
+    \definecolor{cLPurple}{RGB}{148,68,161}
+    \definecolor{cLBlue}{RGB}{0, 98, 217}
+    \newcommand{\g}{\color{cLGreen}}
+    \newcommand{\cp}{\color{cLPurple}}
+    \renewcommand{\b}{\color{cLBlue}}
+    \renewcommand{\r}{\color{cLGold}}
+    \newcommand{\mh}[1]{\class{theme-math-highlight}{#1}}
+    \newcommand{\mhb}[1]{\class{theme-math-highlight-b}{#1}}
+    \newcommand{\mhg}[1]{\class{theme-math-highlight-g}{#1}}
+    \newcommand{\mhp}[1]{\class{theme-math-highlight-p}{#1}}
+  \newcommand{\R}{\mathbf R}
+  \newcommand{\C}{\mathbf C}
+ \renewcommand{\mathbb}[1]{\mathbf{#1}}
+  \newcommand{\matrow}[1]{\text{---}\,#1\,\text{---}}
+  \newcommand{\Span}{\operatorname{Span}}
+  \newcommand{\Nul}{\operatorname{Nul}}
+  \newcommand{\Col}{\operatorname{Col}}
+  \newcommand{\Row}{\operatorname{Row}}
+  \newcommand{\rank}{\operatorname{rank}}
+  \newcommand{\nullity}{\operatorname{nullity}}
+  \newcommand{\Id}{\operatorname{Id}}
+  \newcommand{\Tr}{\operatorname{Tr}}
+  \newcommand{\adj}{\operatorname{adj}}
+  \renewcommand{\Re}{\operatorname{Re}}
+  \renewcommand{\Im}{\operatorname{Im}}
+  \newcommand{\dist}{\operatorname{dist}}
+  \newcommand{\refl}{\operatorname{ref}}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\rref}{\;\xrightarrow{\text{RREF}}\;}
+  \newcommand{\vol}{\operatorname{vol}}
+  \newcommand{\sptxt}[1]{\quad\text{ #1 }\quad}
+  \renewcommand{\bar}[1]{\overline{#1}}
+  \renewcommand{\hat}[1]{\widehat{#1}}
+  
+    \newcommand{\cB}{{\mathcal B}}
+  
+  \newcommand{\leading}[1]{\color{red}#1}
+  \newcommand{\setof}[1]{\left\{#1\right\}}
+  
+  \newenvironment{smm}{\left(\begin{smallmatrix}}
+                      {\end{smallmatrix}\right)}
+\newcommand\smallmat[4]{\begin{smm}#1&amp;#2\\#3&amp;#4\end{smm}}
+
+\definecolor{seq-red}{rgb}{0.8941,0.1020,0.1098}
+\definecolor{seq-blue}{RGB}{0, 98, 217}
+\definecolor{seq-green}{RGB}{57, 121, 76}
+\definecolor{seq-violet}{RGB}{148, 68, 161}
+\definecolor{seq-orange}{RGB}{143, 113, 61}
+\definecolor{seq-yellow}{rgb}{0.7000,0.7000,0.0000}
+\definecolor{seq-brown}{rgb}{0.6510,0.3373,0.1569}
+\definecolor{seq-pink}{rgb}{0.9686,0.5059,0.7490}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul id="ptx-toc-group-frontmatter" class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="frontmatter-3.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-preface">
+<div class="toc-title-box"><a href="frontmatter-4.html" class="internal"><span class="title">Contributors to this textbook</span></a></div>
+<ul id="ptx-toc-group-frontmatter-4" class="structural toc-item-list"><li class="toc-item toc-contributors"><div class="toc-title-box"><a href="frontmatter-4.html#frontmatter-4-2" class="internal"><span class="title"></span></a></div></li></ul>
+</li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-5.html" class="internal"><span class="title">Variants of this textbook</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-6.html" class="internal"><span class="title">History of the Updated Edition</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="overview.html" class="internal"><span class="title">Overview</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-algebra.html" class="internal"><span class="codenumber">1</span> <span class="title">Systems of Linear Equations: Algebra</span></a></div>
+<ul id="ptx-toc-group-chap-algebra" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-algebra-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-systems-of-eqns.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Systems of Linear Equations</span></a></div>
+<ul id="ptx-toc-group-sec-systems-of-eqns" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-systems-of-eqns.html#subsec-Rn" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Line, Plane, Space, Etc.</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-systems-of-eqns.html#subsec-systems-eqns-pictures" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Pictures of Solution Sets</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-systems-of-eqns.html#subsec-parametric-description" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Parametric Description of Solution Sets</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-systems-of-eqns.html#sec-systems-of-eqns-7" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-row-reduction.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Row Reduction</span></a></div>
+<ul id="ptx-toc-group-sec-row-reduction" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-row-reduction.html#subsec-row-reduction-elimination" class="internal"><span class="codenumber">1.2.1</span> <span class="title">The Elimination Method</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-row-reduction.html#subsec-row-reduction-echelon-forms" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Echelon Forms</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-row-reduction.html#sec-row-reduction-6" class="internal"><span class="codenumber">1.2.3</span> <span class="title">The Row Reduction Algorithm</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-row-reduction.html#sec-row-reduction-7" class="internal"><span class="codenumber">1.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-parametric-form.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Parametric Form</span></a></div>
+<ul id="ptx-toc-group-sec-parametric-form" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-parametric-form.html#subsec-free-variables" class="internal"><span class="codenumber">1.3.1</span> <span class="title">Free Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-parametric-form.html#subsec-number-of-solutions" class="internal"><span class="codenumber">1.3.2</span> <span class="title">Number of Solutions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-parametric-form.html#sec-parametric-form-5" class="internal"><span class="codenumber">1.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-geometry.html" class="internal"><span class="codenumber">2</span> <span class="title">Systems of Linear Equations: Geometry</span></a></div>
+<ul id="ptx-toc-group-chap-geometry" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-geometry-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-vectors.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Vectors</span></a></div>
+<ul id="ptx-toc-group-sec-vectors" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-vectors.html#subsec-vectors-in-rn" class="internal"><span class="codenumber">2.1.1</span> <span class="title">Vectors in <span class="process-math">\(\R^n\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-vectors.html#subsec-vector-algebra-and-geometry" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Vector Algebra and Geometry</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-vectors.html#subsec-linear-combinations" class="internal"><span class="codenumber">2.1.3</span> <span class="title">Linear Combinations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-spans.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Vector Equations and Spans</span></a></div>
+<ul id="ptx-toc-group-sec-spans" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spans.html#subsec-vector-equations" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Vector Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-spans.html#subsec-spans" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Spans</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-spans.html#sec-spans-5" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-equations.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Matrix Equations</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-equations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb" class="internal"><span class="codenumber">2.3.1</span> <span class="title">The Matrix Equation <span class="process-math">\(Ax=b\text{.}\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-equations.html#subsec-spans-and-consistency" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Spans and Consistency</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-equations.html#sec-matrix-equations-5" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-solution-sets.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Solution Sets</span></a></div>
+<ul id="ptx-toc-group-sec-solution-sets" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-solnsets-homog" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Homogeneous Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-inhomogeneous-systems" class="internal"><span class="codenumber">2.4.2</span> <span class="title">Inhomogeneous Systems</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-solution-sets.html#subsec-solnsets-ss-and-cs" class="internal"><span class="codenumber">2.4.3</span> <span class="title">Solution Sets and Column Spans</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-solution-sets.html#sec-solution-sets-7" class="internal"><span class="codenumber">2.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-independence.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Linear Independence</span></a></div>
+<ul id="ptx-toc-group-sec-linear-independence" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-the-definition-of-linear-independence" class="internal"><span class="codenumber">2.5.1</span> <span class="title">The Definition of Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-criteria-for-linear-independence" class="internal"><span class="codenumber">2.5.2</span> <span class="title">Criteria for Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-pictures-of-linear-independence" class="internal"><span class="codenumber">2.5.3</span> <span class="title">Pictures of Linear Independence</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-independence.html#subsec-linear-dependence-and-free-variables" class="internal"><span class="codenumber">2.5.4</span> <span class="title">Linear Dependence and Free Variables</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-linear-independence.html#sec-linear-independence-8" class="internal"><span class="codenumber">2.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-subspaces.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Subspaces</span></a></div>
+<ul id="ptx-toc-group-sec-subspaces" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-subspaces.html#subsec-subspaces-definition-and-examples" class="internal"><span class="codenumber">2.6.1</span> <span class="title">Subspaces: Definition and Examples</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-subspaces.html#subsec-common-types-of-subspaces" class="internal"><span class="codenumber">2.6.2</span> <span class="title">Common Types of Subspaces</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-subspaces.html#sec-subspaces-6" class="internal"><span class="codenumber">2.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-dimension.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Basis and Dimension</span></a></div>
+<ul id="ptx-toc-group-sec-dimension" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-basis-of-a-subspace" class="internal"><span class="codenumber">2.7.1</span> <span class="title">Basis of a Subspace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-computing-a-basis-for-a-subspace" class="internal"><span class="codenumber">2.7.2</span> <span class="title">Computing a Basis for a Subspace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dimension.html#subsec-the-basis-theorem" class="internal"><span class="codenumber">2.7.3</span> <span class="title">The Basis Theorem</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-dimension.html#sec-dimension-6" class="internal"><span class="codenumber">2.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-bases-as-coord-systems.html" class="internal"><span class="codenumber">2.8</span> <span class="title">Bases as Coordinate Systems</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-rank-thm.html" class="internal"><span class="codenumber">2.9</span> <span class="title">The Rank Theorem</span></a></div>
+<ul id="ptx-toc-group-sec-rank-thm" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-rank-thm.html#sec-rank-thm-22" class="internal"><span class="codenumber">2.9</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-matrices.html" class="internal"><span class="codenumber">3</span> <span class="title">Linear Transformations and Matrix Algebra</span></a></div>
+<ul id="ptx-toc-group-chap-matrices" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-matrices-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-transformations.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Matrix Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-transformations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-trans-matrices-functions" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Matrices as Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-transformations" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Matrix Transformations</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-transformations.html#sec-matrix-transformations-7" class="internal"><span class="codenumber">3.1.4</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-transformations.html#sec-matrix-transformations-8" class="internal"><span class="codenumber">3.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-one-to-one-onto.html" class="internal"><span class="codenumber">3.2</span> <span class="title">One-to-one and Onto Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-one-to-one-onto" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-one-to-one-transformations" class="internal"><span class="codenumber">3.2.1</span> <span class="title">One-to-one Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-onto-transformations" class="internal"><span class="codenumber">3.2.2</span> <span class="title">Onto Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-comparison" class="internal"><span class="codenumber">3.2.3</span> <span class="title">Comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-transformations.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Linear Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-linear-transformations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-linear-transformations-definition" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Linear Transformations: Definition</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-the-standard-coordinate-vectors" class="internal"><span class="codenumber">3.3.2</span> <span class="title">The Standard Coordinate Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-linear-trans-is-matrix-trans" class="internal"><span class="codenumber">3.3.3</span> <span class="title">The Matrix of a Linear Transformation</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-linear-transformations.html#sec-linear-transformations-7" class="internal"><span class="codenumber">3.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-multiplication.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Matrix Multiplication</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-multiplication" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-composition-of-linear-transformations" class="internal"><span class="codenumber">3.4.1</span> <span class="title">Composition of linear transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-matrix-multiplication" class="internal"><span class="codenumber">3.4.2</span> <span class="title">Matrix multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-composition-and-matrix-multiplication" class="internal"><span class="codenumber">3.4.3</span> <span class="title">Composition and Matrix Multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices" class="internal"><span class="codenumber">3.4.4</span> <span class="title">The algebra of transformations and matrices</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#sec-matrix-multiplication-8" class="internal"><span class="codenumber">3.4.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-inverses.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Matrix Inverses</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-inverses" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-invertible-matrices" class="internal"><span class="codenumber">3.5.1</span> <span class="title">Invertible Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-matrix-inv-computing" class="internal"><span class="codenumber">3.5.2</span> <span class="title">Computing the Inverse Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-solving-linear-systems-using-inverses" class="internal"><span class="codenumber">3.5.3</span> <span class="title">Solving Linear Systems using Inverses</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms" class="internal"><span class="codenumber">3.5.4</span> <span class="title">Invertible linear transformations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-invertible-matrix-thm.html" class="internal"><span class="codenumber">3.6</span> <span class="title">The Invertible Matrix Theorem</span></a></div>
+<ul id="ptx-toc-group-sec-invertible-matrix-thm" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-invertible-matrix-thm.html#sec-invertible-matrix-thm-16" class="internal"><span class="codenumber">3.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-determinant.html" class="internal"><span class="codenumber">4</span> <span class="title">Determinants</span></a></div>
+<ul id="ptx-toc-group-chap-determinant" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-determinant-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-definitions-properties.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Determinants: Definition</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-definitions-properties" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant" class="internal"><span class="codenumber">4.1.1</span> <span class="title">The Definition of the Determinant</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#subsec-det-defn-magic-props" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Magical Properties of the Determinant</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#sec-determinants-definitions-properties-6" class="internal"><span class="codenumber">4.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-cofactors.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Cofactor Expansions</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-cofactors" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#subsec-cofactor-expansions" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Cofactor Expansions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#subsec-det-cofact-cramer-ss" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Cramer’s Rule and Matrix Inverses</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#sec-determinants-cofactors-6" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-volumes.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Determinants and Volumes</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-volumes" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-parallelograms-and-paralellepipeds" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Parallelograms and Paralellepipeds</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-determinants-and-volumes" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Determinants and Volumes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-volumes-of-regions" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Volumes of Regions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-volumes.html#sec-determinants-volumes-7" class="internal"><span class="codenumber">4.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-eigenvalues.html" class="internal"><span class="codenumber">5</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul id="ptx-toc-group-chap-eigenvalues" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-eigenvalues-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-eigenvectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul id="ptx-toc-group-sec-eigenvectors" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-eigenspaces" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Eigenspaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-the-invertible-matrix-theorem-addenda" class="internal"><span class="codenumber">5.1.3</span> <span class="title">The Invertible Matrix Theorem: Addenda</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-eigenvectors.html#sec-eigenvectors-7" class="internal"><span class="codenumber">5.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-characteristic-polynomial.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The Characteristic Polynomial</span></a></div>
+<ul id="ptx-toc-group-sec-characteristic-polynomial" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-15" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-similarity.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Similarity</span></a></div>
+<ul id="ptx-toc-group-sec-similarity" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-similar-matrices" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Similar Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-geometry-of-similar-matrices" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Geometry of Similar Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Eigenvalues of Similar Matrices</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-diagonalization.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Diagonalization</span></a></div>
+<ul id="ptx-toc-group-sec-diagonalization" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-diagonalizability" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Diagonalizability</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-diag-ss-geometry" class="internal"><span class="codenumber">5.4.2</span> <span class="title">The Geometry of Diagonalizable Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity" class="internal"><span class="codenumber">5.4.3</span> <span class="title">Algebraic and Geometric Multiplicity</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-diagonalization.html#sec-diagonalization-7" class="internal"><span class="codenumber">5.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-complex-eigenvalues.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Complex Eigenvalues</span></a></div>
+<ul id="ptx-toc-group-sec-complex-eigenvalues" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-matrices-with-complex-eigenvalues" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Matrices with Complex Eigenvalues</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-rotation-scaling-matrices" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Rotation-Scaling Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue" class="internal"><span class="codenumber">5.5.3</span> <span class="title">Geometry of <span class="process-math">\(2\times 2\)</span> Matrices with a Complex Eigenvalue</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-block-diagonalization" class="internal"><span class="codenumber">5.5.4</span> <span class="title">Block Diagonalization</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#sec-complex-eigenvalues-8" class="internal"><span class="codenumber">5.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-stochastic-matrices.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Stochastic Matrices</span></a></div>
+<ul id="ptx-toc-group-sec-stochastic-matrices" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-difference-equations" class="internal"><span class="codenumber">5.6.1</span> <span class="title">Difference Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state" class="internal"><span class="codenumber">5.6.2</span> <span class="title">Stochastic Matrices and the Steady State</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-googles-pagerank-algorithm" class="internal"><span class="codenumber">5.6.3</span> <span class="title">Google’s PageRank Algorithm</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#sec-stochastic-matrices-7" class="internal"><span class="codenumber">5.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="chap-orthogonality.html" class="internal"><span class="codenumber">6</span> <span class="title">Orthogonality</span></a></div>
+<ul class="structural toc-item-list contains-active" id="ptx-toc-group-chap-orthogonality">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-orthogonality-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-dot-product.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Dot Products and Orthogonality</span></a></div>
+<ul id="ptx-toc-group-sec-dot-product" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dot-product.html#subsec-the-dot-product" class="internal"><span class="codenumber">6.1.1</span> <span class="title">The Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dot-product.html#subsec-orthogonal-vectors" class="internal"><span class="codenumber">6.1.2</span> <span class="title">Orthogonal Vectors</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-dot-product.html#sec-dot-product-6" class="internal"><span class="codenumber">6.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-orthogonal-complements.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Orthogonal Complements</span></a></div>
+<ul id="ptx-toc-group-sec-orthogonal-complements" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-complements.html#subsec-definition-of-the-orthogonal-complement" class="internal"><span class="codenumber">6.2.1</span> <span class="title">Definition of the Orthogonal Complement</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-complements.html#subsec-computing-orthogonal-complements" class="internal"><span class="codenumber">6.2.2</span> <span class="title">Computing Orthogonal Complements</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-complements.html#subsec-row-rank-and-column-rank" class="internal"><span class="codenumber">6.2.3</span> <span class="title">Row rank and column rank</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-orthogonal-complements.html#sec-orthogonal-complements-7" class="internal"><span class="codenumber">6.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-projections.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul id="ptx-toc-group-sec-projections" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-projections.html#subsec-orthogonal-decomposition" class="internal"><span class="codenumber">6.3.1</span> <span class="title">Orthogonal Decomposition</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-projections.html#subsec-orthogonal-projection" class="internal"><span class="codenumber">6.3.2</span> <span class="title">Orthogonal Projection</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-projections.html#sec-projections-6" class="internal"><span class="codenumber">6.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec-orthogonal-sets.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Orthogonal Sets</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-sec-orthogonal-sets">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-sets.html#subsec-orthogonal-sets-and-the-projection-formula" class="internal"><span class="codenumber">6.4.1</span> <span class="title">Orthogonal Sets and the Projection Formula</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-sets.html#subsec-orthosets-gram-schmidt" class="internal"><span class="codenumber">6.4.2</span> <span class="title">The Gram–Schmidt Process</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-sets.html#subsec-two-methods-to-compute-the-projection" class="internal"><span class="codenumber">6.4.3</span> <span class="title">Two Methods to Compute the Projection</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-least-squares.html" class="internal"><span class="codenumber">6.5</span> <span class="title">The Method of Least Squares</span></a></div>
+<ul id="ptx-toc-group-sec-least-squares" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-least-squares.html#subsec-least-squares-solutions" class="internal"><span class="codenumber">6.5.1</span> <span class="title">Least-Squares Solutions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-least-squares.html#subsec-best-fit-problems" class="internal"><span class="codenumber">6.5.2</span> <span class="title">Best-Fit Problems</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-least-squares.html#sec-least-squares-6" class="internal"><span class="codenumber">6.5.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
+<ul id="ptx-toc-group-backmatter" class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="complex-numbers.html" class="internal"><span class="codenumber">A.</span> <span class="title">Complex Numbers</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="backmatter-3.html" class="internal"><span class="codenumber">B.</span> <span class="title">Notation</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="codenumber">C.</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">D.</span> <span class="title">GNU Free Documentation License</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-6.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-7.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="section" id="sec-orthogonal-sets">
+<h1 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Orthogonal Sets</span>
+</h1>
+<article class="objectives goal-like" id="sec-orthogonal-sets-2"><h2 class="heading"><span class="type">Objectives</span></h2>
+<ol class="decimal" id="sec-orthogonal-sets-2-1">
+<li id="sec-orthogonal-sets-2-1-1">
+<div class="para" id="sec-orthogonal-sets-2-1-1-1">Understand which is the best method to use to compute an orthogonal projection in a given situation.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-orthogonal-sets-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Objective 6.4.1"><a tabindex="-1" href="#sec-orthogonal-sets-2-1-1" title="Copy heading and permalink for Objective 6.4.1" aria-label="Copy heading and permalink for Objective 6.4.1">🔗</a></div>
+</li>
+<li id="sec-orthogonal-sets-2-1-2">
+<div class="para" id="sec-orthogonal-sets-2-1-2-1">
+<em class="emphasis">Recipes:</em> an orthonormal set from an orthogonal set, Projection Formula, <span class="process-math">\(\cB\)</span>-coordinates when <span class="process-math">\(\cB\)</span> is an orthogonal set, Gram–Schmidt process.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-orthogonal-sets-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Objective 6.4.2"><a tabindex="-1" href="#sec-orthogonal-sets-2-1-2" title="Copy heading and permalink for Objective 6.4.2" aria-label="Copy heading and permalink for Objective 6.4.2">🔗</a></div>
+</li>
+<li id="sec-orthogonal-sets-2-1-3">
+<div class="para" id="sec-orthogonal-sets-2-1-3-1">
+<em class="emphasis">Vocabulary words:</em> <dfn class="terminology">orthogonal set</dfn>, <dfn class="terminology">orthonormal set</dfn>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-orthogonal-sets-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Objective 6.4.3"><a tabindex="-1" href="#sec-orthogonal-sets-2-1-3" title="Copy heading and permalink for Objective 6.4.3" aria-label="Copy heading and permalink for Objective 6.4.3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Objectives 6.4"><a tabindex="-1" href="#sec-orthogonal-sets-2" title="Copy heading and permalink for Objectives 6.4" aria-label="Copy heading and permalink for Objectives 6.4">🔗</a></div>
+</article>
+<section class="introduction" id="sec-orthogonal-sets-3">
+<div class="para" id="sec-orthogonal-sets-3-1">In this section, we give a formula for orthogonal projection that is considerably simpler than the one in <a href="sec-projections.html" class="internal" title="Section 6.3: Orthogonal Projection">Section 6.3</a>, in that it does not require row reduction or matrix inversion.  However, this formula, called the Projection Formula, only works in the presence of an <em class="emphasis">orthogonal</em> basis.  We will also present the Gram–Schmidt process for turning an arbitrary basis into an orthogonal one.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-orthogonal-sets-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></section>
+<section class="subsection" id="subsec-orthogonal-sets-and-the-projection-formula">
+<h2 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Orthogonal Sets and the Projection Formula</span>
+</h2>
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-2">Computations involving projections tend to be much easier in the presence of an <em class="emphasis">orthogonal</em> set of vectors.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="subsec-orthogonal-sets-and-the-projection-formula-3"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-3-5-1">A set of <em class="emphasis">nonzero</em> vectors <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is called <dfn class="terminology">orthogonal</dfn> if <span class="process-math">\(u_i\cdot u_j = 0\)</span> whenever <span class="process-math">\(i\neq j\text{.}\)</span>  It is <dfn class="terminology">orthonormal</dfn> if it is orthogonal, and in addition <span class="process-math">\(u_i\cdot u_i = 1\)</span> for all <span class="process-math">\(i=1,2,\ldots,m\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-3-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Definition 6.4.1"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-3" title="Copy heading and permalink for Definition 6.4.1" aria-label="Copy heading and permalink for Definition 6.4.1">🔗</a></div>
+</article>
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-4">In other words, a set of vectors is orthogonal if different vectors in the set are perpendicular to each other.  An orthonormal set is an orthogonal set of <a href="sec-dot-product.html#innerprod-unit-vec" class="xref" data-knowl="./knowl/xref/innerprod-unit-vec.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 6.1.8">unit vectors</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="observation remark-like" id="subsec-orthogonal-sets-and-the-projection-formula-5"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-5-3">
+<div class="para">The standard coordinate vectors in <span class="process-math">\(\R^n\)</span> always form an orthonormal set.  For instance, in <span class="process-math">\(\R^3\)</span> we check that</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-5-3-3">
+\begin{gather*}
+\begin{pmatrix}
+1 \\
+0 \\
+0
+\end{pmatrix}\cdot\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix} = 0 \qquad
+\begin{pmatrix}
+1 \\
+0 \\
+0
+\end{pmatrix}\cdot\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix} = 0 \qquad
+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}\cdot\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix} = 0\text{.}
+\end{gather*}
+</div>
+<div class="para">Since <span class="process-math">\(e_i\cdot e_i = 1\)</span> for all <span class="process-math">\(i=1,2,3\text{,}\)</span> this shows that <span class="process-math">\(\{e_1,e_2,e_3\}\)</span> is orthonormal.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-5-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-orthogonal-sets-and-the-projection-formula-5-4.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthogonal-sets-and-the-projection-formula-5-4-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-5-4-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-5-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.2"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-5" title="Copy heading and permalink for Example 6.4.2" aria-label="Copy heading and permalink for Example 6.4.2">🔗</a></div>
+</article>
+<details id="subsec-orthogonal-sets-and-the-projection-formula-6" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-6-1-1">
+<div class="para">Is this set orthogonal?  Is it orthonormal?</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-6-1-1-1">
+\begin{gather*}
+\cB = \left\{\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix},\;\begin{pmatrix}
+1 \\
+-2 \\
+1
+\end{pmatrix},\;\begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix}\right\}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="subsec-orthogonal-sets-and-the-projection-formula-6-2">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-6-2-1">
+<div class="para">We check that</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-6-2-1-1">
+\begin{gather*}
+\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+-2 \\
+1
+\end{pmatrix} = 0
+\qquad \begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix} = 0
+\qquad \begin{pmatrix}
+1 \\
+-2 \\
+1
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix} = 0\text{.}
+\end{gather*}
+</div>
+<div class="para">Therefore, <span class="process-math">\(\cB\)</span> is orthogonal.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-orthogonal-sets-and-the-projection-formula-6-2-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthogonal-sets-and-the-projection-formula-6-2-2-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-6-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-6-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-6-2-3">
+<div class="para">The set <span class="process-math">\(\cB\)</span> is not orthonormal because, for instance,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/innerprod-unit-vec-dir.html" id="subsec-orthogonal-sets-and-the-projection-formula-6-2-3-2">
+\begin{gather*}
+\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix} \cdot \begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix} = 3 \neq 1\text{.}
+\end{gather*}
+</div>
+<div class="para">However, we can make it orthonormal by replacing each vector by the <a href="sec-dot-product.html#innerprod-unit-vec-dir" class="xref" data-knowl="./knowl/xref/innerprod-unit-vec-dir.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 6.1.9">unit vector in the direction of</a> each vector:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/innerprod-unit-vec-dir.html" id="subsec-orthogonal-sets-and-the-projection-formula-6-2-3-4">
+\begin{gather*}
+\left\{\frac 1{\sqrt3}\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix},\;\frac 1{\sqrt6}\begin{pmatrix}
+1 \\
+-2 \\
+1
+\end{pmatrix},\;
+\frac 1{\sqrt2}\begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix}\right\}
+\end{gather*}
+</div>
+<div class="para">is orthonormal.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-6-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.3.1"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-6-2" title="Copy heading and permalink for Solution 6.4.3.1" aria-label="Copy heading and permalink for Solution 6.4.3.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.3"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-6" title="Copy heading and permalink for Example 6.4.3" aria-label="Copy heading and permalink for Example 6.4.3">🔗</a></div>
+</article></details>
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-7">We saw in the previous example that it is easy to produce an orthonormal set of vectors from an orthogonal one by replacing each vector with the unit vector in the same direction.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="algorithm theorem-like" id="subsec-orthogonal-sets-and-the-projection-formula-8"><h3 class="heading">
+<span class="type">Recipe</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">An orthonormal set from an orthogonal set.</span>
+</h3>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-8-3">
+<div class="para">If <span class="process-math">\(\{v_1,v_2,\ldots,v_m\}\)</span> is an orthogonal set of vectors, then</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-8-3-2">
+\begin{gather*}
+\left\{\frac{v_1}{\|v_1\|},\;\frac{v_2}{\|v_2\|},\ldots,\;\frac{v_m}{\|v_m\|}\right\}
+\end{gather*}
+</div>
+<div class="para">is an orthonormal set.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-8-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Recipe 6.4.4: An orthonormal set from an orthogonal set"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-8" title="Copy heading and permalink for Recipe 6.4.4: An orthonormal set from an orthogonal set" aria-label="Copy heading and permalink for Recipe 6.4.4: An orthonormal set from an orthogonal set">🔗</a></div>
+</article>
+<details id="subsec-orthogonal-sets-and-the-projection-formula-9" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-9-1-1">
+<div class="para">Let <span class="process-math">\(a,b\)</span> be scalars, and let</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-9-1-1-2">
+\begin{gather*}
+u_1 = \begin{pmatrix}
+a \\
+b
+\end{pmatrix} \qquad u_2 = \begin{pmatrix}
+-b \\
+a
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Is <span class="process-math">\(\cB = \{u_1,u_2\}\)</span> orthogonal?</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-9-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="subsec-orthogonal-sets-and-the-projection-formula-9-2">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-9-2-1">
+<div class="para">We only have to check that</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-9-2-1-1">
+\begin{gather*}
+\begin{pmatrix}
+a \\
+b
+\end{pmatrix}\cdot\begin{pmatrix}
+-b \\
+a
+\end{pmatrix} = -ab + ab = 0\text{.}
+\end{gather*}
+</div>
+<div class="para">Therefore, <span class="process-math">\(\{u_1,u_2\}\)</span> is orthogonal, <em class="emphasis">unless</em> <span class="process-math">\(a=b=0\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-9-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.5.1"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-9-2" title="Copy heading and permalink for Solution 6.4.5.1" aria-label="Copy heading and permalink for Solution 6.4.5.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.5"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-9" title="Copy heading and permalink for Example 6.4.5" aria-label="Copy heading and permalink for Example 6.4.5">🔗</a></div>
+</article></details>
+<details id="subsec-orthogonal-sets-and-the-projection-formula-10" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-10-1-1">
+<div class="para">Is this set orthogonal?</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-10-1-1-1">
+\begin{gather*}
+\cB = \left\{\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix},\;\begin{pmatrix}
+1 \\
+-2 \\
+1
+\end{pmatrix},\;\begin{pmatrix}
+1 \\
+-1 \\
+-1
+\end{pmatrix}\right\}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-10-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="subsec-orthogonal-sets-and-the-projection-formula-10-2">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-10-2-1">
+<div class="para">This set is not orthogonal because</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/subsec-orthosets-gram-schmidt.html" id="subsec-orthogonal-sets-and-the-projection-formula-10-2-1-1">
+\begin{gather*}
+\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+-1 \\
+-1
+\end{pmatrix} = 1-1-1 = -1 \neq 0\text{.}
+\end{gather*}
+</div>
+<div class="para">We will see how to produce an orthogonal set from <span class="process-math">\(\cB\)</span> in <a href="sec-orthogonal-sets.html#subsec-orthosets-gram-schmidt" class="internal" title="Subsection 6.4.2: The Gram–Schmidt Process">Subsection 6.4.2</a>.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-10-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.6.1"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-10-2" title="Copy heading and permalink for Solution 6.4.6.1" aria-label="Copy heading and permalink for Solution 6.4.6.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.6"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-10" title="Copy heading and permalink for Example 6.4.6" aria-label="Copy heading and permalink for Example 6.4.6">🔗</a></div>
+</article></details>
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-11">A nice property enjoyed by orthogonal sets is that they are automatically linearly independent.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="fact theorem-like" id="orthosets-is-li"><h3 class="heading">
+<span class="type">Fact</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="orthosets-is-li-4-1">An orthogonal set is linearly independent.  Therefore, it is a basis for its span.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#orthosets-is-li-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Fact 6.4.7"><a tabindex="-1" href="#orthosets-is-li" title="Copy heading and permalink for Fact 6.4.7" aria-label="Copy heading and permalink for Fact 6.4.7">🔗</a></div>
+</article>
+<details id="orthosets-is-li-5" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="orthosets-is-li-5-1">
+<div class="para">Suppose that <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is orthogonal.  We need to show that the equation</div>
+<div class="displaymath process-math" id="orthosets-is-li-5-1-2">
+\begin{gather*}
+c_1u_1 + c_2u_2 + \cdots + c_mu_m = 0
+\end{gather*}
+</div>
+<div class="para">has only the trivial solution <span class="process-math">\(c_1=c_2=\cdots=c_m=0\text{.}\)</span>  Taking the dot product of both sides of this equation with <span class="process-math">\(u_1\)</span> gives</div>
+<div class="displaymath process-math" id="orthosets-is-li-5-1-5">
+\begin{align*}
+0 = u_1\cdot 0
+\amp= u_1\cdot\bigl(c_1u_1 + c_2u_2 + \cdots + c_mu_m\bigr)\\
+\amp= c_1(u_1\cdot u_1) + c_2(u_1\cdot u_2) + \cdots + c_m(u_1\cdot u_m)\\
+\amp= c_1(u_1\cdot u_1)
+\end{align*}
+</div>
+<div class="para">because <span class="process-math">\(u_1\cdot u_i = 0\)</span> for <span class="process-math">\(i &gt; 1\text{.}\)</span>  Since <span class="process-math">\(u_1\neq 0\)</span> we have <span class="process-math">\(u_1\cdot u_1\neq 0\text{,}\)</span> so <span class="process-math">\(c_1 = 0\text{.}\)</span>  Similarly, taking the dot product with <span class="process-math">\(u_i\)</span> shows that each <span class="process-math">\(c_i = 0\text{,}\)</span> as desired.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#orthosets-is-li-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 6.4.7.1"><a tabindex="-1" href="#orthosets-is-li-5" title="Copy heading and permalink for Proof 6.4.7.1" aria-label="Copy heading and permalink for Proof 6.4.7.1">🔗</a></div>
+</article></details>
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-13">One advantage of working with orthogonal sets is that it gives a simple formula for the <a href="sec-projections.html#projections-defn-of" class="xref" data-knowl="./knowl/xref/projections-defn-of.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 6.3.3">orthogonal projection</a> of a vector.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="projection-formula"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="projection-formula-3-1">
+<div class="para">Let <span class="process-math">\(W\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> be an <em class="emphasis">orthogonal</em> basis for <span class="process-math">\(W\text{.}\)</span>  Then for any vector <span class="process-math">\(x\)</span> in <span class="process-math">\(\R^n\text{,}\)</span> the orthogonal projection of <span class="process-math">\(x\)</span> onto <span class="process-math">\(W\)</span> is given by the formula</div>
+<div class="displaymath process-math" id="projection-formula-3-1-10">
+\begin{gather*}
+x_W = \frac{x\cdot u_1}{u_1\cdot u_1}\,u_1
++ \frac{x\cdot u_2}{u_2\cdot u_2}\,u_2 + \cdots
++ \frac{x\cdot u_m}{u_m\cdot u_m}\,u_m\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projection-formula-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 6.4.8"><a tabindex="-1" href="#projection-formula" title="Copy heading and permalink for Theorem 6.4.8" aria-label="Copy heading and permalink for Theorem 6.4.8">🔗</a></div>
+</article>
+<details id="projection-formula-4" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="projection-formula-4-1">
+<div class="para">Let</div>
+<div class="displaymath process-math" id="projection-formula-4-1-1">
+\begin{gather*}
+y = \frac{x\cdot u_1}{u_1\cdot u_1}\,u_1
++ \frac{x\cdot u_2}{u_2\cdot u_2}\,u_2 + \cdots
++ \frac{x\cdot u_m}{u_m\cdot u_m}\,u_m\text{.}
+\end{gather*}
+</div>
+<div class="para">This vector is contained in <span class="process-math">\(W\)</span> because it is a linear combination of <span class="process-math">\(u_1,u_2,\ldots,u_m\text{.}\)</span>  Hence we just need to show that <span class="process-math">\(x - y\)</span> is in <span class="process-math">\(W^\perp\text{,}\)</span> i.e., that <span class="process-math">\(u_i\cdot (x-y) = 0\)</span> for each <span class="process-math">\(i=1,2,\ldots,m\text{.}\)</span>  For <span class="process-math">\(u_1\text{,}\)</span> we have</div>
+<div class="displaymath process-math" id="projection-formula-4-1-9">
+\begin{align*}
+u_1\cdot(x-y)
+\amp= u_1\cdot\left( x -
+\frac{x\cdot u_1}{u_1\cdot u_1}\,u_1
+- \frac{x\cdot u_2}{u_2\cdot u_2}\,u_2 - \cdots
+- \frac{x\cdot u_m}{u_m\cdot u_m}\,u_m
+\right)\\
+\amp= u_1\cdot x - \frac{x\cdot u_1}{u_1\cdot u_1}(u_1\cdot u_1) - 0 - \cdots - 0\\
+\amp= 0\text{.}
+\end{align*}
+</div>
+<div class="para">A similar calculation shows that <span class="process-math">\(u_i\cdot(x-y) = 0\)</span> for each <span class="process-math">\(i\text{,}\)</span> so <span class="process-math">\(x-y\)</span> is in <span class="process-math">\(W^\perp\text{,}\)</span> as desired.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#projection-formula-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 6.4.8.1"><a tabindex="-1" href="#projection-formula-4" title="Copy heading and permalink for Proof 6.4.8.1" aria-label="Copy heading and permalink for Proof 6.4.8.1">🔗</a></div>
+</article></details>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-15">
+<div class="para">If <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is an ortho<em class="emphasis">normal</em> basis for <span class="process-math">\(W\text{,}\)</span> then the denominators <span class="process-math">\(u_i\cdot u_i = 1\)</span> go away, so the projection formula becomes even simpler:</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-15-5">
+\begin{gather*}
+x_W = (x\cdot u_1)\,u_1 + (x\cdot u_2)\,u_2 + \cdots + (x\cdot u_m)\,u_m\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="observation remark-like" id="subsec-orthogonal-sets-and-the-projection-formula-16"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-16-3">
+<div class="para">Suppose that <span class="process-math">\(L = \Span\{u\}\)</span> is a line.  The set <span class="process-math">\(\{u\}\)</span> is an orthogonal basis for <span class="process-math">\(L\text{,}\)</span> so the Projection Formula says that for any vector <span class="process-math">\(x\text{,}\)</span> we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/projections-onto-line.html ./knowl/xref/projections-onto-line2.html ./knowl/xref/projections-onto-line3.html" id="subsec-orthogonal-sets-and-the-projection-formula-16-3-5">
+\begin{gather*}
+x_L = \frac{x\cdot u}{u\cdot u}\,u\text{,}
+\end{gather*}
+</div>
+<div class="para">as in <a href="sec-projections.html#projections-onto-line" class="xref" data-knowl="./knowl/xref/projections-onto-line.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 6.3.15: Orthogonal projection onto a line">Example 15 of Section 6.3</a>.  See also <a href="sec-projections.html#projections-onto-line2" class="xref" data-knowl="./knowl/xref/projections-onto-line2.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 6.3.18: Projection onto a line in \R^2">Example 18 of Section 6.3</a> and <a href="sec-projections.html#projections-onto-line3" class="xref" data-knowl="./knowl/xref/projections-onto-line3.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 6.3.20: Projection onto a line in \R^3">Example 20 of Section 6.3</a>.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-16-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.9"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-16" title="Copy heading and permalink for Example 6.4.9" aria-label="Copy heading and permalink for Example 6.4.9">🔗</a></div>
+</article>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-17">
+<div class="para">Suppose that <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is an orthogonal basis for a subspace <span class="process-math">\(W\text{,}\)</span> and let <span class="process-math">\(L_i = \Span\{u_i\}\)</span> for each <span class="process-math">\(i=1,2,\ldots,m\text{.}\)</span>  Then we see that for any vector <span class="process-math">\(x\text{,}\)</span> we have</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-17-6">
+\begin{align*}
+\spalignsysdelims..
+\left\{\begin{alignedat}{2}
+x_W \amp {}={} \amp \dfrac{x\cdot u_1}{u_1\cdot u_1}\,u_1
++ \dfrac{x\cdot u_2}{u_2\cdot u_2}\,u_2 + \cdots,
++ \dfrac{x\cdot u_m}{u_m\cdot u_m}\,u_m \amp {} \\
+{} \amp {}={} \amp \vphantom{\frac{u_1}{u_1}}x_{L_1}\hfil, + x_{L_2}\hfil, + \cdots, + x_{L_m}\hfil \amp .
+\end{alignedat}\right\text{.}
+\end{align*}
+</div>
+<div class="para">In other words, for an <em class="emphasis">orthogonal</em> basis, the projection of <span class="process-math">\(x\)</span> onto <span class="process-math">\(W\)</span> is the sum of the projections onto the lines spanned by the basis vectors.  In this sense, projection onto a line is the most important example of an orthogonal projection.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-17" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-orthogonal-sets-and-the-projection-formula-18" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Projection onto the <span class="process-math">\(xy\)</span>-plane.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-18-3-1">Continuing with <a href="sec-projections.html#projections-eg-xy-plane" class="xref" data-knowl="./knowl/xref/projections-eg-xy-plane.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 6.3.4: Orthogonal decomposition with respect to the xy-plane">Example 4 of Section 6.3</a> and <a href="sec-projections.html#projections-onto-xy-plane" class="xref" data-knowl="./knowl/xref/projections-onto-xy-plane.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 6.3.23: Projection onto the xy-plane">Example 23 of Section 6.3</a>, use the <a href="sec-orthogonal-sets.html#projection-formula" class="xref" data-knowl="./knowl/xref/projection-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.4.8">Theorem 8</a> to compute the orthogonal projection of a vector onto the <span class="process-math">\(xy\)</span>-plane in <span class="process-math">\(\R^3\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-18-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="subsec-orthogonal-sets-and-the-projection-formula-18-4">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-18-4-1">
+<div class="para">A basis for the <span class="process-math">\(xy\)</span>-plane is given by the two standard coordinate vectors</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-18-4-1-2">
+\begin{gather*}
+e_1 = \begin{pmatrix}
+1 \\
+0 \\
+0
+\end{pmatrix} \qquad e_2 = \begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">The set <span class="process-math">\(\{e_1,e_2\}\)</span> is orthogonal, so for any vector <span class="process-math">\(x = (x_1,x_2,x_3)\text{,}\)</span> we have</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-18-4-1-5">
+\begin{gather*}
+x_W = \frac{x\cdot e_1}{e_1\cdot e_1}\,e_1
++ \frac{x\cdot e_2}{e_2\cdot e_2}\,e_2
+= x_1e_1 + x_2e_2
+= \begin{pmatrix}
+x_1 \\
+x_2 \\
+0
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-18-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-orthogonal-sets-and-the-projection-formula-18-4-2"><div class="interactive-iframe-container">
+<iframe src="external/iframes/projection-if.html?u1=1,0,0&amp;u2=0,1,0&amp;labels=e1,e2&amp;vec=-1.1,2,1.5&amp;range=3&amp;closed" id="subsec-orthogonal-sets-and-the-projection-formula-18-4-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthogonal-sets-and-the-projection-formula-18-4-2-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-18-4-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-18-4-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-orthogonal-sets-and-the-projection-formula-18-4-2-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-orthogonal-sets-and-the-projection-formula-18-4-2-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h5 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-18-4-2-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-18-4-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-18-4-2-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Orthogonal projection of a vector onto the <span class="process-math">\(xy\)</span>-plane in <span class="process-math">\(\R^3\text{.}\)</span>  Note that <span class="process-math">\(x_W\)</span> is the sum of the projections of <span class="process-math">\(x\)</span> onto the <span class="process-math">\(e_1\)</span>- and <span class="process-math">\(e_2\)</span>-coordinate axes (shown in orange and brown, respectively).<div class="autopermalink" aria-hidden="true" data-description="Figure 6.4.11"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-18-4-2" title="Copy heading and permalink for Figure 6.4.11" aria-label="Copy heading and permalink for Figure 6.4.11">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.10.1"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-18-4" title="Copy heading and permalink for Solution 6.4.10.1" aria-label="Copy heading and permalink for Solution 6.4.10.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.10: Projection onto the xy-plane"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-18" title="Copy heading and permalink for Example 6.4.10: Projection onto the xy-plane" aria-label="Copy heading and permalink for Example 6.4.10: Projection onto the xy-plane">🔗</a></div>
+</article></details>
+<details id="subsec-orthogonal-sets-and-the-projection-formula-19" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.12</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Projection onto a plane in <span class="process-math">\(\R^3\)</span>.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-19-2-1">
+<div class="para">Let</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-19-2-1-1">
+\begin{gather*}
+W = \Span\left\{\begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix},\;\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}\right\}
+\qquad
+x = \begin{pmatrix}
+2 \\
+3 \\
+-2
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Find <span class="process-math">\(x_W\)</span> and <span class="process-math">\(x_{W^\perp}\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-19-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="subsec-orthogonal-sets-and-the-projection-formula-19-3">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-19-3-1">
+<div class="para">The vectors</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-19-3-1-1">
+\begin{gather*}
+u_1 = \begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix} \qquad u_2 = \begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}
+\end{gather*}
+</div>
+<div class="para">are orthogonal, so we can use the Projection Formula:</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-19-3-1-2">
+\begin{gather*}
+x_W = \frac{x\cdot u_1}{u_1\cdot u_1}\,u_1
++ \frac{x\cdot u_2}{u_2\cdot u_2}\,u_2
+= \frac{4}{2}\begin{pmatrix}
+1 \\
+0 \\
+-1
+\end{pmatrix} + \frac{3}{3}\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}
+= \begin{pmatrix}
+3 \\
+1 \\
+-1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Then we have</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-19-3-1-3">
+\begin{gather*}
+x_{W^\perp} = x - x_W = \begin{pmatrix}
+-1 \\
+2 \\
+-1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-19-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="subsec-orthogonal-sets-and-the-projection-formula-19-3-2"><div class="interactive-iframe-container">
+<iframe src="external/iframes/projection-if.html?u1=1,0,-1&amp;u2=1,1,1&amp;vec=2,3,-2&amp;range=3.5&amp;closed" id="subsec-orthogonal-sets-and-the-projection-formula-19-3-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthogonal-sets-and-the-projection-formula-19-3-2-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-19-3-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-19-3-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-orthogonal-sets-and-the-projection-formula-19-3-2-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-orthogonal-sets-and-the-projection-formula-19-3-2-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h5 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-19-3-2-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-19-3-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-19-3-2-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Orthogonal projection of a vector onto the plane <span class="process-math">\(W\text{.}\)</span>  Note that <span class="process-math">\(x_W\)</span> is the sum of the projections of <span class="process-math">\(x\)</span> onto the lines spanned by <span class="process-math">\(u_1\)</span> and <span class="process-math">\(u_2\)</span> (shown in orange and brown, respectively).<div class="autopermalink" aria-hidden="true" data-description="Figure 6.4.13"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-19-3-2" title="Copy heading and permalink for Figure 6.4.13" aria-label="Copy heading and permalink for Figure 6.4.13">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.12.1"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-19-3" title="Copy heading and permalink for Solution 6.4.12.1" aria-label="Copy heading and permalink for Solution 6.4.12.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.12: Projection onto a plane in \R^3"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-19" title="Copy heading and permalink for Example 6.4.12: Projection onto a plane in \R^3" aria-label="Copy heading and permalink for Example 6.4.12: Projection onto a plane in \R^3">🔗</a></div>
+</article></details>
+<details id="orthosets-3space-in-R4" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.14</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Projection onto a <span class="process-math">\(3\)</span>-space in <span class="process-math">\(\R^4\)</span>.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="orthosets-3space-in-R4-2-1">
+<div class="para">Let</div>
+<div class="displaymath process-math" id="orthosets-3space-in-R4-2-1-1">
+\begin{gather*}
+W = \Span\left\{\begin{pmatrix}
+1 \\
+0 \\
+-1 \\
+0
+\end{pmatrix},\;\begin{pmatrix}
+0 \\
+1 \\
+0 \\
+-1
+\end{pmatrix},\;\begin{pmatrix}
+1 \\
+1 \\
+1 \\
+1
+\end{pmatrix}\right\}
+\qquad
+x = \begin{pmatrix}
+0 \\
+1 \\
+3 \\
+4
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Compute <span class="process-math">\(x_W\text{,}\)</span> and find the distance from <span class="process-math">\(x\)</span> to <span class="process-math">\(W\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#orthosets-3space-in-R4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="orthosets-3space-in-R4-3">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="orthosets-3space-in-R4-3-1">
+<div class="para">The vectors</div>
+<div class="displaymath process-math" id="orthosets-3space-in-R4-3-1-1">
+\begin{gather*}
+u_1 = \begin{pmatrix}
+1 \\
+0 \\
+-1 \\
+0
+\end{pmatrix} \qquad
+u_2 = \begin{pmatrix}
+0 \\
+1 \\
+0 \\
+-1
+\end{pmatrix} \qquad
+u_3 = \begin{pmatrix}
+1 \\
+1 \\
+1 \\
+1
+\end{pmatrix}
+\end{gather*}
+</div>
+<div class="para">are orthogonal, so we can use the Projection Formula:</div>
+<div class="displaymath process-math" id="orthosets-3space-in-R4-3-1-2">
+\begin{align*}
+x_W \amp=
+\frac{x\cdot u_1}{u_1\cdot u_1}\,u_1 +
+\frac{x\cdot u_2}{u_2\cdot u_2}\,u_2 +
+\frac{x\cdot u_3}{u_3\cdot u_3}\,u_3\\
+\amp=
+\frac{-3}{2}\begin{pmatrix}
+1 \\
+0 \\
+-1 \\
+0
+\end{pmatrix} +
+\frac{-3}{2}\begin{pmatrix}
+0 \\
+1 \\
+0 \\
+-1
+\end{pmatrix} +
+\frac{8}{4}\begin{pmatrix}
+1 \\
+1 \\
+1 \\
+1
+\end{pmatrix}
+= \frac 12\begin{pmatrix}
+1 \\
+1 \\
+7 \\
+7
+\end{pmatrix}\\
+x_{W^\perp} \amp= x - x_W = \frac 12\begin{pmatrix}
+-1 \\
+1 \\
+-1 \\
+1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">The distance from <span class="process-math">\(x\)</span> to <span class="process-math">\(W\)</span> is</div>
+<div class="displaymath process-math" id="orthosets-3space-in-R4-3-1-5">
+\begin{gather*}
+\|x_{W^\perp}\| = \frac 12\sqrt{1+1+1+1} = 1\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#orthosets-3space-in-R4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.14.1"><a tabindex="-1" href="#orthosets-3space-in-R4-3" title="Copy heading and permalink for Solution 6.4.14.1" aria-label="Copy heading and permalink for Solution 6.4.14.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.14: Projection onto a 3-space in \R^4"><a tabindex="-1" href="#orthosets-3space-in-R4" title="Copy heading and permalink for Example 6.4.14: Projection onto a 3-space in \R^4" aria-label="Copy heading and permalink for Example 6.4.14: Projection onto a 3-space in \R^4">🔗</a></div>
+</article></details>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-21">
+<div class="para">Now let <span class="process-math">\(W\)</span> be a subspace of <span class="process-math">\(\R^n\)</span> with orthogonal basis <span class="process-math">\(\cB=\{v_1,v_2,\ldots,v_m\}\text{,}\)</span> and let <span class="process-math">\(x\)</span> be a vector in <span class="process-math">\(W\text{.}\)</span>  Then <span class="process-math">\(x = x_W\text{,}\)</span> so by the <a href="sec-orthogonal-sets.html#projection-formula" class="xref" data-knowl="./knowl/xref/projection-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.4.8">Theorem 8</a>, we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/projection-formula.html ./knowl/xref/dimension-defn-Bcoords.html" id="subsec-orthogonal-sets-and-the-projection-formula-21-8">
+\begin{gather*}
+x = x_W = \frac{x\cdot u_1}{u_1\cdot u_1}\,u_1
++ \frac{x\cdot u_2}{u_2\cdot u_2}\,u_2 + \cdots
++ \frac{x\cdot u_m}{u_m\cdot u_m}\,u_m\text{.}
+\end{gather*}
+</div>
+<div class="para">This gives us a way of expressing <span class="process-math">\(x\)</span> as a linear combination of the basis vectors in <span class="process-math">\(\cB\text{:}\)</span> we have computed the <span class="process-math">\(\cB\)</span>-<a href="sec-bases-as-coord-systems.html#dimension-defn-Bcoords" class="xref" data-knowl="./knowl/xref/dimension-defn-Bcoords.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.8.3">coordinates</a> of <span class="process-math">\(x\)</span> without row reducing!</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-21" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="algorithm theorem-like" id="subsec-orthogonal-sets-and-the-projection-formula-22"><h3 class="heading">
+<span class="type">Recipe</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.15</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title"><span class="process-math">\(\cB\)</span>-coordinates when <span class="process-math">\(\cB\)</span> is an orthogonal set.</span>
+</h3>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-22-5">
+<div class="para">Let <span class="process-math">\(W\)</span> be a subspace of <span class="process-math">\(\R^n\)</span> with orthogonal basis <span class="process-math">\(\cB=\{v_1,v_2,\ldots,v_m\}\)</span> and let <span class="process-math">\(x\)</span> be a vector in <span class="process-math">\(W\text{.}\)</span>  Then</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-22-5-6">
+\begin{gather*}
+[x]_\cB = \left( \frac{x\cdot u_1}{u_1\cdot u_1},\;
+\frac{x\cdot u_2}{u_2\cdot u_2},\;
+\ldots,\;
+\frac{x\cdot u_m}{u_m\cdot u_m}
+\right)\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-22-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Recipe 6.4.15: \cB-coordinates when \cB is an orthogonal set"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-22" title="Copy heading and permalink for Recipe 6.4.15: \cB-coordinates when \cB is an orthogonal set" aria-label="Copy heading and permalink for Recipe 6.4.15: \cB-coordinates when \cB is an orthogonal set">🔗</a></div>
+</article>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-23">
+<div class="para">As with orthogonal projections, if <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is an ortho<em class="emphasis">normal</em> basis of <span class="process-math">\(W\text{,}\)</span> then the formula is even simpler:</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-23-4">
+\begin{gather*}
+[x]_\cB = \bigl(x\cdot u_1,\; x\cdot u_2,\; \ldots,\; x\cdot u_m\bigr)\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-23" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-orthogonal-sets-and-the-projection-formula-24" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.16</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Computing coordinates with respect to an orthogonal basis.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-24-2-1">
+<div class="para">Find the <span class="process-math">\(\cB\)</span>-coordinates of <span class="process-math">\(x\text{,}\)</span> where</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-24-2-1-3">
+\begin{gather*}
+\cB = \left\{ \begin{pmatrix}
+1 \\
+2
+\end{pmatrix},\;\begin{pmatrix}
+-4 \\
+2
+\end{pmatrix} \right\} \qquad
+x = \begin{pmatrix}
+0 \\
+3
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-24-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="subsec-orthogonal-sets-and-the-projection-formula-24-3">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-24-3-1">
+<div class="para">Since</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-24-3-1-1">
+\begin{gather*}
+u_1 = \begin{pmatrix}
+1 \\
+2
+\end{pmatrix} \qquad u_2 = \begin{pmatrix}
+-4 \\
+2
+\end{pmatrix}
+\end{gather*}
+</div>
+<div class="para">form an <em class="emphasis">orthogonal</em> basis of <span class="process-math">\(\R^2\text{,}\)</span> we have</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-24-3-1-4">
+\begin{gather*}
+[x]_\cB = \left(\frac{x\cdot u_1}{u_1\cdot u_1},\;
+\frac{x\cdot u_2}{u_2\cdot u_2} \right)
+= \left(\frac{3\cdot 2}{1^2+2^2},\;
+\frac{3\cdot 2}{(-4)^2+2^2} \right)
+= \left(\frac 65,\;\frac 3{10} \right)\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-24-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-orthogonal-sets-and-the-projection-formula-24-3-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthogonal-sets-and-the-projection-formula-24-3-2-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-24-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-24-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<figure class="figure figure-like" id="subsec-orthogonal-sets-and-the-projection-formula-24-3-3"><div class="interactive-iframe-container">
+<iframe src="external/iframes/projection-if.html?u1=1,2&amp;u2=-4,2&amp;vec=0,3&amp;mode=basis&amp;closed&amp;range=4.5" id="subsec-orthogonal-sets-and-the-projection-formula-24-3-3-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthogonal-sets-and-the-projection-formula-24-3-3-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-24-3-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-24-3-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-orthogonal-sets-and-the-projection-formula-24-3-3-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-orthogonal-sets-and-the-projection-formula-24-3-3-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h5 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h5></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-24-3-3-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-24-3-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-24-3-3-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.17<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Computing <span class="process-math">\(\cB\)</span>-coordinates using the Projection Formula.<div class="autopermalink" aria-hidden="true" data-description="Figure 6.4.17"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-24-3-3" title="Copy heading and permalink for Figure 6.4.17" aria-label="Copy heading and permalink for Figure 6.4.17">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.16.1"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-24-3" title="Copy heading and permalink for Solution 6.4.16.1" aria-label="Copy heading and permalink for Solution 6.4.16.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.16: Computing coordinates with respect to an orthogonal basis"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-24" title="Copy heading and permalink for Example 6.4.16: Computing coordinates with respect to an orthogonal basis" aria-label="Copy heading and permalink for Example 6.4.16: Computing coordinates with respect to an orthogonal basis">🔗</a></div>
+</article></details>
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-25">The following example shows that the Projection Formula does in fact require an orthogonal basis.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-25" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="subsec-orthogonal-sets-and-the-projection-formula-26" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.18</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A non-orthogonal basis.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="subsec-orthogonal-sets-and-the-projection-formula-26-2">
+<div class="para">Consider the basis <span class="process-math">\(\cB = \{v_1,v_2\}\)</span> of <span class="process-math">\(\R^2\text{,}\)</span> where</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-26-2-3">
+\begin{gather*}
+v_1 = \begin{pmatrix}
+2 \\
+-1/2
+\end{pmatrix} \qquad v_2 = \begin{pmatrix}
+1 \\
+2
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">This is not orthogonal because <span class="process-math">\(v_1\cdot v_2 = 2-1 = 1\neq 0\text{.}\)</span>  Let <span class="process-math">\(x = {1\choose 1}\text{.}\)</span>  Let us try to compute <span class="process-math">\(x = x_{\R^2}\)</span> using the Projection Formula with respect to the basis <span class="process-math">\(\cB\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="subsec-orthogonal-sets-and-the-projection-formula-26-2-8">
+\begin{gather*}
+x_{\R^2} = \mhg{\frac{x\cdot v_1}{v_1\cdot v_1}v_1}
++ \textcolor{seq-violet}{\frac{x\cdot v_2}{v_2\cdot v_2}v_2}
+= \mhg{\frac{3/2}{17/4}\begin{pmatrix}
+2 \\
+-1/2
+\end{pmatrix}}
++ \textcolor{seq-violet}{\frac{3}{5}\begin{pmatrix}
+1 \\
+2
+\end{pmatrix}}
+= \begin{pmatrix}
+111/85 \\
+87/85
+\end{pmatrix} \neq x\text{.}
+\end{gather*}
+</div>
+<div class="para">Since <span class="process-math">\(x = x_{\R^2}\text{,}\)</span> we see that the Projection Formula does not compute the orthogonal projection in this case.  Geometrically, the projections of <span class="process-math">\(x\)</span> onto the lines spanned by <span class="process-math">\(v_1\)</span> and <span class="process-math">\(v_2\)</span> do not sum to <span class="process-math">\(x\text{,}\)</span> as we can see from the picture.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-26-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-orthogonal-sets-and-the-projection-formula-26-3.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthogonal-sets-and-the-projection-formula-26-3-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-26-3-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-26-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<figure class="figure figure-like" id="subsec-orthogonal-sets-and-the-projection-formula-26-4"><div class="interactive-iframe-container">
+<iframe src="external/iframes/projection-if.html?u1=2,-.5&amp;u2=1,2&amp;vec=1,1&amp;range=3&amp;mode=badbasis&amp;labels=v1,v2&amp;closed" id="subsec-orthogonal-sets-and-the-projection-formula-26-4-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthogonal-sets-and-the-projection-formula-26-4-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-26-4-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-26-4-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-orthogonal-sets-and-the-projection-formula-26-4-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-orthogonal-sets-and-the-projection-formula-26-4-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-26-4-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-26-4-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-26-4-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.19<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>When <span class="process-math">\(v_1\)</span> and <span class="process-math">\(v_2\)</span> are not orthogonal, then <span class="process-math">\(x_{\R^2} = x\)</span> is not necessarily equal to the sum (red) of the projections (orange and brown) of <span class="process-math">\(x\)</span> onto the lines spanned by <span class="process-math">\(v_1\)</span> and <span class="process-math">\(v_2\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Figure 6.4.19"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-26-4" title="Copy heading and permalink for Figure 6.4.19" aria-label="Copy heading and permalink for Figure 6.4.19">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Example 6.4.18: A non-orthogonal basis"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-26" title="Copy heading and permalink for Example 6.4.18: A non-orthogonal basis" aria-label="Copy heading and permalink for Example 6.4.18: A non-orthogonal basis">🔗</a></div>
+</article></details>
+<article class="insight remark-like" id="subsec-orthogonal-sets-and-the-projection-formula-27"><h3 class="heading">
+<span class="type">Insight</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.20</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="subsec-orthogonal-sets-and-the-projection-formula-27-2">You need an orthogonal basis to use the Projection Formula.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-27-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Insight 6.4.20"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula-27" title="Copy heading and permalink for Insight 6.4.20" aria-label="Copy heading and permalink for Insight 6.4.20">🔗</a></div>
+</article><div class="autopermalink" aria-hidden="true" data-description="Subsection 6.4.1: Orthogonal Sets and the Projection Formula"><a tabindex="-1" href="#subsec-orthogonal-sets-and-the-projection-formula" title="Copy heading and permalink for Subsection 6.4.1: Orthogonal Sets and the Projection Formula" aria-label="Copy heading and permalink for Subsection 6.4.1: Orthogonal Sets and the Projection Formula">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-orthosets-gram-schmidt">
+<h2 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Gram–Schmidt Process</span>
+</h2>
+<div class="para" id="subsec-orthosets-gram-schmidt-2">We saw in the previous subsection that orthogonal projections and <span class="process-math">\(\cB\)</span>-coordinates are much easier to compute in the presence of an <em class="emphasis">orthogonal</em> basis for a subspace.  In this subsection, we give a method, called the <em class="emphasis">Gram–Schmidt Process</em>, for computing an orthogonal basis of a subspace.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="subsec-orthosets-gram-schmidt-3"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.21</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Gram–Schmidt Process.</span>
+</h3>
+<div class="para logical" id="subsec-orthosets-gram-schmidt-3-5-1">
+<div class="para">Let <span class="process-math">\(v_1,v_2,\ldots,v_m\)</span> be a basis for a subspace <span class="process-math">\(W\)</span> of <span class="process-math">\(\R^n\text{.}\)</span>  Define:</div>
+<div class="displaymath process-math" id="subsec-orthosets-gram-schmidt-3-5-1-4">
+\begin{align*}
+1.\quad u_1 \amp= v_1 \phantom{\dfrac{u_1}{u_1}}\\
+2.\quad u_2 \amp=
+\hbox to 3.4cm{$(v_2)_{\Span\{u_1\}^\perp}$}
+= v_2 - \frac{v_2\cdot u_1}{u_1\cdot u_1}\,u_1\\
+3.\quad u_3 \amp=
+\hbox to 3.4cm{$(v_3)_{\Span\{u_1,u_2\}^\perp}$}
+= v_3 - \frac{v_3\cdot u_1}{u_1\cdot u_1}\,u_1
+- \frac{v_3\cdot u_2}{u_2\cdot u_2}\,u_2\\
+\vdots\quad\amp\\
+m.\quad u_m \amp=
+\hbox to 3.4cm{$(v_m)_{\Span\{u_1,u_2,\ldots,u_{m-1}\}^\perp}$}
+= v_m - \sum_{i=1}^{m-1}\frac{v_m\cdot u_i}{u_i\cdot u_i}\,u_i\text{.}
+\end{align*}
+</div>
+<div class="para">Then <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is an orthogonal basis for the same subspace <span class="process-math">\(W\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 6.4.21: The Gram–Schmidt Process"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3" title="Copy heading and permalink for Theorem 6.4.21: The Gram–Schmidt Process" aria-label="Copy heading and permalink for Theorem 6.4.21: The Gram–Schmidt Process">🔗</a></div>
+</article>
+<details id="subsec-orthosets-gram-schmidt-3-6" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="subsec-orthosets-gram-schmidt-3-6-1">First we claim that each <span class="process-math">\(u_i\)</span> is in <span class="process-math">\(W\text{,}\)</span> and in fact that <span class="process-math">\(u_i\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_i\}\text{.}\)</span>  Clearly <span class="process-math">\(u_1 = v_1\)</span> is in <span class="process-math">\(\Span\{v_1\}\text{.}\)</span>  Then <span class="process-math">\(u_2\)</span> is a linear combination of <span class="process-math">\(u_1\)</span> and <span class="process-math">\(v_2\text{,}\)</span> which are both in <span class="process-math">\(\Span\{v_1,v_2\}\text{,}\)</span> so <span class="process-math">\(u_2\)</span> is in <span class="process-math">\(\Span\{v_1,v_2\}\)</span> as well.  Similarly, <span class="process-math">\(u_3\)</span> is a linear combination of <span class="process-math">\(u_1,\,u_2,\)</span> and <span class="process-math">\(v_3\text{,}\)</span> which are all in <span class="process-math">\(\Span\{v_1,v_2,v_3\}\text{,}\)</span> so <span class="process-math">\(u_3\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,v_3\}\text{.}\)</span>  Continuing in this way, we see that each <span class="process-math">\(u_i\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_i\}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-orthosets-gram-schmidt-3-6-2">Now we claim that <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is an orthogonal set.  Let <span class="process-math">\(1\leq i \lt j \leq m\text{.}\)</span>  Then <span class="process-math">\(u_j = (v_j)_{\Span\{u_1,u_2,\ldots,u_{j-1}\}^\perp}\text{,}\)</span> so by definition <span class="process-math">\(u_j\)</span> is orthogonal to every vector in <span class="process-math">\(\Span\{u_1,u_2,\ldots,u_{j-1}\}\text{.}\)</span>  In particular, <span class="process-math">\(u_j\)</span> is orthogonal to <span class="process-math">\(u_i\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-orthosets-gram-schmidt-3-6-3">We still have to prove that each <span class="process-math">\(u_i\)</span> is nonzero.  Clearly <span class="process-math">\(u_1=v_1\neq 0\text{.}\)</span>  Suppose that <span class="process-math">\(u_i=0\text{.}\)</span>  Then <span class="process-math">\((v_i)_{\Span\{u_1,u_2,\ldots,u_{i-1}\}^\perp}=0\text{,}\)</span> which means that <span class="process-math">\(v_i\)</span> is in <span class="process-math">\(\Span\{u_1,u_2,\ldots,u_{i-1}\}.\)</span>  But each <span class="process-math">\(u_1,u_2,\ldots,u_{i-1}\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{i-1}\}\)</span> by the first paragraph, so <span class="process-math">\(v_i\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{i-1}\}.\)</span>  This contradicts the <a href="sec-linear-independence.html#linindep-increasing-span" class="xref" data-knowl="./knowl/xref/linindep-increasing-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.5.14: Increasing Span Criterion">Theorem 14 of Section 2.5</a>; therefore, <span class="process-math">\(u_i\)</span> must be nonzero.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-orthosets-gram-schmidt-3-6-4">
+<div class="para">The previous two paragraphs justify the use of the <a href="sec-orthogonal-sets.html#projection-formula" class="xref" data-knowl="./knowl/xref/projection-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.4.8">Theorem 8</a> in the equalities</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/projection-formula.html" id="subsec-orthosets-gram-schmidt-3-6-4-2">
+\begin{gather*}
+(v_i)_{\Span\{u_1,u_2,\ldots,u_{i-1}\}^\perp}
+= v_i - (v_i)_{\Span\{u_1,u_2,\ldots,u_{i-1}\}}
+= v_i - \sum_{j=1}^{i-1}\frac{v_i\cdot u_j}{u_j\cdot u_j}\,u_j
+\end{gather*}
+</div>
+<div class="para">in the statement of the theorem.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-orthosets-gram-schmidt-3-6-5">Since <span class="process-math">\(\{u_1,u_2,\ldots,u_m\}\)</span> is an orthogonal set, it is linearly independent.  Thus it is a set of <span class="process-math">\(m\)</span> linearly independent vectors in <span class="process-math">\(W\text{,}\)</span> so it is a basis for <span class="process-math">\(W\)</span> by the <a href="sec-dimension.html#basis-theorem" class="xref" data-knowl="./knowl/xref/basis-theorem.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.7.19">Theorem 19 of Section 2.7</a>.  Similarly, for every <span class="process-math">\(i\text{,}\)</span> we saw that the set <span class="process-math">\(\{u_1,u_2,\ldots,u_i\}\)</span> is contained in the <span class="process-math">\(i\)</span>-dimensional subspace <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_i\}\text{,}\)</span> so <span class="process-math">\(\{u_1,u_2,\ldots,u_i\}\)</span> is an orthogonal basis for <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_i\}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 6.4.21.1"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-3-6" title="Copy heading and permalink for Proof 6.4.21.1" aria-label="Copy heading and permalink for Proof 6.4.21.1">🔗</a></div>
+</article></details>
+<details id="subsec-orthosets-gram-schmidt-4" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.22</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Two vectors.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="subsec-orthosets-gram-schmidt-4-2-1">
+<div class="para">Find an orthogonal basis <span class="process-math">\(\{u_1,u_2\}\)</span> for <span class="process-math">\(W = \Span\{v_1,v_2\}\text{,}\)</span> where</div>
+<div class="displaymath process-math" id="subsec-orthosets-gram-schmidt-4-2-1-3">
+\begin{gather*}
+v_1 = \begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix} \qquad v_2 = \begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="subsec-orthosets-gram-schmidt-4-3">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-orthosets-gram-schmidt-4-3-1">
+<div class="para">We run Gram–Schmidt: first take <span class="process-math">\(u_1 = v_1\text{,}\)</span> then</div>
+<div class="displaymath process-math" id="subsec-orthosets-gram-schmidt-4-3-1-3">
+\begin{gather*}
+u_2 = v_2 - \frac{v_2\cdot u_1}{u_1\cdot u_1}\,u_1
+= \begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix} - \frac{2}{2}\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix}
+= \begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Then <span class="process-math">\(\{u_1,u_2\}\)</span> is an orthogonal basis for <span class="process-math">\(W\text{:}\)</span> indeed, it is clear that <span class="process-math">\(u_1\cdot u_2 = 0.\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-orthosets-gram-schmidt-4-3-2">Geometrically, we are simply replacing <span class="process-math">\(v_2\)</span> with the part of <span class="process-math">\(v_2\)</span> that is perpendicular to the line <span class="process-math">\(L_1 = \Span\{v_1\}\text{:}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-4-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-orthosets-gram-schmidt-4-3-3.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthosets-gram-schmidt-4-3-3-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-orthosets-gram-schmidt-4-3-3-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-4-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.22.1"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-4-3" title="Copy heading and permalink for Solution 6.4.22.1" aria-label="Copy heading and permalink for Solution 6.4.22.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.22: Two vectors"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-4" title="Copy heading and permalink for Example 6.4.22: Two vectors" aria-label="Copy heading and permalink for Example 6.4.22: Two vectors">🔗</a></div>
+</article></details>
+<details id="subsec-orthosets-gram-schmidt-5" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.23</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Three vectors.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="subsec-orthosets-gram-schmidt-5-2-1">
+<div class="para">Find an orthogonal basis <span class="process-math">\(\{u_1,u_2,u_3\}\)</span> for <span class="process-math">\(W = \Span\{v_1,v_2,v_3\} = \R^3\text{,}\)</span> where</div>
+<div class="displaymath process-math" id="subsec-orthosets-gram-schmidt-5-2-1-3">
+\begin{gather*}
+v_1 = \begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix} \qquad v_2 = \begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix} \qquad v_3 = \begin{pmatrix}
+3 \\
+1 \\
+1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="subsec-orthosets-gram-schmidt-5-3">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-orthosets-gram-schmidt-5-3-1">
+<div class="para">We run Gram–Schmidt:</div>
+<div class="displaymath process-math" id="subsec-orthosets-gram-schmidt-5-3-1-2">
+\begin{align*}
+1.\quad u_1 \amp= v_1 = \begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix}\\
+2.\quad u_2 \amp= v_2 - \frac{v_2\cdot u_1}{u_1\cdot u_1}\,u_1
+= \begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix} - \frac{2}{2}\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix}
+= \begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}\\
+3.\quad u_3 \amp= v_3
+- \frac{v_3\cdot u_1}{u_1\cdot u_1}\,u_1
+- \frac{v_3\cdot u_2}{u_2\cdot u_2}\,u_2 \phantom{\begin{pmatrix}
+1 \\
+2 \\
+3
+\end{pmatrix}}\\
+\amp\qquad=
+\begin{pmatrix}
+3 \\
+1 \\
+1
+\end{pmatrix}
+- \frac{4}{2}\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix}
+- \frac{1}{1}\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix} = \begin{pmatrix}
+1 \\
+-1 \\
+0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Then <span class="process-math">\(\{u_1,u_2,u_3\}\)</span> is an orthogonal basis for <span class="process-math">\(W\text{:}\)</span> indeed, we have</div>
+<div class="displaymath process-math" id="subsec-orthosets-gram-schmidt-5-3-1-5">
+\begin{gather*}
+u_1\cdot u_2 = 0 \qquad u_1\cdot u_3 = 0 \qquad u_2\cdot u_3 = 0\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-orthosets-gram-schmidt-5-3-2">Geometrically, once we have <span class="process-math">\(u_1\)</span> and <span class="process-math">\(u_2\text{,}\)</span> we replace <span class="process-math">\(v_3\)</span> by the part that is orthogonal to <span class="process-math">\(W_2 = \Span\{u_1,u_2\} = \Span\{v_1,v_2\}\text{:}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-5-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-orthosets-gram-schmidt-5-3-3.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthosets-gram-schmidt-5-3-3-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-orthosets-gram-schmidt-5-3-3-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-5-3-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.23.1"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-5-3" title="Copy heading and permalink for Solution 6.4.23.1" aria-label="Copy heading and permalink for Solution 6.4.23.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.23: Three vectors"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-5" title="Copy heading and permalink for Example 6.4.23: Three vectors" aria-label="Copy heading and permalink for Example 6.4.23: Three vectors">🔗</a></div>
+</article></details>
+<details id="subsec-orthosets-gram-schmidt-6" class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.24</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Three vectors in <span class="process-math">\(\R^4\)</span>.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical" id="subsec-orthosets-gram-schmidt-6-2-1">
+<div class="para">Find an orthogonal basis <span class="process-math">\(\{u_1,u_2,u_3\}\)</span> for <span class="process-math">\(W = \Span\{v_1,v_2,v_3\}\text{,}\)</span> where</div>
+<div class="displaymath process-math" id="subsec-orthosets-gram-schmidt-6-2-1-3">
+\begin{gather*}
+v_1 = \begin{pmatrix}
+1 \\
+1 \\
+1 \\
+1
+\end{pmatrix} \qquad v_2 = \begin{pmatrix}
+-1 \\
+4 \\
+4 \\
+-1
+\end{pmatrix} \qquad
+v_3 = \begin{pmatrix}
+4 \\
+-2 \\
+-2 \\
+0
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="subsec-orthosets-gram-schmidt-6-3">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical" id="subsec-orthosets-gram-schmidt-6-3-1">
+<div class="para">We run Gram–Schmidt:</div>
+<div class="displaymath process-math" id="subsec-orthosets-gram-schmidt-6-3-1-2">
+\begin{align*}
+1.\quad u_1 \amp= v_1 = \begin{pmatrix}
+1 \\
+1 \\
+1 \\
+1
+\end{pmatrix}\\
+2.\quad u_2 \amp= v_2 - \frac{v_2\cdot u_1}{u_1\cdot u_1}\,u_1
+= \begin{pmatrix}
+-1 \\
+4 \\
+4 \\
+-1
+\end{pmatrix} - \frac{6}{4}\begin{pmatrix}
+1 \\
+1 \\
+1 \\
+1
+\end{pmatrix}
+= \begin{pmatrix}
+-5/2 \\
+5/2 \\
+5/2 \\
+-5/2
+\end{pmatrix}\\
+3.\quad u_3 \amp= v_3
+- \frac{v_3\cdot u_1}{u_1\cdot u_1}\,u_1
+- \frac{v_3\cdot u_2}{u_2\cdot u_2}\,u_2\\
+\amp\qquad=
+\begin{pmatrix}
+4 \\
+-2 \\
+-2 \\
+0
+\end{pmatrix}
+- \frac{0}{24}\begin{pmatrix}
+1 \\
+1 \\
+1 \\
+1
+\end{pmatrix}
+- \frac{-20}{25}\begin{pmatrix}
+-5/2 \\
+5/2 \\
+5/2 \\
+-5/2
+\end{pmatrix}
+= \begin{pmatrix}
+2 \\
+0 \\
+0 \\
+-2
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Then <span class="process-math">\(\{u_1,u_2,u_3\}\)</span> is an orthogonal basis for <span class="process-math">\(W\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.24.1"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-6-3" title="Copy heading and permalink for Solution 6.4.24.1" aria-label="Copy heading and permalink for Solution 6.4.24.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.24: Three vectors in \R^4"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-6" title="Copy heading and permalink for Example 6.4.24: Three vectors in \R^4" aria-label="Copy heading and permalink for Example 6.4.24: Three vectors in \R^4">🔗</a></div>
+</article></details>
+<div class="para" id="subsec-orthosets-gram-schmidt-7">We saw in the proof of the Gram–Schmidt Process that for every <span class="process-math">\(i\)</span> between <span class="process-math">\(1\)</span> and <span class="process-math">\(m\text{,}\)</span> the set <span class="process-math">\(\{u_1,u_2,\ldots,u_i\}\)</span> is a an orthogonal basis for <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_i\}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="subsec-orthosets-gram-schmidt-8">
+<div class="para">If we had started with a spanning set <span class="process-math">\(\{v_1,v_2,\ldots,v_m\}\)</span> which is linearly dependent, then for some <span class="process-math">\(i\text{,}\)</span> the vector <span class="process-math">\(v_i\)</span> is in <span class="process-math">\(\Span\{v_1,v_2,\ldots,v_{i-1}\}\)</span> by the <a href="sec-linear-independence.html#linindep-increasing-span" class="xref" data-knowl="./knowl/xref/linindep-increasing-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.5.14: Increasing Span Criterion">Theorem 14 of Section 2.5</a>.  Hence</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linindep-increasing-span.html" id="subsec-orthosets-gram-schmidt-8-6">
+\begin{gather*}
+0 = (v_i)_{\Span\{v_1,v_2,\ldots,v_{i-1}\}^\perp}
+= (v_i)_{\Span\{u_1,u_2,\ldots,u_{i-1}\}^\perp}
+= u_i\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="insight remark-like" id="subsec-orthosets-gram-schmidt-9"><h3 class="heading">
+<span class="type">Insight</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.25</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="subsec-orthosets-gram-schmidt-9-3">You can use the Gram–Schmidt Process to produce an orthogonal basis from any spanning set: if some <span class="process-math">\(u_i = 0\text{,}\)</span> just throw away <span class="process-math">\(u_i\)</span> and <span class="process-math">\(v_i\text{,}\)</span> and continue.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-9-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Insight 6.4.25"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt-9" title="Copy heading and permalink for Insight 6.4.25" aria-label="Copy heading and permalink for Insight 6.4.25">🔗</a></div>
+</article><div class="autopermalink" aria-hidden="true" data-description="Subsection 6.4.2: The Gram–Schmidt Process"><a tabindex="-1" href="#subsec-orthosets-gram-schmidt" title="Copy heading and permalink for Subsection 6.4.2: The Gram–Schmidt Process" aria-label="Copy heading and permalink for Subsection 6.4.2: The Gram–Schmidt Process">🔗</a></div>
+</section>
+<section class="subsection" id="subsec-two-methods-to-compute-the-projection">
+<h2 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Two Methods to Compute the Projection</span>
+</h2>
+<div class="para logical" id="subsec-two-methods-to-compute-the-projection-2">
+<div class="para">We have now presented <em class="emphasis">two</em> methods for computing the orthogonal projection of a vector: <a href="sec-projections.html#projections-ATA-formula" class="xref" data-knowl="./knowl/xref/projections-ATA-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.3.14">Theorem 14 of Section 6.3</a> involves row reduction, and the <a href="sec-orthogonal-sets.html#projection-formula" class="xref" data-knowl="./knowl/xref/projection-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.4.8">Theorem 8</a> requires an orthogonal basis.  Here are some guidelines for which to use in a given situation.</div>
+<ol class="decimal" id="subsec-two-methods-to-compute-the-projection-2-4">
+<li id="subsec-two-methods-to-compute-the-projection-2-4-1">
+<div class="para" id="subsec-two-methods-to-compute-the-projection-2-4-1-1">If you already have an orthogonal basis, it is almost always easier to use the <a href="sec-orthogonal-sets.html#projection-formula" class="xref" data-knowl="./knowl/xref/projection-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.4.8">Theorem 8</a>.  This often happens in the sciences.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-two-methods-to-compute-the-projection-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#subsec-two-methods-to-compute-the-projection-2-4-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="subsec-two-methods-to-compute-the-projection-2-4-2">
+<div class="para" id="subsec-two-methods-to-compute-the-projection-2-4-2-1">If you are going to have to compute the projections of many vectors onto the same subspace, it is worth your time to run Gram–Schmidt to produce an orthogonal basis, so that you can use the <a href="sec-orthogonal-sets.html#projection-formula" class="xref" data-knowl="./knowl/xref/projection-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.4.8">Theorem 8</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-two-methods-to-compute-the-projection-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#subsec-two-methods-to-compute-the-projection-2-4-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="subsec-two-methods-to-compute-the-projection-2-4-3">
+<div class="para" id="subsec-two-methods-to-compute-the-projection-2-4-3-1">If you only have to project one or a few vectors onto a subspace, it is faster to use the <a href="sec-projections.html#projections-ATA-formula" class="xref" data-knowl="./knowl/xref/projections-ATA-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.3.14">Theorem 14 of Section 6.3</a>.  This is the method we will follow in <a href="sec-least-squares.html" class="internal" title="Section 6.5: The Method of Least Squares">Section 6.5</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-two-methods-to-compute-the-projection-2-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#subsec-two-methods-to-compute-the-projection-2-4-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-two-methods-to-compute-the-projection-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Subsection 6.4.3: Two Methods to Compute the Projection"><a tabindex="-1" href="#subsec-two-methods-to-compute-the-projection" title="Copy heading and permalink for Subsection 6.4.3: Two Methods to Compute the Projection" aria-label="Copy heading and permalink for Subsection 6.4.3: Two Methods to Compute the Projection">🔗</a></div>
+</section><div class="autopermalink" aria-hidden="true" data-description="Section 6.4: Orthogonal Sets"><a tabindex="-1" href="#sec-orthogonal-sets" title="Copy heading and permalink for Section 6.4: Orthogonal Sets" aria-label="Copy heading and permalink for Section 6.4: Orthogonal Sets">🔗</a></div>
+</section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec-projections.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-least-squares.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="feedback-link" href="https://github.com/hunterlehmann/ILA-UE/issues" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" alt="Runestone Academy logo" src="data:image/png;base64,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"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" alt="MathJax logo" src="data:image/png;base64,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"></a>
+</div>
+</body>
+</html>

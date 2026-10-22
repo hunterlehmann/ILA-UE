@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.5.19</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Rotation.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(T\colon\R^2\to\R^2\)</span> be counterclockwise rotation by <span class="process-math">\(45^\circ\text{.}\)</span>  Is <span class="process-math">\(T\)</span> invertible?  If so, what is <span class="process-math">\(T\inv\text{?}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para">Let <span class="process-math">\(U\colon\R^2\to\R^2\)</span> be <em class="emphasis">clockwise</em> rotation by <span class="process-math">\(45^\circ\text{.}\)</span>  Then <span class="process-math">\(T\circ U\)</span> first rotates clockwise by <span class="process-math">\(45^\circ\text{,}\)</span> then counterclockwise by <span class="process-math">\(45^\circ\text{,}\)</span> so the composition rotates by zero degrees: it is the identity transformation.  Likewise, <span class="process-math">\(U\circ T\)</span> first rotates counterclockwise, then clockwise by the same amount, so it is the identity transformation.  In other words, <em class="emphasis">clockwise</em> rotation by <span class="process-math">\(45^\circ\)</span> undoes <em class="emphasis">counterclockwise</em> rotation by <span class="process-math">\(45^\circ\text{.}\)</span> \def\theo{\includegraphics[width=3cm]{theo10.jpg}} \begin{tikzpicture}[scale=1.3] \begin{scope} \clip (0,0) circle[radius={1.5cm/1.3}]; \node (theo1) at (0,0) {\theo}; \end{scope} \draw[-&gt;,opacity=.3] (-1.2,0) -- (1.2,0); \draw[-&gt;,opacity=.3] (0,-1.2) -- (0,1.2); \begin{scope}[xshift=4cm] \begin{scope} \clip (0,0) circle[radius={1.5cm/1.3}]; \node[rotate=45] at (0,0) {\theo}; \node[minimum size=3cm] (theo2) at (0,0) {}; \end{scope} \draw[-&gt;,opacity=.3] (-1.2,0) -- (1.2,0); \draw[-&gt;,opacity=.3] (0,-1.2) -- (0,1.2); \end{scope} \draw[-&gt;] (theo1.20) to["$T$", out=20, in=160] (theo2.160); \begin{scope}[xshift=8cm] \begin{scope} \clip (0,0) circle[radius={1.5cm/1.3}]; \node (theo3) at (0,0) {\theo}; \end{scope} \draw[-&gt;,opacity=.3] (-1.2,0) -- (1.2,0); \draw[-&gt;,opacity=.3] (0,-1.2) -- (0,1.2); \end{scope} \draw[-&gt;] (theo2.20) to["$U$", out=20, in=160] (theo3.160); \useasboundingbox (9.2,0); \end{tikzpicture}<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/compose2d-if.html?closed&amp;mat1=1/sqrt(2),-1/sqrt(2),1/sqrt(2),1/sqrt(2)&amp;mat2=1/sqrt(2),1/sqrt(2),-1/sqrt(2),1/sqrt(2)&amp;show1&amp;names=U,T" id="subsec-matrix-inv-linear-transforms-7-4-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-matrix-inv-linear-transforms-7-4-2-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-matrix-inv-linear-transforms-7-4-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-matrix-inv-linear-transforms-7-4-2-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-matrix-inv-linear-transforms-7-4-2-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-matrix-inv-linear-transforms-7-4-2-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4-2-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.5.20<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Counterclockwise rotation by <span class="process-math">\(45^\circ\)</span> followed by clockwise rotation by <span class="process-math">\(45^\circ\)</span> is the identity transformation.<div class="autopermalink" aria-hidden="true" data-description="Figure 3.5.20"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4-2" title="Copy heading and permalink for Figure 3.5.20" aria-label="Copy heading and permalink for Figure 3.5.20">🔗</a></div></figcaption>
+</figure>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/compose2d-if.html?closed&amp;mat2=1/sqrt(2),-1/sqrt(2),1/sqrt(2),1/sqrt(2)&amp;mat1=1/sqrt(2),1/sqrt(2),-1/sqrt(2),1/sqrt(2)&amp;show1" id="subsec-matrix-inv-linear-transforms-7-4-3-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-matrix-inv-linear-transforms-7-4-3-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-matrix-inv-linear-transforms-7-4-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-matrix-inv-linear-transforms-7-4-3-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-matrix-inv-linear-transforms-7-4-3-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-matrix-inv-linear-transforms-7-4-3-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4-3-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.5.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Clockwise rotation by <span class="process-math">\(45^\circ\)</span> followed by counterclockwise rotation by <span class="process-math">\(45^\circ\)</span> is the identity transformation.<div class="autopermalink" aria-hidden="true" data-description="Figure 3.5.21"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4-3" title="Copy heading and permalink for Figure 3.5.21" aria-label="Copy heading and permalink for Figure 3.5.21">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 3.5.19.1"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7-4" title="Copy heading and permalink for Solution 3.5.19.1" aria-label="Copy heading and permalink for Solution 3.5.19.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 3.5.19: Rotation"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-7" title="Copy heading and permalink for Example 3.5.19: Rotation" aria-label="Copy heading and permalink for Example 3.5.19: Rotation">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms-7">In Context</a></span>
+</body>
+</html>

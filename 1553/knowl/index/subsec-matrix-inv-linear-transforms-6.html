@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.5.16</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Dilation.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(T\colon\R^2\to\R^2\)</span> be dilation by a factor of <span class="process-math">\(3/2\text{:}\)</span> that is, <span class="process-math">\(T(x) = 3/2x\text{.}\)</span>  Is <span class="process-math">\(T\)</span> invertible?  If so, what is <span class="process-math">\(T\inv\text{?}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(U\colon\R^2\to\R^2\)</span> be dilation by a factor of <span class="process-math">\(2/3\text{:}\)</span> that is, <span class="process-math">\(U(x) = 2/3x\text{.}\)</span>  Then</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T\circ U(x) = T\biggl(\frac 23x\biggr) = \frac 32\cdot\frac 23x = x
+\end{gather*}
+</div>
+<div class="para">and</div>
+<div class="displaymath process-math">
+\begin{gather*}
+U\circ T(x) = U\biggl(\frac 32x\biggr) = \frac 23\cdot\frac 32x = x\text{.}
+\end{gather*}
+</div>
+<div class="para">Hence <span class="process-math">\(T\circ U = \Id_{\R^2}\)</span> and <span class="process-math">\(U\circ T = \Id_{\R^2}\text{,}\)</span> so <span class="process-math">\(T\)</span> is invertible, with inverse <span class="process-math">\(U\text{.}\)</span>  In other words, <em class="emphasis">shrinking</em> by a factor of <span class="process-math">\(2/3\)</span> undoes <em class="emphasis">stretching</em> by a factor of <em class="emphasis">3/2</em>. \def\theo{\includegraphics[width=3cm]{theo6.jpg}} \begin{tikzpicture}[scale=1.3] \begin{scope} \node (theo1) at (0,0) {\theo}; \end{scope} \draw[-&gt;,opacity=.3] (-1.2,0) -- (1.2,0); \draw[-&gt;,opacity=.3] (0,-1.2) -- (0,1.2); \begin{scope}[xshift=4cm] \begin{scope} \node[scale=2/3] at (0,0) {\theo}; \node[minimum size={3cm+.2em}] (theo2) at (0,0) {}; \end{scope} \draw[-&gt;,opacity=.3] (-1.2,0) -- (1.2,0); \draw[-&gt;,opacity=.3] (0,-1.2) -- (0,1.2); \end{scope} \draw[-&gt;] (theo1.20) to["$U$", out=20, in=160] (theo2.160); \begin{scope}[xshift=8cm] \begin{scope} \node (theo3) at (0,0) {\theo}; \end{scope} \draw[-&gt;,opacity=.3] (-1.2,0) -- (1.2,0); \draw[-&gt;,opacity=.3] (0,-1.2) -- (0,1.2); \end{scope} \draw[-&gt;] (theo2.20) to["$T$", out=20, in=160] (theo3.160); \useasboundingbox (9.2,0); \end{tikzpicture}</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/compose2d-if.html?closed&amp;mat1=2/3,0,0,2/3&amp;mat2=1.5,0,0,1.5&amp;show1" id="subsec-matrix-inv-linear-transforms-6-4-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-matrix-inv-linear-transforms-6-4-2-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-matrix-inv-linear-transforms-6-4-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-matrix-inv-linear-transforms-6-4-2-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-matrix-inv-linear-transforms-6-4-2-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-matrix-inv-linear-transforms-6-4-2-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4-2-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.5.17<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Shrinking by a factor of <span class="process-math">\(2/3\)</span> followed by scaling by a factor of <span class="process-math">\(3/2\)</span> is the identity transformation.<div class="autopermalink" aria-hidden="true" data-description="Figure 3.5.17"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4-2" title="Copy heading and permalink for Figure 3.5.17" aria-label="Copy heading and permalink for Figure 3.5.17">🔗</a></div></figcaption>
+</figure>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/compose2d-if.html?closed&amp;mat2=2/3,0,0,2/3&amp;mat1=1.5,0,0,1.5&amp;show1&amp;names=U,T" id="subsec-matrix-inv-linear-transforms-6-4-3-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-matrix-inv-linear-transforms-6-4-3-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-matrix-inv-linear-transforms-6-4-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-matrix-inv-linear-transforms-6-4-3-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-matrix-inv-linear-transforms-6-4-3-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-matrix-inv-linear-transforms-6-4-3-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4-3-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.5.18<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Scaling by a factor of <span class="process-math">\(3/2\)</span> followed by shrinking by a factor of <span class="process-math">\(2/3\)</span> is the identity transformation.<div class="autopermalink" aria-hidden="true" data-description="Figure 3.5.18"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4-3" title="Copy heading and permalink for Figure 3.5.18" aria-label="Copy heading and permalink for Figure 3.5.18">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 3.5.16.1"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6-4" title="Copy heading and permalink for Solution 3.5.16.1" aria-label="Copy heading and permalink for Solution 3.5.16.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 3.5.16: Dilation"><a tabindex="-1" href="#subsec-matrix-inv-linear-transforms-6" title="Copy heading and permalink for Example 3.5.16: Dilation" aria-label="Copy heading and permalink for Example 3.5.16: Dilation">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms-6">In Context</a></span>
+</body>
+</html>

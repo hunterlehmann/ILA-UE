@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.2.12</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A matrix transformation that is not one-to-one.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp -1 \amp 2 \\
+-2 \amp 2 \amp -4
+\end{pmatrix}\text{,}
+\end{align*}
+</div>
+<div class="para">and define <span class="process-math">\(T\colon\R^3\to\R^2\)</span> by <span class="process-math">\(T(x) = Ax\text{.}\)</span> Is <span class="process-math">\(T\)</span> one-to-one?  If not, find two different vectors <span class="process-math">\(u,v\)</span> such that <span class="process-math">\(T(u)=T(v)\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#one-to-one-eg-neither1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">The reduced row echelon form of <span class="process-math">\(A\)</span> is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/matrix-trans-one-to-one.html">
+\begin{align*}
+\begin{pmatrix}
+1 \amp -1 \amp 2 \\
+0 \amp 0 \amp 0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">There is not a pivot in every column, so <span class="process-math">\(T\)</span> is not one-to-one.  Therefore, we know from the <a href="sec-one-to-one-onto.html#matrix-trans-one-to-one" class="xref" data-knowl="./knowl/xref/matrix-trans-one-to-one.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.2.5: One-to-one matrix transformations">Theorem 5</a> that <span class="process-math">\(Ax=0\)</span> has nontrivial solutions.  If <span class="process-math">\(v\)</span> is a nontrivial (i.e., nonzero) solution of <span class="process-math">\(Av = 0\text{,}\)</span> then <span class="process-math">\(T(v) = Av = 0 = A0 = T(0)\text{,}\)</span> so <span class="process-math">\(0\)</span> and <span class="process-math">\(v\)</span> are different vectors with the same output.  In order to find a nontrivial solution, we find the parametric form of the solutions of <span class="process-math">\(Ax=0\)</span> using the reduced matrix above:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/matrix-trans-one-to-one.html">
+\begin{gather*}
+x - y + 2z = 0 \quad\implies\quad x = y - 2z\text{.}
+\end{gather*}
+</div>
+<div class="para">The free variables are <span class="process-math">\(y\)</span> and <span class="process-math">\(z\text{.}\)</span>  Taking <span class="process-math">\(y=1\)</span> and <span class="process-math">\(z=0\)</span> gives the nontrivial solution</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/matrix-trans-one-to-one.html">
+\begin{align*}
+T\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix} = \begin{pmatrix}
+1 \amp -1 \amp 2 \\
+-2 \amp 2 \amp -4
+\end{pmatrix}\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix} = 0 = T\begin{pmatrix}
+0 \\
+0 \\
+0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#one-to-one-eg-neither1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/Axequalsb-if.html?show=true&amp;closed=true&amp;lock=true&amp;x=0,0,0" id="one-to-one-eg-neither1-3-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="one-to-one-eg-neither1-3-2-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="one-to-one-eg-neither1-3-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#one-to-one-eg-neither1-3-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="one-to-one-eg-neither1-3-2-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="one-to-one-eg-neither1-3-2-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="one-to-one-eg-neither1-3-2-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#one-to-one-eg-neither1-3-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#one-to-one-eg-neither1-3-2-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.2.13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A picture of the matrix transformation <span class="process-math">\(T\text{.}\)</span>  The violet plane is the solution set of <span class="process-math">\(T(x)=0\text{.}\)</span>  If you drag <span class="process-math">\(x\)</span> along the violet plane, the output <span class="process-math">\(T(x) = Ax\)</span> does not change.  This demonstrates that <span class="process-math">\(T(x)=0\)</span> has more than one solution, so <span class="process-math">\(T\)</span> is not one-to-one.<div class="autopermalink" aria-hidden="true" data-description="Figure 3.2.13"><a tabindex="-1" href="#one-to-one-eg-neither1-3-2" title="Copy heading and permalink for Figure 3.2.13" aria-label="Copy heading and permalink for Figure 3.2.13">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 3.2.12.1"><a tabindex="-1" href="#one-to-one-eg-neither1-3" title="Copy heading and permalink for Solution 3.2.12.1" aria-label="Copy heading and permalink for Solution 3.2.12.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 3.2.12: A matrix transformation that is not one-to-one"><a tabindex="-1" href="#one-to-one-eg-neither1" title="Copy heading and permalink for Example 3.2.12: A matrix transformation that is not one-to-one" aria-label="Copy heading and permalink for Example 3.2.12: A matrix transformation that is not one-to-one">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-one-to-one-onto.html#one-to-one-eg-neither1">In Context</a></span>
+</body>
+</html>

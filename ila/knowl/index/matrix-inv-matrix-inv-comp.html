@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.5.29</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(T\colon\R^n\to\R^n\)</span> be a linear transformation with standard matrix <span class="process-math">\(A\text{.}\)</span>  Then <span class="process-math">\(T\)</span> is invertible if and only if <span class="process-math">\(A\)</span> is invertible, in which case <span class="process-math">\(T\inv\)</span> is linear with standard matrix <span class="process-math">\(A\inv\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-matrix-inv-comp-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 3.5.29"><a tabindex="-1" href="#matrix-inv-matrix-inv-comp" title="Copy heading and permalink for Theorem 3.5.29" aria-label="Copy heading and permalink for Theorem 3.5.29">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<div class="para">Suppose that <span class="process-math">\(T\)</span> is invertible.  Let <span class="process-math">\(U\colon\R^n\to\R^n\)</span> be the inverse of <span class="process-math">\(T\text{.}\)</span>  We claim that <span class="process-math">\(U\)</span> is linear.  We need to check the <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">Definition 1 of Section 3.3</a>.  Let <span class="process-math">\(u,v\)</span> be vectors in <span class="process-math">\(\R^n\text{.}\)</span>  Then</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html ./knowl/xref/linear-trans-defn.html">
+\begin{gather*}
+u + v = T(U(u)) + T(U(v)) = T(U(u) + U(v))
+\end{gather*}
+</div>
+<div class="para">by linearity of <span class="process-math">\(T\text{.}\)</span>  Applying <span class="process-math">\(U\)</span> to both sides gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html ./knowl/xref/linear-trans-defn.html">
+\begin{gather*}
+U(u + v) = U\bigl(T(U(u) + U(v))\bigr) = U(u) + U(v)\text{.}
+\end{gather*}
+</div>
+<div class="para">Let <span class="process-math">\(c\)</span> be a scalar.  Then</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html ./knowl/xref/linear-trans-defn.html">
+\begin{gather*}
+cu = cT(U(u)) = T(cU(u))
+\end{gather*}
+</div>
+<div class="para">by linearity of <span class="process-math">\(T\text{.}\)</span>  Applying <span class="process-math">\(U\)</span> to both sides gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html ./knowl/xref/linear-trans-defn.html">
+\begin{gather*}
+U(cu) = U\bigl(T(cU(u))\bigr) = cU(u)\text{.}
+\end{gather*}
+</div>
+<div class="para">Since <span class="process-math">\(U\)</span> satisfies the <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">Definition 1 of Section 3.3</a>, it is a linear transformation.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-matrix-inv-comp-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Now that we know that <span class="process-math">\(U\)</span> is linear, we know that it has a standard matrix <span class="process-math">\(B\text{.}\)</span>  By the <a href="sec-matrix-multiplication.html#matrix-mult-comp-is-prod" class="xref" data-knowl="./knowl/xref/matrix-mult-comp-is-prod.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.4.25">Theorem 25 of Section 3.4</a>, the matrix for <span class="process-math">\(T\circ U\)</span> is <span class="process-math">\(AB\text{.}\)</span>  But <span class="process-math">\(T\circ U\)</span> is the identity transformation <span class="process-math">\(\Id_{\R^n},\)</span> and the standard matrix for <span class="process-math">\(\Id_{\R^n}\)</span> is <span class="process-math">\(I_n\text{,}\)</span> so <span class="process-math">\(AB = I_n\text{.}\)</span>  One shows similarly that <span class="process-math">\(BA = I_n\text{.}\)</span>  Hence <span class="process-math">\(A\)</span> is invertible and <span class="process-math">\(B = A\inv\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-matrix-inv-comp-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Conversely, suppose that <span class="process-math">\(A\)</span> is invertible.  Let <span class="process-math">\(B = A\inv\text{,}\)</span> and define <span class="process-math">\(U\colon\R^n\to\R^n\)</span> by <span class="process-math">\(U(x) = Bx\text{.}\)</span>  By the <a href="sec-matrix-multiplication.html#matrix-mult-comp-is-prod" class="xref" data-knowl="./knowl/xref/matrix-mult-comp-is-prod.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.4.25">Theorem 25 of Section 3.4</a>, the matrix for <span class="process-math">\(T\circ U\)</span> is <span class="process-math">\(AB = I_n\text{,}\)</span> and the matrix for <span class="process-math">\(U\circ T\)</span> is <span class="process-math">\(BA = I_n\text{.}\)</span>  Therefore,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/matrix-mult-comp-is-prod.html">
+\begin{gather*}
+T\circ U(x) = ABx = I_nx = x \sptxt{and}
+U\circ T(x) = BAx = I_nx = x\text{,}
+\end{gather*}
+</div>
+<div class="para">which shows that <span class="process-math">\(T\)</span> is invertible with inverse transformation <span class="process-math">\(U\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-matrix-inv-comp-4-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 3.5.29.1"><a tabindex="-1" href="#matrix-inv-matrix-inv-comp-4" title="Copy heading and permalink for Proof 3.5.29.1" aria-label="Copy heading and permalink for Proof 3.5.29.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-matrix-inverses.html#matrix-inv-matrix-inv-comp">In Context</a></span>
+</body>
+</html>

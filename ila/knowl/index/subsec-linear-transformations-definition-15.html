@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.3.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">More non-linear transformations.</span>
+</h2>
+<div class="para logical">
+<div class="para">Verify that the following transformations from <span class="process-math">\(\R^2\)</span> to <span class="process-math">\(\R^2\)</span> are not linear:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T_1\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+|x| \\
+y
+\end{pmatrix} \qquad
+T_2\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+xy \\
+y
+\end{pmatrix} \qquad
+T_3\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+2x+1 \\
+x-2y
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-linear-transformations-definition-15-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para">In order to verify that a transformation <span class="process-math">\(T\)</span> is <em class="emphasis">not</em> linear, we have to show that <span class="process-math">\(T\)</span> does not satisfy <em class="emphasis">at least one</em> of the two <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">Definition 1</a>.  For the first, the negation of the statement “<span class="process-math">\(T(u+v)=T(u)+T(v)\)</span> for all vectors <span class="process-math">\(u,v\)</span>” is “there exists at least one pair of vectors <span class="process-math">\(u,v\)</span> such that <span class="process-math">\(T(u+v)\neq T(u)+T(v)\text{.}\)</span>”  In other words, it suffices to find <em class="emphasis">one example</em> of a pair of vectors <span class="process-math">\(u,v\)</span> such that <span class="process-math">\(T(u+v)\neq T(u)+T(v)\text{.}\)</span>  Likewise, for the second, the negation of the statement “<span class="process-math">\(T(cu) = cT(u)\)</span> for all vectors <span class="process-math">\(u\)</span> and all scalars <span class="process-math">\(c\)</span>” is “there exists some vector <span class="process-math">\(u\)</span> and some scalar <span class="process-math">\(c\)</span> such that <span class="process-math">\(T(cu)\neq cT(u)\text{.}\)</span>”  In other words, it suffices to find <em class="emphasis">one</em> vector <span class="process-math">\(u\)</span> and <em class="emphasis">one</em> scalar <span class="process-math">\(c\)</span> such that <span class="process-math">\(T(cu)\neq cT(u)\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-linear-transformations-definition-15-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">For the first transformation, we note that</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T_1\left(-\begin{pmatrix}
+1 \\
+0
+\end{pmatrix}\right) = T_1\begin{pmatrix}
+-1 \\
+0
+\end{pmatrix} = \begin{pmatrix}
+|-1| \\
+0
+\end{pmatrix} = \begin{pmatrix}
+1 \\
+0
+\end{pmatrix}
+\end{gather*}
+</div>
+<div class="para">but that</div>
+<div class="displaymath process-math">
+\begin{gather*}
+-T_1\begin{pmatrix}
+1 \\
+0
+\end{pmatrix} = -\begin{pmatrix}
+|1| \\
+0
+\end{pmatrix} = -\begin{pmatrix}
+1 \\
+0
+\end{pmatrix} = \begin{pmatrix}
+-1 \\
+0
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Therefore, this transformation does not satisfy the second property.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-linear-transformations-definition-15-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">For the second transformation, we note that</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T_2\left(2\begin{pmatrix}
+1 \\
+1
+\end{pmatrix}\right) = T_2\begin{pmatrix}
+2 \\
+2
+\end{pmatrix} = \begin{pmatrix}
+2\cdot \\
+2 \\
+2
+\end{pmatrix} = \begin{pmatrix}
+4 \\
+2
+\end{pmatrix}
+\end{gather*}
+</div>
+<div class="para">but that</div>
+<div class="displaymath process-math">
+\begin{gather*}
+2T_2\begin{pmatrix}
+1 \\
+1
+\end{pmatrix} = 2\begin{pmatrix}
+1\cdot \\
+1 \\
+1
+\end{pmatrix} = 2\begin{pmatrix}
+1 \\
+1
+\end{pmatrix} = \begin{pmatrix}
+2 \\
+2
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Therefore, this transformation does not satisfy the second property.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-linear-transformations-definition-15-4-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">For the third transformation, we observe that</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T_3\begin{pmatrix}
+0 \\
+0
+\end{pmatrix} = \begin{pmatrix}
+2(0)+1 \\
+0-2(0)
+\end{pmatrix} = \begin{pmatrix}
+1 \\
+0
+\end{pmatrix}\neq\begin{pmatrix}
+0 \\
+0
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Since <span class="process-math">\(T_3\)</span> does not take the zero vector to the zero vector, it cannot be linear.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-linear-transformations-definition-15-4-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 3.3.9.1"><a tabindex="-1" href="#subsec-linear-transformations-definition-15-4" title="Copy heading and permalink for Solution 3.3.9.1" aria-label="Copy heading and permalink for Solution 3.3.9.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 3.3.9: More non-linear transformations"><a tabindex="-1" href="#subsec-linear-transformations-definition-15" title="Copy heading and permalink for Example 3.3.9: More non-linear transformations" aria-label="Copy heading and permalink for Example 3.3.9: More non-linear transformations">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-linear-transformations.html#subsec-linear-transformations-definition-15">In Context</a></span>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.4.53</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Matrices that look similar but are not.</span>
+</h2>
+<div class="para logical">
+<div class="para">Show that the matrices</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 0 \amp 1 \\
+0 \amp 0 \amp 0 \amp 0
+\end{pmatrix} \sptxt{and}
+B = \begin{pmatrix}
+0 \amp 1 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 1 \\
+0 \amp 0 \amp 0 \amp 0
+\end{pmatrix}
+\end{align*}
+</div>
+<div class="para">have the same eigenvalues with the same algebraic and geometric multiplicities, but are not similar.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-eg-nonsimilar-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para">These matrices are upper-triangular.  They both have characteristic polynomial <span class="process-math">\(f(\lambda) = \lambda^4\text{,}\)</span> so they both have one eigenvalue <span class="process-math">\(0\)</span> with algebraic multiplicity <span class="process-math">\(4\text{.}\)</span>  The <span class="process-math">\(0\)</span>-eigenspace <a href="sec-eigenvectors.html#evecs-eval0" class="xref" data-knowl="./knowl/xref/evecs-eval0.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.1.30">is the null space</a>, which has dimension <span class="process-math">\(2\)</span> in each case because <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> have two columns without pivots.  Hence <span class="process-math">\(0\)</span> has geometric multiplicity <span class="process-math">\(2\)</span> in each case.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-eg-nonsimilar-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">To show that <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are not similar, we note that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/diag-powers.html">
+\begin{align*}
+A^2 = \begin{pmatrix}
+0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 1 \\
+0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0
+\end{pmatrix}
+\sptxt{and} B^2 = \begin{pmatrix}
+0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0
+\end{pmatrix}\text{,}
+\end{align*}
+</div>
+<div class="para">as the reader can verify.  If <span class="process-math">\(A = CBC\inv\)</span> then by <a href="sec-diagonalization.html#diag-powers" class="xref" data-knowl="./knowl/xref/diag-powers.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 5.4.5: Compute powers of a diagonalizable matrix">Recipe 5</a>, we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/diag-powers.html">
+\begin{gather*}
+A^2 = CB^2C\inv = C0C\inv = 0\text{,}
+\end{gather*}
+</div>
+<div class="para">which is not the case.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-eg-nonsimilar-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 5.4.53.1"><a tabindex="-1" href="#diag-eg-nonsimilar-3" title="Copy heading and permalink for Solution 5.4.53.1" aria-label="Copy heading and permalink for Solution 5.4.53.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 5.4.53: Matrices that look similar but are not"><a tabindex="-1" href="#diag-eg-nonsimilar" title="Copy heading and permalink for Example 5.4.53: Matrices that look similar but are not" aria-label="Copy heading and permalink for Example 5.4.53: Matrices that look similar but are not">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-diagonalization.html#diag-eg-nonsimilar">In Context</a></span>
+</body>
+</html>

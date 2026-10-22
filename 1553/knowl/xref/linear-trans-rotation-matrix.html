@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.3.18</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The matrix of a rotation.</span>
+</h2>
+<div class="para logical">
+<div class="para">Define <span class="process-math">\(T\colon\R^2\to\R^2\)</span> by</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T(x) = \text{ the vector $x$ rotated counterclockwise by the angle $\theta$}\text{.}
+\end{gather*}
+</div>
+<div class="para">Find the standard matrix for <span class="process-math">\(T\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linear-trans-rotation-matrix-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para">The columns of <span class="process-math">\(A\)</span> are obtained by evaluating <span class="process-math">\(T\)</span> on the standard coordinate vectors <span class="process-math">\(e_1,e_2\text{.}\)</span>  In order to compute the entries of <span class="process-math">\(T(e_1)\)</span> and <span class="process-math">\(T(e_2)\text{,}\)</span> we have to do some trigonometry. \usetikzlibrary{math}<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linear-trans-rotation-matrix-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/linear-trans-rotation-matrix-4-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="linear-trans-rotation-matrix-4-2-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="linear-trans-rotation-matrix-4-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linear-trans-rotation-matrix-4-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">We see from the picture that</div>
+<div class="displaymath process-math">
+\begin{align*}
+\left.\begin{aligned}
+T(e_1) \amp= \begin{pmatrix}
+\color{seq2}\cos\theta \\
+\color{seq1}\sin\theta
+\end{pmatrix} \\
+T(e_2) \amp= \begin{pmatrix}
+-\color{seq1}\sin\theta \\
+\color{seq2}\cos\theta
+\end{pmatrix}
+\end{aligned}\right\}
+\implies A =
+\begin{pmatrix}
+\color{seq2}\cos\theta \amp -\color{seq1}\sin\theta \\
+\color{seq1}\sin\theta \amp \color{seq2}\cos\theta
+\end{pmatrix}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linear-trans-rotation-matrix-4-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 3.3.18.1"><a tabindex="-1" href="#linear-trans-rotation-matrix-4" title="Copy heading and permalink for Solution 3.3.18.1" aria-label="Copy heading and permalink for Solution 3.3.18.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 3.3.18: The matrix of a rotation"><a tabindex="-1" href="#linear-trans-rotation-matrix" title="Copy heading and permalink for Example 3.3.18: The matrix of a rotation" aria-label="Copy heading and permalink for Example 3.3.18: The matrix of a rotation">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-linear-transformations.html#linear-trans-rotation-matrix">In Context</a></span>
+</body>
+</html>

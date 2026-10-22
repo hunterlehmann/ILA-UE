@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="proposition theorem-like"><h2 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.5.26</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<ol class="decimal" id="matrix-inv-11-onto-2-1-1">
+<li>
+<div class="para">A transformation <span class="process-math">\(T\colon\R^n\to\R^n\)</span> is invertible if and only if it is both one-to-one and onto.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-11-onto-2-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#matrix-inv-11-onto-2-1-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">If <span class="process-math">\(T\)</span> is already known to be invertible, then <span class="process-math">\(U\colon\R^n\to\R^n\)</span> is the inverse of <span class="process-math">\(T\)</span> provided that <em class="emphasis">either</em> <span class="process-math">\(T\circ U = \Id_{\R^n}\)</span> or <span class="process-math">\(U\circ T = \Id_{\R^n}\text{:}\)</span> it is only necessary to verify one.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-11-onto-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#matrix-inv-11-onto-2-1-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-11-onto-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proposition 3.5.26"><a tabindex="-1" href="#matrix-inv-11-onto" title="Copy heading and permalink for Proposition 3.5.26" aria-label="Copy heading and permalink for Proposition 3.5.26">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para">To say that <span class="process-math">\(T\)</span> is one-to-one and onto means that <span class="process-math">\(T(x)=b\)</span> has <em class="emphasis">exactly one</em> solution for every <span class="process-math">\(b\)</span> in <span class="process-math">\(\R^n\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-11-onto-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Suppose that <span class="process-math">\(T\)</span> is invertible.  Then <span class="process-math">\(T(x)=b\)</span> always has the unique solution <span class="process-math">\(x = T\inv(b)\text{:}\)</span> indeed, applying <span class="process-math">\(T\inv\)</span> to both sides of <span class="process-math">\(T(x)=b\)</span> gives</div>
+<div class="displaymath process-math">
+\begin{gather*}
+x = T\inv(T(x)) = T\inv(b)\text{,}
+\end{gather*}
+</div>
+<div class="para">and applying <span class="process-math">\(T\)</span> to both sides of <span class="process-math">\(x = T\inv(b)\)</span> gives</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T(x) = T(T\inv(b)) = b\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-11-onto-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Conversely, suppose that <span class="process-math">\(T\)</span> is one-to-one and onto.  Let <span class="process-math">\(b\)</span> be a vector in <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(x = U(b)\)</span> be the unique solution of <span class="process-math">\(T(x)=b\text{.}\)</span>  Then <span class="process-math">\(U\)</span> defines a transformation from <span class="process-math">\(\R^n\)</span> to <span class="process-math">\(\R^n\text{.}\)</span>  For any <span class="process-math">\(x\)</span> in <span class="process-math">\(\R^n\text{,}\)</span> we have <span class="process-math">\(U(T(x)) = x\text{,}\)</span> because <span class="process-math">\(x\)</span> is the unique solution of the equation <span class="process-math">\(T(x) = b\)</span> for <span class="process-math">\(b = T(x)\text{.}\)</span>  For any <span class="process-math">\(b\)</span> in <span class="process-math">\(\R^n\text{,}\)</span> we have <span class="process-math">\(T(U(b)) = b\text{,}\)</span> because <span class="process-math">\(x = U(b)\)</span> is the unique solution of <span class="process-math">\(T(x)=b\text{.}\)</span>  Therefore, <span class="process-math">\(U\)</span> is the inverse of <span class="process-math">\(T\text{,}\)</span> and <span class="process-math">\(T\)</span> is invertible.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-11-onto-3-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Suppose now that <span class="process-math">\(T\)</span> is an invertible transformation, and that <span class="process-math">\(U\)</span> is another transformation such that <span class="process-math">\(T\circ U = \Id_{\R^n}\text{.}\)</span>  We must show that <span class="process-math">\(U = T\inv\text{,}\)</span> i.e., that <span class="process-math">\(U\circ T = \Id_{\R^n}\text{.}\)</span>  We compose both sides of the equality <span class="process-math">\(T\circ U = \Id_{\R^n}\)</span> on the left by <span class="process-math">\(T\inv\)</span> and on the right by <span class="process-math">\(T\)</span> to obtain</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T\inv\circ T\circ U\circ T = T\inv\circ\Id_{\R^n}\circ T\text{.}
+\end{gather*}
+</div>
+<div class="para">We have <span class="process-math">\(T\inv\circ T = \Id_{\R^n}\)</span> and <span class="process-math">\(\Id_{\R^n}\circ U = U\text{,}\)</span> so the left side of the above equation is <span class="process-math">\(U\circ T\text{.}\)</span>  Likewise, <span class="process-math">\(\Id_{\R^n}\circ T = T\)</span> and <span class="process-math">\(T\inv\circ T = \Id_{\R^n}\text{,}\)</span> so our equality simplifies to <span class="process-math">\(U\circ T = \Id_{\R^n}\text{,}\)</span> as desired.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-11-onto-3-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">If instead we had assumed only that <span class="process-math">\(U\circ T = \Id_{\R^n}\text{,}\)</span> then the proof that <span class="process-math">\(T\circ U = \Id_{\R^n}\)</span> proceeds similarly.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-11-onto-3-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 3.5.26.1"><a tabindex="-1" href="#matrix-inv-11-onto-3" title="Copy heading and permalink for Proof 3.5.26.1" aria-label="Copy heading and permalink for Proof 3.5.26.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-matrix-inverses.html#matrix-inv-11-onto">In Context</a></span>
+</body>
+</html>

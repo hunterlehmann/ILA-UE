@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.2.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A real-word transformation: robotics.</span>
+</h2>
+<div class="para">Suppose you are building a robot arm with three joints that can move its hand around a plane, as in <a href="sec-matrix-transformations.html#matrix-trans-eg-robot" class="xref" data-knowl="./knowl/xref/matrix-trans-eg-robot.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.21: A real-word transformation: robotics">Example 21 of Section 3.1</a>. \tikzstyle{ipe stylesheet} = [ ipe import, even odd rule, line join=round, line cap=butt, ipe pen normal/.style={line width=0.4}, ipe pen heavier/.style={line width=0.8}, ipe pen fat/.style={line width=1.2}, ipe pen ultrafat/.style={line width=2}, ipe pen normal, ipe mark normal/.style={ipe mark scale=3}, ipe mark large/.style={ipe mark scale=5}, ipe mark small/.style={ipe mark scale=2}, ipe mark tiny/.style={ipe mark scale=1.1}, ipe mark normal, /pgf/arrow keys/.cd, ipe arrow normal/.style={scale=7}, ipe arrow large/.style={scale=10}, ipe arrow small/.style={scale=5}, ipe arrow tiny/.style={scale=3}, ipe arrow normal, /tikz/.cd, ipe arrows, % update arrows &lt;-&gt;/.tip = ipe normal, ipe dash normal/.style={dash pattern=}, ipe dash dashed/.style={dash pattern=on 4bp off 4bp}, ipe dash dotted/.style={dash pattern=on 1bp off 3bp}, ipe dash dash dotted/.style={dash pattern=on 4bp off 2bp on 1bp off 2bp}, ipe dash dash dot dotted/.style={dash pattern=on 4bp off 2bp on 1bp off 2bp on 1bp off 2bp}, ipe dash normal, ipe node/.append style={font=\normalsize}, ipe stretch normal/.style={ipe node stretch=1}, ipe stretch normal, ipe opacity 10/.style={opacity=0.1}, ipe opacity 30/.style={opacity=0.3}, ipe opacity 50/.style={opacity=0.5}, ipe opacity 75/.style={opacity=0.75}, ipe opacity opaque/.style={opacity=1}, ipe opacity opaque, ] \begin{tikzpicture}[ipe stylesheet, scale=.7] \draw[fill=white!80!black] (100, 528) -- (196, 656) -- (220, 656) -- (124, 528) -- cycle; \draw[fill=white!80!black] (208, 664) -- (320, 712) -- (320, 696) -- (208, 648) -- cycle; \begin{scope}[shift={(321.91, 715.847)}, rotate=-9.1623] \draw[fill=white!90!black] (0, 0) -- (48, 12) -- (96, 0) -- (96, -4) -- (20, -4) -- (20, -20) -- (96, -20) -- (96, -24) -- (48, -36) -- (0, -24) -- cycle; \draw[fill=red] (96, -12) circle[radius=1mm] node[right=2mm, red] {$\begin{pmatrix} x \\ y \end{pmatrix} = f(\theta,\phi,\psi)$}; \end{scope} \filldraw[fill=white] (208, 656) circle[radius=16]; \filldraw[fill=white] (320, 704) circle[radius=16]; \filldraw[fill=white] (112, 528) circle[radius=24]; \filldraw[white!20!black] (112, 528) circle[radius=4] (208, 656) circle[radius=4] (320, 704) circle[radius=4]; \coordinate (c1) at (112, 528); \coordinate (c2) at (208, 656); \coordinate (c3) at (320, 704); \coordinate (x1) at ($(c1) + (2cm,0)$); \coordinate (x3) at ($(c3) + (2cm,0)$); \draw (c1) -- (x1); \draw (c1) -- ($(c1)!2cm!(c2)$); \pic[draw, "$\theta$", angle radius=1cm, angle eccentricity=.8] {angle=x1--c1--c2}; \draw (c2) -- ($(c2)!2cm!(c1)$); \draw (c2) -- ($(c2)!2cm!(c3)$); \pic[draw, "$\phi$", angle radius=1cm, angle eccentricity=.8] {angle=c1--c2--c3}; \coordinate (x3p) at ($(c3)!2cm!-9.1623:(x3)$); \draw (c3) -- ($(c3)!2cm!(c2)$); \draw (c3) -- (x3p); \pic[draw, "$\psi$", angle radius=1cm, angle eccentricity=.8] {angle=c2--c3--x3p}; \end{tikzpicture} Define a transformation <span class="process-math">\(f\colon\R^3\to\R^2\)</span> as follows: <span class="process-math">\(f(\theta,\phi,\psi)\)</span> is the <span class="process-math">\((x,y)\)</span> position of the hand when the joints are rotated by angles <span class="process-math">\(\theta, \phi, \psi\text{,}\)</span> respectively.  Asking whether <span class="process-math">\(f\)</span> is one-to-one is the same as asking whether there is more than one way to move the arm in order to reach your coffee cup.  (There is.)<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#one-to-one-eg-robot-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 3.2.4: A real-word transformation: robotics"><a tabindex="-1" href="#one-to-one-eg-robot" title="Copy heading and permalink for Example 3.2.4: A real-word transformation: robotics" aria-label="Copy heading and permalink for Example 3.2.4: A real-word transformation: robotics">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-one-to-one-onto.html#one-to-one-eg-robot">In Context</a></span>
+</body>
+</html>

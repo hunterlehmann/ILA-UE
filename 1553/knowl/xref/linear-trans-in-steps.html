@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.3.20</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A transformation defined in steps.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(T\colon\R^3\to\R^3\)</span> be the linear transformation that reflects over the <span class="process-math">\(xy\)</span>-plane and then projects onto the <span class="process-math">\(yz\)</span>-plane.  What is the standard matrix for <span class="process-math">\(T\text{?}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linear-trans-in-steps-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">This transformation is described geometrically, in two steps.  To find the columns of <span class="process-math">\(A\text{,}\)</span> we need to follow the standard coordinate vectors through each of these steps. \def\drawarrow#1{ \begin{tikzpicture}[myxyz, y={(1cm,-.28cm)}, scale=0.8, thin border nodes, baseline] \path[clip, resetxy] (-2,-2) rectangle (2,2); \begin{scope}[transformxy] \fill[blue, opacity=.05] (-1.5,-1.5) rectangle (1.5,1.5); \draw[step=1cm, help lines, blue!40!black] (-1.5, -1.5) grid (1.5, 1.5); \end{scope} \node[blue!40!black,right] at (-.5,.8,-.5) {$xy$}; \begin{scope}[transformyz] \fill[green, opacity=.05] (-1.5,-1.5) rectangle (1.5,1.5); \draw[step=1cm, help lines, green!40!black] (-1.5, -1.5) grid (1.5, 1.5); \end{scope} \node[green!40!black] at (.75,-1,1) {$yz$}; #1 \end{tikzpicture} } \drawarrow{\draw[vector] (0,0,0) -- (1,0,0) node[below right, pos=.5] {$e_1$};} $\xrightarrow{\text{reflect $xy$}}$ \drawarrow{\draw[vector] (0,0,0) -- (1,0,0);} $\xrightarrow{\text{project $yz$}}$ \drawarrow{\point at (0,0,0);} Since <span class="process-math">\(e_1\)</span> lies on the <span class="process-math">\(xy\)</span>-plane, reflecting over the <span class="process-math">\(xy\)</span>-plane does not move <span class="process-math">\(e_1\text{.}\)</span>  Since <span class="process-math">\(e_1\)</span> is perpendicular to the <span class="process-math">\(yz\)</span>-plane, projecting <span class="process-math">\(e_1\)</span> onto the <span class="process-math">\(yz\)</span>-plane sends it to zero.  Therefore,</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T(e_1) = \begin{pmatrix}
+0 \\
+0 \\
+0
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">\drawarrow{\draw[vector] (0,0,0) -- (0,1,0) node[below left, pos=.6] {$e_2$};} $\xrightarrow{\text{reflect $xy$}}$ \drawarrow{\draw[vector] (0,0,0) -- (0,1,0);} $\xrightarrow{\text{project $yz$}}$ \drawarrow{\draw[vector] (0,0,0) -- (0,1,0);} Since <span class="process-math">\(e_2\)</span> lies on the <span class="process-math">\(xy\)</span>-plane, reflecting over the <span class="process-math">\(xy\)</span>-plane does not move <span class="process-math">\(e_2\text{.}\)</span>  Since <span class="process-math">\(e_2\)</span> lies on the <span class="process-math">\(yz\)</span>-plane, projecting onto the <span class="process-math">\(yz\)</span>-plane does not move <span class="process-math">\(e_2\)</span> either. Therefore,</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T(e_2) = e_2 = \begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">\drawarrow{\draw[vector] (0,0,0) -- (0,0,1) node[left, pos=.4] {$e_3$};} $\xrightarrow{\text{reflect $xy$}}$ \drawarrow{\draw[vector] (0,0,0) -- (0,0,-1);} $\xrightarrow{\text{project $yz$}}$ \drawarrow{\draw[vector] (0,0,0) -- (0,0,-1);} Since <span class="process-math">\(e_3\)</span> is perpendicular to the <span class="process-math">\(xy\)</span>-plane, reflecting over the <span class="process-math">\(xy\)</span>-plane takes <span class="process-math">\(e_3\)</span> to its negative.  Since <span class="process-math">\(-e_3\)</span> lies on the <span class="process-math">\(yz\)</span>-plane, projecting onto the <span class="process-math">\(yz\)</span>-plane does not move it. Therefore,</div>
+<div class="displaymath process-math">
+\begin{gather*}
+T(e_3) = -e_3 = \begin{pmatrix}
+0 \\
+0 \\
+-1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Now we have computed all three columns of <span class="process-math">\(A\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+\left.\begin{aligned}
+T(e_1) \amp= \begin{pmatrix}
+0 \\
+0 \\
+0
+\end{pmatrix} \\
+T(e_2) \amp= \begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix} \\
+T(e_1) \amp= \begin{pmatrix}
+0 \\
+0 \\
+-1
+\end{pmatrix} \\
+\end{aligned}\right\}
+\implies A = \begin{pmatrix}
+0 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp -1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linear-trans-in-steps-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/steps-if.html" id="linear-trans-in-steps-3-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="linear-trans-in-steps-3-2-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="linear-trans-in-steps-3-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linear-trans-in-steps-3-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="linear-trans-in-steps-3-2-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="linear-trans-in-steps-3-2-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="linear-trans-in-steps-3-2-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#linear-trans-in-steps-3-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#linear-trans-in-steps-3-2-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.3.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Illustration of a transformation defined in steps.  Click and drag the vector on the left.<div class="autopermalink" aria-hidden="true" data-description="Figure 3.3.21"><a tabindex="-1" href="#linear-trans-in-steps-3-2" title="Copy heading and permalink for Figure 3.3.21" aria-label="Copy heading and permalink for Figure 3.3.21">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 3.3.20.1"><a tabindex="-1" href="#linear-trans-in-steps-3" title="Copy heading and permalink for Solution 3.3.20.1" aria-label="Copy heading and permalink for Solution 3.3.20.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 3.3.20: A transformation defined in steps"><a tabindex="-1" href="#linear-trans-in-steps" title="Copy heading and permalink for Example 3.3.20: A transformation defined in steps" aria-label="Copy heading and permalink for Example 3.3.20: A transformation defined in steps">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-linear-transformations.html#linear-trans-in-steps">In Context</a></span>
+</body>
+</html>

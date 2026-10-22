@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="observation remark-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.14</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Best-fit line.</span>
+</h2>
+<div class="para logical">
+<div class="para">Suppose that we have measured three data points</div>
+<div class="displaymath process-math">
+\begin{gather*}
+(0,6),\quad (1,0),\quad (2,0)\text{,}
+\end{gather*}
+</div>
+<div class="para">and that our model for these data asserts that the points should lie on a line.  Of course, these three points do not actually lie on a single line, but this could be due to errors in our measurement.  How do we predict which line they are supposed to lie on?</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-4-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-best-fit-problems-4-4.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-best-fit-problems-4-4-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-best-fit-problems-4-4-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-4-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">The general equation for a (non-vertical) line is</div>
+<div class="displaymath process-math">
+\begin{gather*}
+y = Mx + B\text{.}
+\end{gather*}
+</div>
+<div class="para">If our three data points were to lie on this line, then the following equations would be satisfied:</div>
+<div class="displaymath process-math">
+\begin{align}
+\begin{split}
+6 \amp= M\cdot 0 + B \\
+0 \amp= M\cdot 1 + B \\
+0 \amp= M\cdot 2 + B.
+\end{split}\tag{6.4.1}
+\end{align}
+</div>
+<div class="para">In order to find the best-fit line, we try to solve the above equations in the unknowns <span class="process-math">\(M\)</span> and <span class="process-math">\(B\text{.}\)</span>  As the three points do not actually lie on a line, there is no actual solution, so instead we compute a least-squares solution.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-4-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Putting our linear equations into matrix form, we are trying to solve <span class="process-math">\(Ax=b\)</span> for</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/leastsquares-eg-bestfit-line-a.html">
+\begin{align*}
+A = \begin{pmatrix}
+0 \amp 1 \\
+1 \amp 1 \\
+2 \amp 1
+\end{pmatrix}  \qquad x = \begin{pmatrix}
+M \\
+B
+\end{pmatrix}\qquad b = \begin{pmatrix}
+6 \\
+0 \\
+0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">We solved this least-squares problem in <a href="sec-least-squares.html#leastsquares-eg-bestfit-line-a" class="xref" data-knowl="./knowl/xref/leastsquares-eg-bestfit-line-a.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 6.4.7">Example 7</a>: the only least-squares solution to <span class="process-math">\(Ax=b\)</span> is <span class="process-math">\(\hat x = {M\choose B} = {-3\choose 5}\text{,}\)</span> so the best-fit line is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/leastsquares-eg-bestfit-line-a.html">
+\begin{gather*}
+y = -3x + 5\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-4-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-best-fit-problems-4-7.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-best-fit-problems-4-7-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-best-fit-problems-4-7-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-4-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">What exactly is the line <span class="process-math">\(y= f(x) = -3x+5\)</span> minimizing?  The least-squares solution <span class="process-math">\(\hat x\)</span> minimizes the sum of the squares of the entries of the vector <span class="process-math">\(b-A\hat x\text{.}\)</span> The vector <span class="process-math">\(b\)</span> is the left-hand side of <a href="sec-least-squares.html#leastsquares-line-eq" class="internal" title="Display Mathematics [STRUCT].[NUM]">Display Mathematics [NUM]</a>, and</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/leastsquares-line-eq.html">
+\begin{gather*}
+A\begin{pmatrix}
+-3 \\
+5
+\end{pmatrix} = \begin{pmatrix}
+-3(0)+5 \\
+-3(1)+5 \\
+-3(2)+5
+\end{pmatrix} = \begin{pmatrix}
+f(0) \\
+f(1) \\
+f(2)
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">In other words, <span class="process-math">\(A\hat x\)</span> is the vector whose entries are the <span class="process-math">\(y\)</span>-coordinates of the graph of the line at the values of <span class="process-math">\(x\)</span> we specified in our data points, and <span class="process-math">\(b\)</span> is the vector whose entries are the <span class="process-math">\(y\)</span>-coordinates of those data points.  The difference <span class="process-math">\(b-A\hat x\)</span> is the vertical distance of the graph from the data points:</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-4-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-best-fit-problems-4-9.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-best-fit-problems-4-9-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-best-fit-problems-4-9-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-4-9-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para">The best-fit line minimizes the sum of the squares of these vertical distances.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-4-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.14: Best-fit line"><a tabindex="-1" href="#subsec-best-fit-problems-4" title="Copy heading and permalink for Example 6.4.14: Best-fit line" aria-label="Copy heading and permalink for Example 6.4.14: Best-fit line">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-least-squares.html#subsec-best-fit-problems-4">In Context</a></span>
+</body>
+</html>

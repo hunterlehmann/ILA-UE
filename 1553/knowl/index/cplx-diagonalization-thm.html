@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.4.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A\)</span> be a <span class="process-math">\(2\times 2\)</span> real matrix with a complex (non-real) eigenvalue <span class="process-math">\(\lambda\text{,}\)</span> and let <span class="process-math">\(v\)</span> be an eigenvector.  Then <span class="process-math">\(A = CBC\inv\)</span> for</div>
+<div class="displaymath process-math">
+\begin{align*}
+C = \begin{pmatrix}
+| \amp | \\
+\Re(v) \amp \Im(v) \\
+| \amp |
+\end{pmatrix}
+\sptxt{and}
+B = \begin{pmatrix}
+\Re(\lambda) \amp \Im(\lambda) \\
+-\Im(\lambda) \amp \Re(\lambda)
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">In particular, <span class="process-math">\(A\)</span> is similar to a rotation-scaling matrix that scales by a factor of <span class="process-math">\(|\lambda| = \sqrt{\det(B)}.\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cplx-diagonalization-thm-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 5.4.7"><a tabindex="-1" href="#cplx-diagonalization-thm" title="Copy heading and permalink for Theorem 5.4.7" aria-label="Copy heading and permalink for Theorem 5.4.7">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<div class="para">First we need to show that <span class="process-math">\(\Re(v)\)</span> and <span class="process-math">\(\Im(v)\)</span> are linearly independent, since otherwise <span class="process-math">\(C\)</span> is not invertible.  If not, then there exist real numbers <span class="process-math">\(x,y,\)</span> not both equal to zero, such that <span class="process-math">\(x\Re(v) + y\Im(v) = 0\text{.}\)</span>  Then</div>
+<div class="displaymath process-math">
+\begin{align*}
+(y+ix)v \amp= (y+ix)\bigl(\Re(v)+i\Im(v)\bigr)\\
+\amp= y\Re(v) - x\Im(v) + \left(x\Re(v) + y\Im(v)\right)i\\
+\amp= y\Re(v) - x\Im(v)\text{.}
+\end{align*}
+</div>
+<div class="para">Now, <span class="process-math">\((y+ix)v\)</span> is also an eigenvector of <span class="process-math">\(A\)</span> with eigenvalue <span class="process-math">\(\lambda\text{,}\)</span> as it is a scalar multiple of <span class="process-math">\(v\text{.}\)</span>  But we just showed that <span class="process-math">\((y+ix)v\)</span> is a vector with real entries, and any <em class="emphasis">real</em> eigenvector of a real matrix has a real eigenvalue.  Therefore, <span class="process-math">\(\Re(v)\)</span> and <span class="process-math">\(\Im(v)\)</span> must be linearly independent after all.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cplx-diagonalization-thm-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(\lambda = a+bi\)</span> and <span class="process-math">\(v = {x+yi\choose z+wi}\text{.}\)</span>  We observe that</div>
+<div class="displaymath process-math">
+\begin{align*}
+Av = \lambda v \amp= (a+bi)\begin{pmatrix}
+x+yi \\
+z+wi
+\end{pmatrix}\\
+\amp= \begin{pmatrix}
+(ax-by)+(ay+bx)i \\
+(az-bw)+(aw+bz)i
+\end{pmatrix}\\
+\amp= \begin{pmatrix}
+ax-by \\
+az-bw
+\end{pmatrix} + i\begin{pmatrix}
+ay+bx \\
+aw+bz
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">On the other hand, we have</div>
+<div class="displaymath process-math">
+\begin{gather*}
+A\left(\begin{pmatrix}
+x \\
+z
+\end{pmatrix} + i\begin{pmatrix}
+y \\
+w
+\end{pmatrix}\right)
+= A\begin{pmatrix}
+x \\
+z
+\end{pmatrix} + iA\begin{pmatrix}
+y \\
+w
+\end{pmatrix}
+= A\Re(v) + iA\Im(v)\text{.}
+\end{gather*}
+</div>
+<div class="para">Matching real and imaginary parts gives</div>
+<div class="displaymath process-math">
+\begin{gather*}
+A\Re(v) = \begin{pmatrix}
+ax-by \\
+az-bw
+\end{pmatrix} \qquad
+A\Im(v) = \begin{pmatrix}
+ay+bx \\
+aw+bz
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cplx-diagonalization-thm-5-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Now we compute <span class="process-math">\(CBC\inv\Re(v)\)</span> and <span class="process-math">\(CBC\inv\Im(v)\text{.}\)</span>  Since <span class="process-math">\(Ce_1 = \Re(v)\)</span> and <span class="process-math">\(Ce_2 = \Im(v)\text{,}\)</span> we have <span class="process-math">\(C\inv\Re(v) = e_1\)</span> and <span class="process-math">\(C\inv\Im(v)=e_2\text{,}\)</span> so</div>
+<div class="displaymath process-math">
+\begin{align*}
+CBC\inv\Re(v) \amp= CBe_1 = C\begin{pmatrix}
+a \\
+-b
+\end{pmatrix} = a\Re(v)-b\Im(v)\\
+\amp= a\begin{pmatrix}
+x \\
+z
+\end{pmatrix} - b\begin{pmatrix}
+y \\
+w
+\end{pmatrix}
+= \begin{pmatrix}
+ax-by \\
+az-bw
+\end{pmatrix} = A\Re(v)\\
+CBC\inv\Im(v) \amp= CBe_2 = C\begin{pmatrix}
+b \\
+a
+\end{pmatrix} = b\Re(v)+a\Im(v)\\
+\amp= b\begin{pmatrix}
+x \\
+z
+\end{pmatrix} + a\begin{pmatrix}
+y \\
+w
+\end{pmatrix}
+= \begin{pmatrix}
+ay+bx \\
+aw+bz
+\end{pmatrix} = A\Im(v)\text{.}
+\end{align*}
+</div>
+<div class="para">Therefore, <span class="process-math">\(A\Re(v) = CBC\inv\Re(v)\)</span> and <span class="process-math">\(A\Im(v) = CBC\inv\Im(v)\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cplx-diagonalization-thm-5-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Since <span class="process-math">\(\Re(v)\)</span> and <span class="process-math">\(\Im(v)\)</span> are linearly independent, they form a basis for <span class="process-math">\(\R^2\text{.}\)</span>  Let <span class="process-math">\(w\)</span> be any vector in <span class="process-math">\(\R^2\text{,}\)</span> and write <span class="process-math">\(w = c\Re(v) + d\Im(v)\text{.}\)</span>  Then</div>
+<div class="displaymath process-math">
+\begin{align*}
+Aw \amp= A\bigl(c\Re(v) + d\Im(v)\bigr)\\
+\amp= cA\Re(v) + dA\Im(v)\\
+\amp= cCBC\inv\Re(v) + dCBC\inv\Im(v)\\
+\amp= CBC\inv\bigl(c\Re(v) + d\Im(v)\bigr)\\
+\amp= CBC\inv w\text{.}
+\end{align*}
+</div>
+<div class="para">This proves that <span class="process-math">\(A = CBC\inv\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cplx-diagonalization-thm-5-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 5.4.7.1"><a tabindex="-1" href="#cplx-diagonalization-thm-5" title="Copy heading and permalink for Proof 5.4.7.1" aria-label="Copy heading and permalink for Proof 5.4.7.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-complex-eigenvalues.html#cplx-diagonalization-thm">In Context</a></span>
+</body>
+</html>

@@ -21,7 +21,8 @@
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
 <style>
 @counter-style ptx-marker-1 { system: extends decimal; prefix: '('; suffix: ') '; }
-@counter-style ptx-marker-2 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-2 { system: extends lower-alpha; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-3 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
 </style>
 <link rel="stylesheet" type="text/css" href="external/css/highlight-math.css">
 <script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
@@ -41,7 +42,7 @@ lang: "en-US",
 <meta name="twitter:description" content="An introduction to matrix algebra with an emphasis on geometric intuition.">
 <meta property="og:description" content="An introduction to matrix algebra with an emphasis on geometric intuition.">
 <meta name="twitter:card" content="summary">
-<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.55"></script><script src="_static/pretext/js/dist/pretext-read-aloud.js?v=2.55"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.56"></script><script src="_static/pretext/js/dist/pretext-read-aloud.js?v=2.56"></script><!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -84,7 +85,7 @@ eBookConfig.enable_chatcodes =  false;
 <p class="byline">Dan Margalit, Joseph Rabinoff, Hunter Lehmann, Chris Jankowski</p>
 </div>
 </div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
-<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-5.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="ptx-search-box">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="backmatter-6.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="ptx-search-box">
 <div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
 <dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
 <input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
@@ -301,18 +302,204 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 </ul>
 </li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-matrices.html" class="internal"><span class="codenumber">3</span> <span class="title">Linear Transformations and Matrix Algebra</span></a></div></li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-determinant.html" class="internal"><span class="codenumber">4</span> <span class="title">Determinants</span></a></div></li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-eigenvalues.html" class="internal"><span class="codenumber">5</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-orthogonality.html" class="internal"><span class="codenumber">6</span> <span class="title">Orthogonality</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-matrices.html" class="internal"><span class="codenumber">3</span> <span class="title">Linear Transformations and Matrix Algebra</span></a></div>
+<ul id="ptx-toc-group-chap-matrices" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-matrices-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-transformations.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Matrix Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-transformations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-trans-matrices-functions" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Matrices as Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-transformations" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Matrix Transformations</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-transformations.html#sec-matrix-transformations-7" class="internal"><span class="codenumber">3.1.4</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-transformations.html#sec-matrix-transformations-8" class="internal"><span class="codenumber">3.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-one-to-one-onto.html" class="internal"><span class="codenumber">3.2</span> <span class="title">One-to-one and Onto Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-one-to-one-onto" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-one-to-one-transformations" class="internal"><span class="codenumber">3.2.1</span> <span class="title">One-to-one Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-onto-transformations" class="internal"><span class="codenumber">3.2.2</span> <span class="title">Onto Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-comparison" class="internal"><span class="codenumber">3.2.3</span> <span class="title">Comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-transformations.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Linear Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-linear-transformations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-linear-transformations-definition" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Linear Transformations: Definition</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-the-standard-coordinate-vectors" class="internal"><span class="codenumber">3.3.2</span> <span class="title">The Standard Coordinate Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-linear-trans-is-matrix-trans" class="internal"><span class="codenumber">3.3.3</span> <span class="title">The Matrix of a Linear Transformation</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-linear-transformations.html#sec-linear-transformations-7" class="internal"><span class="codenumber">3.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-multiplication.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Matrix Multiplication</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-multiplication" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-composition-of-linear-transformations" class="internal"><span class="codenumber">3.4.1</span> <span class="title">Composition of linear transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-matrix-multiplication" class="internal"><span class="codenumber">3.4.2</span> <span class="title">Matrix multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-composition-and-matrix-multiplication" class="internal"><span class="codenumber">3.4.3</span> <span class="title">Composition and Matrix Multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices" class="internal"><span class="codenumber">3.4.4</span> <span class="title">The algebra of transformations and matrices</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#sec-matrix-multiplication-8" class="internal"><span class="codenumber">3.4.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-inverses.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Matrix Inverses</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-inverses" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-invertible-matrices" class="internal"><span class="codenumber">3.5.1</span> <span class="title">Invertible Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-matrix-inv-computing" class="internal"><span class="codenumber">3.5.2</span> <span class="title">Computing the Inverse Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-solving-linear-systems-using-inverses" class="internal"><span class="codenumber">3.5.3</span> <span class="title">Solving Linear Systems using Inverses</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms" class="internal"><span class="codenumber">3.5.4</span> <span class="title">Invertible linear transformations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-invertible-matrix-thm.html" class="internal"><span class="codenumber">3.6</span> <span class="title">The Invertible Matrix Theorem</span></a></div>
+<ul id="ptx-toc-group-sec-invertible-matrix-thm" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-invertible-matrix-thm.html#sec-invertible-matrix-thm-16" class="internal"><span class="codenumber">3.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-determinant.html" class="internal"><span class="codenumber">4</span> <span class="title">Determinants</span></a></div>
+<ul id="ptx-toc-group-chap-determinant" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-determinant-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-definitions-properties.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Determinants: Definition</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-definitions-properties" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant" class="internal"><span class="codenumber">4.1.1</span> <span class="title">The Definition of the Determinant</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#subsec-det-defn-magic-props" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Magical Properties of the Determinant</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#sec-determinants-definitions-properties-6" class="internal"><span class="codenumber">4.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-cofactors.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Cofactor Expansions</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-cofactors" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#subsec-cofactor-expansions" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Cofactor Expansions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#subsec-det-cofact-cramer-ss" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Cramer’s Rule and Matrix Inverses</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#sec-determinants-cofactors-6" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-volumes.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Determinants and Volumes</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-volumes" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-parallelograms-and-paralellepipeds" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Parallelograms and Paralellepipeds</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-determinants-and-volumes" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Determinants and Volumes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-volumes-of-regions" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Volumes of Regions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-volumes.html#sec-determinants-volumes-7" class="internal"><span class="codenumber">4.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-eigenvalues.html" class="internal"><span class="codenumber">5</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul id="ptx-toc-group-chap-eigenvalues" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-eigenvalues-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-eigenvectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul id="ptx-toc-group-sec-eigenvectors" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-eigenspaces" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Eigenspaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-the-invertible-matrix-theorem-addenda" class="internal"><span class="codenumber">5.1.3</span> <span class="title">The Invertible Matrix Theorem: Addenda</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-eigenvectors.html#sec-eigenvectors-7" class="internal"><span class="codenumber">5.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-characteristic-polynomial.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The Characteristic Polynomial</span></a></div>
+<ul id="ptx-toc-group-sec-characteristic-polynomial" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-15" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-similarity.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Similarity</span></a></div>
+<ul id="ptx-toc-group-sec-similarity" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-similar-matrices" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Similar Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-geometry-of-similar-matrices" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Geometry of Similar Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Eigenvalues of Similar Matrices</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-diagonalization.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Diagonalization</span></a></div>
+<ul id="ptx-toc-group-sec-diagonalization" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-diagonalizability" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Diagonalizability</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-diag-ss-geometry" class="internal"><span class="codenumber">5.4.2</span> <span class="title">The Geometry of Diagonalizable Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity" class="internal"><span class="codenumber">5.4.3</span> <span class="title">Algebraic and Geometric Multiplicity</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-diagonalization.html#sec-diagonalization-7" class="internal"><span class="codenumber">5.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-complex-eigenvalues.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Complex Eigenvalues</span></a></div>
+<ul id="ptx-toc-group-sec-complex-eigenvalues" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-matrices-with-complex-eigenvalues" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Matrices with Complex Eigenvalues</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-rotation-scaling-matrices" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Rotation-Scaling Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue" class="internal"><span class="codenumber">5.5.3</span> <span class="title">Geometry of <span class="process-math">\(2\times 2\)</span> Matrices with a Complex Eigenvalue</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-block-diagonalization" class="internal"><span class="codenumber">5.5.4</span> <span class="title">Block Diagonalization</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#sec-complex-eigenvalues-8" class="internal"><span class="codenumber">5.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-stochastic-matrices.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Stochastic Matrices</span></a></div>
+<ul id="ptx-toc-group-sec-stochastic-matrices" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-difference-equations" class="internal"><span class="codenumber">5.6.1</span> <span class="title">Difference Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state" class="internal"><span class="codenumber">5.6.2</span> <span class="title">Stochastic Matrices and the Steady State</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-googles-pagerank-algorithm" class="internal"><span class="codenumber">5.6.3</span> <span class="title">Google’s PageRank Algorithm</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#sec-stochastic-matrices-7" class="internal"><span class="codenumber">5.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-orthogonality.html" class="internal"><span class="codenumber">6</span> <span class="title">Orthogonality</span></a></div>
+<ul id="ptx-toc-group-chap-orthogonality" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-orthogonality-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-dot-product.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Dot Products and Orthogonality</span></a></div>
+<ul id="ptx-toc-group-sec-dot-product" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dot-product.html#subsec-the-dot-product" class="internal"><span class="codenumber">6.1.1</span> <span class="title">The Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dot-product.html#subsec-orthogonal-vectors" class="internal"><span class="codenumber">6.1.2</span> <span class="title">Orthogonal Vectors</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-dot-product.html#sec-dot-product-6" class="internal"><span class="codenumber">6.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-orthogonal-complements.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Orthogonal Complements</span></a></div>
+<ul id="ptx-toc-group-sec-orthogonal-complements" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-complements.html#subsec-definition-of-the-orthogonal-complement" class="internal"><span class="codenumber">6.2.1</span> <span class="title">Definition of the Orthogonal Complement</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-complements.html#subsec-computing-orthogonal-complements" class="internal"><span class="codenumber">6.2.2</span> <span class="title">Computing Orthogonal Complements</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-complements.html#subsec-row-rank-and-column-rank" class="internal"><span class="codenumber">6.2.3</span> <span class="title">Row rank and column rank</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-orthogonal-complements.html#sec-orthogonal-complements-7" class="internal"><span class="codenumber">6.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-projections.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Orthogonal Projection</span></a></div>
+<ul id="ptx-toc-group-sec-projections" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-projections.html#subsec-orthogonal-decomposition" class="internal"><span class="codenumber">6.3.1</span> <span class="title">Orthogonal Decomposition</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-projections.html#subsec-orthogonal-projection" class="internal"><span class="codenumber">6.3.2</span> <span class="title">Orthogonal Projection</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-projections.html#sec-projections-6" class="internal"><span class="codenumber">6.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-orthogonal-sets.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Orthogonal Sets</span></a></div>
+<ul id="ptx-toc-group-sec-orthogonal-sets" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-sets.html#subsec-orthogonal-sets-and-the-projection-formula" class="internal"><span class="codenumber">6.4.1</span> <span class="title">Orthogonal Sets and the Projection Formula</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-sets.html#subsec-orthosets-gram-schmidt" class="internal"><span class="codenumber">6.4.2</span> <span class="title">The Gram–Schmidt Process</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-orthogonal-sets.html#subsec-two-methods-to-compute-the-projection" class="internal"><span class="codenumber">6.4.3</span> <span class="title">Two Methods to Compute the Projection</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-least-squares.html" class="internal"><span class="codenumber">6.5</span> <span class="title">The Method of Least Squares</span></a></div>
+<ul id="ptx-toc-group-sec-least-squares" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-least-squares.html#subsec-least-squares-solutions" class="internal"><span class="codenumber">6.5.1</span> <span class="title">Least-Squares Solutions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-least-squares.html#subsec-best-fit-problems" class="internal"><span class="codenumber">6.5.2</span> <span class="title">Best-Fit Problems</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-least-squares.html#sec-least-squares-6" class="internal"><span class="codenumber">6.5.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-item toc-backmatter">
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
 <ul id="ptx-toc-group-backmatter" class="structural toc-item-list">
-<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="backmatter-2.html" class="internal"><span class="codenumber">A.</span> <span class="title">Notation</span></a></div></li>
-<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="backmatter-3.html" class="internal"><span class="codenumber">B.</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
-<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">C.</span> <span class="title">GNU Free Documentation License</span></a></div></li>
-<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Index</span></a></div></li>
-<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-6.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="complex-numbers.html" class="internal"><span class="codenumber">A.</span> <span class="title">Complex Numbers</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="backmatter-3.html" class="internal"><span class="codenumber">B.</span> <span class="title">Notation</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="codenumber">C.</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">D.</span> <span class="title">GNU Free Documentation License</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-6.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-7.html" class="internal"><span class="title">Colophon</span></a></div></li>
 </ul>
 </li>
 </ul></nav></div>
@@ -592,14 +779,14 @@ w = v_1 + 2v_2 = \begin{pmatrix}
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-bases-as-coord-systems-10-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
-<img src="generated/latex-image/sec-bases-as-coord-systems-10-3-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="sec-bases-as-coord-systems-10-3-2-description">
+<img src="generated/latex-image/sec-bases-as-coord-systems-10-3-2.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="sec-bases-as-coord-systems-10-3-2-description" style="width: 133.33%; margin-left: -16.67%;">
 <div class="para" id="sec-bases-as-coord-systems-10-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-bases-as-coord-systems-10-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
 </div></details>
 </div>
 <div class="para" id="sec-bases-as-coord-systems-10-3-3">This picture could be the grid of streets in <a class="external" href="https://www.google.com/maps/place/Palo+Alto,+CA/@37.4387098,-122.1548738,15.75z/data=!4m5!3m4!1s0x808fb07b9dba1c39:0xe1ff55235f576cf!8m2!3d37.4418834!4d-122.1430195?hl=en" target="_blank">Palo Alto, California</a>.  Residents of Palo Alto refer to northwest as “north” and to northeast as “east”.  There is a reason for this: the old road to San Francisco is called El Camino Real, and that road runs from the southeast to the northwest in Palo Alto.  So when a Palo Alto resident says “go south two blocks and east one block”, they are giving directions from the origin to the Whole Foods at <span class="process-math">\(w\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-bases-as-coord-systems-10-3-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <figure class="figure figure-like" id="sec-bases-as-coord-systems-10-3-4"><div class="interactive-iframe-container">
-<iframe src="external/iframes/spans-if.html?v1=1,1&amp;v2=1,-1&amp;target=3,-1&amp;range=6&amp;&amp;tlabel=w" id="sec-bases-as-coord-systems-10-3-4-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="sec-bases-as-coord-systems-10-3-4-2-description"> 
+<iframe src="external/iframes/spans-if.html?v1=1,1&amp;v2=1,-1&amp;target=3,-1&amp;range=6&amp;&amp;tlabel=w" id="sec-bases-as-coord-systems-10-3-4-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="sec-bases-as-coord-systems-10-3-4-2-description" style="width: 80%; margin-left: 10%;"> 
 <div class="para" id="sec-bases-as-coord-systems-10-3-4-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-bases-as-coord-systems-10-3-4-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
 </div></details>
 </div>
@@ -638,7 +825,7 @@ v_1 = \begin{pmatrix}
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-bases-as-coord-systems-11-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
-<img src="generated/latex-image/sec-bases-as-coord-systems-11-3.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="sec-bases-as-coord-systems-11-3-description">
+<img src="generated/latex-image/sec-bases-as-coord-systems-11-3.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="sec-bases-as-coord-systems-11-3-description" style="width: 133.33%; margin-left: -16.67%;">
 <div class="para" id="sec-bases-as-coord-systems-11-3-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-bases-as-coord-systems-11-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
 </div></details>
 </div>
@@ -666,7 +853,7 @@ v_1 = \begin{pmatrix}
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-bases-as-coord-systems-11-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <figure class="figure figure-like" id="dimension-coordinates"><div class="interactive-iframe-container">
-<iframe src="external/iframes/Axequalsb-if.html?captions=basis&amp;mat=2,1:-1,0:1,-1&amp;range2=5" id="dimension-coordinates-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="dimension-coordinates-2-description"> 
+<iframe src="external/iframes/Axequalsb-if.html?captions=basis&amp;mat=2,1:-1,0:1,-1&amp;range2=5" id="dimension-coordinates-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="dimension-coordinates-2-description" style="width: 80%; margin-left: 10%;"> 
 <div class="para" id="dimension-coordinates-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#dimension-coordinates-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
 </div></details>
 </div>
@@ -787,7 +974,7 @@ w = 5v_1 + 2v_2 = 5\begin{pmatrix}
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-bases-as-coord-systems-12-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <figure class="figure figure-like" id="dimension-coordinates-1"><div class="interactive-iframe-container">
-<iframe src="external/iframes/spans-if.html?v1=1,0,1&amp;v2=1,1,1&amp;target=5,3,5&amp;range=6&amp;camera=-3,0,2&amp;tlabel=v" id="dimension-coordinates-1-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="dimension-coordinates-1-2-description"> 
+<iframe src="external/iframes/spans-if.html?v1=1,0,1&amp;v2=1,1,1&amp;target=5,3,5&amp;range=6&amp;camera=-3,0,2&amp;tlabel=v" id="dimension-coordinates-1-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="dimension-coordinates-1-2-description" style="width: 80%; margin-left: 10%;"> 
 <div class="para" id="dimension-coordinates-1-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#dimension-coordinates-1-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
 </div></details>
 </div>
@@ -903,7 +1090,7 @@ A = \begin{pmatrix}
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-bases-as-coord-systems-13-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <figure class="figure figure-like" id="dimension-coordinates-2"><div class="interactive-iframe-container">
-<iframe src="external/iframes/spans-if.html?v1=2,3,2&amp;v2=-1,1,1&amp;target=4,11,8&amp;tlabel=x&amp;range=12&amp;camera=.5,-3,2&amp;tlabel=x" id="dimension-coordinates-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="dimension-coordinates-2-2-description"> 
+<iframe src="external/iframes/spans-if.html?v1=2,3,2&amp;v2=-1,1,1&amp;target=4,11,8&amp;tlabel=x&amp;range=12&amp;camera=.5,-3,2&amp;tlabel=x" id="dimension-coordinates-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="dimension-coordinates-2-2-description" style="width: 80%; margin-left: 10%;"> 
 <div class="para" id="dimension-coordinates-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#dimension-coordinates-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
 </div></details>
 </div>

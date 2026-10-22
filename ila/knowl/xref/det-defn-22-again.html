@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="observation remark-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.1.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The determinant of a <span class="process-math">\(2\times 2\)</span> matrix.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let us use the <a href="sec-determinants-definitions-properties.html#det-defn-ref-compute" class="xref" data-knowl="./knowl/xref/det-defn-ref-compute.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 4.1.5: Computing determinants by row reducing">Recipe 5</a> to compute the determinant of a general <span class="process-math">\(2\times 2\)</span> matrix <span class="process-math">\(A = \smallmat abcd\text{.}\)</span>
+</div>
+<ul class="disc" id="det-defn-22-again-3-4">
+<li>
+<div class="para logical">
+<div class="para">If <span class="process-math">\(a = 0\text{,}\)</span> then</div>
+<div class="displaymath process-math">
+\begin{align*}
+\det\begin{pmatrix}
+a \amp b \\
+c \amp d
+\end{pmatrix} = \det\begin{pmatrix}
+0 \amp b \\
+c \amp d
+\end{pmatrix} = -\det\begin{pmatrix}
+c \amp d \\
+0 \amp b
+\end{pmatrix} = -bc\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-22-again-3-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#det-defn-22-again-3-4-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">If <span class="process-math">\(a\neq 0\text{,}\)</span> then</div>
+<div class="displaymath process-math">
+\begin{align*}
+\det\begin{pmatrix}
+a \amp b \\
+c \amp d
+\end{pmatrix} \amp= a\cdot\det\begin{pmatrix}
+1 \amp b/a \\
+c \amp d
+\end{pmatrix}
+= a\cdot\det\begin{pmatrix}
+1 \amp b/a \\
+0 \amp d-c\cdot \amp b/a
+\end{pmatrix}\\
+\amp= a\cdot 1\cdot(d-bc/a) = ad-bc\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-22-again-3-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#det-defn-22-again-3-4-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">In either case, we recover the <a href="sec-matrix-inverses.html#matrix-inv-def-det" class="xref" data-knowl="./knowl/xref/matrix-inv-def-det.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.5.5">Definition 5 of Section 3.5</a>:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/det-defn-ref-compute.html ./knowl/xref/matrix-inv-def-det.html">
+\begin{align*}
+\det\begin{pmatrix}
+a \amp b \\
+c \amp d
+\end{pmatrix} = ad-bc\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-22-again-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 4.1.9: The determinant of a 2\times 2 matrix"><a tabindex="-1" href="#det-defn-22-again" title="Copy heading and permalink for Example 4.1.9: The determinant of a 2\times 2 matrix" aria-label="Copy heading and permalink for Example 4.1.9: The determinant of a 2\times 2 matrix">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-determinants-definitions-properties.html#det-defn-22-again">In Context</a></span>
+</body>
+</html>

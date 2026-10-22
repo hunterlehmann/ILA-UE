@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rabbit population</title>
+  <!--
+    Plotly loaded from CDN.  In an @iframe file the browser's CSP
+    applies to the file itself, not PreTeXt's main page, so external
+    scripts load normally.
+  -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      font-family: inherit;
+      overflow: hidden;
+    }
+
+    #layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75em;
+      padding: 0.75em;
+      width: 100%;
+      height: 100%;
+    }
+
+    #controls {
+      flex: 0 0 auto;
+      min-width: 160px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    #chart {
+      flex: 1 1 auto;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    button {
+      padding: 0.4em 0.8em;
+      cursor: pointer;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    .row label {
+      width: 5em;
+      display: inline-block;
+    }
+
+    .row input {
+      width: 6em;
+    }
+
+    #plot {
+      flex: 1 1 auto;
+    }
+  </style>
+</head>
+<body>
+
+<div id="layout">
+
+  <!-- Left column: controls -->
+  <div id="controls">
+    <button id="btn-random">Randomize starting population</button>
+    <div class="row">
+      <label for="inp0">Age 0&#x2013;1</label>
+      <input id="inp0" type="number" min="1">
+    </div>
+    <div class="row">
+      <label for="inp1">Age 1&#x2013;2</label>
+      <input id="inp1" type="number" min="1">
+    </div>
+    <div class="row">
+      <label for="inp2">Age 2&#x2013;3</label>
+      <input id="inp2" type="number" min="1">
+    </div>
+  </div>
+
+  <!-- Right column: advance + pie chart -->
+  <div id="chart">
+    <div style="text-align:center">
+      <button id="btn-advance">Advance 1 year</button>
+    </div>
+    <div id="plot"></div>
+  </div>
+
+</div>
+
+<script>
+/*
+ *  Leslie matrix
+ *  =============
+ *      | 0   6   8 |
+ *  L = | 1/2 0   0 |
+ *      | 0  1/2  0 |
+ *
+ *  Birth rates: 6 kits/yr (age 1-2), 8 kits/yr (age 2-3).
+ *  Survival:    50% of each cohort advances to the next bracket.
+ *  Dominant eigenvalue: 2  (population doubles per year at steady state).
+ *  Steady-state eigenvector ratios: [16 : 4 : 1].
+ */
+
+var inp0 = document.getElementById('inp0');
+var inp1 = document.getElementById('inp1');
+var inp2 = document.getElementById('inp2');
+var plotDiv = document.getElementById('plot');
+
+/* ── helpers ──────────────────────────────────────────────────────────── */
+
+function getVals() {
+  return [
+    Math.max(1, parseInt(inp0.value) || 1),
+    Math.max(1, parseInt(inp1.value) || 1),
+    Math.max(1, parseInt(inp2.value) || 1)
+  ];
+}
+
+function setData() {
+  var v = getVals();
+  var d = v[2];
+  var ratios = [v[0] / d, v[1] / d, 1];
+  Plotly.restyle(plotDiv, 'values', [ratios]);
+  Plotly.restyle(plotDiv, 'text', [[
+    ratios[0].toFixed(3),
+    ratios[1].toFixed(3),
+    '1.000'
+  ]]);
+}
+
+function randomize() {
+  inp0.value = Math.floor(Math.random() * 99) + 1;
+  inp1.value = Math.floor(Math.random() * 99) + 1;
+  inp2.value = Math.floor(Math.random() * 99) + 1;
+  setData();
+}
+
+function advance() {
+  var v = getVals();
+  inp0.value = 6 * v[1] + 8 * v[2];
+  inp1.value = Math.floor(v[0] / 2);
+  inp2.value = Math.floor(v[1] / 2);
+  setData();
+}
+
+function clamp(inp) {
+  inp.addEventListener('change', function () {
+    var val = parseFloat(inp.value);
+    inp.value = (isNaN(val) || val < 1) ? 1 : Math.floor(val);
+    setData();
+  });
+}
+
+/* ── Plotly init ──────────────────────────────────────────────────────── */
+
+Plotly.newPlot(
+  plotDiv,
+  [{
+    type:      'pie',
+    values:    [1, 1, 1],
+    labels:    ['Age 0\u20131', 'Age 1\u20132', 'Age 2\u20133'],
+    hoverinfo: 'label',
+    textinfo:  'text',
+    text:      ['1.000', '1.000', '1.000'],
+    sort:       false,
+    direction:  'clockwise'
+  }],
+  {
+    height: 200,
+    margin: { l: 0, r: 0, t: 0, b: 0 },
+    legend: { x: 1, y: 0.5 }
+  },
+  { displayModeBar: false, responsive: true }
+);
+
+/* ── events ───────────────────────────────────────────────────────────── */
+
+document.getElementById('btn-random').addEventListener('click', function (e) {
+  e.preventDefault();
+  randomize();
+});
+
+document.getElementById('btn-advance').addEventListener('click', function (e) {
+  e.preventDefault();
+  advance();
+});
+
+clamp(inp0);
+clamp(inp1);
+clamp(inp2);
+
+randomize();
+</script>
+
+</body>
+</html>

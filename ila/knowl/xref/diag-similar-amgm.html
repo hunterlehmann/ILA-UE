@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.4.50</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be similar <span class="process-math">\(n\times n\)</span> matrices, and let <span class="process-math">\(\lambda\)</span> be an eigenvalue of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{.}\)</span>  Then:</div>
+<ol class="decimal" id="diag-similar-amgm-4-1-7">
+<li>
+<div class="para">The algebraic multiplicity of <span class="process-math">\(\lambda\)</span> is the same for <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-similar-amgm-4-1-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#diag-similar-amgm-4-1-7-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">The geometric multiplicity of <span class="process-math">\(\lambda\)</span> is the same for <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-similar-amgm-4-1-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#diag-similar-amgm-4-1-7-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-similar-amgm-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 5.4.50"><a tabindex="-1" href="#diag-similar-amgm" title="Copy heading and permalink for Theorem 5.4.50" aria-label="Copy heading and permalink for Theorem 5.4.50">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para">Since <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> have the same characteristic polynomial, the multiplicity of <span class="process-math">\(\lambda\)</span> as a root of the characteristic polynomial is the same for both matrices, which proves the first statement.  For the second, suppose that <span class="process-math">\(A = CBC\inv\)</span> for an invertible matrix <span class="process-math">\(C\text{.}\)</span>  By <a href="sec-similarity.html#similarity-evecs" class="xref" data-knowl="./knowl/xref/similarity-evecs.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.3.20">Theorem 20 of Section 5.3</a>, the matrix <span class="process-math">\(C\)</span> takes eigenvectors of <span class="process-math">\(B\)</span> to eigenvectors of <span class="process-math">\(A\text{,}\)</span> both with eigenvalue <span class="process-math">\(\lambda\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-similar-amgm-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(\{v_1,v_2,\ldots,v_k\}\)</span> be a basis of the <span class="process-math">\(\lambda\)</span>-eigenspace of <span class="process-math">\(B\text{.}\)</span>  We claim that <span class="process-math">\(\{Cv_1,Cv_2,\ldots,Cv_k\}\)</span> is linearly independent.  Suppose that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/imt-2.html">
+\begin{gather*}
+c_1Cv_1 + c_2Cv_2 + \cdots + c_kCv_k = 0\text{.}
+\end{gather*}
+</div>
+<div class="para">Regrouping, this means</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/imt-2.html">
+\begin{gather*}
+C\bigl(c_1v_1 + c_2v_2 + \cdots + c_kv_k\bigr) = 0\text{.}
+\end{gather*}
+</div>
+<div class="para">By the <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/xref/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem 31 of Section 5.1</a>, the null space of <span class="process-math">\(C\)</span> is trivial, so this implies</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/imt-2.html">
+\begin{gather*}
+c_1v_1 + c_2v_2 + \cdots + c_kv_k = 0\text{.}
+\end{gather*}
+</div>
+<div class="para">Since <span class="process-math">\(v_1,v_2,\ldots,v_k\)</span> are linearly independent, we get <span class="process-math">\(c_1=c_2=\cdots=c_k=0\text{,}\)</span> as desired.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-similar-amgm-5-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">By the previous paragraph, the dimension of the <span class="process-math">\(\lambda\)</span>-eigenspace of <span class="process-math">\(A\)</span> is greater than or equal to the dimension of the <span class="process-math">\(\lambda\)</span>-eigenspace of <span class="process-math">\(B\text{.}\)</span>  By symmetry (<span class="process-math">\(B\)</span> is similar to <span class="process-math">\(A\)</span> as well), the dimensions are equal, so the geometric multiplicities coincide.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-similar-amgm-5-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 5.4.50.1"><a tabindex="-1" href="#diag-similar-amgm-5" title="Copy heading and permalink for Proof 5.4.50.1" aria-label="Copy heading and permalink for Proof 5.4.50.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-diagonalization.html#diag-similar-amgm">In Context</a></span>
+</body>
+</html>

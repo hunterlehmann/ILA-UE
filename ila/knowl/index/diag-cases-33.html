@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.4.49</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Diagonalizability of <span class="process-math">\(3\times 3\)</span> Matrices.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A\)</span> be a <span class="process-math">\(3\times 3\)</span> matrix.  We can analyze the diagonalizability of <span class="process-math">\(A\)</span> on a case-by-case basis, as in <a href="sec-diagonalization.html#diag-cases-22" class="xref" data-knowl="./knowl/xref/diag-cases-22.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.48: Diagonalizability of 2\times 2 Matrices">Example 48</a>.</div>
+<ol class="decimal" id="diag-cases-33-3-5">
+<li>
+<div class="para logical">
+<div class="para">
+<span class="process-math">\(A\)</span> has three different eigenvalues.  In this case, each eigenvalue has algebraic and geometric multiplicity equal to one.  This implies <span class="process-math">\(A\)</span> is diagonalizable.  For example:</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp 7 \amp 4 \\
+0 \amp 2 \amp 3 \\
+0 \amp 0 \amp -1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-cases-33-3-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#diag-cases-33-3-5-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">
+<span class="process-math">\(A\)</span> has two distinct eigenvalues <span class="process-math">\(\lambda_1,\lambda_2\text{.}\)</span>  In this case, one has algebraic multiplicity one and the other has algebraic multiplicity two; after reordering, we can assume <span class="process-math">\(\lambda_1\)</span> has multiplicity <span class="process-math">\(1\)</span> and <span class="process-math">\(\lambda_2\)</span> has multiplicity <span class="process-math">\(2\text{.}\)</span>  This implies that <span class="process-math">\(\lambda_1\)</span> has geometric multiplicity <span class="process-math">\(1\text{,}\)</span> so <em class="emphasis"><span class="process-math">\(A\)</span> is diagonalizable if and only if the <span class="process-math">\(\lambda_2\)</span>-eigenspace is a plane.</em>  For example:</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp 7 \amp 4 \\
+0 \amp 2 \amp 0 \\
+0 \amp 0 \amp 2
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">On the other hand, if the geometric multiplicity of <span class="process-math">\(\lambda_2\)</span> is <span class="process-math">\(1\text{,}\)</span> then <span class="process-math">\(A\)</span> is not diagonalizable.  For example:</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp 7 \amp 4 \\
+0 \amp 2 \amp 1 \\
+0 \amp 0 \amp 2
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-cases-33-3-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#diag-cases-33-3-5-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">
+<span class="process-math">\(A\)</span> has only one eigenvalue <span class="process-math">\(\lambda\text{.}\)</span>  If the algebraic multiplicity of <span class="process-math">\(\lambda\)</span> is <span class="process-math">\(1\text{,}\)</span> then <span class="process-math">\(A\)</span> is not diagonalizable.  This happens when the characteristic polynomial has two complex (non-real) roots.  For example:</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp -1 \amp 0 \\
+1 \amp 1 \amp 0 \\
+0 \amp 0 \amp 2
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Otherwise, the algebraic multiplicity of <span class="process-math">\(\lambda\)</span> is equal to <span class="process-math">\(3\text{.}\)</span>  In this case, if the geometric multiplicity is <span class="process-math">\(1\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp 1 \amp 1 \\
+0 \amp 1 \amp 1 \\
+0 \amp 0 \amp 1
+\end{pmatrix}
+\end{align*}
+</div>
+<div class="para">or <span class="process-math">\(2\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp 0 \amp 1 \\
+0 \amp 1 \amp 1 \\
+0 \amp 0 \amp 1
+\end{pmatrix}
+\end{align*}
+</div>
+<div class="para">then <span class="process-math">\(A\)</span> is not diagonalizable.  If the geometric multiplicity is <span class="process-math">\(3\text{,}\)</span> then <span class="process-math">\(\Nul(A-\lambda I_3) = \R^3\text{,}\)</span> so that <span class="process-math">\(A-\lambda I_3\)</span> is the zero matrix, and hence <span class="process-math">\(A = \lambda I_3\text{.}\)</span>  Therefore, in this case <span class="process-math">\(A\)</span> is necessarily diagonal, as in:</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-cases-33-3-5-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#diag-cases-33-3-5-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diag-cases-33-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 5.4.49: Diagonalizability of 3\times 3 Matrices"><a tabindex="-1" href="#diag-cases-33" title="Copy heading and permalink for Example 5.4.49: Diagonalizability of 3\times 3 Matrices" aria-label="Copy heading and permalink for Example 5.4.49: Diagonalizability of 3\times 3 Matrices">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-diagonalization.html#diag-cases-33">In Context</a></span>
+</body>
+</html>

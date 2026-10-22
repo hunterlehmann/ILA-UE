@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.2.16</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cramer’s Rule.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(x = (x_1,x_2,\ldots,x_n)\)</span> be the solution of <span class="process-math">\(Ax=b\text{,}\)</span> where <span class="process-math">\(A\)</span> is an invertible <span class="process-math">\(n\times n\)</span> matrix and <span class="process-math">\(b\)</span> is a vector in <span class="process-math">\(\R^n\text{.}\)</span>  Let <span class="process-math">\(A_i\)</span> be the matrix obtained from <span class="process-math">\(A\)</span> by replacing the <span class="process-math">\(i\)</span>th column by <span class="process-math">\(b\text{.}\)</span>  Then</div>
+<div class="displaymath process-math">
+\begin{gather*}
+x_i = \frac{\det(A_i)}{\det(A)}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-cramers-rule-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 4.2.16: Cramer’s Rule"><a tabindex="-1" href="#det-cofact-cramers-rule" title="Copy heading and permalink for Theorem 4.2.16: Cramer’s Rule" aria-label="Copy heading and permalink for Theorem 4.2.16: Cramer’s Rule">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<div class="para">First suppose that <span class="process-math">\(A\)</span> is the identity matrix, so that <span class="process-math">\(x = b\text{.}\)</span>  Then the matrix <span class="process-math">\(A_i\)</span> looks like this:</div>
+<div class="displaymath process-math">
+\begin{align*}
+\begin{pmatrix}
+1 \amp 0 \amp b_1 \amp 0 \\
+0 \amp 1 \amp b_2 \amp 0 \\
+0 \amp 0 \amp b_3 \amp 0 \\
+0 \amp 0 \amp b_4 \amp 1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Expanding cofactors along the <span class="process-math">\(i\)</span>th row, we see that <span class="process-math">\(\det(A_i)=b_i\text{,}\)</span> so in this case,</div>
+<div class="displaymath process-math">
+\begin{gather*}
+x_i = b_i = \det(A_i) = \frac{\det(A_i)}{\det(A)}\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-cramers-rule-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Now let <span class="process-math">\(A\)</span> be a general <span class="process-math">\(n\times n\)</span> matrix.   One way to solve <span class="process-math">\(Ax=b\)</span> is to row reduce the augmented matrix <span class="process-math">\((\,A\mid b\,)\text{;}\)</span> the result is <span class="process-math">\((\,I_n\mid x\,).\)</span>  By the case we handled above, it is enough to check that the quantity <span class="process-math">\(\det(A_i)/\det(A)\)</span> does not change when we do a row operation to <span class="process-math">\((\,A\mid b\,)\text{,}\)</span> since <span class="process-math">\(\det(A_i)/\det(A) = x_i\)</span> when <span class="process-math">\(A = I_n\text{.}\)</span>
+</div>
+<ol class="decimal" id="det-cofact-cramers-rule-4-2-10">
+<li>
+<div class="para logical">
+<div class="para">Doing a row replacement on <span class="process-math">\((\,A\mid b\,)\)</span> does the same row replacement on <span class="process-math">\(A\)</span> and on <span class="process-math">\(A_i\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+\left(\begin{array}{rrr|r}
+a_{11} \amp a_{12} \amp a_{13} \amp b_1 \\
+a_{21} \amp a_{22} \amp a_{23} \amp b_2 \\
+a_{31} \amp a_{32} \amp a_{33} \amp b_3
+\end{array}\right)
+\amp\;\xrightarrow{R_2 = R_2-2R_3}\;\\
+\amp\left(\begin{array}{lll|l}
+a_{11} \amp a_{12} \amp a_{13} \amp b_1 \\
+a_{21}-2a_{31} \amp a_{22}-2a_{32} \amp a_{23}-2a_{33} \amp b_2-2b_3 \\
+a_{31} \amp a_{32} \amp a_{33} \amp b_3
+\end{array}\right)\\
+\begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+a_{21} \amp a_{22} \amp a_{23} \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix}
+\amp\;\xrightarrow{R_2 = R_2-2R_3}\;
+\left(\begin{array}{lll}
+a_{11} \amp a_{12} \amp a_{13} \\
+a_{21}-2a_{31} \amp a_{22}-2a_{32} \amp a_{23}-2a_{33} \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{array}\right)\\
+\begin{pmatrix}
+a_{11} \amp b_1 \amp a_{13} \\
+a_{21} \amp b_2 \amp a_{23} \\
+a_{31} \amp b_3 \amp a_{33}
+\end{pmatrix}
+\amp\;\xrightarrow{R_2 = R_2-2R_3}\;
+\left(\begin{array}{lll}
+a_{11} \amp b_1 \amp a_{13} \\
+a_{21}-2a_{31} \amp b_2-2b_3 \amp a_{23}-2a_{33} \\
+a_{31} \amp b_3 \amp a_{33}
+\end{array}\right)\text{.}
+\end{align*}
+</div>
+<div class="para">In particular, <span class="process-math">\(\det(A)\)</span> and <span class="process-math">\(\det(A_i)\)</span> are unchanged, so <span class="process-math">\(\det(A)/\det(A_i)\)</span> is unchanged.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-cramers-rule-4-2-10-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#det-cofact-cramers-rule-4-2-10-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">Scaling a row of <span class="process-math">\((\,A\mid b\,)\)</span> by a factor of <span class="process-math">\(c\)</span> scales the same row of <span class="process-math">\(A\)</span> and of <span class="process-math">\(A_i\)</span> by the same factor:</div>
+<div class="displaymath process-math">
+\begin{align*}
+\left(\begin{array}{rrr|r}
+a_{11} \amp a_{12} \amp a_{13} \amp b_1 \\
+a_{21} \amp a_{22} \amp a_{23} \amp b_2 \\
+a_{31} \amp a_{32} \amp a_{33} \amp b_3
+\end{array}\right)
+\amp\;\xrightarrow{R_2 = cR_2}\;
+\left(\begin{array}{rrr|r}
+a_{11} \amp a_{12} \amp a_{13} \amp b_1 \\
+ca_{21} \amp ca_{22} \amp ca_{23} \amp cb_2 \\
+a_{31} \amp a_{32} \amp a_{33} \amp b_3
+\end{array}\right)\\
+\begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+a_{21} \amp a_{22} \amp a_{23} \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix}
+\amp\;\xrightarrow{R_2 = cR_2}\;
+\begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+ca_{21} \amp ca_{22} \amp ca_{23} \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix}\\
+\quad\begin{pmatrix}
+a_{11} \amp b_1 \amp a_{13} \\
+a_{21} \amp b_2 \amp a_{23} \\
+a_{31} \amp b_3 \amp a_{33}
+\end{pmatrix}
+\amp\;\xrightarrow{R_2 = cR_2}\;
+\begin{pmatrix}
+a_{11} \amp b_1 \amp a_{13} \\
+ca_{21} \amp cb_2 \amp ca_{23} \\
+a_{31} \amp b_3 \amp a_{33}
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">In particular, <span class="process-math">\(\det(A)\)</span> and <span class="process-math">\(\det(A_i)\)</span> are both scaled by a factor of <span class="process-math">\(c\text{,}\)</span> so <span class="process-math">\(\det(A_i)/\det(A)\)</span> is unchanged.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-cramers-rule-4-2-10-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#det-cofact-cramers-rule-4-2-10-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">Swapping two rows of <span class="process-math">\((\,A\mid b\,)\)</span> swaps the same rows of <span class="process-math">\(A\)</span> and of <span class="process-math">\(A_i\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+\left(\begin{array}{rrr|r}
+a_{11} \amp a_{12} \amp a_{13} \amp b_1 \\
+a_{21} \amp a_{22} \amp a_{23} \amp b_2 \\
+a_{31} \amp a_{32} \amp a_{33} \amp b_3
+\end{array}\right)
+\amp\;\xrightarrow{R_1\longleftrightarrow R_2}\;
+\left(\begin{array}{rrr|r}
+a_{21} \amp a_{22} \amp a_{23} \amp b_2 \\
+a_{11} \amp a_{12} \amp a_{13} \amp b_1 \\
+a_{31} \amp a_{32} \amp a_{33} \amp b_3
+\end{array}\right)\\
+\begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+a_{21} \amp a_{22} \amp a_{23} \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix}
+\amp\;\xrightarrow{R_1\longleftrightarrow R_2}\;
+\begin{pmatrix}
+a_{21} \amp a_{22} \amp a_{23} \\
+a_{11} \amp a_{12} \amp a_{13} \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix}\\
+\quad\begin{pmatrix}
+a_{11} \amp b_1 \amp a_{13} \\
+a_{21} \amp b_2 \amp a_{23} \\
+a_{31} \amp b_3 \amp a_{33}
+\end{pmatrix}
+\amp\;\xrightarrow{R_1\longleftrightarrow R_2}\;
+\begin{pmatrix}
+a_{21} \amp b_2 \amp a_{23} \\
+a_{11} \amp b_1 \amp a_{13} \\
+a_{31} \amp b_3 \amp a_{33}
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">In particular, <span class="process-math">\(\det(A)\)</span> and <span class="process-math">\(\det(A_i)\)</span> are both negated, so <span class="process-math">\(\det(A_i)/\det(A)\)</span> is unchanged.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-cramers-rule-4-2-10-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#det-cofact-cramers-rule-4-2-10-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-cramers-rule-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 4.2.16.1"><a tabindex="-1" href="#det-cofact-cramers-rule-4" title="Copy heading and permalink for Proof 4.2.16.1" aria-label="Copy heading and permalink for Proof 4.2.16.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-determinants-cofactors.html#det-cofact-cramers-rule">In Context</a></span>
+</body>
+</html>

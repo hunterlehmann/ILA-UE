@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.4.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para">An <span class="process-math">\(n\times n\)</span> matrix <span class="process-math">\(A\)</span> is diagonalizable if and only if <span class="process-math">\(A\)</span> has <span class="process-math">\(n\)</span> linearly independent eigenvectors.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonalization-thm-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<div class="para logical">
+<div class="para">In this case, <span class="process-math">\(A = CDC\inv\)</span> for</div>
+<div class="displaymath process-math">
+\begin{align*}
+C = \begin{pmatrix}
+| \amp | \amp | \\
+v_1 \amp v_2 \amp \cdots \amp v_n \\
+| \amp | \amp |
+\end{pmatrix}
+\qquad
+D = \begin{pmatrix}
+\lambda_1 \amp 0 \amp \cdots \amp 0 \\
+0 \amp \lambda_2 \amp \cdots \amp 0 \\
+\vdots \amp \vdots \amp \ddots \amp \vdots \\
+0 \amp 0 \amp \cdots \amp \lambda_n
+\end{pmatrix}\text{,}
+\end{align*}
+</div>
+<div class="para">where <span class="process-math">\(v_1,v_2,\ldots,v_n\)</span> are linearly independent eigenvectors, and <span class="process-math">\(\lambda_1,\lambda_2,\ldots,\lambda_n\)</span> are the corresponding eigenvalues, in the same order.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonalization-thm-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 5.4.7"><a tabindex="-1" href="#diagonalization-thm" title="Copy heading and permalink for Theorem 5.4.7" aria-label="Copy heading and permalink for Theorem 5.4.7">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<div class="para">First suppose that <span class="process-math">\(A\)</span> has <span class="process-math">\(n\)</span> linearly independent eigenvectors <span class="process-math">\(v_1,v_2,\ldots,v_n\text{,}\)</span> with eigenvalues <span class="process-math">\(\lambda_1,\lambda_2,\ldots,\lambda_n\text{.}\)</span>  Define <span class="process-math">\(C\)</span> as above, so <span class="process-math">\(C\)</span> is invertible by the <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/xref/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem 31 of Section 5.1</a>.  Let <span class="process-math">\(D = C\inv A C\text{,}\)</span> so <span class="process-math">\(A = CDC\inv\text{.}\)</span>  <a href="sec-linear-transformations.html#linear-trans-pick-columns" class="xref" data-knowl="./knowl/xref/linear-trans-pick-columns.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 3.3.12: Multiplying a matrix by the standard coordinate vectors">Multiplying by standard coordinate vectors</a> picks out the columns of <span class="process-math">\(C\text{:}\)</span> we have <span class="process-math">\(Ce_i = v_i\text{,}\)</span> so <span class="process-math">\(e_i = C\inv v_i\text{.}\)</span>  We multiply by the standard coordinate vectors to find the columns of <span class="process-math">\(D\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/imt-2.html ./knowl/xref/linear-trans-pick-columns.html">
+\begin{gather*}
+De_i = C\inv A Ce_i = C\inv Av_i = C\inv\lambda_i v_i = \lambda_iC\inv v_i = \lambda_ie_i\text{.}
+\end{gather*}
+</div>
+<div class="para">Therefore, the columns of <span class="process-math">\(D\)</span> are multiples of the standard coordinate vectors:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/imt-2.html ./knowl/xref/linear-trans-pick-columns.html">
+\begin{align*}
+D = \begin{pmatrix}
+\lambda_1 \amp 0 \amp \cdots \amp 0 \amp 0 \\
+0 \amp \lambda_2 \amp \cdots \amp 0 \amp 0 \\
+\vdots \amp \vdots \amp \ddots \amp \vdots \amp \vdots \\
+0 \amp 0 \amp \cdots \amp \lambda_{n-1} \amp 0 \\
+0 \amp 0 \amp \cdots \amp 0 \amp \lambda_n
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonalization-thm-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Now suppose that <span class="process-math">\(A = CDC\inv\text{,}\)</span> where <span class="process-math">\(C\)</span> has columns <span class="process-math">\(v_1,v_2,\ldots,v_n\text{,}\)</span> and <span class="process-math">\(D\)</span> is diagonal with diagonal entries <span class="process-math">\(\lambda_1,\lambda_2,\ldots,\lambda_n\text{.}\)</span>  Since <span class="process-math">\(C\)</span> is invertible, its columns are linearly independent.  We have to show that <span class="process-math">\(v_i\)</span> is an eigenvector of <span class="process-math">\(A\)</span> with eigenvalue <span class="process-math">\(\lambda_i\text{.}\)</span>  We know that the standard coordinate vector <span class="process-math">\(e_i\)</span> is an eigenvector of <span class="process-math">\(D\)</span> with eigenvalue <span class="process-math">\(\lambda_i\text{,}\)</span> so:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+Av_i = CDC\inv v_i = CDe_i = C\lambda_ie_i = \lambda_iCe_i = \lambda_i v_i\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonalization-thm-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 5.4.7.1"><a tabindex="-1" href="#diagonalization-thm-4" title="Copy heading and permalink for Proof 5.4.7.1" aria-label="Copy heading and permalink for Proof 5.4.7.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-diagonalization.html#diagonalization-thm">In Context</a></span>
+</body>
+</html>

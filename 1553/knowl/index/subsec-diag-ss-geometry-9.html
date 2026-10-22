@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.39</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Eigenvalues <span class="process-math">\(|\lambda_1| = 1,\,|\lambda_2|\lt1\)</span>.</span>
+</h2>
+<div class="para logical">
+<div class="para">Describe how the matrix</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \frac 16\begin{pmatrix}
+5 \amp -1 \\
+-2 \amp 4
+\end{pmatrix}
+\end{align*}
+</div>
+<div class="para">acts on the plane.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-diag-ss-geometry-9-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">First we diagonalize <span class="process-math">\(A\text{.}\)</span>  The characteristic polynomial is</div>
+<div class="displaymath process-math">
+\begin{gather*}
+f(\lambda) = \lambda^2 - \Tr(A)\lambda + \det(A)
+= \lambda^2 - \frac 32\lambda + \frac 12
+= (\lambda - 1)\left(\lambda - \frac 12\right)\text{.}
+\end{gather*}
+</div>
+<div class="para">Next we compute the <span class="process-math">\(1\)</span>-eigenspace:</div>
+<div class="displaymath process-math">
+\begin{align*}
+(A-I_3)v = 0 \iff
+\frac 16\begin{pmatrix}
+-1 \amp -1 \\
+-2 \amp -2
+\end{pmatrix}v = 0
+\;\xrightarrow{\text{RREF}}\;
+\begin{pmatrix}
+1 \amp 1 \\
+0 \amp 0
+\end{pmatrix}v = 0\text{.}
+\end{align*}
+</div>
+<div class="para">The parametric form of this equation is <span class="process-math">\(x = -y\text{,}\)</span> so one eigenvector is <span class="process-math">\(v_1 = {-1\choose 1}\text{.}\)</span>  For the <span class="process-math">\(1/2\)</span>-eigenspace, we have:</div>
+<div class="displaymath process-math">
+\begin{align*}
+\left(A-\frac 12I_3\right)v = 0 \iff
+\frac 16\begin{pmatrix}
+2 \amp -1 \\
+-2 \amp 1
+\end{pmatrix}v = 0
+\;\xrightarrow{\text{RREF}}\;
+\begin{pmatrix}
+1 \amp -1/2 \\
+0 \amp 0
+\end{pmatrix}v = 0\text{.}
+\end{align*}
+</div>
+<div class="para">The parametric form of this equation is <span class="process-math">\(x = 1/2y\text{,}\)</span> so an eigenvector is <span class="process-math">\(v_2 = {1/2\choose 1}\text{.}\)</span>  It follows that <span class="process-math">\(A = CDC\inv\text{,}\)</span> where</div>
+<div class="displaymath process-math">
+\begin{align*}
+C = \begin{pmatrix}
+-1 \amp 1/2 \\
+1 \amp 1
+\end{pmatrix} \qquad D = \begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1/2
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-diag-ss-geometry-9-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">The diagonal matrix <span class="process-math">\(D\)</span> scales the <span class="process-math">\(y\)</span>-coordinate by <span class="process-math">\(1/2\)</span> and does not move the <span class="process-math">\(x\)</span>-coordinate.  Therefore, it simply moves vectors closer to the <span class="process-math">\(x\)</span>-axis along vertical lines.  The matrix <span class="process-math">\(A\)</span> does the same thing, in the <span class="process-math">\(v_1,v_2\)</span>-coordinate system: multiplying a vector by <span class="process-math">\(A\)</span> scales the <span class="process-math">\(v_2\)</span>-coordinate by <span class="process-math">\(1/2\)</span> and does not change the <span class="process-math">\(v_1\)</span>-coordinate.  Therefore, <span class="process-math">\(A\)</span> “sucks vectors into the <span class="process-math">\(1\)</span>-eigenspace” along lines parallel to <span class="process-math">\(v_2\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-diag-ss-geometry-9-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/dynamics2-if.html?mat=1,0:0,1/2&amp;v1=-1,1&amp;v2=1/2,1&amp;y=2,7" id="subsec-diag-ss-geometry-9-4-3-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-diag-ss-geometry-9-4-3-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-diag-ss-geometry-9-4-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-diag-ss-geometry-9-4-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-diag-ss-geometry-9-4-3-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-diag-ss-geometry-9-4-3-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-diag-ss-geometry-9-4-3-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-diag-ss-geometry-9-4-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-diag-ss-geometry-9-4-3-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.40<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Dynamics of the matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(D\text{.}\)</span>  Click “multiply” to multiply the colored points by <span class="process-math">\(D\)</span> on the left and <span class="process-math">\(A\)</span> on the right.<div class="autopermalink" aria-hidden="true" data-description="Figure 5.3.40"><a tabindex="-1" href="#subsec-diag-ss-geometry-9-4-3" title="Copy heading and permalink for Figure 5.3.40" aria-label="Copy heading and permalink for Figure 5.3.40">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 5.3.39.1"><a tabindex="-1" href="#subsec-diag-ss-geometry-9-4" title="Copy heading and permalink for Solution 5.3.39.1" aria-label="Copy heading and permalink for Solution 5.3.39.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 5.3.39: Eigenvalues |\lambda_1| = 1,\,|\lambda_2|\lt1"><a tabindex="-1" href="#subsec-diag-ss-geometry-9" title="Copy heading and permalink for Example 5.3.39: Eigenvalues |\lambda_1| = 1,\,|\lambda_2|\lt1" aria-label="Copy heading and permalink for Example 5.3.39: Eigenvalues |\lambda_1| = 1,\,|\lambda_2|\lt1">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-diagonalization.html#subsec-diag-ss-geometry-9">In Context</a></span>
+</body>
+</html>

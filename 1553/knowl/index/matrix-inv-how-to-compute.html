@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.5.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(n\times n\)</span> matrix, and let <span class="process-math">\((\,A\mid I_n\,)\)</span> be the matrix obtained by augmenting <span class="process-math">\(A\)</span> by the identity matrix. If the reduced row echelon form of <span class="process-math">\((\,A\mid I_n\,)\)</span> has the form <span class="process-math">\((\,I_n\mid B\,)\text{,}\)</span> then <span class="process-math">\(A\)</span> is invertible and <span class="process-math">\(B = A\inv\text{.}\)</span>  Otherwise, <span class="process-math">\(A\)</span> is not invertible.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-how-to-compute-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 3.5.8"><a tabindex="-1" href="#matrix-inv-how-to-compute" title="Copy heading and permalink for Theorem 3.5.8" aria-label="Copy heading and permalink for Theorem 3.5.8">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<div class="para">First suppose that the reduced row echelon form of <span class="process-math">\((\,A\mid I_n\,)\)</span> does not have the form <span class="process-math">\((\,I_n\mid B\,)\text{.}\)</span>  This means that fewer than <span class="process-math">\(n\)</span> pivots are contained in the first <span class="process-math">\(n\)</span> columns (the non-augmented part), so <span class="process-math">\(A\)</span> has fewer than <span class="process-math">\(n\)</span> pivots.  It follows that <span class="process-math">\(\Nul(A)\neq\{0\}\)</span> (the equation <span class="process-math">\(Ax=0\)</span> has a free variable), so there exists a nonzero vector <span class="process-math">\(v\)</span> in <span class="process-math">\(\Nul(A)\text{.}\)</span>  Suppose that there were a matrix <span class="process-math">\(B\)</span> such that <span class="process-math">\(BA=I_n\text{.}\)</span>  Then</div>
+<div class="displaymath process-math">
+\begin{gather*}
+v = I_nv = BAv = B0 = 0\text{,}
+\end{gather*}
+</div>
+<div class="para">which is impossible as <span class="process-math">\(v\neq 0\text{.}\)</span>  Therefore, <span class="process-math">\(A\)</span> is not invertible.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-how-to-compute-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Now suppose that the reduced row echelon form of <span class="process-math">\((\,A\mid I_n\,)\)</span> has the form <span class="process-math">\((\,I_n\mid B\,)\text{.}\)</span>  In this case, all pivots are contained in the non-augmented part of the matrix, so the augmented part plays no role in the row reduction: the entries of the augmented part do not influence the choice of row operations used.  Hence, row reducing <span class="process-math">\((\,A\mid I_n\,)\)</span> is equivalent to solving the <span class="process-math">\(n\)</span> systems of linear equations <span class="process-math">\(Ax_1 = e_1,\,Ax_2=e_2,\,\ldots,Ax_n=e_n\text{,}\)</span> where <span class="process-math">\(e_1,e_2,\ldots,e_n\)</span> are the <a href="sec-linear-transformations.html#defn-standard-coord-vectors" class="xref" data-knowl="./knowl/xref/defn-standard-coord-vectors.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.3.11: Standard coordinate vectors">standard coordinate vectors</a>:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/defn-standard-coord-vectors.html ./knowl/xref/linear-trans-pick-columns.html">
+\begin{align*}
+Ax_1 \amp= \o{e_1}: \qquad
+\hmat{1 0 4 \o1 \mhg{0} \mhg{0;} 0 1 2 \o0 \mhg{1} \mhg{0;} 0 -3 -4 \o0 \mhg{0} \mhg{1}}\\
+Ax_2 \amp= \o{e_2}: \qquad
+\hmat{1 0 4 \mhg{1} \o0 \mhg{0;} 0 1 2 \mhg{0} \o1 \mhg{0;} 0 -3 -4 \mhg{0} \o0 \mhg{1}}\\
+Ax_3 \amp= \o{e_3}: \qquad
+\hmat{1 0 4 \mhg{1} \mhg{0} \o0; 0 1 2 \mhg{0} \mhg{1} \o0; 0 -3 -4 \mhg{0} \mhg{0} \o1}\text{.}
+\end{align*}
+</div>
+<div class="para">The columns <span class="process-math">\(x_1,x_2,\ldots,x_n\)</span> of the matrix <span class="process-math">\(B\)</span> in the row reduced form are the solutions to these equations:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/defn-standard-coord-vectors.html ./knowl/xref/linear-trans-pick-columns.html">
+\begin{align*}
+\def\gg{\color{green!70!black}}
+A\mhp{\begin{pmatrix}}
+1 \\
+0 \\
+0
+\end{pmatrix} \amp= e_1: \qquad
+\hmat{1 0 0 \mhp{1} \mhg{-6} \mhg{-2;} 0 1 0 \mhp{0} \mhg{-2} \mhg{-1;} 0 0 1 \mhp{0} \mhg{3/2} \mhg{1/2}}\\
+A\mh{\begin{pmatrix}}
+-6 \\
+-2 \\
+3/2
+\end{pmatrix} \amp= e_2: \qquad
+\hmat{1 0 0 \mhg{1} \mh{-6} \mhg{-2;} 0 1 0 \mhg{0} \mh{-2} \mhg{-1;} 0 0 1 \mhg{0} \mh{3/2} \mhg{1/2}}\\
+A\gg\begin{pmatrix}
+-2 \\
+-1 \\
+1/2
+\end{pmatrix} \amp= e_3: \qquad
+\hmat{1 0 0 \mhg{1} \mhg{-6} \gg-2; 0 1 0 \mhg{0} \mhg{-2} \gg-1; 0 0 1 \mhg{0} \mhg{3/2} \gg1/2}\text{.}
+\end{align*}
+</div>
+<div class="para">By <a href="sec-linear-transformations.html#linear-trans-pick-columns" class="xref" data-knowl="./knowl/xref/linear-trans-pick-columns.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 3.3.12: Multiplying a matrix by the standard coordinate vectors">Fact 12 of Section 3.3</a>, the product <span class="process-math">\(Be_i\)</span> is just the <span class="process-math">\(i\)</span>th column <span class="process-math">\(x_i\)</span> of <span class="process-math">\(B\text{,}\)</span> so</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/defn-standard-coord-vectors.html ./knowl/xref/linear-trans-pick-columns.html">
+\begin{gather*}
+e_i = Ax_i = ABe_i
+\end{gather*}
+</div>
+<div class="para">for all <span class="process-math">\(i\text{.}\)</span>  By the same fact, the <span class="process-math">\(i\)</span>th column of <span class="process-math">\(AB\)</span> is <span class="process-math">\(e_i\text{,}\)</span> which means that <span class="process-math">\(AB\)</span> is the identity matrix.  Thus <span class="process-math">\(B\)</span> is the inverse of <span class="process-math">\(A\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#matrix-inv-how-to-compute-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 3.5.8.1"><a tabindex="-1" href="#matrix-inv-how-to-compute-3" title="Copy heading and permalink for Proof 3.5.8.1" aria-label="Copy heading and permalink for Proof 3.5.8.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-matrix-inverses.html#matrix-inv-how-to-compute">In Context</a></span>
+</body>
+</html>

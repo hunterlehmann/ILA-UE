@@ -21,7 +21,8 @@
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
 <style>
 @counter-style ptx-marker-1 { system: extends decimal; prefix: '('; suffix: ') '; }
-@counter-style ptx-marker-2 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-2 { system: extends lower-alpha; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-3 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
 </style>
 <link rel="stylesheet" type="text/css" href="external/css/highlight-math.css">
 <script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
@@ -304,9 +305,148 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 </ul>
 </li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-matrices.html" class="internal"><span class="codenumber">3</span> <span class="title">Linear Transformations and Matrix Algebra</span></a></div></li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-determinant.html" class="internal"><span class="codenumber">4</span> <span class="title">Determinants</span></a></div></li>
-<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-eigenvalues.html" class="internal"><span class="codenumber">5</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-matrices.html" class="internal"><span class="codenumber">3</span> <span class="title">Linear Transformations and Matrix Algebra</span></a></div>
+<ul id="ptx-toc-group-chap-matrices" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-matrices-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-transformations.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Matrix Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-transformations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-trans-matrices-functions" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Matrices as Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-transformations.html#subsec-matrix-transformations" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Matrix Transformations</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-transformations.html#sec-matrix-transformations-7" class="internal"><span class="codenumber">3.1.4</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-transformations.html#sec-matrix-transformations-8" class="internal"><span class="codenumber">3.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-one-to-one-onto.html" class="internal"><span class="codenumber">3.2</span> <span class="title">One-to-one and Onto Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-one-to-one-onto" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-one-to-one-transformations" class="internal"><span class="codenumber">3.2.1</span> <span class="title">One-to-one Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-onto-transformations" class="internal"><span class="codenumber">3.2.2</span> <span class="title">Onto Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-one-to-one-onto.html#subsec-comparison" class="internal"><span class="codenumber">3.2.3</span> <span class="title">Comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-transformations.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Linear Transformations</span></a></div>
+<ul id="ptx-toc-group-sec-linear-transformations" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-linear-transformations-definition" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Linear Transformations: Definition</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-the-standard-coordinate-vectors" class="internal"><span class="codenumber">3.3.2</span> <span class="title">The Standard Coordinate Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-linear-transformations.html#subsec-linear-trans-is-matrix-trans" class="internal"><span class="codenumber">3.3.3</span> <span class="title">The Matrix of a Linear Transformation</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-linear-transformations.html#sec-linear-transformations-7" class="internal"><span class="codenumber">3.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-multiplication.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Matrix Multiplication</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-multiplication" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-composition-of-linear-transformations" class="internal"><span class="codenumber">3.4.1</span> <span class="title">Composition of linear transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-matrix-multiplication" class="internal"><span class="codenumber">3.4.2</span> <span class="title">Matrix multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-composition-and-matrix-multiplication" class="internal"><span class="codenumber">3.4.3</span> <span class="title">Composition and Matrix Multiplication</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices" class="internal"><span class="codenumber">3.4.4</span> <span class="title">The algebra of transformations and matrices</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-matrix-multiplication.html#sec-matrix-multiplication-8" class="internal"><span class="codenumber">3.4.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-matrix-inverses.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Matrix Inverses</span></a></div>
+<ul id="ptx-toc-group-sec-matrix-inverses" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-invertible-matrices" class="internal"><span class="codenumber">3.5.1</span> <span class="title">Invertible Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-matrix-inv-computing" class="internal"><span class="codenumber">3.5.2</span> <span class="title">Computing the Inverse Matrix</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-solving-linear-systems-using-inverses" class="internal"><span class="codenumber">3.5.3</span> <span class="title">Solving Linear Systems using Inverses</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms" class="internal"><span class="codenumber">3.5.4</span> <span class="title">Invertible linear transformations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-invertible-matrix-thm.html" class="internal"><span class="codenumber">3.6</span> <span class="title">The Invertible Matrix Theorem</span></a></div>
+<ul id="ptx-toc-group-sec-invertible-matrix-thm" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-invertible-matrix-thm.html#sec-invertible-matrix-thm-16" class="internal"><span class="codenumber">3.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-determinant.html" class="internal"><span class="codenumber">4</span> <span class="title">Determinants</span></a></div>
+<ul id="ptx-toc-group-chap-determinant" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-determinant-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-definitions-properties.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Determinants: Definition</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-definitions-properties" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant" class="internal"><span class="codenumber">4.1.1</span> <span class="title">The Definition of the Determinant</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#subsec-det-defn-magic-props" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Magical Properties of the Determinant</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-definitions-properties.html#sec-determinants-definitions-properties-6" class="internal"><span class="codenumber">4.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-cofactors.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Cofactor Expansions</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-cofactors" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#subsec-cofactor-expansions" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Cofactor Expansions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#subsec-det-cofact-cramer-ss" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Cramer’s Rule and Matrix Inverses</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-cofactors.html#sec-determinants-cofactors-6" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-determinants-volumes.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Determinants and Volumes</span></a></div>
+<ul id="ptx-toc-group-sec-determinants-volumes" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-parallelograms-and-paralellepipeds" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Parallelograms and Paralellepipeds</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-determinants-and-volumes" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Determinants and Volumes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-determinants-volumes.html#subsec-volumes-of-regions" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Volumes of Regions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-determinants-volumes.html#sec-determinants-volumes-7" class="internal"><span class="codenumber">4.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="chap-eigenvalues.html" class="internal"><span class="codenumber">5</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul id="ptx-toc-group-chap-eigenvalues" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="chap-eigenvalues-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-eigenvectors.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div>
+<ul id="ptx-toc-group-sec-eigenvectors" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-eigenspaces" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Eigenspaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-eigenvectors.html#subsec-the-invertible-matrix-theorem-addenda" class="internal"><span class="codenumber">5.1.3</span> <span class="title">The Invertible Matrix Theorem: Addenda</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-eigenvectors.html#sec-eigenvectors-7" class="internal"><span class="codenumber">5.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-characteristic-polynomial.html" class="internal"><span class="codenumber">5.2</span> <span class="title">The Characteristic Polynomial</span></a></div>
+<ul id="ptx-toc-group-sec-characteristic-polynomial" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-15" class="internal"><span class="codenumber">5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-similarity.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Similarity</span></a></div>
+<ul id="ptx-toc-group-sec-similarity" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-similar-matrices" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Similar Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-geometry-of-similar-matrices" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Geometry of Similar Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Eigenvalues of Similar Matrices</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-diagonalization.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Diagonalization</span></a></div>
+<ul id="ptx-toc-group-sec-diagonalization" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-diagonalizability" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Diagonalizability</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-diag-ss-geometry" class="internal"><span class="codenumber">5.4.2</span> <span class="title">The Geometry of Diagonalizable Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity" class="internal"><span class="codenumber">5.4.3</span> <span class="title">Algebraic and Geometric Multiplicity</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-diagonalization.html#sec-diagonalization-7" class="internal"><span class="codenumber">5.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-complex-eigenvalues.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Complex Eigenvalues</span></a></div>
+<ul id="ptx-toc-group-sec-complex-eigenvalues" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-matrices-with-complex-eigenvalues" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Matrices with Complex Eigenvalues</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-rotation-scaling-matrices" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Rotation-Scaling Matrices</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue" class="internal"><span class="codenumber">5.5.3</span> <span class="title">Geometry of <span class="process-math">\(2\times 2\)</span> Matrices with a Complex Eigenvalue</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#subsec-block-diagonalization" class="internal"><span class="codenumber">5.5.4</span> <span class="title">Block Diagonalization</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-complex-eigenvalues.html#sec-complex-eigenvalues-8" class="internal"><span class="codenumber">5.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-stochastic-matrices.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Stochastic Matrices</span></a></div>
+<ul id="ptx-toc-group-sec-stochastic-matrices" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-difference-equations" class="internal"><span class="codenumber">5.6.1</span> <span class="title">Difference Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state" class="internal"><span class="codenumber">5.6.2</span> <span class="title">Stochastic Matrices and the Steady State</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#subsec-googles-pagerank-algorithm" class="internal"><span class="codenumber">5.6.3</span> <span class="title">Google’s PageRank Algorithm</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="sec-stochastic-matrices.html#sec-stochastic-matrices-7" class="internal"><span class="codenumber">5.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-item toc-chapter"><div class="toc-title-box"><a href="chap-orthogonality.html" class="internal"><span class="codenumber">6</span> <span class="title">Orthogonality</span></a></div></li>
 <li class="toc-item toc-backmatter contains-active">
 <div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
@@ -327,6 +467,8 @@ eBookConfig.enable_chatcodes =  false;
 <div class="indexletter" id="indexletter-\">
 <div class="indexitem">
 <span class="process-math">\(\cB\)</span>-coordinates</div>
+<div class="subindexitem">change of basis matrix<span class="indexknowl"> <a href="sec-similarity.html#subsec-geometry-of-similar-matrices-5" class="xref" data-knowl="./knowl/index/subsec-geometry-of-similar-matrices-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Note">Note</a></span>
+</div>
 <div class="subindexitem">computing</div>
 <div class="subsubindexitem">row reduction<span class="indexknowl"> <a href="sec-bases-as-coord-systems.html#sec-bases-as-coord-systems-14" class="xref" data-knowl="./knowl/index/sec-bases-as-coord-systems-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Recipes: \cB-coordinates">Note</a></span>
 </div>
@@ -339,8 +481,21 @@ eBookConfig.enable_chatcodes =  false;
 <div class="subindexitem">nonstandard grid<span class="indexknowl"> <a href="sec-bases-as-coord-systems.html#sec-bases-as-coord-systems-11" class="xref" data-knowl="./knowl/index/sec-bases-as-coord-systems-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.8.6">Example</a></span>
 </div>
 </div>
-<div class="indexletter" id="indexletter-a"><div class="indexitem">Augmented matrix<span class="indexknowl">. <span class="see"><em>See</em> Matrix</span></span>
-</div></div>
+<div class="indexletter" id="indexletter-a">
+<div class="indexitem">Algebraic multiplicity</div>
+<div class="subindexitem">and diagonalizability<span class="indexknowl"> <a href="sec-diagonalization.html#diag-thm-variant" class="xref" data-knowl="./knowl/index/diag-thm-variant.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.46: Diagonalization Theorem, Variant">Theorem</a></span>
+</div>
+<div class="subindexitem">and geometric multiplicity<span class="indexknowl"> <a href="sec-diagonalization.html#diag-amgm" class="xref" data-knowl="./knowl/index/diag-amgm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.44: Algebraic and Geometric Multiplicity">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity-4" class="xref" data-knowl="./knowl/index/subsec-algebraic-and-geometric-multiplicity-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.4.37">Definition</a></span>
+</div>
+<div class="subindexitem">equals one<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity-11" class="xref" data-knowl="./knowl/index/subsec-algebraic-and-geometric-multiplicity-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.4.45">Insight</a></span>
+</div>
+<div class="subindexitem">of similar matrices<span class="indexknowl"> <a href="sec-diagonalization.html#diag-similar-amgm" class="xref" data-knowl="./knowl/index/diag-similar-amgm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.50">Theorem</a></span>
+</div>
+<div class="indexitem">Augmented matrix<span class="indexknowl">. <span class="see"><em>See</em> Matrix</span></span>
+</div>
+</div>
 <div class="indexletter" id="indexletter-b">
 <div class="indexitem">Basis</div>
 <div class="subindexitem">basis theorem<span class="indexknowl"> <a href="sec-dimension.html#basis-theorem" class="xref" data-knowl="./knowl/index/basis-theorem.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.7.19">Theorem</a></span>
@@ -361,11 +516,32 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="subindexitem">uniqueness with respect to<span class="indexknowl"> <a href="sec-bases-as-coord-systems.html#dimension-unique-coeff" class="xref" data-knowl="./knowl/index/dimension-unique-coeff.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 2.8.1">Fact</a></span>
 </div>
+<div class="indexitem">Block Diagonalization Theorem<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#block-diag-thm" class="xref" data-knowl="./knowl/index/block-diag-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.5.28">Theorem</a></span>
+</div>
 </div>
 <div class="indexletter" id="indexletter-c">
+<div class="indexitem">Characteristic polynomial</div>
+<div class="subindexitem">and eigenvalues<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-9" class="xref" data-knowl="./knowl/index/sec-characteristic-polynomial-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.2.4: Eigenvalues are roots of the characteristic polynomial">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-4" class="xref" data-knowl="./knowl/index/sec-characteristic-polynomial-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.2.1">Definition</a></span>
+</div>
+<div class="subindexitem">factoring by hand<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-14" class="xref" data-knowl="./knowl/index/sec-characteristic-polynomial-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Factoring the characteristic polynomial">Paragraphs</a></span>
+</div>
+<div class="subindexitem">form of<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#charpoly-is-poly" class="xref" data-knowl="./knowl/index/charpoly-is-poly.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.2.10">Theorem</a></span>
+</div>
+<div class="subindexitem">of a <span class="process-math">\(2\times 2\)</span> matrix<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-12-5" class="xref" data-knowl="./knowl/index/sec-characteristic-polynomial-12-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 5.2.11: The characteristic polynomial of a 2\times 2 matrix">Recipe</a></span>
+</div>
+<div class="subindexitem">of similar matrices<span class="indexknowl"> <a href="sec-similarity.html#similarity-charpoly" class="xref" data-knowl="./knowl/index/similarity-charpoly.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.3.18">Theorem</a></span>
+</div>
+<div class="indexitem">Codomain<span class="indexknowl">. <span class="see"><em>See</em> Transformation</span></span>
+</div>
+<div class="indexitem">Cofactor<span class="indexknowl">. <span class="see"><em>See</em> Matrix</span></span>
+</div>
 <div class="indexitem">Color space<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-13" class="xref" data-knowl="./knowl/index/subsec-Rn-13.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.10: Color Space">Example</a></span>
 </div>
 <div class="indexitem">Column space</div>
+<div class="subindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
 <div class="subindexitem">and rank<span class="indexknowl"> <span class="see">(<em>see</em> Rank)</span></span>
 </div>
 <div class="subindexitem">basis of<span class="indexknowl"> <span class="see">(<em>see</em> Basis)</span></span>
@@ -374,14 +550,135 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="subindexitem">is a subspace<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces-6" class="xref" data-knowl="./knowl/index/subsec-common-types-of-subspaces-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
 </div>
+<div class="subindexitem">range of a transformation<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-dictionary" class="xref" data-knowl="./knowl/index/matrix-trans-dictionary.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.1.23">Insight</a></span>
+</div>
 <div class="subindexitem">versus the solution set<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-ss-and-cs" class="internal" title="Subsection 2.4.3: Solution Sets and Column Spans">Subsection</a></span>
 </div>
 <div class="indexitem">Column span<span class="indexknowl">. <span class="see"><em>See</em> Column space</span></span>
 </div>
+<div class="indexitem">Complex eigenvalue</div>
+<div class="subindexitem">
+<span class="process-math">\(2\times 2\)</span> matrices</div>
+<div class="subsubindexitem">and rotation-scaling matrices<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#cplx-diagonalization-thm" class="xref" data-knowl="./knowl/index/cplx-diagonalization-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.5.14">Theorem</a></span>
+</div>
+<div class="subsubindexitem">and rotation-scaling matrices, computing<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7" class="xref" data-knowl="./knowl/index/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 5.5.15: A 2\times 2 matrix with a complex eigenvalue">Recipe</a></span>
+</div>
+<div class="subsubindexitem">different rotation-scaling matrices<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-10" class="xref" data-knowl="./knowl/index/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subsubindexitem">dynamics of<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-13" class="xref" data-knowl="./knowl/index/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-13.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 5.5.20: Dynamics of a 2\times 2 Matrix with a Complex Eigenvalue">Note</a> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-14" class="xref" data-knowl="./knowl/index/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Interactive 5.5.21: |\lambda|&gt;1">Interactive</a> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-15" class="xref" data-knowl="./knowl/index/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Interactive 5.5.23: |\lambda|=1">Interactive</a> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-16" class="xref" data-knowl="./knowl/index/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-16.html" data-reveal-label="Reveal" data-close-label="Close" title="Interactive 5.5.25: |\lambda|\lt1">Interactive</a></span>
+</div>
+<div class="subsubindexitem">geometry of<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue" class="internal" title="Subsection 5.5.3: Geometry of 2\times 2 Matrices with a Complex Eigenvalue">Subsection</a></span>
+</div>
+<div class="subindexitem">
+<span class="process-math">\(3\times 3\)</span> matrices</div>
+<div class="subsubindexitem">dynamics of<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-block-diagonalization-6" class="xref" data-knowl="./knowl/index/subsec-block-diagonalization-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.5.30: Geometry of a 3\times 3 matrix with a complex eigenvalue">Example</a></span>
+</div>
+<div class="subindexitem">conjugate pairs<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-matrices-with-complex-eigenvalues-8" class="xref" data-knowl="./knowl/index/subsec-matrices-with-complex-eigenvalues-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.5.4">Insight</a></span>
+</div>
+<div class="subindexitem">existence of<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-matrices-with-complex-eigenvalues-3" class="xref" data-knowl="./knowl/index/subsec-matrices-with-complex-eigenvalues-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.5.1">Insight</a></span>
+</div>
+<div class="indexitem">Complex numbers</div>
+<div class="subindexitem">real and imaginary parts of</div>
+<div class="subsubindexitem">vectors<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-5" class="xref" data-knowl="./knowl/index/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
 <div class="indexitem">Consistent<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div>
+<div class="indexitem">Cramer’s rule<span class="indexknowl"> <a href="sec-determinants-cofactors.html#det-cofact-cramers-rule" class="xref" data-knowl="./knowl/index/det-cofact-cramers-rule.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.2.16: Cramer’s Rule">Theorem</a></span>
+</div>
+<div class="subindexitem">and computing inverses<span class="indexknowl"> <a href="sec-determinants-cofactors.html#det-cofact-inv-cramer" class="xref" data-knowl="./knowl/index/det-cofact-inv-cramer.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.2.13">Theorem</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-d">
+<div class="indexitem">Determinant</div>
+<div class="subindexitem">alternative defining properties of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-use-multi" class="xref" data-knowl="./knowl/index/det-defn-use-multi.html" data-reveal-label="Reveal" data-close-label="Close" title="Remark 4.1.29: Alternative defining properties">Remark</a></span>
+</div>
+<div class="subindexitem">and column operations<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#defn-det-col-ops" class="xref" data-knowl="./knowl/index/defn-det-col-ops.html" data-reveal-label="Reveal" data-close-label="Close" title="Corollary 4.1.26">Corollary</a></span>
+</div>
+<div class="subindexitem">and computing inverses<span class="indexknowl"> <a href="sec-determinants-cofactors.html#det-cofact-inv-cramer" class="xref" data-knowl="./knowl/index/det-cofact-inv-cramer.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.2.13">Theorem</a></span>
+</div>
+<div class="subindexitem">and powers of matrices<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-power-prop" class="xref" data-knowl="./knowl/index/det-defn-power-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Corollary 4.1.19">Corollary</a></span>
+</div>
+<div class="subindexitem">and row operations<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-the-defn" class="xref" data-knowl="./knowl/index/det-defn-the-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.1">Definition</a></span>
+</div>
+<div class="subindexitem">and volumes<span class="indexknowl"> <a href="sec-determinants-volumes.html#det-is-volume" class="xref" data-knowl="./knowl/index/det-is-volume.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.3.6: Determinants and volumes">Theorem</a></span>
+</div>
+<div class="subindexitem">computation of</div>
+<div class="subsubindexitem">cofactor expansion<span class="indexknowl"> <a href="sec-determinants-cofactors.html#det-cofact-expansion" class="xref" data-knowl="./knowl/index/det-cofact-expansion.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.2.3: Cofactor expansion">Theorem</a></span>
+</div>
+<div class="subsubindexitem">row reduction<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-ref-compute" class="xref" data-knowl="./knowl/index/det-defn-ref-compute.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 4.1.5: Computing determinants by row reducing">Recipe</a></span>
+</div>
+<div class="subindexitem">defining properties of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-the-defn" class="xref" data-knowl="./knowl/index/det-defn-the-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.1">Definition</a></span>
+</div>
+<div class="subindexitem">existence and uniqueness of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-unique" class="xref" data-knowl="./knowl/index/det-defn-unique.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.1.13: Existence of the determinant">Theorem</a></span>
+</div>
+<div class="subindexitem">identity matrix<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-the-defn" class="xref" data-knowl="./knowl/index/det-defn-the-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.1">Definition</a></span>
+</div>
+<div class="subindexitem">invertibility property<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-invert-prop" class="xref" data-knowl="./knowl/index/det-defn-invert-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.15: Invertibility Property">Proposition</a> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
+<div class="subindexitem">methods of computation<span class="indexknowl"> <a href="sec-determinants-cofactors.html#subsec-cofactor-expansions-24" class="xref" data-knowl="./knowl/index/subsec-cofactor-expansions-24.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 4.2.12: Summary: methods for computing determinants">Insight</a></span>
+</div>
+<div class="subindexitem">multilinearity property<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-linear-prop" class="xref" data-knowl="./knowl/index/det-defn-linear-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.28: Multilinearity Property">Proposition</a></span>
+</div>
+<div class="subindexitem">multiplicativity property<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-mult-prop" class="xref" data-knowl="./knowl/index/det-defn-mult-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.18: Multiplicativity Property">Proposition</a></span>
+</div>
+<div class="subsubindexitem">and volumes<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-volumes-of-regions-11" class="xref" data-knowl="./knowl/index/subsec-volumes-of-regions-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Remark 4.3.16: Multiplicativity of |\det|\,">Remark</a></span>
+</div>
+<div class="subindexitem">of a <span class="process-math">\(2\times 2\)</span> matrix<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-def-det" class="xref" data-knowl="./knowl/index/matrix-inv-def-det.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.5.5">Definition</a> <a href="sec-determinants-definitions-properties.html#det-defn-22-again" class="xref" data-knowl="./knowl/index/det-defn-22-again.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 4.1.9: The determinant of a 2\times 2 matrix">Example</a> <a href="sec-determinants-cofactors.html#det-cofactor-22" class="xref" data-knowl="./knowl/index/det-cofactor-22.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 4.2.6: The determinant of a 2\times 2 matrix">Example</a></span>
+</div>
+<div class="subindexitem">of a <span class="process-math">\(3\times 3\)</span> matrix<span class="indexknowl"> <a href="sec-determinants-cofactors.html#subsec-cofactor-expansions-16" class="xref" data-knowl="./knowl/index/subsec-cofactor-expansions-16.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 4.2.8: Computing the Determinant of a 3\times 3 Matrix">Recipe</a></span>
+</div>
+<div class="subindexitem">of similar matrices<span class="indexknowl"> <a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices-6" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-of-similar-matrices-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">properties of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#subsec-det-defn-magic-props-26" class="xref" data-knowl="./knowl/index/subsec-det-defn-magic-props-26.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 4.1.31: Summary: Magical Properties of the Determinant">Insight</a></span>
+</div>
+<div class="subindexitem">transpose property<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-trans-prop" class="xref" data-knowl="./knowl/index/det-defn-trans-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.25: Transpose Property">Proposition</a></span>
+</div>
+<div class="indexitem">Diagonal</div>
+<div class="subindexitem">see Matrix<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant-18" class="xref" data-knowl="./knowl/index/subsec-the-definition-of-the-determinant-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.10">Definition</a></span>
+</div>
+<div class="indexitem">Diagonalizability</div>
+<div class="subindexitem">algebraic-geometric multiplicity criterion<span class="indexknowl"> <a href="sec-diagonalization.html#diag-thm-variant" class="xref" data-knowl="./knowl/index/diag-thm-variant.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.46: Diagonalization Theorem, Variant">Theorem</a></span>
+</div>
+<div class="subindexitem">criterion<span class="indexknowl"> <a href="sec-diagonalization.html#diagonalization-thm" class="xref" data-knowl="./knowl/index/diagonalization-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.7">Theorem</a></span>
+</div>
+<div class="subindexitem">criterion for similarity<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity-19-9" class="xref" data-knowl="./knowl/index/subsec-algebraic-and-geometric-multiplicity-19-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.4.54">Insight</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-diagonalizability-3" class="xref" data-knowl="./knowl/index/subsec-diagonalizability-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.4.1">Definition</a></span>
+</div>
+<div class="subindexitem">diagonal matrices<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-diagonalizability-4" class="xref" data-knowl="./knowl/index/subsec-diagonalizability-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.2">Example</a> <a href="sec-diagonalization.html#diag-easy-eg" class="xref" data-knowl="./knowl/index/diag-easy-eg.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.9: Easy Example">Example</a></span>
+</div>
+<div class="subindexitem">distinct eigenvalues<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-diagonalizability-11" class="xref" data-knowl="./knowl/index/subsec-diagonalizability-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.4.8">Insight</a></span>
+</div>
+<div class="subindexitem">dynamics of<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-diag-ss-geometry-5" class="xref" data-knowl="./knowl/index/subsec-diag-ss-geometry-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.27: Eigenvalues |\lambda_1| &gt; 1,\,|\lambda_2|\lt1">Example</a> <a href="sec-diagonalization.html#diag-l1big-l2big" class="xref" data-knowl="./knowl/index/diag-l1big-l2big.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.29: Eigenvalues |\lambda_1| &gt; 1,\,|\lambda_2| &gt; 1">Example</a> <a href="sec-diagonalization.html#subsec-diag-ss-geometry-7" class="xref" data-knowl="./knowl/index/subsec-diag-ss-geometry-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.31: Eigenvalues |\lambda_1| \lt 1,\,|\lambda_2| \lt 1">Example</a> <a href="sec-diagonalization.html#subsec-diag-ss-geometry-8" class="xref" data-knowl="./knowl/index/subsec-diag-ss-geometry-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.33: Eigenvalues |\lambda_1| = 1,\,|\lambda_2|\lt1">Example</a></span>
+</div>
+<div class="subindexitem">geometry of<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-diag-ss-geometry" class="internal" title="Subsection 5.4.2: The Geometry of Diagonalizable Matrices">Subsection</a></span>
+</div>
+<div class="subindexitem">is unrelated to invertibility<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-diagonalizability-27" class="xref" data-knowl="./knowl/index/subsec-diagonalizability-27.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.4.25: Diagonalizability has nothing to do with invertibility">Insight</a></span>
+</div>
+<div class="subindexitem">of <span class="process-math">\(2\times 2\)</span> matrices<span class="indexknowl"> <a href="sec-diagonalization.html#diag-cases-22" class="xref" data-knowl="./knowl/index/diag-cases-22.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.48: Diagonalizability of 2\times 2 Matrices">Example</a></span>
+</div>
+<div class="subindexitem">of <span class="process-math">\(3\times 3\)</span> matrices<span class="indexknowl"> <a href="sec-diagonalization.html#diag-cases-33" class="xref" data-knowl="./knowl/index/diag-cases-33.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.49: Diagonalizability of 3\times 3 Matrices">Example</a></span>
+</div>
+<div class="subindexitem">order of eigenvalues<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-diagonalizability-14" class="xref" data-knowl="./knowl/index/subsec-diagonalizability-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 5.4.10: Non-Uniqueness of Diagonalization">Note</a></span>
+</div>
+<div class="subindexitem">powers of<span class="indexknowl"> <a href="sec-diagonalization.html#diag-powers" class="xref" data-knowl="./knowl/index/diag-powers.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 5.4.5: Compute powers of a diagonalizable matrix">Recipe</a></span>
+</div>
+<div class="subindexitem">projection<span class="indexknowl"> <a href="sec-diagonalization.html#diag-eg-proj" class="xref" data-knowl="./knowl/index/diag-eg-proj.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.19: A projection is diagonalizable">Example</a></span>
+</div>
+<div class="subindexitem">recipe<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-diagonalizability-20" class="xref" data-knowl="./knowl/index/subsec-diagonalizability-20.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 5.4.16: Diagonalization">Recipe</a></span>
+</div>
+<div class="subindexitem">shear<span class="indexknowl"> <a href="sec-diagonalization.html#diag-eg-shear" class="xref" data-knowl="./knowl/index/diag-eg-shear.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.17: A shear is not diagonalizable">Example</a></span>
+</div>
+<div class="subindexitem">similar matrices<span class="indexknowl"> <a href="sec-diagonalization.html#diag-of-similar" class="xref" data-knowl="./knowl/index/diag-of-similar.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.4">Example</a></span>
+</div>
+<div class="indexitem">Difference equation<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-difference-equations-3" class="xref" data-knowl="./knowl/index/subsec-difference-equations-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.6.1">Definition</a></span>
+</div>
+<div class="indexitem">Dilation<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-eg-dilation" class="xref" data-knowl="./knowl/index/matrix-trans-eg-dilation.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.9: Dilation">Example</a> <a href="sec-matrix-transformations.html#subsec-matrix-transformations-12" class="xref" data-knowl="./knowl/index/subsec-matrix-transformations-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.29: Matrix transformations of \R^2">Example</a> <a href="sec-linear-transformations.html#subsec-linear-trans-is-matrix-trans-7" class="xref" data-knowl="./knowl/index/subsec-linear-trans-is-matrix-trans-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.3.17: The matrix of a dilation">Example</a></span>
+</div>
+<div class="subindexitem">eigenvectors of<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-19" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-19.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.13: Dilation">Example</a></span>
+</div>
+<div class="subindexitem">inverse of<span class="indexknowl"> <a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms-6" class="xref" data-knowl="./knowl/index/subsec-matrix-inv-linear-transforms-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.5.16: Dilation">Example</a> <a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms-15" class="xref" data-knowl="./knowl/index/subsec-matrix-inv-linear-transforms-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.5.30: Dilation">Example</a></span>
+</div>
 <div class="indexitem">Dimension</div>
 <div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-dimension.html#dimension-defn-dimension" class="xref" data-knowl="./knowl/index/dimension-defn-dimension.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.7.3">Definition</a></span>
 </div>
@@ -391,20 +688,142 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="subindexitem">of a solution set<span class="indexknowl"> <a href="sec-solution-sets.html#soln-sets-dim-hom" class="xref" data-knowl="./knowl/index/soln-sets-dim-hom.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Dimension of the solution set">Note</a> <a href="sec-solution-sets.html#soln-sets-dim-inhom" class="xref" data-knowl="./knowl/index/soln-sets-dim-inhom.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Dimension of the solution set">Note</a></span>
 </div>
+<div class="indexitem">Domain<span class="indexknowl">. <span class="see"><em>See</em> Transformation</span></span>
+</div>
 </div>
 <div class="indexletter" id="indexletter-e">
+<div class="indexitem">Eigenspace</div>
+<div class="subindexitem">and the null space<span class="indexknowl"> <a href="sec-eigenvectors.html#evecs-eval0" class="xref" data-knowl="./knowl/index/evecs-eval0.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.1.30">Fact</a></span>
+</div>
+<div class="subindexitem">computation<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenspaces-11" class="xref" data-knowl="./knowl/index/subsec-eigenspaces-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.1.29: Recipes: Eigenspaces">Insight</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenspaces-5" class="xref" data-knowl="./knowl/index/subsec-eigenspaces-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.1.21">Definition</a></span>
+</div>
+<div class="subindexitem">is a solution set<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenspaces-4" class="xref" data-knowl="./knowl/index/subsec-eigenspaces-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">is a subspace<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenspaces-6" class="xref" data-knowl="./knowl/index/subsec-eigenspaces-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">of similar matrices<span class="indexknowl"> <a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices-10" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-of-similar-matrices-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Note">Note</a></span>
+</div>
+<div class="indexitem">Eigenvalue</div>
+<div class="subindexitem">algebraic multiplicity of<span class="indexknowl"> <span class="see">(<em>see</em> Algebraic multiplicity)</span></span>
+</div>
+<div class="subindexitem">and diagonalizability<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-diagonalizability-11" class="xref" data-knowl="./knowl/index/subsec-diagonalizability-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.4.8">Insight</a></span>
+</div>
+<div class="subindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
+<div class="subindexitem">and stochastic matrices<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-10" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.6.8">Fact</a></span>
+</div>
+<div class="subindexitem">and the characteristic polynomial<span class="indexknowl"> <span class="see">(<em>see</em> Characteristic polynomial)</span></span>
+</div>
+<div class="subindexitem">complex<span class="indexknowl"> <span class="see">(<em>see</em> Complex eigenvalue)</span></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-3" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.1.1">Definition</a></span>
+</div>
+<div class="subindexitem">eigenvector for<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-3" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.1.1">Definition</a></span>
+</div>
+<div class="subindexitem">geometric multiplicity of<span class="indexknowl"> <span class="see">(<em>see</em> Geometric multiplicity)</span></span>
+</div>
+<div class="subindexitem">identity matrix<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-18" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.11: Identity">Example</a></span>
+</div>
+<div class="subindexitem">maximum number of<span class="indexknowl"> <a href="sec-eigenvectors.html#evecs-max-nr" class="xref" data-knowl="./knowl/index/evecs-max-nr.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.1.20">Insight</a></span>
+</div>
+<div class="subindexitem">of a triangular matrix<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-13-3" class="xref" data-knowl="./knowl/index/sec-characteristic-polynomial-13-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Corollary 5.2.14">Corollary</a></span>
+</div>
+<div class="subindexitem">of similar matrices<span class="indexknowl"> <a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices-5" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-of-similar-matrices-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Note">Note</a></span>
+</div>
+<div class="subindexitem">zero<span class="indexknowl"> <a href="sec-eigenvectors.html#evecs-eval0" class="xref" data-knowl="./knowl/index/evecs-eval0.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.1.30">Fact</a></span>
+</div>
+<div class="indexitem">Eigenvector</div>
+<div class="subindexitem">and collinearity<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-12" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">and diagonalizability<span class="indexknowl"> <a href="sec-diagonalization.html#diagonalization-thm" class="xref" data-knowl="./knowl/index/diagonalization-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.7">Theorem</a></span>
+</div>
+<div class="subindexitem">and stochastic matrices<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-12" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.6.9">Definition</a></span>
+</div>
+<div class="subindexitem">computation<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenspaces-11" class="xref" data-knowl="./knowl/index/subsec-eigenspaces-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.1.29: Recipes: Eigenspaces">Insight</a></span>
+</div>
+<div class="subsubindexitem">trick for <span class="process-math">\(2\times 2\)</span> matrices<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#cplx-evals-22-trick" class="xref" data-knowl="./knowl/index/cplx-evals-22-trick.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 5.5.5: Eigenvector Trick for 2\times 2 Matrices">Note</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-3" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.1.1">Definition</a></span>
+</div>
+<div class="subindexitem">eigenvalue for<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-3" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.1.1">Definition</a></span>
+</div>
+<div class="subindexitem">identity matrix<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-18" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.11: Identity">Example</a></span>
+</div>
+<div class="subindexitem">linear independence of<span class="indexknowl"> <a href="sec-eigenvectors.html#evecs-linindep" class="xref" data-knowl="./knowl/index/evecs-linindep.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.1.19: Eigenvectors with distinct eigenvalues are linearly independent">Fact</a></span>
+</div>
+<div class="subindexitem">of similar matrices<span class="indexknowl"> <a href="sec-similarity.html#similarity-evecs" class="xref" data-knowl="./knowl/index/similarity-evecs.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.3.20">Theorem</a></span>
+</div>
 <div class="indexitem">Elimination method<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination" class="internal" title="Subsection 1.2.1: The Elimination Method">Subsection</a></span>
+</div>
+<div class="indexitem">Ellipse</div>
+<div class="subindexitem">area of<span class="indexknowl"> <span class="see">(<em>see</em> Volume)</span></span>
 </div>
 <div class="indexitem">Equation of linear dependence<span class="indexknowl">. <span class="see"><em>See</em> Linear independence</span></span>
 </div>
 </div>
-<div class="indexletter" id="indexletter-f"><div class="indexitem">Free variable<span class="indexknowl"> <a href="sec-parametric-form.html#subsec-free-variables-5" class="xref" data-knowl="./knowl/index/subsec-free-variables-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.3.3">Definition</a></span>
-</div></div>
-<div class="indexletter" id="indexletter-g"><div class="indexitem">Gaussian elimination<span class="indexknowl">. <span class="see"><em>See</em> Row reduction</span></span>
-</div></div>
+<div class="indexletter" id="indexletter-f">
+<div class="indexitem">Free variable<span class="indexknowl"> <a href="sec-parametric-form.html#subsec-free-variables-5" class="xref" data-knowl="./knowl/index/subsec-free-variables-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.3.3">Definition</a></span>
+</div>
+<div class="indexitem">Function<span class="indexknowl">. <span class="see"><em>See</em> Transformation</span></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-g">
+<div class="indexitem">Gaussian elimination<span class="indexknowl">. <span class="see"><em>See</em> Row reduction</span></span>
+</div>
+<div class="indexitem">Geometric multiplicity</div>
+<div class="subindexitem">and algebraic multiplicity<span class="indexknowl"> <a href="sec-diagonalization.html#diag-amgm" class="xref" data-knowl="./knowl/index/diag-amgm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.44: Algebraic and Geometric Multiplicity">Theorem</a></span>
+</div>
+<div class="subindexitem">and diagonalizability<span class="indexknowl"> <a href="sec-diagonalization.html#diag-thm-variant" class="xref" data-knowl="./knowl/index/diag-thm-variant.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.46: Diagonalization Theorem, Variant">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity-4" class="xref" data-knowl="./knowl/index/subsec-algebraic-and-geometric-multiplicity-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.4.37">Definition</a></span>
+</div>
+<div class="subindexitem">of similar matrices<span class="indexknowl"> <a href="sec-diagonalization.html#diag-similar-amgm" class="xref" data-knowl="./knowl/index/diag-similar-amgm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.50">Theorem</a></span>
+</div>
+<div class="indexitem">Google PageRank</div>
+<div class="subindexitem">Google Matrix<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-googles-pagerank-algorithm-17" class="xref" data-knowl="./knowl/index/subsec-googles-pagerank-algorithm-17.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.6.20: The Google Matrix">Definition</a></span>
+</div>
+<div class="subsubindexitem">eigenvector of<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-googles-pagerank-algorithm-22" class="xref" data-knowl="./knowl/index/subsec-googles-pagerank-algorithm-22.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: The 25 Billion Dollar Eigenvector">Note</a></span>
+</div>
+<div class="subindexitem">importance matrix<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-googles-pagerank-algorithm-7" class="xref" data-knowl="./knowl/index/subsec-googles-pagerank-algorithm-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.6.16: The Importance Matrix">Definition</a></span>
+</div>
+<div class="subsubindexitem">eigenvector of<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-googles-pagerank-algorithm-11" class="xref" data-knowl="./knowl/index/subsec-googles-pagerank-algorithm-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Key Observation">Note</a></span>
+</div>
+<div class="subindexitem">importance rule<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-googles-pagerank-algorithm-5" class="xref" data-knowl="./knowl/index/subsec-googles-pagerank-algorithm-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.6.15: The Importance Rule">Definition</a></span>
+</div>
+</div>
 <div class="indexletter" id="indexletter-h"><div class="indexitem">Homogeneous<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
 </div></div>
 <div class="indexletter" id="indexletter-i">
+<div class="indexitem">Identity matrix</div>
+<div class="subindexitem">and identity transformation<span class="indexknowl"> <a href="sec-linear-transformations.html#linear-trans-matrix-of-id" class="xref" data-knowl="./knowl/index/linear-trans-matrix-of-id.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.3.22: The standard matrix of the identity transformation">Example</a></span>
+</div>
+<div class="subindexitem">and matrix multiplication<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices-15" class="xref" data-knowl="./knowl/index/subsec-the-algebra-of-transformations-and-matrices-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.4.39: Properties of matrix multiplication">Note</a></span>
+</div>
+<div class="subindexitem">and standard coordinate vectors<span class="indexknowl"> <a href="sec-linear-transformations.html#linear-trans-identity-mat" class="xref" data-knowl="./knowl/index/linear-trans-identity-mat.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.13">Definition</a></span>
+</div>
+<div class="subindexitem">as a function<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-eg-identity" class="xref" data-knowl="./knowl/index/matrix-trans-eg-identity.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.11: Identity">Example</a></span>
+</div>
+<div class="subindexitem">as a matrix transformation<span class="indexknowl"> <a href="sec-matrix-transformations.html#subsec-matrix-transformations-12" class="xref" data-knowl="./knowl/index/subsec-matrix-transformations-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.29: Matrix transformations of \R^2">Example</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-linear-transformations.html#linear-trans-identity-mat" class="xref" data-knowl="./knowl/index/linear-trans-identity-mat.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.13">Definition</a></span>
+</div>
+<div class="subindexitem">determinant of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-the-defn" class="xref" data-knowl="./knowl/index/det-defn-the-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.1">Definition</a></span>
+</div>
+<div class="subindexitem">eigenvalues of<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-18" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.11: Identity">Example</a></span>
+</div>
+<div class="subindexitem">eigenvectors of<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenvalues-and-eigenvectors-18" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-and-eigenvectors-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.11: Identity">Example</a></span>
+</div>
+<div class="subindexitem">similarity<span class="indexknowl"> <a href="sec-similarity.html#subsec-similar-matrices-6" class="xref" data-knowl="./knowl/index/subsec-similar-matrices-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Identity transformation</div>
+<div class="subindexitem">and composition<span class="indexknowl"> <a href="sec-matrix-multiplication.html#matrix-mult-compose-trans" class="xref" data-knowl="./knowl/index/matrix-mult-compose-trans.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.4.10: Properties of composition">Note</a></span>
+</div>
+<div class="subindexitem">and identity matrix<span class="indexknowl"> <a href="sec-linear-transformations.html#linear-trans-matrix-of-id" class="xref" data-knowl="./knowl/index/linear-trans-matrix-of-id.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.3.22: The standard matrix of the identity transformation">Example</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-identity" class="xref" data-knowl="./knowl/index/matrix-trans-identity.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.1.20">Definition</a></span>
+</div>
 <div class="indexitem">Implicit equation<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-parametric-description" class="internal" title="Subsection 1.1.3: Parametric Description of Solution Sets">Subsection</a> <a href="sec-parametric-form.html#subsec-free-variables-9" class="xref" data-knowl="./knowl/index/subsec-free-variables-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 1.3.5: Implicit Versus Parameterized Equations">Note</a></span>
 </div>
 <div class="indexitem">Inconsistent<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
@@ -412,6 +831,38 @@ eBookConfig.enable_chatcodes =  false;
 <div class="indexitem">Increasing span criterion<span class="indexknowl">. <span class="see"><em>See</em> Linear independence</span></span>
 </div>
 <div class="indexitem">Inhomogeneous<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div>
+<div class="indexitem">Invertible matrix</div>
+<div class="subindexitem">and invertible transformation<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-matrix-inv-comp" class="xref" data-knowl="./knowl/index/matrix-inv-matrix-inv-comp.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.5.29">Theorem</a></span>
+</div>
+<div class="subindexitem">basic facts<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-facts" class="xref" data-knowl="./knowl/index/matrix-inv-facts.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 3.5.4: Facts about invertible matrices">Fact</a></span>
+</div>
+<div class="subindexitem">computation</div>
+<div class="subsubindexitem">
+<span class="process-math">\(2\times 2\)</span> case<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-22" class="xref" data-knowl="./knowl/index/matrix-inv-22.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 3.5.6">Proposition</a></span>
+</div>
+<div class="subsubindexitem">in general<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-how-to-compute" class="xref" data-knowl="./knowl/index/matrix-inv-how-to-compute.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.5.8">Theorem</a></span>
+</div>
+<div class="subsubindexitem">using Cramer’ rule<span class="indexknowl"> <a href="sec-determinants-cofactors.html#det-cofact-inv-cramer" class="xref" data-knowl="./knowl/index/det-cofact-inv-cramer.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.2.13">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-inverses.html#subsec-invertible-matrices-3" class="xref" data-knowl="./knowl/index/subsec-invertible-matrices-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.5.1">Definition</a></span>
+</div>
+<div class="subindexitem">determinant of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-invert-prop" class="xref" data-knowl="./knowl/index/det-defn-invert-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.15: Invertibility Property">Proposition</a> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
+<div class="subindexitem">inverse of<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-facts-3-1-4-1" class="xref" data-knowl="./knowl/index/matrix-inv-facts-3-1-4-1.html" data-reveal-label="Reveal" data-close-label="Close" title="Item 1">Item</a></span>
+</div>
+<div class="subindexitem">invertible matrix theorem<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
+<div class="subindexitem">solving linear systems with<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-solve-system" class="xref" data-knowl="./knowl/index/matrix-inv-solve-system.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.5.11">Theorem</a></span>
+</div>
+<div class="indexitem">Invertible matrix theorem<span class="indexknowl"> <a href="sec-invertible-matrix-thm.html#imt-1" class="xref" data-knowl="./knowl/index/imt-1.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.6.1">Theorem</a> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
+<div class="indexitem">Invertible transformation</div>
+<div class="subindexitem">and invertible matrices<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-matrix-inv-comp" class="xref" data-knowl="./knowl/index/matrix-inv-matrix-inv-comp.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.5.29">Theorem</a> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-trans-inv-def" class="xref" data-knowl="./knowl/index/matrix-inv-trans-inv-def.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.5.14">Definition</a></span>
+</div>
+<div class="subindexitem">one-to-one and onto<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-11-onto" class="xref" data-knowl="./knowl/index/matrix-inv-11-onto.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 3.5.26">Proposition</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-l">
@@ -458,42 +909,213 @@ eBookConfig.enable_chatcodes =  false;
 <div class="subindexitem">wide matrices<span class="indexknowl"> <a href="sec-linear-independence.html#linindep-wide-matrix" class="xref" data-knowl="./knowl/index/linindep-wide-matrix.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 2.5.10">Insight</a></span>
 </div>
 <div class="indexitem">Linear independence</div>
+<div class="subindexitem">and determinants<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-dep-det0" class="xref" data-knowl="./knowl/index/det-defn-dep-det0.html" data-reveal-label="Reveal" data-close-label="Close" title="Corollary 4.1.16">Corollary</a></span>
+</div>
+<div class="subindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
 <div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-linear-independence.html#linindep-defn-linindep" class="xref" data-knowl="./knowl/index/linindep-defn-linindep.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.5.2">Definition</a></span>
+</div>
+<div class="indexitem">Linear transformation</div>
+<div class="subindexitem">addition of<span class="indexknowl"> <span class="see">(<em>see</em> Transformation)</span></span>
+</div>
+<div class="subindexitem">and volumes<span class="indexknowl"> <span class="see">(<em>see</em> Matrix transformation)</span></span>
+</div>
+<div class="subindexitem">are matrix transformations<span class="indexknowl"> <a href="sec-linear-transformations.html#subsec-linear-trans-is-matrix-trans-5" class="xref" data-knowl="./knowl/index/subsec-linear-trans-is-matrix-trans-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.3.15">Insight</a></span>
+</div>
+<div class="subindexitem">basic facts<span class="indexknowl"> <a href="sec-linear-transformations.html#subsec-linear-transformations-definition-6" class="xref" data-knowl="./knowl/index/subsec-linear-transformations-definition-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 3.3.2: Facts about linear transformations">Fact</a></span>
+</div>
+<div class="subindexitem">composition of<span class="indexknowl"> <span class="see">(<em>see</em> Transformation)</span></span>
+</div>
+<div class="subsubindexitem">and matrix multiplication<span class="indexknowl"> <a href="sec-matrix-multiplication.html#matrix-mult-comp-is-prod" class="xref" data-knowl="./knowl/index/matrix-mult-comp-is-prod.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.4.25">Theorem</a></span>
+</div>
+<div class="subsubindexitem">linearity of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#matrix-mult-comp-is-prod" class="xref" data-knowl="./knowl/index/matrix-mult-comp-is-prod.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.4.25">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/index/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">Definition</a></span>
+</div>
+<div class="subindexitem">dictionary<span class="indexknowl"> <a href="sec-linear-transformations.html#subsec-linear-trans-is-matrix-trans-6" class="xref" data-knowl="./knowl/index/subsec-linear-trans-is-matrix-trans-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.3.16: Dictionary">Note</a></span>
+</div>
+<div class="subindexitem">invertible<span class="indexknowl"> <span class="see">(<em>see</em> Invertible transformation)</span></span>
+</div>
+<div class="subindexitem">scalar multiplication of<span class="indexknowl"> <span class="see">(<em>see</em> Transformation)</span></span>
+</div>
+<div class="subindexitem">standard matrix of<span class="indexknowl"> <a href="sec-linear-transformations.html#matrix-of-transformation" class="xref" data-knowl="./knowl/index/matrix-of-transformation.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.3.14: The matrix of a linear transformation">Theorem</a></span>
+</div>
+<div class="subindexitem">verifying nonlinearity<span class="indexknowl"> <a href="sec-linear-transformations.html#subsec-linear-transformations-definition-15" class="xref" data-knowl="./knowl/index/subsec-linear-transformations-definition-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.3.9: More non-linear transformations">Example</a></span>
+</div>
+<div class="subindexitem">when defined by a formula<span class="indexknowl"> <a href="sec-linear-transformations.html#subsec-linear-transformations-definition-13" class="xref" data-knowl="./knowl/index/subsec-linear-transformations-definition-13.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Lower-triangular</div>
+<div class="subindexitem">see Matrix<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant-18" class="xref" data-knowl="./knowl/index/subsec-the-definition-of-the-determinant-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.10">Definition</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-m">
 <div class="indexitem">Matrix</div>
+<div class="subindexitem">addition of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices-9" class="xref" data-knowl="./knowl/index/subsec-the-algebra-of-transformations-and-matrices-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.4.36">Definition</a></span>
+</div>
+<div class="subindexitem">as a function<span class="indexknowl">  <a href="sec-matrix-transformations.html#subsec-matrix-trans-matrices-functions-3" class="xref" data-knowl="./knowl/index/subsec-matrix-trans-matrices-functions-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a><span class="see">; Matrix transformation)</span></span>
+</div>
 <div class="subindexitem">augmented<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Augmented Matrices and Row Operations">Paragraphs</a></span>
+</div>
+<div class="subindexitem">cofactor of<span class="indexknowl"> <a href="sec-determinants-cofactors.html#det-cofact-defn-minor" class="xref" data-knowl="./knowl/index/det-cofact-defn-minor.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.2.1">Definition</a></span>
+</div>
+<div class="subsubindexitem">and determinants<span class="indexknowl"> <a href="sec-determinants-cofactors.html#det-cofact-expansion" class="xref" data-knowl="./knowl/index/det-cofact-expansion.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.2.3: Cofactor expansion">Theorem</a></span>
+</div>
+<div class="subsubindexitem">sign of<span class="indexknowl"> <a href="sec-determinants-cofactors.html#subsec-cofactor-expansions-4" class="xref" data-knowl="./knowl/index/subsec-cofactor-expansions-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
 </div>
 <div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Augmented Matrices and Row Operations">Paragraphs</a></span>
 </div>
+<div class="subindexitem">determinant of<span class="indexknowl"> <span class="see">(<em>see</em> Determinant)</span></span>
+</div>
+<div class="subindexitem">diagonal entries of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant-18" class="xref" data-knowl="./knowl/index/subsec-the-definition-of-the-determinant-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.10">Definition</a></span>
+</div>
+<div class="subindexitem">inverse of<span class="indexknowl"> <span class="see">(<em>see</em> Invertible matrix)</span></span>
+</div>
+<div class="subindexitem">invertible<span class="indexknowl"> <span class="see">(<em>see</em> Invertible matrix)</span></span>
+</div>
+<div class="subindexitem">lower-triangular<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant-18" class="xref" data-knowl="./knowl/index/subsec-the-definition-of-the-determinant-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.10">Definition</a></span>
+</div>
+<div class="subsubindexitem">determinant of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#defn-det-special-case" class="xref" data-knowl="./knowl/index/defn-det-special-case.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.11">Proposition</a></span>
+</div>
+<div class="subsubindexitem">eigenvalues of<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-13-3" class="xref" data-knowl="./knowl/index/sec-characteristic-polynomial-13-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Corollary 5.2.14">Corollary</a></span>
+</div>
+<div class="subindexitem">minor of<span class="indexknowl"> <a href="sec-determinants-cofactors.html#det-cofact-defn-minor" class="xref" data-knowl="./knowl/index/det-cofact-defn-minor.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.2.1">Definition</a></span>
+</div>
+<div class="subindexitem">multiplication<span class="indexknowl"> <span class="see">(<em>see</em> Matrix multiplication)</span></span>
+</div>
 <div class="subindexitem">nullity of<span class="indexknowl"> <span class="see">(<em>see</em> Nullity)</span></span>
+</div>
+<div class="subindexitem">parallelepiped determined by<span class="indexknowl"> <a href="sec-determinants-volumes.html#det-is-volume" class="xref" data-knowl="./knowl/index/det-is-volume.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.3.6: Determinants and volumes">Theorem</a></span>
 </div>
 <div class="subindexitem">product with vector<span class="indexknowl"> <span class="see">(<em>see</em> Matrix-vector product)</span></span>
 </div>
 <div class="subindexitem">rank of<span class="indexknowl"> <span class="see">(<em>see</em> Rank)</span></span>
 </div>
+<div class="subindexitem">rotation-scaling<span class="indexknowl"> <span class="see">(<em>see</em> Rotation-scaling matrix)</span></span>
+</div>
+<div class="subindexitem">scalar multiplication of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices-9" class="xref" data-knowl="./knowl/index/subsec-the-algebra-of-transformations-and-matrices-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.4.36">Definition</a></span>
+</div>
+<div class="subindexitem">similar<span class="indexknowl"> <span class="see">(<em>see</em> Similarity)</span></span>
+</div>
 <div class="subindexitem">size of<span class="indexknowl"> <a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb-3" class="xref" data-knowl="./knowl/index/subsec-the-matrix-equation-axb-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Note">Note</a></span>
+</div>
+<div class="subindexitem">stochastic<span class="indexknowl"> <span class="see">(<em>see</em> Stochastic matrix)</span></span>
+</div>
+<div class="subindexitem">trace of<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-12-3" class="xref" data-knowl="./knowl/index/sec-characteristic-polynomial-12-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.2.9">Definition</a></span>
+</div>
+<div class="subsubindexitem">similar matrices<span class="indexknowl"> <a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices-6" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-of-similar-matrices-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">transpose of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#subsec-det-defn-magic-props-17" class="xref" data-knowl="./knowl/index/subsec-det-defn-magic-props-17.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.23">Definition</a></span>
+</div>
+<div class="subsubindexitem">and products<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-prod-trans" class="xref" data-knowl="./knowl/index/det-defn-prod-trans.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 4.1.24">Fact</a></span>
+</div>
+<div class="subsubindexitem">determinant of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-trans-prop" class="xref" data-knowl="./knowl/index/det-defn-trans-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.25: Transpose Property">Proposition</a></span>
+</div>
+<div class="subindexitem">upper-triangular<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant-18" class="xref" data-knowl="./knowl/index/subsec-the-definition-of-the-determinant-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.10">Definition</a></span>
+</div>
+<div class="subsubindexitem">determinant of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#defn-det-special-case" class="xref" data-knowl="./knowl/index/defn-det-special-case.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.11">Proposition</a></span>
+</div>
+<div class="subsubindexitem">eigenvalues of<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-13-3" class="xref" data-knowl="./knowl/index/sec-characteristic-polynomial-13-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Corollary 5.2.14">Corollary</a></span>
 </div>
 <div class="indexitem">Matrix equation</div>
 <div class="subindexitem">always consistent<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-thm-full-span" class="xref" data-knowl="./knowl/index/matrixeq-thm-full-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.3.16">Theorem</a></span>
+</div>
+<div class="subsubindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
 </div>
 <div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb-10" class="xref" data-knowl="./knowl/index/subsec-the-matrix-equation-axb-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.3.5">Definition</a></span>
 </div>
 <div class="subindexitem">equivalence with vector equation<span class="indexknowl"> <a href="sec-matrix-equations.html#subsec-the-matrix-equation-axb-12" class="xref" data-knowl="./knowl/index/subsec-the-matrix-equation-axb-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 2.3.6: Matrix Equations and Vector Equations">Note</a></span>
 </div>
+<div class="subindexitem">solving with the inverse matrix<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-solve-system" class="xref" data-knowl="./knowl/index/matrix-inv-solve-system.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.5.11">Theorem</a></span>
+</div>
 <div class="subindexitem">spans and consistency<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-spans-consistency" class="xref" data-knowl="./knowl/index/matrixeq-spans-consistency.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Spans and Consistency">Note</a></span>
 </div>
+<div class="indexitem">Matrix multiplication</div>
+<div class="subindexitem">and composition of transformations<span class="indexknowl"> <a href="sec-matrix-multiplication.html#matrix-mult-comp-is-prod" class="xref" data-knowl="./knowl/index/matrix-mult-comp-is-prod.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.4.25">Theorem</a></span>
+</div>
+<div class="subindexitem">and the matrix-vector product<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-matrix-multiplication-9" class="xref" data-knowl="./knowl/index/subsec-matrix-multiplication-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">associativity of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices-15" class="xref" data-knowl="./knowl/index/subsec-the-algebra-of-transformations-and-matrices-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.4.39: Properties of matrix multiplication">Note</a></span>
+</div>
+<div class="subindexitem">caveats<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-matrix-multiplication-15" class="xref" data-knowl="./knowl/index/subsec-matrix-multiplication-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.4.22: Matrix multiplication caveats">Insight</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#matrix-mult-defn-of" class="xref" data-knowl="./knowl/index/matrix-mult-defn-of.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.4.17: Matrix multiplication">Definition</a></span>
+</div>
+<div class="subindexitem">determinant of<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-mult-prop" class="xref" data-knowl="./knowl/index/det-defn-mult-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.18: Multiplicativity Property">Proposition</a></span>
+</div>
+<div class="subindexitem">inverse of<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-facts-3-1-4-2" class="xref" data-knowl="./knowl/index/matrix-inv-facts-3-1-4-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Item 2">Item</a></span>
+</div>
+<div class="subindexitem">noncommutativity of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#matrix-mult-compose-noncom2" class="xref" data-knowl="./knowl/index/matrix-mult-compose-noncom2.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.4.23: Non-commutative multiplication of matrices">Example</a></span>
+</div>
+<div class="subindexitem">order of operations<span class="indexknowl"> <a href="sec-matrix-multiplication.html#matrix-mult-order-ops" class="xref" data-knowl="./knowl/index/matrix-mult-order-ops.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.4.24: Order of Operations">Example</a></span>
+</div>
+<div class="subindexitem">powers<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-matrix-multiplication-10" class="xref" data-knowl="./knowl/index/subsec-matrix-multiplication-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subsubindexitem">and diagonalizability<span class="indexknowl"> <a href="sec-diagonalization.html#diag-powers" class="xref" data-knowl="./knowl/index/diag-powers.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 5.4.5: Compute powers of a diagonalizable matrix">Recipe</a></span>
+</div>
+<div class="subsubindexitem">and similarity<span class="indexknowl"> <a href="sec-similarity.html#similarity-powers" class="xref" data-knowl="./knowl/index/similarity-powers.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.3.7">Fact</a></span>
+</div>
+<div class="subindexitem">properties of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices-15" class="xref" data-knowl="./knowl/index/subsec-the-algebra-of-transformations-and-matrices-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.4.39: Properties of matrix multiplication">Note</a></span>
+</div>
+<div class="subindexitem">row-column rule<span class="indexknowl"> <a href="sec-matrix-multiplication.html#matrix-mult-row-column" class="xref" data-knowl="./knowl/index/matrix-mult-row-column.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 3.4.20: The row-column rule for matrix multiplication">Recipe</a></span>
+</div>
+<div class="subindexitem">size of matrices<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-matrix-multiplication-8" class="xref" data-knowl="./knowl/index/subsec-matrix-multiplication-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.4.19: The sizes of the matrices in the matrix product">Insight</a></span>
+</div>
+<div class="indexitem">Matrix transformation</div>
+<div class="subindexitem">addition of<span class="indexknowl"> <span class="see">(<em>see</em> Transformation)</span></span>
+</div>
+<div class="subindexitem">and volumes<span class="indexknowl"> <a href="sec-determinants-volumes.html#det-vol-regions" class="xref" data-knowl="./knowl/index/det-vol-regions.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.3.13">Theorem</a></span>
+</div>
+<div class="subindexitem">codomain of<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-dictionary" class="xref" data-knowl="./knowl/index/matrix-trans-dictionary.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.1.23">Insight</a></span>
+</div>
+<div class="subindexitem">composition of<span class="indexknowl"> <span class="see">(<em>see</em> Linear transformation</span><span class="see">; Transformation)</span></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-defn-of" class="xref" data-knowl="./knowl/index/matrix-trans-defn-of.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.1.22">Definition</a></span>
+</div>
+<div class="subindexitem">dictionary<span class="indexknowl"> <a href="sec-linear-transformations.html#subsec-linear-trans-is-matrix-trans-6" class="xref" data-knowl="./knowl/index/subsec-linear-trans-is-matrix-trans-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.3.16: Dictionary">Note</a></span>
+</div>
+<div class="subindexitem">domain of<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-dictionary" class="xref" data-knowl="./knowl/index/matrix-trans-dictionary.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.1.23">Insight</a></span>
+</div>
+<div class="subindexitem">invertible<span class="indexknowl"> <span class="see">(<em>see</em> Invertible transformation)</span></span>
+</div>
+<div class="subindexitem">linearity of<span class="indexknowl"> <a href="sec-linear-transformations.html#subsec-linear-transformations-definition-4" class="xref" data-knowl="./knowl/index/subsec-linear-transformations-definition-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">of <span class="process-math">\(\R^2\)</span><span class="indexknowl"> <a href="sec-matrix-transformations.html#subsec-matrix-transformations-12" class="xref" data-knowl="./knowl/index/subsec-matrix-transformations-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.29: Matrix transformations of \R^2">Example</a></span>
+</div>
+<div class="subindexitem">one-to-one criteria<span class="indexknowl"> <a href="sec-one-to-one-onto.html#matrix-trans-one-to-one" class="xref" data-knowl="./knowl/index/matrix-trans-one-to-one.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.2.5: One-to-one matrix transformations">Theorem</a></span>
+</div>
+<div class="subindexitem">onto criteria<span class="indexknowl"> <a href="sec-one-to-one-onto.html#matrix-trans-onto" class="xref" data-knowl="./knowl/index/matrix-trans-onto.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.2.19: Onto matrix transformations">Theorem</a></span>
+</div>
+<div class="subindexitem">range of<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-dictionary" class="xref" data-knowl="./knowl/index/matrix-trans-dictionary.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.1.23">Insight</a></span>
+</div>
+<div class="subindexitem">scalar multiplication of<span class="indexknowl"> <span class="see">(<em>see</em> Transformation)</span></span>
+</div>
+<div class="subindexitem">tall matrices<span class="indexknowl"> <a href="sec-one-to-one-onto.html#one-to-one-tall-matrices" class="xref" data-knowl="./knowl/index/one-to-one-tall-matrices.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.2.26: Tall matrices do not have onto transformations">Note</a></span>
+</div>
+<div class="subindexitem">wide matrices<span class="indexknowl"> <a href="sec-one-to-one-onto.html#one-to-one-wide-matrices" class="xref" data-knowl="./knowl/index/one-to-one-wide-matrices.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.2.14: Wide matrices do not have one-to-one transformations">Note</a></span>
+</div>
 <div class="indexitem">Matrix-vector product</div>
+<div class="subindexitem">and matrix multiplication<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-matrix-multiplication-9" class="xref" data-knowl="./knowl/index/subsec-matrix-multiplication-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
 <div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-defn-Ax1" class="xref" data-knowl="./knowl/index/matrixeq-defn-Ax1.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.3.2">Definition</a></span>
 </div>
 <div class="subindexitem">row-column rule<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-row-column" class="xref" data-knowl="./knowl/index/matrixeq-row-column.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 2.3.10: The row-column rule for matrix-vector multiplication">Recipe</a></span>
+</div>
+<div class="subindexitem">with standard coordinate vectors<span class="indexknowl"> <a href="sec-linear-transformations.html#linear-trans-pick-columns" class="xref" data-knowl="./knowl/index/linear-trans-pick-columns.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 3.3.12: Multiplying a matrix by the standard coordinate vectors">Fact</a></span>
+</div>
+<div class="indexitem">Minor<span class="indexknowl">. <span class="see"><em>See</em> Matrix</span></span>
+</div>
+<div class="indexitem">Multiplicity</div>
+<div class="subindexitem">algebraic<span class="indexknowl"> <span class="see">(<em>see</em> Algebraic multiplicity)</span></span>
+</div>
+<div class="subindexitem">geometric<span class="indexknowl"> <span class="see">(<em>see</em> Geometric multiplicity)</span></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-n">
 <div class="indexitem">Nontrivial solution<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
 </div>
 <div class="indexitem">Null space</div>
+<div class="subindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
 <div class="subindexitem">basis of<span class="indexknowl"> <span class="see">(<em>see</em> Basis)</span></span>
 </div>
 <div class="subindexitem">computing<span class="indexknowl"> <a href="sec-subspaces.html#subspaces-span-nullspace" class="xref" data-knowl="./knowl/index/subspaces-span-nullspace.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 2.6.18: Compute a spanning set for a null space">Recipe</a></span>
@@ -504,12 +1126,78 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="subindexitem">is a subspace<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces" class="internal" title="Subsection 2.6.2: Common Types of Subspaces">Subsection</a></span>
 </div>
+<div class="subindexitem">is the <span class="process-math">\(0\)</span>-eigenspace<span class="indexknowl"> <a href="sec-eigenvectors.html#evecs-eval0" class="xref" data-knowl="./knowl/index/evecs-eval0.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.1.30">Fact</a></span>
+</div>
 <div class="indexitem">Nullity<span class="indexknowl"> <a href="sec-rank-thm.html#sec-rank-thm-11" class="xref" data-knowl="./knowl/index/sec-rank-thm-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.9.1">Definition</a></span>
 </div>
 <div class="subindexitem">rank theorem<span class="indexknowl"> <a href="sec-rank-thm.html#rank-theorem" class="xref" data-knowl="./knowl/index/rank-theorem.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.9.2: Rank Theorem">Theorem</a></span>
 </div>
 </div>
+<div class="indexletter" id="indexletter-o">
+<div class="indexitem">One-to-one</div>
+<div class="subindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
+<div class="subindexitem">criteria for matrix transformations<span class="indexknowl"> <a href="sec-one-to-one-onto.html#matrix-trans-one-to-one" class="xref" data-knowl="./knowl/index/matrix-trans-one-to-one.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.2.5: One-to-one matrix transformations">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-one-to-one-transformations-2" class="xref" data-knowl="./knowl/index/subsec-one-to-one-transformations-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.2.1: One-to-one transformations">Definition</a></span>
+</div>
+<div class="subindexitem">equivalent formulations<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-one-to-one-transformations-4" class="xref" data-knowl="./knowl/index/subsec-one-to-one-transformations-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">finding two vectors with the same image<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-one-to-one-transformations-16" class="xref" data-knowl="./knowl/index/subsec-one-to-one-transformations-16.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">functions of one variable<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-one-to-one-transformations-8" class="xref" data-knowl="./knowl/index/subsec-one-to-one-transformations-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.2.3: Functions of one variable">Example</a></span>
+</div>
+<div class="subindexitem">negation of<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-one-to-one-transformations-6" class="xref" data-knowl="./knowl/index/subsec-one-to-one-transformations-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">square matrices<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-comparison-8" class="xref" data-knowl="./knowl/index/subsec-comparison-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.2.36: One-to-one is the same as onto for square matrices">Note</a></span>
+</div>
+<div class="subindexitem">versus onto<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-comparison-2" class="xref" data-knowl="./knowl/index/subsec-comparison-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">wide matrices<span class="indexknowl"> <a href="sec-one-to-one-onto.html#one-to-one-wide-matrices" class="xref" data-knowl="./knowl/index/one-to-one-wide-matrices.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.2.14: Wide matrices do not have one-to-one transformations">Note</a></span>
+</div>
+<div class="indexitem">Onto</div>
+<div class="subindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
+<div class="subindexitem">criteria for matrix transformations<span class="indexknowl"> <a href="sec-one-to-one-onto.html#matrix-trans-onto" class="xref" data-knowl="./knowl/index/matrix-trans-onto.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.2.19: Onto matrix transformations">Theorem</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-onto-transformations-2" class="xref" data-knowl="./knowl/index/subsec-onto-transformations-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.2.15: Onto transformations">Definition</a></span>
+</div>
+<div class="subindexitem">equivalent formulations<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-onto-transformations-4" class="xref" data-knowl="./knowl/index/subsec-onto-transformations-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">finding a vector not in the range<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-onto-transformations-14" class="xref" data-knowl="./knowl/index/subsec-onto-transformations-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">functions of one variable<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-onto-transformations-8" class="xref" data-knowl="./knowl/index/subsec-onto-transformations-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.2.17: Functions of one variable">Example</a></span>
+</div>
+<div class="subindexitem">negation of<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-onto-transformations-6" class="xref" data-knowl="./knowl/index/subsec-onto-transformations-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">square matrices<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-comparison-8" class="xref" data-knowl="./knowl/index/subsec-comparison-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.2.36: One-to-one is the same as onto for square matrices">Note</a></span>
+</div>
+<div class="subindexitem">tall matrices<span class="indexknowl"> <a href="sec-one-to-one-onto.html#one-to-one-tall-matrices" class="xref" data-knowl="./knowl/index/one-to-one-tall-matrices.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 3.2.26: Tall matrices do not have onto transformations">Note</a></span>
+</div>
+<div class="subindexitem">versus one-to-one<span class="indexknowl"> <a href="sec-one-to-one-onto.html#subsec-comparison-2" class="xref" data-knowl="./knowl/index/subsec-comparison-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Orthogonal projection</div>
+<div class="subindexitem">eigenvectors of<span class="indexknowl"> <a href="sec-eigenvectors.html#evec-eg-projection" class="xref" data-knowl="./knowl/index/evec-eg-projection.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.9: Projection">Example</a></span>
+</div>
+<div class="subindexitem">onto the <span class="process-math">\(xy\)</span>-plane<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-eg-projection" class="xref" data-knowl="./knowl/index/matrix-trans-eg-projection.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.5: Projection onto the xy-plane">Example</a> <a href="sec-matrix-transformations.html#subsec-matrix-transformations-10" class="xref" data-knowl="./knowl/index/subsec-matrix-transformations-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.28: Projection onto the xy-plane: reprise">Example</a></span>
+</div>
+<div class="subsubindexitem">noninvertibility of<span class="indexknowl"> <a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms-9" class="xref" data-knowl="./knowl/index/subsec-matrix-inv-linear-transforms-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.5.24: Projection">Example</a></span>
+</div>
+</div>
 <div class="indexletter" id="indexletter-p">
+<div class="indexitem">Parallelepiped</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-parallelograms-and-paralellepipeds-3" class="xref" data-knowl="./knowl/index/subsec-parallelograms-and-paralellepipeds-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.3.1">Definition</a></span>
+</div>
+<div class="subindexitem">flat<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-parallelograms-and-paralellepipeds-11" class="xref" data-knowl="./knowl/index/subsec-parallelograms-and-paralellepipeds-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 4.3.5">Note</a></span>
+</div>
+<div class="subindexitem">parallelogram<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-parallelograms-and-paralellepipeds-6" class="xref" data-knowl="./knowl/index/subsec-parallelograms-and-paralellepipeds-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 4.3.3: Parallelograms">Example</a></span>
+</div>
+<div class="subsubindexitem">area of<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-determinants-and-volumes-6" class="xref" data-knowl="./knowl/index/subsec-determinants-and-volumes-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 4.3.8: Area">Example</a></span>
+</div>
+<div class="subindexitem">volume of<span class="indexknowl"> <a href="sec-determinants-volumes.html#det-is-volume" class="xref" data-knowl="./knowl/index/det-is-volume.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.3.6: Determinants and volumes">Theorem</a></span>
+</div>
+<div class="indexitem">Parallelogram<span class="indexknowl">. <span class="see"><em>See</em> Parallelepiped</span></span>
+</div>
 <div class="indexitem">Parameterized equation<span class="indexknowl"> <a href="sec-parametric-form.html#subsec-free-variables-9" class="xref" data-knowl="./knowl/index/subsec-free-variables-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 1.3.5: Implicit Versus Parameterized Equations">Note</a></span>
 </div>
 <div class="indexitem">Parametric form<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-parametric-description" class="internal" title="Subsection 1.1.3: Parametric Description of Solution Sets">Subsection</a> <a href="sec-parametric-form.html#subsec-free-variables-7" class="xref" data-knowl="./knowl/index/subsec-free-variables-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 1.3.4: Parametric form">Recipe</a></span>
@@ -522,6 +1210,8 @@ eBookConfig.enable_chatcodes =  false;
 <div class="subindexitem">particular solution<span class="indexknowl"> <a href="sec-solution-sets.html#solnsets-translate-span" class="xref" data-knowl="./knowl/index/solnsets-translate-span.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Key Observation">Note</a></span>
 </div>
 <div class="indexitem">Particular solution<span class="indexknowl">. <span class="see"><em>See</em> Parametric vector form</span></span>
+</div>
+<div class="indexitem">Perron–Frobenius theorem<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-14" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.6.10: Perron–Frobenius Theorem">Theorem</a></span>
 </div>
 <div class="indexitem">Pivot<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-echelon-forms-5" class="xref" data-knowl="./knowl/index/subsec-row-reduction-echelon-forms-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.2.7">Definition</a></span>
 </div>
@@ -539,13 +1229,30 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="indexitem">Point<span class="indexknowl"> <a href="sec-vectors.html#subsec-vectors-in-rn-3" class="xref" data-knowl="./knowl/index/subsec-vectors-in-rn-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.1.1: Points and Vectors">Definition</a></span>
 </div>
+<div class="indexitem">Polynomial</div>
+<div class="subindexitem">characteristic<span class="indexknowl"> <span class="see">(<em>see</em> Characteristic polynomial)</span></span>
+</div>
+<div class="subindexitem">factoring by hand<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-14" class="xref" data-knowl="./knowl/index/sec-characteristic-polynomial-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Factoring the characteristic polynomial">Paragraphs</a></span>
+</div>
+<div class="subindexitem">rational roots<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#rational-root-thm" class="xref" data-knowl="./knowl/index/rational-root-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.2.16">Fact</a></span>
+</div>
+<div class="indexitem">Power of a matrix<span class="indexknowl">. <span class="see"><em>See</em> Matrix multiplication</span></span>
+</div>
+<div class="indexitem">Projection<span class="indexknowl">. <span class="see"><em>See</em> Orthogonal projection</span></span>
+</div>
+<div class="subindexitem">diagonalizability of<span class="indexknowl"> <a href="sec-diagonalization.html#diag-eg-proj" class="xref" data-knowl="./knowl/index/diag-eg-proj.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.19: A projection is diagonalizable">Example</a></span>
+</div>
 </div>
 <div class="indexletter" id="indexletter-q"><div class="indexitem">QR codes<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-15" class="xref" data-knowl="./knowl/index/subsec-Rn-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.12: QR Codes">Example</a></span>
 </div></div>
 <div class="indexletter" id="indexletter-r">
+<div class="indexitem">Range<span class="indexknowl">. <span class="see"><em>See</em> Transformation</span></span>
+</div>
 <div class="indexitem">Rank<span class="indexknowl"> <a href="sec-rank-thm.html#sec-rank-thm-11" class="xref" data-knowl="./knowl/index/sec-rank-thm-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.9.1">Definition</a></span>
 </div>
 <div class="subindexitem">rank theorem<span class="indexknowl"> <a href="sec-rank-thm.html#rank-theorem" class="xref" data-knowl="./knowl/index/rank-theorem.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.9.2: Rank Theorem">Theorem</a></span>
+</div>
+<div class="indexitem">Rational Root Theorem<span class="indexknowl"> <a href="sec-characteristic-polynomial.html#rational-root-thm" class="xref" data-knowl="./knowl/index/rational-root-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.2.16">Fact</a></span>
 </div>
 <div class="indexitem">Real <span class="process-math">\(n\)</span>-space<span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-3" class="xref" data-knowl="./knowl/index/subsec-Rn-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.4">Definition</a></span>
 </div>
@@ -555,13 +1262,52 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="indexitem">Real numbers <span class="process-math">\(\R\)</span><span class="indexknowl"> <a href="sec-systems-of-eqns.html#subsec-Rn-2" class="xref" data-knowl="./knowl/index/subsec-Rn-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a> <a href="sec-systems-of-eqns.html#subsec-Rn-5" class="xref" data-knowl="./knowl/index/subsec-Rn-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.1.5: The number line">Example</a></span>
 </div>
+<div class="indexitem">Red Box<span class="indexknowl"> <a href="sec-stochastic-matrices.html#stochastic-redbox-eg1" class="xref" data-knowl="./knowl/index/stochastic-redbox-eg1.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.6.2">Example</a> <a href="sec-stochastic-matrices.html#stochastic-redbox-eg2" class="xref" data-knowl="./knowl/index/stochastic-redbox-eg2.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.6.7">Example</a> <a href="sec-stochastic-matrices.html#stochastic-redbox-eg3" class="xref" data-knowl="./knowl/index/stochastic-redbox-eg3.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.6.13">Example</a></span>
+</div>
 <div class="indexitem">Reduced row echelon form<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-echelon-forms-7" class="xref" data-knowl="./knowl/index/subsec-row-reduction-echelon-forms-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.2.8">Definition</a></span>
+</div>
+<div class="subindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
+<div class="indexitem">Reflection</div>
+<div class="subindexitem">eigenspaces of<span class="indexknowl"> <a href="sec-eigenvectors.html#subsec-eigenspaces-10" class="xref" data-knowl="./knowl/index/subsec-eigenspaces-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.27: Reflection">Example</a></span>
+</div>
+<div class="subindexitem">eigenvectors of<span class="indexknowl"> <a href="sec-eigenvectors.html#evec-eg-reflection" class="xref" data-knowl="./knowl/index/evec-eg-reflection.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.7: Reflection">Example</a></span>
+</div>
+<div class="subindexitem">over the <span class="process-math">\(y\)</span>-axis<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-eg-reflection" class="xref" data-knowl="./knowl/index/matrix-trans-eg-reflection.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.7: Reflection">Example</a> <a href="sec-matrix-transformations.html#subsec-matrix-transformations-12" class="xref" data-knowl="./knowl/index/subsec-matrix-transformations-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.29: Matrix transformations of \R^2">Example</a></span>
+</div>
+<div class="subsubindexitem">inverse of<span class="indexknowl"> <a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms-8" class="xref" data-knowl="./knowl/index/subsec-matrix-inv-linear-transforms-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.5.22: Reflection">Example</a> <a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms-17" class="xref" data-knowl="./knowl/index/subsec-matrix-inv-linear-transforms-17.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.5.32: Reflection">Example</a></span>
+</div>
+<div class="indexitem">Rotation</div>
+<div class="subindexitem">composition of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-composition-and-matrix-multiplication-6" class="xref" data-knowl="./knowl/index/subsec-composition-and-matrix-multiplication-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.4.27: Composition of rotations">Example</a></span>
+</div>
+<div class="subindexitem">counterclockwise by <span class="process-math">\(45^\circ\)</span><span class="indexknowl"> <a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms-7" class="xref" data-knowl="./knowl/index/subsec-matrix-inv-linear-transforms-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.5.19: Rotation">Example</a> <a href="sec-matrix-inverses.html#subsec-matrix-inv-linear-transforms-16" class="xref" data-knowl="./knowl/index/subsec-matrix-inv-linear-transforms-16.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.5.31: Rotation">Example</a></span>
+</div>
+<div class="subindexitem">counterclockwise by <span class="process-math">\(90^\circ\)</span><span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-eg-rotation" class="xref" data-knowl="./knowl/index/matrix-trans-eg-rotation.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.13: Rotation">Example</a> <a href="sec-matrix-transformations.html#subsec-matrix-transformations-12" class="xref" data-knowl="./knowl/index/subsec-matrix-transformations-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.29: Matrix transformations of \R^2">Example</a></span>
+</div>
+<div class="subindexitem">counterclockwise by <span class="process-math">\(\theta\)</span><span class="indexknowl"> <a href="sec-linear-transformations.html#linear-trans-rotation-matrix" class="xref" data-knowl="./knowl/index/linear-trans-rotation-matrix.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.3.18: The matrix of a rotation">Example</a></span>
+</div>
+<div class="subindexitem">eigenvectors of<span class="indexknowl"> <a href="sec-eigenvectors.html#evecs-eg-rotation" class="xref" data-knowl="./knowl/index/evecs-eg-rotation.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.17: Rotation">Example</a></span>
+</div>
+<div class="subindexitem">non-diagonalizability of<span class="indexknowl"> <a href="sec-diagonalization.html#diag-eg-rotation" class="xref" data-knowl="./knowl/index/diag-eg-rotation.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.23: A rotation matrix">Example</a></span>
+</div>
+<div class="indexitem">Rotation-scaling matrix</div>
+<div class="subindexitem">and complex eigenvalues<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#cplx-diagonalization-thm" class="xref" data-knowl="./knowl/index/cplx-diagonalization-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.5.14">Theorem</a></span>
+</div>
+<div class="subindexitem">computing the angle<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-rotation-scaling-matrices-12" class="xref" data-knowl="./knowl/index/subsec-rotation-scaling-matrices-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.5.13">Insight</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-rotation-scaling-matrices-3" class="xref" data-knowl="./knowl/index/subsec-rotation-scaling-matrices-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.5.7">Definition</a></span>
+</div>
+<div class="subindexitem">structure of<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#cplx-eval-rot-scale" class="xref" data-knowl="./knowl/index/cplx-eval-rot-scale.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 5.5.8">Proposition</a></span>
+</div>
+<div class="indexitem">Rotation-Scaling Theorem<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#cplx-diagonalization-thm" class="xref" data-knowl="./knowl/index/cplx-diagonalization-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.5.14">Theorem</a></span>
 </div>
 <div class="indexitem">Row echelon form<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-echelon-forms-3" class="xref" data-knowl="./knowl/index/subsec-row-reduction-echelon-forms-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.2.6">Definition</a></span>
 </div>
 <div class="indexitem">Row equivalence<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5-7" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.2.4">Definition</a></span>
 </div>
 <div class="indexitem">Row operations<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Augmented Matrices and Row Operations">Paragraphs</a></span>
+</div>
+<div class="subindexitem">and determinants<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-the-defn" class="xref" data-knowl="./knowl/index/det-defn-the-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.1">Definition</a></span>
 </div>
 <div class="subindexitem">replacement<span class="indexknowl"> <a href="sec-row-reduction.html#subsec-row-reduction-elimination-5-2-13-2" class="xref" data-knowl="./knowl/index/subsec-row-reduction-elimination-5-2-13-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Item">Item</a></span>
 </div>
@@ -572,6 +1318,8 @@ eBookConfig.enable_chatcodes =  false;
 <div class="indexitem">Row reduction</div>
 <div class="subindexitem">algorithm<span class="indexknowl"> <a href="sec-row-reduction.html#algo-row-reduction" class="xref" data-knowl="./knowl/index/algo-row-reduction.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 1.2.12: Row Reduction">Recipe</a></span>
 </div>
+<div class="subindexitem">computing determinants<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#det-defn-ref-compute" class="xref" data-knowl="./knowl/index/det-defn-ref-compute.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 4.1.5: Computing determinants by row reducing">Recipe</a></span>
+</div>
 <div class="subindexitem">picture of<span class="indexknowl"> <a href="sec-row-reduction.html#sec-row-reduction-6-9" class="xref" data-knowl="./knowl/index/sec-row-reduction-6-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
 </div>
 <div class="indexitem">Row replacement<span class="indexknowl">. <span class="see"><em>See</em> Row operations, replacement</span></span>
@@ -580,7 +1328,55 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 </div>
 <div class="indexletter" id="indexletter-s">
+<div class="indexitem">Scale<span class="indexknowl">. <span class="see"><em>See</em> Dilation</span><span class="see">; Row operations, scaling</span></span>
+</div>
 <div class="indexitem">Set builder notation<span class="indexknowl"> <a href="sec-spans.html#set-builder-notation" class="xref" data-knowl="./knowl/index/set-builder-notation.html" data-reveal-label="Reveal" data-close-label="Close" title="Note 2.2.7: Set Builder Notation">Note</a></span>
+</div>
+<div class="indexitem">Shear</div>
+<div class="subindexitem">eigenvectors of<span class="indexknowl"> <a href="sec-eigenvectors.html#evecs-eg-shear" class="xref" data-knowl="./knowl/index/evecs-eg-shear.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.15: Shear">Example</a></span>
+</div>
+<div class="subindexitem">in the <span class="process-math">\(x\)</span>-direction<span class="indexknowl"> <a href="sec-matrix-transformations.html#matrix-trans-shear" class="xref" data-knowl="./knowl/index/matrix-trans-shear.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.15: Shear">Example</a> <a href="sec-matrix-transformations.html#subsec-matrix-transformations-12" class="xref" data-knowl="./knowl/index/subsec-matrix-transformations-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.29: Matrix transformations of \R^2">Example</a></span>
+</div>
+<div class="subindexitem">multiplicities<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity-6" class="xref" data-knowl="./knowl/index/subsec-algebraic-and-geometric-multiplicity-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.38">Example</a></span>
+</div>
+<div class="subindexitem">non-diagonalizability of<span class="indexknowl"> <a href="sec-diagonalization.html#diag-eg-shear" class="xref" data-knowl="./knowl/index/diag-eg-shear.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.17: A shear is not diagonalizable">Example</a></span>
+</div>
+<div class="indexitem">Similarity</div>
+<div class="subindexitem">action on a vector<span class="indexknowl"> <a href="sec-similarity.html#subsec-geometry-of-similar-matrices-7" class="xref" data-knowl="./knowl/index/subsec-geometry-of-similar-matrices-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 5.3.9: Computing Ax in terms of B">Recipe</a></span>
+</div>
+<div class="subindexitem">and eigenspaces<span class="indexknowl"> <a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices-10" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-of-similar-matrices-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Note">Note</a></span>
+</div>
+<div class="subindexitem">and eigenvalues<span class="indexknowl"> <a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices-5" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-of-similar-matrices-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Note">Note</a></span>
+</div>
+<div class="subindexitem">and eigenvectors<span class="indexknowl"> <a href="sec-similarity.html#similarity-evecs" class="xref" data-knowl="./knowl/index/similarity-evecs.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.3.20">Theorem</a></span>
+</div>
+<div class="subindexitem">and multiplicities<span class="indexknowl"> <a href="sec-diagonalization.html#diag-similar-amgm" class="xref" data-knowl="./knowl/index/diag-similar-amgm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.4.50">Theorem</a></span>
+</div>
+<div class="subindexitem">and powers<span class="indexknowl"> <a href="sec-similarity.html#similarity-powers" class="xref" data-knowl="./knowl/index/similarity-powers.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.3.7">Fact</a></span>
+</div>
+<div class="subindexitem">and the characteristic polynomial<span class="indexknowl"> <a href="sec-similarity.html#similarity-charpoly" class="xref" data-knowl="./knowl/index/similarity-charpoly.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.3.18">Theorem</a></span>
+</div>
+<div class="subindexitem">and the determinant<span class="indexknowl"> <a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices-6" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-of-similar-matrices-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">and the trace<span class="indexknowl"> <a href="sec-similarity.html#subsec-eigenvalues-of-similar-matrices-6" class="xref" data-knowl="./knowl/index/subsec-eigenvalues-of-similar-matrices-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-similarity.html#subsec-similar-matrices-3" class="xref" data-knowl="./knowl/index/subsec-similar-matrices-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.3.2">Definition</a></span>
+</div>
+<div class="subindexitem">equivalence relation<span class="indexknowl"> <a href="sec-similarity.html#similarity-eq-reln" class="xref" data-knowl="./knowl/index/similarity-eq-reln.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 5.3.5">Proposition</a></span>
+</div>
+<div class="subindexitem">geometry of<span class="indexknowl"> <a href="sec-similarity.html#subsec-geometry-of-similar-matrices" class="internal" title="Subsection 5.3.2: Geometry of Similar Matrices">Subsection</a></span>
+</div>
+<div class="subindexitem">identity matrix<span class="indexknowl"> <a href="sec-similarity.html#subsec-similar-matrices-6" class="xref" data-knowl="./knowl/index/subsec-similar-matrices-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">of <span class="process-math">\(2\times 2\)</span> matrices<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-17" class="xref" data-knowl="./knowl/index/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-17.html" data-reveal-label="Reveal" data-close-label="Close" title="Remark 5.5.27: Classification of 2\times 2 matrices up to similarity">Remark</a></span>
+</div>
+<div class="subindexitem">of diagonal matrices<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity-19-11" class="xref" data-knowl="./knowl/index/subsec-algebraic-and-geometric-multiplicity-19-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.56: Diagonal matrices with the same entries are similar">Example</a></span>
+</div>
+<div class="subindexitem">of diagonalizable matrices<span class="indexknowl"> <a href="sec-diagonalization.html#subsec-algebraic-and-geometric-multiplicity-19-9" class="xref" data-knowl="./knowl/index/subsec-algebraic-and-geometric-multiplicity-19-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 5.4.54">Insight</a></span>
+</div>
+<div class="subindexitem">to a diagonal matrix<span class="indexknowl"> <span class="see">(<em>see</em> Diagonalizability)</span></span>
+</div>
+<div class="subindexitem">worked example<span class="indexknowl"> <a href="sec-similarity.html#similarity-worked-eg" class="xref" data-knowl="./knowl/index/similarity-worked-eg.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.3.10">Example</a></span>
 </div>
 <div class="indexitem">Solution<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
 </div>
@@ -616,6 +1412,34 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="subindexitem">pictures of<span class="indexknowl"> <a href="sec-spans.html#subsec-spans-9" class="xref" data-knowl="./knowl/index/subsec-spans-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Pictures of Spans">Paragraphs</a></span>
 </div>
+<div class="indexitem">Standard coordinate vectors</div>
+<div class="subindexitem">and matrix columns<span class="indexknowl"> <a href="sec-linear-transformations.html#linear-trans-pick-columns" class="xref" data-knowl="./knowl/index/linear-trans-pick-columns.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 3.3.12: Multiplying a matrix by the standard coordinate vectors">Fact</a></span>
+</div>
+<div class="subindexitem">columns of the identity matrix<span class="indexknowl"> <a href="sec-linear-transformations.html#linear-trans-identity-mat" class="xref" data-knowl="./knowl/index/linear-trans-identity-mat.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.13">Definition</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-linear-transformations.html#defn-standard-coord-vectors" class="xref" data-knowl="./knowl/index/defn-standard-coord-vectors.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.3.11: Standard coordinate vectors">Insight</a></span>
+</div>
+<div class="subindexitem">picture of<span class="indexknowl"> <a href="sec-linear-transformations.html#subsec-the-standard-coordinate-vectors-5" class="xref" data-knowl="./knowl/index/subsec-the-standard-coordinate-vectors-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Standard matrix<span class="indexknowl">. <span class="see"><em>See</em> Linear transformation</span></span>
+</div>
+<div class="indexitem">Steady state<span class="indexknowl">. <span class="see"><em>See</em> Stochastic matrix</span></span>
+</div>
+<div class="indexitem">Stochastic matrix</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-3" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.6.5">Definition</a></span>
+</div>
+<div class="subindexitem">eigenvalues of<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-10" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.6.8">Fact</a></span>
+</div>
+<div class="subindexitem">long-term behavior of<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-14" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-14.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.6.10: Perron–Frobenius Theorem">Theorem</a></span>
+</div>
+<div class="subindexitem">picture of<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-20-7" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-20-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 5.6.12">Figure</a> <a href="sec-stochastic-matrices.html#stochastic-redbox-eg3-6" class="xref" data-knowl="./knowl/index/stochastic-redbox-eg3-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 5.6.14">Figure</a></span>
+</div>
+<div class="subindexitem">steady state of<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-12" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-12.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 5.6.9">Definition</a></span>
+</div>
+<div class="subsubindexitem">computing<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-17" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-17.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Recipe 1: Compute the steady state vector">Note</a> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-19" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-19.html" data-reveal-label="Reveal" data-close-label="Close" title="Note: Recipe 2: Approximate the steady state vector by computer">Note</a></span>
+</div>
+<div class="subindexitem">sum of entries of vector<span class="indexknowl"> <a href="sec-stochastic-matrices.html#subsec-stochastic-matrices-and-the-steady-state-8" class="xref" data-knowl="./knowl/index/subsec-stochastic-matrices-and-the-steady-state-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Note">Note</a></span>
+</div>
 <div class="indexitem">Subset</div>
 <div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-subspaces.html#subsec-subspaces-definition-and-examples-2" class="xref" data-knowl="./knowl/index/subsec-subspaces-definition-and-examples-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.6.1">Definition</a></span>
 </div>
@@ -637,6 +1461,8 @@ eBookConfig.enable_chatcodes =  false;
 <div class="subindexitem">writing as column or null space<span class="indexknowl"> <a href="sec-subspaces.html#subsec-common-types-of-subspaces-15" class="xref" data-knowl="./knowl/index/subsec-common-types-of-subspaces-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraphs: Writing a subspace as a column space or a null space">Paragraphs</a></span>
 </div>
 <div class="subindexitem">zero<span class="indexknowl"> <a href="sec-subspaces.html#subsec-subspaces-definition-and-examples-9" class="xref" data-knowl="./knowl/index/subsec-subspaces-definition-and-examples-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.6.5">Example</a></span>
+</div>
+<div class="indexitem">Superposition principle<span class="indexknowl"> <a href="sec-linear-transformations.html#subsec-linear-transformations-definition-7" class="xref" data-knowl="./knowl/index/subsec-linear-transformations-definition-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
 </div>
 <div class="indexitem">System of linear equations</div>
 <div class="subindexitem">consistent<span class="indexknowl"> <a href="sec-systems-of-eqns.html#sec-systems-of-eqns-3-8" class="xref" data-knowl="./knowl/index/sec-systems-of-eqns-3-8.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.3">Definition</a></span>
@@ -665,6 +1491,8 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="subsubindexitem">and free variables<span class="indexknowl"> <a href="sec-solution-sets.html#solnsets-nontrivial" class="xref" data-knowl="./knowl/index/solnsets-nontrivial.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.4.2">Example</a></span>
 </div>
+<div class="subsubindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
+</div>
 <div class="subsubindexitem">finding<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-homog-18" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Note">Note</a></span>
 </div>
 <div class="subindexitem">number of solutions of<span class="indexknowl"> <a href="sec-parametric-form.html#subsec-number-of-solutions" class="internal" title="Subsection 1.3.2: Number of Solutions">Subsection</a></span>
@@ -677,11 +1505,70 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="subindexitem">solution of<span class="indexknowl"> <a href="sec-systems-of-eqns.html#systems-eqns-soln-sets" class="xref" data-knowl="./knowl/index/systems-eqns-soln-sets.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 1.1.2: Solution sets">Definition</a></span>
 </div>
+<div class="subindexitem">solving with the inverse matrix<span class="indexknowl"> <a href="sec-matrix-inverses.html#matrix-inv-solve-system" class="xref" data-knowl="./knowl/index/matrix-inv-solve-system.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.5.11">Theorem</a></span>
+</div>
 <div class="subindexitem">trivial solution<span class="indexknowl"> <a href="sec-solution-sets.html#subsec-solnsets-homog-5" class="xref" data-knowl="./knowl/index/subsec-solnsets-homog-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Note">Note</a></span>
 </div>
+<div class="subsubindexitem">and invertibility<span class="indexknowl"> <a href="sec-eigenvectors.html#imt-2" class="xref" data-knowl="./knowl/index/imt-2.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.1.31">Theorem</a></span>
 </div>
-<div class="indexletter" id="indexletter-t"><div class="indexitem">Trivial solution<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
-</div></div>
+</div>
+<div class="indexletter" id="indexletter-t">
+<div class="indexitem">Tall matrix<span class="indexknowl">. <span class="see"><em>See</em> Matrix transformation</span></span>
+</div>
+<div class="indexitem">Trace<span class="indexknowl">. <span class="see"><em>See</em> Matrix</span></span>
+</div>
+<div class="indexitem">Transformation</div>
+<div class="subindexitem">addition of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices-3" class="xref" data-knowl="./knowl/index/subsec-the-algebra-of-transformations-and-matrices-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.4.33">Definition</a></span>
+</div>
+<div class="subindexitem">as a machine<span class="indexknowl"> <a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations-4" class="xref" data-knowl="./knowl/index/subsec-matrix-trans-transformations-4.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">associated to a matrix<span class="indexknowl"> <span class="see">(<em>see</em> Matrix transformation)</span></span>
+</div>
+<div class="subindexitem">codomain of<span class="indexknowl"> <a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations-3" class="xref" data-knowl="./knowl/index/subsec-matrix-trans-transformations-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.1.17">Definition</a></span>
+</div>
+<div class="subindexitem">composition of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-composition-of-linear-transformations-3" class="xref" data-knowl="./knowl/index/subsec-composition-of-linear-transformations-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.4.1">Definition</a></span>
+</div>
+<div class="subsubindexitem">noncommutativity of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-composition-of-linear-transformations-15" class="xref" data-knowl="./knowl/index/subsec-composition-of-linear-transformations-15.html" data-reveal-label="Reveal" data-close-label="Close" title="Insight 3.4.11">Insight</a></span>
+</div>
+<div class="subsubindexitem">order of operations<span class="indexknowl"> <a href="sec-matrix-multiplication.html#matrix-mult-order-ops" class="xref" data-knowl="./knowl/index/matrix-mult-order-ops.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.4.24: Order of Operations">Example</a></span>
+</div>
+<div class="subindexitem">definition of<span class="indexknowl"> <a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations-3" class="xref" data-knowl="./knowl/index/subsec-matrix-trans-transformations-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.1.17">Definition</a></span>
+</div>
+<div class="subindexitem">domain of<span class="indexknowl"> <a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations-3" class="xref" data-knowl="./knowl/index/subsec-matrix-trans-transformations-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.1.17">Definition</a></span>
+</div>
+<div class="subindexitem">identity<span class="indexknowl"> <span class="see">(<em>see</em> Identity transformation)</span></span>
+</div>
+<div class="subindexitem">invertible<span class="indexknowl"> <span class="see">(<em>see</em> Invertible transformation)</span></span>
+</div>
+<div class="subindexitem">linear<span class="indexknowl"> <span class="see">(<em>see</em> Linear transformation)</span></span>
+</div>
+<div class="subindexitem">of one variable<span class="indexknowl"> <a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations-6" class="xref" data-knowl="./knowl/index/subsec-matrix-trans-transformations-6.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.18: A Function of one variable">Example</a></span>
+</div>
+<div class="subindexitem">of several variables<span class="indexknowl"> <a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations-7" class="xref" data-knowl="./knowl/index/subsec-matrix-trans-transformations-7.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.1.19: Functions of several variables">Example</a></span>
+</div>
+<div class="subindexitem">one-to-one<span class="indexknowl"> <span class="see">(<em>see</em> One-to-one)</span></span>
+</div>
+<div class="subindexitem">onto<span class="indexknowl"> <span class="see">(<em>see</em> Onto)</span></span>
+</div>
+<div class="subindexitem">range of<span class="indexknowl"> <a href="sec-matrix-transformations.html#subsec-matrix-trans-transformations-3" class="xref" data-knowl="./knowl/index/subsec-matrix-trans-transformations-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.1.17">Definition</a></span>
+</div>
+<div class="subindexitem">scalar multiplication of<span class="indexknowl"> <a href="sec-matrix-multiplication.html#subsec-the-algebra-of-transformations-and-matrices-3" class="xref" data-knowl="./knowl/index/subsec-the-algebra-of-transformations-and-matrices-3.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.4.33">Definition</a></span>
+</div>
+<div class="indexitem">Transpose<span class="indexknowl">. <span class="see"><em>See</em> Matrix</span></span>
+</div>
+<div class="indexitem">Triangle</div>
+<div class="subindexitem">area of<span class="indexknowl"> <span class="see">(<em>see</em> Volume)</span></span>
+</div>
+<div class="indexitem">Trivial solution<span class="indexknowl">. <span class="see"><em>See</em> System of linear equations</span></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-u">
+<div class="indexitem">Unit cube<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-parallelograms-and-paralellepipeds-5" class="xref" data-knowl="./knowl/index/subsec-parallelograms-and-paralellepipeds-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 4.3.2: The unit cube">Example</a></span>
+</div>
+<div class="indexitem">Upper-triangular</div>
+<div class="subindexitem">see Matrix<span class="indexknowl"> <a href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant-18" class="xref" data-knowl="./knowl/index/subsec-the-definition-of-the-determinant-18.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.10">Definition</a></span>
+</div>
+</div>
 <div class="indexletter" id="indexletter-v">
 <div class="indexitem">Vector</div>
 <div class="subindexitem">addition<span class="indexknowl"> <a href="sec-vectors.html#subsec-vector-algebra-and-geometry-3-2-1-1-1" class="xref" data-knowl="./knowl/index/subsec-vector-algebra-and-geometry-3-2-1-1-1.html" data-reveal-label="Reveal" data-close-label="Close" title="Item">Item</a></span>
@@ -693,6 +1580,8 @@ eBookConfig.enable_chatcodes =  false;
 <div class="subindexitem">linear combination of<span class="indexknowl"> <span class="see">(<em>see</em> Linear combination)</span></span>
 </div>
 <div class="subindexitem">product with matrix<span class="indexknowl"> <span class="see">(<em>see</em> Matrix-vector product)</span></span>
+</div>
+<div class="subindexitem">real and imaginary parts of<span class="indexknowl"> <a href="sec-complex-eigenvalues.html#subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-5" class="xref" data-knowl="./knowl/index/subsec-geometry-of-2times-2-matrices-with-a-complex-eigenvalue-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">Paragraph</a></span>
 </div>
 <div class="subindexitem">row vector<span class="indexknowl"> <a href="sec-matrix-equations.html#matrixeq-row-column-prod" class="xref" data-knowl="./knowl/index/matrixeq-row-column-prod.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.3.9">Definition</a></span>
 </div>
@@ -718,7 +1607,22 @@ eBookConfig.enable_chatcodes =  false;
 </div>
 <div class="subindexitem">solving<span class="indexknowl"> <a href="sec-spans.html#subsec-vector-equations-11" class="xref" data-knowl="./knowl/index/subsec-vector-equations-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Recipe 2.2.5: Solving a vector equation">Recipe</a></span>
 </div>
+<div class="indexitem">Volume</div>
+<div class="subindexitem">and length<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-determinants-and-volumes-5" class="xref" data-knowl="./knowl/index/subsec-determinants-and-volumes-5.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 4.3.7: Length">Example</a></span>
 </div>
+<div class="subindexitem">of a parallelepiped<span class="indexknowl"> <a href="sec-determinants-volumes.html#det-is-volume" class="xref" data-knowl="./knowl/index/det-is-volume.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.3.6: Determinants and volumes">Theorem</a></span>
+</div>
+<div class="subindexitem">of a region<span class="indexknowl"> <a href="sec-determinants-volumes.html#det-vol-regions" class="xref" data-knowl="./knowl/index/det-vol-regions.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.3.13">Theorem</a></span>
+</div>
+<div class="subindexitem">of a triangle<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-determinants-and-volumes-9" class="xref" data-knowl="./knowl/index/subsec-determinants-and-volumes-9.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 4.3.11: Area of a triangle">Example</a></span>
+</div>
+<div class="subindexitem">of an ellipse<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-volumes-of-regions-10" class="xref" data-knowl="./knowl/index/subsec-volumes-of-regions-10.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 4.3.15: Area of an ellipse">Example</a></span>
+</div>
+<div class="subindexitem">signed<span class="indexknowl"> <a href="sec-determinants-volumes.html#subsec-determinants-and-volumes-11" class="xref" data-knowl="./knowl/index/subsec-determinants-and-volumes-11.html" data-reveal-label="Reveal" data-close-label="Close" title="Remark 4.3.12: Signed volumes">Remark</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-w"><div class="indexitem">Wide matrix<span class="indexknowl">. <span class="see"><em>See</em> Linear independence</span><span class="see">; Matrix transformation</span></span>
+</div></div>
 <div class="autopermalink" aria-hidden="true" data-description="Index: Index"><a tabindex="-1" href="#backmatter-5" title="Copy heading and permalink for Index: Index" aria-label="Copy heading and permalink for Index: Index">🔗</a></div>
 </section>
 </div>

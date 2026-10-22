@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Implicit Function of Best Fit</title>
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
+    .caption-bar {
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
+    }
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+    #eqn-here   { color: var(--palette-red); }
+    #sumsq-here { color: var(--palette-violet); }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Implicit best fit controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <p>Best-fit equation: <span id="eqn-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p>Quantity minimized: <span id="sumsq-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p class="hint">Drag the points in the right panel, or edit their coordinates below.</p>
+    <details class="panel">
+      <summary>Edit points</summary>
+      <div id="vec-inputs" class="vec-grid" role="group" aria-label="Data point coordinates"></div>
+    </details>
+  </div>
+
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
+  <div id="mathbox-container" aria-hidden="true">
+    <div class="mb-panel"><div id="mathbox1">
+        <div class="mathbox-label">Graph</div>
+      </div></div>
+    <div class="mb-panel"><div id="mathbox2">
+        <div class="mathbox-label">Zero Set</div>
+      </div></div>
+  </div>
+
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
+  <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+    var bestFitStr, bestfit, bvec, func, funcStr, funcStrUrl, funcFragment, matrix, numParams,
+        numTargets, params, paramVals, range, rangeZ, targets, uniforms, units, vars, xhat,
+        zeroParams, i, letter, editor = null, updateCaption = function() {};
+
+    // ── URL parameters ────────────────────────────────────────────────────
+    range   = urlParams.get('range',  'float', 10);
+    rangeZ  = urlParams.get('rangez', 'float', range);
+    funcStr = urlParams.func != null ? urlParams.func : 'C*x+D';
+    funcStr = funcStr.replace(/\s+/g, '+');
+
+    func = exprEval.Parser.parse(funcStr);
+    params = [];
+    zeroParams = {};
+    uniforms = {};
+    vars = ['x', 'y'];
+    func.variables().sort().forEach(function(l) {
+      if (l === 'x' || l === 'y') return;
+      params.push(l);
+      zeroParams[l] = 0;
+      uniforms[l] = { type: 'f', value: 0.0 };
+    });
+    numParams = params.length;
+    units = params.map(function(p0) {
+      var obj = {};
+      params.forEach(function(p) { obj[p] = 0; });
+      obj[p0] = 1;
+      return obj;
+    });
+    targets = [];
+    i = 1;
+    while (urlParams['v' + i] != null) {
+      var target = urlParams.get('v' + i, 'float[]');
+      target[2] = 0;
+      targets.push(target);
+      i++;
+    }
+    numTargets = targets.length;
+    matrix = params.map(function() { return targets.map(function() { return 0; }); });
+    bvec   = targets.map(function() { return 0; });
+    xhat   = params.map(function() { return 0; });
+    bestfit = function() { return 0; };
+    bestFitStr = '';
+    paramVals = {};
+
+    // GLSL can't use ^: x^2 -> x*x
+    funcStrUrl = funcStr.replace(/([a-zA-Z_]+)\^(\d+)/g, function(match, p1, p2) {
+      var r = [];
+      for (var n = 0; n < parseInt(p2); n++) r.push(p1);
+      return r.join('*');
+    });
+    funcFragment = params.map(function(l) { return 'uniform float ' + l + ';\n'; }).join('') +
+                   '\n\nfloat func(float x, float y) {\n    return ' + funcStrUrl + ';\n}';
+    for (var op in func.unaryOps) {
+      if (op.match(/^[a-zA-Z]+$/)) funcStr = funcStr.replace(new RegExp(op, 'g'), '\\' + op);
+    }
+    function dot(v1, v2) {
+      var ret = 0;
+      for (var n = 0; n < v1.length; n++) ret += v1[n] * v2[n];
+      return ret;
+    }
+
+    function makeString() {
+      bestFitStr = funcStr;
+      params.forEach(function(l, n) {
+        var val = xhat[n], valAlone, valPlus, valMinus;
+        if (val >= 0) {
+          valAlone = val.toFixed(2); valPlus = '+' + valAlone; valMinus = '-' + valAlone;
+        } else {
+          valAlone = (-val).toFixed(2); valPlus = '-' + valAlone; valMinus = '+' + valAlone;
+          valAlone = '-' + valAlone;
+        }
+        bestFitStr = bestFitStr.replace(new RegExp('\\+' + l + '\\*', 'g'), valPlus + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp('\\+' + l, 'g'), valPlus);
+        bestFitStr = bestFitStr.replace(new RegExp('-' + l + '\\*', 'g'), valMinus + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp('-' + l, 'g'), valMinus);
+        bestFitStr = bestFitStr.replace(new RegExp(l + '\\*', 'g'), valAlone + '\\,');
+        bestFitStr = bestFitStr.replace(new RegExp(l, 'g'), valAlone);
+        bestFitStr = bestFitStr.replace(/\*/g, '');
+      });
+    }
+
+    function solve() {
+      var eqno, n, linear, constant, ATA, ATb;
+      for (eqno = 0; eqno < numTargets; eqno++) {
+        linear = func.simplify({ x: targets[eqno][0], y: targets[eqno][1] });
+        constant = linear.evaluate(zeroParams);
+        for (n = 0; n < numParams; n++) matrix[n][eqno] = linear.evaluate(units[n]) - constant;
+        bvec[eqno] = targets[eqno][2] - constant;
+      }
+      ATA = params.map(function(p, j) { return params.map(function(q, k) { return dot(matrix[k], matrix[j]); }); });
+      ATb = params.map(function(p, k) { return dot(matrix[k], bvec); });
+      rowReduce(ATA)[3](ATb, xhat);
+      params.forEach(function(l, n) {
+        paramVals[l] = xhat[n];
+        uniforms[l].value = xhat[n];
+      });
+      bestfit = func.simplify(paramVals).toJSFunction(vars.join(','));
+      makeString();
+      if (editor) editor.sync();
+      updateCaption();
+    }
+    solve();
+
+    // ── GLSL shader strings (unchanged from ILA) ──────────────────────────
+    var clipShader = [
+      '// Enable STPQ mapping',
+      '#define POSITION_STPQ',
+      'void getPosition(inout vec4 xyzw, inout vec4 stpq) {',
+      '  stpq = xyzw;',
+      '}'
+    ].join('\n');
+    var shadeFragment = [
+      'varying vec3 vNormal;',
+      'varying vec3 vLight;',
+      'varying vec3 vPosition;',
+      '',
+      'vec3 offSpecular(vec3 color) {',
+      '  vec3 c = 1.0 - color;',
+      '  return 1.0 - c * c;',
+      '}',
+      '',
+      'vec4 getShadedColor(vec4 rgba) {',
+      '  vec3 color    = rgba.xyz;',
+      '  vec3 color2   = offSpecular(rgba.xyz);',
+      '  vec3 normal   = normalize(vNormal);',
+      '  vec3 light    = normalize(vLight);',
+      '  vec3 position = normalize(vPosition);',
+      '  float side    = gl_FrontFacing ? -1.0 : 1.0;',
+      '  float cosine  = side * dot(normal, light);',
+      '  float diffuse = mix(max(0.0, cosine), .5 + .5 * cosine, .1);',
+      '  vec3  halfLight  = normalize(light + position);',
+      '  float cosineHalf = max(0.0, side * dot(normal, halfLight));',
+      '  float specular   = pow(cosineHalf, 16.0);',
+      '  return vec4(color * (diffuse * .9 + .05) + .25 * color2 * specular, rgba.a);',
+      '}'
+    ].join('\n');
+    function sampleRing(radius) {
+      var s = '';
+      for (var k = 0; k < 8; k++) {
+        var c = Math.cos(2 * Math.PI * k / 8) * radius;
+        var sn = Math.sin(2 * Math.PI * k / 8) * radius;
+        s += 'if(func(stpq.x + ' + c.toFixed(8) + ', stpq.y + ' + sn.toFixed(8) + ') * val < 0.0)\n';
+        s += '    return rgba;\n';
+      }
+      return s;
+    }
+    var curveFragment = [
+      '// Enable STPQ mapping',
+      '#define POSITION_STPQ',
+      '',
+      'vec4 getColor(vec4 rgba, inout vec4 stpq) {',
+      '    float val = func(stpq.x, stpq.y);',
+      '    ' + sampleRing(0.02),
+      '    discard;',
+      '}'
+    ].join('\n');
+    var radius = 0.1;
+    var clipFragment = [
+      '// Enable STPQ mapping',
+      '#define POSITION_STPQ',
+      'uniform float range;',
+      'uniform float rangeZ;',
+      'uniform int hilite;',
+      '',
+      'vec4 getColor(vec4 rgba, inout vec4 stpq) {',
+      '    float val = stpq.z;',
+      '    rgba = getShadedColor(rgba);',
+      '    vec4 oldrgba = rgba;',
+      '    if(abs(stpq.x) > range || abs(stpq.y) > range || abs(stpq.z) > rangeZ)',
+      '        discard;',
+      '    rgba.xyz *= 10.0;',
+      '    rgba.w = 1.0;',
+      '    if(hilite != 0 && stpq.z < ' + radius + ' && stpq.z > -' + radius + ') {',
+      '        ' + sampleRing(radius),
+      '    }',
+      '    return oldrgba;',
+      '}'
+    ].join('\n');
+
+    function targetColors() { return targets.map(function() { return new Color('blue'); }); }
+
+    // ── Left panel: graph of the best-fit function ────────────────────────
+    window.demo1 = new Demo({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox1'),
+      scaleUI: true,
+      camera: { position: urlParams.get('camera1', 'float[]', [3, 1.5, 1.5]) }
+    }, function() {
+      window.mathbox1 = this.mathbox;
+      var view = this.view({
+        axes: false, grid: true,
+        viewRange: [[-range, range], [-range, range], [-rangeZ, rangeZ]]
+      });
+      this.labeledPoints(view, {
+        name: 'targets', points: targets, colors: targetColors(), live: true, pointOpts: { zIndex: 2 }
+      });
+      uniforms.range  = { type: 'f', value: range };
+      uniforms.rangeZ = { type: 'f', value: rangeZ };
+      uniforms.hilite = { type: 'i', value: 1 };
+      var clipCube = view.shader({ code: clipShader })
+                         .vertex({ pass: 'data' })
+                         .shader({ code: funcFragment + '\n' + shadeFragment + '\n' + clipFragment, uniforms: uniforms })
+                         .fragment();
+      var cube = new THREE.BoxHelper(new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), new THREE.MeshBasicMaterial()));
+      cube.material.color = new THREE.Color(0.7, 0.7, 0.7);
+      this.three.scene.add(cube);
+      clipCube.area({
+        channels: 3, rangeX: [-range, range], rangeY: [-range, range], width: 100, height: 100,
+        expr: function(emit, x, y) { return emit(x, y, bestfit(x, y)); }
+      }).surface({ color: new Color('red').arr(), opacity: 0.7, fill: true });
+      view.array({
+        channels: 3, width: 2, items: numTargets,
+        expr: function(emit, end) {
+          for (var k = 0; k < numTargets; k++) {
+            var x = targets[k][0], y = targets[k][1];
+            if (end) emit(x, y, bestfit(x, y)); else emit(x, y, targets[k][2]);
+          }
+        }
+      }).line({ color: new Color('violet').arr(), width: 3, zIndex: 3 });
+    });
+
+    // ── Right panel: zero set ─────────────────────────────────────────────
+    window.demo2 = new Demo2D({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox2'),
+      scaleUI: true
+    }, function() {
+      window.mathbox2 = this.mathbox;
+      var view = this.view({
+        axes: true, axisLabels: false, grid: true,
+        viewRange: [[-range, range], [-range, range]]
+      });
+      this.labeledPoints(view, {
+        name: 'targets', points: targets, colors: targetColors(), live: true, pointOpts: { zIndex: 2 }
+      });
+      var curve = view.shader({ code: clipShader })
+                      .vertex({ pass: 'data' })
+                      .shader({ code: funcFragment + '\n' + curveFragment, uniforms: uniforms })
+                      .fragment();
+      curve.matrix({
+        channels: 2, width: 2, height: 2,
+        data: [[[-range, -range], [-range, range]], [[range, -range], [range, range]]]
+      }).surface({ color: new Color('red').arr(), opacity: 1.0, fill: true });
+      this.draggable(view, { points: targets, postDrag: solve });
+
+      // WCAG 2.1.1 / 2.5.1: keyboard alternative to dragging the points
+      editor = buildVectorEditor(document.getElementById('vec-inputs'),
+        targets.map(function(t, n) {
+          return { name: 'Point ' + (n + 1), tex: 'P_{' + (n + 1) + '}', vec: t, dim: 2 };
+        }), range, solve);
+
+      var bestFitElt = document.getElementById('eqn-here');
+      var minimElt   = document.getElementById('sumsq-here');
+      updateCaption = function() {
+        var minimized = [], quantity = 0;
+        renderMath('\\quad 0 = ' + bestFitStr, bestFitElt);
+        targets.forEach(function(t) {
+          var d = Math.abs(t[2] - bestfit(t[0], t[1]));
+          minimized.push(d.toFixed(2) + '^2');
+          quantity += d * d;
+        });
+        renderMath('\\quad' + quantity.toFixed(2) + '=' + minimized.join('+'), minimElt);
+      };
+      updateCaption();
+    });
+  }); // end DomReady.ready
+
+  initFullscreenButton('fs-btn');
+  </script>
+</body>
+</html>

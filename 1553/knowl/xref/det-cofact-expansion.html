@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h2 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.2.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cofactor expansion.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(n\times n\)</span> matrix with entries <span class="process-math">\(a_{ij}\text{.}\)</span>
+</div>
+<ol class="decimal" id="det-cofact-expansion-4-1-4">
+<li>
+<div class="para logical">
+<div class="para">For any <span class="process-math">\(i = 1,2,\ldots,n\text{,}\)</span> we have</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\det(A) = \sum_{j=1}^n a_{ij}C_{ij}
+= a_{i1}C_{i1} + a_{i2}C_{i2} + \cdots + a_{in}C_{in}\text{.}
+\end{gather*}
+</div>
+<div class="para">This is called <dfn class="terminology">cofactor expansion along the <span class="process-math">\(i\)</span>th row.</dfn>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-4-1-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#det-cofact-expansion-4-1-4-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">For any <span class="process-math">\(j = 1,2,\ldots,n\text{,}\)</span> we have</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\det(A) = \sum_{i=1}^n a_{ij}C_{ij}
+= a_{1j}C_{1j} + a_{2j}C_{2j} + \cdots + a_{nj}C_{nj}\text{.}
+\end{gather*}
+</div>
+<div class="para">This is called <dfn class="terminology">cofactor expansion along the <span class="process-math">\(j\)</span>th column.</dfn>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-4-1-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#det-cofact-expansion-4-1-4-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Theorem 4.2.3: Cofactor expansion"><a tabindex="-1" href="#det-cofact-expansion" title="Copy heading and permalink for Theorem 4.2.3: Cofactor expansion" aria-label="Copy heading and permalink for Theorem 4.2.3: Cofactor expansion">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<div class="para">First we will prove that cofactor expansion along the first column computes the determinant.  Define a function <span class="process-math">\(d\colon\{n\times n\text{ matrices}\}\to\R\)</span> by</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/det-defn-the-defn.html ./knowl/xref/det-defn-use-multi.html ./knowl/xref/linear-trans-defn.html ./knowl/xref/linear-trans-defn.html">
+\begin{gather*}
+d(A) = \sum_{i=1}^n (-1)^{i+1} a_{i1}\det(A_{i1})\text{.}
+\end{gather*}
+</div>
+<div class="para">We want to show that <span class="process-math">\(d(A) = \det(A)\text{.}\)</span>  Instead of showing that <span class="process-math">\(d\)</span> satisfies the four <a href="sec-determinants-definitions-properties.html#det-defn-the-defn" class="xref" data-knowl="./knowl/xref/det-defn-the-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.1">Definition 1 of Section 4.1</a>, we will prove that it satsifies the three <a href="sec-determinants-definitions-properties.html#det-defn-use-multi" class="xref" data-knowl="./knowl/xref/det-defn-use-multi.html" data-reveal-label="Reveal" data-close-label="Close" title="Remark 4.1.29: Alternative defining properties">Remark 29 of Section 4.1</a>, which were shown to be equivalent.</div>
+<ol class="decimal" id="det-cofact-expansion-5-1-7">
+<li>
+<div class="para logical">
+<div class="para">We claim that <span class="process-math">\(d\)</span> is multilinear in the rows of <span class="process-math">\(A\text{.}\)</span>  Let <span class="process-math">\(A\)</span> be the matrix with rows <span class="process-math">\(v_1,v_2,\ldots,v_{i-1},v+w,v_{i+1},\ldots,v_n\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+A = \begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+b_1+c_1 \amp b_2+c_2 \amp b_3+c_3 \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Here we let <span class="process-math">\(b_i\)</span> and <span class="process-math">\(c_i\)</span> be the entries of <span class="process-math">\(v\)</span> and <span class="process-math">\(w\text{,}\)</span> respectively.  Let <span class="process-math">\(B\)</span> and <span class="process-math">\(C\)</span> be the matrices with rows <span class="process-math">\(v_1,v_2,\ldots,v_{i-1},v,v_{i+1},\ldots,v_n\)</span> and <span class="process-math">\(v_1,v_2,\ldots,v_{i-1},w,v_{i+1},\ldots,v_n\text{,}\)</span> respectively:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+B = \begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+b_1 \amp b_2 \amp b_3 \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix} \qquad
+C = \begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+c_1 \amp c_2 \amp c_3 \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">We wish to show <span class="process-math">\(d(A) = d(B) + d(C)\text{.}\)</span>  For <span class="process-math">\(i'\neq i\text{,}\)</span> the <span class="process-math">\((i',1)\)</span>-cofactor of <span class="process-math">\(A\)</span> is the sum of the <span class="process-math">\((i',1)\)</span>-cofactors of <span class="process-math">\(B\)</span> and <span class="process-math">\(C\text{,}\)</span> by multilinearity of the determinants of <span class="process-math">\((n-1)\times(n-1)\)</span> matrices:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+(-1)^{3+1}\det(A_{31})
+\amp= (-1)^{3+1}\det\begin{pmatrix}
+a_{12} \amp a_{13} \\
+b_2+c_2 \amp b_3+c_3
+\end{pmatrix}\\
+\amp= (-1)^{3+1}\det\begin{pmatrix}
+a_{12} \amp a_{13} \\
+b_2 \amp b_3
+\end{pmatrix}
++ (-1)^{3+1}\det\begin{pmatrix}
+a_{12} \amp a_{13} \\
+c_2 \amp c_3
+\end{pmatrix}\\
+\amp= (-1)^{3+1}\det(B_{31}) + (-1)^{3+1}\det(C_{31})\text{.}
+\end{align*}
+</div>
+<div class="para">On the other hand, the <span class="process-math">\((i,1)\)</span>-cofactors of <span class="process-math">\(A,B,\)</span> and <span class="process-math">\(C\)</span> are all the same:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+(-1)^{2+1} \det(A_{21})
+\amp= (-1)^{2+1} \det\begin{pmatrix}
+a_{12} \amp a_{13} \\
+a_{32} \amp a_{33}
+\end{pmatrix}\\
+\amp= (-1)^{2+1} \det(B_{21}) = (-1)^{2+1} \det(C_{21})\text{.}
+\end{align*}
+</div>
+<div class="para">Now we compute</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+d(A) \amp=
+(-1)^{i+1} (b_i + c_i)\det(A_{i1})
++ \sum_{i'\neq i} (-1)^{i'+1} a_{i1}\det(A_{i'1})\\
+\amp= (-1)^{i+1} b_i\det(B_{i1}) + (-1)^{i+1} c_i\det(C_{i1})\\
+\amp\qquad\qquad+ \sum_{i'\neq i} (-1)^{i'+1}
+a_{i1}\bigl(\det(B_{i'1}) + \det(C_{i'1})\bigr)\\
+\amp= \left[(-1)^{i+1} b_i\det(B_{i1}) + \sum_{i'\neq i}
+(-1)^{i'+1} a_{i1}\det(B_{i'1})\right]\\
+\amp\qquad\qquad+ \left[(-1)^{i+1} c_i\det(C_{i1}) + \sum_{i'\neq i}
+(-1)^{i'+1} a_{i1}\det(C_{i'1})\right]\\
+\amp= d(B) + d(C)\text{,}
+\end{align*}
+</div>
+<div class="para">as desired.  This shows that <span class="process-math">\(d(A)\)</span> satisfies the first <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">defining property</a> in the rows of <span class="process-math">\(A\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-5-1-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">We still have to show that <span class="process-math">\(d(A)\)</span> satisfies the second <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">defining property</a> in the rows of <span class="process-math">\(A\text{.}\)</span>  Let <span class="process-math">\(B\)</span> be the matrix obtained by scaling the <span class="process-math">\(i\)</span>th row of <span class="process-math">\(A\)</span> by a factor of <span class="process-math">\(c\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+A = \begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+a_{21} \amp a_{22} \amp a_{23} \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix}
+\qquad
+B = \begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+ca_{21} \amp ca_{22} \amp ca_{23} \\
+a_{31} \amp a_{32} \amp a_{33}
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">We wish to show that <span class="process-math">\(d(B) = c\,d(A)\text{.}\)</span> For <span class="process-math">\(i'\neq i\text{,}\)</span> the <span class="process-math">\((i',1)\)</span>-cofactor of <span class="process-math">\(B\)</span> is <span class="process-math">\(c\)</span> times the <span class="process-math">\((i',1)\)</span>-cofactor of <span class="process-math">\(A\text{,}\)</span> by multilinearity of the determinants of <span class="process-math">\((n-1)\times(n-1)\)</span>-matrices:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+(-1)^{3+1}\det(B_{31})
+\amp= (-1)^{3+1}\det\begin{pmatrix}
+a_{12} \amp a_{13} \\
+ca_{22} \amp ca_{23}
+\end{pmatrix}\\
+\amp= (-1)^{3+1}\cdot c\det\begin{pmatrix}
+a_{12} \amp a_{13} \\
+a_{22} \amp a_{23}
+\end{pmatrix}
+= (-1)^{3+1}\cdot c\det(A_{31})\text{.}
+\end{align*}
+</div>
+<div class="para">On the other hand, the <span class="process-math">\((i,1)\)</span>-cofactors of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are the same:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+(-1)^{2+1} \det(B_{21})
+= (-1)^{2+1} \det\begin{pmatrix}
+a_{12} \amp a_{13} \\
+a_{32} \amp a_{33}
+\end{pmatrix}
+= (-1)^{2+1} \det(A_{21})\text{.}
+\end{align*}
+</div>
+<div class="para">Now we compute</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+d(B) \amp= (-1)^{i+1}ca_{i1}\det(B_{i1})
++ \sum_{i'\neq i}(-1)^{i'+1} a_{i'1}\det(B_{i'1})\\
+\amp= (-1)^{i+1}ca_{i1}\det(A_{i1})
++ \sum_{i'\neq i}(-1)^{i'+1} a_{i'1}\cdot c\det(A_{i'1})\\
+\amp= c\left[(-1)^{i+1}ca_{i1}\det(A_{i1})
++ \sum_{i'\neq i}(-1)^{i'+1} a_{i'1} \det(A_{i'1})\right]\\
+\amp= c\,d(A)\text{,}
+\end{align*}
+</div>
+<div class="para">as desired.  This completes the proof that <span class="process-math">\(d(A)\)</span> is multilinear in the rows of <span class="process-math">\(A\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-5-1-7-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#det-cofact-expansion-5-1-7-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">Now we show that <span class="process-math">\(d(A) = 0\)</span> if <span class="process-math">\(A\)</span> has two identical rows.  Suppose that rows <span class="process-math">\(i_1,i_2\)</span> of <span class="process-math">\(A\)</span> are identical, with <span class="process-math">\(i_1 \lt i_2\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \amp a_{14} \\
+a_{21} \amp a_{22} \amp a_{23} \amp a_{24} \\
+a_{31} \amp a_{32} \amp a_{33} \amp a_{34} \\
+a_{11} \amp a_{12} \amp a_{13} \amp a_{14}
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">If <span class="process-math">\(i\neq i_1,i_2\)</span> then the <span class="process-math">\((i,1)\)</span>-cofactor of <span class="process-math">\(A\)</span> is equal to zero, since <span class="process-math">\(A_{i1}\)</span> is an <span class="process-math">\((n-1)\times(n-1)\)</span> matrix with identical rows:</div>
+<div class="displaymath process-math">
+\begin{align*}
+(-1)^{2+1}\det(A_{21}) = (-1)^{2+1}
+\det\begin{pmatrix}
+a_{12} \amp a_{13} \amp a_{14} \\
+a_{32} \amp a_{33} \amp a_{34} \\
+a_{12} \amp a_{13} \amp a_{14}
+\end{pmatrix} = 0\text{.}
+\end{align*}
+</div>
+<div class="para">The <span class="process-math">\((i_1,1)\)</span>-minor can be transformed into the <span class="process-math">\((i_2,1)\)</span>-minor using <span class="process-math">\(i_2 - i_1 - 1\)</span> row swaps:</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-5-1-7-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/img-minor-transform-with-row-swaps.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="img-minor-transform-with-row-swaps-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="img-minor-transform-with-row-swaps-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#img-minor-transform-with-row-swaps-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
+\begin{gather*}
+(-1)^{i_1+1}\det(A_{i_11})
+= (-1)^{i_1+1}\cdot(-1)^{i_2 - i_1 - 1}\det(A_{i_21})
+= -(-1)^{i_2+1}\det(A_{i_21})\text{.}
+\end{gather*}
+</div>
+<div class="para">The two remaining cofactors cancel out, so <span class="process-math">\(d(A) = 0\text{,}\)</span> as desired.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-5-1-7-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#det-cofact-expansion-5-1-7-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">It remains to show that <span class="process-math">\(d(I_n) = 1\text{.}\)</span>  The first is the only one nonzero term in the cofactor expansion of the identity:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+d(I_n) = 1\cdot(-1)^{1+1}\det(I_{n-1}) = 1\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-5-1-7-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#det-cofact-expansion-5-1-7-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="para">This proves that <span class="process-math">\(\det(A) = d(A)\text{,}\)</span> i.e., that cofactor expansion along the first column computes the determinant.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Now we show that cofactor expansion along the <span class="process-math">\(j\)</span>th column also computes the determinant.  By performing <span class="process-math">\(j-1\)</span> column swaps, one can move the <span class="process-math">\(j\)</span>th column of a matrix to the first column, keeping the other columns in order.  For example, here we move the third column to the first, using two column swaps:<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-5-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/img-j-column-to-first-with-column-swaps.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="img-j-column-to-first-with-column-swaps-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="img-j-column-to-first-with-column-swaps-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#img-j-column-to-first-with-column-swaps-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(B\)</span> be the matrix obtained by moving the <span class="process-math">\(j\)</span>th column of <span class="process-math">\(A\)</span> to the first column in this way.  Then the <span class="process-math">\((i,j)\)</span> minor <span class="process-math">\(A_{ij}\)</span> is equal to the <span class="process-math">\((i,1)\)</span> minor <span class="process-math">\(B_{i1}\text{,}\)</span> since deleting the <span class="process-math">\(i\)</span>th column of <span class="process-math">\(A\)</span> is the same as deleting the first column of <span class="process-math">\(B\text{.}\)</span>  By construction, the <span class="process-math">\((i,j)\)</span>-entry <span class="process-math">\(a_{ij}\)</span> of <span class="process-math">\(A\)</span> is equal to the <span class="process-math">\((i,1)\)</span>-entry <span class="process-math">\(b_{i1}\)</span> of <span class="process-math">\(B\text{.}\)</span>  Since we know that we can compute determinants by expanding along the first column, we have</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\det(B) = \sum_{i=1}^n (-1)^{i+1} b_{i1}\det(B_{i1})
+= \sum_{i=1}^n (-1)^{i+1} a_{ij}\det(A_{ij})\text{.}
+\end{gather*}
+</div>
+<div class="para">Since <span class="process-math">\(B\)</span> was obtained from <span class="process-math">\(A\)</span> by performing <span class="process-math">\(j-1\)</span> column swaps, we have</div>
+<div class="displaymath process-math">
+\begin{align*}
+\det(A) = (-1)^{j-1}\det(B) \amp=
+(-1)^{j-1}\sum_{i=1}^n (-1)^{i+1} a_{ij}\det(A_{ij})\\
+\amp= \sum_{i=1}^n (-1)^{i+j} a_{ij}\det(A_{ij})\text{.}
+\end{align*}
+</div>
+<div class="para">This proves that cofactor expansion along the <span class="process-math">\(i\)</span>th column computes the determinant of <span class="process-math">\(A\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-5-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">By the <a href="sec-determinants-definitions-properties.html#det-defn-trans-prop" class="xref" data-knowl="./knowl/xref/det-defn-trans-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.25: Transpose Property">Proposition 25 of Section 4.1</a>, the cofactor expansion along the <span class="process-math">\(i\)</span>th row of <span class="process-math">\(A\)</span> is the same as the cofactor expansion along the <span class="process-math">\(i\)</span>th column of <span class="process-math">\(A^T\text{.}\)</span>  Again by the transpose property, we have <span class="process-math">\(\det(A)=\det(A^T)\text{,}\)</span> so expanding cofactors along a row also computes the determinant.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-cofact-expansion-5-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 4.2.3.1"><a tabindex="-1" href="#det-cofact-expansion-5" title="Copy heading and permalink for Proof 4.2.3.1" aria-label="Copy heading and permalink for Proof 4.2.3.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-determinants-cofactors.html#det-cofact-expansion">In Context</a></span>
+</body>
+</html>

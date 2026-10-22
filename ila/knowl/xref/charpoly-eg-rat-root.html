@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.2.17</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<div class="para">Find the eigenvalues of the matrix</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+7 \amp 0 \amp 3 \\
+-3 \amp 2 \amp -3 \\
+-3 \amp 0 \amp -1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Hint: one eigenvalue is an integer.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#charpoly-eg-rat-root-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">We compute the characteristic polynomial by expanding cofactors along the first row:</div>
+<div class="displaymath process-math">
+\begin{align*}
+f(\lambda) = \det(A - \lambda I_3)
+\amp= \det\begin{pmatrix}
+7-\lambda \amp 0 \amp 3 \\
+-3 \amp 2-\lambda \amp -3 \\
+-3 \amp 0 \amp -1-\lambda
+\end{pmatrix}\\
+\amp= (7-\lambda)(2-\lambda)(-1-\lambda) + 3\cdot 3(2-\lambda)\\
+\amp= -\lambda^3 + 8\lambda^2 - 14\lambda + 4\text{.}
+\end{align*}
+</div>
+<div class="para">The determinant of <span class="process-math">\(A\)</span> is the constant term <span class="process-math">\(f(0) = 4\text{;}\)</span> its integer divisors are <span class="process-math">\(\pm 1,\pm 2,\pm 4\text{.}\)</span>  We check which are roots:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+f(1) = -3 \quad f(-1) = 27 \quad f(2) = 0 \quad f(-2) = 72 \quad f(4) = 12 \quad f(-4) = 252\text{.}
+\end{gather*}
+</div>
+<div class="para">The only rational root of <span class="process-math">\(f(\lambda)\)</span> is <span class="process-math">\(\lambda=2\text{.}\)</span>  We divide by <span class="process-math">\(\lambda-2\)</span> using polynomial long division:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\frac{-\lambda^3 + 8\lambda^2 - 14\lambda + 4}{\lambda-2} = -\lambda^2 + 6\lambda - 2\text{.}
+\end{gather*}
+</div>
+<div class="para">We can use the quadratic formula to find the roots of the quotient:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\lambda = \frac{-6 \pm\sqrt{36 - 4\cdot 2}}{-2}
+= 3\pm\sqrt 7\text{.}
+\end{gather*}
+</div>
+<div class="para">We have factored <span class="process-math">\(f\)</span> completely:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+f(\lambda) = -(\lambda-2)\bigl(\lambda-(3+\sqrt7)\bigr)\bigl(\lambda-(3-\sqrt7)\bigr)\text{.}
+\end{gather*}
+</div>
+<div class="para">Therefore, the eigenvalues of <span class="process-math">\(A\)</span> are <span class="process-math">\(2,\,3+\sqrt7,\,3-\sqrt7.\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#charpoly-eg-rat-root-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 5.2.17.1"><a tabindex="-1" href="#charpoly-eg-rat-root-2" title="Copy heading and permalink for Solution 5.2.17.1" aria-label="Copy heading and permalink for Solution 5.2.17.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 5.2.17"><a tabindex="-1" href="#charpoly-eg-rat-root" title="Copy heading and permalink for Example 5.2.17" aria-label="Copy heading and permalink for Example 5.2.17">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-characteristic-polynomial.html#charpoly-eg-rat-root">In Context</a></span>
+</body>
+</html>

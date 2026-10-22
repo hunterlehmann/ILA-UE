@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.21</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Best-fit trigonometric function.</span>
+</h2>
+<div class="para logical">
+<div class="para">What is the best-fit function of the form</div>
+<div class="displaymath process-math">
+\begin{gather*}
+y=B+C\cos(x)+D\sin(x)+E\cos(2x)+F\sin(2x)+G\cos(3x)+H\sin(3x)
+\end{gather*}
+</div>
+<div class="para">passing through the points</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\begin{pmatrix}
+-4 \\
+-1
+\end{pmatrix},\;
+\begin{pmatrix}
+-3 \\
+0
+\end{pmatrix},\;
+\begin{pmatrix}
+-2 \\
+-1.5
+\end{pmatrix},\;
+\begin{pmatrix}
+-1 \\
+.5
+\end{pmatrix},\;
+\begin{pmatrix}
+0 \\
+1
+\end{pmatrix},\;
+\begin{pmatrix}
+1 \\
+-1
+\end{pmatrix},\;
+\begin{pmatrix}
+2 \\
+-.5
+\end{pmatrix},\;
+\begin{pmatrix}
+3 \\
+2
+\end{pmatrix},\;
+\begin{pmatrix}
+4 \\
+-1
+\end{pmatrix}?
+\end{gather*}
+</div>
+<div class="para">\def\labeledpt(#1)#2{\point["{$(#1)$}" #2] at (#1)} \begin{tikzpicture}[scale=1.35, thin border nodes, whitebg nodes] \draw[grid lines] (-5,-2) grid (5,2); \draw[-&gt;] (-5,0) -- (5,0); \draw[-&gt;] (0,-2) -- (0,2); \labeledpt(-4,-1){{below}}; \labeledpt(-3,0){{below}}; \labeledpt(-2,-1.5){below}; \labeledpt(-1,.5){above}; \labeledpt(0,1){{above}}; \labeledpt(1,-1){below}; \labeledpt(2,-.5){below}; \labeledpt(3,2){below}; \labeledpt(4,-1){above}; \end{tikzpicture}</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-10-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">We want to solve the system of equations \small\[ \spalignsysdelims.. \left\{\begin{alignedat}{2} -1 \amp {}={} \amp B + C\cos(-4) + D\sin(-4) + E\cos(-8) + F\sin(-8) + G\cos(-12) + H\sin(-12) \amp {} \\ 0 \amp {}={} \amp B + C\cos(-3) + D\sin(-3) + E\cos(-6) + F\sin(-6) + G\cos(-9) + H\sin(-9) \amp {} \\ -1.5 \amp {}={} \amp B + C\cos(-2) + D\sin(-2) + E\cos(-4) + F\sin(-4) + G\cos(-6) + H\sin(-6) \amp {} \\ 0.5 \amp {}={} \amp B + C\cos(-1) + D\sin(-1) + E\cos(-2) + F\sin(-2) + G\cos(-3) + H\sin(-3) \amp {} \\ 1 \amp {}={} \amp B + C\cos(0) + D\sin(0) + E\cos(0) + F\sin(0) + G\cos(0) + H\sin(0) \amp {} \\ -1 \amp {}={} \amp B + C\cos(1) + D\sin(1) + E\cos(2) + F\sin(2) + G\cos(3) + H\sin(3) \amp {} \\ -0.5 \amp {}={} \amp B + C\cos(2) + D\sin(2) + E\cos(4) + F\sin(4) + G\cos(6) + H\sin(6) \amp {} \\ 2 \amp {}={} \amp B + C\cos(3) + D\sin(3) + E\cos(6) + F\sin(6) + G\cos(9) + H\sin(9) \amp {} \\ -1 \amp {}={} \amp B + C\cos(4) + D\sin(4) + E\cos(8) + F\sin(8) + G\cos(12) + H\sin(12) \amp . \end{alignedat}\right.\] All of the terms in these equations are <em class="emphasis">numbers</em>, except for the unknowns <span class="process-math">\(B,C,D,E,F,G,H\text{:}\)</span> \small\[ \spalignsysdelims.. \left\{\begin{alignedat}{2} -1 \amp {}={} \amp B - 0.6536C + 0.7568D - 0.1455E - 0.9894F + 0.8439G + 0.5366H \amp {} \\ 0 \amp {}={} \amp B - 0.9900C - 0.1411D + 0.9602E + 0.2794F - 0.9111G - 0.4121H \amp {} \\ -1.5 \amp {}={} \amp B - 0.4161C - 0.9093D - 0.6536E + 0.7568F + 0.9602G + 0.2794H \amp {} \\ 0.5 \amp {}={} \amp B + 0.5403C - 0.8415D - 0.4161E - 0.9093F - 0.9900G - 0.1411H \amp {} \\ 1 \amp {}={} \amp B + C \. + E \. + G \amp {} \\ -1 \amp {}={} \amp B + 0.5403C + 0.8415D - 0.4161E + 0.9093F - 0.9900G + 0.1411H \amp {} \\ -0.5 \amp {}={} \amp B - 0.4161C + 0.9093D - 0.6536E - 0.7568F + 0.9602G - 0.2794H \amp {} \\ 2 \amp {}={} \amp B - 0.9900C + 0.1411D + 0.9602E - 0.2794F - 0.9111G + 0.4121H \amp {} \\ -1 \amp {}={} \amp B - 0.6536C - 0.7568D - 0.1455E + 0.9894F + 0.8439G - 0.5366H \amp . \end{alignedat}\right.\] Hence we want to solve the least-squares problem \small\[ \begin{pmatrix} 1 \amp -0.6536 \amp 0.7568 \amp -0.1455 \amp -0.9894 \amp 0.8439 \amp 0.5366 \\ 1 \amp -0.9900 \amp -0.1411 \amp 0.9602 \amp 0.2794 \amp -0.9111 \amp -0.4121 \\ 1 \amp -0.4161 \amp -0.9093 \amp -0.6536 \amp 0.7568 \amp 0.9602 \amp 0.2794 \\ 1 \amp 0.5403 \amp -0.8415 \amp -0.4161 \amp -0.9093 \amp -0.9900 \amp -0.1411 \\ 1 \amp 1 \amp 0 \amp 1 \amp 0 \amp 1 \amp 0 \\ 1 \amp 0.5403 \amp 0.8415 \amp -0.4161 \amp 0.9093 \amp -0.9900 \amp 0.1411 \\ 1 \amp -0.4161 \amp 0.9093 \amp -0.6536 \amp -0.7568 \amp 0.9602 \amp -0.2794 \\ 1 \amp -0.9900 \amp 0.1411 \amp 0.9602 \amp -0.2794 \amp -0.9111 \amp 0.4121 \\ 1 \amp -0.6536 \amp -0.7568 \amp -0.1455 \amp 0.9894 \amp 0.8439 \amp -0.5366 \end{pmatrix} \begin{pmatrix} B \\ C \\ D \\ E \\ F \\ G \\ H \end{pmatrix} = \begin{pmatrix} -1 \\ 0 \\ -1.5 \\ 0.5 \\ 1 \\ -1 \\ -0.5 \\ 2 \\ -1 \end{pmatrix}. \] We find the least-squares solution with the aid of a computer: \small\[ \hat x \approx \begin{pmatrix} -0.1435 \\ 0.2611 \\ -0.2337 \\ 1.116 \\ -0.5997 \\ -0.2767 \\ 0.1076 \end{pmatrix}. \] Therefore, the best-fit function is</div>
+<div class="displaymath process-math">
+\begin{align*}
+y \amp\approx
+-0.1435 + 0.2611\cos(x) -0.2337\sin(x)  + 1.116\cos(2x) -0.5997\sin(2x)\\
+\amp\qquad\qquad -0.2767\cos(3x) +  0.1076\sin(3x)\text{.}
+\end{align*}
+</div>
+<div class="para">\def\labeledpt(#1)#2{\point["{$(#1)$}" #2] at (#1)} \begin{tikzpicture}[scale=1.35, thin border nodes, whitebg nodes] \draw[grid lines] (-5,-2) grid (5,2); \draw[-&gt;] (-5,0) -- (5,0); \draw[-&gt;] (0,-2) -- (0,2); \labeledpt(-4,-1){{below,xshift=3mm}}; \labeledpt(-3,0){{below,xshift=-2mm}}; \labeledpt(-2,-1.5){below}; \labeledpt(-1,.5){above left}; \labeledpt(0,1){{above,xshift=3mm}}; \labeledpt(1,-1){below left}; \labeledpt(2,-.5){left}; \labeledpt(3,2){below}; \labeledpt(4,-1){above right}; \draw[thick, seq-red, domain=-5:5, samples=100, smooth] plot (\x, {-0.14349970812998397 + 0.2610707891632625*cos(\x r) - 0.23369384976594704*sin(\x r) + 1.1164954570890104*cos(2*\x r) - 0.5996551982189049*sin(2*\x r) - 0.2767472417583463*cos(3*\x r) + 0.10760782737030863*sin(3*\x r)}); \node[text=seq-red, font=\tiny, below] at (0, -2.3) {$y\approx -0.14 + 0.26\cos(x) - 0.23\sin(x) + 1.11\cos(2x) - 0.60\sin(2x) - 0.28\cos(3x) + 0.11\sin(3x)$}; \end{tikzpicture} As in the previous examples, the best-fit function minimizes the sum of the squares of the vertical distances from the graph of <span class="process-math">\(y = f(x)\)</span> to the data points.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-10-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/bestfit-if.html?func=A+B*cos(x)+C*sin(x)+D*cos(2*x)+EE*sin(2*x)+F*cos(3*x)+G*sin(3*x)&amp;v1=-4,-1&amp;v2=-3,0&amp;v3=-2,-1.5&amp;v4=-1,.5&amp;v5=0,1&amp;v6=1,-1&amp;v7=2,-.5&amp;v8=3,2&amp;v9=4,-1&amp;range=5" id="subsec-best-fit-problems-10-4-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-best-fit-problems-10-4-2-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-best-fit-problems-10-4-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-10-4-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-best-fit-problems-10-4-2-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-best-fit-problems-10-4-2-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-best-fit-problems-10-4-2-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-best-fit-problems-10-4-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-best-fit-problems-10-4-2-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4.22<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The best-fit function minimizes the sum of the squares of the vertical distances (violet).  Click and drag the points to see how the best-fit function changes.<div class="autopermalink" aria-hidden="true" data-description="Figure 6.4.22"><a tabindex="-1" href="#subsec-best-fit-problems-10-4-2" title="Copy heading and permalink for Figure 6.4.22" aria-label="Copy heading and permalink for Figure 6.4.22">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 6.4.21.1"><a tabindex="-1" href="#subsec-best-fit-problems-10-4" title="Copy heading and permalink for Solution 6.4.21.1" aria-label="Copy heading and permalink for Solution 6.4.21.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 6.4.21: Best-fit trigonometric function"><a tabindex="-1" href="#subsec-best-fit-problems-10" title="Copy heading and permalink for Example 6.4.21: Best-fit trigonometric function" aria-label="Copy heading and permalink for Example 6.4.21: Best-fit trigonometric function">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-least-squares.html#subsec-best-fit-problems-10">In Context</a></span>
+</body>
+</html>

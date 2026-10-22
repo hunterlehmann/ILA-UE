@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="remark remark-like"><h2 class="heading">
+<span class="type">Remark</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.1.29</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Alternative defining properties.</span>
+</h2>
+<div class="para logical">
+<div class="para">In more theoretical treatments of the topic, where row reduction plays a secondary role, the defining properties of the determinant are often taken to be:</div>
+<ol class="decimal" id="det-defn-use-multi-3-1">
+<li>
+<div class="para">The determinant <span class="process-math">\(\det(A)\)</span> is multilinear in the rows of <span class="process-math">\(A\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-use-multi-3-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#det-defn-use-multi-3-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">If <span class="process-math">\(A\)</span> has two identical rows, then <span class="process-math">\(\det(A) = 0\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-use-multi-3-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#det-defn-use-multi-3-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para">The determinant of the identity matrix is equal to one.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-use-multi-3-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#det-defn-use-multi-3-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="para">We have already shown that our four <a href="sec-determinants-definitions-properties.html#det-defn-the-defn" class="xref" data-knowl="./knowl/xref/det-defn-the-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 4.1.1">Definition 1</a> imply these three.  Conversely, we will prove that these three alternative properties imply our four, so that both sets of properties are equivalent.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-use-multi-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Defining property <span class="process-math">\(2\)</span> is just the second <a href="sec-linear-transformations.html#linear-trans-defn" class="xref" data-knowl="./knowl/xref/linear-trans-defn.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.3.1">Definition 1 of Section 3.3</a>.  Suppose that the rows of <span class="process-math">\(A\)</span> are <span class="process-math">\(v_1,v_2,\ldots,v_n\text{.}\)</span>  If we perform the row replacement <span class="process-math">\(R_i = R_i + cR_j\)</span> on <span class="process-math">\(A\text{,}\)</span> then the rows of our new matrix are <span class="process-math">\(v_1,v_2,\ldots,v_{i-1},v_i+cv_j,v_{i+1},\ldots,v_n\text{,}\)</span> so by linearity in the <span class="process-math">\(i\)</span>th row,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+\det(\amp v_1,v_2,\ldots,v_{i-1},v_i+cv_j,v_{i+1},\ldots,v_n)\\
+\amp= \det(v_1,v_2,\ldots,v_{i-1},v_i,v_{i+1},\ldots,v_n) +
+c\det(v_1,v_2,\ldots,v_{i-1},v_j,v_{i+1},\ldots,v_n)\\
+\amp= \det(v_1,v_2,\ldots,v_{i-1},v_i,v_{i+1},\ldots,v_n)
+= \det(A)\text{,}
+\end{align*}
+</div>
+<div class="para">where <span class="process-math">\(\det(v_1,v_2,\ldots,v_{i-1},v_j,v_{i+1},\ldots,v_n)=0\)</span> because <span class="process-math">\(v_j\)</span> is repeated.  Thus, the alternative defining properties imply our first two defining properties.  For the third, suppose that we want to swap row <span class="process-math">\(i\)</span> with row <span class="process-math">\(j\text{.}\)</span>  Using the second alternative defining property and multilinearity in the <span class="process-math">\(i\)</span>th and <span class="process-math">\(j\)</span>th rows, we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/linear-trans-defn.html">
+\begin{align*}
+0 \amp= \det(v_1,\ldots,v_i+v_j,\ldots,v_i+v_j,\ldots,v_n)\\
+\amp= \det(v_1,\ldots,v_i,\ldots,v_i+v_j,\ldots,v_n)
++ \det(v_1,\ldots,v_j,\ldots,v_i+v_j,\ldots,v_n)\\
+\amp= \det(v_1,\ldots,v_i,\ldots,v_i,\ldots,v_n)
++ \det(v_1,\ldots,v_i,\ldots,v_j,\ldots,v_n)\\
+\amp\qquad+\det(v_1,\ldots,v_j,\ldots,v_i,\ldots,v_n)
++ \det(v_1,\ldots,v_j,\ldots,v_j,\ldots,v_n)\\
+\amp= \det(v_1,\ldots,v_i,\ldots,v_j,\ldots,v_n)
++ \det(v_1,\ldots,v_j,\ldots,v_i,\ldots,v_n)\text{,}
+\end{align*}
+</div>
+<div class="para">as desired.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-use-multi-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Remark 4.1.29: Alternative defining properties"><a tabindex="-1" href="#det-defn-use-multi" title="Copy heading and permalink for Remark 4.1.29: Alternative defining properties" aria-label="Copy heading and permalink for Remark 4.1.29: Alternative defining properties">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-determinants-definitions-properties.html#det-defn-use-multi">In Context</a></span>
+</body>
+</html>

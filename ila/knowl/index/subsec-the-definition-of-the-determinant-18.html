@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="definition definition-like"><h2 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.1.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<ul class="disc" id="subsec-the-definition-of-the-determinant-18-7-1-1">
+<li>
+<div class="para">The <dfn class="terminology">diagonal</dfn> entries of a  matrix <span class="process-math">\(A\)</span> are the entries <span class="process-math">\(a_{11},a_{22},\ldots\text{:}\)</span> \tikzstyle{circle entry} = [draw,rounded corners,thick,blue!50,inner sep=2pt] \begin{tikzpicture} \matrix[math matrix, nodes={minimum width=1em, minimum height=1em}] (mat1) { \node[circle entry]{a_{11}}; \&amp; a_{12} \&amp; a_{13} \&amp; a_{14} \\ a_{21} \&amp; \node[circle entry]{a_{22}}; \&amp; a_{23} \&amp; a_{24} \\ a_{31} \&amp; a_{32} \&amp; \node[circle entry]{a_{33}}; \&amp; a_{34} \\ }; \matrix[math matrix, nodes={minimum width=1em, minimum height=1em}, xshift=4.75cm] (mat2) { \node[circle entry]{a_{11}}; \&amp; a_{12} \&amp; a_{13} \\ a_{21} \&amp; \node[circle entry]{a_{22}}; \&amp; a_{23} \\ a_{31} \&amp; a_{32} \&amp; \node[circle entry]{a_{33}}; \\ a_{41} \&amp; a_{42} \&amp; a_{43} \\ }; \node[circle entry] at (4.75/2, 1.6) {diagonal entries}; \end{tikzpicture}<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-the-definition-of-the-determinant-18-7-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#subsec-the-definition-of-the-determinant-18-7-1-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li>
+<div class="para">A square matrix is called <dfn class="terminology">upper-triangular</dfn> if its nonzero entries all lie above the diagonal, and it is called <dfn class="terminology">lower-triangular</dfn> if its nonzero entries all lie below the diagonal.  It is called <dfn class="terminology">diagonal</dfn> if all of its nonzero entries lie on the diagonal, i.e., if it is both upper-triangular and lower-triangular. \pgfdeclarelayer{background} \pgfsetlayers{background,main} \begin{tikzpicture} \node[math matrix, nodes={minimum width=1em,minimum height=1em}] (ut) { \star \&amp; \star \&amp; \star \&amp; \star \\ 0 \&amp; \star \&amp; \star \&amp; \star \\ 0 \&amp;     0 \&amp; \star \&amp; \star \\ 0 \&amp;     0 \&amp;     0 \&amp; \star \\ }; \node[above] at (ut.north) {upper-triangular}; \begin{pgfonlayer}{background} \fill[fill=seq-green!20!white, rounded corners=1.4mm] ($(ut-1-1.west)+(-1mm,0)$) -- (ut-1-1.north west) -- (ut-1-4.north east) -- (ut-4-4.south east) -- ($(ut-4-4.south)+(0,-1mm)$) -- cycle; \end{pgfonlayer} \end{tikzpicture} \qquad\qquad \begin{tikzpicture} \node[math matrix, nodes={minimum width=1em,minimum height=1em}] (lt) { \star \&amp;     0 \&amp;     0 \&amp;     0 \\ \star \&amp; \star \&amp;     0 \&amp;     0 \\ \star \&amp; \star \&amp; \star \&amp;     0 \\ \star \&amp; \star \&amp; \star \&amp; \star \\ }; \node[above] at (lt.north) {lower-triangular}; \begin{pgfonlayer}{background} \fill[fill=seq-green!20!white, rounded corners=1.4mm] ($(lt-1-1.north)+(0,1mm)$) -- (lt-1-1.north west) -- (lt-4-1.south west) -- (lt-4-4.south east) -- ($(lt-4-4.east)+(1mm,0)$) -- cycle; \end{pgfonlayer} \end{tikzpicture} \qquad\qquad \begin{tikzpicture} \node[math matrix, nodes={minimum width=1em,minimum height=1em}] (diag) { \star \&amp;     0 \&amp;     0 \&amp;     0 \\ 0 \&amp; \star \&amp;     0 \&amp;     0 \\ 0 \&amp;     0 \&amp; \star \&amp;     0 \\ 0 \&amp;     0 \&amp;     0 \&amp; \star \\ }; \node[above] at (diag.north) {diagonal}; \begin{pgfonlayer}{background} \fill[fill=seq-green!20!white, rounded corners=2mm] ($(diag-1-1.west)+(-1mm,0)$) -- ($(diag-1-1.north)+(0,1mm)$) -- ($(diag-4-4.east)+(1mm,0)$) -- ($(diag-4-4.south)+(0,-1mm)$) -- cycle; \end{pgfonlayer} \end{tikzpicture}<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-the-definition-of-the-determinant-18-7-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#subsec-the-definition-of-the-determinant-18-7-1-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-the-definition-of-the-determinant-18-7-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Definition 4.1.10"><a tabindex="-1" href="#subsec-the-definition-of-the-determinant-18" title="Copy heading and permalink for Definition 4.1.10" aria-label="Copy heading and permalink for Definition 4.1.10">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-determinants-definitions-properties.html#subsec-the-definition-of-the-determinant-18">In Context</a></span>
+</body>
+</html>

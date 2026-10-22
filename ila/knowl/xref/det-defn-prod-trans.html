@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="fact theorem-like"><h2 class="heading">
+<span class="type">Fact</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.1.24</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix, and let <span class="process-math">\(B\)</span> be an <span class="process-math">\(n\times p\)</span> matrix.  Then</div>
+<div class="displaymath process-math">
+\begin{gather*}
+(AB)^T = B^TA^T\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-prod-trans-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Fact 4.1.24"><a tabindex="-1" href="#det-defn-prod-trans" title="Copy heading and permalink for Fact 4.1.24" aria-label="Copy heading and permalink for Fact 4.1.24">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<div class="para">First suppose that <span class="process-math">\(A\)</span> is a row vector an <span class="process-math">\(B\)</span> is a column vector, i.e., <span class="process-math">\(m = p = 1\text{.}\)</span>  Then</div>
+<div class="displaymath process-math">
+\begin{align*}
+AB \amp= \begin{pmatrix}
+a_1 \amp a_2 \amp \cdots \amp a_n
+\end{pmatrix}\begin{pmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_n
+\end{pmatrix}
+= a_1b_1 + a_2b_2 + \cdots + a_nb_n\\
+\amp= \begin{pmatrix}
+b_1 \amp b_2 \amp \cdots \amp b_n
+\end{pmatrix}\begin{pmatrix}
+a_1 \\
+a_2 \\
+\vdots \\
+a_n
+\end{pmatrix}
+= B^TA^T\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-prod-trans-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Now we use the row-column rule for matrix multiplication.  Let <span class="process-math">\(r_1,r_2,\ldots,r_m\)</span> be the rows of <span class="process-math">\(A\text{,}\)</span> and let <span class="process-math">\(c_1,c_2,\ldots,c_p\)</span> be the columns of <span class="process-math">\(B\text{,}\)</span> so</div>
+<div class="displaymath process-math">
+\begin{align*}
+AB =
+\left(\begin{array}{c}
+\matrow{r_1} \\
+\matrow{r_2} \\
+\vdots \\
+\matrow{r_m}
+\end{array}\right)
+\begin{pmatrix}
+| \amp | \amp | \\
+c_1 \amp c_2 \amp \cdots \amp c_p \\
+| \amp | \amp |
+\end{pmatrix}
+= \begin{pmatrix}
+r_1c_1 \amp r_1c_2 \amp \cdots \amp r_1c_p \\
+r_2c_1 \amp r_2c_2 \amp \cdots \amp r_2c_p \\
+\vdots \amp \vdots \amp \vdots \\
+r_mc_1 \amp r_mc_2 \amp \cdots \amp r_mc_p
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">By the case we handled above, we have <span class="process-math">\(r_ic_j = c_j^Tr_i^T\text{.}\)</span> Then</div>
+<div class="displaymath process-math">
+\begin{align*}
+(AB)^T
+\amp= \begin{pmatrix}
+r_1c_1 \amp r_2c_1 \amp \cdots \amp r_mc_1 \\
+r_1c_2 \amp r_2c_2 \amp \cdots \amp r_mc_2 \\
+\vdots \amp \vdots \amp \vdots \\
+r_1c_p \amp r_2c_p \amp \cdots \amp r_mc_p
+\end{pmatrix}\\
+\amp= \begin{pmatrix}
+c_1^Tr_1^T \amp c_1^Tr_2^T \amp \cdots \amp c_1^Tr_m^T \\
+c_2^Tr_1^T \amp c_2^Tr_2^T \amp \cdots \amp c_2^Tr_m^T \\
+\vdots \amp \vdots \amp \vdots \\
+c_p^Tr_1^T \amp c_p^Tr_2^T \amp \cdots \amp c_p^Tr_m^T
+\end{pmatrix}\\
+\amp= \left(\begin{array}{c}
+\matrow{c_1^T} \\
+\matrow{c_2^T} \\
+\vdots \\
+\matrow{c_p^T}
+\end{array}\right)
+\begin{pmatrix}
+| \amp | \amp | \\
+r_1^T \amp r_2^T \amp \cdots \amp r_m^T \\
+| \amp | \amp |
+\end{pmatrix}
+= B^TA^T\text{.}
+\end{align*}
+</div>
+<div class="para">
+<em class="emphasis"></em>               </div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-prod-trans-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 4.1.24.1"><a tabindex="-1" href="#det-defn-prod-trans-3" title="Copy heading and permalink for Proof 4.1.24.1" aria-label="Copy heading and permalink for Proof 4.1.24.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-determinants-definitions-properties.html#det-defn-prod-trans">In Context</a></span>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="remark remark-like"><h2 class="heading">
+<span class="type">Remark</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3.38</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Reflections.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(W\)</span> be a subspace of <span class="process-math">\(\R^n\text{,}\)</span> and let <span class="process-math">\(x\)</span> be a vector in <span class="process-math">\(\R^n\text{.}\)</span>  The <em class="emphasis">reflection</em> of <span class="process-math">\(x\)</span> over <span class="process-math">\(W\)</span> is defined to be the vector</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\refl_W(x) = x - 2x_{W^\perp}\text{.}
+\end{gather*}
+</div>
+<div class="para">In other words, to find <span class="process-math">\(\refl_W(x)\)</span> one starts at <span class="process-math">\(x\text{,}\)</span> then moves to <span class="process-math">\(x-x_{W^\perp} = x_W\text{,}\)</span> then continues in the same direction one more time, to end on the opposite side of <span class="process-math">\(W\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-projection-16-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/subsec-orthogonal-projection-16-4.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-orthogonal-projection-16-4-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="subsec-orthogonal-projection-16-4-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-projection-16-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">Since <span class="process-math">\(x_{W^\perp} = x - x_W\text{,}\)</span> we also have</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\refl_W(x) = x - 2(x - x_W) = 2x_W - x\text{.}
+\end{gather*}
+</div>
+<div class="para">We leave it to the reader to check using the definition that:</div>
+<ol class="decimal" id="subsec-orthogonal-projection-16-5-3">
+<li>
+<div class="para">
+<span class="process-math">\(\displaystyle \refl_W\circ\refl_W = \Id_{\R^n}.\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-projection-16-5-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#subsec-orthogonal-projection-16-5-3-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">The <span class="process-math">\(1\)</span>-eigenspace of <span class="process-math">\(\refl_W\)</span> is <span class="process-math">\(W\text{,}\)</span> and the <span class="process-math">\(-1\)</span>-eigenspace of <span class="process-math">\(\refl_W\)</span> is <span class="process-math">\(W^\perp\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-projection-16-5-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#subsec-orthogonal-projection-16-5-3-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para">
+<span class="process-math">\(\refl_W\)</span> is similar to the diagonal matrix with <span class="process-math">\(m = \dim(W)\)</span> ones on the diagonal and <span class="process-math">\(n-m\)</span> negative ones.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-projection-16-5-3-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#subsec-orthogonal-projection-16-5-3-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-orthogonal-projection-16-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Remark 6.3.38: Reflections"><a tabindex="-1" href="#subsec-orthogonal-projection-16" title="Copy heading and permalink for Remark 6.3.38: Reflections" aria-label="Copy heading and permalink for Remark 6.3.38: Reflections">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-projections.html#subsec-orthogonal-projection-16">In Context</a></span>
+</body>
+</html>

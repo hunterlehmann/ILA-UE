@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.27</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Reflection.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(T\colon\R^2\to\R^2\)</span> be the linear transformation that reflects over the line <span class="process-math">\(L\)</span> defined by <span class="process-math">\(y=-x\text{,}\)</span> and let <span class="process-math">\(A\)</span> be the matrix for <span class="process-math">\(T\text{.}\)</span>  Find all eigenspaces of <span class="process-math">\(A\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-eigenspaces-10-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para">We showed in <a href="sec-eigenvectors.html#evec-eg-reflection" class="xref" data-knowl="./knowl/xref/evec-eg-reflection.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.7: Reflection">Example 7</a> that all eigenvectors with eigenvalue <span class="process-math">\(1\)</span> lie on <span class="process-math">\(L\text{,}\)</span> and all eigenvectors with eigenvalue <span class="process-math">\(-1\)</span> lie on the line <span class="process-math">\(L^\perp\)</span> that is perpendicular to <span class="process-math">\(L\text{.}\)</span>  Hence, <span class="process-math">\(L\)</span> is the <span class="process-math">\(1\)</span>-eigenspace, and <span class="process-math">\(L^\perp\)</span> is the <span class="process-math">\(-1\)</span>-eigenspace.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-eigenspaces-10-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">None of this required any computations, but we can verify our conclusions using algebra.  First we compute the matrix <span class="process-math">\(A\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+T\begin{pmatrix}
+1 \\
+0
+\end{pmatrix} = \begin{pmatrix}
+0 \\
+-1
+\end{pmatrix} \qquad
+T\begin{pmatrix}
+0 \\
+1
+\end{pmatrix} = \begin{pmatrix}
+-1 \\
+0
+\end{pmatrix} \quad\implies\quad
+A = \begin{pmatrix}
+0 \amp -1 \\
+-1 \amp 0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Computing the <span class="process-math">\(1\)</span>-eigenspace means solving the matrix equation <span class="process-math">\((A-I_2)v=0\text{.}\)</span>  We have</div>
+<div class="displaymath process-math">
+\begin{align*}
+A-I_2 = \begin{pmatrix}
+0 \amp -1 \\
+-1 \amp 0
+\end{pmatrix} - \begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1
+\end{pmatrix} = \begin{pmatrix}
+-1 \amp -1 \\
+-1 \amp -1
+\end{pmatrix}
+\quad\xrightarrow{\text{RREF}}\quad\begin{pmatrix}
+1 \amp 1 \\
+0 \amp 0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">The parametric form of the solution set is <span class="process-math">\(x = -y\text{,}\)</span> or equivalently, <span class="process-math">\(y = -x\text{,}\)</span> which is exactly the equation for <span class="process-math">\(L\text{.}\)</span> Computing the <span class="process-math">\(-1\)</span>-eigenspace means solving the matrix equation <span class="process-math">\((A+I_2)v=0\text{;}\)</span> we have</div>
+<div class="displaymath process-math">
+\begin{align*}
+A+I_2 = \begin{pmatrix}
+0 \amp -1 \\
+-1 \amp 0
+\end{pmatrix} + \begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1
+\end{pmatrix} = \begin{pmatrix}
+1 \amp -1 \\
+-1 \amp 1
+\end{pmatrix}
+\quad\xrightarrow{\text{RREF}}\quad\begin{pmatrix}
+1 \amp -1 \\
+0 \amp 0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">The parametric form of the solution set is <span class="process-math">\(x = y\text{,}\)</span> or equivalently, <span class="process-math">\(y = x\text{,}\)</span> which is exactly the equation for <span class="process-math">\(L^\perp\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-eigenspaces-10-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/eigenspace-if.html?mat=0,-1:-1,0&amp;nomult" id="subsec-eigenspaces-10-4-3-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="subsec-eigenspaces-10-4-3-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="subsec-eigenspaces-10-4-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-eigenspaces-10-4-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="subsec-eigenspaces-10-4-3-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="subsec-eigenspaces-10-4-3-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="subsec-eigenspaces-10-4-3-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-eigenspaces-10-4-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#subsec-eigenspaces-10-4-3-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1.28<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The violet line <span class="process-math">\(L\)</span> is the <span class="process-math">\(1\)</span>-eigenspace, and the green line <span class="process-math">\(L^\perp\)</span> is the <span class="process-math">\(-1\)</span>-eigenspace.<div class="autopermalink" aria-hidden="true" data-description="Figure 5.1.28"><a tabindex="-1" href="#subsec-eigenspaces-10-4-3" title="Copy heading and permalink for Figure 5.1.28" aria-label="Copy heading and permalink for Figure 5.1.28">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 5.1.27.1"><a tabindex="-1" href="#subsec-eigenspaces-10-4" title="Copy heading and permalink for Solution 5.1.27.1" aria-label="Copy heading and permalink for Solution 5.1.27.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 5.1.27: Reflection"><a tabindex="-1" href="#subsec-eigenspaces-10" title="Copy heading and permalink for Example 5.1.27: Reflection" aria-label="Copy heading and permalink for Example 5.1.27: Reflection">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-eigenvectors.html#subsec-eigenspaces-10">In Context</a></span>
+</body>
+</html>

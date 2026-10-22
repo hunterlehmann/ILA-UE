@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h2 class="heading"><span class="title">Factoring the characteristic polynomial.</span></h2>
+<div class="para">If <span class="process-math">\(A\)</span> is an <span class="process-math">\(n\times n\)</span> matrix, then the characteristic polynomial <span class="process-math">\(f(\lambda)\)</span> has degree <span class="process-math">\(n\)</span> by the above <a href="sec-characteristic-polynomial.html#charpoly-is-poly" class="xref" data-knowl="./knowl/xref/charpoly-is-poly.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.2.10">Theorem 10</a>.  When <span class="process-math">\(n=2\text{,}\)</span> one can use the quadratic formula to find the roots of <span class="process-math">\(f(\lambda)\text{.}\)</span>  There exist algebraic formulas for the roots of <a class="external" href="https://en.wikipedia.org/wiki/Cubic_function#General_solution_to_the_cubic_equation_with_real_coefficients" target="_blank">cubic</a> and <a class="external" href="https://en.wikipedia.org/wiki/Quartic_function#Solving_a_quartic_equation" target="_blank">quartic</a> polynomials, but these are generally too cumbersome to apply by hand.  Even worse, it is known that there is <a class="external" href="https://en.wikipedia.org/wiki/Abel%E2%80%93Ruffini_theorem" target="_blank">no algebraic formula</a> for the roots of a general polynomial of degree at least <span class="process-math">\(5\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">In practice, the roots of the characteristic polynomial are found <a class="external" href="https://en.wikipedia.org/wiki/Newton%27s_method" target="_blank">numerically by computer</a>.  That said, there do exist methods for finding roots by hand.  For instance, we have the following consequence of the <a class="external" href="https://en.wikipedia.org/wiki/Rational_root_theorem" target="_blank">rational root theorem</a> (which we also call the rational root theorem):<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="fact theorem-like"><h3 class="heading">
+<span class="type">Fact</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.2.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para">Suppose that <span class="process-math">\(A\)</span> is an <span class="process-math">\(n\times n\)</span> matrix whose characteristic polynomial <span class="process-math">\(f(\lambda)\)</span> has integer (whole-number) entries.  Then all rational roots of its characteristic polynomial are integer divisors of <span class="process-math">\(\det(A)\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#rational-root-thm-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Fact 5.2.16"><a tabindex="-1" href="#rational-root-thm" title="Copy heading and permalink for Fact 5.2.16" aria-label="Copy heading and permalink for Fact 5.2.16">🔗</a></div>
+</article>
+<div class="para">For example, if <span class="process-math">\(A\)</span> has integer entries, then its characteristic polynomial has integer coefficients.  This gives us one way to find a root by hand, if <span class="process-math">\(A\)</span> has an eigenvalue that is a rational number.  Once we have found one root, then we can reduce the degree by <a class="external" href="https://en.wikipedia.org/wiki/Polynomial_long_division" target="_blank">polynomial long division</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.2.17</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical">
+<div class="para">Find the eigenvalues of the matrix</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+7 \amp 0 \amp 3 \\
+-3 \amp 2 \amp -3 \\
+-3 \amp 0 \amp -1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Hint: one eigenvalue is an integer.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#charpoly-eg-rat-root-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">We compute the characteristic polynomial by expanding cofactors along the first row:</div>
+<div class="displaymath process-math">
+\begin{align*}
+f(\lambda) = \det(A - \lambda I_3)
+\amp= \det\begin{pmatrix}
+7-\lambda \amp 0 \amp 3 \\
+-3 \amp 2-\lambda \amp -3 \\
+-3 \amp 0 \amp -1-\lambda
+\end{pmatrix}\\
+\amp= (7-\lambda)(2-\lambda)(-1-\lambda) + 3\cdot 3(2-\lambda)\\
+\amp= -\lambda^3 + 8\lambda^2 - 14\lambda + 4\text{.}
+\end{align*}
+</div>
+<div class="para">The determinant of <span class="process-math">\(A\)</span> is the constant term <span class="process-math">\(f(0) = 4\text{;}\)</span> its integer divisors are <span class="process-math">\(\pm 1,\pm 2,\pm 4\text{.}\)</span>  We check which are roots:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+f(1) = -3 \quad f(-1) = 27 \quad f(2) = 0 \quad f(-2) = 72 \quad f(4) = 12 \quad f(-4) = 252\text{.}
+\end{gather*}
+</div>
+<div class="para">The only rational root of <span class="process-math">\(f(\lambda)\)</span> is <span class="process-math">\(\lambda=2\text{.}\)</span>  We divide by <span class="process-math">\(\lambda-2\)</span> using polynomial long division:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\frac{-\lambda^3 + 8\lambda^2 - 14\lambda + 4}{\lambda-2} = -\lambda^2 + 6\lambda - 2\text{.}
+\end{gather*}
+</div>
+<div class="para">We can use the quadratic formula to find the roots of the quotient:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\lambda = \frac{-6 \pm\sqrt{36 - 4\cdot 2}}{-2}
+= 3\pm\sqrt 7\text{.}
+\end{gather*}
+</div>
+<div class="para">We have factored <span class="process-math">\(f\)</span> completely:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+f(\lambda) = -(\lambda-2)\bigl(\lambda-(3+\sqrt7)\bigr)\bigl(\lambda-(3-\sqrt7)\bigr)\text{.}
+\end{gather*}
+</div>
+<div class="para">Therefore, the eigenvalues of <span class="process-math">\(A\)</span> are <span class="process-math">\(2,\,3+\sqrt7,\,3-\sqrt7.\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#charpoly-eg-rat-root-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 5.2.17.1"><a tabindex="-1" href="#charpoly-eg-rat-root-2" title="Copy heading and permalink for Solution 5.2.17.1" aria-label="Copy heading and permalink for Solution 5.2.17.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 5.2.17"><a tabindex="-1" href="#charpoly-eg-rat-root" title="Copy heading and permalink for Example 5.2.17" aria-label="Copy heading and permalink for Example 5.2.17">🔗</a></div>
+</article></details>
+<div class="para logical">
+<div class="para">In the above example, we could have expanded cofactors along the second column to obtain</div>
+<div class="displaymath process-math">
+\begin{align*}
+f(\lambda) = (2-\lambda)\det\begin{pmatrix}
+7-\lambda \amp 3 \\
+-3 \amp -1-\lambda
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Since <span class="process-math">\(2-\lambda\)</span> was the only nonzero entry in its column, this expression already has the <span class="process-math">\(2-\lambda\)</span> term factored out: the rational root theorem was not needed.  The determinant in the above expression is the characteristic polynomial of the matrix <span class="process-math">\(\smallmat 73{-3}{-1}\text{,}\)</span> so we can compute it using the trace and determinant:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+f(\lambda) = (2-\lambda)\bigl(\lambda^2-(7-1)\lambda+(-7+9)\bigr)
+= (2-\lambda)(\lambda^2-6\lambda+2)\text{.}
+\end{gather*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details class="example example-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.2.18</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3></summary>
+<article class="example example-like knowl__content">
+<div class="para logical">
+<div class="para">Find the eigenvalues of the matrix</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+7 \amp 0 \amp 3 \\
+-3 \amp 2 \amp -3 \\
+4 \amp 2 \amp 0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#charpoly-eg-0-eval-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h4 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">We compute the characteristic polynomial by expanding cofactors along the first row:</div>
+<div class="displaymath process-math">
+\begin{align*}
+f(\lambda) = \det(A - \lambda I_3)
+\amp= \det\begin{pmatrix}
+7-\lambda \amp 0 \amp 3 \\
+-3 \amp 2-\lambda \amp -3 \\
+4 \amp 2 \amp -\lambda
+\end{pmatrix}\\
+\amp= (7-\lambda)\bigl(-\lambda(2-\lambda)+6\bigr) + 3\bigl(-6-4(2-\lambda)\bigr)\\
+\amp= -\lambda^3 + 9\lambda^2 - 8\lambda\text{.}
+\end{align*}
+</div>
+<div class="para">The constant term is zero, so <span class="process-math">\(A\)</span> has determinant zero.  We factor out <span class="process-math">\(\lambda\text{,}\)</span> then eyeball the roots of the quadratic factor:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+f(\lambda) = -\lambda(\lambda^2-9\lambda+8) = -\lambda(\lambda-1)(\lambda-8)\text{.}
+\end{gather*}
+</div>
+<div class="para">Therefore, the eigenvalues of <span class="process-math">\(A\)</span> are <span class="process-math">\(0,1,\)</span> and <span class="process-math">\(8\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#charpoly-eg-0-eval-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 5.2.18.1"><a tabindex="-1" href="#charpoly-eg-0-eval-2" title="Copy heading and permalink for Solution 5.2.18.1" aria-label="Copy heading and permalink for Solution 5.2.18.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 5.2.18"><a tabindex="-1" href="#charpoly-eg-0-eval" title="Copy heading and permalink for Example 5.2.18" aria-label="Copy heading and permalink for Example 5.2.18">🔗</a></div>
+</article></details>
+<article class="insight remark-like"><h3 class="heading">
+<span class="type">Insight</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.2.19</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finding Eigenvalues of a Matrix Larger than <span class="process-math">\(2\times 2\)</span>.</span>
+</h3>
+<div class="para logical">
+<div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(n\times n\)</span> matrix.  Here are some strategies for factoring its characteristic polynomial <span class="process-math">\(f(\lambda)\text{.}\)</span>  First, you must find one eigenvalue:</div>
+<ol class="decimal" id="sec-characteristic-polynomial-14-11-2-4">
+<li>
+<div class="para">Do not multiply out the characteristic polynomial if it is already partially factored!  This happens if you expand cofactors along the second column in <a href="sec-characteristic-polynomial.html#charpoly-eg-rat-root" class="xref" data-knowl="./knowl/xref/charpoly-eg-rat-root.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.2.17">Example 17</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">If there is no constant term, you can factor out <span class="process-math">\(\lambda\text{,}\)</span> as in <a href="sec-characteristic-polynomial.html#charpoly-eg-0-eval" class="xref" data-knowl="./knowl/xref/charpoly-eg-0-eval.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.2.18">Example 18</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para">If the matrix is triangular, the roots are the diagonal entries.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li>
+<div class="para">Guess one eigenvalue using the <a href="sec-characteristic-polynomial.html#rational-root-thm" class="xref" data-knowl="./knowl/xref/rational-root-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Fact 5.2.16">Fact 16</a>: if <span class="process-math">\(\det(A)\)</span> is an integer, substitute all (positive and negative) divisors of <span class="process-math">\(\det(A)\)</span> into <span class="process-math">\(f(\lambda)\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 4"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+<li>
+<div class="para">Find an eigenvalue using the geometry of the matrix.  For instance, a <a href="sec-eigenvectors.html#evec-eg-reflection" class="xref" data-knowl="./knowl/xref/evec-eg-reflection.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.1.7: Reflection">reflection</a> has eigenvalues <span class="process-math">\(\pm 1\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 5"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2-4-5" title="Copy heading and permalink for Item 5" aria-label="Copy heading and permalink for Item 5">🔗</a></div>
+</li>
+</ol>
+<div class="para">After obtaining an eigenvalue <span class="process-math">\(\lambda_1\text{,}\)</span> use <a class="external" href="https://en.wikipedia.org/wiki/Polynomial_long_division" target="_blank">polynomial long division</a> to compute <span class="process-math">\(f(\lambda)/(\lambda-\lambda_1)\text{.}\)</span>  This polynomial has lower degree.  If <span class="process-math">\(n=3\)</span> then this is a quadratic polynomial, to which you can apply the quadratic formula to find the remaining roots.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Insight 5.2.19: Finding Eigenvalues of a Matrix Larger than 2\times 2"><a tabindex="-1" href="#sec-characteristic-polynomial-14-11" title="Copy heading and permalink for Insight 5.2.19: Finding Eigenvalues of a Matrix Larger than 2\times 2" aria-label="Copy heading and permalink for Insight 5.2.19: Finding Eigenvalues of a Matrix Larger than 2\times 2">🔗</a></div>
+</article><div class="autopermalink" aria-hidden="true" data-description="Paragraphs: Factoring the characteristic polynomial"><a tabindex="-1" href="#sec-characteristic-polynomial-14" title="Copy heading and permalink for Paragraphs: Factoring the characteristic polynomial" aria-label="Copy heading and permalink for Paragraphs: Factoring the characteristic polynomial">🔗</a></div>
+</section><span class="incontext"><a class="internal" href="sec-characteristic-polynomial.html#sec-characteristic-polynomial-14">In Context</a></span>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="observation remark-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.6.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<div class="para">Continuing with the <a href="sec-stochastic-matrices.html#stochastic-redbox-eg2" class="xref" data-knowl="./knowl/xref/stochastic-redbox-eg2.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.6.7">Example 7</a>, we can illustrate the Perron–Frobenius theorem explicitly.  The matrix</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/stochastic-redbox-eg2.html">
+\begin{align*}
+A = \begin{pmatrix}
+.3 \amp .4 \amp .5 \\
+.3 \amp .4 \amp .3 \\
+.4 \amp .2 \amp .2
+\end{pmatrix}
+\end{align*}
+</div>
+<div class="para">has characteristic polynomial</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/stochastic-redbox-eg2.html">
+\begin{gather*}
+f(\lambda) = -\lambda^3 + 0.12\lambda - 0.02 =
+-(\lambda-1)(\lambda+0.2)(\lambda-0.1)\text{.}
+\end{gather*}
+</div>
+<div class="para">Notice that <span class="process-math">\(1\)</span> is strictly greater in absolute value than the other eigenvalues, and that it has algebraic (hence, geometric) multiplicity <span class="process-math">\(1\text{.}\)</span>  We compute eigenvectors for the eigenvalues <span class="process-math">\(1,-0.2,0.1\)</span> to be, respectively,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/stochastic-redbox-eg2.html">
+\begin{gather*}
+u_1 = \begin{pmatrix}
+7 \\
+6 \\
+5
+\end{pmatrix} \qquad u_2 = \begin{pmatrix}
+-1 \\
+0 \\
+1
+\end{pmatrix} \qquad u_3 = \begin{pmatrix}
+1 \\
+-3 \\
+2
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">The eigenvector <span class="process-math">\(u_1\)</span> necessarily has positive entries; the steady-state vector is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/stochastic-redbox-eg2.html">
+\begin{gather*}
+w = \frac 1{7+6+5}u_1 = \frac 1{18}\begin{pmatrix}
+7 \\
+6 \\
+5
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">The eigenvectors <span class="process-math">\(u_1,u_2,u_3\)</span> form a basis <span class="process-math">\(\cB\)</span> for <span class="process-math">\(\R^3\text{;}\)</span> for any vector <span class="process-math">\(x = a_1u_1+a_2u_2+a_3u_3\)</span> in <span class="process-math">\(\R^3\text{,}\)</span> we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/stochastic-redbox-eg2.html">
+\begin{align*}
+Ax \amp= A(a_1u_1+a_2u_2+a_3u_3)\\
+\amp= a_1Au_1 + a_2Au_2 + a_3Au_3\\
+\amp= a_1u_1 - 0.2a_2u_2 + 0.1a_3u_3\text{.}
+\end{align*}
+</div>
+<div class="para">Iterating multiplication by <span class="process-math">\(A\)</span> in this way, we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/stochastic-redbox-eg2.html">
+\begin{gather*}
+A^tx = a_1u_1 - (0.2)^ta_2u_2 + (0.1)^ta_3u_3 \;\To\; a_1u_1
+\end{gather*}
+</div>
+<div class="para">as <span class="process-math">\(t\to\infty\text{.}\)</span>  This shows that <span class="process-math">\(A^tx\)</span> approaches <span class="process-math">\(a_1u_1\text{,}\)</span> which is an <em class="emphasis">eigenvector with eigenvalue <span class="process-math">\(1\)</span></em>, as guaranteed by the Perron–Frobenius theorem.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#stochastic-redbox-eg3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">What do the above calculations say about the number of copies of Prognosis Negative in the Atlanta Red Box kiosks?  Suppose that the kiosks start with 100 copies of the movie, with <span class="process-math">\(30\)</span> copies at kiosk 1, <span class="process-math">\(50\)</span> copies at kiosk <span class="process-math">\(2\text{,}\)</span> and <span class="process-math">\(20\)</span> copies at kiosk <span class="process-math">\(3\text{.}\)</span>  Let <span class="process-math">\(v_0 = (30,50,20)\)</span> be the vector describing this state.  Then there will be <span class="process-math">\(v_1 = Av_0\)</span> movies in the kiosks the next day, <span class="process-math">\(v_2 = Av_1\)</span> the day after that, and so on.  We let <span class="process-math">\(v_t = (x_t,y_t,z_t).\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+\begin{array}{c|c|c|c}
+t \amp x_t \amp y_t \amp z_t \\\hline
+0 \amp 30.000000 \amp 50.000000 \amp 20.000000 \\
+1 \amp 39.000000 \amp 35.000000 \amp 26.000000 \\
+2 \amp 38.700000 \amp 33.500000 \amp 27.800000 \\
+3 \amp 38.910000 \amp 33.350000 \amp 27.740000 \\
+4 \amp 38.883000 \amp 33.335000 \amp 27.782000 \\
+5 \amp 38.889900 \amp 33.333500 \amp 27.776600 \\
+6 \amp 38.888670 \amp 33.333350 \amp 27.777980 \\
+7 \amp 38.888931 \amp 33.333335 \amp 27.777734 \\
+8 \amp 38.888880 \amp 33.333333 \amp 27.777786 \\
+9 \amp 38.888891 \amp 33.333333 \amp 27.777776 \\
+10\amp 38.888889 \amp 33.333333 \amp 27.777778 \\
+\end{array}
+\end{align*}
+</div>
+<div class="para">(Of course it does not make sense to have a fractional number of movies; the decimals are included here to illustrate the convergence.)  The steady-state vector says that eventually, the movies will be distributed in the kiosks according to the percentages</div>
+<div class="displaymath process-math">
+\begin{gather*}
+w = \frac 1{18}\begin{pmatrix}
+7 \\
+6 \\
+5
+\end{pmatrix} = \begin{pmatrix}
+38.888888\% \\
+33.333333\% \\
+27.777778\%
+\end{pmatrix}\text{,}
+\end{gather*}
+</div>
+<div class="para">which agrees with the above table.  Moreover, this distribution is <em class="emphasis">independent</em> of the beginning distribution of movies in the kiosks.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#stochastic-redbox-eg3-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Now we turn to visualizing the dynamics of (i.e., repeated multiplication by) the matrix <span class="process-math">\(A\text{.}\)</span>  This matrix is diagonalizable; we have <span class="process-math">\(A=CDC\inv\)</span> for</div>
+<div class="displaymath process-math">
+\begin{align*}
+C = \begin{pmatrix}
+7 \amp -1 \amp 1 \\
+6 \amp 0 \amp -3 \\
+5 \amp 1 \amp 2
+\end{pmatrix} \qquad D = \begin{pmatrix}
+1 \amp 0 \amp 0 \\
+0 \amp -.2 \amp 0 \\
+0 \amp 0 \amp .1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">The matrix <span class="process-math">\(D\)</span> leaves the <span class="process-math">\(x\)</span>-coordinate unchanged, scales the <span class="process-math">\(y\)</span>-coordinate by <span class="process-math">\(-1/5\text{,}\)</span> and scales the <span class="process-math">\(z\)</span>-coordinate by <span class="process-math">\(1/10\text{.}\)</span>  Repeated multiplication by <span class="process-math">\(D\)</span> makes the <span class="process-math">\(y\)</span>- and <span class="process-math">\(z\)</span>-coordinates very small, so it “sucks all vectors into the <span class="process-math">\(x\)</span>-axis.”</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#stochastic-redbox-eg3-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">The matrix <span class="process-math">\(A\)</span> does the same thing as <span class="process-math">\(D\text{,}\)</span> but with respect to the coordinate system defined by the columns <span class="process-math">\(u_1,u_2,u_3\)</span> of <span class="process-math">\(C\text{.}\)</span>  This means that <span class="process-math">\(A\)</span> “sucks all vectors into the <span class="process-math">\(1\)</span>-eigenspace”, without changing the sum of the entries of the vectors.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#stochastic-redbox-eg3-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/dynamics2-if.html?mat=1,0:0,-1/5&amp;eigenz=1/10&amp;v1=7/4,6/4,5/4&amp;v2=-1/4,0,1/4&amp;v3=1/4,-3/4,2/4&amp;vec=false&amp;path=false" id="stochastic-redbox-eg3-6-3" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="stochastic-redbox-eg3-6-3-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="stochastic-redbox-eg3-6-3-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#stochastic-redbox-eg3-6-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="stochastic-redbox-eg3-6-3.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="stochastic-redbox-eg3-6-3-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="stochastic-redbox-eg3-6-3-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#stochastic-redbox-eg3-6-3-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#stochastic-redbox-eg3-6-3-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.6.14<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Dynamics of the stochastic matrix <span class="process-math">\(A\text{.}\)</span>  Click “multiply” to multiply the colored points by <span class="process-math">\(D\)</span> on the left and <span class="process-math">\(A\)</span> on the right.  Note that on both sides, all vectors are “sucked into the <span class="process-math">\(1\)</span>-eigenspace” (the green line).  (We have scaled <span class="process-math">\(C\)</span> by <span class="process-math">\(1/4\)</span> so that vectors have roughly the same size on the right and the left.  The “jump” that happens when you press “multiply” is a negation of the <span class="process-math">\(-.2\)</span>-eigenspace, which is not animated.)<div class="autopermalink" aria-hidden="true" data-description="Figure 5.6.14"><a tabindex="-1" href="#stochastic-redbox-eg3-6" title="Copy heading and permalink for Figure 5.6.14" aria-label="Copy heading and permalink for Figure 5.6.14">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Example 5.6.13"><a tabindex="-1" href="#stochastic-redbox-eg3" title="Copy heading and permalink for Example 5.6.13" aria-label="Copy heading and permalink for Example 5.6.13">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-stochastic-matrices.html#stochastic-redbox-eg3">In Context</a></span>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.2.24</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A matrix transformation that is not onto.</span>
+</h2>
+<div class="para logical">
+<div class="para">Let</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1 \amp -1 \amp 2 \\
+-2 \amp 2 \amp -4
+\end{pmatrix}\text{,}
+\end{align*}
+</div>
+<div class="para">and define <span class="process-math">\(T\colon\R^3\to\R^2\)</span> by <span class="process-math">\(T(x) = Ax\text{.}\)</span> Is <span class="process-math">\(T\)</span> onto?  If not, find a vector <span class="process-math">\(b\)</span> in <span class="process-math">\(\R^2\)</span> such that <span class="process-math">\(T(x)=b\)</span> has no solution.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#one-to-one-eg-neither2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">The reduced row echelon form of <span class="process-math">\(A\)</span> is</div>
+<div class="displaymath process-math">
+\begin{align*}
+\begin{pmatrix}
+1 \amp -1 \amp 2 \\
+0 \amp 0 \amp 0
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">There is not a pivot in every row, so <span class="process-math">\(T\)</span> is not onto.  The range of <span class="process-math">\(T\)</span> is the column space of <span class="process-math">\(A\text{,}\)</span> which is equal to</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\Span\left\{\begin{pmatrix}
+1 \\
+-2
+\end{pmatrix},\;\begin{pmatrix}
+-1 \\
+2
+\end{pmatrix},\;\begin{pmatrix}
+2 \\
+-4
+\end{pmatrix}\right\}
+= \Span\left\{\begin{pmatrix}
+1 \\
+-2
+\end{pmatrix}\right\}\text{,}
+\end{gather*}
+</div>
+<div class="para">since all three columns of <span class="process-math">\(A\)</span> are collinear.  Therefore, any vector not on the line through <span class="process-math">\(1\choose-2\)</span> is not in the range of <span class="process-math">\(T\text{.}\)</span>  For instance, if <span class="process-math">\(b={1\choose 1}\)</span> then <span class="process-math">\(T(x)=b\)</span> has no solution.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#one-to-one-eg-neither2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/Axequalsb-if.html?show=false&amp;closed=true" id="one-to-one-eg-neither2-3-2-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="one-to-one-eg-neither2-3-2-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="one-to-one-eg-neither2-3-2-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#one-to-one-eg-neither2-3-2-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="one-to-one-eg-neither2-3-2-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="one-to-one-eg-neither2-3-2-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="one-to-one-eg-neither2-3-2-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#one-to-one-eg-neither2-3-2-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#one-to-one-eg-neither2-3-2-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">3.2.25<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A picture of the matrix transformation <span class="process-math">\(T\text{.}\)</span>  The range of <span class="process-math">\(T\)</span> is the violet line on the right; this is smaller than the codomain <span class="process-math">\(\R^2\text{.}\)</span>  If you drag <span class="process-math">\(b\)</span> off of the violet line, then the equation <span class="process-math">\(Ax=b\)</span> becomes inconsistent; this means <span class="process-math">\(T(x)=b\)</span> has no solution.<div class="autopermalink" aria-hidden="true" data-description="Figure 3.2.25"><a tabindex="-1" href="#one-to-one-eg-neither2-3-2" title="Copy heading and permalink for Figure 3.2.25" aria-label="Copy heading and permalink for Figure 3.2.25">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 3.2.24.1"><a tabindex="-1" href="#one-to-one-eg-neither2-3" title="Copy heading and permalink for Solution 3.2.24.1" aria-label="Copy heading and permalink for Solution 3.2.24.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 3.2.24: A matrix transformation that is not onto"><a tabindex="-1" href="#one-to-one-eg-neither2" title="Copy heading and permalink for Example 3.2.24: A matrix transformation that is not onto" aria-label="Copy heading and permalink for Example 3.2.24: A matrix transformation that is not onto">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-one-to-one-onto.html#one-to-one-eg-neither2">In Context</a></span>
+</body>
+</html>

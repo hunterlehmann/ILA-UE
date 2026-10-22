@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.15</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A diagonalizable <span class="process-math">\(2\times 2\)</span> matrix.</span>
+</h2>
+<div class="para logical">
+<div class="para">Diagonalize the matrix</div>
+<div class="displaymath process-math">
+\begin{align*}
+A = \begin{pmatrix}
+1/2 \amp 3/2 \\
+3/2 \amp 1/2
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-22-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">We need to find the eigenvalues and eigenvectors of <span class="process-math">\(A\text{.}\)</span>  First we compute the characteristic polynomial:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+f(\lambda) = \lambda^2-\Tr(A)\lambda + \det(A) = \lambda^2-\lambda-2
+= (\lambda+1)(\lambda-2)\text{.}
+\end{gather*}
+</div>
+<div class="para">Therefore, the eigenvalues are <span class="process-math">\(-1\)</span> and <span class="process-math">\(2\text{.}\)</span>  We need to compute eigenvectors for each eigenvalue.  We start with <span class="process-math">\(\lambda_1 = -1\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+(A + 1I_2)v = 0 \iff
+\begin{pmatrix}
+3/2 \amp 3/2 \\
+3/2 \amp 3/2
+\end{pmatrix}v = 0
+\;\xrightarrow{\text{RREF}}\;
+\begin{pmatrix}
+1 \amp 1 \\
+0 \amp 0
+\end{pmatrix}v = 0\text{.}
+\end{align*}
+</div>
+<div class="para">The parametric form is <span class="process-math">\(x = -y\text{,}\)</span> so <span class="process-math">\(v_1 = {-1\choose 1}\)</span> is an eigenvector with eigenvalue <span class="process-math">\(\lambda_1\text{.}\)</span>  Now we find an eigenvector with eigenvalue <span class="process-math">\(\lambda_2 = 2\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+(A-2I_2)v = 0 \iff
+\begin{pmatrix}
+-3/2 \amp 3/2 \\
+3/2 \amp -3/2
+\end{pmatrix}v = 0
+\;\xrightarrow{\text{RREF}}\;
+\begin{pmatrix}
+1 \amp -1 \\
+0 \amp 0
+\end{pmatrix}v = 0\text{.}
+\end{align*}
+</div>
+<div class="para">The parametric form is <span class="process-math">\(x = y\text{,}\)</span> so <span class="process-math">\(v_2 = {1\choose 1}\)</span> is an eigenvector with eigenvalue <span class="process-math">\(2\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-22-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">The eigenvectors <span class="process-math">\(v_1,v_2\)</span> are linearly independent, so the <a href="sec-diagonalization.html#diagonalization-thm" class="xref" data-knowl="./knowl/xref/diagonalization-thm.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.3.11">Theorem 11</a> says that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/diagonalization-thm.html">
+\begin{align*}
+A = CDC\inv \sptxt{for} C = \begin{pmatrix}
+-1 \amp 1 \\
+1 \amp 1
+\end{pmatrix} \qquad D = \begin{pmatrix}
+-1 \amp 0 \\
+0 \amp 2
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">Alternatively, if we choose <span class="process-math">\(2\)</span> as our first eigenvalue, then</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/diagonalization-thm.html">
+\begin{align*}
+A = C'D'(C')\inv \sptxt{for} C' = \begin{pmatrix}
+1 \amp -1 \\
+1 \amp 1
+\end{pmatrix} \qquad D' = \begin{pmatrix}
+2 \amp 0 \\
+0 \amp -1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-22-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/eigenspace-if.html?mat=1/2,3/2:3/2,1/2&amp;nomult" id="diagonal-eg-22-3-3-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="diagonal-eg-22-3-3-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="diagonal-eg-22-3-3-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-22-3-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="diagonal-eg-22-3-3-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="diagonal-eg-22-3-3-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h4></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="diagonal-eg-22-3-3-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#diagonal-eg-22-3-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#diagonal-eg-22-3-3-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.16<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The green line is the <span class="process-math">\(-1\)</span>-eigenspace of <span class="process-math">\(A\text{,}\)</span> and the violet line is the <span class="process-math">\(2\)</span>-eigenspace. There are two linearly independent (noncollinear) eigenvectors visible in the picture: choose any nonzero vector on the green line, and any nonzero vector on the violet line.<div class="autopermalink" aria-hidden="true" data-description="Figure 5.3.16"><a tabindex="-1" href="#diagonal-eg-22-3-3" title="Copy heading and permalink for Figure 5.3.16" aria-label="Copy heading and permalink for Figure 5.3.16">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Solution 5.3.15.1"><a tabindex="-1" href="#diagonal-eg-22-3" title="Copy heading and permalink for Solution 5.3.15.1" aria-label="Copy heading and permalink for Solution 5.3.15.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 5.3.15: A diagonalizable 2\times 2 matrix"><a tabindex="-1" href="#diagonal-eg-22" title="Copy heading and permalink for Example 5.3.15: A diagonalizable 2\times 2 matrix" aria-label="Copy heading and permalink for Example 5.3.15: A diagonalizable 2\times 2 matrix">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-diagonalization.html#diagonal-eg-22">In Context</a></span>
+</body>
+</html>

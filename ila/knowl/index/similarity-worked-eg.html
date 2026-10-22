@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="observation remark-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para logical">
+<div class="para">Consider the matrices</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/diagonal-eg-22.html">
+\begin{align*}
+A = \begin{pmatrix}
+1/2 \amp 3/2 \\
+3/2 \amp 1/2
+\end{pmatrix} \qquad
+B = \begin{pmatrix}
+2 \amp 0 \\
+0 \amp -1
+\end{pmatrix} \qquad
+C = \begin{pmatrix}
+1 \amp 1 \\
+1 \amp -1
+\end{pmatrix}\text{.}
+\end{align*}
+</div>
+<div class="para">One can verify that <span class="process-math">\(A = CBC\inv\text{:}\)</span> see <a href="sec-diagonalization.html#diagonal-eg-22" class="xref" data-knowl="./knowl/xref/diagonal-eg-22.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.4.11: A diagonalizable 2\times 2 matrix">Example 11 of Section 5.4</a>.  Let <span class="process-math">\(v_1 = {1\choose 1}\)</span> and <span class="process-math">\(v_2 = {1\choose -1}\text{,}\)</span> the columns of <span class="process-math">\(C\text{,}\)</span> and let <span class="process-math">\(\cB = \{v_1,v_2\}\text{,}\)</span> a basis of <span class="process-math">\(\R^2\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">The matrix <span class="process-math">\(B\)</span> is diagonal: it scales the <span class="process-math">\(x\)</span>-direction by a factor of <span class="process-math">\(2\)</span> and the <span class="process-math">\(y\)</span>-direction by a factor of <span class="process-math">\(-1\text{.}\)</span> \def\theo{\includegraphics[width=6cm]{theo11.jpg}} \begin{tikzpicture}[scale=.8, thin border nodes] \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1,0) node[right] {$e_1$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0,1) node[above] {$e_2$}; \point at (0, 0); \begin{scope}[xshift=10cm, xscale=2, yscale=-1] \clip (-1.5, -3) rectangle (1.5, 3); \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1, 0) node[right] {$Be_1$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0, 1) node[below] {$Be_2$}; \point at (0, 0); \end{scope} \draw (-3, -3) rectangle (3, 3); \draw[xshift=10cm] (-3, -3) rectangle (3, 3); \draw[-&gt;, shorten=2mm, thick] (3, 1) to[bend left, "$B$" above=.5mm] (7, 1); \end{tikzpicture} To compute <span class="process-math">\(Ax\text{,}\)</span> first we multiply by <span class="process-math">\(C\inv\)</span> to find the <span class="process-math">\(\cB\)</span>-coordinates of <span class="process-math">\(x\text{,}\)</span> then we multiply by <span class="process-math">\(B\text{,}\)</span> then we multiply by <span class="process-math">\(C\)</span> again.  For instance, let <span class="process-math">\(\textcolor{seq-green}x = {0\choose -2}\text{.}\)</span>
+</div>
+<ol class="decimal" id="similarity-worked-eg-3-14">
+<li>
+<div class="para">We see from the <span class="process-math">\(\cB\)</span>-coordinate grid below that <span class="process-math">\(\textcolor{seq-green}x = -\textcolor{seq-violet}{v_1} + \mhb{v_2}\text{.}\)</span>  Therefore, <span class="process-math">\(C\inv\textcolor{seq-green}x = \mhg{[x]_\cB} = {-1\choose 1}.\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-3-14-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#similarity-worked-eg-3-14-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">Multiplying by <span class="process-math">\(B\)</span> scales the coordinates: <span class="process-math">\(\mh{B[x]_\cB} = {-2\choose -1}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-3-14-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#similarity-worked-eg-3-14-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">Interpreting <span class="process-math">\({-2\choose -1}\)</span> as a <span class="process-math">\(\cB\)</span>-coordinate vector, we multiply by <span class="process-math">\(C\)</span> to get</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\mh{Ax} = C\begin{pmatrix}
+-2 \\
+-1
+\end{pmatrix} = -2\textcolor{seq-violet}{v_1} - \mhb{v_2} = \begin{pmatrix}
+-3 \\
+-1
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">Of course, this vector lies at <span class="process-math">\((-2, -1)\)</span> on the <span class="process-math">\(\cB\)</span>-coordinate grid.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-3-14-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#similarity-worked-eg-3-14-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/similarity-worked-eg-4.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="similarity-worked-eg-4-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="similarity-worked-eg-4-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">Now let <span class="process-math">\(\textcolor{seq-green}x = \frac 12{5\choose -3}\text{.}\)</span>
+</div>
+<ol class="decimal" id="similarity-worked-eg-5-2">
+<li>
+<div class="para">We see from the <span class="process-math">\(\cB\)</span>-coordinate grid that <span class="process-math">\(\textcolor{seq-green}x = \frac 12\textcolor{seq-violet}{v_1} + 2\mhb{v_2}\text{.}\)</span>  Therefore, <span class="process-math">\(C\inv\textcolor{seq-green}x = \mhg{[x]_\cB} = {1/2\choose 2}.\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-5-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#similarity-worked-eg-5-2-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li>
+<div class="para">Multiplying by <span class="process-math">\(B\)</span> scales the coordinates: <span class="process-math">\(\mh{B[x]_\cB} = {1\choose -2}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-5-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#similarity-worked-eg-5-2-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li>
+<div class="para logical">
+<div class="para">Interpreting <span class="process-math">\({1\choose -2}\)</span> as a <span class="process-math">\(\cB\)</span>-coordinate vector, we multiply by <span class="process-math">\(C\)</span> to get</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\mh{Ax} = C\begin{pmatrix}
+1 \\
+-2
+\end{pmatrix} = \textcolor{seq-violet}{v_1} - 2\mhb{v_2} = \begin{pmatrix}
+-1 \\
+3
+\end{pmatrix}\text{.}
+\end{gather*}
+</div>
+<div class="para">This vector lies at <span class="process-math">\((1, -2)\)</span> on the <span class="process-math">\(\cB\)</span>-coordinate grid.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-5-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#similarity-worked-eg-5-2-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/latex-image/similarity-worked-eg-6.svg" role="img" class="contained" alt=""><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="similarity-worked-eg-6-description" style="width: 133.33%; margin-left: -16.67%;">
+<div class="para" id="similarity-worked-eg-6-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-6-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="para logical">
+<div class="para">To summarize:</div>
+<ul class="disc" id="similarity-worked-eg-7-1">
+<li>
+<div class="para">
+<span class="process-math">\(B\)</span> scales the <span class="process-math">\(e_1\)</span>-direction by <span class="process-math">\(2\)</span> and the <span class="process-math">\(e_2\)</span>-direction by <span class="process-math">\(-1\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-7-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#similarity-worked-eg-7-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li>
+<div class="para">
+<span class="process-math">\(A\)</span> scales the <span class="process-math">\(v_1\)</span>-direction by <span class="process-math">\(2\)</span> and the <span class="process-math">\(v_2\)</span>-direction by <span class="process-math">\(-1\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-7-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#similarity-worked-eg-7-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">\def\theo{\includegraphics[width=6cm]{theo11.jpg}} \begin{tikzpicture}[scale=.8, thin border nodes] \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1,0) node[right] {$e_1$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0,1) node[above] {$e_2$}; \point at (0, 0); \begin{scope}[xshift=9cm, xscale=2, yscale=-1] \clip (-1.5, -3) rectangle (1.5, 3); \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1, 0) node[right] {$Be_1$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0, 1) node[below] {$Be_2$}; \point at (0, 0); \end{scope} \begin{scope}[yshift=-9cm] \clip (-3, -3) rectangle (3, 3); \begin{scope}[cm={(1,1,1,-1,(0,0))}] \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1,0) node[right] {$v_1$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0,1) node[right] {$v_2$}; \end{scope} \point at (0, 0); \end{scope} \begin{scope}[yshift=-9cm, xshift=9cm] \clip (-3, -3) rectangle (3, 3); \begin{scope}[cm={(1,1,1,-1,(0,0))}] \begin{scope}[xscale=2, yscale=-1] \node[transform shape] at (0, 0) {\theo}; \draw[seq-violet, opacity=1, vector] (0,0) -- (1,0) node[right] {$Av_1$}; \draw[seq-blue,   opacity=1, vector] (0,0) -- (0,1) node[left] {$Av_2$}; \end{scope} \end{scope} \point at (0, 0); \end{scope} \draw (-3, -3) rectangle (3, 3); \draw[xshift=9cm] (-3, -3) rectangle (3, 3); \draw[yshift=-9cm] (-3, -3) rectangle (3, 3); \draw[xshift=9cm, yshift=-9cm] (-3, -3) rectangle (3, 3); \draw[-&gt;, shorten=2mm, thick] (3, 1) to[bend left, "$B$" above=.5mm] (6, 1); \draw[-&gt;, shorten=2mm, thick, yshift=-9cm] (3, -1) to[bend right, "$A$" above=.5mm] (6, -1); \draw[-&gt;, shorten=2mm, thick] (-1, -6) to[bend left, "$C\inv$" right=.5mm] (-1, -3); \draw[-&gt;, shorten=2mm, thick, xshift=9cm] (1, -3) to[bend left, "$C$" left=.5mm] (1, -6); \end{tikzpicture}</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="interactive-iframe-container">
+<iframe src="external/iframes/similarity-if.html?B=2,0:0,-1&amp;C=1,1:1,-1&amp;closed" id="similarity-worked-eg-8-2" style="width:540px; height:405px; display: block; " title=""></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="similarity-worked-eg-8-2-description" style="width: 80%; margin-left: 10%;"> 
+<div class="para" id="similarity-worked-eg-8-2-2-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-8-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="similarity-worked-eg-8-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="similarity-worked-eg-8-2-3" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<div class="solution-like knowl__content">
+<div class="para" id="similarity-worked-eg-8-2-3-1"><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#similarity-worked-eg-8-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div></div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#similarity-worked-eg-8-2-3" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3.11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The geometric relationship between the similar matrices <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> acting on <span class="process-math">\(\R^2\text{.}\)</span>  Click and drag the heads of <span class="process-math">\(x\)</span> and <span class="process-math">\([x]_\cB\text{.}\)</span>  Study this picture until you can reliably predict where the other three vectors will be after moving one of them: this is the essence of the geometry of similar matrices.<div class="autopermalink" aria-hidden="true" data-description="Figure 5.3.11"><a tabindex="-1" href="#similarity-worked-eg-8" title="Copy heading and permalink for Figure 5.3.11" aria-label="Copy heading and permalink for Figure 5.3.11">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Example 5.3.10"><a tabindex="-1" href="#similarity-worked-eg" title="Copy heading and permalink for Example 5.3.10" aria-label="Copy heading and permalink for Example 5.3.10">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="sec-similarity.html#similarity-worked-eg">In Context</a></span>
+</body>
+</html>

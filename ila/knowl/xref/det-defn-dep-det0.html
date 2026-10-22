@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="corollary theorem-like"><h2 class="heading">
+<span class="type">Corollary</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.1.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(A\)</span> be a square matrix.  If the rows or columns of <span class="process-math">\(A\)</span> are linearly dependent, then <span class="process-math">\(\det(A)=0\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-dep-det0-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Corollary 4.1.16"><a tabindex="-1" href="#det-defn-dep-det0" title="Copy heading and permalink for Corollary 4.1.16" aria-label="Copy heading and permalink for Corollary 4.1.16">🔗</a></div>
+</article>
+<details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical">
+<div class="para">If the columns of <span class="process-math">\(A\)</span> are linearly dependent, then <span class="process-math">\(A\)</span> is not invertible by condition 4 of the <a href="sec-invertible-matrix-thm.html#imt-1" class="xref" data-knowl="./knowl/xref/imt-1.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.6.1">Theorem 1 of Section 3.6</a>.  Suppose now that the rows of <span class="process-math">\(A\)</span> are linearly dependent.  If <span class="process-math">\(r_1,r_2,\ldots,r_n\)</span> are the rows of <span class="process-math">\(A\text{,}\)</span> then one of the rows is in the span of the others, so we have an equation like</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/imt-1.html">
+\begin{gather*}
+r_2 = 3r_1 - r_3 + 2r_4\text{.}
+\end{gather*}
+</div>
+<div class="para">If we perform the following row operations on <span class="process-math">\(A\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/imt-1.html">
+\begin{gather*}
+R_2 = R_2 - 3R_1;\quad
+R_2 = R_2 +  R_3;\quad
+R_2 = R_2 - 2R_4
+\end{gather*}
+</div>
+<div class="para">then the second row of the resulting matrix is zero.  Hence <span class="process-math">\(A\)</span> is not invertible in this case either.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-dep-det0-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Alternatively, if the rows of <span class="process-math">\(A\)</span> are linearly dependent, then one can combine condition 4 of the <a href="sec-invertible-matrix-thm.html#imt-1" class="xref" data-knowl="./knowl/xref/imt-1.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.6.1">Theorem 1 of Section 3.6</a> and the <a href="sec-determinants-definitions-properties.html#det-defn-trans-prop" class="xref" data-knowl="./knowl/xref/det-defn-trans-prop.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.1.25: Transpose Property">Proposition 25</a> below to conclude that <span class="process-math">\(\det(A)=0\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#det-defn-dep-det0-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Proof 4.1.16.1"><a tabindex="-1" href="#det-defn-dep-det0-3" title="Copy heading and permalink for Proof 4.1.16.1" aria-label="Copy heading and permalink for Proof 4.1.16.1">🔗</a></div>
+</article></details><span class="incontext"><a class="internal" href="sec-determinants-definitions-properties.html#det-defn-dep-det0">In Context</a></span>
+</body>
+</html>

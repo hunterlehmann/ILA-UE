@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>A vector by coordinates</title>
+  <!-- Shared MathJax config + helpers. Plain script: no defer/async. -->
+  <script src="js/mathjax-setup.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: white; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Caption / control bar above the canvas; scrolls if controls get tall */
+    .caption-bar {
+      flex: 0 0 auto; max-height: 55%; overflow-y: auto;
+      padding: 5px 10px; background: white; border-bottom: 1px solid #ccc;
+    }
+    .caption-bar p      { margin: 2px 0; font-size: 0.9em; }
+    .caption-bar p.hint { font-size: 0.8em; color: #555; }
+    .live-math { display: inline-block; min-height: 1.4em; }
+    details.panel { margin-top: 3px; font-size: 0.82em; }
+    details.panel summary { cursor: pointer; color: #444; user-select: none; }
+    .ctrl-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin-top: 3px; font-size: 0.88em; }
+    .check-row { display: inline-flex; align-items: center; gap: 4px; }
+    .vec-grid { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 3px; }
+    .vec-row   { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .vec-label { min-width: 1.6em; text-align: right; }
+    .vec-row input[type="number"] {
+      width: 58px; padding: 1px 3px; font-size: 0.95em;
+      border: 1px solid #767676; border-radius: 2px;
+    }
+    .slider-grid {
+      display: grid; grid-template-columns: auto 1fr 3.5em;
+      gap: 2px 6px; align-items: center; margin-top: 4px; font-size: 0.88em;
+    }
+    .slider-grid label { text-align: right; white-space: nowrap; }
+    .slider-grid input[type="range"] { width: 100%; }
+    .slider-val { text-align: right; font-variant-numeric: tabular-nums; }
+    button.ctl {
+      font: inherit; padding: 2px 8px; cursor: pointer;
+      border: 1px solid #767676; border-radius: 3px; background: #f4f4f4;
+    }
+    button.ctl:hover { background: #e6e6e6; }
+    .status { margin-top: 3px; padding: 3px 8px; border: 1px solid #444; border-radius: 3px; font-size: 0.9em; }
+    /* Canvas area: one or more equal panels side by side */
+    #mathbox-container { flex: 1 1 auto; position: relative; overflow: hidden; display: flex; }
+    .mb-panel { flex: 1 1 0; position: relative; min-width: 0; }
+    .mb-panel + .mb-panel { border-left: 1px solid #ccc; }
+    .mb-panel > div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .mathbox-label {
+      position: absolute; left: 50%; top: 6px; transform: translate(-50%, 0); z-index: 2;
+      color: black; background: rgba(235, 235, 235, .85); border: 1px solid rgba(50, 50, 50, .5);
+      padding: 2px 6px; font-size: 0.85em; pointer-events: none; white-space: nowrap;
+    }
+    /* MathJax labels over the canvas (js/demo-labels.js) */
+    .label-layer  { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    pointer-events: none; overflow: hidden; z-index: 1; }
+    .canvas-label { position: absolute; left: 0; top: 0; font-size: 15px; white-space: nowrap;
+                    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff; will-change: transform; }
+    :focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
+    #fs-btn {
+      float: right; cursor: pointer; background: none;
+      border: 1px solid #767676; border-radius: 3px;
+      padding: 2px 6px; font-size: 0.85em; color: #444;
+    }
+    #fs-btn:hover { background: rgba(0,0,0,.07); }
+    :fullscreen #fs-btn, :-webkit-full-screen #fs-btn { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="caption-bar" role="region" aria-label="Vector by coordinates controls">
+    <button id="fs-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    <p><span id="vectors-here" class="live-math" aria-live="polite" aria-atomic="true"></span></p>
+    <p class="hint mathjax-static">Drag the arrow head and tail, or use the sliders and tail coordinates below.</p>
+    <div id="slider-panel" class="slider-grid" role="group" aria-label="Slider controls"></div>
+    <details class="panel">
+      <summary class="mathjax-static">Edit tail position</summary>
+      <div id="vec-inputs" class="vec-grid" role="group" aria-label="Vector coordinates"></div>
+    </details>
+  </div>
+
+  <!-- Canvas: draggable for pointer users; aria-hidden because the caption bar
+       and controls expose the same state to assistive technology -->
+  <div id="mathbox-container" aria-hidden="true">
+    <div class="mb-panel"><div id="mathbox1"></div></div>
+  </div>
+
+  <!-- Shared scripts in external/iframes/js/. Plain scripts, this order. -->
+  <script src="js/demo.js"></script>
+  <script src="js/demo-theme.js"></script>   <!-- book colour palette; must follow demo.js -->
+  <script src="js/demo-labels.js"></script>  <!-- MathJax canvas labels -->
+  <script src="js/demo-ui.js"></script>      <!-- TeX builders + native controls -->
+  <script>
+  "use strict";
+
+  DomReady.ready(function() {
+    var RANGE     = 10;
+    var vecColor  = new Color("green");
+    var lineColor = new Color("blue");
+    var origin    = [0, 0, 0];
+    var vector    = [5, 3, 4];
+    // Components of v (head minus tail): what the sliders control
+    var params    = { a: vector[0], b: vector[1], c: vector[2] };
+    var eqnElt    = document.getElementById('vectors-here');
+    function headFromParams() {
+      vector[0] = origin[0] + params.a;
+      vector[1] = origin[1] + params.b;
+      vector[2] = origin[2] + params.c;
+    }
+    function updateCaption() {
+      renderMath(texC(vecColor, 'v') + ' = ' + texVec([params.a, params.b, params.c], lineColor), eqnElt);
+    }
+    var sliderPanel = document.getElementById('slider-panel');
+    var sliders = {};
+    ['a', 'b', 'c'].forEach(function(name) {
+      sliders[name] = buildSlider(sliderPanel, {
+        name: name, tex: name, min: -RANGE, max: RANGE, step: 0.1, value: params[name],
+        onInput: function(v) { params[name] = v; headFromParams(); updateCaption(); }
+      });
+    });
+    // Keyboard alternative for dragging the tail; head follows (same as drag)
+    var editor = buildVectorEditor(document.getElementById('vec-inputs'), [
+      { name: 'tail', tex: '\\text{tail}', vec: origin, dim: 3 }
+    ], RANGE, function() { headFromParams(); updateCaption(); });
+    function syncFromDrag() {
+      ['a', 'b', 'c'].forEach(function(name) { sliders[name].set(params[name]); });
+      editor.sync();
+      updateCaption();
+    }
+    updateCaption();
+
+    new Demo({
+      fullscreen: false,
+      mathbox: mbOpts('mathbox1'),
+      camera: { position: [3, -1, 1.5] }
+    }, function() {
+      window.mathbox = this.mathbox;
+      var view = this.view({ axes: true });
+      this.labeledVectors(view, { vectors: [vector], origins: [origin], colors: [new Color("green")] });
+      var labelLayer = makeLabelLayer(document.getElementById('mathbox1'), this, view);
+      addVectorLabels(labelLayer, [vector], [vecColor], ['v'], [origin]);
+      // Coordinate path tail -> x -> y -> z (head)
+      view.array({
+        channels: 3, width: 4,
+        expr: function(emit, i) {
+          switch (i) {
+            case 0: return emit.apply(null, origin);
+            case 1: return emit(vector[0], origin[1], origin[2]);
+            case 2: return emit(vector[0], vector[1], origin[2]);
+            case 3: return emit.apply(null, vector);
+          }
+        }
+      }).line({ classes: ["linear-combo"], color: lineColor.arr(), opacity: 0.75, width: 4, zIndex: 1 });
+      // Component labels along the path (MathJax)
+      var compLabels = [
+        function() { return [(origin[0] + vector[0]) / 2, origin[1], origin[2]]; },
+        function() { return [vector[0], (origin[1] + vector[1]) / 2, origin[2]]; },
+        function() { return [vector[0], vector[1], (origin[2] + vector[2]) / 2]; }
+      ].map(function(fn) { return labelLayer.add({ position: fn, offset: [25, 0] }); });
+      var lastComp = ['', '', ''];
+      (function refreshComps() {
+        for (var i = 0; i < 3; i++) {
+          var tex = texC(lineColor, fmt(vector[i] - origin[i]));
+          if (tex !== lastComp[i]) { lastComp[i] = tex; compLabels[i].set(tex); }
+        }
+        requestAnimationFrame(refreshComps);
+      })();
+      this.draggable(view, {
+        points: [origin, vector],
+        size: 30,
+        hiliteColor: [0, 1, 1, .75],
+        onDrag: function(vec) {
+          if (this.dragging === 0) {
+            // Dragging the tail: head moves with it, components unchanged
+            vector[0] = vec.x + params.a;
+            vector[1] = vec.y + params.b;
+            vector[2] = vec.z + params.c;
+          } else {
+            vec.clampScalar(-RANGE, RANGE);
+            params.a = vec.x - origin[0];
+            params.b = vec.y - origin[1];
+            params.c = vec.z - origin[2];
+          }
+        },
+        postDrag: syncFromDrag
+      });
+    });
+  }); // end DomReady.ready
+
+  initFullscreenButton('fs-btn');
+  </script>
+</body>
+</html>
