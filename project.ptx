@@ -9,7 +9,7 @@
             <stringparams html.css.extra="external/css/highlight-math.css"/>
         </target>
         <target name="1553-web" format="html" publication="publication-1553.ptx" output-dir="1553-web" deploy-dir="1553"/>
-        <target name="print" format="pdf"/>
+        <target name="print" format="pdf" publication="publication-master.ptx"/>
     </targets>
 </project>
 <!-- SAMPLE MANIFEST illustrating all options. Defaults are given (mostly).              -->
