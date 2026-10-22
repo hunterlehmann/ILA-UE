@@ -1,0 +1,1915 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--********************************************************************
+Copyright 2019 Dan Margalit and Joseph Rabinoff
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation.  A copy of
+the license is included in gfdl.xml.
+*********************************************************************-->
+
+<section xml:id="sec-matrix-multiplication">
+  <title>Matrix Multiplication</title>
+
+  <objectives>
+    <ol>
+      <li><p>Understand compositions of transformations.</p></li>
+      <li><p>Understand the relationship between matrix products and compositions of matrix transformations.</p></li>
+      <li><p>Become comfortable doing basic algebra involving matrices.</p></li>
+      <li><p><em>Recipe:</em> matrix multiplication (two ways).</p></li>
+      <li><p><em>Picture:</em> composition of transformations.</p></li>
+      <li><p><em>Vocabulary word:</em> <term>composition</term>.</p></li>
+    </ol>
+  </objectives>
+
+  <introduction>
+    <p>
+      In this section, we study compositions of transformations.  As we will see, composition is a way of chaining transformations together.  The composition of matrix transformations corresponds to a notion of <em>multiplying</em> two matrices together.  We also discuss addition and scalar multiplication of transformations and of matrices.
+    </p>
+  </introduction>
+
+	<subsection xml:id="subsec-composition-of-linear-transformations">
+	<title>Composition of linear transformations</title>
+
+<p>Composition means the same thing in linear algebra as it does in Calculus.  Here is the definition.</p>
+
+    <definition>
+      <idx><h>Transformation</h><h>composition of</h></idx>
+      <idx><h>Linear transformation</h><h>composition of</h><see>Transformation</see></idx>
+      <idx><h>Matrix transformation</h><h>composition of</h><see>Transformation</see></idx>
+      <idx><h>Matrix transformation</h><h>composition of</h><see>Linear transformation</see></idx>
+      <statement>
+        <p>
+          Let <m>T\colon\R^n\to\R^m</m> and <m>U\colon\R^p\to\R^n</m> be transformations.  Their <term>composition</term> is the transformation <m>T\circ U\colon\R^p\to\R^m</m> defined by
+          <md>
+<mrow>(T\circ U)(x) = T(U(x))</mrow>
+</md>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Composing two transformations means chaining them together: <m>T\circ U</m> is the transformation that first applies <m>U</m>, then applies <m>T</m> (note the order of operations).  More precisely, to evaluate <m>T\circ U</m> on an input vector <m>x</m>, first you evaluate <m>U(x)</m>, then you take this output vector of <m>U</m> and use it as an input vector of <m>T</m>: that is, <m>(T\circ U)(x) = T(U(x))</m>.  Of course, this only makes sense when the outputs of <m>U</m> are valid inputs of <m>T</m>, that is, when the range of <m>U</m> is contained in the domain of <m>T</m>.
+      </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image>
+\begin{tikzpicture}[every label/.append style={text=black, thin border}, scale=.65]
+  \draw[grid lines] (-3,-3) grid (3,3)
+    (0,-3.5) node[black] {$\R^p$}
+    (2,1)  node[point, "$x$" left] (x) {};
+  \draw[grid lines,xshift=8cm] (-3,-3) grid (3,3)
+    (0,-3.5) node[black] {$\R^n$}
+    (-1,-2) node[point, "$U(x)$" above] (Ux) {};
+  \draw[grid lines,xshift=16cm] (-3,-3) grid (3,3)
+    (0,-3.5) node[black] {$\R^m$}
+    (-2,2) node[point, "$T\circ U(x)$" below right] (TUx) {};
+  \draw[|->, shorten=1.5pt, out=0, in=180]
+    (x) to node[below,midway] {$U$} (Ux);
+  \draw[|->, shorten=1.5pt, out=0, in=180]
+    (Ux) to node[below,midway] {$T$} (TUx);
+  \draw[shorten=1.5pt, out=0, in=180]
+    (x) to node[above=2pt,midway,thin border] {$T\circ U$} (TUx);
+\end{tikzpicture}
+      </latex-image>
+</image>
+<p>
+      Here is a picture of the composition <m>T\circ U</m> as a <q>machine</q> that first runs <m>U</m>, then takes its output and feeds it into <m>T</m>; there is a similar picture in <xref ref="subsec-matrix-trans-transformations" text="type-global"/>.
+      <latex-code>
+            <![CDATA[
+\tikzset{
+  pics/gear/.style args={#1/#2}{
+    code = { % #1 = number of gears, #2 = tooth length
+      \filldraw[fill=black!30] (1cm-#2/2,0)
+        let \n{angle} = {360/#1} in
+          \foreach \gear [evaluate=\gear as \startangle using \gear*\n{angle}]
+              in {1,...,#1}
+            {
+              arc[radius=1cm-#2/2, start angle=\startangle-\n{angle},
+                  delta angle=\n{angle}/4]
+              -- (\startangle-3*\n{angle}/4+\n{angle}/10:1cm+#2/2)
+              arc[radius=1cm+#2/2,
+                  start angle=\startangle-3*\n{angle}/4+\n{angle}/10,
+                  end angle  =\startangle-  \n{angle}/4-\n{angle}/10]
+              -- (\startangle-  \n{angle}/4:1cm-#2/2)
+              arc[radius=1cm-#2/2, start angle=\startangle-\n{angle}/4,
+                  delta angle=\n{angle}/4]
+            };
+          \draw (0,0) circle[radius=.4cm];
+        }
+    },
+  % machine is an input/output machine for illustrating functions
+  machine/.pic = {
+    \filldraw[rounded corners=.3mm, fill=steel!30] (1.5, -1)
+      -- (1.5, -.5) -- (1.5-.2, -.5) -- (1.5-.2, .4) -- (1.5, .4)
+      -- (1.5, 1) -- (-1.5, 1) -- (-1.5, -1) -- cycle;
+    \filldraw[fill=steel!30] (-1.5, -.2)
+      -- (-1.5-.5, -.5) -- (-1.5-.5, .5) -- (-1.5, .2);
+    \coordinate (-input) at (-1.5-.5, 0);
+    %\fill (-1.5-.4, -.05) rectangle (-1.5+.5, .05);
+    %\fill (-1.5+.3, -.15) -- (-1.5+.7, 0) -- (-1.5+.3, .15);
+    \filldraw[yshift=-.1cm, fill=black!30] (1.5-.2, -.3)
+      -- (1.5+.4, -.3)
+      arc[radius=.15, start angle=-90, end angle=90]
+      -- (1.5-.2,0);
+    \draw[yshift=-.1cm] (1.5+.4, -.15) circle[radius=.1];
+    %\fill (1.5-.7, -.05) rectangle (1.5+.2, .05);
+    %\fill (1.5+.0, -.15) -- (1.5+.4, 0) -- (1.5+.0, .15);
+    \coordinate (-output) at (1.5+.5, 0);
+    \pic[transform shape, scale=.4] at (-.4, -.4) {gear={15/.2cm}};
+    \pic[transform shape, scale=.4] at ( .4, -.4) {gear={15/.2cm}};
+    % Need to expand \tikzpictextoptions *first* so as not to confuse \pgfkeys
+    \expandafter\node\expandafter[\tikzpictextoptions] at (0, .5) {\tikzpictext};
+    },
+  machine2/.pic = {
+    \filldraw[rounded corners=.3mm, fill=steel!30] (3.5, -1)
+      -- (3.5, -.5) -- (3.5-.2, -.5) -- (3.5-.2, .4) -- (3.5, .4)
+      -- (3.5, 1) -- (-1.5, 1) -- (-1.5, -1) -- cycle;
+    \filldraw[fill=steel!30] (-1.5, -.2)
+      -- (-1.5-.3, -.4) -- (-1.5-.3, .4) -- (-1.5, .2);
+    \coordinate (-input) at (-1.5-.3, 0);
+    %\fill (-1.5-.4, -.05) rectangle (-1.5+.5, .05);
+    %\fill (-1.5+.3, -.15) -- (-1.5+.7, 0) -- (-1.5+.3, .15);
+    \filldraw[yshift=-.1cm, fill=black!30] (3.5-.2, -.3)
+      -- (3.5+.1, -.3)
+      arc[radius=.15, start angle=-90, end angle=90]
+      -- (3.5-.2,0);
+    \draw[yshift=-.1cm] (3.5+.1, -.15) circle[radius=.1];
+    %\fill (1.5-.7, -.05) rectangle (1.5+.2, .05);
+    %\fill (1.5+.0, -.15) -- (1.5+.4, 0) -- (1.5+.0, .15);
+    \coordinate (-output) at (3.5-.2, 0);
+    % Need to expand \tikzpictextoptions *first* so as not to confuse \pgfkeys
+    \expandafter\node\expandafter[\tikzpictextoptions] at (1, .75) {\tikzpictext};
+    },
+}
+\begin{tikzpicture}[thin border nodes]
+  \pic[scale=2, "$T\circ U$"] (machine) at (0, 0) {machine2};
+  \filldraw[dashed, rounded corners=3mm, thick, fill=white!96!black]
+     (-2.5, -1.2) rectangle (6, 1.2);
+  \pic[scale=.75, "$U$"] (machine1) at (-.5, 0) {machine};
+  \pic[scale=.75, "$T$"] (machine2) at (4, 0) {machine};
+  \draw[thick, shorten=1mm, arrows={<[scale=1.5]-}]
+     (machine-input) -- node[above=.7mm] {$\R^p$} ++(-1cm,0) node[left] {$x$};
+  \draw[thick, shorten=1mm, arrows={-[scale=1.5]>}]
+     (machine-output) -- node[above=.7mm] {$\R^m$} ++(1.1cm,0) node[right] {$T\circ U(x)$};
+  \draw[shorten=1mm, ->] (machine-input) -- (machine1-input);
+  \draw[shorten=1mm, ->] (machine1-output) --
+     node[above=1mm, font=\small] {$U(x)$}
+     node[below=1mm, font=\small] {$\R^n$} (machine2-input);
+  \draw[shorten=1mm, ->] (machine2-output) -- (machine-output);
+
+\end{tikzpicture}
+            ]]>
+</latex-code>
+</p>
+
+    <insight>
+      <title>Domain and codomain of a composition</title>
+      <p>
+        <ul>
+          <li><p>In order for <m>T\circ U</m> to be defined, the codomain of <m>U</m> must equal the domain of <m>T</m>.</p></li>
+          <li><p>The domain of <m>T\circ U</m> is the domain of <m>U</m>.</p></li>
+          <li><p>The codomain of <m>T\circ U</m> is the codomain of <m>T</m>.</p></li>
+        </ul>
+      </p>
+    </insight>
+
+    <example>
+      <title>Functions of one variable</title>
+      <p>
+        Define <m>f\colon\R\to\R</m> by <m>f(x) = x^2</m> and <m>g\colon\R\to\R</m> by <m>g(x) = x^3</m>.  The composition <m>f\circ g\colon\R\to\R</m> is the transformation defined by the rule
+        <md>
+<mrow>f\circ g(x) = f(g(x)) = f(x^3) = (x^3)^2 = x^6</mrow>
+</md>.
+        For instance, <m>f\circ g(-2) = f(-8) = 64.</m>
+      </p>
+    </example>
+
+    <question>
+      <title>A composition of matrix transformations</title>
+      <p>
+        Define <m>T\colon\R^3\to\R^2</m> and <m>U\colon\R^2\to\R^3</m> by
+        <md>
+<mrow>T(x) = \begin{pmatrix}
+1 \amp 1 \amp 0 \\
+0 \amp 1 \amp 1
+\end{pmatrix}x \sptxt{and}
+        U(x) = \begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1 \\
+1 \amp 0
+\end{pmatrix}x</mrow>
+</md>.
+        Their composition is a transformation <m>T\circ U\colon\R^2\to\R^2</m>; it turns out to be the matrix transformation associated to the matrix <m>\bigl(\begin{smallmatrix}1\amp1\\1\amp1\end{smallmatrix}\bigr)</m>.
+      </p>
+      <figure>
+        <caption>A composition of two matrix transformations, i.e., a transformation performed in two steps.  On the left is the domain of <m>U</m>/the domain of <m>T\circ U</m>; in the middle is the codomain of <m>U</m>/the domain of <m>T</m>, and on the right is the codomain of <m>T</m>/the codomain of <m>T\circ U</m>.  The vector <m>x</m> is the input of <m>U</m> and of <m>T\circ U</m>; the vector in the middle is the output of <m>U</m>/the input of <m>T</m>, and the vector on the right is the output of <m>T</m>/of <m>T\circ U</m>.  Click and drag <m>x</m>.</caption>
+        <interactive
+            iframe="iframes/compose3d-if.html?mat2=1,1,0:0,1,1&amp;mat1=1,0:0,1:1,0&amp;rangeT=off&amp;rangeU=off&amp;rangeTU=off&amp;range=5&amp;closed=true"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </question>
+
+    <question>
+      <title>A transformation defined in steps</title>
+      <p>
+        Let <m>S\colon\R^3\to\R^3</m> be the linear transformation that first reflects over the <m>xy</m>-plane and then projects onto the <m>yz</m>-plane, as in <xref ref="linear-trans-in-steps"/>.  The transformation <m>S</m> is the composition <m>T\circ U</m>, where <m>U\colon\R^3\to\R^3</m> is the transformation that reflects over the <m>xy</m>-plane, and <m>T\colon\R^3\to\R^3</m> is the transformation that projects onto the <m>yz</m>-plane.
+      </p>
+      <figure>
+        <caption>Illustration of a transformation defined in steps.  On the left is the domain of <m>U</m>/the domain of <m>S</m>; in the middle is the codomain of <m>U</m>/the domain of <m>T</m>, and on the right is the codomain of <m>T</m>/the codomain of <m>S</m>.  The vector <m>u</m> is the input of <m>U</m> and of <m>S</m>; the vector in the middle is the output of <m>U</m>/the input of <m>T</m>, and the vector on the right is the output of <m>T</m>/of <m>S</m>.  Click and drag <m>u</m>.</caption>
+        <interactive
+            iframe="iframes/steps-if.html?out=S"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </question>
+
+    <question>
+      <title>A transformation defined in steps</title>
+      <p>
+        Let <m>S\colon\R^3\to\R^3</m> be the linear transformation that first projects onto the <m>xy</m>-plane, and then projects onto the <m>xz</m>-plane.  The transformation <m>S</m> is the composition <m>T\circ U</m>, where <m>U\colon\R^3\to\R^3</m> is the transformation that projects onto the <m>xy</m>-plane, and <m>T\colon\R^3\to\R^3</m> is the transformation that projects onto the <m>xz</m>-plane.
+      </p>
+      <figure>
+        <caption>Illustration of a transformation defined in steps.  Note that projecting onto the <m>xy</m>-plane, followed by projecting onto the <m>xz</m>-plane, is the projection onto the <m>x</m>-axis.</caption>
+        <interactive
+            iframe="iframes/compose3d-if.html?mat1=1,0,0:0,1,0:0,0,0&amp;mat2=1,0,0:0,0,0:0,0,1&amp;rangeT=off&amp;rangeU=off&amp;rangeTU=off&amp;range=5&amp;closed=true"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </question>
+
+    <p>
+      Recall from <xref ref="matrix-trans-identity"/> that the <em>identity transformation</em> is the transformation <m>\operatorname{Id}_{\R^n}\colon\R^n\to\R^n</m> defined by <m>\operatorname{Id}_{\R^n}(x) = x</m> for every vector <m>x</m>.
+    </p>
+
+    <note xml:id="matrix-mult-compose-trans">
+      <title>Properties of composition</title>
+      <idx><h>Identity transformation</h><h>and composition</h></idx>
+      <p>
+        Let <m>S,T,U</m> be transformations and let <m>c</m> be a scalar.  Suppose that <m>T\colon\R^n\to\R^m</m>, and that in each of the following identities, the domains and the codomains are compatible when necessary for the composition to be defined.  The following properties are easily verified:
+        <md>
+          <mrow>
+            S\circ(T+U) \amp= S\circ T+S\circ U \amp
+            (S + T)\circ U \amp= S\circ U + T\circ U \amp
+          </mrow>
+          <mrow>
+            c(T\circ U) \amp= (cT)\circ U \amp
+            c(T\circ U) \amp= T\circ(cU) \rlap{\;\;\text{ if $T$ is linear}}
+          </mrow>
+          <mrow>
+            T\circ\operatorname{Id}_{\R^n} \amp= T \amp
+            \operatorname{Id}_{\R^m}\circ T \amp= T
+          </mrow>
+          <mrow>
+            \amp \amp S\circ(T\circ U) \amp= (S\circ T)\circ U \amp
+          </mrow>
+        </md>
+      </p>
+    </note>
+
+    <p>
+      The final property is called <term>associativity</term>.  Unwrapping both sides, it says:
+      <md>
+<mrow>S\circ(T\circ U)(x) = S(T\circ U(x)) = S(T(U(x))) = S\circ T(U(x)) = (S\circ T)\circ U(x)</mrow>
+</md>.
+      In other words, both <m>S\circ (T\circ U)</m> and <m>(S\circ T)\circ U</m> are the transformation defined by first applying <m>U</m>, then <m>T</m>, then <m>S</m>.
+    </p>
+
+    <insight>
+      <idx><h>Transformation</h><h>composition of</h><h>noncommutativity of</h></idx>
+      <p>
+        Composition of transformations is <em>not</em> commutative in general.  That is, in general, <m>T\circ U\neq U\circ T</m>, even when both compositions are defined.
+      </p>
+    </insight>
+
+    <example>
+      <title>Functions of one variable</title>
+      <p>
+        Define <m>f\colon\R\to\R</m> by <m>f(x) = x^2</m> and <m>g\colon\R\to\R</m> by <m>g(x) = e^x</m>.  The composition <m>f\circ g\colon\R\to\R</m> is the transformation defined by the rule
+        <md>
+<mrow>f\circ g(x) = f(g(x)) = f(e^x) = (e^x)^2 = e^{2x}</mrow>
+</md>.
+        The composition <m>g\circ f\colon\R\to\R</m> is the transformation defined by the rule
+        <md>
+<mrow>g\circ f(x) = g(f(x)) = g(x^2) = e^{x^2}</mrow>
+</md>.
+        Note that <m>e^{x^2}\neq e^{2x}</m> in general; for instance, if <m>x=1</m> then <m>e^{x^2} = e</m> and <m>e^{2x} = e^2</m>.  Thus <m>f \circ g</m> is not equal to <m>g \circ f</m>, and we can already see with functions of one variable that composition of functions is not commutative.
+      </p>
+    </example>
+
+    <example xml:id="matrix-mult-compose-noncom">
+      <title>Non-commutative composition of transformations</title>
+      <p>
+        Define matrix transformations <m>T,U\colon\R^2\to\R^2</m> by
+        <md>
+<mrow>T(x) = \begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1
+\end{pmatrix}x \sptxt{and}
+        U(x) = \begin{pmatrix}
+1 \amp 0 \\
+1 \amp 1
+\end{pmatrix}x</mrow>
+</md>.
+        Geometrically, <m>T</m> is a shear in the <m>x</m>-direction, and <m>U</m> is a shear in the <m>Y</m>-direction.  We evaluate
+        <md>
+<mrow>T\circ U\begin{pmatrix}
+1 \\
+0
+\end{pmatrix} = T\begin{pmatrix}
+1 \\
+1
+\end{pmatrix} = \begin{pmatrix}
+2 \\
+1
+\end{pmatrix}</mrow>
+</md>
+        and
+        <md>
+<mrow>U\circ T\begin{pmatrix}
+1 \\
+0
+\end{pmatrix} = U\begin{pmatrix}
+1 \\
+0
+\end{pmatrix} = \begin{pmatrix}
+1 \\
+1
+\end{pmatrix}</mrow>
+</md>.
+        Since <m>T\circ U</m> and <m>U\circ T</m> have different outputs for the input vector <m>1\choose 0</m>, they are different transformations.  (See <xref ref="matrix-mult-compose-noncom2"/>.)
+      </p>
+      <figure>
+        <caption>Illustration of the composition <m>T\circ U</m>.</caption>
+        <interactive
+            iframe="iframes/compose2d-if.html?mat1=1,0,1,1&amp;mat2=1,1,0,1&amp;closed&amp;vec=1,0&amp;show1=on"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+      <figure>
+        <caption>Illustration of the composition <m>U\circ T</m>.</caption>
+        <interactive
+            iframe="iframes/compose2d-if.html?mat2=1,0,1,1&amp;mat1=1,1,0,1&amp;closed&amp;vec=1,0&amp;names=U,T&amp;show1=on"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </example>
+
+	</subsection>
+
+
+	<subsection xml:id="subsec-matrix-multiplication">
+	<title>Matrix multiplication</title>
+
+    <p>In this subsection, we introduce a seemingly unrelated operation on matrices, namely, matrix multiplication.  As we will see in the next subsection, matrix multiplication exactly corresponds to the composition of the corresponding linear transformations.  First we need some terminology.</p>
+
+    <definition>
+      <notation><usage><m>a_{ij}</m></usage><description>The <m>i,j</m> entry of a matrix</description></notation>
+      <statement>
+        <p>
+          Let <m>A</m> be an <m>m\times n</m> matrix.  We will generally write <m>a_{ij}</m> for the entry in the <m>i</m>th row and the <m>j</m>th column.  It is called the <term><m>i,j</m> entry</term> of the matrix.
+          <latex-code>
+            <![CDATA[
+\def\spvdots{\vphantom{\vbox{\hbox{(}\kern0pt}}\smash{\vdots}}
+  \begin{tikzpicture}[scale=1.2]
+    \matrix[math matrix]  (aij)
+      {
+        a_{11} \& \cdots \& a_{1j} \& \cdots \& a_{1n} \\
+        \spvdots \&        \& \spvdots \&        \& \spvdots \\
+        a_{i1} \& \cdots \& a_{ij} \& \cdots \&  a_{in} \\
+        \spvdots \&        \& \spvdots \&        \& \spvdots \\
+        a_{m1} \& \cdots \& a_{mj} \& \cdots \& a_{mn} \& \\
+      };
+      \node[fit=(aij-1-3) (aij-5-3), inner sep=2pt,
+          draw=blue!50, thick, rounded corners,
+          label={[text=blue!50]below:\small$j$th column}] {};
+      \node[fit=(aij-3-1) (aij-3-5), inner sep=2pt,
+          draw=green!70!black, thick, rounded corners] (row) {};
+      \node[text=green!70!black, rotate=90, anchor=north, yshift=.5mm, font=\small]
+        at (row.east) {$i$th row};
+  \end{tikzpicture}
+  ]]>
+          </latex-code>
+        </p>
+      </statement>
+    </definition>
+
+
+    <definition xml:id="matrix-mult-defn-of">
+      <title>Matrix multiplication</title>
+      <idx><h>Matrix multiplication</h><h>definition of</h></idx>
+      <idx><h>Matrix</h><h>multiplication</h><see>Matrix multiplication</see></idx>
+      <statement>
+        <p>
+          Let <m>A</m> be an <m>m\times n</m> matrix and let <m>B</m> be an <m>n\times p</m> matrix.  Denote the columns of <m>B</m> by <m>v_1,v_2,\ldots,v_p</m>:
+          <md>
+<mrow>B = \begin{pmatrix}
+| \amp | \amp | \\
+v_1 \amp v_2 \amp \cdots \amp v_p \\
+| \amp | \amp |
+\end{pmatrix}</mrow>
+</md>.
+          The <term>product</term> <m>AB</m> is the <m>m\times p</m> matrix with columns <m>Av_1,Av_2,\ldots,Av_p</m>:
+          <md>
+<mrow>AB = \begin{pmatrix}
+| \amp | \amp | \\
+Av_1 \amp Av_2 \amp \cdots \amp Av_p \\
+| \amp | \amp |
+\end{pmatrix}</mrow>
+</md>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      In other words, matrix multiplication is defined column-by-column, or  <q>distributes over the columns of <m>B</m>.</q>
+    </p>
+
+    <example xml:id="matrix-mult-eg-mult1">
+      <p>
+        <md>
+<mrow>\begin{pmatrix}
+1 \amp 1 \amp 0 \\
+0 \amp 1 \amp 1
+\end{pmatrix}\begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1 \\
+1 \amp 0
+\end{pmatrix}
+          \amp= \begin{pmatrix}
+\begin{pmatrix}
+1 \amp 1 \amp 0 \\
+0 \amp 1 \amp 1
+\end{pmatrix}\begin{pmatrix} \amp 1,0,1 \amp \end{pmatrix} \amp %% \amp CHECK: \amp was \amp \begin{pmatrix}
+1,0,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1 \\
+0 \\
+1
+\end{pmatrix}; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec \\
+if \amp a \amp vector-accent \amp (v⃗) \amp was \amp intended \amp revert \amp to \amp \vec \amp \begin{pmatrix}
+1 \amp 1 \amp 0 \\
+0 \amp 1 \amp 1
+\end{pmatrix}\begin{pmatrix} \amp 0,1,0 \amp \end{pmatrix} \amp %% \amp CHECK: \amp was \amp \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec \\
+if \amp a \amp vector-accent \amp (v⃗) \amp was \amp intended \amp revert \amp to \amp \vec
+\end{pmatrix}</mrow>
+<mrow>\amp= \begin{pmatrix}
+\begin{pmatrix} \amp 1,1 \amp \end{pmatrix} \amp %% \amp CHECK: \amp was \amp \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1 \\
+1
+\end{pmatrix}; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec \\
+if \amp a \amp vector-accent \amp (v⃗) \amp was \amp intended \amp revert \amp to \amp \vec \amp \begin{pmatrix} \amp 1,1 \amp \end{pmatrix} \amp %% \amp CHECK: \amp was \amp \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1 \\
+1
+\end{pmatrix}; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec \\
+if \amp a \amp vector-accent \amp (v⃗) \amp was \amp intended \amp revert \amp to \amp \vec
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 1 \\
+1 \amp 1
+\end{pmatrix}</mrow>
+</md>
+      </p>
+    </example>
+
+    <p>
+      In order for the vectors <m>Av_1,Av_2,\ldots,Av_p</m> to be defined, the numbers of rows of <m>B</m> has to equal the number of columns of <m>A</m>.
+    </p>
+
+    <insight>
+      <title>The sizes of the matrices in the matrix product</title>
+      <idx><h>Matrix multiplication</h><h>size of matrices</h></idx>
+      <p>
+        <ul>
+          <li><p>
+            In order for <m>AB</m> to be defined, the number of rows of <m>B</m> has to equal the number of columns of <m>A</m>.
+          </p></li>
+          <li><p>
+            <latex-code mode="bare">
+              \def\r{\textcolor{red}}\def\b{\textcolor{blue}}
+            </latex-code>
+            The product of an <m>\mhp{m\times} n</m> matrix and an <m>\mh{n\times} p</m> matrix is an <m>\mhp{m\times} p</m> matrix.</p></li>
+        </ul>
+      </p>
+    </insight>
+
+    <p>
+      <idx><h>Matrix multiplication</h><h>and the matrix-vector product</h></idx>
+      <idx><h>Matrix-vector product</h><h>and matrix multiplication</h></idx>
+      If <m>B</m> has only one column, then <m>AB</m> also has one column.  A matrix with one column is the same as a vector, so the definition of the matrix product generalizes the definition of the matrix-vector product from <xref ref="matrixeq-defn-Ax1"/>.
+    </p>
+
+    <p>
+      <idx><h>Matrix multiplication</h><h>powers</h></idx>
+      <idx><h>Power of a matrix</h><see>Matrix multiplication</see></idx>
+      If <m>A</m> is a square matrix, then we can multiply it by itself; we define its <term>powers</term> to be
+      <md>
+<mrow>A^2 = AA \qquad A^3 = AAA \qquad \text{etc.}</mrow>
+</md>
+    </p>
+
+    <paragraphs>
+      <title>The row-column rule for matrix multiplication</title>
+      <p>
+        Recall from <xref ref="matrixeq-row-column-prod"/> that the product of a row vector and a column vector is the scalar
+        <md>
+<mrow>\begin{pmatrix}
+a_1 \amp a_2 \amp \cdots \amp a_n
+\end{pmatrix} \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}
+        = a_1x_1 + a_2x_2 + \cdots + a_nx_n</mrow>
+</md>.
+        The following procedure for finding the matrix product is much better adapted to computations by hand; <xref ref="matrix-mult-defn-of"/> is more suitable for proving theorems, such as <xref ref="matrix-mult-comp-is-prod"/> below.
+      </p>
+
+      <algorithm xml:id="matrix-mult-row-column">
+        <title>The row-column rule for matrix multiplication</title>
+        <idx><h>Matrix multiplication</h><h>row-column rule</h></idx>
+        <p>
+          Let <m>A</m> be an <m>m\times n</m> matrix, let <m>B</m> be an <m>n\times p</m> matrix, and let <m>C = AB</m>.  Then the <m>ij</m> entry of <m>C</m> is the <m>i</m>th row of <m>A</m> times the <m>j</m>th column of <m>B</m>:
+          <md>
+<mrow>c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{in}b_{nj}</mrow>
+</md>.
+          Here is a diagram:
+          <md>
+<mrow><![CDATA[
+\def\spvdots{\vphantom{\vbox{\hbox{(}\kern0pt}}\smash{\vdots}}
+\begin{tikzpicture}[baseline, scale=.95]
+  \matrix[math matrix]  (aij)
+    {
+      a_{11} \& \cdots \& a_{1k} \& \cdots \& a_{1n} \\
+      \spvdots \&        \& \spvdots \&        \& \spvdots \\
+      a_{i1} \& \cdots \& a_{ik} \& \cdots \& a_{in} \\
+      \spvdots \&        \& \spvdots \&        \& \spvdots \\
+      a_{m1} \& \cdots \& a_{mk} \& \cdots \& a_{mn} \\
+    };
+  \node[fit=(aij-3-1) (aij-3-5), inner sep=2pt,
+      draw=green!70!black, thick, rounded corners] (row) {};
+  \node[text=green!70!black, rotate=90, anchor=north, yshift=2mm, font=\small]
+      at (row.east) {$i$th row};
+\end{tikzpicture}\hskip-1mm
+\begin{tikzpicture}[baseline, scale=.95]
+  \matrix[math matrix]  (bij)
+    {
+      b_{11} \& \cdots \& b_{1j} \& \cdots \& b_{1p} \\
+      \spvdots \&        \& \spvdots \&        \& \spvdots \\
+      b_{k1} \& \cdots \& b_{kj} \& \cdots \& b_{kp} \\
+      \spvdots \&        \& \spvdots \&        \& \spvdots \\
+      b_{n1} \& \cdots \& b_{nj} \& \cdots \& b_{np} \\
+    };
+  \node[fit=(bij-1-3) (bij-5-3), inner sep=2pt,
+      draw=blue!50, thick, rounded corners,
+      label={[text=blue!50]below:\small$j$th column}] {};
+\end{tikzpicture}
+\hskip-4pt=\hskip-4pt
+\begin{tikzpicture}[baseline, scale=.95]
+  \matrix[math matrix,
+      label=below:$\textcolor{green!70!black}i\textcolor{blue!50}j$ entry]
+        (cij)
+    {
+      c_{11} \& \cdots \& c_{1j} \& \cdots \& c_{1p} \\
+      \spvdots \&        \& \spvdots \&        \& \spvdots \\
+      c_{i1} \& \cdots \& c_{ij} \& \cdots \& c_{ip} \\
+      \spvdots \&        \& \spvdots \&        \& \spvdots \\
+      c_{m1} \& \cdots \& c_{mj} \& \cdots \& c_{mp} \\
+    };
+  \draw[thick, green!70!black]
+    (cij-3-3.center) circle[radius=1.35ex];
+  \draw[thick, blue!50]
+    (cij-3-3.center) circle[radius=1.35ex+\pgflinewidth];
+\end{tikzpicture}
+            ]]></mrow>
+</md>
+        </p>
+      </algorithm>
+
+      <!-- If we don't end <paragraphs> here then the proof shows up twice... -->
+    </paragraphs>
+
+      <proof>
+        <p>
+          The <xref ref="matrixeq-row-column">row-column rule for matrix-vector multiplication</xref> says that if <m>A</m> has rows <m>r_1,r_2,\ldots,r_m</m> and <m>x</m> is a vector, then
+          <md>
+<mrow>Ax = \left(\begin{array}{c}
+\matrow{r_1} \\
+\matrow{r_2} \\
+\vdots \\
+\matrow{r_m}
+\end{array}\right)
+          x
+          = \begin{pmatrix}
+r_1x \\
+r_2x \\
+\vdots \\
+r_mx
+\end{pmatrix}</mrow>
+</md>.
+          The <xref ref="matrix-mult-defn-of"/> of matrix multiplication is
+          <md>
+<mrow>A\begin{pmatrix}
+| \amp | \amp | \\
+c_1 \amp c_2 \amp \cdots \amp c_p \\
+| \amp | \amp |
+\end{pmatrix} =
+          \begin{pmatrix}
+| \amp | \amp | \\
+Ac_1 \amp Ac_2 \amp \cdots \amp Ac_p \\
+| \amp | \amp |
+\end{pmatrix}</mrow>
+</md>.
+          It follows that
+          <md>
+<mrow>\left(\begin{array}{c}
+\matrow{r_1} \\
+\matrow{r_2} \\
+\vdots \\
+\matrow{r_m}
+\end{array}\right)
+            \begin{pmatrix}
+| \amp | \amp | \\
+c_1 \amp c_2 \amp \cdots \amp c_p \\
+| \amp | \amp |
+\end{pmatrix}
+            = \begin{pmatrix}
+r_1c_1 \amp r_1c_2 \amp \cdots \amp r_1c_p \\
+r_2c_1 \amp r_2c_2 \amp \cdots \amp r_2c_p \\
+\vdots \amp \vdots \amp \vdots \\
+r_mc_1 \amp r_mc_2 \amp \cdots \amp r_mc_p
+\end{pmatrix}</mrow>
+</md>.
+        </p>
+      </proof>
+
+      <example>
+        <p>
+          The row-column rule allows us to compute the product matrix one entry at a time:
+          <md>
+<mrow>\def\mhg{\textcolor{green!70!black}}
+            \def\mhp{\textcolor{blue!50}}
+            \begin{aligned}
+            \begin{pmatrix}
+\mhg{1} \amp \mhg{2} \amp \mhg{3} \\
+4 \amp 5 \amp 6
+\end{pmatrix}
+            \begin{pmatrix}
+\mhp{1} \amp -3 \\
+\mhp{2} \amp -2 \\
+\mhp{3} \amp -1
+\end{pmatrix}
+            \amp= \begin{pmatrix}
+\mhg{1\cdot\mhp{1+\mhg{2\cdot\mhp{2+\mhg{3\cdot\mhp{3}}}}}} \amp \fbox{\phantom 8} \\
+\fbox{\phantom 8} \amp \fbox{\phantom 8}
+\end{pmatrix}
+            = \begin{pmatrix}
+\textcolor{purple}{14} \amp \fbox{\phantom 8} \\
+\fbox{\phantom 8} \amp \fbox{\phantom 8}
+\end{pmatrix} \\
+            \begin{pmatrix}
+1 \amp 2 \amp 3 \\
+\mhg{4} \amp \mhg{5} \amp \mhg{6}
+\end{pmatrix}
+            \begin{pmatrix}
+\mhp{1} \amp -3 \\
+\mhp{2} \amp -2 \\
+\mhp{3} \amp -1
+\end{pmatrix}
+            \amp= \begin{pmatrix}
+\fbox{\phantom 8} \amp \fbox{\phantom 8} \\
+\mhg{4\cdot\mhp{1+\mhg{5\cdot\mhp{2+\mhg{6\cdot\mhp{3}}}}}} \amp \fbox{\phantom 8}
+\end{pmatrix}
+            = \begin{pmatrix}
+14 \amp \fbox{\phantom 8} \\
+\textcolor{purple}{32} \amp \fbox{\phantom 8}
+\end{pmatrix}
+            \end{aligned}</mrow>
+</md>
+	You should try to fill in the other two boxes!
+        </p>
+      </example>
+
+    <p>
+      Although matrix multiplication satisfies many of the properties one would expect (see the end of the section), one must be careful when doing matrix arithmetic, as there are several properties that are not satisfied in general.  
+    </p>
+
+    <insight>
+      <title>Matrix multiplication caveats</title>
+      <idx><h>Matrix multiplication</h><h>caveats</h></idx>
+      <p>
+        <ul>
+          <li><p>
+            Matrix multiplication is not commutative: <m>AB</m> is not usually equal to <m>BA</m>, even when both products are defined and have the same size.  See <xref ref="matrix-mult-compose-noncom2"/>.
+          </p></li>
+          <li><p>
+            Matrix multiplication does not satisfy the cancellation law: <m>AB=AC</m> does not imply <m>B=C</m>, even when <m>A\neq 0</m>.  For example,
+            <md>
+<mrow>\begin{pmatrix}
+1 \amp 0 \\
+0 \amp 0
+\end{pmatrix}\begin{pmatrix}
+1 \amp 2 \\
+3 \amp 4
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 2 \\
+0 \amp 0
+\end{pmatrix}
+            = \begin{pmatrix}
+1 \amp 0 \\
+0 \amp 0
+\end{pmatrix}\begin{pmatrix}
+1 \amp 2 \\
+5 \amp 6
+\end{pmatrix}</mrow>
+</md>.
+          </p></li>
+          <li><p>
+            It is possible for <m>AB=0</m>, even when <m>A\neq 0</m> and <m>B\neq 0</m>.  For example,
+            <md>
+<mrow>\begin{pmatrix}
+1 \amp 0 \\
+1 \amp 0
+\end{pmatrix}\begin{pmatrix}
+0 \amp 0 \\
+1 \amp 1
+\end{pmatrix} = \begin{pmatrix}
+0 \amp 0 \\
+0 \amp 0
+\end{pmatrix}</mrow>
+</md>.
+          </p></li>
+        </ul>
+      </p>
+    </insight>
+
+	<p>
+	While matrix multiplication is not commutative in general there are examples of matrices <m>A</m> and <m>B</m> with <m>AB=BA</m>.  For example, this always works when <m>A</m> is the zero matrix, or when <m>A=B</m>.  The reader is encouraged to find other examples.
+	</p>
+
+    <example xml:id="matrix-mult-compose-noncom2">
+      <title>Non-commutative multiplication of matrices</title>
+      <idx><h>Matrix multiplication</h><h>noncommutativity of</h></idx>
+      <p>
+        Consider the matrices
+        <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1
+\end{pmatrix} \sptxt{and}
+        B = \begin{pmatrix}
+1 \amp 0 \\
+1 \amp 1
+\end{pmatrix}</mrow>
+</md>,
+        as in <xref ref="matrix-mult-compose-noncom"/>.
+        The matrix <m>AB</m> is
+        <md>
+<mrow>\begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1
+\end{pmatrix}\begin{pmatrix}
+1 \amp 0 \\
+1 \amp 1
+\end{pmatrix} = \begin{pmatrix}
+2 \amp 1 \\
+1 \amp 1
+\end{pmatrix}</mrow>
+</md>,
+        whereas the matrix <m>BA</m> is
+        <md>
+<mrow>\begin{pmatrix}
+1 \amp 0 \\
+1 \amp 1
+\end{pmatrix}\begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 1 \\
+1 \amp 2
+\end{pmatrix}</mrow>
+</md>.
+        In particular, we have
+        <md>
+<mrow>AB \neq BA</mrow>
+</md>.
+	And so matrix multiplication is not always commutative.  It is not a coincidence that this example agrees with <xref ref="matrix-mult-compose-noncom"/>; we are about to see that multiplication of matrices corresponds to composition of transformations.
+      </p>
+    </example>
+
+    <example xml:id="matrix-mult-order-ops">
+      <title>Order of Operations</title>
+      <idx><h>Matrix multiplication</h><h>order of operations</h></idx>
+      <idx><h>Transformation</h><h>composition of</h><h>order of operations</h></idx>
+      <p>
+        Let <m>T\colon\R^n\to\R^m</m> and <m>U\colon\R^p\to\R^n</m> be linear transformations, and let <m>A</m> and <m>B</m> be their standard matrices, respectively.  Recall that <m>T\circ U(x)</m> is the vector obtained by first applying <m>U</m> to <m>x</m>, and then <m>T</m>.
+      </p>
+      <p>
+        On the matrix side, the standard matrix of <m>T\circ U</m> is the product <m>AB</m>, so <m>T\circ U(x) = (AB)x</m>.  By associativity of matrix multiplication, we have <m>(AB)x = A(Bx)</m>, so the product <m>(AB)x</m> can be computed by first multiplying <m>x</m> by <m>B</m>, <em>then</em> multipyling the product by <m>A</m>.
+      </p>
+      <p>
+        Therefore, matrix multiplication happens in the same order as composition of transformations.  In other words, <em>both matrices and transformations are written in the order opposite from the order in which they act.</em>  But matrix multiplication and composition of transformations are written in the same order as each other: the matrix for <m>T\circ U</m> is <m>AB</m>.
+      </p>
+    </example>
+
+
+
+
+
+
+
+	</subsection>
+
+
+
+
+  <subsection xml:id="subsec-composition-and-matrix-multiplication">
+    <title>Composition and Matrix Multiplication</title>
+
+    <p>
+      The point of this subsection is to show that matrix multiplication corresponds to composition of transformations, that is, the standard matrix for <m>T \circ U</m> is the product of the standard matrices for <m>T</m> and for <m>U</m>. It should be hard to believe that our complicated formula for matrix multiplication actually means something intuitive such as <q>chaining two transformations together</q>!
+    </p>
+
+    <theorem xml:id="matrix-mult-comp-is-prod">
+      <idx><h>Matrix multiplication</h><h>and composition of transformations</h></idx>
+      <idx><h>Linear transformation</h><h>composition of</h><h>linearity of</h></idx>
+      <idx><h>Linear transformation</h><h>composition of</h><h>and matrix multiplication</h></idx>
+      <statement>
+        <p>Let <m>T\colon\R^n\to\R^m</m> and <m>U\colon\R^p\to\R^n</m> be linear transformations, and let <m>A</m> and <m>B</m> be their standard matrices, respectively, so <m>A</m> is an <m>m\times n</m> matrix and <m>B</m> is an <m>n\times p</m> matrix.  Then <m>T\circ U\colon\R^p\to\R^m</m> is a linear transformation, and its standard matrix is the product <m>AB</m>.</p>
+      </statement>
+      <proof>
+        <p>
+          First we verify that <m>T\circ U</m> is linear.  Let <m>u,v</m> be vectors in <m>\R^p</m>.  Then
+          <md>
+<mrow>T\circ U(u+v) \amp= T(U(u+v)) = T(U(u)+U(v))</mrow>
+<mrow>\amp= T(U(u))+T(U(v)) = T\circ U(u) + T\circ U(v)</mrow>
+</md>.
+          If <m>c</m> is a scalar, then
+          <md>
+<mrow>T\circ U(cv) = T(U(cv)) = T(cU(v)) = cT(U(v)) = cT\circ U(v)</mrow>
+</md>.
+          Since <m>T\circ U</m> satisfies the two <xref ref="linear-trans-defn">defining properties</xref>, it is a linear transformation.
+        </p>
+        <p>
+          Now that we know that <m>T\circ U</m> is linear, it makes sense to compute its standard matrix.  Let <m>C</m> be the standard matrix of <m>T\circ U</m>, so <m>T(x) = Ax,</m> <m>U(x) = Bx</m>, and <m>T\circ U(x) = Cx</m>.  By <xref ref="matrix-of-transformation"/>, the first column of <m>C</m> is <m>Ce_1</m>, and the first column of <m>B</m> is <m>Be_1</m>.  We have
+          <md>
+<mrow>T\circ U(e_1) = T(U(e_1)) = T(Be_1) = A(Be_1)</mrow>
+</md>.
+          By definition, the first column of the product <m>AB</m> is the product of <m>A</m> with the first column of <m>B</m>, which is <m>Be_1</m>, so
+          <md>
+<mrow>Ce_1 = T\circ U(e_1) = A(Be_1) = (AB)e_1</mrow>
+</md>.
+          It follows that <m>C</m> has the same first column as <m>AB</m>.  The same argument as applied to the <m>i</m>th standard coordinate vector <m>e_i</m> shows that <m>C</m> and <m>AB</m> have the same <m>i</m>th column; since they have the same columns, they are the same matrix.
+        </p>
+      </proof>
+    </theorem>
+
+    <p>
+      The theorem justifies our choice of definition of the matrix product.  This is the one and only reason that matrix products are defined in this way.  To rephrase:
+    </p>
+
+    <insight>
+      <title>Products and compositions</title>
+      <p>
+        The matrix of the composition of two linear transformations is the product of the matrices of the transformations.
+      </p>
+    </insight>
+
+    <example>
+      <title>Composition of rotations</title>
+      <idx><h>Rotation</h><h>composition of</h></idx>
+      <p>
+        In <xref ref="linear-trans-rotation-matrix"/>, we showed that the standard matrix for the counterclockwise rotation of the plane by an angle of <m>\theta</m> is
+        <md>
+<mrow>A = \begin{pmatrix}
+\cos\theta \amp -\sin\theta \\
+\sin\theta \amp \cos\theta
+\end{pmatrix}</mrow>
+</md>.
+        Let <m>T\colon\R^2\to\R^2</m> be counterclockwise rotation by <m>45^\circ</m>, and let <m>U\colon\R^2\to\R^2</m> be counterclockwise rotation by <m>90^\circ</m>.  The matrices <m>A</m> and <m>B</m> for <m>T</m> and <m>U</m> are, respectively,
+        <md>
+          <mrow>
+            A \amp= \begin{pmatrix}
+\cos(45^\circ) \amp -\sin(45^\circ) \\
+\sin(45^\circ) \amp \cos(45^\circ)
+\end{pmatrix}
+            = \frac 1{\sqrt 2}\begin{pmatrix}
+1 \amp -1 \\
+1 \amp 1
+\end{pmatrix}
+          </mrow>
+          <mrow>
+            B \amp= \begin{pmatrix}
+\cos(90^\circ) \amp -\sin(90^\circ) \\
+\sin(90^\circ) \amp \cos(90^\circ)
+\end{pmatrix}
+            = \begin{pmatrix}
+0 \amp -1 \\
+1 \amp 0
+\end{pmatrix}
+          </mrow>
+        </md>.
+        Here we used the trigonometric identities
+        <md>
+          <mrow>
+            \cos(45^\circ) \amp= \frac 1{\sqrt2} \amp
+            \sin(45^\circ) \amp= \frac 1{\sqrt2}
+          </mrow>
+          <mrow>
+            \cos(90^\circ) \amp= 0 \amp
+            \sin(90^\circ) \amp= 1
+          </mrow>
+        </md>.
+        The standard matrix of the composition <m>T\circ U</m> is
+        <md>
+<mrow>AB = \frac 1{\sqrt 2}\begin{pmatrix}
+1 \amp -1 \\
+1 \amp 1
+\end{pmatrix}\begin{pmatrix}
+0 \amp -1 \\
+1 \amp 0
+\end{pmatrix}
+        = \frac 1{\sqrt 2}\begin{pmatrix}
+-1 \amp -1 \\
+1 \amp -1
+\end{pmatrix}</mrow>
+</md>.
+        This is consistent with the fact that <m>T\circ U</m> is counterclockwise rotation by <m>90^\circ + 45^\circ = 135^\circ</m>:  we have
+        <md>
+<mrow>\begin{pmatrix}
+\cos(135^\circ) \amp -\sin(135^\circ) \\
+\sin(135^\circ) \amp \cos(135^\circ)
+\end{pmatrix}
+        = \frac 1{\sqrt 2}\begin{pmatrix}
+-1 \amp -1 \\
+1 \amp -1
+\end{pmatrix}</mrow>
+</md>
+        because <m>\cos(135^\circ) = -1/\sqrt2</m> and <m>\sin(135^\circ) = 1/\sqrt2</m>.
+      </p>
+    </example>
+
+    <remark>
+      <p>
+        Derive the trigonometric identities
+        <md>
+<mrow>\sin(\alpha\pm\beta) = \sin(\alpha)\cos(\beta) \pm \cos(\alpha)\sin(\beta)</mrow>
+</md>
+        and
+        <md>
+<mrow>\cos(\alpha\pm\beta) = \cos(\alpha)\cos(\beta) \mp \sin(\alpha)\sin(\beta)</mrow>
+</md>
+        using the above <xref ref="matrix-mult-comp-is-prod"/> as applied to rotation transformations, as in the previous example.
+      </p>
+    </remark>
+
+    <question>
+      <title>A composition of matrix transformations</title>
+      <p>
+        Define <m>T\colon\R^3\to\R^2</m> and <m>U\colon\R^2\to\R^3</m> by
+        <md>
+<mrow>T(x) = \begin{pmatrix}
+1 \amp 1 \amp 0 \\
+0 \amp 1 \amp 1
+\end{pmatrix}x \sptxt{and}
+        U(x) = \begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1 \\
+1 \amp 0
+\end{pmatrix}x</mrow>
+</md>.
+        Their composition is a linear transformation <m>T\circ U\colon\R^2\to\R^2</m>.  By the <xref ref="matrix-mult-comp-is-prod"/>, its standard matrix is
+        <md>
+<mrow>\begin{pmatrix}
+1 \amp 1 \amp 0 \\
+0 \amp 1 \amp 1
+\end{pmatrix}\begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1 \\
+1 \amp 0
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 1 \\
+1 \amp 1
+\end{pmatrix}</mrow>
+</md>,
+        as we computed in the above <xref ref="matrix-mult-eg-mult1"/>.
+      </p>
+      <figure>
+        <caption>The matrix of the composition <m>T\circ U</m> is the product of the matrices for <m>T</m> and <m>U</m>.</caption>
+        <interactive
+            iframe="iframes/compose3d-if.html?mat2=1,1,0:0,1,1&amp;mat1=1,0:0,1:1,0&amp;rangeT=off&amp;rangeU=off&amp;rangeTU=off&amp;range=5&amp;closed=true"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </question>
+
+    <question>
+      <title>A transformation defined in steps</title>
+      <p>
+        Let <m>S\colon\R^3\to\R^3</m> be the linear transformation that first reflects over the <m>xy</m>-plane and then projects onto the <m>yz</m>-plane, as in <xref ref="linear-trans-in-steps"/>.  The transformation <m>S</m> is the composition <m>T\circ U</m>, where <m>U\colon\R^3\to\R^3</m> is the transformation that reflects over the <m>xy</m>-plane, and <m>T\colon\R^3\to\R^3</m> is the transformation that projects onto the <m>yz</m>-plane.
+      </p>
+      <p>
+        Let us compute the matrix <m>B</m> for <m>U</m>.
+          <latex-code mode="bare">
+\def\drawarrow#1{
+\begin{tikzpicture}[myxyz, y={(1cm,-.28cm)}, scale=1, thin border nodes, baseline]
+  \path[clip, resetxy] (-2,-2) rectangle (2,2);
+
+  \begin{scope}[transformxy]
+    \fill[blue, opacity=.05] (-1.5,-1.5) rectangle (1.5,1.5);
+    \draw[step=1cm, help lines, blue!40!black]
+      (-1.5, -1.5) grid (1.5, 1.5);
+  \end{scope}
+
+  \node[blue!40!black,right] at (-.5,.8,-.5) {$xy$};
+
+  \begin{scope}[transformyz]
+    \fill[green, opacity=.05] (-1.5,-1.5) rectangle (1.5,1.5);
+    \draw[step=1cm, help lines, green!40!black]
+      (-1.5, -1.5) grid (1.5, 1.5);
+  \end{scope}
+
+  \node[green!40!black] at (.75,-1,1) {$yz$};
+
+  #1
+
+\end{tikzpicture}
+}
+          </latex-code>
+          <latex-code>
+\drawarrow{\draw[vector] (0,0,0) -- (1,0,0) node[above left, pos=.5] {$e_1$};}
+$\xrightarrow{\text{reflect $xy$}}$
+\drawarrow{\draw[vector] (0,0,0) -- (1,0,0) node[above left, pos=.5] {$U(e_1)$};}
+          </latex-code>
+          Since <m>e_1</m> lies on the <m>xy</m>-plane, reflecting it over the <m>xy</m>-plane does not move it:
+          <md>
+<mrow>U(e_1) = \begin{pmatrix}
+1 \\
+0 \\
+0
+\end{pmatrix}</mrow>
+</md>.
+          <latex-code>
+\drawarrow{\draw[vector] (0,0,0) -- (0,1,0) node[below left, pos=.5] {$e_2$};}
+$\xrightarrow{\text{reflect $xy$}}$
+\drawarrow{\draw[vector] (0,0,0) -- (0,1,0) node[below left, pos=.5] {$U(e_2)$};}
+          </latex-code>
+          Since <m>e_2</m> lies on the <m>xy</m>-plane, reflecting over the <m>xy</m>-plane does not move it either:
+          <md>
+<mrow>U(e_2) = e_2 = \begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}</mrow>
+</md>.
+          <latex-code>
+\drawarrow{\draw[vector] (0,0,0) -- (0,0,1) node[left, pos=.4] {$e_3$};}
+$\xrightarrow{\text{reflect $xy$}}$
+\drawarrow{\draw[vector] (0,0,0) -- (0,0,-1) node[left, pos=.5] {$U(e_3)$};}
+          </latex-code>
+          Since <m>e_3</m> is perpendicular to the <m>xy</m>-plane, reflecting over the <m>xy</m>-plane takes <m>e_3</m> to its negative:
+          <md>
+<mrow>U(e_3) = -e_3 = \begin{pmatrix}
+0 \\
+0 \\
+-1
+\end{pmatrix}</mrow>
+</md>.
+          We have computed all of the columns of <m>B</m>:
+          <md>
+<mrow>B = \begin{pmatrix}
+| \amp | \amp | \\
+U(e_1) \amp U(e_2) \amp U(e_3) \\
+| \amp | \amp |
+\end{pmatrix}
+          = \begin{pmatrix}
+1 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp -1
+\end{pmatrix}</mrow>
+</md>.
+          By a similar method, we find
+          <md>
+<mrow>A = \begin{pmatrix}
+0 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 1
+\end{pmatrix}</mrow>
+</md>.
+          It follows that the matrix for <m>S = T\circ U</m> is
+          <md>
+<mrow>AB \amp= \begin{pmatrix}
+0 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 1
+\end{pmatrix}\begin{pmatrix}
+1 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp -1
+\end{pmatrix}</mrow>
+<mrow>\amp= \begin{pmatrix}
+\begin{pmatrix}
+0 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 1
+\end{pmatrix}\begin{pmatrix} \amp 1,0,0 \amp \end{pmatrix} \amp %% \amp CHECK: \amp was \amp \begin{pmatrix}
+1,0,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1,0,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+1 \\
+0 \\
+0
+\end{pmatrix}; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec \\
+if \amp a \amp vector-accent \amp (v⃗) \amp was \amp intended \amp revert \amp to \amp \vec \amp \begin{pmatrix}
+0 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 1
+\end{pmatrix}\begin{pmatrix} \amp 0,1,0 \amp \end{pmatrix} \amp %% \amp CHECK: \amp was \amp \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,1,0
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec \\
+if \amp a \amp vector-accent \amp (v⃗) \amp was \amp intended \amp revert \amp to \amp \vec \amp \begin{pmatrix}
+0 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 1
+\end{pmatrix}\begin{pmatrix} \amp 0,0,-1 \amp \end{pmatrix} \amp %% \amp CHECK: \amp was \amp \begin{pmatrix}
+0,0,-1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,0,-1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,0,-1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,0,-1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,0,-1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0,0,-1
+\end{pmatrix}  %% CHECK: was \begin{pmatrix}
+0 \\
+0 \\
+-1
+\end{pmatrix}; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec; if a vector-accent (v⃗) was intended, revert to \vec \\
+if \amp a \amp vector-accent \amp (v⃗) \amp was \amp intended \amp revert \amp to \amp \vec
+\end{pmatrix}</mrow>
+<mrow>\amp= \begin{pmatrix}
+0 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp -1
+\end{pmatrix}</mrow>
+</md>,
+          as we computed in <xref ref="linear-trans-in-steps"/>.
+      </p>
+      <figure>
+        <caption></caption>
+        <interactive
+            iframe="iframes/compose3d-if.html?mat1=1,0,0:0,1,0:0,0,-1&amp;mat2=0,0,0:0,1,0:0,0,1&amp;rangeT=off&amp;rangeU=off&amp;rangeTU=off&amp;range=5&amp;closed=true"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </question>
+
+   
+
+
+    <p>
+      Recall from <xref ref="linear-trans-identity-mat"/> that the <em>identity matrix</em> is the <m>n\times n</m> matrix <m>I_n</m> whose columns are the standard coordinate vectors in <m>\R^n</m>.  The identity matrix is the standard matrix of the identity transformation: that is, <m>x = \operatorname{Id}_{\R^n}(x) = I_nx</m> for all vectors <m>x</m> in <m>\R^n</m>.   For any linear transformation <m>T : \R^n \to \R^m</m> we have <md>
+<mrow>I_{\R^m} \circ T = T</mrow>
+</md>
+and by the same token we have for any <m>m \times n</m> matrix <m>A</m> we have <md>
+<mrow>I_mA=A</mrow>
+</md>.  Similarly, we have <m>T \circ I_{\R^n} = T</m> and <m>AI_n=A</m>.
+</p>
+
+
+
+  </subsection>
+
+
+
+
+
+
+
+
+  <subsection xml:id="subsec-the-algebra-of-transformations-and-matrices">
+    <title>The algebra of transformations and matrices</title>
+
+    <p>
+      In this subsection we describe two more operations that one can perform on  transformations: addition and scalar multiplication.  We then translate these operations into the language of matrices.  This is analogous to what we did for the composition of linear transformations, but much less subtle.  
+    </p>
+
+    <definition>
+      <idx><h>Transformation</h><h>addition of</h></idx>
+      <idx><h>Linear transformation</h><h>addition of</h><see>Transformation</see></idx>
+      <idx><h>Matrix transformation</h><h>addition of</h><see>Transformation</see></idx>
+      <idx><h>Transformation</h><h>scalar multiplication of</h></idx>
+      <idx><h>Linear transformation</h><h>scalar multiplication of</h><see>Transformation</see></idx>
+      <idx><h>Matrix transformation</h><h>scalar multiplication of</h><see>Transformation</see></idx>
+      <statement>
+        <p>
+          <ul>
+            <li><p>
+              Let <m>T,U\colon\R^n\to\R^m</m> be two transformations.  Their <term>sum</term> is the transformation <m>T+U\colon\R^n\to\R^m</m> defined by
+              <md>
+<mrow>(T+U)(x) = T(x) + U(x)</mrow>
+</md>.
+              Note that addition of transformations is only defined when both transformations have the same domain and codomain. <em></em><!-- workaround css bug -->
+            </p></li>
+            <li><p>
+              Let <m>T\colon\R^n\to\R^m</m> be a transformation, and let <m>c</m> be a scalar.  The <term>scalar product</term> of <m>c</m> with <m>T</m> is the transformation <m>cT\colon\R^n\to\R^m</m> defined by
+              <md>
+<mrow>(cT)(x) = c\cdot T(x)</mrow>
+</md>.
+            </p></li>
+          </ul>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      To emphasize, the sum of two transformations <m>T,U\colon\R^n\to\R^m</m> is another transformation called <m>T+U</m>; its value on an input vector <m>x</m> is the sum of the outputs of <m>T</m> and <m>U</m>.  Similarly, the product of <m>T</m> with a scalar <m>c</m> is another transformation called <m>cT</m>; its value on an input vector <m>x</m> is the vector <m>c\cdot T(x)</m>.
+    </p>
+
+    <example>
+      <title>Functions of one variable</title>
+      <p>
+        Define <m>f\colon\R\to\R</m> by <m>f(x) = x^2</m> and <m>g\colon\R\to\R</m> by <m>g(x) = x^3</m>.  The sum <m>f+g\colon\R\to\R</m> is the transformation defined by the rule
+        <md>
+<mrow>(f+g)(x) = f(x) + g(x) = x^2 + x^3</mrow>
+</md>.
+        For instance, <m>(f+g)(-2) = (-2)^2 + (-2)^3 = -4</m>.
+      </p>
+      <p>
+        Define <m>\exp\colon\R\to\R</m> by <m>\exp(x) = e^x</m>.  The product <m>2\exp\colon\R\to\R</m> is the transformation defined by the rule
+        <md>
+<mrow>(2\exp)(x) = 2\cdot\exp(x) = 2e^x</mrow>
+</md>.
+        For instance, <m>(2\exp)(1) = 2\cdot\exp(1) = 2e</m>.
+      </p>
+    </example>
+
+    <note xml:id="matrix-mult-add-mult-trans">
+      <title>Properties of addition and scalar multiplication for transformations</title>
+      <p>
+        Let <m>S,T,U\colon\R^n\to\R^m</m> be transformations and let <m>c,d</m> be scalars.  The following properties are easily verified:
+        <md>
+          <mrow>
+          T + U \amp= U + T \amp
+          S + (T + U) \amp= (S + T) + U
+          </mrow>
+          <mrow>
+          c(T + U) \amp= cT + cU \amp
+          (c + d)T \amp= cT + dT
+          </mrow>
+          <mrow>
+            c(dT) \amp= (cd)T \amp
+            T + 0 \amp= T
+          </mrow>
+        </md>
+      </p>
+    </note>
+
+    <p>
+      <notation><usage><m>0</m></usage><description>The zero transformation</description></notation>
+      In one of the above properties, we used <m>0</m> to denote the transformation <m>\R^n\to\R^m</m> that is zero on every input vector: <m>0(x) = 0</m> for all <m>x</m>.  This is called the <term>zero transformation</term>.
+    </p>
+
+
+<p>We now give the analogous operations for matrices.</p>
+
+
+    <definition>
+      <idx><h>Matrix</h><h>addition of</h></idx>
+      <idx><h>Matrix</h><h>scalar multiplication of</h></idx>
+      <statement>
+        <p>
+          <ul>
+            <li><p>
+              The <term>sum</term> of two <m>m\times n</m> matrices is the matrix obtained by summing the entries of <m>A</m> and <m>B</m> individually:
+              <md>
+<mrow>\begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+a_{21} \amp a_{22} \amp a_{23}
+\end{pmatrix} +
+                \begin{pmatrix}
+b_{11} \amp b_{12} \amp b_{13} \\
+b_{21} \amp b_{22} \amp b_{23}
+\end{pmatrix} =
+                \begin{pmatrix}
+a_{11}+b_{11} \amp a_{12}+b_{12} \amp a_{13}+b_{13} \\
+a_{21}+b_{21} \amp a_{22}+b_{22} \amp a_{23}+b_{23}
+\end{pmatrix}</mrow>
+</md>
+              In other words, the <m>i,j</m> entry of <m>A+B</m> is the sum of the <m>i,j</m> entries of <m>A</m> and <m>B</m>.  Note that addition of matrices is only defined when both matrices have the same size.<em></em> <!-- workaround css bug -->
+            </p></li>
+            <li><p>
+              The <term>scalar product</term> of a scalar <m>c</m> with a matrix <m>A</m> is obtained by scaling all entries of <m>A</m> by <m>c</m>:
+              <md>
+<mrow>\def\mh{\textcolor{red}}
+                \mh{c\begin{pmatrix}}
+a_{11} \amp a_{12} \amp a_{13} \\
+a_{21} \amp a_{22} \amp a_{23}
+\end{pmatrix} =
+                \begin{pmatrix}
+ \amp ca_{11} \amp  \amp ca_{12} \amp  \amp ca_{13} \\
+ \amp ca_{21} \amp  \amp ca_{22} \amp  \amp ca_{23}
+\end{pmatrix}</mrow>
+</md>
+              In other words, the <m>i,j</m> entry of <m>cA</m> is <m>c</m> times the <m>i,j</m> entry of <m>A</m>.
+            </p></li>
+          </ul>
+        </p>
+      </statement>
+    </definition>
+
+    <fact>
+      <p>
+        Let <m>T,U\colon\R^n\to\R^m</m> be linear transformations with standard matrices <m>A,B</m>, respectively, and let <m>c</m> be a scalar.
+        <ul>
+          <li><p>The standard matrix for <m>T+U</m> is <m>A+B</m>.</p></li>
+          <li><p>The standard matrix for <m>cT</m> is <m>cA</m>.</p></li>
+        </ul>
+      </p>
+    </fact>
+
+    <p>
+      In view of the above fact, the following properties are consequences of the corresponding <xref ref="matrix-mult-add-mult-trans">properties</xref> of transformations.  They are easily verified directly from the definitions as well.
+    </p>
+
+    <note>
+      <title>Properties of addition and scalar multiplication for matrices</title>
+      <p>
+        Let <m>A,B,C</m> be <m>m\times n</m> matrices and let <m>c,d</m> be scalars.  Then:
+        <md>
+          <mrow>
+          A + B \amp= B + A \amp
+          C + (A + B) \amp= (C + A) + B
+          </mrow>
+          <mrow>
+          c(A + B) \amp= cA + cB \amp
+          (c + d)A \amp= cA + dA
+          </mrow>
+          <mrow>
+            c(dA) \amp= (cd)A \amp
+            A + 0 \amp= A
+          </mrow>
+        </md>
+      </p>
+    </note>
+
+    <p>
+      <notation><usage><m>0</m></usage><description>The zero matrix</description></notation>
+      In one of the above properties, we used <m>0</m> to denote the <m>m\times n</m> matrix whose entries are all zero.  This is the standard matrix of the zero transformation, and is called the <term>zero matrix</term>.
+    </p>
+
+
+    <p>
+      We can also combine addition and scalar multiplication of matrices with multiplication of matrices.  Since matrix multiplication corresponds to composition of transformations (<xref ref="matrix-mult-comp-is-prod"/>), the following properties are consequences of the corresponding <xref ref="matrix-mult-compose-trans">properties</xref> of transformations.
+    </p>
+
+    <note>
+      <title>Properties of matrix multiplication</title>
+      <idx><h>Identity matrix</h><h>and matrix multiplication</h></idx>
+      <idx><h>Matrix multiplication</h><h>properties of</h></idx>
+      <idx><h>Matrix multiplication</h><h>associativity of</h></idx>
+      <p>
+        Let <m>A,B,C</m> be matrices and let <m>c</m> be a scalar.  Suppose that <m>A</m> is an <m>m\times n</m> matrix, and that in each of the following identities, the sizes of <m>B</m> and <m>C</m> are compatible when necessary for the product to be defined.  Then:
+        <md>
+          <mrow>
+            C(A+B) \amp= C A+C B \amp
+            (A + B) C \amp= A C + B C \amp
+          </mrow>
+          <mrow>
+            c(A B) \amp= (cA) B \amp
+            c(A B) \amp= A(cB)
+          </mrow>
+          <mrow>
+            A I_n \amp= A \amp
+            I_m A \amp= A
+          </mrow>
+          <mrow>
+            (A B)C \amp= A (BC) \amp
+          </mrow>
+        </md>
+      </p>
+    </note>
+
+    <p>
+      Most of the above properties are easily verified directly from the definitions.  The <em>associativity</em> property <m>(AB)C=A(BC)</m>, however, is not (try it!).  It is much easier to prove by relating matrix multiplication to composition of transformations, and using the obvious fact that composition of transformations is associative.
+    </p>
+
+
+
+
+  </subsection>
+
+<exercises>
+  <exercise>
+    <statement correct="no">
+      <p>If <m>A</m> and <m>B</m> are matrices and <m>AB</m> is an <m>3 \times 3</m> matrix,
+        then <m>A</m> and <m>B</m> must be <m>3 \times 3</m> matrices.</p>
+    </statement>
+    <solution>
+      <p>False: for example, if <m>A</m> is <m>3 \times 2</m> and <m>B</m> is <m>2 \times 3</m>, then <m>AB</m>
+        is <m>3 \times 3</m> but neither <m>A</m> nor <m>B</m> is <m>3 \times 3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>Suppose <m>A</m> and <m>B</m> are matrices so that <m>AB</m> and <m>BA</m> are both
+      defined.  If <m>AB</m> and <m>BA</m> are each <m>r \times r</m> matrices, then <m>A</m> and <m>B</m> must
+      each be <m>n \times n</m>.</p>
+    </statement>
+    <solution>
+      <p>True: <m>A</m> Say <m>A</m> is <m>k \times \ell</m> and <m>B</m> is <m>m \times n</m>.  Since <m>AB</m> is
+        defined, we know <m>\ell = m</m>.  Since <m>BA</m> is defined, we know <m>n = k</m>.  This
+        means <m>B</m> is <m>\ell \times k</m>.</p>
+      <p>Now: <m>AB</m> is a <m>k \times \ell</m> times an <m>\ell \times k</m>, so <m>AB</m> is
+        <m>k \times k</m>.  Since we were told <m>AB</m> is <m>r \times r</m>, this means <m>r =
+        k</m>.</p>
+      <p>Similarly, <m>BA</m> is an <m>\ell \times k</m> times a <m>k \times \ell</m>, so <m>BA</m> is
+        <m>\ell \times \ell</m>.  Since we were told <m>BA</m> is <m>r \times r</m>, this means <m>r = \ell</m>.</p>
+      <p>Putting it all together, we see <m>A</m> and <m>B</m> are both <m>r \times r</m> matrices.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A</m> is a <m>24 \times 17</m> matrix and the products <m>AB</m> and <m>BA</m> are both
+      defined.  How many rows does <m>B</m> have?  How many columns does <m>B</m> have?</p>
+    </statement>
+    <solution>
+      <p>For <m>AB</m> to be defined, the number of columns of <m>A</m> (namely <m>17</m>) must equal
+        the number of rows of <m>B</m>, so <m>B</m> has <m>17</m> rows.</p>
+      <p>Similarly:
+        for <m>BA</m> to be defined, the number of columns of <m>B</m> must equal the number of
+        rows of <m>A</m> (namely 24), so <m>B</m> must have <m>24</m> columns.</p>
+      <p>Therefore, <m>B</m> is a <m>17 \times 24</m> matrix.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A</m> and <m>B</m> are <m>3 \times 3</m> matrices and the columns of <m>B</m>
+      are linearly dependent.  Is it necessarily the columns of <m>AB</m> are linearly
+      dependent?  Justify your answer.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes, the columns of <m>AB</m> are linearly dependent.  Using the fact that <m>Bv=0</m>
+          for some nonzero <m>v</m> in <m>{\bf R}^3</m>, we compute
+        <md><mrow>ABv=AB(v) = A0=0</mrow></md>.
+        Therefore, the vector <m>v</m> is a non-trivial solution to the system <m>ABx = 0</m>,
+          so the columns of <m>AB</m> are linearly dependent.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A = \begin{pmatrix}1 \amp -3 \amp 4 \\ 1 \amp 0 \amp 0\end{pmatrix}</m> and <m>B = \begin{pmatrix}1 \amp \pi\end{pmatrix}</m>.  Compute all products that
+      make sense among <m>AB</m> and <m>BA</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        <m>A</m> is <m>2 \times 3</m> and <m>B</m> is <m>1 \times 2</m>, so the only product that makes
+          sense is <m>BA</m>.
+        <md><mrow>BA = \begin{pmatrix}1 \amp \pi\end{pmatrix}\begin{pmatrix}1 \amp -3 \amp 4 \\ 1 \amp 0 \amp 0\end{pmatrix} = \begin{pmatrix}1+\pi \amp \ \amp -3 \amp 4\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>T: {\bf R}^2 \to {\bf R}^2</m> be the linear transformation that rotates
+      vectors by <m>\pi/2</m> radians counterclockwise, then scales the <m>y</m>-direction by a
+      factor of <m>5</m>, then reflects vectors across the line <m>y = -x</m>.  Compute
+      <m>T\begin{pmatrix}5 \\ 1\end{pmatrix}</m> using matrix multiplication.</p>
+    </statement>
+    <solution>
+      <p>
+        The matrix for <m>T</m> is <m>ABC</m> where <m>C</m> is the first operation, <m>B</m> is the
+          second operation, and <m>A</m> is the third operation.  Therefore, the matrix for
+          <m>T</m> is
+        <md><mrow>\begin{pmatrix}0 \amp -1 \\ -1 \amp 0\end{pmatrix}\begin{pmatrix}1 \amp 0 \\ 0 \amp 5\end{pmatrix} \begin{pmatrix}0 \amp -1 \\ 1 \amp 0\end{pmatrix}
+            = \begin{pmatrix}0 \amp -1 \\ -1 \amp 0\end{pmatrix} \begin{pmatrix}0 \amp -1 \\ 5 \amp 0\end{pmatrix} = \begin{pmatrix}-5 \amp 0 \\ 0 \amp 1\end{pmatrix}</mrow></md>.
+        We compute
+        <md><mrow>T \begin{pmatrix}5 \\ 1\end{pmatrix} = \begin{pmatrix}-5 \amp 0 \\ 0 \amp 1\end{pmatrix}\begin{pmatrix}5 \\ 1\end{pmatrix} = \begin{pmatrix}-25 \\ 1\end{pmatrix}</mrow></md>.
+        We can check our
+          answer geometrically.  <m>T</m> first rotates <m>\begin{pmatrix}5 \\ 1\end{pmatrix}</m> by <m>\pi/2</m> radians
+          counterclockwise to get <m>\begin{pmatrix}-1 \\ 5\end{pmatrix}</m>, then scales the <m>y</m>-coordinate by a
+          factor of <m>5</m> to get <m>\begin{pmatrix}-1 \\ 25\end{pmatrix}</m>, then reflects across the line <m>y = -x</m> to
+          get <m>\begin{pmatrix}-25 \\ 1\end{pmatrix}</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p><m>T</m> has domain <m>{\bf R}^{4}</m> and codomain <m>{\bf R}^{7}</m>.</p>
+      <p><m>U</m> has domain <m>{\bf R}^{13}</m> and codomain <m>{\bf R}^{25}</m>.</p>
+      <p><m>V</m> has domain <m>{\bf R}^{25}</m> and codomain <m>{\bf R}^{17}</m>.</p>
+      <p><m>W</m> has domain <m>{\bf R}^{7}</m> and codomain <m>{\bf R}^{13}</m>.</p>
+      <p>Determine which composition of all four transformations makes sense, and find
+      the number of rows and columns for its standard matrix.</p>
+    </statement>
+    <solution>
+      <p>In order for a composition <m>R \circ S</m> to make sense, the domain of <m>R</m> must
+        be the codomain of <m>S</m>, because we need to be able to take <m>R(S(v))</m> for any
+        vector <m>v</m> in the domain of <m>S</m>.
+      The composition of all <m>4</m>
+        transformations that makes sense is <m>V \circ U \circ W \circ T</m>.</p>
+      <p>
+      <ul>
+        <li>
+          <p>If <m>x</m> is a vector in <m>{\bf R}^{4}</m>, then <m>T(x)</m> is a vector in
+              <m>{\bf R}^{7}</m>, which is the domain of <m>W</m>.</p>
+        </li>
+        <li>
+          <p>Next step: <m>W(T(x))</m> is in <m>{\bf R}^{13}</m>, which is the domain of <m>U</m>.</p>
+        </li>
+        <li>
+          <p>Next step: <m>U(W(T(x)))</m> is in <m>{\bf R}^{41}</m>, which is the domain of <m>V</m>,</p>
+        </li>
+        <li>
+          <p>Finally: <m>V(U(W(T(x))))</m> is a vector in <m>{\bf R}^{17}</m>.</p>
+        </li>
+      </ul>
+      </p>
+      <p>Following all of the steps, we see that if <m>x</m> is in <m>{\bf R}^{4}</m> then
+        <m>(V \circ U \circ W \circ T)(x)</m> is a vector in <m>{\bf R}^{17}</m>, so the
+        transformation has domain <m>{\bf R}^{4}</m> and codomain <m>{\bf R}^{17}</m>.
+        Therefore, its standard matrix is <m>17 \times 4</m>, so it has <m>17</m> rows and <m>4</m>
+        columns.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>T</m> be the linear transformation <m>T(x) = ABx</m>, where
+      <m>A</m> is <m>3 \times 3</m> and <m>B</m> is <m>3 \times 2</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          Complete the following: <m>T</m> is onto...
+          <md><mrow>\textup{(i) sometimes} \qquad \textup{(ii) always}
+            \qquad \textup{(iii) never}</mrow></md>
+        </p>
+      </statement>
+      <solution>
+        <p>Never: <m>AB</m> is <m>3 \times 2</m>, so it has <m>3</m> rows but a max of <m>2</m>
+            pivots, therefore at least one row does not have a pivot, thus <m>T</m> cannot be
+            one-to-one.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Complete the following: <m>T</m> is one-to-one...
+          <md><mrow>\textup{(i) sometimes} \qquad \textup{(ii) always}
+            \qquad \textup{(iii) never}</mrow></md>
+        </p>
+      </statement>
+      <solution>
+        <p>Sometimes.  <m>AB</m> is <m>3 \times 2</m>, so it might have a pivot in
+            every column, but this depends on <m>A</m> and <m>B</m>.  For example, if
+            <m>B = \begin{pmatrix}0 \amp 0 \\ 0 \amp 0 \\ 0 \amp 0\end{pmatrix}</m> then <m>AB</m> is the <m>3 \times 2</m> zero matrix, so <m>T</m>
+            is clearly not one-to-one.
+        If <m>A = \begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m> and
+            <m>B = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1 \\ 0 \amp 0\end{pmatrix}</m>, then <m>AB = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1 \\ 0 \amp 0\end{pmatrix}</m> which has a pivot
+            in every column, so <m>T</m> is one-to-one.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Find the formula for <m>T(x_1, x_2, x_3)</m> if
+        <m>A = \begin{pmatrix}1 \amp -1 \amp 4 \\ 0 \amp 1 \amp 2 \\ 4 \amp 1 \amp 0\end{pmatrix}</m> and <m>B = \begin{pmatrix}1 \amp -1 \\ 2 \amp -2 \\ 0 \amp 1\end{pmatrix}</m>.</p>
+      </statement>
+      <solution>
+        <p><m>AB = \begin{pmatrix}1 \amp -1 \amp 4 \\ 0 \amp 1 \amp 2 \\ 4 \amp 1 \amp 0\end{pmatrix} \begin{pmatrix}1 \amp -1 \\ 2 \amp -2 \\ 0 \amp 1\end{pmatrix} =
+            \begin{pmatrix}-1 \amp 5 \\ 2 \amp 2 \\ 6 \amp -6\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>T: {\bf R}^2 \to {\bf R}^2</m> be the transformation which reflects about the
+      line <m>y = x</m>, then rotates counterclockwise by <m>45^\circ</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write the matrix <m>J</m> for reflection across the line <m>y=x</m> in
+          <m>{\bf R}^2</m>.</p>
+      </statement>
+      <solution>
+        <p><m>J=\begin{pmatrix}0 \amp 1 \\ 1 \amp 0\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write the matrix <m>K</m> for rotation counterclockwise
+          by <m>45^\circ</m> in <m>{\bf R}^2</m>.</p>
+      </statement>
+      <solution>
+        <p><m>K=\begin{pmatrix}\frac{1}{\sqrt{2}} \amp \frac{-1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}}\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Using matrix multiplication,
+          compute the matrix <m>A</m> so that <m>T(x)=Ax</m> for all <m>x</m> in <m>{\bf R}^2</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          <m>A=KJ</m>:
+          <md><mrow>A = \begin{pmatrix}\frac{1}{\sqrt{2}} \amp \frac{-1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}}\end{pmatrix}
+            \begin{pmatrix}0 \amp 1 \\ 1 \amp 0\end{pmatrix}
+            = \begin{pmatrix}\frac{-1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}}\end{pmatrix}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Let <m>T: {\bf R}^2 \to {\bf R}^2</m> be the transformation of reflection
+      about the line <m>y= -x</m>, and let <m>U: {\bf R}^2 \to {\bf R}^3</m> be the
+      transformation <m>U \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}x-y \\ x \\ 3y\end{pmatrix}</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Write the standard matrix <m>A</m> for <m>T</m>.  Is <m>T</m> onto?</p>
+      </statement>
+      <solution>
+        <p><m>A=\begin{pmatrix}0 \amp -1 \\ -1 \amp 0\end{pmatrix}</m>. Yes, <m>T</m> is onto.  One way to
+            see this is to note that <m>A</m> has a pivot in every row.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Write the standard matrix <m>B</m> for <m>U</m>.  Is <m>U</m>
+          one-to-one?  Briefly justify your answer.</p>
+      </statement>
+      <solution>
+        <p><m>B=\begin{pmatrix}U(e_1) \amp U(e_2)\end{pmatrix} = \begin{pmatrix}1 \amp -1 \\ 1 \amp 0 \\ 0 \amp 3\end{pmatrix}</m>.  Yes,
+            <m>U</m> is one-to-one because <m>B</m> has a pivot in every column.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Circle the composition that makes sense: \quad
+          <m>T \circ U</m> \qquad <m>U \circ T</m></p>
+      </statement>
+      <solution>
+        <p><m>U \circ T</m> makes sense since it sends
+            <m>R^2 \to R^2 \to R^3</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Compute the standard matrix for the composition you
+          circled in part (c).</p>
+      </statement>
+      <solution>
+        <p><m>BA = \begin{pmatrix}1 \amp -1 \\ 1 \amp 0 \\ 0 \amp 3\end{pmatrix} \begin{pmatrix}0 \amp -1 \\ -1 \amp 0\end{pmatrix} =
+            \begin{pmatrix}1 \amp -1 \\ 0 \amp -1 \\ -3 \amp 0\end{pmatrix}</m>.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Consider the following transformations.</p>
+      <p><m>T: {\bf R}^2 \to {\bf R}^2</m> be rotation by <m>90^\circ</m> clockwise.</p>
+      <p><m>U: {\bf R}^3 \to {\bf R}^2</m> given by <m>U(a, b, c) = (a-b, c-5a)</m>.</p>
+      <p><m>V: {\bf R}^{4} \to {\bf R}^3</m> given by
+      <m>V(x, y, z, w) = (w, x-y+z, z-x)</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Which composition of all three transformation makes
+          sense?</p>
+      </statement>
+      <solution>
+        <p><m>T \circ U \circ V</m> makes sense: <m>V</m> sends a vector
+            <m>x</m> from <m>{\bf R}^4</m> to <m>{\bf R}^3</m>, then <m>U</m> sends <m>V(x)</m> from
+            <m>{\bf R}^3</m> to <m>{\bf R}^2</m>, then <m>T</m> sends <m>U(V(x))</m> from
+            <m>{\bf R}^2</m> to <m>{\bf R}^2</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Using matrix multiplication, compute the standard
+          matrix for the transformation you wrote in part (a).</p>
+      </statement>
+      <solution>
+        <p>
+          <m>T(x) = Ax</m>, <m>U(x) = Bx</m>, and <m>V(x) = Cx</m> for the
+              matrices below, where we multiply <m>ABC</m> to get the matrix for
+              <m>T \circ U \circ V</m>.  Matrix multiplication is NOT commutative,
+              but it is associative, so to compute <m>ABC</m> we can either compute
+              <m>A(BC)</m> or <m>(AB)C</m>.
+          <md>
+            <mrow>ABC
+                \amp
+                  = \begin{pmatrix}0 \amp 1</mrow>
+            <mrow>-1 \amp 0\end{pmatrix}
+                  \begin{pmatrix}1 \amp -1 \amp 0</mrow>
+            <mrow>-5 \amp 0 \amp 1\end{pmatrix}
+                  \begin{pmatrix}0 \amp 0 \amp 0 \amp 1</mrow>
+            <mrow>1 \amp -1 \amp 1 \amp 0</mrow>
+            <mrow>-1 \amp 0 \amp 1 \amp 0\end{pmatrix}</mrow>
+            <mrow>\amp
+                  = \begin{pmatrix}0 \amp 1</mrow>
+            <mrow>-1 \amp 0\end{pmatrix}
+                  \begin{pmatrix}-1 \amp 1 \amp -1 \amp 1</mrow>
+            <mrow>-1 \amp 0 \amp 1 \amp -5\end{pmatrix}</mrow>
+            <mrow>\amp
+                  = \begin{pmatrix}-1 \amp 0 \amp 1 \amp 5</mrow>
+            <mrow>1 \amp -1 \amp 1 \amp -1\end{pmatrix}</mrow>
+          </md>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+</exercises>
+</section>

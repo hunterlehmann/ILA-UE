@@ -33,7 +33,7 @@ the license is included in gfdl.xml.
     <definition xml:id="dimension-defn-basis">
       <idx><h>Basis</h><h>definition of</h></idx>
       <statement>
-        <image source="important.svg" width="8%">
+        <sidebyside widths="5% 90%"><image source="images/important.svg" width="8%">
           <shortdescription>Essential definition</shortdescription>
         </image>
         <p>Let <m>V</m> be a subspace of <m>\R^n</m>.  A <term>basis</term> of <m>V</m> is a set of vectors <m>\{v_1,v_2,\ldots,v_m\}</m> in <m>V</m> such that:
@@ -41,7 +41,7 @@ the license is included in gfdl.xml.
           <li><p><m>V = \Span\{v_1,v_2,\ldots,v_m\}</m>, and</p></li>
           <li><p>the set <m>\{v_1,v_2,\ldots,v_m\}</m> is linearly independent.</p></li>
         </ol>
-        </p>
+        </p></sidebyside>
       </statement>
     </definition>
 
@@ -60,12 +60,14 @@ the license is included in gfdl.xml.
       <idx><h>Dimension</h><h>definition of</h></idx>
       <notation><usage><m>\dim V</m></usage><description>Dimension of a subspace</description></notation>
       <statement>
-        <image source="important.svg" width="8%">
+        <sidebyside widths="5% 90%">
+        <image source="images/important.svg" width="8%">
           <shortdescription>Essential definition</shortdescription>
         </image>
         <p>
           Let <m>V</m> be a subspace of <m>\R^n</m>.  The number of vectors in any basis of <m>V</m> is called the <term>dimension</term> of <m>V</m>, and is written <m>\dim V</m>.
         </p>
+        </sidebyside>
       </statement>
     </definition>
 

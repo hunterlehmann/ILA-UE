@@ -256,12 +256,12 @@
         </p>
       </introduction>
 
-      <!-- <xi:include href="./matrix-trans.ptx" />
+      <xi:include href="./matrix-trans.ptx" />
       <xi:include href="./one-one-onto.ptx" />
       <xi:include href="./linear-trans.ptx" />
       <xi:include href="./matrix-mult.ptx" />
       <xi:include href="./matrix-inv.ptx" />
-      <xi:include href="./invertible-matrix-thm.ptx" /> -->
+      <xi:include href="./invertible-matrix-thm.ptx" />
     </chapter>
 
     <chapter xml:id="chap-determinant">
@@ -294,9 +294,9 @@
         </p>
 
       </introduction>
-      <!-- <xi:include href="./determinant-definitions-properties.ptx" />
+      <xi:include href="./determinant-definitions-properties.ptx" />
       <xi:include href="./determinant-cofactors.ptx" />
-      <xi:include href="./determinant-volume.ptx" /> -->
+      <xi:include href="./determinant-volume.ptx" />
 
     </chapter>
 
@@ -343,12 +343,12 @@ Finally, we spend <xref ref="sec-stochastic-matrices"/> presenting a common kind
         </p>
       </introduction>
 
-      <!-- <xi:include href="./eigenvectors.ptx" />
+      <xi:include href="./eigenvectors.ptx" />
       <xi:include href="./charpoly.ptx" />
       <xi:include href="./similarity.ptx" />
       <xi:include href="./diagonalization.ptx" />
       <xi:include href="./cplx-eigenvals.ptx" />
-      <xi:include href="./stochastic.ptx" /> -->
+      <xi:include href="./stochastic.ptx" />
 
     </chapter>
 
@@ -489,11 +489,11 @@ the sun in 1801.
         </observation>
       </introduction>
 
-      <!-- <xi:include href="./innerprod.ptx" />
+      <xi:include href="./innerprod.ptx" />
       <xi:include href="./orthocomp.ptx" />
       <xi:include href="./projections.ptx" />
       <xi:include href="./orthosets.ptx" />
-      <xi:include href="./leastsquares.ptx" /> -->
+      <xi:include href="./leastsquares.ptx" />
 
     </chapter>
 

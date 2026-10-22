@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--********************************************************************
+Copyright 2019 Dan Margalit and Joseph Rabinoff
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation.  A copy of
+the license is included in gfdl.xml.
+*********************************************************************-->
+
+<section xml:id="sec-dot-product">
+  <title>Dot Products and Orthogonality</title>
+
+  <objectives>
+    <ol>
+      <li><p>Understand the relationship between the dot product, length, and distance.</p></li>
+      <li><p>Understand the relationship between the dot product and orthogonality.</p></li>
+      <li><p><em>Vocabulary words:</em> <term>dot product</term>, <term>length</term>, <term>distance</term>, <term>unit vector</term>, <term>unit vector in the direction of <m>x</m></term>.</p></li>
+      <li><p><em>Essential vocabulary word:</em> <term>orthogonal</term>.</p></li>
+    </ol>
+  </objectives>
+
+  <introduction>
+    <p>
+      In this chapter, it will be necessary to find the <em>closest</em> point on a subspace to a given point, like so:
+      </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image>
+\begin{tikzpicture}[myxyz, thin border nodes]
+  \coordinate (u) at (0,1,0);
+  \coordinate (v) at (1.1,0,-.2);
+  \coordinate (uxv) at (.2,0,1.1);
+  \coordinate (x) at ($-1.1*(u)+(v)+1.5*(uxv)$);
+  \begin{scope}[x=(u),y=(v),transformxy]
+    \fill[seq-violet!30] (-2,-2) rectangle (2,2);
+    \draw[seq-violet, help lines] (-2,-2) grid (2,2);
+  \end{scope}
+  \point[seq-blue, "closest point" {below,text=seq-blue}] (y) at ($-1.1*(u)+1*(v)$);
+  \coordinate (yu) at ($(y)+(u)$);
+  \coordinate (yv) at ($(y)+(v)$);
+  \pic[draw, right angle len=3mm] {right angle=(x)--(y)--(yu)};
+  \pic[draw, right angle len=3mm] {right angle=(x)--(y)--(yv)};
+  \point[seq-red, "$x$" {above,text=seq-red}] (xx) at (x);
+  \draw[vector, thin] (y) -- (xx);
+  \point at (0,0,0);
+\end{tikzpicture}
+      </latex-image>
+</image>
+<p>
+      The closest point has the property that the difference between the two points is <em>orthogonal</em>, or <em>perpendicular</em>, to the subspace.  For this reason, we need to develop notions of orthogonality, length, and distance.
+    </p>
+  </introduction>
+
+  <subsection xml:id="subsec-the-dot-product">
+    <title>The Dot Product</title>
+
+    <p>
+      The basic construction in this section is the <em>dot product</em>, which measures angles between vectors and computes the length of a vector.
+    </p>
+
+    <definition>
+      <idx><h>Dot product</h><h>definition of</h></idx>
+      <notation><usage><m>x\cdot y</m></usage><description>Dot product of two vectors</description></notation>
+      <statement>
+        <p>
+          The <term>dot product</term> of two vectors <m>x,y</m> in <m>\R^n</m> is
+          <md>
+<mrow>x\cdot y = \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix} \cdot \begin{pmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n
+\end{pmatrix}
+            \;=\; x_1y_1 + x_2y_2 + \cdots + x_ny_n</mrow>
+</md>.
+          Thinking of <m>x,y</m> as column vectors, this is the same as <m>x^Ty</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      For example,
+      <md>
+<mrow>\begin{pmatrix}
+1 \\
+2 \\
+3
+\end{pmatrix}\cdot\begin{pmatrix}
+4 \\
+5 \\
+6
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 2 \amp 3
+\end{pmatrix}\begin{pmatrix}
+4 \\
+5 \\
+6
+\end{pmatrix}
+        = 1\cdot 4 + 2\cdot 5 + 3\cdot 6 = 32</mrow>
+</md>.
+      Notice that the dot product of two <em>vectors</em> is a <em>scalar</em>.
+    </p>
+
+    <p>
+      You can do arithmetic with dot products mostly as usual, as long as you remember you can only dot two vectors together, and that the result is a scalar.
+    </p>
+
+    <note>
+      <title>Properties of the Dot Product</title>
+      <idx><h>Dot product</h><h>properties of</h></idx>
+      <p>
+        Let <m>x,y,z</m> be vectors in <m>\R^n</m> and let <m>c</m> be a scalar.
+        <ol>
+          <li><p>
+            <em>Commutativity:</em> <m>x\cdot y = y \cdot x</m>.
+          </p></li>
+          <li><p>
+            <em>Distributivity with addition:</em> <m>(x + y)\cdot z = x\cdot z+y\cdot z</m>.
+          </p></li>
+          <li><p>
+            <em>Distributivity with scalar multiplication:</em> <m>(cx)\cdot y = c(x\cdot y)</m>.
+          </p></li>
+        </ol>
+      </p>
+    </note>
+
+    <p>
+      The dot product of a vector with itself is an important special case:
+      <md>
+<mrow>\begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}\cdot\begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}
+        = x_1^2 + x_2^2 + \cdots + x_n^2</mrow>
+</md>.
+      Therefore, for any vector <m>x</m>, we have:
+      <ul>
+        <li><p><m>x\cdot x \geq 0</m></p></li>
+        <li><p><m>x\cdot x = 0 \iff x = 0.</m></p></li>
+      </ul>
+      This leads to a good definition of <em>length</em>.
+    </p>
+
+    <fact>
+      <idx><h>Dot product</h><h>and length</h></idx>
+      <idx><h>Vector</h><h>length of</h></idx>
+      <statement>
+        <p>
+          The <term>length</term> of a vector <m>x</m> in <m>\R^n</m> is the number
+          <md>
+<mrow>\|x\| = \sqrt{x\cdot x} = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}</mrow>
+</md>.
+        </p>
+      </statement>
+    </fact>
+
+    <p>
+      It is easy to see why this is true for vectors in <m>\R^2</m>, by the Pythagorean theorem.
+      </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image>
+\begin{tikzpicture}[scale=1,decoration={brace,raise=3pt}]
+  \draw[grid lines] (0,0) grid (5,5);
+  \point at (0,0);
+  \point["$\begin{pmatrix}
+3 \\
+4
+\end{pmatrix}$" right] (x) at (3,4);
+  \draw[vector] (0,0)
+    -- node[sloped,above,inner sep=1pt] {$\sqrt{3^2 + 4^2} = 5$}
+    (x);
+  \draw[decorate,decoration={mirror}] (0,0) -- node[below=4pt] {3} (3,0);
+  \draw[decorate] (0,0) -- node[left=3pt] {4} (0,4);
+
+  \node at (8,2.5) {$\left\|\begin{pmatrix}
+3 \\
+4
+\end{pmatrix}\right\| = \sqrt{3^2+4^2} = 5$};
+
+\end{tikzpicture}
+      </latex-image>
+</image>
+<p>
+      For vectors in <m>\R^3</m>, one can check that <m>\|x\|</m> really is the length of <m>x</m>, although now this requires <em>two</em> applications of the Pythagorean theorem.
+    </p>
+
+    <p>
+      Note that the length of a vector is the length of the <em>arrow</em>; if we think in terms of points, then the length is its distance from the origin.
+    </p>
+
+    <example>
+      <statement>
+        <p>Suppose that <m>\|x\| = 2,\;\|y\|=3,</m> and <m>x\cdot y = -4</m>.  What is <m>\|2x + 3y\|</m>?</p>
+      </statement>
+      <solution>
+        <p>
+          We compute
+          <md>
+<mrow>\|2x+3y\|^2 \amp= (2x+3y)\cdot(2x+3y)</mrow>
+<mrow>\amp= 4x\cdot x + 6x\cdot y + 6x\cdot y + 9y\cdot y</mrow>
+<mrow>\amp= 4\|x\|^2 + 9\|y\|^2 + 12x\cdot y</mrow>
+<mrow>\amp= 4\cdot 4 + 9\cdot 9 - 12\cdot 4 = 49</mrow>
+</md>.
+          Hence <m>\|2x+3y\| = \sqrt{49} = 7.</m>
+        </p>
+      </solution>
+    </example>
+
+    <fact>
+      <p>
+        If <m>x</m> is a vector and <m>c</m> is a scalar, then <m>\|cx\|=|c|\cdot\|x\|.</m>
+      </p>
+    </fact>
+
+    <p>
+      This says that scaling a vector by <m>c</m> scales its length by <m>|c|</m>.  For example,
+      <md>
+<mrow>\left\|\begin{pmatrix}
+6 \\
+8
+\end{pmatrix}\right\| = \left\|2\begin{pmatrix}
+3 \\
+4
+\end{pmatrix}\right\|
+        = 2\left\|\begin{pmatrix}
+3 \\
+4
+\end{pmatrix}\right\| = 10</mrow>
+</md>.
+    </p>
+
+    <p>
+      Now that we have a good notion of length, we can define the <em>distance</em> between points in <m>\R^n</m>.  Recall that the difference between two points <m>x,y</m> is naturally a vector, namely, the vector <m>y-x</m> pointing from <m>x</m> to <m>y</m>.
+    </p>
+
+    <definition xml:id="innerprod-distance-defn">
+      <idx><h>Dot product</h><h>and distance</h></idx>
+      <idx><h>Vector</h><h>distance between</h></idx>
+      <idx><h>Point</h><h>distance between</h></idx>
+      <statement>
+        <p>
+          The <term>distance</term> between two points <m>x,y</m> in <m>\R^n</m> is the length of the <xref ref="vectors-diff-pts" text="title">vector from</xref> <m>x</m> to <m>y</m>:
+          <md>
+<mrow>\dist(x,y) = \|y-x\|</mrow>
+</md>.
+        </p>
+      </statement>
+    </definition>
+
+    <example>
+      <statement>
+        <p>
+          Find the distance from <m>(1,2)</m> to <m>(4,4)</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Let <m>x=(1,2)</m> and <m>y=(4,4)</m>.  Then
+          <md>
+<mrow>\dist(x,y) = \|y-x\| = \left\|\begin{pmatrix}
+3 \\
+2
+\end{pmatrix}\right\| = \sqrt{3^2+2^2} = \sqrt{13}</mrow>
+</md>.
+          </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image>
+  \begin{tikzpicture}[thin border nodes]
+    \draw[grid lines] (0,0) grid (5,5);
+    \point["$0$" left] at (0,0);
+    \point["$x$" left] (x) at (1,2);
+    \point["$y$" right] (y) at (4,4);
+    \draw[vector] (x) --
+      node[sloped,above] {$y-x$} (y);
+  \end{tikzpicture}
+          </latex-image>
+</image>
+      </solution>
+    </example>
+
+    <p>
+      Vectors with length <m>1</m> are very common in applications, so we give them a name.
+    </p>
+
+    <definition xml:id="innerprod-unit-vec">
+      <idx><h>Unit vector</h><h>definition of</h></idx>
+      <idx><h>Vector</h><h>unit vector</h><see>Unit vector</see></idx>
+      <statement>
+        <p>
+          A <term>unit vector</term> is a vector <m>x</m> with length <m>\|x\| = \sqrt{x\cdot x} =1</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      <idx><h>Standard coordinate vectors</h><h>are unit vectors</h></idx>
+      <idx><h>Unit vector</h><h>standard coordinate vectors</h></idx>
+      The <xref ref="defn-standard-coord-vectors" text="title">standard coordinate vectors</xref> <m>e_1,e_2,e_3,\ldots</m> are unit vectors:
+      <md>
+<mrow>\|e_1\| = \left\|\begin{pmatrix}
+1 \\
+0 \\
+0
+\end{pmatrix}\right\| = \sqrt{1^2 + 0^2 + 0^2} = 1</mrow>
+</md>.
+      For any nonzero vector <m>x</m>, there is a unique unit vector pointing in the same direction.  It is obtained by dividing by the length of <m>x</m>.
+    </p>
+
+    <fact xml:id="innerprod-unit-vec-dir">
+      <idx><h>Unit vector</h><h>in the direction of a vector</h></idx>
+      <idx><h>Vector</h><h>unit vector in the direction of</h></idx>
+      <statement>
+        <p>
+          Let <m>x</m> be a nonzero vector in <m>\R^n</m>.  The <term>unit vector in the direction of <m>x</m></term> is the vector <m>x/\|x\|</m>.
+        </p>
+      </statement>
+    </fact>
+
+    <p>
+      This is in fact a unit vector (noting that <m>\|x\|</m> is a positive number, so <m>\bigl|1/\|x\|\bigr| = 1/\|x\|</m>):
+      <md>
+<mrow>\left\|\frac{x}{\|x\|}\right\| = \frac 1{\|x\|}\|x\| = 1</mrow>
+</md>.
+    </p>
+
+    <example>
+      <statement>
+        <p>
+          What is the unit vector <m>u</m> in the direction of <m>x = \begin{pmatrix}
+3 \\
+4
+\end{pmatrix}</m>?
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We divide by the length of <m>x</m>:
+          <md>
+<mrow>u = \frac{x}{\|x\|} = \frac 1{\sqrt{3^2+4^2}}\begin{pmatrix}
+3 \\
+4
+\end{pmatrix} = \frac{1}{5}\begin{pmatrix}
+3 \\
+4
+\end{pmatrix}
+            = \begin{pmatrix}
+3/5 \\
+4/5
+\end{pmatrix}</mrow>
+</md>.
+          </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image>
+  \begin{tikzpicture}[thin border nodes]
+    \draw[grid lines] (-1,-1) grid (5,5);
+    \coordinate["$x$" above] (x) at (3,4);
+    \draw[vector] (0,0) -- (x);
+    \draw[vector,seq-red] (0,0) to["$u$"] ($1/5*(x)$);
+    \point["$0$" left] at (0,0);
+  \end{tikzpicture}
+          </latex-image>
+</image>
+      </solution>
+    </example>
+
+  </subsection>
+
+  <subsection xml:id="subsec-orthogonal-vectors">
+    <title>Orthogonal Vectors</title>
+
+    <p>
+      In this section, we show how the dot product can be used to define <em>orthogonality</em>, i.e., when two vectors are perpendicular to each other.
+    </p>
+
+    <definition>
+      <idx><h>Orthogonality</h><h>definition of</h></idx>
+      <idx><h>Vector</h><h>orthogonal</h><see>Orthogonality</see></idx>
+      <statement>
+        <p>
+          Two vectors <m>x,y</m> in <m>\R^n</m> are <term>orthogonal</term> or <term>perpendicular</term> if <m>x\cdot y = 0</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      <notation><usage><m>x\perp y</m></usage><description><m>x</m> is orthogonal to <m>y</m></description></notation>
+      <alert>Notation:</alert> <m>x\perp y</m> means <m>x\cdot y = 0</m>.
+    </p>
+
+    <assemblage>
+      <idx><h>Orthogonality</h><h>zero vector</h></idx>
+      <p>
+        Since <m>0 \cdot x = 0</m> for any vector <m>x</m>, the zero vector is orthogonal to every vector in <m>\R^n</m>.
+      </p>
+    </assemblage>
+
+    <p>
+      We motivate the above definition using the <em>law of cosines</em> in <m>\R^2</m>.  In our language, the law of cosines asserts that if <m>x,y</m> are two nonzero vectors, and if <m>\alpha>0</m> is the angle between them, then
+      <md>
+<mrow>\|y-x\|^2 = \|x\|^2 + \|y\|^2 - 2\|x\|\,\|y\|\cos\alpha</mrow>
+</md>.
+      <latex-code mode="bare">
+        \usetikzlibrary{angles}
+      </latex-code>
+      </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image>
+\begin{tikzpicture}[baseline=1cm]
+  \point ["$x$" right] (x) at (3,1);
+  \point ["$y$" above] (y) at (-2,3);
+  \coordinate (o) at (0,0);
+  \draw[vector] (0,0) -- node[below] {$\|x\|$} (x);
+  \draw[vector] (0,0) -- node[left] {$\|y\|$} (y);
+  \draw[vector] (x) -- node[sloped,above] {$\|y-x\|$} (y);
+  \pic[draw, "$\alpha$"] {angle=x--o--y};
+\end{tikzpicture}
+      </latex-image>
+</image>
+<p>
+      In particular, <m>\alpha=90^\circ</m> if and only if <m>\cos(\alpha)=0</m>, which happens if and only if <m>\|y-x\|^2 = \|x\|^2+\|y\|^2</m>.  Therefore,
+      <md>
+<mrow>\text{$x$ and $y$ are perpendicular}
+    \amp\iff \|x\|^2 + \|y\|^2 = \|y-x\|^2</mrow>
+<mrow>\amp\iff x\cdot x + y\cdot y = (y-x)\cdot(y-x)</mrow>
+<mrow>\amp\iff x\cdot x + y\cdot y = y\cdot y + x\cdot x -2x\cdot y</mrow>
+<mrow>\amp\iff x\cdot y = 0</mrow>
+</md>.
+      To reiterate:
+    </p>
+
+    <assemblage>
+      <idx><h>Orthogonality</h><h>and the Pythagorean theorem</h></idx>
+      <p>
+        <md>
+<mrow>x\perp y \quad\iff\quad x\cdot y = 0 \quad\iff\quad \|y-x\|^2 = \|x\|^2 + \|y\|^2</mrow>
+</md>.
+      </p>
+    </assemblage>
+
+    <example>
+      <statement>
+        <p>Find all vectors orthogonal to <m>v = \begin{pmatrix}
+1 \\
+1 \\
+-1
+\end{pmatrix}.</m></p>
+      </statement>
+      <solution>
+        <p>
+          We have to find all vectors <m>x</m> such that <m>x\cdot v = 0</m>.  This means solving the equation
+          <md>
+<mrow>0 = x\cdot v = \begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+1 \\
+-1
+\end{pmatrix} = x_1 + x_2 - x_3</mrow>
+</md>.
+          The parametric form for the solution set is <m>x_1 = -x_2 + x_3</m>, so the parametric vector form of the general solution is
+          <md>
+<mrow>x = \begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{pmatrix} = x_2\begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix} + x_3\begin{pmatrix}
+1 \\
+0 \\
+1
+\end{pmatrix}</mrow>
+</md>.
+          Therefore, the answer is the <em>plane</em>
+          <md>
+<mrow>\Span\left\{\begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix},\;\begin{pmatrix}
+1 \\
+0 \\
+1
+\end{pmatrix}\right\}</mrow>
+</md>.
+          For instance,
+          <md>
+<mrow>\begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix}\perp\begin{pmatrix}
+1 \\
+1 \\
+-1
+\end{pmatrix} \sptxt{because} \begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+1 \\
+-1
+\end{pmatrix} = 0</mrow>
+</md>.
+        </p>
+      </solution>
+    </example>
+
+    <example>
+      <statement>
+        <p>Find all vectors orthogonal to both <m>v = \begin{pmatrix}
+1 \\
+1 \\
+-1
+\end{pmatrix}</m> and <m>w = \begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}</m>.</p>
+      </statement>
+      <solution>
+        <p>
+          We have to solve the system of two homogeneous equations
+          <md>
+<mrow>\left.\begin{alignedat}{2}
+0 \amp {}={} \amp x\cdot v = \begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+1 \\
+-1
+\end{pmatrix} = x_1 + x_2 - x_3 \amp {} \\
+0 \amp {}={} \amp x\cdot w = \begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}  = x_1 + x_2 + x_3 \amp .
+\end{alignedat}\right</mrow>
+</md>.
+          In matrix form:
+          <md>
+<mrow>\begin{pmatrix}
+1 \amp 1 \amp -1 \\
+1 \amp 1 \amp 1
+\end{pmatrix} \;\xrightarrow{\text{RREF}}\;\begin{pmatrix}
+1 \amp 1 \amp 0 \\
+0 \amp 0 \amp 1
+\end{pmatrix}</mrow>
+</md>.
+          The parametric vector form of the solution set is
+          <md>
+<mrow>\begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{pmatrix} = x_2\begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix}</mrow>
+</md>.
+          Therefore, the answer is the <em>line</em>
+          <md>
+<mrow>\Span\left\{\begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix}\right\}</mrow>
+</md>.
+          For instance,
+          <md>
+<mrow>\begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+1 \\
+-1
+\end{pmatrix} = 0 \sptxt{and}
+            \begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix}\cdot\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix} = 0</mrow>
+</md>.
+        </p>
+      </solution>
+    </example>
+
+    <remark>
+      <title>Angle between two vectors</title>
+      <idx><h>Vector</h><h>angle between</h></idx>
+      <idx><h>Dot product</h><h>and angles</h></idx>
+      <p>
+        More generally, the law of cosines gives a formula for the angle <m>\alpha</m> between two nonzero vectors:
+        <md>
+<mrow>2\|x\|\|y\|\cos(\alpha)
+          \amp= \|x\|^2 + \|y\|^2 - \|y-x\|^2</mrow>
+<mrow>\amp= x\cdot x + y\cdot y - (y-x)\cdot (y-x)</mrow>
+<mrow>\amp= x\cdot x + y\cdot y - y\cdot y - x\cdot x + 2x\cdot y</mrow>
+<mrow>\amp= 2x\cdot y</mrow>
+<mrow>\amp\quad\implies \alpha = \cos\inv\left(\frac{x\cdot y}{\|x\|\|y\|}\right)</mrow>
+</md>.
+        In higher dimensions, we take this to be the <em>definition</em> of the angle between <m>x</m> and <m>y</m>.
+      </p>
+    </remark>
+
+  </subsection>
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>Compute the dot product of the vectors <m>\begin{pmatrix}-3 \\ 1 \\ 2 \\ 1\end{pmatrix}</m> and
+      <m>\begin{pmatrix}0 \\ 2 \\ -4 \\ 3\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}-3 \\ 1 \\ 2 \\ 1\end{pmatrix} \cdot \begin{pmatrix}0 \\ 2 \\ -4 \\ 3\end{pmatrix}
+        = -3(0) + 1(2) + 2(-4) + 1(3) = -3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Suppose <m>u</m> and <m>v</m> are vectors satisfying <m>||u|| = 3</m>,
+        <m>||v|| = 9</m>, and <m>u \cdot v = -4</m>.  Find
+        <md><mrow>(4u-v) \cdot (u + v)</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>(4u-v) \cdot (u + v)
+            \amp  = 4 u \cdot u + 4u \cdot v - v \dot u - v \dot v</mrow>
+          <mrow>\amp  = 4 ||u||^2 + 4 (-4) - (-4) - ||v||^2</mrow>
+          <mrow>\amp  = 4 (3^2) - 16 + 4 - 9^2
+              = -57</mrow>
+        </md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Suppose <m>u</m> and <m>v</m> are vectors satisfying <m>||u|| = 4</m>
+        and <m>||v|| = 2</m>.  Find
+        <md><mrow>||u+v||^2 + ||u-v||^2</mrow></md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We could expand the expression or use the Parallelogram Law.
+        <md><mrow>||u+v||^2 + ||u-v||^2 = 2(||u||^2 + ||v||^2)
+            = 2(16 + 4) = 40</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>u</m>, <m>v</m>, and <m>w</m> are vectors with the property that
+      <m>u \perp v</m> and <m>u \perp w</m>.  Must it be true that <m>u</m> is orthogonal
+      to all vectors in <m>\textup{Span}\{v, w\}</m>?  Justify your answer.</p>
+    </statement>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        (Challenge!) We can define dot products outside of our usual
+        context of <m>{\bf R}^n</m>.  This example discusses a dot product on the
+        set <m>W</m> of all polynomials of degree <m>3</m> or less, defined as follows.
+        If <m>f</m> and <m>g</m> are in <m>W</m>, we define a dot product using integration:
+        <md><mrow>f \cdot g = \int_{-1} ^1 f(x) g(x) \ dx</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Let <m>f(x) = x</m> and <m>g(x) = x^2</m>.  Show that <m>f</m> and <m>g</m>
+          are orthogonal.  In other words, show that <m>f \cdot g = 0</m>.</p>
+      </statement>
+      <solution>
+        <p><m>\displaystyle f \cdot g = \int_{-1}^1 x(x^2) \ dx = \int_{-1}^1
+            x^3 \ dx = x^4 \Big|_{-1}^1 = 1 - 1 = 0</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Let <m>f(x) = x</m> and <m>g(x) = x^3 - cx</m>.  Find the value
+          of <m>c</m> so that <m>f</m> and <m>g</m> are orthogonal.</p>
+      </statement>
+      <solution>
+        <p>
+          We solve for <m>c</m> so that <m>f \cdot g = 0</m>.
+          <md><mrow>0 = f \cdot g = \int_{-1}^1 x(x^3 - cx) \ dx
+                = \int_{-1}^1 x^4 - cx^2
+                = \Big[\dfrac{x^5}{5} - \dfrac{1}{3}cx^3\Big]_{-1}^1
+                = \dfrac{2}{5} - \dfrac{2}{3}c</mrow></md>.
+          Therefore, <m>c = \dfrac{3}{5}</m>.
+        </p>
+      </solution>
+    </task>
+  </exercise>
+</exercises>
+</section>

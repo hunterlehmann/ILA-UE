@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--********************************************************************
+Copyright 2019 Dan Margalit and Joseph Rabinoff
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation.  A copy of
+the license is included in gfdl.xml.
+*********************************************************************-->
+
+<section xml:id="sec-characteristic-polynomial">
+  <title>The Characteristic Polynomial</title>
+
+  <objectives>
+    <ol>
+      <li><p>Learn that the eigenvalues of a triangular matrix are the diagonal entries.</p></li>
+      <li><p>Find all eigenvalues of a matrix using the characteristic polynomial.</p></li>
+      <li><p>Learn some strategies for finding the zeros of a polynomial.</p></li>
+      <li><p><em>Recipe:</em> the characteristic polynomial of a <m>2\times 2</m> matrix.</p></li>
+      <li><p><em>Vocabulary words:</em> <term>characteristic polynomial</term>, <term>trace</term>.</p></li>
+    </ol>
+  </objectives>
+
+  <p>
+    In <xref ref="sec-eigenvectors" text="type-global"/> we discussed how to decide whether a given number <m>\lambda</m> is an eigenvalue of a matrix, and if so, how to find all of the associated eigenvectors.  In this section, we will give a method for computing all of the <em>eigenvalues</em> of a matrix.  This does not reduce to solving a system of linear equations: indeed, it requires solving a <em>nonlinear</em> equation in one variable, namely, finding the roots of the characteristic polynomial.
+  </p>
+
+  <definition>
+    <idx><h>Characteristic polynomial</h><h>definition of</h></idx>
+    <idx><h>Polynomial</h><h>characteristic</h><see>Characteristic polynomial</see></idx>
+    <statement>
+      <p>
+        Let <m>A</m> be an <m>n\times n</m> matrix.  The <term>characteristic polynomial</term> of <m>A</m> is the function <m>f(\lambda)</m> given by
+        <md>
+<mrow>f(\lambda) = \det(A-\lambda I_n)</mrow>
+</md>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    We will see <xref ref="charpoly-is-poly">below</xref> that the characteristic polynomial is in fact a polynomial.  Finding the characterestic polynomial means computing the determinant of the matrix <m>A-\lambda I_n</m>, whose entries contain the unknown <m>\lambda</m>.
+  </p>
+
+  <example xml:id="charpoly-eg-22">
+    <statement>
+      <p>
+        Find the characteristic polynomial of the matrix
+        <md>
+<mrow>A = \begin{pmatrix}
+5 \amp 2 \\
+2 \amp 1
+\end{pmatrix}</mrow>
+</md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We have
+        <md>
+<mrow>f(\lambda) = \det(A - \lambda I_2)
+          \amp= \det\left(\begin{pmatrix}
+5 \amp 2 \\
+2 \amp 1
+\end{pmatrix} - \begin{pmatrix}
+\lambda \amp 0 \\
+0 \amp \lambda
+\end{pmatrix}\right)</mrow>
+<mrow>\amp= \det\begin{pmatrix}
+5-\lambda \amp 2 \\
+2 \amp 1-\lambda
+\end{pmatrix}</mrow>
+<mrow>\amp= (5-\lambda)(1-\lambda) - 2\cdot 2
+          = \lambda^2 - 6\lambda + 1</mrow>
+</md>.
+      </p>
+    </solution>
+  </example>
+
+  <example xml:id="charpoly-eg-33">
+    <statement>
+      <p>
+        Find the characteristic polynomial of the matrix
+        <md>
+<mrow>A = \begin{pmatrix}
+0 \amp 6 \amp 8 \\
+\frac \amp 12 \amp 0 \amp 0 \\
+0 \amp \frac \amp 12 \amp 0
+\end{pmatrix}</mrow>
+</md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We compute the determinant by expanding cofactors along the third column:
+        <md>
+<mrow>f(\lambda) = \det(A - \lambda I_3)
+          \amp= \det\begin{pmatrix}
+-\lambda \amp 6 \amp 8 \\
+\frac \amp 12 \amp -\lambda \amp 0 \\
+0 \amp \frac \amp 12 \amp -\lambda
+\end{pmatrix}</mrow>
+<mrow>\amp= 8\left(\frac 14 - 0\cdot-\lambda\right)
+          - \lambda\left(\lambda^2 - 6\cdot\frac 12\right)</mrow>
+<mrow>\amp= -\lambda^3 + 3\lambda + 2</mrow>
+</md>.
+      </p>
+    </solution>
+  </example>
+
+  <p>
+    The point of the characteristic polynomial is that we can use it to compute eigenvalues.
+  </p>
+
+  <theorem>
+    <title>Eigenvalues are roots of the characteristic polynomial</title>
+    <idx><h>Characteristic polynomial</h><h>and eigenvalues</h></idx>
+    <idx><h>Eigenvalue</h><h>and the characteristic polynomial</h><see>Characteristic polynomial</see></idx>
+    <statement>
+      <p>
+        Let <m>A</m> be an <m>n\times n</m> matrix, and let <m>f(\lambda) = \det(A-\lambda I_n)</m> be its characteristic polynomial.  Then a number <m>\lambda_0</m> is an eigenvalue of <m>A</m> if and only if <m>f(\lambda_0) = 0</m>.
+      </p>
+    </statement>
+    <proof visible="true">
+      <p>
+        By the <xref ref="imt-2"/>, the matrix equation <m>(A-\lambda_0 I_n)x=0</m> has a nontrivial solution if and only if <m>\det(A-\lambda_0 I_n) = 0</m>.  Therefore,
+        <md>
+<mrow>\lambda_0 \text{ is an eigenvalue of } A
+          \amp\iff Ax = \lambda_0 x \text{ has a nontrivial solution}</mrow>
+<mrow>\amp\iff (A-\lambda_0 I_n)x = 0 \text{ has a nontrivial solution}</mrow>
+<mrow>\amp\iff A - \lambda_0 I_n \text{ is not invertible}</mrow>
+<mrow>\amp\iff \det(A - \lambda_0 I_n) = 0</mrow>
+<mrow>\amp\iff f(\lambda_0) = 0</mrow>
+</md>.
+      </p>
+    </proof>
+  </theorem>
+
+  <example>
+    <title>Finding eigenvalues</title>
+    <statement>
+      <p>
+        Find the eigenvalues and eigenvectors of the matrix
+        <md>
+<mrow>A = \begin{pmatrix}
+5 \amp 2 \\
+2 \amp 1
+\end{pmatrix}</mrow>
+</md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        In the above <xref ref="charpoly-eg-22"/> we computed the characteristic polynomial of <m>A</m> to be <m>f(\lambda) = \lambda^2-6\lambda + 1</m>.  We can solve the equation <m>\lambda^2-6\lambda+1=0</m> using the quadratic formula:
+        <md>
+<mrow>\lambda = \frac{6\pm\sqrt{36-4}}2 = 3\pm 2\sqrt 2</mrow>
+</md>.
+        Therefore, the eigenvalues are <m>3+2\sqrt 2</m> and <m>3-2\sqrt 2</m>.
+      </p>
+      <p>
+        To compute the eigenvectors, we solve the homogeneous system of equations <m>(A-\lambda I_2)x=0</m> for each eigenvalue <m>\lambda</m>.  When <m>\lambda=3+2\sqrt 2</m>, we have
+        <md>
+<mrow>A-(3+\sqrt 2)I_2 = \amp\begin{pmatrix}
+2-2\sqrt2 \amp 2 \\
+2 \amp -2-2\sqrt2
+\end{pmatrix}</mrow>
+<mrow>\xrightarrow{R_1 = R_1\times(2+2\sqrt2)}\;
+          \amp\begin{pmatrix}
+-4 \amp 4+4\sqrt2 \\
+2 \amp -2-2\sqrt2
+\end{pmatrix}</mrow>
+<mrow>\xrightarrow{R_2 = R_2+R_1/2}\;
+          \amp\begin{pmatrix}
+-4 \amp 4+4\sqrt2 \\
+0 \amp 0
+\end{pmatrix}</mrow>
+<mrow>\xrightarrow{R_1 = R_1 \div -4}\;
+          \amp\begin{pmatrix}
+1 \amp -1-\sqrt2 \\
+0 \amp 0
+\end{pmatrix}</mrow>
+</md>.
+        The parametric form of the general solution is <m>x=(1+\sqrt 2)y</m>, so the <m>(3+2\sqrt 2)</m>-eigenspace is the line spanned by <m>{1+\sqrt 2\choose 1}</m>.  We compute in the same way that the <m>(3-2\sqrt 2)</m>-eigenspace is the line spanned by <m>{1-\sqrt 2\choose 1}</m>.
+      </p>
+      <figure>
+        <caption>The green line is the <m>(3-2\sqrt 2)</m>-eigenspace, and the violet line is the <m>(3+2\sqrt 2)</m>-eigenspace.</caption>
+        <interactive
+            iframe="iframes/eigenspace-if.html?mat=5,2:2,1&amp;nomult"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </solution>
+  </example>
+
+  <example>
+    <title>Finding eigenvalues</title>
+    <statement>
+      <p>
+        Find the eigenvalues and eigenvectors of the matrix
+        <md>
+<mrow>A = \begin{pmatrix}
+0 \amp 6 \amp 8 \\
+\frac \amp 12 \amp 0 \amp 0 \\
+0 \amp \frac \amp 12 \amp 0
+\end{pmatrix}</mrow>
+</md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        In the above <xref ref="charpoly-eg-33"/> we computed the characteristic polynomial of <m>A</m> to be <m>f(\lambda) = -\lambda^3+3\lambda+2</m>.  We eyeball that <m>f(2) = -8 + 3\cdot 2 + 2 = 0</m>.  Thus <m>\lambda-2</m> divides <m>f(\lambda)</m>; to find the other roots, we perform <url href="https://en.wikipedia.org/wiki/Polynomial_long_division">polynomial long division</url>:
+        <md>
+<mrow>\frac{-\lambda^3+3\lambda+2}{\lambda-2}
+          = -\lambda^2-2\lambda-1 = -(\lambda+1)^2</mrow>
+</md>.
+        Therefore,
+        <md>
+<mrow>f(\lambda) = -(\lambda-2)(\lambda+1)^2</mrow>
+</md>,
+        so the only eigenvalues are <m>\lambda = 2,-1</m>.
+      </p>
+      <p>
+        We compute the <m>2</m>-eigenspace by solving the homogeneous system <m>(A-2I_3)x=0</m>.  We have
+        <md>
+<mrow>A-2I_3 = \begin{pmatrix}
+-2 \amp 6 \amp 8 \\
+\frac \amp 12 \amp -2 \amp 0 \\
+0 \amp \frac \amp 12 \amp -2
+\end{pmatrix}
+          \quad\xrightarrow{\text{RREF}}\quad
+          \begin{pmatrix}
+1 \amp 0 \amp -16 \\
+0 \amp 1 \amp -4 \\
+0 \amp 0 \amp 0
+\end{pmatrix}</mrow>
+</md>.
+        The parametric form and parametric vector form of the solutions are:
+        <md>
+<mrow>\left\{\begin{alignedat}{2}
+x \amp {}={} \amp 16z \amp {} \\
+y \amp {}={} \amp 4z \amp {} \\
+z \amp {}={} \amp z \amp {}
+\end{alignedat}\right.
+          \quad\To\quad
+          \begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix} = z\begin{pmatrix}
+16 \\
+4 \\
+1
+\end{pmatrix}</mrow>
+</md>.
+        Therefore, the <m>2</m>-eigenspace is the line
+        <md>
+<mrow>\Span\left\{\begin{pmatrix}
+16 \\
+4 \\
+1
+\end{pmatrix}\right\}</mrow>
+</md>.
+      </p>
+      <p>
+        We compute the <m>-1</m>-eigenspace by solving the homogeneous system <m>(A+I_3)x=0</m>.  We have
+        <md>
+<mrow>A+I_3 = \begin{pmatrix}
+1 \amp 6 \amp 8 \\
+\frac \amp 12 \amp 1 \amp 0 \\
+0 \amp \frac \amp 12 \amp 1
+\end{pmatrix}
+          \quad\xrightarrow{\text{RREF}}\quad
+          \begin{pmatrix}
+1 \amp 0 \amp -4 \\
+0 \amp 1 \amp 2 \\
+0 \amp 0 \amp 0
+\end{pmatrix}</mrow>
+</md>.
+        The parametric form and parametric vector form of the solutions are:
+        <md>
+<mrow>\left\{\begin{alignedat}{2}
+x \amp {}={} \amp 4z \amp {} \\
+y \amp {}={} \amp -2z \amp {} \\
+z \amp {}={} \amp z \amp {}
+\end{alignedat}\right.
+          \quad\To\quad
+          \begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix} = z\begin{pmatrix}
+4 \\
+-2 \\
+1
+\end{pmatrix}</mrow>
+</md>.
+        Therefore, the <m>-1</m>-eigenspace is the line
+        <md>
+<mrow>\Span\left\{\begin{pmatrix}
+4 \\
+-2 \\
+1
+\end{pmatrix}\right\}</mrow>
+</md>.
+      </p>
+      <figure>
+        <caption>The green line is the <m>-1</m>-eigenspace, and the violet line is the <m>2</m>-eigenspace.</caption>
+        <interactive
+            iframe="iframes/eigenspace-if.html?mat=0,6,8:1/2,0,0:0,1/2,0&amp;nomult"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </solution>
+  </example>
+
+  <paragraphs>
+    <title>Form of the characteristic polynomial</title>
+
+  <p>
+    It is time that we justified the use of the term <q>polynomial.</q> First we need a vocabulary word.
+  </p>
+
+  <definition>
+    <idx><h>Trace</h><see>Matrix</see></idx>
+    <idx><h>Matrix</h><h>trace of</h></idx>
+    <notation><usage><m>\Tr(A)</m></usage><description>Trace of a matrix</description></notation>
+    <statement>
+      <p>
+        The <term>trace</term> of a square matrix <m>A</m> is the number <m>\Tr(A)</m> obtained by summing the diagonal entries of <m>A</m>:
+        <md>
+<mrow>\Tr\begin{pmatrix}
+ \amp a_{11} \amp a_{12} \amp \cdots \amp a_{1,n-1} \amp a_{1n} \\
+a_{21} \amp  \amp a_{22} \amp \cdots \amp a_{2,n-1} \amp a_{2n} \\
+\vdots \amp \vdots \amp \ddots \amp \vdots \amp \vdots \\
+a_{n-1,1} \amp a_{n-1,2} \amp \cdots \amp  \amp a_{n-1,n-1} \amp a_{n-1,n} \\
+a_{n1} \amp a_{n2} \amp \cdots \amp a_{n,n-1} \amp  \amp a_{nn}
+\end{pmatrix}
+          =
+          \mh{a_{11}} + a_{22} + \cdots + a_{nn}\color{black}</mrow>
+</md>.
+      </p>
+    </statement>
+  </definition>
+
+  <theorem xml:id="charpoly-is-poly">
+    <idx><h>Characteristic polynomial</h><h>form of</h></idx>
+    <statement>
+      <p>
+        Let <m>A</m> be an <m>n\times n</m> matrix, and let <m>f(\lambda)=\det(A-\lambda I_n)</m> be its characteristic polynomial.  Then <m>f(\lambda)</m> is a polynomial of degree <m>n</m>.  Moreover, <m>f(\lambda)</m> has the form
+        <md>
+<mrow>f(\lambda) = (-1)^n\lambda^n + (-1)^{n-1}\Tr(A)\lambda^{n-1} + \cdots + \det(A)</mrow>
+</md>.
+        In other words, the coefficient of <m>\lambda^{n-1}</m> is <m>\pm\Tr(A)</m>, and the constant term is <m>\det(A)</m> (the other coefficients are just numbers without names).
+      </p>
+    </statement>
+    <proof visible="true">
+      <p>
+        First we notice that
+        <md>
+<mrow>f(0) = \det(A - 0I_n) = \det(A)</mrow>
+</md>,
+        so that the constant term is always <m>\det(A)</m>.
+      </p>
+      <p>
+        We will prove the rest of the theorem only for <m>2\times 2</m> matrices; the reader is encouraged to complete the proof in general using cofactor expansions.  We can write a <m>2\times 2</m> matrix as <m>A = \smallmat  abcd</m>; then
+        <md>
+<mrow>f(\lambda) \amp= \det(A-\lambda I_2)
+          = \det\begin{pmatrix}
+a-\lambda \amp b \\
+c \amp d-\lambda
+\end{pmatrix}
+          = (a-\lambda)(d-\lambda)-bc</mrow>
+<mrow>\amp=\lambda^2 - (a+d)\lambda + (ad-bc)
+          = \lambda^2 - \Tr(A)\lambda + \det(A)</mrow>
+</md>.
+      </p>
+    </proof>
+  </theorem>
+
+  <algorithm>
+    <title>The characteristic polynomial of a <m>2\times 2</m> matrix</title>
+    <idx><h>Characteristic polynomial</h><h>of a <m>2\times 2</m> matrix</h></idx>
+    <p>
+      When <m>n=2</m>, <xref ref="charpoly-is-poly"/> tells us all of the coefficients of the characteristic polynomial:
+      <md>
+<mrow>f(\lambda) = \lambda^2 - \Tr(A)\lambda + \det(A)</mrow>
+</md>.
+      This is generally the fastest way to compute the characteristic polynomial of a <m>2\times 2</m> matrix.
+    </p>
+  </algorithm>
+
+  <example>
+    <statement>
+      <p>
+        Find the characteristic polynomial of the matrix
+        <md>
+<mrow>A = \begin{pmatrix}
+5 \amp 2 \\
+2 \amp 1
+\end{pmatrix}</mrow>
+</md>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We have
+        <md>
+<mrow>f(\lambda) = \lambda^2 - \Tr(A)\lambda + \det(A)
+          = \lambda^2 - (5+1)\lambda + (5\cdot 1-2\cdot 2)
+          = \lambda^2 - 6\lambda + 1</mrow>
+</md>,
+        as in the above <xref ref="charpoly-eg-22"/>.
+      </p>
+    </solution>
+  </example>
+
+  <remark>
+    <p>
+      By the above <xref ref="charpoly-is-poly"/>, the characteristic polynomial of an <m>n\times n</m> matrix is a polynomial of degree <m>n</m>.  Since a polynomial of degree <m>n</m> has at most <m>n</m> roots, this gives another proof of the fact that an <m>n\times n</m> matrix has at most <m>n</m> eigenvalues.  See <xref ref="evecs-max-nr"/>.
+    </p>
+  </remark>
+
+  </paragraphs>
+
+  <paragraphs>
+    <title>Eigenvalues of a triangular matrix</title>
+
+    <p>
+      It is easy to compute the determinant of an upper- or lower-triangular matrix; this makes it easy to find its eigenvalues as well.
+    </p>
+
+    <corollary>
+      <idx><h>Eigenvalue</h><h>of a triangular matrix</h></idx>
+      <idx><h>Matrix</h><h>upper-triangular</h><h>eigenvalues of</h></idx>
+      <idx><h>Matrix</h><h>lower-triangular</h><h>eigenvalues of</h></idx>
+      <statement>
+        <p>
+          If <m>A</m> is an upper- or lower-triangular matrix, then the eigenvalues of <m>A</m> are its diagonal entries.
+        </p>
+      </statement>
+      <proof visible="true">
+        <p>
+          Suppose for simplicity that <m>A</m> is a <m>3\times 3</m> upper-triangular matrix:
+          <md>
+<mrow>A = \begin{pmatrix}
+a_{11} \amp a_{12} \amp a_{13} \\
+0 \amp a_{22} \amp a_{23} \\
+0 \amp 0 \amp a_{33}
+\end{pmatrix}</mrow>
+</md>.
+          Its characteristic polynomial is
+          <md>
+<mrow>f(\lambda) = \det(A-\lambda I_3)
+            = \det\begin{pmatrix}
+a_{11}-\lambda \amp a_{12} \amp a_{13} \\
+0 \amp a_{22}-\lambda \amp a_{23} \\
+0 \amp 0 \amp a_{33}-\lambda
+\end{pmatrix}</mrow>
+</md>.
+          This is also an upper-triangular matrix, so the determinant is the product of the diagonal entries:
+          <md>
+<mrow>f(\lambda) = (a_{11}-\lambda)(a_{22}-\lambda)(a_{33}-\lambda)</mrow>
+</md>.
+          The zeros of this polynomial are exactly <m>a_{11},\,a_{22},\,a_{33}.</m>
+        </p>
+      </proof>
+    </corollary>
+
+    <example>
+      <statement>
+        <p>
+          Find the eigenvalues of the matrix
+          <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 7 \amp 2 \amp 4 \\
+0 \amp 1 \amp 3 \amp 11 \\
+0 \amp 0 \amp \pi \amp 101 \\
+0 \amp 0 \amp 0 \amp 0
+\end{pmatrix}</mrow>
+</md>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          The eigenvalues are the diagonal entries <m>1,\pi,0</m>.  (The eigenvalue <m>1</m> occurs twice, but it counts as one eigenvalue; in <xref ref="sec-diagonalization" text="type-global"/> we will define the notion of <em>algebraic multiplicity</em> of an eigenvalue.)
+        </p>
+      </solution>
+    </example>
+
+  </paragraphs>
+
+
+  <paragraphs>
+    <title>Factoring the characteristic polynomial</title>
+    <idx><h>Characteristic polynomial</h><h>factoring by hand</h></idx>
+    <idx><h>Polynomial</h><h>factoring by hand</h></idx>
+
+    <p>
+      If <m>A</m> is an <m>n\times n</m> matrix, then the characteristic polynomial <m>f(\lambda)</m> has degree <m>n</m> by the above <xref ref="charpoly-is-poly"/>.  When <m>n=2</m>, one can use the quadratic formula to find the roots of <m>f(\lambda)</m>.  There exist algebraic formulas for the roots of <url href="https://en.wikipedia.org/wiki/Cubic_function#General_solution_to_the_cubic_equation_with_real_coefficients">cubic</url> and <url href="https://en.wikipedia.org/wiki/Quartic_function#Solving_a_quartic_equation">quartic</url> polynomials, but these are generally too cumbersome to apply by hand.  Even worse, it is known that there is <url href="https://en.wikipedia.org/wiki/Abel%E2%80%93Ruffini_theorem">no algebraic formula</url> for the roots of a general polynomial of degree at least <m>5</m>.
+    </p>
+
+    <p>
+      In practice, the roots of the characteristic polynomial are found <url href="https://en.wikipedia.org/wiki/Newton%27s_method">numerically by computer</url>.  That said, there do exist methods for finding roots by hand.  For instance, we have the following consequence of the <url href="https://en.wikipedia.org/wiki/Rational_root_theorem">rational root theorem</url> (which we also call the rational root theorem):
+    </p>
+
+    <fact xml:id="rational-root-thm">
+      <idx><h>Rational Root Theorem</h></idx>
+      <idx><h>Polynomial</h><h>rational roots</h></idx>
+      <p>
+        Suppose that <m>A</m> is an <m>n\times n</m> matrix whose characteristic polynomial <m>f(\lambda)</m> has integer (whole-number) entries.  Then all rational roots of its characteristic polynomial are integer divisors of <m>\det(A)</m>.
+      </p>
+    </fact>
+
+    <p>
+      For example, if <m>A</m> has integer entries, then its characteristic polynomial has integer coefficients.  This gives us one way to find a root by hand, if <m>A</m> has an eigenvalue that is a rational number.  Once we have found one root, then we can reduce the degree by <url href="https://en.wikipedia.org/wiki/Polynomial_long_division">polynomial long division</url>.
+    </p>
+
+    <example xml:id="charpoly-eg-rat-root">
+      <statement>
+        <p>
+          Find the eigenvalues of the matrix
+          <md>
+<mrow>A = \begin{pmatrix}
+7 \amp 0 \amp 3 \\
+-3 \amp 2 \amp -3 \\
+-3 \amp 0 \amp -1
+\end{pmatrix}</mrow>
+</md>.
+          Hint: one eigenvalue is an integer.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We compute the characteristic polynomial by expanding cofactors along the first row:
+          <md>
+<mrow>f(\lambda) = \det(A - \lambda I_3)
+            \amp= \det\begin{pmatrix}
+7-\lambda \amp 0 \amp 3 \\
+-3 \amp 2-\lambda \amp -3 \\
+-3 \amp 0 \amp -1-\lambda
+\end{pmatrix}</mrow>
+<mrow>\amp= (7-\lambda)(2-\lambda)(-1-\lambda) + 3\cdot 3(2-\lambda)</mrow>
+<mrow>\amp= -\lambda^3 + 8\lambda^2 - 14\lambda + 4</mrow>
+</md>.
+          The determinant of <m>A</m> is the constant term <m>f(0) = 4</m>; its integer divisors are <m>\pm 1,\pm 2,\pm 4</m>.  We check which are roots:
+          <md>
+<mrow>f(1) = -3 \quad f(-1) = 27 \quad f(2) = 0 \quad f(-2) = 72 \quad f(4) = 12 \quad f(-4) = 252</mrow>
+</md>.
+          The only rational root of <m>f(\lambda)</m> is <m>\lambda=2</m>.  We divide by <m>\lambda-2</m> using polynomial long division:
+          <md>
+<mrow>\frac{-\lambda^3 + 8\lambda^2 - 14\lambda + 4}{\lambda-2} = -\lambda^2 + 6\lambda - 2</mrow>
+</md>.
+          We can use the quadratic formula to find the roots of the quotient:
+          <md>
+<mrow>\lambda = \frac{-6 \pm\sqrt{36 - 4\cdot 2}}{-2}
+            = 3\pm\sqrt 7</mrow>
+</md>.
+          We have factored <m>f</m> completely:
+          <md>
+<mrow>f(\lambda) = -(\lambda-2)\bigl(\lambda-(3+\sqrt7)\bigr)\bigl(\lambda-(3-\sqrt7)\bigr)</mrow>
+</md>.
+          Therefore, the eigenvalues of <m>A</m> are <m>2,\,3+\sqrt7,\,3-\sqrt7.</m>
+        </p>
+      </solution>
+    </example>
+
+    <p>
+      In the above example, we could have expanded cofactors along the second column to obtain
+      <md>
+<mrow>f(\lambda) = (2-\lambda)\det\begin{pmatrix}
+7-\lambda \amp 3 \\
+-3 \amp -1-\lambda
+\end{pmatrix}</mrow>
+</md>.
+      Since <m>2-\lambda</m> was the only nonzero entry in its column, this expression already has the <m>2-\lambda</m> term factored out: the rational root theorem was not needed.  The determinant in the above expression is the characteristic polynomial of the matrix <m>\smallmat 73{-3}{-1}</m>, so we can compute it using the trace and determinant:
+      <md>
+<mrow>f(\lambda) = (2-\lambda)\bigl(\lambda^2-(7-1)\lambda+(-7+9)\bigr)
+        = (2-\lambda)(\lambda^2-6\lambda+2)</mrow>
+</md>.
+    </p>
+
+    <example xml:id="charpoly-eg-0-eval">
+      <statement>
+        <p>
+          Find the eigenvalues of the matrix
+          <md>
+<mrow>A = \begin{pmatrix}
+7 \amp 0 \amp 3 \\
+-3 \amp 2 \amp -3 \\
+4 \amp 2 \amp 0
+\end{pmatrix}</mrow>
+</md>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We compute the characteristic polynomial by expanding cofactors along the first row:
+          <md>
+<mrow>f(\lambda) = \det(A - \lambda I_3)
+            \amp= \det\begin{pmatrix}
+7-\lambda \amp 0 \amp 3 \\
+-3 \amp 2-\lambda \amp -3 \\
+4 \amp 2 \amp -\lambda
+\end{pmatrix}</mrow>
+<mrow>\amp= (7-\lambda)\bigl(-\lambda(2-\lambda)+6\bigr) + 3\bigl(-6-4(2-\lambda)\bigr)</mrow>
+<mrow>\amp= -\lambda^3 + 9\lambda^2 - 8\lambda</mrow>
+</md>.
+          The constant term is zero, so <m>A</m> has determinant zero.  We factor out <m>\lambda</m>, then eyeball the roots of the quadratic factor:
+          <md>
+<mrow>f(\lambda) = -\lambda(\lambda^2-9\lambda+8) = -\lambda(\lambda-1)(\lambda-8)</mrow>
+</md>.
+          Therefore, the eigenvalues of <m>A</m> are <m>0,1,</m> and <m>8</m>.
+        </p>
+      </solution>
+    </example>
+
+    <insight>
+      <title>Finding Eigenvalues of a Matrix Larger than <m>2\times 2</m></title>
+      <p>
+        Let <m>A</m> be an <m>n\times n</m> matrix.  Here are some strategies for factoring its characteristic polynomial <m>f(\lambda)</m>.  First, you must find one eigenvalue:
+        <ol>
+          <li><p>
+            Do not multiply out the characteristic polynomial if it is already partially factored!  This happens if you expand cofactors along the second column in <xref ref="charpoly-eg-rat-root"/>.
+          </p></li>
+          <li><p>
+            If there is no constant term, you can factor out <m>\lambda</m>, as in <xref ref="charpoly-eg-0-eval"/>.
+          </p></li>
+          <li><p>
+            If the matrix is triangular, the roots are the diagonal entries.
+          </p></li>
+          <li><p>
+            Guess one eigenvalue using the <xref ref="rational-root-thm"/>: if <m>\det(A)</m> is an integer, substitute all (positive and negative) divisors of <m>\det(A)</m> into <m>f(\lambda)</m>.
+          </p></li>
+          <li><p>
+            Find an eigenvalue using the geometry of the matrix.  For instance, a <xref ref="evec-eg-reflection" text="title">reflection</xref> has eigenvalues <m>\pm 1</m>.
+          </p></li>
+        </ol>
+        After obtaining an eigenvalue <m>\lambda_1</m>, use <url href="https://en.wikipedia.org/wiki/Polynomial_long_division">polynomial long division</url> to compute <m>f(\lambda)/(\lambda-\lambda_1)</m>.  This polynomial has lower degree.  If <m>n=3</m> then this is a quadratic polynomial, to which you can apply the quadratic formula to find the remaining roots.
+      </p>
+    </insight>
+
+  </paragraphs>
+
+<exercises>
+  <exercise>
+    <statement correct="no">
+      <p>Every <m>n \times n</m> matrix has a real eigenvalue.</p>
+    </statement>
+    <solution>
+      <p>False.  For example, the <m>2 \times 2</m> matrix for rotation by <m>\pi/2</m> radians
+        counterclockwise has no real eigenvalues.  The matrix is <m>\begin{pmatrix}0 \amp -1 \\ 1 \amp 0\end{pmatrix}</m>,
+        and we can compute that its characteristic equation is
+        <m>0 = \det(A-\lambda I) = \lambda^2+1</m>, so its eigenvalues are <m>\pm i</m>.  We
+        discuss complex eigenvalues in section 5.5.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>Every <m>n \times n</m> matrix has <m>n</m> distinct eigenvalues.</p>
+    </statement>
+    <solution>
+      <p>False.  The <m>2 \times 2</m> identity matrix <m>I = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m> has only one
+      eigenvalue, namely <m>\lambda = 1</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>If <m>\lambda</m> is an eigenvalue of a matrix <m>A</m>, then the nullity
+      of <m>A- \lambda I</m> is the dimension of the <m>\lambda</m>-eigenspace.</p>
+    </statement>
+    <solution>
+      <p>True.  By definition, the <m>\lambda</m>-eigenspace is the null space of
+      <m>A-\lambda I</m>, so the dimension of the <m>\lambda</m>-eigenspace
+      is precisely the dimension of the null space of <m>A-\lambda I</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>What are the eigenvalues for the standard matrix for a reflection?</p>
+    </statement>
+    <solution>
+      <p>They are always <m>1</m> and <m>-1</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>What are the eigenvalues and eigenvectors for the <m>n \times n</m> zero matrix?</p>
+      <p>\ifanswers \newpage \fi</p>
+    </statement>
+    <solution>
+      <p>Let <m>A</m> be the <m>n \times n</m> zero matrix.  Then <m>A-\lambda I</m> is the
+        <m>n \times n</m> diagonal matrix whose diagonal entries are all <m>-\lambda</m>, so its characteristic
+        polynomial is <m>(-\lambda)^n</m>.  Therefore, the only eigenvalue is <m>\lambda = 0</m>.  The
+        <m>0</m>-eigenspace is all of <m>{\bf R}^{n}</m>, since <m>Ax = 0</m> for every <m>x</m> in <m>{\bf R}^{n}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find the eigenvalues of
+      <m>\begin{pmatrix}1 \amp 2 \amp 1 \\ 0 \amp -5 \amp 0 \\ 1 \amp 8 \amp 0\end{pmatrix}.</m></p>
+    </statement>
+    <solution>
+      <p>
+        We solve for <m>0 = \det(A-\lambda I)</m> using the cofactor expansion
+        along the second row.
+        <md>
+          <mrow>0 \amp  = \det \begin{pmatrix}1-\lambda \amp \ \amp 2 \amp 1</mrow>
+          <mrow>0 \amp -5-\lambda \amp \ \amp 0</mrow>
+          <mrow>1 \amp 8 \amp -\lambda\end{pmatrix}
+        = (-1)^{4}(-5-\lambda) \det\begin{pmatrix}1-\lambda \amp \ \amp 1</mrow>
+          <mrow>1 \amp -\lambda\end{pmatrix}</mrow>
+          <mrow>\amp
+        = (-5-\lambda)\Big(\lambda^2-\lambda-1\Big)</mrow>
+        </md>.
+        Thus, <m>\lambda = -5</m> is an eigenvalue, and so are the solutions to <m>\lambda^2-\lambda -1 = 0</m>.  For this, we use the quadratic formula to get
+        <md><mrow>\lambda = \frac{-(-1) \pm \sqrt{(-1)^2-4(-1)(1)}}{2}
+        = \frac{1 \pm \sqrt{5}}{2}</mrow></md>.
+        The eiegenvalues are <m>\lambda = -5</m>,
+        <m>\lambda = \dfrac{1 + \sqrt{5}}{2}</m>, and
+        <m>\lambda = \dfrac{1 - \sqrt{5}}{2}</m>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find the eigenvalues of <m>A = \begin{pmatrix}9 \amp 9 \\ 9 \amp 9\end{pmatrix}</m>.  For each eigenvalue, find
+      a basis for the corresponding eigenspace.</p>
+      <p>\ifanswers \newpage \fi</p>
+    </statement>
+    <solution>
+      <p>
+        The characteristic polynomial can be computed by doing the full computation
+          of <m>\det(A- \lambda I)</m> or using the shortcut <m>2 \times 2</m> formula.  It is
+        <md><mrow>\det(A-\lambda I) = \lambda^2 - \textup{Tr}(A) \lambda + \det(A)
+            = \lambda^2 - 18 \lambda + 0 = \lambda(\lambda-18)</mrow></md>.
+        Therefore,
+          the eigenvalues are <m>\lambda = 0</m> and <m>\lambda = 18</m>.  We row-reduce
+        <md><mrow>\left(\begin{array}{rr|r}A-0I \amp \ \amp 0\end{array}\right)= \left(\begin{array}{rr|r}9 \amp 9 \amp 0 \\ 9 \amp 9 \amp 0\end{array}\right) \to \left(\begin{array}{rr|r}1 \amp 1 \amp 0 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>,
+        so <m>\left\{\begin{pmatrix}-1 \\ 1\end{pmatrix}\right\}</m> is a basis for the <m>0</m>-eigenspace.
+          Also,
+        <md><mrow>\left(\begin{array}{rr|r}A-18I \amp \ \amp 0\end{array}\right)= \left(\begin{array}{rr|r}-9 \amp 9 \amp 0 \\ 9 \amp -9 \amp 0\end{array}\right) \to \left(\begin{array}{rr|r}1 \amp -1 \amp 0 \\ 0 \amp 0 \amp 0\end{array}\right)</mrow></md>,
+        so <m>\left\{\begin{pmatrix}1 \\ 1\end{pmatrix}\right\}</m> is a basis for the <m>18</m>-eigenspace.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Consider the matrix <m>A</m> for rotation by <m>\pi/2</m> radians about the <m>z</m>-axis in
+      <m>{\bf R}^3</m>. What are its real eigenvalues?</p>
+    </statement>
+    <solution>
+      <p>
+        We can think of <m>A</m> as the matrix that rotates the <q>xy-piece</q> of the vector
+          by <m>\pi/2</m> radians, while keeping the <m>z</m>-coordinate fixed.  This means
+        <md><mrow>A = \begin{pmatrix}0 \amp -1 \amp 0 \\ 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</mrow></md>.
+        Its characteristic polynomial is the following, which we compute using the cofactor
+          expansion along the third row.
+        <md>
+          <mrow>\det(A - \lambda I)
+            \amp  = \det\begin{pmatrix}-\lambda \amp \ \amp -1 \amp 0</mrow>
+          <mrow>1 \amp -\lambda \amp \ \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 1-\lambda\end{pmatrix} = (-1)^{3+3}(1-\lambda)\Big[(-\lambda)(-\lambda)-1(-1)\Big]</mrow>
+          <mrow>\amp  = (1-\lambda)(\lambda^2 + 1)</mrow>
+        </md>.
+        The characteristic polynomial factors as <m>(1-\lambda)(\lambda+i)(\lambda-i)</m>,
+          so the only real eigenvalue is <m>\lambda = 1</m>.  Complex eigenvalues will be
+          covered in a later section of the textbook.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>In each case, find the eigenvalues of the matrix <m>A</m> and a basis
+      for each eigenspace.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>A</m> the <m>2 \times 2</m> matrix that reflects vectors across
+          the line <m>y = x</m>.</p>
+      </statement>
+      <solution>
+        <p>The eigenvalues of <m>A</m> are <m>\lambda = 1</m> and
+            <m>\lambda = -1</m>, since <m>A</m> fixes vectors along the line <m>y=x</m> and
+            flips vectors perpendicular to the line <m>y=x</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>A</m> the <m>3 \times 3</m> matrix that rotates vectors by
+          <m>180^\circ</m> around the <m>z</m>-axis, where we label points in
+          <m>{\bf R}^3</m> as <m>(x, y, z)</m>.</p>
+      </statement>
+      <solution>
+        <p>The eigenvalues of <m>A</m> are <m>\lambda = 1</m> and
+            <m>\lambda = -1</m>, since <m>A</m> fixes vectors along the <m>z</m>-axis while
+            <m>Ae_1 = -e_1</m> and <m>Ae_2 = -e_2</m>.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Let <m>A</m> be the <m>2 \times 2</m> matrix satisfying
+        <md><mrow>A\begin{pmatrix}1 \\ 3\end{pmatrix} = \begin{pmatrix}-2 \\ 1\end{pmatrix}, \qquad A \begin{pmatrix}0 \\ 1\end{pmatrix} = \begin{pmatrix}1 \\ 2\end{pmatrix}</mrow></md>.
+        What are the eigenvalues of <m>A</m>?
+      </p>
+    </statement>
+    <solution>
+      <p>
+        We find <m>A</m> first.  Since <m>\begin{pmatrix}1 \\ 0\end{pmatrix} = \begin{pmatrix}1 \\ 3\end{pmatrix} - \begin{pmatrix}0 \\ 3\end{pmatrix}</m>,
+          linearity gives us
+        <md><mrow>A\begin{pmatrix}1 \\ 0\end{pmatrix} = A \left(\begin{pmatrix}1 \\ 3\end{pmatrix} - \begin{pmatrix}0 \\ 3\end{pmatrix}\right) = A \begin{pmatrix}1 \\ 3\end{pmatrix} -
+            3 A \begin{pmatrix}0 \\ 1\end{pmatrix} = \begin{pmatrix}-2 \\ 1\end{pmatrix} - 3 \begin{pmatrix}1 \\ 2\end{pmatrix} = \begin{pmatrix}-5 \\ -5\end{pmatrix}</mrow></md>.
+        Therefore,
+        <md><mrow>A = \begin{pmatrix}A\begin{pmatrix}1 \amp \\ \amp 0\end{pmatrix} \amp A \amp \begin{pmatrix}0 \amp \\ \amp 1\end{pmatrix}\end{pmatrix} = \begin{pmatrix}-5 \amp 1 \\ -5 \amp 2\end{pmatrix}</mrow></md>.
+        For the eigenvalues of <m>A</m>, we solve:
+        <md>
+          <mrow>0 \amp  = \det(A-\lambda I) = \lambda^2- \Tr(A)\lambda + \det(A)</mrow>
+          <mrow>\amp  = \lambda^2 + 3 \lambda -5,</mrow>
+          <mrow>\amp  \lambda = \dfrac{-3 \pm \sqrt{9-4(-5)(1)}}{2}
+                 = \dfrac{-3 \pm \sqrt{29}}{2}</mrow>
+        </md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find the eigenvalues of the matrix <m>A</m> that first reflects
+      vectors in <m>{\bf R}^2</m> across the line <m>y = -x</m>, then rotates
+      <m>\pi/2</m> radians counterclockwise, then scales the first coordinate
+      by a factor of <m>4</m> while keeping the second coordinate fixed.</p>
+    </statement>
+    <solution>
+      <p>
+        One way to do this problem is to compute <m>A</m>.
+        <md>
+          <mrow>A \amp  = \begin{pmatrix}4 \amp 0</mrow>
+          <mrow>0 \amp 1\end{pmatrix} \begin{pmatrix}0 \amp -1</mrow>
+          <mrow>1 \amp 0\end{pmatrix} \begin{pmatrix}0 \amp -1</mrow>
+          <mrow>-1 \amp 0\end{pmatrix}
+                = \begin{pmatrix}0 \amp -4</mrow>
+          <mrow>1 \amp 0\end{pmatrix} \begin{pmatrix}0 \amp -1</mrow>
+          <mrow>-1 \amp 0\end{pmatrix}
+                = \begin{pmatrix}4 \amp 0</mrow>
+          <mrow>0 \amp -1\end{pmatrix}</mrow>
+        </md>.
+        Therefore, the eigenvalues of <m>A</m> are <m>\lambda = 4</m> and
+          <m>\lambda = -1</m>.
+      </p>
+      <p>Alternatively, we could have
+        computed <m>Ae_1</m> and <m>Ae_2</m> geometrically and found that
+        <m>Ae_1 = 4 e_1</m> and <m>Ae_2 = -e_2</m>, so <m>e_1</m> and <m>e_2</m> are
+        eigenvectors corresponding to the eigenvalues <m>4</m> and <m>-1</m>
+        respectively.  Since a <m>2 \times 2</m> matrix has at most <m>2</m> distinct
+        eigenvalues, these are the only eigenvalues of <m>A</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A</m> and <m>B</m> are <m>n \times n</m> matrices with the same
+      characteristic polynomial.  Do <m>A</m> and <m>B</m> have the same eigenvalues?
+      Answer sometimes, always, or never, and justify your answer.</p>
+    </statement>
+    <solution>
+      <p>Always.  The eigenvalues of a square matrix are the roots of its
+        characteristic polynomial, so if <m>A</m> and <m>B</m> have the same characteristic
+        polynomial then their eigenvalues will be the same.</p>
+    </solution>
+  </exercise>
+</exercises>
+</section>

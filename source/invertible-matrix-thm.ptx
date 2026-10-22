@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--********************************************************************
+Copyright 2019 Dan Margalit and Joseph Rabinoff
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation.  A copy of
+the license is included in gfdl.xml.
+*********************************************************************-->
+
+<section xml:id="sec-invertible-matrix-thm">
+  <title>The Invertible Matrix Theorem</title>
+
+  <objectives>
+    <ol>
+      <li><p><em>Theorem:</em> the invertible matrix theorem.</p></li>
+    </ol>
+  </objectives>
+
+
+   <p>This section consists of a single important theorem containing many equivalent conditions for a matrix to be invertible.  This is one of the most important theorems in this textbook.  We will append two more criteria in <xref ref="sec-eigenvectors" text="type-global"/>.</p>
+
+   <theorem xml:id="imt-1">
+     <idx><h>Invertible matrix theorem</h></idx>
+     <statement>
+       <p>
+         Let <m>A</m> be an <m>n\times n</m> matrix, and let <m>T\colon\R^n\to\R^n</m> be the matrix transformation <m>T(x) = Ax</m>.  The following statements are equivalent:
+         <ol>
+           <li><p><m>A</m> is invertible.</p></li>
+           <li><p><m>A</m> has <m>n</m> pivots.</p></li>
+           <li><p><m>\Nul(A) = \{0\}</m>.</p></li>
+           <li><p>The columns of <m>A</m> are linearly independent.</p></li>
+
+           <li><p>The columns of <m>A</m> span <m>\R^n</m>.</p></li>
+           <li><p><m>Ax=b</m> has a unique solution for each <m>b</m> in <m>\R^n</m>.</p></li>
+
+           <li><p><m>T</m> is invertible.</p></li>
+           <li><p><m>T</m> is one-to-one.</p></li>
+           <li><p><m>T</m> is onto.</p></li>
+         </ol>
+       </p>
+     </statement>
+     <proof>
+       <p>
+         <m>(1\iff 2)</m>: The matrix <m>A</m> has <m>n</m> pivots if and only if its reduced row echelon form is the identity matrix <m>I_n</m>.  This happens exactly when the <xref ref="matrix-inv-how-to-compute">procedure</xref> to compute the inverse succeeds.
+       </p>
+
+       <p>
+         <m>(2\iff 3)</m>:
+         The null space of a matrix is <m>\{0\}</m> if and only if the matrix has no free variables, which means that every column is a pivot column, which means <m>A</m> has <m>n</m> pivots.  See <xref ref="subspaces-span-nullspace">recipe</xref>.
+       </p>
+
+       <p>
+         <m>(2\iff 4,\,2\iff 5)</m>:
+         These follow from <xref ref="linindep-matrix-cols">recipe</xref> and <xref ref="matrixeq-thm-full-span"/>, respectively, since <m>A</m> has <m>n</m> pivots if and only if has a pivot in every row/column.
+       </p>
+
+       <p>
+         <m>(4+5\iff 6)</m>:
+         We know <m>Ax=b</m> has at least one solution for every <m>b</m> if and only if the columns of <m>A</m> span <m>\R^n</m> by <xref ref="matrix-trans-onto"/>, and <m>Ax=b</m> has at most one solution for every <m>b</m> if and only if the columns of <m>A</m> are linearly independent by <xref ref="matrix-trans-one-to-one"/>.  Hence <m>Ax=b</m> has exactly one solution for every <m>b</m> if and only if its columns are linearly independent and span <m>\R^n</m>.
+       </p>
+
+       <p>
+         <m>(1\iff 7)</m>:
+         This is the content of <xref ref="matrix-inv-matrix-inv-comp"/>.
+       </p>
+
+       <p>
+         <m>(7\implies 8+9)</m>:
+         See <xref ref="matrix-inv-11-onto"/>.
+       </p>
+
+       <p>
+         <m>(8\iff 4,\,9\iff 5)</m>:
+         See <xref ref="matrix-trans-one-to-one"/> and <xref ref="matrix-trans-onto"/>.
+       </p>
+     </proof>
+   </theorem>
+
+   <p>
+     To reiterate, the invertible matrix theorem means:
+   </p>
+
+   <insight>
+     <p>
+       There are two kinds of <em>square</em> matrices:
+       <ol>
+         <li><p>invertible matrices, and</p></li>
+         <li><p>non-invertible matrices.</p></li>
+       </ol>
+     </p>
+     <p>
+       For invertible matrices, all of the statements of the invertible matrix theorem are true.
+     </p>
+     <p>
+       For non-invertible matrices, all of the statements of the invertible matrix theorem are false.
+     </p>
+   </insight>
+
+   <p>
+     The reader should be comfortable translating any of the statements in the invertible matrix theorem into a statement about the pivots of a matrix.
+   </p>
+
+   <remark>
+     <title>Other Conditions for Invertibility</title>
+     <p>
+       The following conditions are also equivalent to the invertibility of a square matrix <m>A</m>.  They are all simple restatements of conditions in the invertible matrix theorem.
+     </p>
+     <p>
+         <ol>
+           <li><p>The reduced row echelon form of <m>A</m> is the identity matrix <m>I_n</m>.</p></li>
+           <li><p><m>Ax=0</m> has no solutions other than the trivial one.</p></li>
+           <li><p><m>\nullity(A) = 0</m>.</p></li>
+           <li><p>The columns of <m>A</m> form a basis for <m>\R^n</m>.</p></li>
+           <li><p><m>Ax=b</m> is consistent for all <m>b</m> in <m>\R^n</m>.</p></li>
+           <li><p><m>\Col(A) = \R^n.</m></p></li>
+           <li><p><m>\dim\Col(A) = n.</m></p></li>
+           <li><p><m>\rank(A) = n.</m></p></li>
+         </ol>
+     </p>
+   </remark>
+
+   <p>
+     Now we can show that to check <m>B = A\inv</m>, it's enough to show <m>AB=I_n</m> <em>or</em> <m>BA=I_n</m>.
+   </p>
+
+   <corollary xml:id="matrix-inv-left-right">
+     <title>A Left or Right Inverse Suffices</title>
+     <statement>
+       <p>
+         Let <m>A</m> be an <m>n\times n</m> matrix, and suppose that there exists an <m>n\times n</m> matrix <m>B</m> such that <m>AB=I_n</m> <em>or</em> <m>BA=I_n</m>.  Then <m>A</m> is invertible and <m>B = A\inv</m>.
+       </p>
+     </statement>
+     <proof>
+       <p>
+         Suppose that <m>AB = I_n</m>.  We claim that <m>T(x)=Ax</m> is onto.  Indeed, for any <m>b</m> in <m>\R^n</m>, we have
+         <md>
+<mrow>b = I_nb = (AB)b = A(Bb)</mrow>
+</md>,
+         so <m>T(Bb) = b</m>, and hence <m>b</m> is in the range of <m>T</m>.  Therefore, <m>A</m> is invertible by the <xref ref="imt-1"/>.  Since <m>A</m> is invertible, we have
+         <md>
+<mrow>A\inv = A\inv I_n = A\inv (AB) = (A\inv A)B = I_n B = B</mrow>
+</md>,
+         so <m>B = A\inv.</m>
+       </p>
+       <p>
+         Now suppose that <m>BA = I_n</m>.  We claim that <m>T(x) = Ax</m> is one-to-one.  Indeed, suppose that <m>T(x) = T(y)</m>.  Then <m>Ax = Ay</m>, so <m>BAx = BAy</m>.  But <m>BA = I_n</m>, so <m>I_nx = I_ny</m>, and hence <m>x=y</m>.  Therefore, <m>A</m> is invertible by the <xref ref="imt-1"/>.  One shows that <m>B = A\inv</m> as above.
+       </p>
+     </proof>
+   </corollary>
+
+   <p>
+     We conclude with some common situations in which the invertible matrix theorem is useful.
+   </p>
+
+   <example>
+     <statement>
+       <p>
+         Is this matrix invertible?
+         <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 2 \amp -1 \\
+2 \amp 4 \amp 7 \\
+-2 \amp -4 \amp 1
+\end{pmatrix}</mrow>
+</md>
+       </p>
+     </statement>
+     <solution>
+       <p>
+         The second column is a multiple of the first.  The columns are linearly dependent, so <m>A</m> does not satisfy condition 4 of the <xref ref="imt-1"/>.  Therefore, <m>A</m> is not invertible.
+       </p>
+     </solution>
+   </example>
+
+   <example>
+     <statement>
+       <p>
+         Let <m>A</m> be an <m>n\times n</m> matrix and let <m>T(x) = Ax</m>.  Suppose that the range of <m>T</m> is <m>\R^n</m>.  Show that the columns of <m>A</m> are linearly independent.
+       </p>
+     </statement>
+     <solution>
+       <p>
+         The range of <m>T</m> is the column space of <m>A</m>, so <m>A</m> satisfies condition 5 of the <xref ref="imt-1"/>.  Therefore, <m>A</m> also satisfies condition 4, which says that the columns of <m>A</m> are linearly independent.
+       </p>
+     </solution>
+   </example>
+
+   <example>
+     <statement>
+       <p>
+         Let <m>A</m> be a <m>3\times 3</m> matrix such that
+         <md>
+<mrow>A\begin{pmatrix}
+1 \\
+7 \\
+0
+\end{pmatrix} = A\begin{pmatrix}
+2 \\
+0 \\
+-1
+\end{pmatrix}</mrow>
+</md>.
+         Show that the rank of <m>A</m> is at most <m>2</m>.
+       </p>
+     </statement>
+     <solution>
+       <p>
+         If we set
+         <md>
+<mrow>b = A\begin{pmatrix}
+1 \\
+7 \\
+0
+\end{pmatrix} = A\begin{pmatrix}
+2 \\
+0 \\
+-1
+\end{pmatrix}</mrow>
+</md>,
+         then <m>Ax=b</m> has multiple solutions, so it does not satisfy condition 6 of the <xref ref="imt-1"/>.  Therefore, it does not satisfy condition 5, so the columns of <m>A</m> do not span <m>\R^3</m>.  Therefore, the column space has dimension strictly less than 3, the rank is at most <m>2</m>.
+       </p>
+     </solution>
+   </example>
+
+   <example>
+     <statement>
+       <p>
+         Suppose that <m>A</m> is an <m>n\times n</m> matrix such that <m>Ax=b</m> is inconsistent some vector <m>b</m>.  Show that <m>Ax=b</m> has infinitely many solutions for some (other) vector <m>b</m>.
+       </p>
+     </statement>
+     <solution>
+       <p>
+         By hypothesis, <m>A</m> does not satisfy condition 6 of the <xref ref="imt-1"/>.  Therefore, it does not satisfy condition <m>3</m>, so <m>\Nul(A)</m> is an infinite set.   If we take <m>b=0</m>, then the equation <m>Ax=b</m> has infinitely many solutions.
+       </p>
+     </solution>
+   </example>
+<exercises>
+  <exercise>
+    <statement correct="yes">
+      <p>Suppose <m>A</m> is an <m>n \times n</m> matrix and <m>AB = I_n</m>.
+      Then <m>BA = I_n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  Even though matrix multiplication is generally
+          not commutative, it is a general fact that if two <m>n \times n</m>
+          matrices <m>A</m> and <m>B</m> satisfy <m>AB=I</m> then <m>BA=I</m>, and similarly if
+          <m>BA=I</m> then <m>AB=I</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>There is an invertible matrix <m>A</m> satisfying
+      <m>A \begin{pmatrix}1 \\ 2 \\ 3\end{pmatrix} = \begin{pmatrix}1 \\ 2\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>False.  Only square matrices cann be invertible.  If
+          <m>A \begin{pmatrix}1 \\ 2 \\ 3\end{pmatrix} = \begin{pmatrix}1 \\ 2\end{pmatrix}</m> then <m>A</m> is <m>2 \times 3</m>, so <m>A</m>
+          cannot be invertible.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>If <m>A</m> is an <m>n \times n</m> matrix and <m>Ax=0</m> has
+      only the trivial solution, then the equation <m>Ax=b</m> is consistent for
+      every <m>b</m> in <m>{\bf R}^n</m>.</p>
+    </statement>
+    <solution>
+      <p>True.  <m>A</m> is invertible by the Invertible Matrix Theorem.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="no">
+      <p>There are linear transformations <m>T: {\bf R}^3
+      \to {\bf R}^4</m> and <m>U: {\bf R}^4 \to {\bf R}^3</m> so that <m>T \circ U</m> is
+      invertible.</p>
+    </statement>
+    <solution>
+      <p>
+        False.  Since <m>T</m> and <m>U</m> are linear, they are matrix transformations <m>T(v) = Av</m> and <m>U(x) = Bx</m> for some matrices <m>A</m> and <m>B</m>.  Since <m>U</m> has domain <m>{\bf R}^4</m> and codomain <m>{\bf R}^3</m>, we know that <m>B</m> is <m>3 \times 4</m>, so <m>B</m> has <m>4</m> columns but at most <m>3</m> pivots.  Therefore, <m>B</m> has at least one column without a pivot, so <m>Bx = 0</m> has infinitely many solutions.  For any solution to <m>Bx=0</m>, we get
+        <md><mrow>(T \circ U)(x) = ABx = A(Bx)=A(0) = 0</mrow></md>,
+        so <m>(T \circ U)(x)=0</m> has infinitely many solutions, thus <m>T \circ U</m> cannot be one-to-one.  By the Invertible Matrix Theorem, <m>T \circ U</m> cannot be invertible.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>There are linear transformations <m>T: {\bf R}^4
+      \to {\bf R}^3</m> and <m>U: {\bf R}^3 \to {\bf R}^4</m> so that <m>T \circ U</m> is
+      invertible.</p>
+    </statement>
+    <solution>
+      <p>True.  Take <m>U(x_1, x_2, x_3)= (x_1, x_2, x_3, 0)</m> and
+        <m>T(x_1, x_2, x_3, x_4)= (x_1, x_2, x_3)</m>.  Then
+        <m>(T \circ U)(x_1, x_2, x_3)= (x_1, x_2, x_3)</m> so <m>T \circ U</m> is invertible (in
+        fact, it is the identity transformation!).</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>Let <m>A = \begin{pmatrix}2 \amp 0 \amp 0 \\ 0 \amp 3 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>. Then <m>A</m> is
+      invertible and <m>A^{-1} = \begin{pmatrix}\frac{1}{2} \amp 0 \amp 0 \\ 0 \amp \frac{1}{3} \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>True:
+          <m>\begin{pmatrix}2 \amp 0 \amp 0 \\ 0 \amp 3 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix} \begin{pmatrix}\frac{1}{2} \amp 0 \amp 0 \\ 0 \amp \frac{1}{3} \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix} = \begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}=I.</m>
+      This shows that
+          the inverse of <m>A</m> is
+          <m>\begin{pmatrix}\frac{1}{2} \amp 0 \amp 0 \\ 0 \amp \frac{1}{3} \amp 0 \\ 0 \amp 0 \amp 1\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>If <m>A</m> is an <m>n \times n</m> matrix and <m>Ax = 0</m> has
+      infinitely many solutions, then <m>A</m> cannot be invertible.</p>
+    </statement>
+    <solution>
+      <p>True.  If <m>A</m> is invertible then for each <m>b</m> in
+          <m>{\bf R}^n</m>, the equation <m>Ax=b</m> has a unique solution
+          <m>x = A^{-1}b</m>.  In particular the homogeneous equation <m>Ax=0</m> must
+          have unique solution <m>x= A^{-1}0 = 0</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A</m> is the matrix whose inverse is given by
+      <m>A^{-1} = \begin{pmatrix}-4 \amp 1 \amp 1 \\ 0 \amp 2 \amp 3 \\ -1 \amp 2 \amp 2\end{pmatrix}</m>.</p>
+      <p>Find all solutions to <m>Ax = \begin{pmatrix}1 \\ -3 \\ 9\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        Since <m>A</m> is invertible, any matrix equation <m>Ax = b</m> (for any <m>b</m> in <m>{\bf R}^3</m>) has the unique solution <m>x = A^{-1} b</m>.
+        <md><mrow>Ax = \begin{pmatrix}1 \\ -3 \\ 9\end{pmatrix}, \qquad x = A^{-1}\begin{pmatrix}1 \\ -3 \\ 9\end{pmatrix}
+        = \begin{pmatrix}-4 \amp 1 \amp 1 \\ 0 \amp 2 \amp 3 \\ -1 \amp 2 \amp 2\end{pmatrix} \begin{pmatrix}1 \\ -3 \\ 9\end{pmatrix} =
+        \begin{pmatrix}2 \\ 21 \\ 11\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A = \begin{pmatrix}7 \amp 8 \\ 1 \amp 3\end{pmatrix}</m>. Is <m>A</m> invertible?  If so, find <m>A^{-1}</m>.</p>
+    </statement>
+    <solution>
+      <p>If <m>A = \begin{pmatrix}a \amp b \\ c \amp d\end{pmatrix}</m> with <m>ad - bc \neq 0</m>, then <m>A</m> is invertible and
+      <m>A^{-1} = \dfrac{1}{ad-bc}\begin{pmatrix}d \amp -b \\ -c \amp a\end{pmatrix}</m>.</p>
+      <p>
+        Here <m>A=\begin{pmatrix}7 \amp 8 \\ 1 \amp 3\end{pmatrix}</m> where <m>7(3)-8(1) = 13 \neq 0</m>, so <m>A</m> is
+        invertible and
+        <md><mrow>A^{-1} = \dfrac{1}{13} \begin{pmatrix}3 \amp -8 \\ -1 \amp 7\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A = \begin{pmatrix}4 \amp 1 \amp 1 \\ 2 \amp 6 \amp 0 \\ 3 \amp -1 \amp 1\end{pmatrix}</m>.  Find <m>A^{-1}</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We put <m>\left(\begin{array}{r|r}A \amp I\end{array}\right)</m> into RREF.
+        <md>
+          <mrow>\begin{pmatrix}4 \amp 1 \amp 1 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>2 \amp 6 \amp 0 \amp | \amp 0 \amp 1 \amp 0</mrow>
+          <mrow>3 \amp -1 \amp 1 \amp | \amp 0 \amp 0 \amp 1\end{pmatrix}
+            \amp  \xrightarrow[\textup{then } R_1 = R_1/2]{R_1 \leftrightarrow R_2}
+            \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>4 \amp 1 \amp 1 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>3 \amp -1 \amp 1 \amp | \amp 0 \amp 0 \amp 1\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[R_3 = R_3-3R_1]{R_2 = R_2 - 4R_1}
+                 \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>0 \amp -11 \amp 1 \amp | \amp 1 \amp -2 \amp 0</mrow>
+          <mrow>0 \amp -10 \amp 1 \amp | \amp 0 \amp -\frac{3}{2} \amp 1\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[]{R_2 = R_2/-11}
+            \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>0 \amp 1 \amp -\frac{1}{11} \amp | \amp -\frac{1}{11} \amp \frac{2}{11} \amp 0</mrow>
+          <mrow>0 \amp -10 \amp 1 \amp | \amp 0 \amp -\frac{3}{2} \amp 1\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[]{R_3 = R_3 + 10R_2}
+            \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>0 \amp 1 \amp -\frac{1}{11} \amp | \amp -\frac{1}{11} \amp \frac{2}{11} \amp 0</mrow>
+          <mrow>0 \amp 0 \amp \frac{1}{11} \amp | \amp -\frac{10}{11} \amp \frac{7}{22} \amp 1\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[\textup{then } R_3 = 11R_3]{R_2 = R_2 + R_3}
+            \begin{pmatrix}1 \amp 3 \amp 0 \amp | \amp 0 \amp \frac{1}{2} \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp -1 \amp \frac{1}{2} \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 1 \amp | \amp -10 \amp \frac{7}{2} \amp 11\end{pmatrix}</mrow>
+          <mrow>\amp  \xrightarrow[]{R_1 = R_1 - 3R_2}
+                 \begin{pmatrix}1 \amp 0 \amp 0 \amp | \amp 3 \amp -1 \amp -3</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp -1 \amp \frac{1}{2} \amp 1</mrow>
+          <mrow>0 \amp 0 \amp 1 \amp | \amp -10 \amp \frac{7}{2} \amp 11\end{pmatrix}</mrow>
+        </md>.
+        Therefore,
+        <md><mrow>A^{-1} = \begin{pmatrix}1 \amp 0 \amp 0 \amp | \amp 3 \amp -1 \amp -3 \\ 0 \amp 1 \amp 0 \amp | \amp -1 \amp \frac{1}{2} \amp 1 \\ 0 \amp 0 \amp 1 \amp | \amp -10 \amp \frac{7}{2} \amp 11\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Find the matrix <m>A</m> satisfying <m>A^{-1} e_1 = \begin{pmatrix}0 \\ 1 \\ 2\end{pmatrix}</m>, \
+      <m>A^{-1} e_2 = \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}</m>, and \ <m>A^{-1}e_3 = \begin{pmatrix}0 \\ 1 \\ 3\end{pmatrix}</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        <md>
+          <mrow>\begin{pmatrix}A^{-1} \amp | \amp I\end{pmatrix} \amp  = \begin{pmatrix}0 \amp 1 \amp 0 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>1 \amp 0 \amp 1 \amp | \amp 0 \amp 1 \amp 0</mrow>
+          <mrow>2 \amp 0 \amp 3 \amp | \amp 0 \amp 0 \amp 1\end{pmatrix} \xrightarrow[]{R_1 \leftrightarrow R_2} \begin{pmatrix}1 \amp 0 \amp 1 \amp | \amp 0 \amp 1 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>2 \amp 0 \amp 3 \amp | \amp 0 \amp 0 \amp 1\end{pmatrix}</mrow>
+          <mrow></mrow>
+          <mrow>\amp
+            \xrightarrow[]{R_3=R_3-2R_1} \begin{pmatrix}1 \amp 0 \amp 1 \amp | \amp 0 \amp 1 \amp 0</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 1 \amp | \amp 0 \amp -2 \amp 1\end{pmatrix} \xrightarrow[]{R_1=R_1-R_3} \begin{pmatrix}1 \amp 0 \amp 0 \amp | \amp 0 \amp 3 \amp -1</mrow>
+          <mrow>0 \amp 1 \amp 0 \amp | \amp 1 \amp 0 \amp 0</mrow>
+          <mrow>0 \amp 0 \amp 1 \amp | \amp 0 \amp -2 \amp 1\end{pmatrix}</mrow>
+        </md>.
+        Therefore, <m>A=(A^{-1})^{-1} = \begin{pmatrix}0 \amp 3 \amp -1 \\ 1 \amp 0 \amp 0 \\ 0 \amp -2 \amp 1\end{pmatrix}.</m>
+      </p>
+    </solution>
+  </exercise>
+</exercises>
+</section>

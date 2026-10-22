@@ -1,0 +1,2046 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--********************************************************************
+Copyright 2019 Dan Margalit and Joseph Rabinoff
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation.  A copy of
+the license is included in gfdl.xml.
+*********************************************************************-->
+
+<section xml:id="sec-matrix-transformations">
+  <title>Matrix Transformations</title>
+
+  <objectives>
+    <ol>
+      <li><p>Learn to view a matrix geometrically as a function.</p></li>
+      <li><p>Learn examples of matrix transformations: reflection, dilation, rotation, shear, projection.</p></li>
+      <li><p>Understand the vocabulary surrounding transformations: domain, codomain, range.</p></li>
+      <li><p>Understand the domain, codomain, and range of a matrix transformation.</p></li>
+      <li><p><em>Pictures:</em> common matrix transformations.</p></li>
+      <li><p><em>Vocabulary words:</em> <term>transformation</term> / <term>function</term>, <term>domain</term>, <term>codomain</term>, <term>range</term>, <term>identity transformation</term>, <term>matrix transformation</term>.</p></li>
+    </ol>
+  </objectives>
+
+  <introduction>
+    <p>
+      In this section we learn to understand matrices geometrically as <em>functions</em>, or <em>transformations</em>.  We briefly discuss transformations in general, then specialize to matrix transformations, which are transformations that come from matrices.
+    </p>
+  </introduction>
+
+  <subsection xml:id="subsec-matrix-trans-matrices-functions">
+    <title>Matrices as Functions</title>
+
+    <p>
+      Informally, a <em>function</em> is a rule that accepts inputs and produces outputs.  For instance, <m>f(x) = x^2</m> is a function that accepts one number <m>x</m> as its input, and outputs the square of that number: <m>f(2) = 4</m>.  In this subsection, we interpret matrices as functions.
+    </p>
+
+  <p>
+    <idx><h>Matrix</h><h>as a function</h></idx>
+    <idx><h>Matrix</h><h>as a function</h><see>Matrix transformation</see></idx>
+    Let <m>A</m> be a matrix with <m>m</m> rows and <m>n</m> columns.  Consider the matrix equation <m>b=Ax</m> (we write it this way instead of <m>Ax=b</m> to remind the reader of the notation <m>y=f(x)</m>).  If we vary <m>x</m>, then <m>b</m> will also vary; in this way, we think of <m>A</m> as a function with independent variable <m>x</m> and dependent variable <m>b</m>.
+    <ul>
+      <li><p>
+        The independent variable (the input) is <m>x</m>, which is a vector in <m>\R^n</m>.
+      </p></li>
+      <li><p>
+        The dependent variable (the output) is <m>b</m>, which is a vector in <m>\R^m</m>.
+      </p></li>
+    </ul>
+    The set of all possible output vectors are the vectors <m>b</m> such that <m>Ax=b</m> has some solution; this is the same as the column space of <m>A</m> by <xref ref="matrixeq-spans-consistency"/>.
+    </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image>
+\begin{tikzpicture}[thin border nodes]
+  \path[use as bounding box] (-3,-5.5) -- (15,3);
+  \draw[grid lines, light gray] (-3,-3) grid (3,3);
+
+  \node (A) at (0,-3.5) {$\R^n$};
+  \node (B) at (8,-3.5) {$\R^m$};
+  \draw[->] (A.east) +(5mm,0) -- node[midway,above=1mm] {$b=Ax$}
+    ($(B.west)-(5mm,0)$);
+
+  \point["$x$" left] (P) at (1,1,5);
+
+  \begin{scope}[myxyz, xshift=8cm]
+    \path[clip, resetxy] (-3,-3) rectangle (3,3);
+
+    \def\v{(-1,2,1)}
+    \def\w{(0,1,-1)}
+
+    \node[coordinate] (X) at \v {};
+    \node[coordinate] (Y) at \w {};
+
+    \draw[very thin] (-2,0,0) -- (0,0,0);
+    \draw[very thin] (0,-2,0) -- (0,0,0);
+    \draw[very thin] (0,0,-2) -- (0,0,0);
+
+    \begin{scope}[x=(X), y=(Y), transformxy]
+      \fill[seq4!10, nearly opaque] (-1,-1) rectangle (1,1);
+      \draw[step=.5cm, seq4!30, very thin] (-1,-1) grid (1,1);
+      \point["$Ax$" {fill=none,below}] (Q) at (-.5,.5);
+      \node[coordinate,
+          pin={[pin edge={very thin,-},pin distance=3mm,anchor=north]-70:$\Col(A)$}]
+        at (0.1,1) {};
+    \end{scope}
+
+    \draw[->, very thin] (0,0,0) -- (2,0,0);
+    \draw[->, very thin] (0,0,0) -- (0,2,0);
+    \draw[->, very thin] (0,0,0) -- (0,0,2);
+
+    \draw[resetxy] (-3,-3) rectangle (3,3);
+
+  \end{scope}
+
+  \draw[|->, shorten >=.35mm, shorten &lt;=.35mm]
+    (P.east) .. controls +(0:3cm) and +(190:3cm) .. (Q.west);
+
+\end{tikzpicture}
+    </latex-image>
+</image>
+
+  <question>
+    <title>A <m>2\times 3</m> matrix</title>
+    <figure>
+      <caption>A picture of a <m>2\times 3</m> matrix, regarded as a function.  The input vector is <m>x</m>, which is a vector in <m>\R^3</m>, and the output vector is <m>b=Ax</m>, which is a vector in <m>\R^2</m>.  The violet line on the right is the column space; as you vary <m>x</m>, the output <m>b</m> is constrained to lie on this line.</caption>
+      <interactive
+          iframe="iframes/Axequalsb-if.html?show=false"
+          width="90%"
+          aspect="4:3">
+        <shortdescription>
+          <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+        </shortdescription>
+        <description>
+          <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+          <p>
+            
+          </p>
+        </description>
+        <instructions>
+          <p>
+            
+          </p>
+        </instructions>
+      </interactive>
+    </figure>
+  </question>
+
+  <question>
+    <title>A <m>3\times 2</m> matrix</title>
+    <figure>
+      <caption>A picture of a <m>3\times 2</m> matrix, regarded as a function.  The input vector is <m>x</m>, which is a vector in <m>\R^2</m>, and the output vector is <m>b=Ax</m>, which is a vector in <m>\R^3</m>.  The violet plane on the right is the column space; as you vary <m>x</m>, the output <m>b</m> is constrained to lie on this plane.</caption>
+      <interactive
+          iframe="iframes/Axequalsb-if.html?mat=1,0:0,1:1,0&amp;range2=5&amp;closed=true&amp;show=false"
+          width="90%"
+          aspect="4:3">
+        <shortdescription>
+          <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+        </shortdescription>
+        <description>
+          <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+          <p>
+            
+          </p>
+        </description>
+        <instructions>
+          <p>
+            
+          </p>
+        </instructions>
+      </interactive>
+    </figure>
+  </question>
+
+  <example xml:id="matrix-trans-eg-projection">
+    <title>Projection onto the <m>xy</m>-plane</title>
+    <idx><h>Projection</h><see>Orthogonal projection</see></idx>
+    <idx><h>Orthogonal projection</h><h>onto the <m>xy</m>-plane</h></idx>
+    <statement>
+      <p>Let <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 0
+\end{pmatrix}</mrow>
+</md>.  Describe the function <m>b=Ax</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p>
+        In the equation <m>Ax=b</m>, the input vector <m>x</m> and the output vector <m>b</m> are both in <m>\R^3</m>.
+        First we multiply <m>A</m> by a vector to see what it does:
+        <md>
+<mrow>A\begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 0
+\end{pmatrix}\begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix} = \begin{pmatrix}
+x \\
+y \\
+0
+\end{pmatrix}</mrow>
+</md>.
+        Multiplication by <m>A</m> simply sets the <m>z</m>-coordinate equal to zero: it <em>projects vertically onto the <m>xy</m>-plane</em>.
+        </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image>
+\begin{tikzpicture}[myxyz]
+  \begin{scope}[arrows={|[width=4pt]->[width=4pt]}, shorten=4pt]
+    \draw (-1,-1,-2.5) node[point, seq2] {}
+      -- (-1,-1,0);
+    \draw (2,-2,-1) node[point, seq5] {}
+      -- (2,-2,0);
+  \end{scope}
+
+  \begin{scope}[transformxy]
+    \fill[white, nearly opaque] (-3, -3) rectangle (3, 3);
+    \draw[step=1cm, help lines] (-3, -3) grid (3, 3);
+  \end{scope}
+
+  \begin{scope}[arrows={|[width=4pt]->[width=4pt]}, shorten=4pt]
+    \draw (2,1,3) node[point,seq1] {}
+      -- (2,1,0) node[point,seq1] {};
+    \point[seq2] at (-1,-1,0);
+    \point[seq5] at (2,-2,0);
+    \draw (-1,2,2) node[point,seq3] {}
+      -- (-1,2,0) node[point,seq3] {};
+    \draw (-2,0,1) node[point,seq4] {}
+      -- (-2,0,0) node[point,seq4] {};
+  \end{scope}
+
+\end{tikzpicture}
+        </latex-image>
+</image>
+      <figure>
+        <caption>Multiplication by the matrix <m>A</m> projects a vector onto the <m>xy</m>-plane.  Move the input vector <m>x</m> to see how the output vector <m>b</m> changes.</caption>
+        <interactive
+            iframe="iframes/Axequalsb-if.html?mat=1,0,0:0,1,0:0,0,0&amp;range2=5&amp;closed=true"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </solution>
+  </example>
+
+  <example xml:id="matrix-trans-eg-reflection">
+    <title>Reflection</title>
+    <idx><h>Reflection</h><h>over the <m>y</m>-axis</h></idx>
+    <statement>
+      <p>Let <md>
+<mrow>A = \begin{pmatrix}
+-1 \amp 0 \\
+0 \amp 1
+\end{pmatrix}</mrow>
+</md>.  Describe the function <m>b=Ax</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p>
+        In the equation <m>Ax=b</m>, the input vector <m>x</m> and the output vector <m>b</m> are both in <m>\R^2</m>.
+        First we multiply <m>A</m> by a vector to see what it does:
+        <md>
+<mrow>A\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+-1 \amp 0 \\
+0 \amp 1
+\end{pmatrix}\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+-x \\
+y
+\end{pmatrix}</mrow>
+</md>.
+        Multiplication by <m>A</m> negates the <m>x</m>-coordinate: it <em>reflects over the <m>y</m>-axis</em>.
+        <latex-code>
+\def\theo{\includegraphics[width=4cm]{theo2.jpg}}
+\begin{tikzpicture}
+  \node (theo1) at (0,0,0) {\theo};
+  \draw[->,opacity=.3] (-1.8,0) -- (1.8,0);
+  \draw[->,opacity=.3] (0,-1.8) -- (0,1.8);
+
+  \begin{scope}[xshift=7cm]
+  \node[xscale=-1] (theo2) at (0,0,0) {\theo};
+  \draw[->,opacity=.3] (-1.8,0) -- (1.8,0);
+  \draw[->,opacity=.3] (0,-1.8) -- (0,1.8);
+  \end{scope}
+
+  \draw[->] (theo1.20)
+    to[out=20,in=160] node[midway,above] {$b=Ax$} (theo2.20);
+\end{tikzpicture}
+        </latex-code>
+      </p>
+      <figure>
+        <caption>Multiplication by the matrix <m>A</m> reflects over the <m>y</m>-axis.  Move the input vector <m>x</m> to see how the output vector <m>b</m> changes.</caption>
+        <interactive
+            iframe="iframes/twobytwo-if.html?mat=-1,0,0,1&amp;closed=true"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </solution>
+  </example>
+
+  <example xml:id="matrix-trans-eg-dilation">
+    <title>Dilation</title>
+    <idx><h>Dilation</h></idx>
+    <idx><h>Scale</h><see>Dilation</see></idx>
+    <idx><h>Scale</h><see>Row operations, scaling</see></idx>
+    <statement>
+      <p>Let <md>
+<mrow>A = \begin{pmatrix}
+1.5 \amp 0 \\
+0 \amp 1.5
+\end{pmatrix}</mrow>
+</md>.  Describe the function <m>b=Ax</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p>
+        In the equation <m>Ax=b</m>, the input vector <m>x</m> and the output vector <m>b</m> are both in <m>\R^2</m>.
+        First we multiply <m>A</m> by a vector to see what it does:
+        <md>
+<mrow>A\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+1.5 \amp 0 \\
+0 \amp 1.5
+\end{pmatrix}\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+1.5x \\
+1.5y
+\end{pmatrix}
+        = 1.5\begin{pmatrix}
+x \\
+y
+\end{pmatrix}</mrow>
+</md>.
+        Multiplication by <m>A</m> is the same as scalar multiplication by <m>1.5</m>: it <em>scales</em> or <em>dilates</em> the plane by a factor of <m>1.5</m>.
+        <latex-code>
+\def\theo{\includegraphics[width=3.5cm]{theo3.jpg}}
+\begin{tikzpicture}
+  \node (theo1) at (0,0,0) {\theo};
+  \draw[->,opacity=.6] (-1.3,0) -- (1.3,0);
+  \draw[->,opacity=.6] (0,-1.3) -- (0,1.3);
+
+  \begin{scope}[xshift=7cm]
+  \node[scale=1.5] (theo2) at (0,0,0) {\theo};
+  \draw[->,opacity=.6] (-1.3,0) -- (1.3,0);
+  \draw[->,opacity=.6] (0,-1.3) -- (0,1.3);
+  \end{scope}
+
+  \draw[->] ($(theo1.east)+(0,.3)$)
+    to[bend left, "$b = Ax$"] ($(theo2.west)+(0,.3)$);
+\end{tikzpicture}
+        </latex-code>
+      </p>
+      <figure>
+        <caption>Multiplication by the matrix <m>A</m> dilates the plane by a factor of <m>1.5</m>.  Move the input vector <m>x</m> to see how the output vector <m>b</m> changes.</caption>
+        <interactive
+            iframe="iframes/twobytwo-if.html?mat=1.5,0,0,1.5&amp;closed=true&amp;pic=theo3.jpg"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </solution>
+  </example>
+
+  <example xml:id="matrix-trans-eg-identity">
+    <title>Identity</title>
+    <idx><h>Identity matrix</h><h>as a function</h></idx>
+    <statement>
+      <p>Let <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1
+\end{pmatrix}</mrow>
+</md>.  Describe the function <m>b=Ax</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p>
+        In the equation <m>Ax=b</m>, the input vector <m>x</m> and the output vector <m>b</m> are both in <m>\R^2</m>.
+        First we multiply <m>A</m> by a vector to see what it does:
+        <md>
+<mrow>A\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1
+\end{pmatrix}\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+x \\
+y
+\end{pmatrix}</mrow>
+</md>.
+        Multiplication by <m>A</m> does not change the input vector at all: it is the <em>identity transformation which does nothing</em>.
+        <latex-code>
+\def\theo{\includegraphics[width=4cm]{theo11.jpg}}
+\begin{tikzpicture}
+  \node (theo1) at (0,0,0) {\theo};
+  \draw[->,opacity=.6] (-1.3,0) -- (1.3,0);
+  \draw[->,opacity=.6] (0,-1.3) -- (0,1.3);
+
+  \begin{scope}[xshift=7cm]
+  \node (theo2) at (0,0,0) {\theo};
+  \draw[->,opacity=.6] (-1.3,0) -- (1.3,0);
+  \draw[->,opacity=.6] (0,-1.3) -- (0,1.3);
+  \end{scope}
+
+  \draw[->] ($(theo1.east)+(0,.3)$)
+    to[bend left, "$b = Ax$"] ($(theo2.west)+(0,.3)$);
+\end{tikzpicture}
+        </latex-code>
+      </p>
+      <figure>
+        <caption>Multiplication by the matrix <m>A</m> does not move the vector <m>x</m>: that is, <m>b=Ax=x</m>.  Move the input vector <m>x</m> to see how the output vector <m>b</m> changes.</caption>
+        <interactive
+            iframe="iframes/twobytwo-if.html?mat=1,0,0,1&amp;closed=true&amp;pic=theo11.jpg"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </solution>
+  </example>
+
+  <example xml:id="matrix-trans-eg-rotation">
+    <title>Rotation</title>
+    <idx><h>Rotation</h><h>counterclockwise by <m>90^\circ</m></h></idx>
+    <statement>
+      <p>Let <md>
+<mrow>A = \begin{pmatrix}
+0 \amp -1 \\
+1 \amp 0
+\end{pmatrix}</mrow>
+</md>.  Describe the function <m>b=Ax</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p>
+        In the equation <m>Ax=b</m>, the input vector <m>x</m> and the output vector <m>b</m> are both in <m>\R^2</m>.
+        First we multiply <m>A</m> by a vector to see what it does:
+        <md>
+<mrow>A\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+0 \amp -1 \\
+1 \amp 0
+\end{pmatrix}\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+-y \\
+x
+\end{pmatrix}</mrow>
+</md>.
+        We substitute a few test points in order to understand the geometry of the transformation:
+        <latex-code>
+\def\arcarrow#1;{
+  \pgfmathanglebetweenpoints{\pgfpoint{0cm}{0cm}}{\pgfpointanchor{#1}{center}}
+  \let\sangle=\pgfmathresult
+  \draw[|->, shorten=2mm]
+    let \p1 = (#1.center), \n1={veclen(\x1,\y1)} in
+      (#1) arc[radius=\n1, delta angle=90, start angle=\sangle];
+}
+
+  \begin{minipage}{5cm}
+    \[\begin{split}
+      A\color{seq1}\begin{pmatrix}
+1 \\
+2
+\end{pmatrix} &amp;= \color{seq1}\begin{pmatrix}
+-2 \\
+1
+\end{pmatrix} \\
+      A\color{seq2}\begin{pmatrix}
+-1 \\
+1
+\end{pmatrix} &amp;= \color{seq2}\begin{pmatrix}
+-1 \\
+-1
+\end{pmatrix} \\
+      A\color{seq3}\begin{pmatrix}
+0 \\
+-2
+\end{pmatrix} &amp;= \color{seq3}\begin{pmatrix}
+2 \\
+0
+\end{pmatrix} \\
+    \end{split}\]
+  \end{minipage}
+\qquad
+\begin{tikzpicture}[baseline=0]
+  \draw[help lines] (-3,-3) grid (3,3);
+  \draw[->] (-3,0) -- (3,0);
+  \draw[->] (0,-3) -- (0,3);
+
+  \point[seq1] (X1) at (1,2);
+  \point[seq1] (TX1) at (-2,1);
+  \arcarrow X1;
+
+  \point[seq2] (X2) at (-1,1);
+  \point[seq2] (TX2) at (-1,-1);
+  \arcarrow X2;
+
+  \point[seq3] (TX3) at (2,0);
+  \point[seq3] (X3) at (0,-2);
+  \arcarrow X3;
+\end{tikzpicture}
+        </latex-code>
+        Multiplication by <m>A</m> is <em>counterclockwise rotation by <m>90^\circ</m></em>.
+        <latex-code>
+\def\theo{\includegraphics[width=4cm]{theo8.jpg}}
+\begin{tikzpicture}
+  \node (theo1) at (0,0,0) {\theo};
+  \draw[->,opacity=.6] (-1.3,0) -- (1.3,0);
+  \draw[->,opacity=.6] (0,-1.3) -- (0,1.3);
+
+  \begin{scope}[xshift=7cm]
+  \node[rotate=90] (theo2) at (0,0,0) {\theo};
+  \draw[->,opacity=.6] (-1.3,0) -- (1.3,0);
+  \draw[->,opacity=.6] (0,-1.3) -- (0,1.3);
+  \end{scope}
+
+  \draw[->] ($(theo1.east)+(0,.3)$)
+    to[bend left, "$b = Ax$"] ($(theo2.north)+(0,.3)$);
+\end{tikzpicture}
+        </latex-code>
+      </p>
+      <figure>
+        <caption>Multiplication by the matrix <m>A</m> rotates the vector <m>x</m> counterclockwise by <m>90^\circ</m>.  Move the input vector <m>x</m> to see how the output vector <m>b</m> changes.</caption>
+        <interactive
+            iframe="iframes/twobytwo-if.html?mat=0,-1,1,0&amp;closed=true&amp;pic=theo8.jpg"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </solution>
+  </example>
+
+  <example xml:id="matrix-trans-shear">
+    <title>Shear</title>
+    <idx><h>Shear</h><h>in the <m>x</m>-direction</h></idx>
+    <statement>
+      <p>Let <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1
+\end{pmatrix}</mrow>
+</md>.  Describe the function <m>b=Ax</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p>
+        In the equation <m>Ax=b</m>, the input vector <m>x</m> and the output vector <m>b</m> are both in <m>\R^2</m>.
+        First we multiply <m>A</m> by a vector to see what it does:
+        <md>
+<mrow>A\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1
+\end{pmatrix}\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+x+y \\
+y
+\end{pmatrix}</mrow>
+</md>.
+        Multiplication by <m>A</m> adds the <m>y</m>-coordinate to the <m>x</m>-coordinate; this is called a <em>shear in the <m>x</m>-direction</em>.
+        <latex-code>
+\def\sheep{\includegraphics[width=4cm]{sheep.jpg}}
+\begin{tikzpicture}
+  \node (sheep1) at (0,0,0) {\sheep};
+  \draw[->,opacity=.6] (-1.3,0) -- (1.3,0);
+  \draw[->,opacity=.6] (0,-1.3) -- (0,1.3);
+
+  \begin{scope}[xshift=7cm]
+  \node[cm={1,0,1,1,(0,0)}] (sheep2) at (0,0,0) {\sheep};
+  \draw[->,opacity=.6] (-1.3,0) -- (1.3,0);
+  \draw[->,opacity=.6] (0,-1.3) -- (0,1.3);
+  \end{scope}
+
+  \draw[->] ($(sheep1.east)+(0,.3)$)
+    to[bend left, "$b = Ax$"] ($(sheep2.west)+(0,.3)$);
+\end{tikzpicture}
+        </latex-code>
+      </p>
+      <figure>
+        <caption>Multiplication by the matrix <m>A</m> adds the <m>y</m>-coordinate to the <m>x</m>-coordinate.  Move the input vector <m>x</m> to see how the output vector <m>b</m> changes.</caption>
+        <interactive
+            iframe="iframes/twobytwo-if.html?mat=1,1,0,1&amp;closed=true&amp;pic=sheep.jpg"
+            width="90%"
+            aspect="4:3">
+          <shortdescription>
+            <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+          </shortdescription>
+          <description>
+            <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+            <p>
+              
+            </p>
+          </description>
+          <instructions>
+            <p>
+              
+            </p>
+          </instructions>
+        </interactive>
+      </figure>
+    </solution>
+  </example>
+</subsection>
+
+<subsection xml:id="subsec-matrix-trans-transformations">
+  <title>Transformations</title>
+
+  <p>
+    At this point it is convenient to fix our ideas and terminology regarding functions, which we will call <em>transformations</em> in this book.  This allows us to systematize our discussion of matrices as functions.
+  </p>
+
+  <definition>
+    <idx><h>Transformation</h><h>definition of</h></idx>
+    <idx><h>Transformation</h><h>domain of</h></idx>
+    <idx><h>Transformation</h><h>codomain of</h></idx>
+    <idx><h>Transformation</h><h>range of</h></idx>
+    <idx><h>Function</h><see>Transformation</see></idx>
+    <idx><h>Domain</h><see>Transformation</see></idx>
+    <idx><h>Codomain</h><see>Transformation</see></idx>
+    <idx><h>Range</h><see>Transformation</see></idx>
+    <notation><usage><m>T\colon\R^n\to\R^m</m></usage><description>transformation with domain <m>\R^n</m> and codomain <m>\R^m</m></description></notation>
+    <statement>
+      <p>
+        A <term>transformation</term> from <m>\R^n</m> to <m>\R^m</m> is a rule <m>T</m> that assigns to each vector <m>x</m> in <m>\R^n</m> a vector <m>T(x)</m> in <m>\R^m</m>.
+        <ul>
+          <li><p>
+            <m>\R^n</m> is called the <term>domain</term> of <m>T</m>.
+          </p></li>
+          <li><p>
+            <m>\R^m</m> is called the <term>codomain</term> of <m>T</m>.
+          </p></li>
+          <li><p>
+            For <m>x</m> in <m>\R^n</m>, the vector <m>T(x)</m> in <m>\R^m</m> is the <term>image</term> of <m>x</m> under <m>T</m>.
+          </p></li>
+          <li><p>
+            The set of all images <m>\{T(x)\mid x\text{ in }\R^n\}</m> is the <term>range</term> of <m>T</m>.
+          </p></li>
+        </ul>
+        The notation <m>T\colon\R^n\To\R^m</m>
+        means <q><m>T</m> is a transformation from <m>\R^n</m> to <m>\R^m</m>.</q>
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    <idx><h>Transformation</h><h>as a machine</h></idx>
+    It may help to think of <m>T</m> as a <q>machine</q> that takes <m>x</m> as an input, and gives you <m>T(x)</m> as the output.
+    <latex-code>
+            <![CDATA[
+\tikzset{
+  pics/gear/.style args={#1/#2}{
+    code = { % #1 = number of gears, #2 = tooth length
+      \filldraw[fill=black!30] (1cm-#2/2,0)
+        let \n{angle} = {360/#1} in
+          \foreach \gear [evaluate=\gear as \startangle using \gear*\n{angle}]
+              in {1,...,#1}
+            {
+              arc[radius=1cm-#2/2, start angle=\startangle-\n{angle},
+                  delta angle=\n{angle}/4]
+              -- (\startangle-3*\n{angle}/4+\n{angle}/10:1cm+#2/2)
+              arc[radius=1cm+#2/2,
+                  start angle=\startangle-3*\n{angle}/4+\n{angle}/10,
+                  end angle  =\startangle-  \n{angle}/4-\n{angle}/10]
+              -- (\startangle-  \n{angle}/4:1cm-#2/2)
+              arc[radius=1cm-#2/2, start angle=\startangle-\n{angle}/4,
+                  delta angle=\n{angle}/4]
+            };
+          \draw (0,0) circle[radius=.4cm];
+        }
+    },
+  % machine is an input/output machine for illustrating functions
+  machine/.pic = {
+    \filldraw[rounded corners=.3mm, fill=steel!30] (1.5, -1)
+      -- (1.5, -.5) -- (1.5-.2, -.5) -- (1.5-.2, .4) -- (1.5, .4)
+      -- (1.5, 1) -- (-1.5, 1) -- (-1.5, -1) -- cycle;
+    \filldraw[fill=steel!30] (-1.5, -.2)
+      -- (-1.5-.5, -.5) -- (-1.5-.5, .5) -- (-1.5, .2);
+    \coordinate (-input) at (-1.5-.5, 0);
+    %\fill (-1.5-.4, -.05) rectangle (-1.5+.5, .05);
+    %\fill (-1.5+.3, -.15) -- (-1.5+.7, 0) -- (-1.5+.3, .15);
+    \filldraw[yshift=-.1cm, fill=black!30] (1.5-.2, -.3)
+      -- (1.5+.4, -.3)
+      arc[radius=.15, start angle=-90, end angle=90]
+      -- (1.5-.2,0);
+    \draw[yshift=-.1cm] (1.5+.4, -.15) circle[radius=.1];
+    %\fill (1.5-.7, -.05) rectangle (1.5+.2, .05);
+    %\fill (1.5+.0, -.15) -- (1.5+.4, 0) -- (1.5+.0, .15);
+    \coordinate (-output) at (1.5+.5, 0);
+    \pic[transform shape, scale=.4] at (-.4, -.4) {gear={15/.2cm}};
+    \pic[transform shape, scale=.4] at ( .4, -.4) {gear={15/.2cm}};
+    % Need to expand \tikzpictextoptions *first* so as not to confuse \pgfkeys
+    \expandafter\node\expandafter[\tikzpictextoptions] at (0, .5) {\tikzpictext};
+    },
+}
+\begin{tikzpicture}[thin border nodes, scale=.9]
+  \draw[grid lines, light gray] (-3,-3) grid (3,3);
+
+  \node (A) at (0,-3.5) {$\R^n$};
+  \node (B) at (10,-3.5) {$\R^m$};
+  \node at (0,-4) {domain};
+  \node at (10,-4) {codomain};
+  \draw[->] (A.east) +(5mm,0) -- node[midway,above=1mm] {$T$}
+    ($(B.west)-(5mm,0)$);
+
+  \point["$x$" left] (P) at (1,1,5);
+
+  \begin{scope}[myxyz, xshift=10cm]
+    \path[clip, resetxy] (-3,-3) rectangle (3,3);
+
+    \def\v{(-1,2,1)}
+    \def\w{(0,1,-1)}
+
+    \node[coordinate] (X) at \v {};
+    \node[coordinate] (Y) at \w {};
+
+    \draw[very thin] (-2,0,0) -- (0,0,0);
+    \draw[very thin] (0,-2,0) -- (0,0,0);
+    \draw[very thin] (0,0,-2) -- (0,0,0);
+
+    \begin{scope}[x=(X), y=(Y), transformxy]
+      \fill[seq4!10, nearly opaque] (-1,-1) rectangle (1,1);
+      \draw[step=.5cm, seq4!30, very thin] (-1,-1) grid (1,1);
+      \point["$T(x)$" {fill=none,below}] (Q) at (-.5,.5);
+      \node[coordinate,
+          pin={[pin edge={very thin,-},pin distance=3mm,anchor=north]-70:range}]
+        at (0.1,1) {};
+    \end{scope}
+
+    \draw[->, very thin] (0,0,0) -- (2,0,0);
+    \draw[->, very thin] (0,0,0) -- (0,2,0);
+    \draw[->, very thin] (0,0,0) -- (0,0,2);
+
+    \draw[resetxy] (-3,-3) rectangle (3,3);
+
+  \end{scope}
+
+  \pic[scale=.75, "$T$"] (machine) at (5,0) {machine};
+  \node[coordinate] (IN) at (5cm-1.7cm,0) {};
+  \node[coordinate] (OUT) at (5cm+1.7cm,0) {};
+  \draw[->, shorten >=.35mm, shorten <=.35mm] (P.east)
+    .. controls +(0:1cm) and +(180:1cm) .. (IN);
+  \draw[->, shorten >=.35mm, shorten <=.35mm] (OUT)
+    .. controls +(0:1cm) and +(190:2cm) .. (Q.west);
+
+\end{tikzpicture}
+            ]]>
+    </latex-code>
+    The points of the domain <m>\R^n</m> are the <em>inputs</em> of <m>T</m>: this simply means that it makes sense to evaluate <m>T</m> on vectors with <m>n</m> entries, i.e., lists of <m>n</m> numbers.  Likewise, the points of the codomain <m>\R^m</m> are the <em>outputs</em> of <m>T</m>: this means that the result of evaluating <m>T</m> is always a vector with <m>m</m> entries.
+</p>
+
+<p>
+  The <em>range</em> of <m>T</m> is the set of all vectors in the codomain that actually arise as outputs of the function <m>T</m>, for some input.  In other words, the range is all vectors <m>b</m> in the codomain such that <m>T(x)=b</m> has a solution <m>x</m> in the domain.
+</p>
+
+  <example>
+    <title>A Function of one variable</title>
+    <idx><h>Transformation</h><h>of one variable</h></idx>
+    <p>
+      Most of the functions you may have seen previously have domain and codomain equal to <m>\R = \R^1</m>.  For example,
+      <md>
+<mrow>\sin\colon\R\To\R \qquad \sin(x) =
+  \left(\,\parbox{5cm}{
+    the length of the opposite edge over the hypotenuse of a right
+    triangle with angle $x$ in radians}\,\right)</mrow>
+</md>.
+      Notice that we have defined <m>\sin</m> by a rule: a function is defined by specifying what the output of the function is for any possible input.
+    </p>
+
+    <p>
+      You may be used to thinking of such functions in terms of their graphs:
+      <latex-code>
+\usetikzlibrary{datavisualization.formats.functions}
+\begin{tikzpicture}
+  \datavisualization[school book axes,
+      all axes={ticks=none},
+      visualize as smooth line/.list={sin},
+      sin={style=seq1}]
+
+    data[format=function, set=sin] {
+      var x : interval[-2:2] ;
+      func y = sin(\value x r);
+    };
+
+  \point[minimum size=1.5mm, "$x$" below] at (1,0);
+  \point[minimum size=1.5mm, "${(x,\sin x)}$" {label distance=1.2mm, above}] at (1,{sin(1 r)});
+\end{tikzpicture}
+      </latex-code>
+      In this case, the horizontal axis is the domain, and the vertical axis is the codomain.  This is useful when the domain and codomain are <m>\R</m>, but it is hard to do when, for instance, the domain is <m>\R^2</m> and the codomain is <m>\R^3</m>.  The graph of such a function is a subset of <m>\R^5</m>, which is difficult to visualize.  For this reason, we will rarely graph a transformation.
+    </p>
+
+    <p>
+      Note that the <em>range</em> of <m>\sin</m> is the interval <m>[-1,1]</m>: this is the set of all possible outputs of the <m>\sin</m> function.
+    </p>
+  </example>
+
+  <example>
+    <title>Functions of several variables</title>
+    <idx><h>Transformation</h><h>of several variables</h></idx>
+    <p>
+      Here is an example of a function from <m>\R^2</m> to <m>\R^3</m>:
+      <md>
+<mrow>f\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+x+y \\
+\cos(y) \\
+y-x^2
+\end{pmatrix}</mrow>
+</md>.
+      The inputs of <m>f</m> each have two entries, and the outputs have three entries.  In this case, we have defined <m>f</m> by a formula, so we evaluate <m>f</m> by substituting values for the variables:
+      <md>
+<mrow>f\begin{pmatrix}
+2 \\
+3
+\end{pmatrix} = \begin{pmatrix}
+2+3 \\
+\cos(3) \\
+3-2^2
+\end{pmatrix} = \begin{pmatrix}
+5 \\
+\cos(3) \\
+-1
+\end{pmatrix}</mrow>
+</md>.
+    </p>
+    <p>
+      Here is an example of a function from <m>\R^3</m> to <m>\R^3</m>:
+      <md>
+<mrow>f(v) = \left(\,\parbox{5.5cm}{the counterclockwise rotation of $v$ by an angle of $42^\circ$ about the $z$-axis}\,\right)</mrow>
+</md>.
+      In other words, <m>f</m> takes a vector with three entries, then rotates it; hence the ouput of <m>f</m> also has three entries.  In this case, we have defined <m>f</m> by a geometric rule.
+    </p>
+  </example>
+
+  <definition xml:id="matrix-trans-identity">
+    <idx><h>Identity transformation</h><h>definition of</h></idx>
+    <idx><h>Transformation</h><h>identity</h><see>Identity transformation</see></idx>
+    <notation><usage><m>\Id_{\R^n}</m></usage><description>Identity transformation</description></notation>
+    <statement>
+      <p>
+        The <term>identity transformation</term> <m>\Id_{\R^n}\colon\R^n\to\R^n</m> is the transformation defined by the rule
+        <md>
+<mrow>\Id_{\R^n}(x) = x \qquad\text{for all $x$ in $\R^n$}</mrow>
+</md>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    In other words, the identity transformation does not move its input vector: the output is the same as the input.  Its domain and codomain are both <m>\R^n</m>, and its range is <m>\R^n</m> as well, since every vector in <m>\R^n</m> is the output of itself.
+  </p>
+
+  <example xml:id="matrix-trans-eg-robot">
+    <title>A real-word transformation: robotics</title>
+    <p>
+      The definition of <em>transformation</em> and its associated vocabulary may seem quite abstract, but transformations are extremely common in real life.  Here is an example from the fields of robotics and computer graphics.
+    </p>
+    <p>
+      Suppose you are building a robot arm with three joints that can move its hand around a plane, as in the following picture.
+      <latex-code>
+\usetikzlibrary{ipe}
+\usetikzlibrary{angles}
+\tikzstyle{ipe stylesheet} = [
+  ipe import,
+  even odd rule,
+  line join=round,
+  line cap=butt,
+  ipe pen normal/.style={line width=0.4},
+  ipe pen heavier/.style={line width=0.8},
+  ipe pen fat/.style={line width=1.2},
+  ipe pen ultrafat/.style={line width=2},
+  ipe pen normal,
+  ipe mark normal/.style={ipe mark scale=3},
+  ipe mark large/.style={ipe mark scale=5},
+  ipe mark small/.style={ipe mark scale=2},
+  ipe mark tiny/.style={ipe mark scale=1.1},
+  ipe mark normal,
+  /pgf/arrow keys/.cd,
+  ipe arrow normal/.style={scale=7},
+  ipe arrow large/.style={scale=10},
+  ipe arrow small/.style={scale=5},
+  ipe arrow tiny/.style={scale=3},
+  ipe arrow normal,
+  /tikz/.cd,
+  ipe arrows, % update arrows
+  &lt;->/.tip = ipe normal,
+  ipe dash normal/.style={dash pattern=},
+  ipe dash dashed/.style={dash pattern=on 4bp off 4bp},
+  ipe dash dotted/.style={dash pattern=on 1bp off 3bp},
+  ipe dash dash dotted/.style={dash pattern=on 4bp off 2bp on 1bp off 2bp},
+  ipe dash dash dot dotted/.style={dash pattern=on 4bp off 2bp on 1bp off 2bp on 1bp off 2bp},
+  ipe dash normal,
+  ipe node/.append style={font=\normalsize},
+  ipe stretch normal/.style={ipe node stretch=1},
+  ipe stretch normal,
+  ipe opacity 10/.style={opacity=0.1},
+  ipe opacity 30/.style={opacity=0.3},
+  ipe opacity 50/.style={opacity=0.5},
+  ipe opacity 75/.style={opacity=0.75},
+  ipe opacity opaque/.style={opacity=1},
+  ipe opacity opaque,
+]
+\begin{tikzpicture}[ipe stylesheet, scale=.7]
+  \draw[fill=white!80!black]
+    (100, 528) -- (196, 656) -- (220, 656) -- (124, 528) -- cycle;
+  \draw[fill=white!80!black]
+    (208, 664) -- (320, 712) -- (320, 696) -- (208, 648) -- cycle;
+  \begin{scope}[shift={(321.91, 715.847)}, rotate=-9.1623]
+  \draw[fill=white!90!black]
+    (0, 0)
+     -- (48, 12)
+     -- (96, 0)
+     -- (96, -4)
+     -- (20, -4)
+     -- (20, -20)
+     -- (96, -20)
+     -- (96, -24)
+     -- (48, -36)
+     -- (0, -24) -- cycle;
+  \draw[fill=red] (96, -12) circle[radius=1mm]
+     node[right=2mm, red] {$\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = f(\theta,\phi,\psi)$};
+  \end{scope}
+  \filldraw[fill=white]
+    (208, 656) circle[radius=16];
+  \filldraw[fill=white]
+    (320, 704) circle[radius=16];
+  \filldraw[fill=white]
+    (112, 528) circle[radius=24];
+  \filldraw[white!20!black]
+    (112, 528) circle[radius=4]
+    (208, 656) circle[radius=4]
+    (320, 704) circle[radius=4];
+  \coordinate (c1) at (112, 528);
+  \coordinate (c2) at (208, 656);
+  \coordinate (c3) at (320, 704);
+  \coordinate (x1) at ($(c1) + (2cm,0)$);
+  \coordinate (x3) at ($(c3) + (2cm,0)$);
+
+  \draw (c1) -- (x1);
+  \draw (c1) -- ($(c1)!2cm!(c2)$);
+  \pic[draw, "$\theta$", angle radius=1cm, angle eccentricity=.8] {angle=x1--c1--c2};
+
+  \draw (c2) -- ($(c2)!2cm!(c1)$);
+  \draw (c2) -- ($(c2)!2cm!(c3)$);
+  \pic[draw, "$\phi$", angle radius=1cm, angle eccentricity=.8] {angle=c1--c2--c3};
+
+  \coordinate (x3p) at ($(c3)!2cm!-9.1623:(x3)$);
+  \draw (c3) -- ($(c3)!2cm!(c2)$);
+  \draw (c3) -- (x3p);
+  \pic[draw, "$\psi$", angle radius=1cm, angle eccentricity=.8] {angle=c2--c3--x3p};
+
+\end{tikzpicture}
+      </latex-code>
+      Define a transformation <m>f\colon\R^3\to\R^2</m> as follows: <m>f(\theta,\phi,\psi)</m> is the <m>(x,y)</m> position of the hand when the joints are rotated by angles <m>\theta, \phi, \psi</m>, respectively.  Evaluating <m>f</m> tells you where the hand will be on the plane when the joints are set at the given angles.
+    </p>
+
+    <p>
+      It is relatively straightforward to find a formula for <m>f(\theta,\phi,\psi)</m> using some basic trigonometry.  If you want the robot to fetch your coffee cup, however, you have to <em>find</em> the angles <m>\theta,\phi,\psi</m> that will put the hand at the position of your beverage.  It is not at all obvious how to do this, and it is not even clear if the answer is unique!  You can ask yourself: <q>which positions on the table can my robot arm reach?</q> or <q>what is the arm<rsq/>s range of motion?</q>  This is the same as asking: <q>what is the range of <m>f</m>?</q>
+    </p>
+    <p>
+      Unfortunately, this kind of function does not come from a matrix, so one cannot use linear algebra to answer these kinds of questions.  In fact, these functions are rather complicated; their study is the subject of <url href="https://en.wikipedia.org/wiki/Inverse_kinematics">inverse kinematics</url>.
+    </p>
+  </example>
+
+</subsection>
+
+<subsection xml:id="subsec-matrix-transformations">
+  <title>Matrix Transformations</title>
+
+  <p>
+    Now we specialize the general notions and vocabulary from <xref ref="subsec-matrix-trans-transformations" text="type-global"/> to the functions defined by matrices that we considered in the first <xref ref="subsec-matrix-trans-matrices-functions" text="type-global"/>.
+  </p>
+
+  <definition xml:id="matrix-trans-defn-of">
+    <idx><h>Matrix transformation</h><h>definition of</h></idx>
+    <idx><h>Transformation</h><h>associated to a matrix</h><see>Matrix transformation</see></idx>
+    <statement>
+      <p>
+        Let <m>A</m> be an <m>m\times n</m> matrix.  The <term>matrix transformation</term> associated to <m>A</m> is the transformation
+        <md>
+<mrow>T\colon \R^n\To\R^m \sptxt{defined by} T(x) = Ax</mrow>
+</md>.
+        This is the transformation that takes a vector <m>x</m> in <m>\R^n</m> to the vector <m>Ax</m> in <m>\R^m</m>.
+      </p>
+    </statement>
+  </definition>
+
+  <p>
+    If <m>A</m> has <m>n</m> columns, then it only makes sense to multiply <m>A</m> by vectors with <m>n</m> entries.  This is why the domain of <m>T(x)=Ax</m> is <m>\R^n</m>.  If <m>A</m> has <m>n</m> rows, then <m>Ax</m> has <m>m</m> entries for any vector <m>x</m> in <m>\R^n</m>; this is why the codomain of <m>T(x)=Ax</m> is <m>\R^m</m>.
+  </p>
+
+  <p>
+    The definition of a matrix transformation <m>T</m> tells us how to evaluate <m>T</m> on any given vector: we multiply the input vector by a matrix.  For instance, let
+    <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 2 \amp 3 \\
+4 \amp 5 \amp 6
+\end{pmatrix}</mrow>
+</md>
+    and let <m>T(x)=Ax</m> be the associated matrix transformation.  Then
+    <md>
+<mrow>T\begin{pmatrix}
+-1 \\
+-2 \\
+-3
+\end{pmatrix} = A\begin{pmatrix}
+-1 \\
+-2 \\
+-3
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 2 \amp 3 \\
+4 \amp 5 \amp 6
+\end{pmatrix}\begin{pmatrix}
+-1 \\
+-2 \\
+-3
+\end{pmatrix}
+    = \begin{pmatrix}
+-14 \\
+-32
+\end{pmatrix}</mrow>
+</md>.
+  </p>
+
+
+  <p>
+    Suppose that <m>A</m> has columns <m>v_1,v_2,\ldots,v_n</m>.  If we multiply <m>A</m> by a general vector <m>x</m>, we get
+    <md>
+<mrow>Ax = \begin{pmatrix}
+| \amp | \amp | \\
+v_1 \amp v_2 \amp \cdots \amp v_n \\
+| \amp | \amp |
+\end{pmatrix}\begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}
+      = x_1v_1 + x_2v_2 + \cdots + x_nv_n</mrow>
+</md>.
+    This is just a general linear combination of <m>v_1,v_2,\ldots,v_n</m>.  Therefore, the outputs of <m>T(x) = Ax</m> are exactly the linear combinations of the columns of <m>A</m>: the <em>range</em> of <m>T</m> is the column space of <m>A</m>.  See <xref ref="matrixeq-spans-consistency"/>.
+  </p>
+
+  <insight xml:id="matrix-trans-dictionary">
+    <idx><h>Matrix transformation</h><h>domain of</h></idx>
+    <idx><h>Matrix transformation</h><h>codomain of</h></idx>
+    <idx><h>Matrix transformation</h><h>range of</h></idx>
+    <idx><h>Column space</h><h>range of a transformation</h></idx>
+    <p>
+      Let <m>A</m> be an <m>m\times n</m> matrix, and let <m>T(x)=Ax</m> be the associated matrix transformation.
+      <ul>
+        <li><p>
+          The <em>domain</em> of <m>T</m> is <m>\R^n</m>, where <m>n</m> is the number of <em>columns</em> of <m>A</m>.
+        </p></li>
+        <li><p>
+          The <em>codomain</em> of <m>T</m> is <m>\R^m</m>, where <m>m</m> is the number of <em>rows</em> of <m>A</m>.
+        </p></li>
+        <li><p>
+          The <em>range</em> of <m>T</m> is the <em>column space</em> of <m>A</m>.
+        </p></li>
+      </ul>
+    </p>
+  </insight>
+
+  <question>
+    <title>A <m>2\times 3</m> matrix: reprise</title>
+    <p>
+      Let
+      <md>
+<mrow>A = \begin{pmatrix}
+1 \amp -1 \amp 2 \\
+-2 \amp 2 \amp 4
+\end{pmatrix}</mrow>
+</md>,
+      and define <m>T(x) = Ax</m>.  The domain of <m>T</m> is <m>\R^3</m>, and the codomain is <m>\R^2</m>.  The range of <m>T</m> is the column space; since all three columns are collinear, the range is a line in <m>\R^2</m>.
+    </p>
+    <figure>
+      <caption>A picture of the matrix transformation <m>T</m>.  The input vector is <m>x</m>, which is a vector in <m>\R^3</m>, and the output vector is <m>b=T(x)=Ax</m>, which is a vector in <m>\R^2</m>.  The violet line on the right is the range of <m>T</m>; as you vary <m>x</m>, the output <m>b</m> is constrained to lie on this line.</caption>
+      <interactive
+          iframe="iframes/Axequalsb-if.html?show=false"
+          width="90%"
+          aspect="4:3">
+        <shortdescription>
+          <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+        </shortdescription>
+        <description>
+          <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+          <p>
+            
+          </p>
+        </description>
+        <instructions>
+          <p>
+            
+          </p>
+        </instructions>
+      </interactive>
+    </figure>
+  </question>
+
+  <question>
+    <title>A <m>3\times 2</m> matrix: reprise</title>
+    <p>
+      Let
+      <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1 \\
+1 \amp 0
+\end{pmatrix}</mrow>
+</md>,
+      and define <m>T(x) = Ax</m>.  The domain of <m>T</m> is <m>\R^2</m>, and the codomain is <m>\R^3</m>.  The range of <m>T</m> is the column space; since <m>A</m> has two columns which are not collinear, the range is a plane in <m>\R^3</m>.
+    </p>
+    <figure>
+      <caption>A picture of the matrix transformation <m>T</m>.  The input vector is <m>x</m>, which is a vector in <m>\R^2</m>, and the output vector is <m>b=T(x)=Ax</m>, which is a vector in <m>\R^3</m>.  The violet plane on the right is the range of <m>T</m>; as you vary <m>x</m>, the output <m>b</m> is constrained to lie on this plane.</caption>
+      <interactive
+          iframe="iframes/Axequalsb-if.html?mat=1,0:0,1:1,0&amp;range2=5&amp;closed=true&amp;show=false"
+          width="90%"
+          aspect="4:3">
+        <shortdescription>
+          <!-- FILL: Brief alt-text for this interactive (linear algebra context) -->
+        </shortdescription>
+        <description>
+          <!-- FILL: Complete accessibility description of this interactive for a linear algebra course -->
+          <p>
+            
+          </p>
+        </description>
+        <instructions>
+          <p>
+            
+          </p>
+        </instructions>
+      </interactive>
+    </figure>
+  </question>
+
+  <example>
+    <title>Projection onto the <m>xy</m>-plane: reprise</title>
+    <idx><h>Orthogonal projection</h><h>onto the <m>xy</m>-plane</h></idx>
+    <statement>
+      <p>
+        Let <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 0 \amp 0 \\
+0 \amp 1 \amp 0 \\
+0 \amp 0 \amp 0
+\end{pmatrix}</mrow>
+</md>, and let <m>T(x) = Ax</m>.  What are the domain, the codomain, and the range of <m>T</m>?
+      </p>
+    </statement>
+    <solution>
+      <p>
+        Geometrically, the transformation <m>T</m> projects a vector directly <q>down</q> onto the <m>xy</m>-plane in <m>\R^3</m>.
+        </p>
+<image width="60%">
+<shortdescription>
+<!-- FILL: Brief alt-text for this TikZ figure (linear algebra context) -->
+</shortdescription>
+<description>
+<p>
+<!-- FILL: Complete accessibility description of this TikZ figure for a linear algebra course -->
+</p>
+</description>
+<latex-image>
+\begin{tikzpicture}[myxyz]
+  \begin{scope}[arrows={|[width=4pt]->[width=4pt]}, shorten=4pt]
+    \draw (-1,-1,-2.5) node[point, seq2] {}
+      -- (-1,-1,0);
+    \draw (2,-2,-1) node[point, seq5] {}
+      -- (2,-2,0);
+  \end{scope}
+
+  \begin{scope}[transformxy]
+    \fill[white, nearly opaque] (-3, -3) rectangle (3, 3);
+    \draw[step=1cm, help lines] (-3, -3) grid (3, 3);
+  \end{scope}
+
+  \begin{scope}[arrows={|[width=4pt]->[width=4pt]}, shorten=4pt]
+    \draw (2,1,3) node[point,seq1] {}
+      -- (2,1,0) node[point,seq1] {};
+    \point[seq2] at (-1,-1,0);
+    \point[seq5] at (2,-2,0);
+    \draw (-1,2,2) node[point,seq3] {}
+      -- (-1,2,0) node[point,seq3] {};
+    \draw (-2,0,1) node[point,seq4] {}
+      -- (-2,0,0) node[point,seq4] {};
+  \end{scope}
+
+\end{tikzpicture}
+        </latex-image>
+</image>
+<p>
+        The inputs and outputs have three entries, so the domain and codomain are both <m>\R^3</m>.  The possible outputs all lie on the <m>xy</m>-plane, and every point on the <m>xy</m>-plane is an output of <m>T</m> (with itself as the input), so the range of <m>T</m> is the <m>xy</m>-plane.
+      </p>
+      <p>
+        Be careful not to confuse the codomain with the range here.  The range is a plane, but it is a plane <em>in <m>\R^3</m></em>, so the codomain is still <m>\R^3</m>.  The outputs of <m>T</m> all have three entries; the last entry is simply always zero.
+      </p>
+    </solution>
+  </example>
+
+  <p>
+    In the case of an <m>n\times n</m> square matrix, the domain and codomain of <m>T(x) = Ax</m> are both <m>\R^n</m>.  In this situation, one can regard <m>T</m> as <em>operating on</em> <m>\R^n</m>: it moves the vectors around in the same space.
+  </p>
+
+  <example>
+    <title>Matrix transformations of <m>\R^2</m></title>
+    <idx><h>Matrix transformation</h><h>of <m>\R^2</m></h></idx>
+    <idx><h>Reflection</h><h>over the <m>y</m>-axis</h></idx>
+    <idx><h>Dilation</h></idx>
+    <idx><h>Identity matrix</h><h>as a matrix transformation</h></idx>
+    <idx><h>Rotation</h><h>counterclockwise by <m>90^\circ</m></h></idx>
+    <idx><h>Shear</h><h>in the <m>x</m>-direction</h></idx>
+    <p>
+      In the first <xref ref="subsec-matrix-trans-matrices-functions" text="type-global"/> we discussed the transformations defined by several <m>2\times 2</m> matrices, namely:
+      <md>
+        <mrow>
+          \text{Reflection:} \amp\qquad A=\begin{pmatrix}
+-1 \amp 0 \\
+0 \amp 1
+\end{pmatrix}
+        </mrow>
+        <mrow>
+          \text{Dilation:} \amp\qquad A=\begin{pmatrix}
+1.5 \amp 0 \\
+0 \amp 1.5
+\end{pmatrix}
+        </mrow>
+        <mrow>
+          \text{Identity:} \amp\qquad A=\begin{pmatrix}
+1 \amp 0 \\
+0 \amp 1
+\end{pmatrix}
+        </mrow>
+        <mrow>
+          \text{Rotation:} \amp\qquad A=\begin{pmatrix}
+0 \amp -1 \\
+1 \amp 0
+\end{pmatrix}
+        </mrow>
+        <mrow>
+          \text{Shear:} \amp\qquad A=\begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1
+\end{pmatrix}
+        </mrow>
+      </md>.
+      In each case, the associated matrix transformation <m>T(x)=Ax</m> has domain and codomain equal to <m>\R^2</m>.  The range is also <m>\R^2</m>, as can be seen geometrically (what is the input for a given output?), or using the fact that the columns of <m>A</m> are not collinear (so they form a basis for <m>\R^2</m>).
+    </p>
+  </example>
+
+  <example xml:id="matrix-trans-questions">
+    <title>Questions about a [matrix] transformation</title>
+    <statement>
+      <p>
+        Let
+        <md>
+<mrow>A = \begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1 \\
+1 \amp 1
+\end{pmatrix}</mrow>
+</md>,
+        and let <m>T(x)=Ax</m>, so <m>T\colon\R^2\to\R^3</m> is a matrix transformation.
+        <ol>
+          <li><p>
+            Evaluate <m>T(u)</m> for <m>u=\begin{pmatrix}
+3 \\
+4
+\end{pmatrix}</m>.
+          </p></li>
+          <li><p>
+            Let
+            <md>
+<mrow>b = \begin{pmatrix}
+7 \\
+5 \\
+7
+\end{pmatrix}</mrow>
+</md>.
+            Find a vector <m>v</m> in <m>\R^2</m> such that <m>T(v)=b</m>.  Is there more than one?
+          </p></li>
+          <li><p>
+            Does there exist a vector <m>w</m> in <m>\R^3</m> such that there is more than one <m>v</m> in <m>\R^2</m> with <m>T(v)=w</m>?
+          </p></li>
+          <li><p>
+            Find a vector <m>w</m> in <m>\R^3</m> which is not in the range of <m>T</m>.
+          </p></li>
+        </ol>
+      </p>
+
+      <p>
+        <em>Note:</em> all of the above questions are intrinsic to the transformation <m>T</m>: they make sense to ask whether or not <m>T</m> is a matrix transformation.  See the next <xref ref="matrix-trans-questions-nonlinear"/>.  As <m>T</m> is in fact a matrix transformation, all of these questions will translate into questions about the corresponding matrix <m>A</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <ol>
+          <li><p>
+            We evaluate <m>T(u)</m> by substituting the definition of <m>T</m> in terms of matrix multiplication:
+            <md>
+<mrow>T\begin{pmatrix}
+3 \\
+4
+\end{pmatrix} = \begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1 \\
+1 \amp 1
+\end{pmatrix}\begin{pmatrix}
+3 \\
+4
+\end{pmatrix} = \begin{pmatrix}
+7 \\
+4 \\
+7
+\end{pmatrix}</mrow>
+</md>.
+          </p></li>
+
+          <li><p>
+            We want to find a vector <m>v</m> such that <m>b = T(v) = Av</m>.  In other words, we want to solve the matrix equation <m>Av = b</m>.  We form an augmented matrix and row reduce:
+            <md>
+<mrow>\begin{pmatrix}
+1 \amp 1 \\
+0 \amp 1 \\
+1 \amp 1
+\end{pmatrix} v = \begin{pmatrix}
+7 \\
+5 \\
+7
+\end{pmatrix}
+              \;\xrightarrow{\parbox{\widthof{\small augmented}}
+              {\small\centering augmented matrix}}\;
+              \left(\begin{array}{rr|r}
+1 \amp 1 \amp 7 \\
+0 \amp 1 \amp 5 \\
+1 \amp 1 \amp 7
+\end{array}\right)
+              \;\xrightarrow{\parbox{\widthof{\small reduce}}
+              {\small\centering row reduce}}\;
+              \left(\begin{array}{rr|r}
+1 \amp 0 \amp 2 \\
+0 \amp 1 \amp 5 \\
+0 \amp 0 \amp 0
+\end{array}\right)</mrow>
+</md>.
+            This gives <m>x=2</m> and <m>y=5</m>, so that there is a unique vector
+            <md>
+<mrow>v = \begin{pmatrix}
+2 \\
+5
+\end{pmatrix}</mrow>
+</md>
+            such that <m>T(v) = b</m>.
+          </p></li>
+
+          <li><p>
+            <em>Translation:</em> is there any vector <m>w</m> in <m>\R^3</m> such that the solution set of <m>Av=w</m> has more than one vector in it?  The solution set of <m>Ax=w</m>, if non-empty, is a translate of the solution set of <m>Av=b</m> above, which has one vector in it.  See <xref ref="solnsets-translate-span"/>.  It follows that the solution set of <m>Av=w</m> can have at most one vector.
+          </p></li>
+
+          <li><p>
+            <em>Translation:</em> find a vector <m>w</m> such that the matrix equation <m>Av=w</m> is not consistent.  Notice that if we take
+            <md>
+<mrow>w = \begin{pmatrix}
+1 \\
+2 \\
+3
+\end{pmatrix}</mrow>
+</md>,
+            then the matrix equation <m>Av=w</m> translates into the system of equations
+            <md>
+<mrow>\left\{\begin{alignedat}{3}
+x \amp {}+{} \amp y \amp {}={} \amp 1 \amp {} \\
+{} \amp {} \amp y \amp {}={} \amp 2 \amp {} \\
+x \amp {}+{} \amp y \amp {}={} \amp 3, \amp {}
+\end{alignedat}\right</mrow>
+</md>.
+            which is clearly inconsistent.
+          </p></li>
+        </ol>
+      </p>
+    </solution>
+  </example>
+
+  <example xml:id="matrix-trans-questions-nonlinear">
+    <title>Questions about a [non-matrix] transformation</title>
+    <statement>
+      <p>
+        Define a transformation <m>T\colon\R^2\to\R^3</m> by the formula
+        <md>
+<mrow>T\begin{pmatrix}
+x \\
+y
+\end{pmatrix} = \begin{pmatrix}
+\ln(x) \\
+\cos(y) \\
+\ln(x)
+\end{pmatrix}</mrow>
+</md>.
+        <ol>
+          <li><p>
+            Evaluate <m>T(u)</m> for <m>u=\begin{pmatrix}
+1 \\
+\pi
+\end{pmatrix}</m>.
+          </p></li>
+          <li><p>
+            Let
+            <md>
+<mrow>b = \begin{pmatrix}
+7 \\
+1 \\
+7
+\end{pmatrix}</mrow>
+</md>.
+            Find a vector <m>v</m> in <m>\R^2</m> such that <m>T(v)=b</m>.  Is there more than one?
+          </p></li>
+          <li><p>
+            Does there exist a vector <m>w</m> in <m>\R^3</m> such that there is more than one <m>v</m> in <m>\R^2</m> with <m>T(v)=w</m>?
+          </p></li>
+          <li><p>
+            Find a vector <m>w</m> in <m>\R^3</m> which is not in the range of <m>T</m>.
+          </p></li>
+        </ol>
+      </p>
+      <p>
+        <em>Note:</em> we asked (almost) the exact same questions about a matrix transformation in <xref ref="matrix-trans-questions"/>.  The point of this example is to illustrate the fact that the questions make sense for a transformation that has no hope of coming from a matrix.  In this case, these questions do not translate into questions about a matrix; they have to be answered in some other way.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <ol>
+          <li><p>
+            We evaluate <m>T(u)</m> using the defining formula:
+            <md>
+<mrow>T\begin{pmatrix}
+1 \\
+\pi
+\end{pmatrix} = \begin{pmatrix}
+\ln(1) \\
+\cos(\pi) \\
+\ln(1)
+\end{pmatrix} = \begin{pmatrix}
+0 \\
+-1 \\
+0
+\end{pmatrix}</mrow>
+</md>.
+          </p></li>
+
+          <li><p>
+            We have
+            <md>
+<mrow>T\begin{pmatrix}
+e^7 \\
+2\pi \\
+n \\
+e^7
+\end{pmatrix} = \begin{pmatrix}
+\ln(e^7) \\
+\cos(2\pi \\
+n) \\
+\ln(e^7)
+\end{pmatrix} = \begin{pmatrix}
+7 \\
+1 \\
+7
+\end{pmatrix}</mrow>
+</md>
+            for any whole number <m>n</m>.  Hence there are infinitely many such vectors.
+          </p></li>
+
+          <li><p>
+            The vector <m>b</m> from the previous part is an example of such a vector.
+          </p></li>
+
+          <li><p>
+            Since <m>\cos(y)</m> is always between <m>-1</m> and <m>1</m>, the vector
+            <md>
+<mrow>w = \begin{pmatrix}
+0 \\
+2 \\
+0
+\end{pmatrix}</mrow>
+</md>
+            is not in the range of <m>T</m>.
+          </p></li>
+        </ol>
+      </p>
+    </solution>
+  </example>
+
+</subsection>
+<exercises>
+  <exercise>
+    <statement correct="yes">
+      <p>If <m>A</m> is a matrix and <m>T</m> is the associated matrix
+      transformation, then the statement that <m>Ax = b</m> is consistent is
+      equivalent to the statement that <m>b</m> is in the range of <m>T</m>.</p>
+    </statement>
+    <solution>
+      <p>True. This follows directly from the definition of range and the fact that <m>T</m>
+        is the transformation <m>T(x) = Ax</m>:</p>
+      <p>The matrix equation <m>Ax = b</m> is consistent <m>\iff</m> <m>T(x) = b</m> is consistent
+          <m>\iff</m> <m>b</m> is in the range of <m>T</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>There is a matrix <m>A</m> so that the domain of the associated matrix transformation
+      <m>T</m> is a line in <m>{\bf R}^3</m>.</p>
+    </statement>
+    <solution>
+      <p>False: the domain of <m>T</m> is (all of) <m>{\bf R}^n</m>, where <m>n</m> is the number of
+        columns of <m>A</m>.  If <m>A</m> has one column, then the domain of <m>T</m> is <m>{\bf
+          R}</m>. If <m>A</m> has three columns, then the domain of <m>T</m> is <m>{\bf R}^3</m>.  The
+        domain of <m>T</m> can never be a line in <m>{\bf R}^3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>What does the matrix <m>\begin{pmatrix}-1 \amp 0 \\ 0 \amp -1\end{pmatrix}</m> do to vectors in <m>{\bf R}^2</m>?</p>
+    </statement>
+    <solution>
+      <p><m>\begin{pmatrix}-1 \amp 0 \\ 0 \amp -1\end{pmatrix}\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}-x \\ -y\end{pmatrix} = - \begin{pmatrix}x \\ y\end{pmatrix}</m>, so the matrix sends
+        each vector <m>v</m> to <m>-v</m>.  In other words, the matrix implements scalar
+        multiplication by <m>-1</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>What does the matrix <m>\begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{pmatrix}</m> do to vectors in <m>{\bf R}^3</m>?</p>
+    </statement>
+    <solution>
+      <p>
+        It naturally projects each vector onto the <m>x</m>-axis by turning its second and third coordinates into zeros:
+        <md><mrow>\begin{pmatrix}1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{pmatrix} \begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}x \\ 0 \\ 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>What does the matrix <m>\begin{pmatrix}0 \amp 0 \\ 1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m> do to vectors in <m>{\bf R}^2</m>?</p>
+    </statement>
+    <solution>
+      <p>
+        The matrix takes vectors from <m>{\bf R}^2</m> and naturally inserts them into the <m>yz</m>-plane in <m>{\bf R}^3</m>.  If <m>\begin{pmatrix}x_1 \\ x_2\end{pmatrix}</m> is any vector in <m>{\bf R}^2</m>, then
+        <md><mrow>\begin{pmatrix}0 \amp 0 \\ 1 \amp 0 \\ 0 \amp 1\end{pmatrix} \begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}0 \\ x_1 \\ x_2\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>T</m> be the transformation <m>T\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}0 \amp -1 \\ 1 \amp 0\end{pmatrix} \begin{pmatrix}x \\ y\end{pmatrix}</m>.
+      Describe <m>T</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p><m>T</m> rotates vectors in <m>{\bf R}^2</m> by <m>\frac{\pi}{2}</m> radians counterclockwise.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>T</m> be the transformation <m>T\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}0 \amp 1 \\ 1 \amp 0\end{pmatrix} \begin{pmatrix}x \\ y\end{pmatrix}</m>.  Describe
+      <m>T</m> geometrically.</p>
+    </statement>
+    <solution>
+      <p>Rotation across the line <m>y=x</m>.  We can check by
+        computing <m>T \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}y \\ x\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Fill in the blanks: If <m>T: {\bf R}^{5} \to {\bf R}^3</m> is a matrix
+      transformation <m>T(x) = Ax</m>, then <m>A</m> has <m>\underline{\qquad}</m>
+      rows and <m>\underline{\qquad}</m> columns.</p>
+    </statement>
+    <solution>
+      <p><m>A</m> has <m>3</m> rows and <m>5</m> columns.  This may seem counterintuitive,
+        but we can check: for <m>T(x)</m> to make sense, <m>x</m> must be in <m>{\bf R}^5</m>,
+        so <m>A</m> has <m>5</m> columns.  Moreover, <m>T(x)</m> is in <m>{\bf R}^3</m> so <m>A</m>
+        must have <m>3</m> rows.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Let <m>A</m> be a <m>7 \times 6</m> matrix, and define a matrix transformation
+      by <m>T(x) = Ax</m>.  What is the domain of <m>T</m>?  What is the codomain of <m>T</m>?</p>
+    </statement>
+    <solution>
+      <p>The domain of <m>T</m> is <m>{\bf R}^6</m> and the codomain is <m>{\bf R}^7</m>.
+        We can check: for <m>x</m> to be in the domain of <m>T</m>, we need <m>Ax</m> to
+        make sense, so <m>x</m> must be in <m>{\bf R}^6</m>.  The vector <m>Ax</m> lives in
+        the column space of <m>A</m> (which is the codomain of <m>T</m>), namely
+        <m>{\bf R}^7</m>.</p>
+      <p>In general, For a <m>k \times \ell</m> matrix <m>A</m>, the transformation
+        <m>T(x) = Ax</m> has domain <m>{\bf R}^{\ell}</m> and codomain <m>{\bf R}^k</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a <m>2 \times 2</m> matrix <m>A</m> so that the transformation
+      <m>T\begin{pmatrix}x \\ y\end{pmatrix} = A\begin{pmatrix}x \\ y\end{pmatrix}</m> reflects vectors across the <m>x</m>-axis.</p>
+    </statement>
+    <solution>
+      <p><m>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp -1\end{pmatrix}</m>.  We can check by verifying that
+      <m>A \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}x \\ -y\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a <m>2 \times 2</m> matrix <m>A</m> so that the transformation
+      <m>T\begin{pmatrix}x \\ y\end{pmatrix} = A\begin{pmatrix}x \\ y\end{pmatrix}</m> stretches all vectors by a factor of <m>4</m>.</p>
+    </statement>
+    <solution>
+      <p><m>A = \begin{pmatrix}4 \amp 0 \\ 0 \amp 4\end{pmatrix}</m>.  We can check by verifying
+      <m>A \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}4x \\ 4y\end{pmatrix} = 4 \begin{pmatrix}x \\ y\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a <m>2 \times 2</m> matrix <m>A</m> so that the transformation
+      <m>T\begin{pmatrix}x \\ y\end{pmatrix} = A\begin{pmatrix}x \\ y\end{pmatrix}</m> reflects vectors across the <m>y</m>-axis.</p>
+    </statement>
+    <solution>
+      <p><m>A = \begin{pmatrix}-1 \amp 0 \\ 0 \amp 1\end{pmatrix}</m>.  We can check by verifying that
+      <m>A \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}-x \\ y\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a <m>2 \times 2</m> matrix <m>A</m> so that the transformation
+      <m>T\begin{pmatrix}x \\ y\end{pmatrix} = A\begin{pmatrix}x \\ y\end{pmatrix}</m> stretches vectors along the <m>x</m>-axis by a factor of
+      <m>3</m>, while leaving the <m>y</m>-axis fixed.</p>
+    </statement>
+    <solution>
+      <p><m>A = \begin{pmatrix}4 \amp 0 \\ 0 \amp 4\end{pmatrix}</m>.  We can check by verifying
+      <m>A \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}4x \\ 4y\end{pmatrix} = 4 \begin{pmatrix}x \\ y\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Consider the transformation
+      <m>T(x) = \begin{pmatrix}1 \amp -1 \amp 9 \\ 0 \amp 2 \amp 4 \\ 0 \amp 1 \amp 2 \\ 0 \amp 1 \amp 2\end{pmatrix} x</m>.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>What is the domain of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The domain of <m>T</m> is <m>{\bf R^3}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the codomain of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The codomain of <m>T</m> is <m>{\bf R}^4</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the range of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>
+          The range of <m>T</m> is the column space of <m>A</m>.  As we
+              know from the the past, the pivot columns
+          <md><mrow>A = \begin{pmatrix}1 \amp -1 \amp 9 \\ 0 \amp 2 \amp 4 \\ 0 \amp 1 \amp 2 \\ 0 \amp 1 \amp 2\end{pmatrix} \xrightarrow[]{RREF}
+                \begin{pmatrix}1 \amp 0 \amp 11 \\ 0 \amp 1 \amp 2 \\ 0 \amp 0 \amp 0 \\ 0 \amp 0 \amp 0\end{pmatrix}</mrow></md>.
+          Thus, the first two columns
+              are pivot columns, so range<m>(T)</m> is
+          <md><mrow>\textup{Span}\left\{\begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix}, \begin{pmatrix}-1 \\ 2 \\ 1 \\ 1\end{pmatrix}\right\}</mrow></md>.
+        </p>
+      </solution>
+    </task>
+    <solution>
+      <p><m>T</m> is the matrix transformation <m>T(x) = Ax</m> for the
+        <m>4 \times 3</m> matrix <m>A = \begin{pmatrix}1 \amp -1 \amp 9 \\ 0 \amp 2 \amp 4 \\ 0 \amp 1 \amp 2 \\ 0 \amp 1 \amp 2\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Consider the transformation
+        <md><mrow>T(x) = \begin{pmatrix}2 \amp 2 \amp 3 \amp 1 \amp 2 \\ 3 \amp 4 \amp 0 \amp 0 \amp -1\end{pmatrix}x</mrow></md>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>What is the domain of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The domain of <m>T</m> is <m>{\bf R^5}</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the codomain of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The codomain of <m>T</m> is <m>{\bf R}^2</m>.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>What is the range of <m>T</m>?</p>
+      </statement>
+      <solution>
+        <p>The range of <m>T</m> is the column space of <m>A</m>. We could
+            do one step of row-reduction to see that the first two columns of
+            <m>A</m> are pivot columns.  Therefore, the first two columns are
+            linearly independent vectors in <m>{\bf R}^2</m>, so the range of <m>T</m>
+            is <m>{\bf R}^2</m>.</p>
+      </solution>
+    </task>
+    <solution>
+      <p><m>T(x) = Ax</m> for the <m>2 \times 5</m> matrix
+        <m>A = \begin{pmatrix}2 \amp 2 \amp 3 \amp 1 \amp 2 \\ 3 \amp 4 \amp 0 \amp 0 \amp -1\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>
+        Is there a matrix transformation <m>T(x) = Ax</m> that satisfies
+        the following?
+        <md><mrow>T\begin{pmatrix}1 \\ 3\end{pmatrix} = \begin{pmatrix}1 \\ 0\end{pmatrix}, \qquad T \begin{pmatrix}2 \\ 6\end{pmatrix} = \begin{pmatrix}-1 \\ 0\end{pmatrix}</mrow></md>.
+        (hint:
+        recall the matrix multiplication properties <m>A(u+v) = Au+Av</m>,
+        <m>A(cu) = cAu</m> for vectors <m>u</m> and <m>v</m> and scalars <m>c</m>).
+      </p>
+    </statement>
+    <solution>
+      <p>
+        No.  If <m>T</m> is a matrix transformation <m>T(x) = Ax</m> for some matrix
+          <m>A</m>, then from the property <m>A(2u) = 2 A(u)</m> it must be true that
+        <md><mrow>A \begin{pmatrix}2 \\ 6\end{pmatrix} = 2 A \begin{pmatrix}1 \\ 3\end{pmatrix}</mrow></md>,
+        or in other words
+          <m>T \begin{pmatrix}2 \\ 6\end{pmatrix} = 2 T\begin{pmatrix}1 \\ 3\end{pmatrix}</m>.
+      </p>
+      <p>However, <m>T\begin{pmatrix}2 \\ 6\end{pmatrix} = \begin{pmatrix}-1 \\ 0\end{pmatrix}</m> but <m>2 T \begin{pmatrix}1 \\ 3\end{pmatrix} = \begin{pmatrix}2 \\ 0\end{pmatrix}</m>,
+        so <m>T \begin{pmatrix}2 \\ 6\end{pmatrix} \neq 2 T\begin{pmatrix}1 \\ 3\end{pmatrix}</m>.</p>
+    </solution>
+  </exercise>
+</exercises>\setcounter{problem}{0}
+
+\newpage
+
+\underline{3.2, One-to-one and onto
+    transformations}
+
+<exercises>
+  <exercise>
+    <statement>
+      <p>It is possible for the matrix transformation associated to a <m>5 \times 6</m>
+        matrix to be both one-to-one and onto.</p>
+    </statement>
+    <solution>
+      <p>False.  A matrix cannot have more pivots than rows or columns, so the matrix
+        has a max of <m>5</m> pivots.  This means it is possible for the matrix to have a
+        pivot in every row, so the corresponding transformation might be onto.
+        However, the matrix will have at least one pivot without a column, so the
+        corresponding transformation <m>T</m> cannot be one-to-one.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>The transformation <m>T: {\bf R}^3 \to {\bf R}^3</m> given by projection onto the
+      <m>yz</m>-plane is onto.</p>
+    </statement>
+    <solution>
+      <p>False.  Recall that in order for the transformation to be onto, its range must be all of <m>{\bf R}^3</m>.  However, the range of <m>T</m> is the <m>yz</m>-plane.  In other words, the range is <m>\Span\left\{\begin{pmatrix}0 \\ 1 \\ 0\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}\right\}</m>, which is only a <m>2</m>-dimensional subspace of <m>{\bf R}^3</m>, not all of <m>{\bf R}^3</m>.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>The transformation <m>T: {\bf R}^2 \to {\bf R}^2</m> given by rotation by <m>\pi/5</m>
+      radians clockwise is onto.</p>
+    </statement>
+    <solution>
+      <p>True.  Let <m>y</m> be \textit{any} vector in <m>{\bf R}^2</m>.  Then for the vector <m>x</m>
+        obtained by rotating <m>y</m> by <m>\pi/5</m> radians \textit{counterclockwise}, we get
+        <m>T(x) = y</m>.  This shows that every vector in <m>{\bf R}^2</m> is in the range of
+        <m>T</m>.  In other words, range<m>(T) = {\bf R}^2</m>, so <m>T</m> is onto.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>If a matrix <m>A</m> has more rows than columns, then the matrix transformation <m>T</m>
+      given by <m>T(x)=Ax</m> is not onto.</p>
+    </statement>
+    <solution>
+      <p>True.  Since <m>A</m> cannot have more pivots than columns,
+          and since there are more rows than columns, we conclude <m>A</m> cannot
+          have a pivot in every row.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Suppose <m>A = \begin{pmatrix}1 \amp 2 \amp 3 \\ 4 \amp 5 \amp 6 \\ 3 \amp 6 \amp 9\end{pmatrix}</m>. Then the transformation <m>T(x) = Ax</m> is one-to-one.</p>
+    </statement>
+    <solution>
+      <p>False:
+          <m>\begin{pmatrix}1 \amp 2 \amp 3 \\ 4 \amp 5 \amp 6 \\ 3 \amp 6 \amp 9\end{pmatrix} \xrightarrow[R_3 = R_3 - 3R_1]{R_2=
+            R_2-4R_1} \begin{pmatrix}1 \amp 2 \amp 3 \\ 0 \amp -3 \amp -6 \\ 0 \amp 0 \amp 0\end{pmatrix}</m>, so <m>A</m> does not have a
+          pivot in every column and therefore <m>T</m> is not one-to-one.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement correct="yes">
+      <p>Suppose <m>A</m> is
+      a matrix and <m>A \begin{pmatrix}-3 \\ 5 \\ 8 \\ 1\end{pmatrix}</m> is the zero vector.  Then the transformation
+      <m>T(x) = Ax</m> cannot be one-to-one.</p>
+    </statement>
+    <solution>
+      <p>True.  Since <m>A \begin{pmatrix}-3 \\ 5 \\ 8 \\ 1\end{pmatrix}</m> is the zero vector, the homogeneous
+        system <m>Ax = 0</m> has more than just the trivial solution.  Therefore,
+        there are infinitely many vectors <m>x</m> so that <m>Ax = 0</m>, so <m>T(x)=0</m>
+        has infinitely many solutions and <m>T</m> is not one-to-one.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there an onto matrix transformation <m>T(x) = Ax</m> with domain <m>{\bf R}^2</m> and
+      codomain <m>{\bf R}^3</m>?  If so, write one down.  If not, explain why not.</p>
+    </statement>
+    <solution>
+      <p>No.  In order for <m>T</m> to have domain <m>{\bf R}^2</m> and codomain <m>{\bf R}^3</m>, the
+        matrix <m>A</m> must be <m>3 \times 2</m>, so <m>A</m> has a max of <m>2</m> pivot columns.
+        Therefore, the column space of <m>A</m> (which is the range of <m>T</m>) is at most a
+        <m>2</m>-dimensional subspace of <m>{\bf R}^3</m>, so <m>T</m> cannot be onto.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Is there a one-to-one matrix transformation with domain <m>{\bf R}^2</m> and codomain
+      <m>{\bf R}^3</m>?  If so, write one down.  If not, explain why not.</p>
+    </statement>
+    <solution>
+      <p>
+        Yes.  Some examples of <m>3 \times 2</m> matrice with a pivot in each column are
+        <md><mrow>A = \begin{pmatrix}1 \amp 0 \\ 0 \amp 1 \\ 0 \amp 0\end{pmatrix}, \qquad A = \begin{pmatrix}1 \amp 1 \\ 0 \amp 1 \\ 0 \amp 0\end{pmatrix},
+        \qquad A = \begin{pmatrix}0 \amp 0 \\ 5 \amp 1 \\ 1 \amp 0\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>Which of the following transformations are one-to-one?</p>
+    </introduction>
+    <task>
+      <statement>
+        <p><m>T: {\bf R}^2 \to {\bf R}^2</m> that naturally projects
+          vectors onto the <m>x</m>-axis.</p>
+      </statement>
+      <solution>
+        <p>No: for example, <m>T(0, 1) = (0, 0)</m> and
+            <m>T(0, 0) = (0, 0)</m>. Alternatively, we could write the matrix for
+            <m>T</m> (which we learned in section 3.1) and observe that it has <m>2</m>
+            columns but only one pivot.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p><m>T(x, y, z) = (x, y+z)</m>.</p>
+      </statement>
+      <solution>
+        <p>No: for example, <m>T(1, 0, 0) = (1, 0)</m> and
+            <m>T(1, 1, -1) = (1, 0)</m>.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Either write a <m>2 \times 3</m> matrix <m>A</m> that so that the
+      matrix transformation <m>T(x)=Ax</m> is one-to-one, or justify why no such
+      matrix <m>A</m> exists.</p>
+    </statement>
+    <solution>
+      <p>Any <m>2 \times 3</m> matrix <m>A</m> has <m>3</m> columns but at most <m>2</m> pivots,
+        so it cannot have a pivot in every column, hence <m>T(x) = Ax</m> cannot
+        be one-to-one.</p>
+    </solution>
+  </exercise>
+  <exercise>
+    <introduction>
+      <p>We are told that a matrix <m>A</m> has four columns and three pivots, and let <m>T</m> be the associated linear transformation.</p>
+    </introduction>
+    <task>
+      <statement>
+        <p>Geometrically, what can we conclude about the range of
+          <m>T</m>?  Do we know in which <m>{\bf R}^k</m> we can find the range of <m>T</m>?
+          Is it possible that <m>T</m> is onto?</p>
+      </statement>
+      <solution>
+        <p>The range of <m>T</m> is the column span of <m>A</m>.  Since <m>A</m>
+            has three pivots, this means that the range of <m>T</m> has dimension
+            <m>3</m>.  We do not know where the range of <m>T</m> lives, because we were
+            not told the number of rows of <m>A</m> and we cannot tell from the
+            information given.</p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>Geometrically, what can we conclude about the set of all
+          solutions to the equation <m>T(x) = 0</m>?  Do we know in which
+          <m>{\bf R}^\ell</m> we can find this solution set?  Is it possible that
+          <m>T</m> is one-to-one?</p>
+      </statement>
+      <solution>
+        <p>The solution set for <m>T(x) = 0</m> is just the null space
+            of <m>A</m>.  Since <m>A</m> has <m>3</m> pivots and <m>4</m> columns, the system
+            <m>Ax=0</m> will have one free variable and thus infinitely many
+            solutions.  Therefore, <m>T</m> is not one-to-one and the solution set
+            to <m>T(x)=0</m> is a one-dimensional subspace of <m>{\bf R}^4</m>.</p>
+      </solution>
+    </task>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Either write a <m>3 \times 4</m> matrix <m>A</m> so that the matrix
+      transformation <m>T(x)=Ax</m> is onto, or justify why no such matrix <m>A</m>
+      exists.</p>
+    </statement>
+    <solution>
+      <p>
+        Many examples possible, for example
+          <m>A = \begin{pmatrix}1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0\end{pmatrix}</m>.  We can see directly that
+          every vector <m>\begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix}</m> in <m>{\bf R}^3</m> is in the range of
+          the transformation <m>T(x)=Ax</m>, since
+        <md><mrow>A\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ x_4\end{pmatrix} = \begin{pmatrix}1 \amp 0 \amp 0 \amp 0 \\ 0 \amp 1 \amp 0 \amp 0 \\ 0 \amp 0 \amp 1 \amp 0\end{pmatrix}
+            \begin{pmatrix}x_1 \\ x_2 \\ x_3 \\ 0\end{pmatrix} = \begin{pmatrix}x_1 \\ x_2 \\ x_3\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+  <exercise>
+    <statement>
+      <p>Write a linear transformation <m>T</m> with domain <m>{\bf R}^3</m> and
+      codomain <m>{\bf R}^2</m> whose range is the line <m>x_2 = -2x_1</m>.</p>
+    </statement>
+    <solution>
+      <p>
+        We need to find a <m>2 \times 3</m> matrix <m>A</m> whose column space is the
+          line <m>x_2 = -2x_1</m>.  In other words
+          <m>\Col(A) = \textup{Span}\left\{ \begin{pmatrix}1 \\ -2\end{pmatrix}\right\}</m>.  We need <m>A</m> to
+          have exactly one pivot column, and each column must be a scalar
+          multiple of <m>\begin{pmatrix}1 \\ -2\end{pmatrix}</m>.  Many examples are possible, for example:
+        <md><mrow>A = \begin{pmatrix}1 \amp 0 \amp 0 \\ -2 \amp 0 \amp 0\end{pmatrix}, \qquad A = \begin{pmatrix}1 \amp 2 \amp 3 \\ -2 \amp -4 \amp -6\end{pmatrix}</mrow></md>.
+      </p>
+    </solution>
+  </exercise>
+</exercises>
+</section>

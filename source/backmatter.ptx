@@ -8,9 +8,8 @@
 <backmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="backmatter">
   <title>Backmatter</title>
 
-  <!-- <solutions divisional="hint"> <title>Selected Hints</title> </solutions> -->
 
-  <!-- <xi:include href="./cplx-nums.ptx"/> -->
+  <xi:include href="./cplx-nums.ptx"/>
 
   <appendix> <title>Notation</title>
     <p>The following table defines the notation used in this book.  Page numbers or references refer to the first appearance of each symbol.  </p>
